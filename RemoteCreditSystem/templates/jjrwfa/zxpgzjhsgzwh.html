@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div class="position">
+			当前位置：<span>进件任务分案 / 评估规则维护</span>
+		</div>
+		<div class="pageTitle">
+			评估规则维护
+		</div>
+		<div class="content">			
+			<table class="myTable">
+				<caption>资信评估专家会审规则维护</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+					<td class="table-label">专家人数</td>
+					<td><input type="text" value="3"/></td>
+					<td class="table-label">专家层级</td>
+					<td><select><option>---请选择---</option><option>1级</option><option selected>2级</option><option>3级</option></select></td>					
+				</tr>
+				<tr>
+					<td class="table-label">排他专家规则</td>
+					<td><input type="text" value="客户经理1，客户经理2"/></td>
+					<td class="table-label">强制专家规则</td>
+					<td><input type="text" value="admin"/></td>					
+				</tr>
+			</table>	
+			<div class="pagebar">			
+				<div class="controlbtn">
+					<a class="btn btn-info" href="javascript:void(0);" title="提交">提&nbsp;&nbsp;交</a>
+					<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

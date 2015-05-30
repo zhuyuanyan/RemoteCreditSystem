@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<!--日历-->
+		<script src="../../static/js/date/lhgcore.js"></script>
+		<script src="../../static/js/date/lhgcalendar.js"></script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div class="position">
+			当前位置：<span>评估专家管理 / 专家资信评估任务、进程管理 / 进程调整</span>
+		</div>
+		<div class="pageTitle">
+			进程调整--专家1
+		</div>
+		<div class="content">
+			<table class="myTable">
+				<caption>评估权限</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+					<td class="table-label">任务编号</td>
+					<td><input type="text" value="01" disabled/></td>					
+					<td class="table-label">任务名称</td>
+					<td><input type="text" value="任务1" disabled/></td>				
+				</tr>				
+				<tr>
+					<td class="table-label">创建人</td>
+					<td><input type="text" value="admin" disabled/></td>					
+					<td class="table-label">开始时间</td>
+					<td><input type="text" value="20150501" disabled/></td>				
+				</tr>
+				<tr>
+					<td class="table-label">期限时间</td>					
+					<td colspan="3"><input type="text" value="20150506" onclick="J.calendar.get({type:'/'});"/></td>						
+				</tr>
+			</table>
+			<div class="pagebar">			
+				<div class="controlbtn">
+					<a class="btn btn-info" href="javascript:void(0);" title="提交">提&nbsp;&nbsp;交</a>
+					<a class="btn" href="javascript:void(0);" onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

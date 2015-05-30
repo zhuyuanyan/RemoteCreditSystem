@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/*中间工作计划*/
+.workPlan{display:inline-block;width:73%;float:left;border:1px solid #c1c1c1;}
+/*首页tab标签*/
+.tab{float:left;display:block;width:100%;}
+.tab li{float:left;width:20%;text-align:center;font-size:17px;background: #e3e3e3;background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#c2c2c2));}
+.tab li a{display:inline-block;border-right:1px solid #c1c1c1;border-bottom:1px solid #c1c1c1;margin-left:-1px;line-height:50px;width:100%;text-decoration:none;color: #49494a;}
+.tab .active{background: #2080d2;background: -webkit-gradient(linear, left top, left bottom, from(#2080d2), to(#035ac3));}			
+.tab .active a{color:#fff;border-right:1px solid #035ac3;border-bottom:1px solid #035ac3;}
+.tabContent{float:left;background:#f9f9f9;width:100%;min-height:400px;}
+.tabContent .tabs{display:none;margin:20px;}
+.tabContent .active{display:block;}
+/*首页可折叠待办事项*/
+.myItem{border: 1px solid #c1c1c1;background:#fff;}
+.myItem .itemTitle{cursor:pointer;background: #e3e3e3;background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#c2c2c2));border-bottom: 1px solid #c1c1c1;line-height:35px;color: #7d7d7d;padding:0 10px;}
+.myItem .itemList{margin:10px 40px;}
+.myItem .itemList li{line-height:35px;color: #535353;cursor:pointer;}
+.myItem .itemList li span{float:right;}
+/*右侧用户信息*/
+.userMessage{display:inline-block;width:25%;float:right;border:1px solid #c1c1c1;}
+.userTitle{line-height: 35px;color:#fff;padding-left:20px;border-bottom: 1px solid #c1c1c1;background: #2080d2;background: -webkit-gradient(linear, left top, left bottom, from(#2080d2), to(#035ac3));}
+.userInfo{padding:10px;border-bottom:1px solid #c1c1c1;}
+.userInfo li{font-size: 14px;color: #7d7d7d;line-height:20px;}
+.workInfo{padding: 10px;border-bottom: 1px solid #c1c1c1;}
+.workInfo a{text-decoration:none;color: #333;margin-right:8px;}
+.workInfo a span{color: #fff;padding: 2px 5px;border-radius: 5px;font-size: 14px;margin:0 3px;}
+/*用户信息可折叠*/
+.userMessage .myItem{border-top:none;border-left:none;border-right:none;}
+.userMessage .myItem .itemList{margin:10px 20px;}
+
+/*彩色标签*/
+.color1{background: #a4dcf1;}
+.color2{background: #ffbde1;}
+.color3{background: #ff8282;}
+/*可折叠图标*/
+.icon-up{float: right;width: 24px;height: 14px;background: url(../img/bg.png) no-repeat 0 -43px;margin-top: 10px;}
+.icon-down{float: right;width: 24px;height: 14px;background: url(../img/bg.png) no-repeat 0 -3px;margin-top: 10px;}
+.icon-up-small{float: right;width: 14px;height: 8px;background: url(../img/bg.png) no-repeat 0 -202px;margin-top: 15px;}
+.icon-down-small{float: right;width: 14px;height: 8px;background: url(../img/bg.png) no-repeat 0 -159px;margin-top: 15px;}
+/*数字标签*/
+.icon-num{float: right;margin-right: 10px;margin-top: 8px;width: 19px;height: 19px;line-height: 19px;color: #fff;text-align: center;background: url(../img/bg.png) no-repeat 0 -102px;font-style: normal;}

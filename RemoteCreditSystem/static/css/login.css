@@ -1,0 +1,24 @@
+@charset "UTF-8";
+*{font: normal 15px "Microsoft YaHei";margin:0;padding:0;}
+/*背景图片*/
+body{background: url(../img/bj2.jpg) no-repeat #72c2bf;background-size: cover;}
+
+/*透明外框*/
+.loginBox{width:400px;height:290px;background:rgba(255,255,255,0.3);margin:0 auto;padding:15px 15px 23px 15px;margin-top:150px;border-radius:10px;}
+/*白色form框*/
+.login_form{background:#fff;width:100%;height:100%;border-bottom:8px solid #81bb28;}
+/*form框左上角包角图片*/
+.login_form img{margin-top:-5px;margin-left:-5px;}
+
+.login{text-align:center;margin-top:-60px;}
+/*登陆框标题*/
+h1{font-size:20px;color:#478fca;margin-bottom:15px;font-weight:normal;}
+/*输入框*/
+.loginBox input[type=text],.loginBox input[type=password]{width:285px;padding:10px 0 10px 15px;margin:10px;border:1px solid #d5d5d5;border-radius:5px;background:#eeeeee;background-repeat:no-repeat;background-position:center right;font: normal 15px "Microsoft YaHei";}
+input[type=text]:focus,input[type=password]:focus{outline:none;border-color:#1583dd}
+/*错误提示信息*/
+.errorMessage{display:none;color:#9f4c4c;font-weight:bold;line-height:30px;margin-left:-130px;font-size:15px;}
+.errorMessage img{vertical-align:text-bottom;}
+/*登录按钮*/
+.loginBox input[type=submit]{width:300px;height:40px;margin-top:10px;cursor:pointer;background:url(../img/btn_normal.png);color:#fff;border:1px solid #0089d9;font: normal 15px "Microsoft YaHei";}
+.loginBox input[type=submit]:hover{background:url(../img/btn_normal_hover.png);}

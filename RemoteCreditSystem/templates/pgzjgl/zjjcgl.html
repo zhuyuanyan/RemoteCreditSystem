@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div class="position">
+			当前位置：<span>评估专家管理 / 专家资信评估任务、进程管理</span>
+		</div>
+		<div class="pageTitle">
+			专家资信评估任务、进程管理
+		</div>
+		<div class="content">
+			<form class="search">				
+				<span>
+					专家编号：<input type="text"/>
+				</span>
+				<span>
+					专家名称：<input type="text"/>
+				</span>		
+				<span class="searchButton">
+					<input type="button" class="btn btn-info" value="筛选"/>
+				</span>
+			</form>
+			<table class="table-list">
+				<colgroup>
+					<col width="5%" />
+					<col width="30%" />
+					<col width="30%" />
+					<col width="35%" />
+				</colgroup>
+				<tr>
+					<th width="50"></th>
+					<th>专家编号</th>
+					<th>专家名称</th>
+					<th>专家层级</th>
+				</tr>
+			</table>
+			<table class="table-list">
+				<colgroup>
+					<col width="5%" />
+					<col width="30%" />
+					<col width="30%" />
+					<col width="35%" />
+				</colgroup>
+				<tr onclick="checkTable(this)">
+					<td><input type="radio" name="radio" checked/></td>
+					<td>001</td>
+					<td>专家1</td>
+					<td>1级</td>
+				</tr>
+			</table>
+			<div class="pagebar">
+				<div class="controlbtn">
+					<a class="btn" href="javascript:void(0);" title="进程查询" onclick="iframe('/pgzjgl/show_zjjcgl')">进程查询</a>
+				</div>
+				<div class="page">
+					<span>共<b>1</b>条数据，当前第<b>1</b>页</span>
+					<a href="#" class="first"><img src="../../static/img/icon_button_first.png"/></a>
+					<a href="#" class="previous"><img src="../../static/img/icon_button_previous.png"/></a>
+					<input type="text"/>
+					<input type="button" value="GO" class="go"/>
+					<span>/页</span>	
+					<a href="#" class="next"><img src="../../static/img/icon_button_next.png"/></a>
+					<a href="#" class="end"><img src="../../static/img/icon_button_end.png"/></a>
+				</div>
+			</div>		
+		</div>
+		<script type="text/javascript">
+		</script>
+	</body>
+</html>

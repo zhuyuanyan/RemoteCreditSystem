@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<!--日历-->
+		<script src="../../static/js/date/lhgcore.js"></script>
+		<script src="../../static/js/date/lhgcalendar.js"></script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div class="position">
+			当前位置：<span>专家资信评估管理 / 已拒绝任务</span>
+		</div>
+		<div class="pageTitle">
+			已拒绝任务
+		</div>
+		<div class="content">
+			<form class="search">				
+				<span>
+					进件机构：<select><option>---请选择---</option></select>
+				</span>
+				<span>
+					进件区域：<select><option>---请选择---</option></select>
+				</span>
+				<span>
+					&nbsp;&nbsp;&nbsp;&nbsp;行业：<select><option>---请选择---</option></select>
+				</span>	
+				<span>
+					商圈：<input type="text"/>
+				</span>
+				<span>
+					客户经理：<input type="text"/>
+				</span>
+				<span>
+					&nbsp;&nbsp;&nbsp;审核人：<input type="text"/>
+				</span>
+				<span>
+					审批人：<input type="text"/>
+				</span>
+				<!-- <span>
+					进件日期：<input type="text" onclick="J.calendar.get({type:'/'});"/>
+				</span>	 -->				
+				<span class="searchButton">
+					<input type="button" class="btn btn-info" value="筛选"/>
+				</span>
+			</form>
+			<table class="table-list">
+				<colgroup>
+					<col width="5%" />
+					<col width="10%" />
+					<col width="15%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="5%" />
+					<col width="5%" />
+					<col width="10%" />
+					<col width="5%" />
+				</colgroup>
+				<tr>
+					<th width="50"></th>
+					<th>客户名称</th>
+					<th>证件号码</th>
+					<th>产品名称</th>
+					<th>申请额度</th>
+					<th>进件机构</th>
+					<th>进件区域</th>
+					<th>行业</th>
+					<th>商圈</th>
+					<th>客户经理</th>
+					<th>审核人</th>
+					<th>审批人</th>
+				</tr>
+			</table>
+			<table class="table-list">
+				<colgroup>					
+					<col width="5%" />
+					<col width="10%" />
+					<col width="15%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="5%" />
+					<col width="5%" />
+					<col width="10%" />
+					<col width="5%" />
+				</colgroup>
+				<tr onclick="checkTable(this)">
+					<td><input type="radio" name="radio" checked/></td>
+					<td>张三</td>
+					<td>310104198801010101</td>
+					<td>产品wy08</td>
+					<td>10000</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr onclick="checkTable(this)">
+					<td><input type="radio" name="radio"/></td>
+					<td>李四</td>
+					<td>310104198801010102</td>
+					<td>产品wy00</td>
+					<td>100000</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+			<div class="pagebar">
+				<div class="controlbtn">
+					<a class="btn btn-info" href="javascript:void(0);" title="拒绝原因" onclick="iframe('/zjzxpggl/yjjrw_jjyy')">拒绝原因</a>
+					<a class="btn btn-info" href="javascript:void(0);" title="接受">接受</a>
+				</div>
+				<div class="page">
+					<span>共<b>2</b>条数据，当前第<b>1</b>页</span>
+					<a href="#" class="first"><img src="../../static/img/icon_button_first.png"/></a>
+					<a href="#" class="previous"><img src="../../static/img/icon_button_previous.png"/></a>
+					<input type="text"/>
+					<input type="button" value="GO" class="go"/>
+					<span>/页</span>	
+					<a href="#" class="next"><img src="../../static/img/icon_button_next.png"/></a>
+					<a href="#" class="end"><img src="../../static/img/icon_button_end.png"/></a>
+				</div>
+			</div>		
+		</div>
+		<script type="text/javascript">
+		</script>
+	</body>
+</html>

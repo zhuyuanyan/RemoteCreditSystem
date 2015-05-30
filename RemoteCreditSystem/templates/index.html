@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>乾康远程授信系统</title>	
+		<link href="../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../static/js/index.js"></script>
+	</head>
+	<body>
+	<!--***************************************顶部*******************************************************-->
+		<div class="top">
+			<h1 style="border-right:1px solid #c1e5f5;width:219px;text-align:right">乾康远程授信系统 &nbsp;</h1>
+			<h1>&nbsp; Remote credit system</h1>
+			<div class="pull-right">
+				<div class="user-info">
+					您好 , admin / 开发部&nbsp;&nbsp;&nbsp;<span id="time"></span>
+				</div>
+				<div class="user-operate">
+					<a href="#" class="btn-top" onclick="$('.dialog').show();">
+						<img src="../static/img/icon_1.png"/>修改密码
+					</a>&nbsp;&nbsp;
+					<a href="login.html" class="btn-top">
+						<img src="../static/img/icon_2.png"/>退出
+					</a>
+				</div>
+			</div>
+		</div>	
+	<!--***************************************左侧导航*******************************************************-->
+		<div class="left">
+			<ul class="nav">
+				<li class="active" onclick="changeNav(this,1);changeiframe('/welcome')">
+					<div onclick="showMenu(1)">
+						<img src="../static/img/1_active.png" class="tip"/>系统首页
+					</div>
+				</li>
+				<li onclick="changeNav(this,2)">
+					<div onclick="showMenu(2)">
+						<img src="../static/img/2.png" class="tip"/>进件任务分案<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul2">
+						<li onclick="changeiframe('jjrwfa/zxpg')"><a href="#" title="资信评估">资信评估</a></li>
+						<li onclick="changeiframe('jjrwfa/jjfa')"><a href="#" title="进件分案">进件分案</a></li>
+						<li onclick="changeiframe('jjrwfa/jjrwfaxx')"><a href="#" title="进件任务分案信息">进件任务分案信息</a></li>
+						<li onclick="changeiframe('jjrwfa/zxpgmsgzwh')"><a href="#" title="资信评估模式规则维护">资信评估模式规则维护</a></li>
+						<li onclick="changeiframe('jjrwfa/fagzwh')"><a href="#" title="分案规则维护">分案规则维护</a></li>
+						<li onclick="changeiframe('jjrwfa/zxpgzjhsgzwh')"><a href="#" title="资信评估专家会审规则维护">资信评估专家会审规则维护</a></li>
+						<!-- <li onclick=""><a href="#" title="资信评估专家会审撮合规则维护">资信评估专家会审撮合规则维护</a></li> -->
+					</ul>
+				</li>
+				<li onclick="changeNav(this,3)">
+					<div onclick="showMenu(3)">
+						<img src="../static/img/3.png" class="tip"/>客户资料调阅<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul3">
+						<li onclick="changeiframe('khzldy/khzl')"><a href="#" title="客户资料">客户资料</a></li>
+					</ul>
+				</li>
+				<li onclick="changeNav(this,4)">
+					<div onclick="showMenu(4)">
+						<img src="../static/img/4.png" class="tip"/>专家资信评估管理<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul4">
+						<li onclick="changeiframe('zjzxpggl/jjrw')"><a href="#" title="进件任务">进件任务</a></li>
+						<li onclick="changeiframe('zjzxpggl/yjsrw')"><a href="#" title="已接受任务">已接受任务</a></li>
+						<li onclick="changeiframe('zjzxpggl/yjjrw')"><a href="#" title="已拒绝任务">已拒绝任务</a></li><!-- 
+						<li><a href="#" title="评估中心评审监控">评估中心评审监控</a></li> -->
+					</ul>
+				</li>
+				<li onclick="changeNav(this,5)">
+					<div onclick="showMenu(5)">
+						<img src="../static/img/5.png" class="tip"/>资信评估结论<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul5">
+						<li onclick="changeiframe('zxpgjl/pgjl')"><a href="#" title="评估结论">评估结论</a></li>
+					</ul>
+				</li>
+				<li onclick="changeNav(this,6)">
+					<div onclick="showMenu(6)">
+						<img src="../static/img/6.png" class="tip"/>资信评估规则维护<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul6">
+						<li onclick="changeiframe('zxpggzwh/pggzwh')"><a href="#" title="评估规则维护">评估规则维护</a></li>
+					</ul>
+				</li>
+				<li onclick="changeNav(this,7)">
+					<div onclick="showMenu(7)">
+						<img src="../static/img/7.png" class="tip"/>评估专家管理<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul7">
+						<li onclick="changeiframe('pgzjgl/zjxxgl')"><a href="#" title="专家信息管理">专家信息管理</a></li>
+						<li onclick="changeiframe('pgzjgl/zjcjgl')"><a href="#" title="专家层级管理">专家层级管理</a></li>
+						<li onclick="changeiframe('pgzjgl/zjzxpgqxgl')"><a href="#" title="专家资信评估权限管理">专家资信评估权限管理</a></li>
+						<li onclick="changeiframe('pgzjgl/zjjcgl')"><a href="#" title="专家资信评估任务、进程管理">专家资信评估任务、进程管理</a></li>
+						<li onclick="changeiframe('pgzjgl/zjywlgl')"><a href="#" title="专家资信评估业务量管理">专家资信评估业务量管理</a></li>
+						<li onclick="changeiframe('pgzjgl/zjpgzlgl')"><a href="#" title="专家资信评估质量管理">专家资信评估质量管理</a></li>
+						<li onclick="changeiframe('pgzjgl/zjjxgl')"><a href="#" title="评审专家绩效管理">评审专家绩效管理</a></li>
+					</ul>
+				</li>
+				<!-- <li onclick="changeNav(this,6)">
+					<div onclick="showMenu(6)">
+						<img src="../static/img/6.png" class="tip"/>客户经理管理<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul6">
+						<li><a href="#" title="客户经理参数配置">客户经理参数配置</a></li>
+						<li><a href="#" title="客户经理台账列表">客户经理台账列表</a></li>
+						<li><a href="#" title="客户经理层级信息维护">客户经理层级信息维护</a></li>
+						<li><a href="#" title="客户经理级别调整">客户经理级别调整</a></li>
+						<li><a href="#" title="客户经理从属设置">客户经理从属设置</a></li>
+						<li><a href="#" title="客户经理培训计划列表(卡中心、组长)">客户经理培训计划列表(卡中心、组长)</a></li>
+						<li><a href="#" title="所属客户经理警示书">所属客户经理警示书</a></li>
+						<li><a href="#" title="客户经理警示书列表">客户经理警示书列表</a></li>
+						<li><a href="#" title="创建客户经理警示书(卡中心)">创建客户经理警示书(卡中心)</a></li>
+						<li><a href="#" title="客户经理工资信息列表">客户经理工资信息列表</a></li>
+						<li><a href="#" title="所属客户经理评估列表">所属客户经理评估列表</a></li>
+						<li><a href="#" title="客户经理评估查询">客户经理评估查询</a></li>
+						<li><a href="#" title="客户经理周报">客户经理周报</a></li>
+						<li><a href="#" title="所属客户经理周报列表">所属客户经理周报列表</a></li>
+						<li><a href="#" title="客户经理周报(团队负责人)">客户经理周报(团队负责人)</a></li>
+						<li><a href="#" title="客户经理日报">客户经理日报</a></li>
+						<li><a href="#" title="信息员信息列表">信息员信息列表</a></li>
+						<li><a href="#" title="信息员维护计划列表">信息员维护计划列表</a></li>
+					</ul>
+				</li>
+				<li onclick="changeNav(this,7)">
+					<div onclick="showMenu(7)">
+						<img src="../static/img/7.png" class="tip"/>综合风控管理<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul7">
+						<li><a href="#" title="黑名单数据资料">黑名单数据资料</a></li>
+						<li><a href="#" title="高风险客户名单">高风险客户名单</a></li>
+						<li><a href="#" title="风险客户管理">风险客户管理</a></li>
+						<li><a href="#" title="风险客户管理(卡中心)">风险客户管理(卡中心)</a></li>
+						<li><a href="#" title="客户催收计划列表">客户催收计划列表</a></li>
+						<li><a href="#" title="所属客户经理催收计划列表">所属客户经理催收计划列表</a></li>
+						<li><a href="#" title="风险事项管理">风险事项管理</a></li>
+						<li><a href="#" title="风险事项审核流程(客户经理)">风险事项审核流程(客户经理)</a></li>
+						<li><a href="#" title="风险事项审核流程(卡中心)">风险事项审核流程(卡中心)</a></li>
+						<li><a href="#" title="风险事项审核流程(机构主管)">风险事项审核流程(机构主管)</a></li>
+						<li><a href="#" title="不良资产管理(卡中心)">不良资产管理(卡中心)</a></li>
+						<li><a href="#" title="不良资产规则配置(卡中心)">不良资产规则配置(卡中心)</a></li>
+						<li><a href="#" title="逾期客户列表">逾期客户列表</a></li>
+						<li><a href="#" title="问责记录列表">问责记录列表</a></li>
+						<li><a href="#" title="问责记录查询(卡中心)">问责记录查询(卡中心)</a></li>
+					</ul>
+				</li>
+				<li onclick="changeNav(this,8)">
+					<div onclick="showMenu(8)">
+						<img src="../static/img/8.png" class="tip"/>通知信息<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul8">
+						<li><a href="#" title="审贷会通知">审贷会通知</a></li>
+						<li><a href="#" title="培训通知">培训通知</a></li>
+						<li><a href="#" title="考察成绩通知">考察成绩通知</a></li>
+						<li><a href="#" title="其它通知">其它通知</a></li>
+					</ul>
+				</li>
+				<li onclick="changeNav(this,9)">
+					<div onclick="showMenu(9)">
+						<img src="../static/img/9.png" class="tip"/>报表统计<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul9">
+						<li><a href="#" title="客户经理“灵活金”发卡情况统计">客户经理“灵活金”发卡情况统计</a></li>
+						<li><a href="#" title="支行“灵活金”发卡情况统计">支行“灵活金”发卡情况统计</a></li>
+						<li><a href="#" title="客户经理“灵活金”透支情况统计">客户经理“灵活金”透支情况统计</a></li>
+						<li><a href="#" title="支行“灵活金”透支情况统计">支行“灵活金”透支情况统计</a></li>
+						<li><a href="#" title="客户信息智能报表">客户信息智能报表</a></li>
+						<li><a href="#" title="客户账户智能报表">客户账户智能报表</a></li>
+						<li><a href="#" title="贷后管理数据">贷后管理数据</a></li>
+						<li><a href="#" title="客户经理“灵活金”用信还款情况统计">客户经理“灵活金”用信还款情况统计</a></li>
+						<li><a href="#" title="支行“灵活金”用信还款情况统计">支行“灵活金”用信还款情况统计</a></li>
+						<li><a href="#" title="“灵活金”/信用卡业务流程监测报表(客户经理/微贷经理维度)">“灵活金”/信用卡业务流程监测报表(客户经理/微贷经理维度)</a></li>
+						<li><a href="#" title="“灵活金”/普通信用卡业务流程监测报表(一级支行/二级支行维度)">“灵活金”/普通信用卡业务流程监测报表(一级支行/二级支行维度)</a></li>
+						<li><a href="#" title="(退回)“灵活金”业务/普通信用卡进件质量监测报表统计 (客户经理/微贷经理维度)">(退回)“灵活金”业务/普通信用卡进件质量监测报表统计 (客户经理/微贷经理维度)</a></li>
+						<li><a href="#" title="(退回)“灵活金”/普通信用卡业务进件质量监测报表统计(一级支行/二级支行维度)">(退回)“灵活金”/普通信用卡业务进件质量监测报表统计(一级支行/二级支行维度)</a></li>
+						<li><a href="#" title="(拒绝)“灵活金”业务/普通信用卡进件质量监测报表统计 (客户经理/微贷经理维度)">(拒绝)“灵活金”业务/普通信用卡进件质量监测报表统计 (客户经理/微贷经理维度)</a></li>
+						<li><a href="#" title="(拒绝)“灵活金”/普通信用卡业务进件质量监测报表统计(一级支行/二级支行维度)">(拒绝)“灵活金”/普通信用卡业务进件质量监测报表统计(一级支行/二级支行维度)</a></li>
+						<li><a href="#" title="辅助岗位人员工作质量检测报告">辅助岗位人员工作质量检测报告</a></li>
+						<li><a href="#" title="评审岗位人员风控状况统计">评审岗位人员风控状况统计</a></li>
+					</ul>
+				</li>
+				<li onclick="changeNav(this,10)">
+					<div onclick="showMenu(10)">
+						<img src="../static/img/10.png" class="tip"/>系统管理<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul10">
+						<li><a href="#" title="权限配置">权限配置</a></li>
+						<li><a href="#" title="数据权限">数据权限</a></li>
+						<li><a href="#" title="单位管理">单位管理</a></li>
+						<li><a href="#" title="部门管理">部门管理</a></li>
+						<li><a href="#" title="角色管理">角色管理</a></li>
+						<li><a href="#" title="用户管理">用户管理</a></li>
+						<li><a href="#" title="操作日志">操作日志</a></li>
+						<li><a href="#" title="登录日志">登录日志</a></li>
+						<li><a href="#" title="数据字典">数据字典</a></li>
+						<li><a href="#" title="系统参数配置">系统参数配置</a></li>
+					</ul>
+				</li> -->
+			</ul>			
+		</div>	
+	<!--***************************************右侧主页面*******************************************************-->
+		<div class="right">
+			<iframe frameborder="0" src="/welcome" width="100%" id="content_frame" marginheight="0" marginwidth="0" height="100%" ></iframe>
+		</div>	
+	<!--***************************************底部*******************************************************-->
+		<div class="bottom">
+			©2013-2020 乾康金融
+		</div>
+	<!--***************************************弹出框*******************************************************-->
+		<div class="dialog">
+			<form class="dialog-box">
+				<div class="dialog-top">
+					修改密码
+					<span onclick="hideDialog()"></span>
+				</div>
+				<div class="dialog-content">
+					<table>						
+						<tr>
+							<td>原密码：</td>
+							<td width="310px">
+								<input type="password"/>
+								<span class="errorMessage">原密码不正确<span>
+							</td>
+						</tr>
+						<tr>
+							<td>新密码：</td>
+							<td>
+								<input type="password" id="password1" onblur="checkPassword1(this)"/>
+								<span class="errorMessage"><span>
+							</td>
+						</tr>
+						<tr>
+							<td>确认密码：</td>
+							<td>
+								<input type="password" id="password2" onblur="checkPassword2(this)"/>
+								<span class="errorMessage"><span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="dialog-bottom">
+					<input type="submit" class="btn btn-info" value="保存" />
+					<input type="button" class="btn" value="取消" onclick="hideDialog()"/>
+				</div>
+			</form>
+		</div>
+		<script type="text/javascript">
+			function hideDialog(){//隐藏对话框
+				$('.dialog input[type=password]').val('');
+				$('.errorMessage').hide();
+				$('.dialog').hide();
+			}
+			function checkPassword1(obj){//密码验证
+				var password=$(obj).val();
+				if( password==null || password=="" ) {
+					$(obj).parent().find(".errorMessage").html("密码不能为空！");
+					$(obj).parent().find(".errorMessage").show();					
+				}
+				else if( password.length>0 && password.length<6 ) {
+					$(obj).parent().find(".errorMessage").html("密码至少为6位数字！");
+					$(obj).parent().find(".errorMessage").show();					
+				}
+				else{
+					$(obj).parent().find(".errorMessage").hide();
+				}				
+			}
+			function checkPassword2(obj){
+				var password=$(obj).val();
+				if( password==null || password=="" ) {
+					$(obj).parent().find(".errorMessage").html("密码不能为空！");
+					$(obj).parent().find(".errorMessage").show();					
+				}
+				else if( password!=$("#password1").val() ){
+					$(obj).parent().find(".errorMessage").html("两次输入的新密码不一致！");
+					$(obj).parent().find(".errorMessage").show();
+				}
+				else{
+					$(obj).parent().find(".errorMessage").hide();
+				}	
+			}
+		</script>
+	</body>
+</html>

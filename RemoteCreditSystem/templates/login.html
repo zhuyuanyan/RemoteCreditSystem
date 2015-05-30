@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>乾康远程授信系统</title>
+		<link href="../static/css/login.css" rel="stylesheet" type="text/css" />		
+	</head>
+	<body>
+		<div class="loginBox">
+			<form class="login_form" action="/login_wel" method="post">
+				<img src="../static/img/login.png"/>				
+				<div class="login">
+					<h1>乾康远程授信系统</h1>
+					<input type="text" placeholder="用户名" style="background-image:url('../static/img/login1.png');" />
+					<input type="password" placeholder="密码" style="background-image:url('../static/img/login2.png');"/>
+					<!--错误信息提示-->
+					<span class="errorMessage">
+						<img src="../static/img/error.png"/>&nbsp;用户名或密码错误！
+					</span>
+					<!--/错误信息提示-->
+					<input type="submit" class="login_btn" value="登  录">
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
