@@ -1,10 +1,9 @@
 # coding:utf-8
-
-from flask import request, render_template,flash
-
-from RemoteCreditSystem import app
-from RemoteCreditSystem.models.system_usage import User
 import hashlib
+
+from RemoteCreditSystem.models.system import User
+from flask import request, render_template,flash
+from RemoteCreditSystem import app
 
 #get md5 of a input string
 def GetStringMD5(str):
