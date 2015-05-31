@@ -1,8 +1,8 @@
 #coding:utf-8
 # 系统管理
-from RemoteCreditSystem.models.system_usage.oa_userrole import OA_UserRole
-from RemoteCreditSystem.models.system_usage.oa_user import OA_User
-from RemoteCreditSystem.models.system_usage.oa_role import OA_Role
+from RemoteCreditSystem.models.system_usage.UserRole import UserRole
+from RemoteCreditSystem.models.system_usage.User import User
+from RemoteCreditSystem.models.system_usage.Role import Role
 from RemoteCreditSystem.models.system_usage.oa_org import OA_Org
 from RemoteCreditSystem.models.system_usage.oa_project import OA_Project
 from RemoteCreditSystem.models.system_usage.oa_project_group import OA_ProjectGroup

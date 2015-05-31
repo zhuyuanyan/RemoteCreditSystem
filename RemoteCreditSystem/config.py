@@ -9,13 +9,13 @@ from flask.ext.mail import Mail
 from flask.ext.mail import Message
 from RemoteCreditSystem import app
 _HERE = os.path.dirname(__file__)
-_DB_SQLITE_PATH = os.path.join(_HERE, 'scapp.sqlite')
+_DB_SQLITE_PATH = os.path.join(_HERE, 'RemoteCreditSystem.sqlite')
 
 # ========配置日志开始=================
 _LOG_PATH=os.path.join(_HERE, 'log')
 if not os.path.exists(_LOG_PATH):
     os.mkdir(_LOG_PATH)
-_LOG_FILE_PATH=os.path.join(_LOG_PATH,'scapp.log')
+_LOG_FILE_PATH=os.path.join(_LOG_PATH,'RemoteCreditSystem.log')
 logger = logging.getLogger('RemoteCreditSystem')
 hdlr = logging.FileHandler(_LOG_FILE_PATH)
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
@@ -31,10 +31,10 @@ logger.setLevel(logging.WARNING)
 # _DBNAME = "new_oa"  # 数据库名称
 
 _DBUSER = "root"  # 数据库用户名
-_DBPASS = "123456"  # 数据库用户名密码
+_DBPASS = "root"  # 数据库用户名密码
 _DBHOST = "localhost"  # 服务器
 _DBPORT = '3306' #服务器端口
-_DBNAME = "oa"  # 数据库名称
+_DBNAME = "RCS"  # 数据库名称
 
 PER_PAGE = 10  # 每页数量
 UPLOAD_FOLDER_REL = '/static/upload' #上传目录(相对路径)

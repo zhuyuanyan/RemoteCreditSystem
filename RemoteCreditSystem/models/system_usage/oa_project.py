@@ -2,7 +2,7 @@
 __author__ = 'johhny'
 
 from RemoteCreditSystem import db
-from RemoteCreditSystem.models import OA_User
+from RemoteCreditSystem.models import User
 from flask.ext.login import current_user
 
 #项目

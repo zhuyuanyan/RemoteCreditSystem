@@ -1,16 +1,16 @@
 2015-01-04 11:07:08,045 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\system\jggl.py", line 38, in new_jggl
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\system\jggl.py", line 38, in new_jggl
     org_level = OA_Org.query.filter_by(id=pId).first().org_level + 1
 AttributeError: 'NoneType' object has no attribute 'org_level'
 2015-01-04 11:24:44,401 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\system\oa_project.py", line 44, in new_project
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\system\oa_project.py", line 44, in new_project
     request.form['customer_id'],request.form['treeType']).add()
 TypeError: __init__() takes exactly 10 arguments (9 given)
 2015-01-04 15:41:40,174 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 50, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 50, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -51,12 +51,12 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'56', u'20', '500', '', u'21', u'2015-01-04', u'2015-01-04', '0', '0', '', '0', None, 35L, datetime.datetime(2015, 1, 4, 15, 41, 40, 168000), 35L, datetime.datetime(2015, 1, 4, 15, 41, 40, 169000))
 2015-01-04 15:55:19,155 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\fysp.py", line 256, in approve
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\fysp.py", line 256, in approve
     if power=='true':
 NameError: global name 'power' is not defined
 2015-01-12 17:02:52,410 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 50, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 50, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -97,7 +97,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'57', u'33', '222', '2222', u'1', u'2015-01-12', u'2015-01-12', '0', '0', '', '0', None, 15L, datetime.datetime(2015, 1, 12, 17, 2, 52, 375000), 15L, datetime.datetime(2015, 1, 12, 17, 2, 52, 375000))
 2015-01-12 17:11:18,802 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 50, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 50, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -138,7 +138,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'57', u'33', '11', '', u'1', u'2015-01-12', u'2015-01-12', '0', '0', '', '0', None, 14L, datetime.datetime(2015, 1, 12, 17, 11, 18, 799000), 14L, datetime.datetime(2015, 1, 12, 17, 11, 18, 799000))
 2015-01-12 17:15:50,556 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 53, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 53, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -179,7 +179,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'57', u'33', '555', '', u'1', u'2015-01-12', u'2015-01-12', '0', '0', '', '0', None, 15L, datetime.datetime(2015, 1, 12, 17, 15, 50, 539000), 15L, datetime.datetime(2015, 1, 12, 17, 15, 50, 539000))
 2015-01-12 17:17:31,551 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 52, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 52, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -220,7 +220,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'57', u'33', '222', '', u'1', u'2015-01-12', u'2015-01-12', '0', '0', '', '0', None, 14L, datetime.datetime(2015, 1, 12, 17, 17, 31, 549000), 14L, datetime.datetime(2015, 1, 12, 17, 17, 31, 549000))
 2015-01-12 17:19:13,632 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 52, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 52, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -261,7 +261,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'57', u'33', '4444', '', u'1', u'2015-01-12', u'2015-01-12', '0', '0', '', '0', None, 14L, datetime.datetime(2015, 1, 12, 17, 19, 13, 630000), 14L, datetime.datetime(2015, 1, 12, 17, 19, 13, 630000))
 2015-01-27 15:50:49,851 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 50, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 50, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -302,7 +302,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'78', u'24', '322', '', u'1', u'2015-01-27', u'2015-01-27', '0', '0', '', '0', None, 58L, datetime.datetime(2015, 1, 27, 15, 50, 49, 850000), 58L, datetime.datetime(2015, 1, 27, 15, 50, 49, 850000))
 2015-01-27 15:58:02,967 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 52, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 52, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -343,7 +343,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'77', u'24', '222', '', u'1', u'2015-01-27', u'2015-01-27', '0', '0', '', '0', None, 58L, datetime.datetime(2015, 1, 27, 15, 58, 2, 962000), 58L, datetime.datetime(2015, 1, 27, 15, 58, 2, 962000))
 2015-01-27 15:58:30,744 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 53, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 53, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -384,7 +384,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'77', u'24', '222', '', u'1', u'2015-01-27', u'2015-01-27', '0', '0', '', '0', None, 58L, datetime.datetime(2015, 1, 27, 15, 58, 30, 739000), 58L, datetime.datetime(2015, 1, 27, 15, 58, 30, 739000))
 2015-01-27 15:59:49,552 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 53, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 53, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -425,7 +425,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'79', u'24', '222', '', u'1', u'2015-01-27', u'2015-01-27', '0', '0', '', '0', None, 58L, datetime.datetime(2015, 1, 27, 15, 59, 49, 551000), 58L, datetime.datetime(2015, 1, 27, 15, 59, 49, 551000))
 2015-01-27 16:00:53,664 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 53, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 53, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -466,7 +466,7 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'78', u'24', '222', '', u'1', u'2015-01-27', u'2015-01-27', '0', '0', '', '0', None, 58L, datetime.datetime(2015, 1, 27, 16, 0, 53, 662000), 58L, datetime.datetime(2015, 1, 27, 16, 0, 53, 662000))
 2015-01-27 16:01:23,016 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 53, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 53, in new_xzfy
     db.session.flush()
   File "E:\Workspace\oa\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
     return getattr(self.registry(), name)(*args, **kwargs)
@@ -507,15 +507,15 @@ Traceback (most recent call last):
 OperationalError: (OperationalError) (1366, "Incorrect integer value: '' for column 'approval' at row 1") 'INSERT INTO oa_reimbursement (approval, approval_type, project_id, org_id, amount, `describe`, reason, start_date, end_date, is_refuse, is_retreat, fail_reason, is_paid, paid_date, create_user, create_date, modify_user, modify_date) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)' ('', '', u'77', u'24', '233', '', u'1', u'2015-01-27', u'2015-01-27', '0', '0', '', '0', None, 58L, datetime.datetime(2015, 1, 27, 16, 1, 23, 12000), 58L, datetime.datetime(2015, 1, 27, 16, 1, 23, 12000))
 2015-03-23 09:49:12,042 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 58, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 58, in new_xzfy
     SendMail(reimbursement)
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\fysp.py", line 506, in SendMail
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\fysp.py", line 506, in SendMail
     email = user.email
 AttributeError: 'NoneType' object has no attribute 'email'
 2015-03-23 09:49:40,621 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\xzfy.py", line 58, in new_xzfy
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\xzfy.py", line 58, in new_xzfy
     SendMail(reimbursement)
-  File "E:\Workspace\oa\trunk\scapp\views\reimbursement\fysp.py", line 506, in SendMail
+  File "E:\Workspace\oa\trunk\RemoteCreditSystem\views\reimbursement\fysp.py", line 506, in SendMail
     email = user.email
 AttributeError: 'NoneType' object has no attribute 'email'

@@ -1,14 +1,30 @@
 # coding:utf-8
 
-from flask import Module,request, render_template,flash,redirect
+from flask import request, render_template,flash
 
 from RemoteCreditSystem import app
+from RemoteCreditSystem.models.system_usage import User
+import hashlib
+
+#get md5 of a input string
+def GetStringMD5(str):
+    m = hashlib.md5()
+    m.update(str)
+    return m.hexdigest()
 	
 # 登陆
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template("login.html")
+    if request.method == 'POST':
+        user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
+        if user:
+            render_template("welcom.html")
+        else:
+            flash('用户名或密码错误','error')
+            return render_template("login.html")
+    else:
+        return render_template("login.html")
     
 # 欢迎界面
 @app.route('/login_wel', methods=['POST'])
@@ -70,10 +86,6 @@ def khzl():
 def khzl_info():        
     return render_template("khzldy/khzl_info.html")
 
-
-
-
-
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
 def jjrw():        
     return render_template("zjzxpggl/jjrw.html")
@@ -95,8 +107,6 @@ def yjjrw():
 @app.route('/zjzxpggl/yjjrw_jjyy', methods=['GET'])
 def yjjrw_jjyy():        
     return render_template("zjzxpggl/yjjrw_jjyy.html")
-
-
 
 @app.route('/zxpgjl/pgjl', methods=['GET'])
 def pgjl():        

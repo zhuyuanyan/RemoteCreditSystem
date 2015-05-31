@@ -21,7 +21,7 @@ app.config.from_object('RemoteCreditSystem.config.ProConfig') # mysql
 db = SQLAlchemy(app)
 
 # flask-login---start
-from RemoteCreditSystem.models import OA_User
+from RemoteCreditSystem.models import User
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -33,7 +33,7 @@ def unauthorized():
 
 @login_manager.user_loader
 def load_user(id):
-    return OA_User.query.get(int(id))
+    return User.query.get(int(id))
 # flask-login---end
 
 # 404错误跳转
@@ -51,11 +51,4 @@ def page_not_found(error):
 #---------------------------------
 import views.index
 
-import views.system.oa_user
-import views.system.jggl
-import views.system.oa_project
-import views.system.oa_reason
-import views.system.oa_job
-import views.system.oa_customer
-import views.system.oa_menu
 
