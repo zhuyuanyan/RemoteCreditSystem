@@ -17,6 +17,7 @@
 		<div class="pageTitle">
 			开始评估--张三
 		</div>
+		<form id="adviceForm" method="post" action="/zjzxpggl/yjsrw_save/{{app.id}}">
 		<div class="content">
 			<table class="myTable">
 				<caption>资信评估</caption>
@@ -28,52 +29,63 @@
 				</colgroup>
 				<tr>
 					<td class="table-label">客户号</td>
-					<td>01</td>
+					<td>{{app.customer_id}}</td>
 					<td class="table-label">客户名称</td>
-					<td>张三</td>					
+					<td>{{app.customer_name}}</td>					
 				</tr>
 				<tr>
 					<td class="table-label">证件号码</td>
-					<td>310104198801010101</td>
+					<td>{{app.card_id}}</td>
 					<td class="table-label">产品名称</td>
-					<td>产品wy08</td>					
+					<td>{{app.product_name}}</td>					
 				</tr>
 				<tr>
 					<td class="table-label">申请额度</td>
-					<td>10000</td>	
+					<td>{{app.approve_je}}</td>	
 					<td class="table-label">进件机构</td>
-					<td></td>		
+					<td>{{app.approve_org}}</td>		
 				</tr>
 				<tr>
 					<td class="table-label">进件区域</td>
-					<td></td>	
+					<td>{{app.approve_area}}</td>	
 					<td class="table-label">行业</td>
-					<td></td>		
+					<td>{{app.industry}}</td>		
 				</tr>
 				<tr>
 					<td class="table-label">商圈</td>
-					<td></td>	
+					<td>{{app.district}}</td>	
 					<td class="table-label">客户经理</td>
-					<td></td>		
+					<td>{{app.user_name}}</td>		
 				</tr>
 				<tr>
 					<td class="table-label">审核人</td>
-					<td></td>	
+					<td>{{app.sh_name}}</td>	
 					<td class="table-label">审批人</td>
-					<td></td>		
+					<td>{{app.sp_name}}</td>		
+				</tr>
+				<tr>
+					<td class="table-label">审批额度</td>
+					<td><input type="text" name="approve_ed">元</td>		
 				</tr>
 				<tr>
 					<td class="table-label">资信评估建议</td>
-					<td colspan="3"><textarea></textarea></td>		
+					<td colspan="3"><textarea name="approve_idea"></textarea></td>		
+				</tr>
+				<tr>
+					<td class="table-label">评估结论</td>
+					<td><input type="radio" name="approve_result" value="1" checked>建议发放	
+						<input type="radio" name="approve_result" value="2">拒绝发放
+						<input type="radio" name="approve_result" value="3">补充材料</td>		
 				</tr>
 			</table>	
 			<div class="pagebar">			
 				<div class="controlbtn">
-					<a class="btn btn-info" href="javascript:void(0);" title="提交">提&nbsp;&nbsp;交</a>
-					<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
+					<a class="btn btn-info" href="javascript:void(0);" onclick="document.getElementById('adviceForm').submit()" title="提交">提&nbsp;&nbsp;交</a>
+					<a class="btn" href="javascript:void(0);" onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
 				</div>
 			</div>
 		</div>
+	</form>
 		<script type="text/javascript">
 		</script>
 	</body>

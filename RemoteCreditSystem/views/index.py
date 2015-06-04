@@ -1,9 +1,10 @@
 # coding:utf-8
 import hashlib
 
-from RemoteCreditSystem.models.system import User
-from RemoteCreditSystem.models import Rcs_Application_Info
-from flask import request, render_template,flash
+from RemoteCreditSystem import User
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
+from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
 from RemoteCreditSystem import db
@@ -43,8 +44,9 @@ def zxpg():
 
 
 @app.route('/jjrwfa/jjfa', methods=['GET'])
-def jjfa():        
-    return render_template("jjrwfa/jjfa.html")
+def jjfa():      
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()
+    return render_template("jjrwfa/jjfa.html",appList=appList)
 
 @app.route('/jjrwfa/jjrwfaxx', methods=['GET'])
 def jjrwfaxx():        
@@ -62,19 +64,27 @@ def fagzwh():
 def zxpgzjhsgzwh():        
     return render_template("jjrwfa/zxpgzjhsgzwh.html")
 
-@app.route('/jjrwfa/rgfa', methods=['GET'])
-def rgfa():        
-    return render_template("jjrwfa/rgfa.html")
+@app.route('/jjrwfa/rgfa/<int:userId>', methods=['GET'])
+def rgfa(userId):        
+    app = Rcs_Application_Info.query.filter_by(id=userId).first()  
+    return render_template("jjrwfa/rgfa.html",app=app)
 
 @app.route('/jjrwfa/xtfa', methods=['GET'])
 def xtfa():        
     return render_template("jjrwfa/xtfa.html")
 
-@app.route('/jjrwfa/show_jjfa', methods=['GET'])
-def show_jjfa():        
-    return render_template("jjrwfa/show_jjfa.html")
+@app.route('/jjrwfa/show_jjfa/<int:userId>', methods=['GET'])
+def show_jjfa(userId):  
+    app = Rcs_Application_Info.query.filter_by(id=userId).first()   
+    return render_template("jjrwfa/show_jjfa.html",app=app)
 
-
+@app.route('/jjrwfa/insert_jjfa/<int:id>', methods=['GET'])
+def insert_jjfa(id):  
+    app = Rcs_Application_Info.query.filter_by(id=id).first()   
+    app.approve_type="2"
+    db.session.commit()
+    flash('保存成功','success')
+    return redirect("/jjrwfa/jjfa")
 
 
 @app.route('/khzldy/khzl', methods=['GET'])
@@ -87,54 +97,159 @@ def khzl_info():
     return render_template("khzldy/khzl_info.html")
 
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
-def jjrw():        
-    return render_template("zjzxpggl/jjrw.html")
+def jjrw(): 
+    appList = Rcs_Application_Info.query.filter_by(approve_type='2').all()
+    return render_template("zjzxpggl/jjrw.html",appList=appList)
 
-
+@app.route('/zjzxpggl/jjrw_accept/<int:id>', methods=['GET'])
+def jjrw_accept(id): 
+    app = Rcs_Application_Info.query.filter_by(id=id).first()
+    app.approve_type="3"
+    db.session.commit()
+    return redirect("/zjzxpggl/jjrw")
+@app.route('/zjzxpggl/jjrw_refuse/<int:id>', methods=['GET'])
+def jjrw_refuse(id): 
+    app = Rcs_Application_Info.query.filter_by(approve_type='2').first()
+    app.approve_type="4"
+    db.session.commit()
+    return redirect("/zjzxpggl/jjrw")
 @app.route('/zjzxpggl/yjsrw', methods=['GET'])
-def yjsrw():        
-    return render_template("zjzxpggl/yjsrw.html")
+def yjsrw():     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='3').all()   
+    return render_template("zjzxpggl/yjsrw.html",appList=appList)
 
-@app.route('/zjzxpggl/yjsrw_kspg', methods=['GET'])
-def yjsrw_kspg():        
-    return render_template("zjzxpggl/yjsrw_kspg.html")
+@app.route('/zjzxpggl/yjsrw_refuse/<int:id>', methods=['GET'])
+def yjsrw_refuse(id):     
+    app = Rcs_Application_Info.query.filter_by(id=id).first()   
+    app.approve_type="4"
+    db.session.commit()
+    return redirect("/zjzxpggl/yjsrw")
 
+# 开始评估
+@app.route('/zjzxpggl/yjsrw_kspg/<int:id>', methods=['GET'])
+def yjsrw_kspg(id):    
+    app = Rcs_Application_Info.query.filter_by(id=id).first()      
+    return render_template("zjzxpggl/yjsrw_kspg.html",app=app)
+#评估提交
+@app.route('/zjzxpggl/yjsrw_save/<int:id>', methods=['POST'])
+def yjsrw_save(id):    
+    app = Rcs_Application_Info.query.filter_by(id=id).first()  
+    app.approve_type="5"
+
+    Rcs_Application_Advice(id,request.form['approve_idea'],request.form['approve_result'],request.form['approve_ed'],'').add()
+
+    db.session.commit()    
+    return redirect("/zjzxpggl/yjsrw")
 
 @app.route('/zjzxpggl/yjjrw', methods=['GET'])
-def yjjrw():        
-    return render_template("zjzxpggl/yjjrw.html")
+def yjjrw():    
+    appList = Rcs_Application_Info.query.filter_by(approve_type='4').all()       
+    return render_template("zjzxpggl/yjjrw.html",appList=appList)
+@app.route('/zjzxpggl/yjjrw_accept/<int:id>', methods=['GET'])
+def yjjrw_accept(id):    
+    app = Rcs_Application_Info.query.filter_by(id=id).first()  
+    app.approve_type="3"
+    db.session.commit()     
+    return redirect("/zjzxpggl/yjjrw")
+#拒绝原因页面
+@app.route('/zjzxpggl/yjjrw_jjyy/<int:id>', methods=['GET'])
+def yjjrw_jjyy(id):  
+    app = Rcs_Application_Info.query.filter_by(id=id).first()
+    advice = Rcs_Application_Advice.query.filter_by(application_id=id).first()     
+    return render_template("zjzxpggl/yjjrw_jjyy.html",app=app,advice=advice)
+#拒绝原因页面提交
+@app.route('/zjzxpggl/yjjrw_jjyy_save/<int:id>', methods=['POST'])
+def yjjrw_jjyy_save(id):  
+    app = Rcs_Application_Info.query.filter_by(id=id).first()  
+    app.approve_type="4"
 
-@app.route('/zjzxpggl/yjjrw_jjyy', methods=['GET'])
-def yjjrw_jjyy():        
-    return render_template("zjzxpggl/yjjrw_jjyy.html")
+    db.session.commit()       
+    return redirect("/zjzxpggl/yjjrw")
 
+#评估结论查看
 @app.route('/zxpgjl/pgjl', methods=['GET'])
-def pgjl():        
-    return render_template("zxpgjl/pgjl.html")
+def pgjl():   
+    appList = Rcs_Application_Info.query.filter_by(approve_type='5').all()     
+    return render_template("zxpgjl/pgjl.html",appList=appList)
 
-@app.route('/zxpgjl/pgjl_info', methods=['GET'])
-def pgjl_info():        
-    return render_template("zxpgjl/pgjl_info.html")
+@app.route('/zxpgjl/pgjl_info/<int:id>', methods=['GET'])
+def pgjl_info(id):        
+    app = Rcs_Application_Info.query.filter_by(id=id).first()
+    advice = Rcs_Application_Advice.query.filter_by(application_id=id).first()
+    return render_template("zxpgjl/pgjl_info.html",app=app,advice=advice)
 
 @app.route('/zxpggzwh/pggzwh', methods=['GET'])
 def pggzwh():        
     return render_template("zxpggzwh/pggzwh.html")
 
+#专家信息管理
 @app.route('/pgzjgl/zjxxgl', methods=['GET'])
-def zjxxgl():        
-    return render_template("pgzjgl/zjxxgl.html")
-
+def zjxxgl():
+    #获取专家信息 
+    user = User.query.filter_by(user_type='1').all()          
+    return render_template("pgzjgl/zjxxgl.html",user=user)
+#新增
 @app.route('/pgzjgl/new_zjxxgl', methods=['GET'])
-def new_zjxxgl():        
+def new_zjxxgl():  
     return render_template("pgzjgl/new_zjxxgl.html")
 
-@app.route('/pgzjgl/edit_zjxxgl', methods=['GET'])
-def edit_zjxxgl():        
-    return render_template("pgzjgl/edit_zjxxgl.html")
+#新增保存
+@app.route('/pgzjgl/new_zjxxgl_save', methods=['POST'])
+def new_zjxxgl_save():    
+    user_name = request.form['user_name']   
+    sex = request.form['sex']   
+    card_id = request.form['card_id']   
+    phone = request.form['phone']   
+    zjzz = request.form['zjzz']    
+    remark1 = request.form['remark1']   
+    zjqx = request.form['zjqx']   
+    remark2 = request.form['remark2']   
+    bhxx = request.form['bhxx']  
+    remark3 = request.form['remark3']  
+    User(user_name,GetStringMD5('111111'),user_name,sex,phone,1,'',card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,'1').add()  
+    db.session.commit()
+    return redirect('/pgzjgl/zjxxgl')
 
-@app.route('/pgzjgl/show_zjxxgl', methods=['GET'])
-def show_zjxxgl():        
-    return render_template("pgzjgl/show_zjxxgl.html")
+#修改页面
+@app.route('/pgzjgl/edit_zjxxgl/<int:id>', methods=['GET'])
+def edit_zjxxgl(id):    
+    #获取专家信息 
+    user = User.query.filter_by(id=id).first()   
+    return render_template("pgzjgl/edit_zjxxgl.html",user=user)
+#修改提交
+@app.route('/pgzjgl/edit_zjxxgl_save/<int:id>', methods=['POST'])
+def edit_zjxxgl_save(id):    
+    #获取专家信息 
+    user = User.query.filter_by(id=id).first()   
+    user_name = request.form['user_name']   
+    sex = request.form['sex']   
+    card_id = request.form['card_id']   
+    mobile = request.form['phone']   
+    zjzz = request.form['zjzz']    
+    remark1 = request.form['remark1']   
+    zjqx = request.form['zjqx']   
+    remark2 = request.form['remark2']   
+    bhxx = request.form['bhxx']  
+    remark3 = request.form['remark3']  
+    user.login_name=user_name
+    user.real_name=user_name
+    user.sex=sex
+    user.card_id=card_id
+    user.mobile=mobile
+    user.zjzz=zjzz
+    user.remark1=remark1
+    user.zjqx=zjqx
+    user.remark2=remark2
+    user.bhxx=bhxx
+    user.remark3=remark3
+    db.session.commit()
+    return redirect('/pgzjgl/zjxxgl')
+
+@app.route('/pgzjgl/show_zjxxgl/<int:id>', methods=['GET'])
+def show_zjxxgl(id):    
+    #获取专家信息 
+    user = User.query.filter_by(id=id).first()      
+    return render_template("pgzjgl/show_zjxxgl.html",user=user)
 
 @app.route('/pgzjgl/zjcjgl', methods=['GET'])
 def zjcjgl():        

@@ -17,6 +17,7 @@
 		<div class="pageTitle">
 			编辑--专家1
 		</div>
+		<form id="editUserForm" action="/pgzjgl/edit_zjxxgl_save/{{user.id}}" method="POST">
 		<div class="content">
 			<table class="myTable">
 				<caption>基本信息</caption>
@@ -28,18 +29,18 @@
 				</colgroup>
 				<tr>
 					<td class="table-label">姓名</td>
-					<td><input type="text" value="专家1"/></td>
+					<td><input type="text" value="{{user.real_name}}" name="user_name"/></td>
 					<td class="table-label">性别</td>
 					<td>
-						<label><input type="radio" name="sex" checked/>男</label>
-						<label><input type="radio" name="sex"/>女</label>
+						<label><input type="radio" name="sex" value="1" {%- if user.sex=='1'%} checked {%- endif%}/>男</label>
+						<label><input type="radio" name="sex" value="2" {%- if user.sex=='2'%} checked {%- endif%}/>女</label>
 					</td>					
 				</tr>
 				<tr>
 					<td class="table-label">身份证号码</td>
-					<td><input type="text" value="320122565623321569"/></td>
+					<td><input type="text" value="{{user.card_id}}" name="card_id"/></td>
 					<td class="table-label">联系电话</td>
-					<td><input type="text" value="12659865236"/></td>					
+					<td><input type="text" value="{{user.mobile}}" name="phone"/></td>					
 				</tr>
 				<tr>
 					<td class="table-label">所属机构</td>
@@ -58,9 +59,9 @@
 				</colgroup>
 				<tr>
 					<td class="table-label">专家资质</td>
-					<td><input type="text" value=""/></td>
+					<td><input type="text" value="{{user.zjzz}}" name="zjzz"/></td>
 					<td class="table-label">说明</td>
-					<td><input type="text" value=""/></td>					
+					<td><input type="text" value="{{user.remark1}}" name="remark1"/></td>					
 				</tr>
 			</table>
 			<table class="myTable">
@@ -73,9 +74,9 @@
 				</colgroup>
 				<tr>
 					<td class="table-label">专家权限</td>
-					<td><input type="text" value=""/></td>
+					<td><input type="text" value="{{user.zjqx}}" name="zjqx"/></td>
 					<td class="table-label">说明</td>
-					<td><input type="text" value=""/></td>					
+					<td><input type="text" value="{{user.remark2}}" name="remark2"/></td>					
 				</tr>
 			</table>
 			<table class="myTable">
@@ -88,18 +89,19 @@
 				</colgroup>
 				<tr>
 					<td class="table-label">编号信息</td>
-					<td><input type="text" value=""/></td>
+					<td><input type="text" value="{{user.bhxx}}" name="bhxx"/></td>
 					<td class="table-label">说明</td>
-					<td><input type="text" value=""/></td>					
+					<td><input type="text" value="{{user.remark3}}" name="remark3"/></td>					
 				</tr>
 			</table>
 			<div class="pagebar">			
 				<div class="controlbtn">
-					<a class="btn btn-info" href="javascript:void(0);" title="提交">提&nbsp;&nbsp;交</a>
+					<a class="btn btn-info" onclick="document.getElementById('editUserForm').submit()"  title="提交">提&nbsp;&nbsp;交</a>
 					<a class="btn" href="javascript:void(0);" onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
 				</div>
 			</div>
 		</div>
+	</form>
 		<script type="text/javascript">
 		</script>
 	</body>
