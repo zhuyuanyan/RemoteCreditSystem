@@ -2,8 +2,11 @@
 import hashlib
 
 from RemoteCreditSystem.models.system import User
+from RemoteCreditSystem.models import Rcs_Application_Info
 from flask import request, render_template,flash
+from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
+from RemoteCreditSystem import db
 
 #get md5 of a input string
 def GetStringMD5(str):
@@ -15,20 +18,18 @@ def GetStringMD5(str):
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
-        if user:
-            render_template("welcom.html")
-        else:
-            flash('用户名或密码错误','error')
-            return render_template("login.html")
-    else:
-        return render_template("login.html")
+    return render_template("login.html")
     
 # 欢迎界面
 @app.route('/login_wel', methods=['POST'])
-def login_wel():        
-    return render_template("index.html")
+def login_wel():
+    if request.method == 'POST':
+        user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
+        if user:
+            return render_template("index.html")
+        else:
+            flash('用户名或密码错误','error')
+            return render_template("login.html")  
 
 # welcome
 @app.route('/welcome', methods=['GET'])

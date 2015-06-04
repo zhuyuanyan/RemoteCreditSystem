@@ -6,7 +6,7 @@ from flask.ext.login import current_user
 
 # 用户表
 class User(db.Model):
-    __tablename__ = 'user'
+    __tablename__ = 'rcs_user'
     id = db.Column(db.Integer, primary_key=True)
     login_name = db.Column(db.String(16))
     login_password = db.Column(db.String(32))
