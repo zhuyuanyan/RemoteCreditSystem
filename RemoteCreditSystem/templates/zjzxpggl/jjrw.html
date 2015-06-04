@@ -93,39 +93,28 @@
 					<col width="10%" />
 					<col width="5%" />
 				</colgroup>
+				{%- for obj in appList%}
 				<tr onclick="checkTable(this)">
-					<td><input type="radio" name="radio" checked/></td>
-					<td>张三</td>
-					<td>310104198801010101</td>
-					<td>产品wy08</td>
-					<td>10000</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
+					<td>{{obj.customer_name}}</td>
+					<td>{{obj.card_id}}</td>
+					<td>{{obj.product_name}}</td>
+					<td>{{obj.approve_je}}</td>
+					<td>{{obj.approve_org}}</td>
+					<td>{{obj.approve_area}}</td>
+					<td>{{obj.industry}}</td>
+					<td>{{obj.district}}</td>
+					<td>{{obj.user_name}}</td>
+					<td>{{obj.sh_name}}</td>
+					<td>{{obj.sp_name}}</td>
 				</tr>
-				<tr onclick="checkTable(this)">
-					<td><input type="radio" name="radio"/></td>
-					<td>李四</td>
-					<td>310104198801010102</td>
-					<td>产品wy00</td>
-					<td>100000</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+				{%-endfor%}
 			</table>
 			<div class="pagebar">
+				<input type="hidden" id="hiddenId"/>
 				<div class="controlbtn">
-					<a class="btn btn-info" href="javascript:void(0);" title="接受">接受</a>
-					<a class="btn btn-info" href="javascript:void(0);" title="拒绝">拒绝</a>
+					<a class="btn btn-info" title="接受" onclick="iframeById('/zjzxpggl/jjrw_accept',document.getElementById('hiddenId').value)">接受</a>
+					<a class="btn btn-info" title="拒绝" onclick="iframeById('/zjzxpggl/jjrw_refuse',document.getElementById('hiddenId').value)">拒绝</a>
 				</div>
 				<div class="page">
 					<span>共<b>2</b>条数据，当前第<b>1</b>页</span>
@@ -140,6 +129,17 @@
 			</div>		
 		</div>
 		<script type="text/javascript">
+		function selectbelong(id){
+				document.getElementById("hiddenId").value=id;
+			}
+		function iframeById(page,id){
+				if(id==""){
+					alert("请选择记录");
+					return;
+				}
+				var url = page+"/"+id;
+			   window.location.href =  url;
+			}
 		</script>
 	</body>
 </html>

@@ -32,40 +32,43 @@
 			<table class="table-list">
 				<colgroup>
 					<col width="5%" />
-					<col width="30%" />
-					<col width="30%" />
 					<col width="20%" />
+					<col width="30%" />
+					<col width="30%" />
 					<col width="15%" />
 				</colgroup>
 				<tr>
 					<th width="50"></th>
 					<th>专家编号</th>
 					<th>专家名称</th>
-					<th>创建时间</th>
-					<th>创建人</th>
+					<th>身份证号</th>
+					<th>性别</th>
 				</tr>
 			</table>
 			<table class="table-list">
 				<colgroup>
 					<col width="5%" />
-					<col width="30%" />
-					<col width="30%" />
 					<col width="20%" />
+					<col width="30%" />
+					<col width="30%" />
 					<col width="15%" />
 				</colgroup>
+				{%- for obj in user%}
 				<tr onclick="checkTable(this)">
-					<td><input type="radio" name="radio" checked/></td>
-					<td>001</td>
-					<td>专家1</td>
-					<td>20150506</td>
-					<td>admin</td>
+					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
+					<td>{{obj.id}}</td>
+					<td>{{obj.real_name}}</td>
+					<td>{{obj.card_id}}</td>
+					<td>{%- if obj.sex=='1'%}男{%- else %}女{%- endif%}</td>
 				</tr>
+				{%-endfor%}
 			</table>
 			<div class="pagebar">
+				<input type="hidden" id="hiddenId"/>
 				<div class="controlbtn">
 					<a class="btn btn-info" href="javascript:void(0);" title="新增" onclick="iframe('/pgzjgl/new_zjxxgl')">新增</a>
-					<a class="btn btn-info" href="javascript:void(0);" title="编辑" onclick="iframe('/pgzjgl/edit_zjxxgl')">编辑</a>
-					<a class="btn" href="javascript:void(0);" title="显示" onclick="iframe('/pgzjgl/show_zjxxgl')">显示</a>
+					<a class="btn btn-info" href="javascript:void(0);" title="编辑" onclick="iframeById('/pgzjgl/edit_zjxxgl',document.getElementById('hiddenId').value)">编辑</a>
+					<a class="btn" href="javascript:void(0);" title="显示" onclick="iframeById('/pgzjgl/show_zjxxgl',document.getElementById('hiddenId').value)">显示</a>
 				</div>
 				<div class="page">
 					<span>共<b>1</b>条数据，当前第<b>1</b>页</span>
@@ -80,6 +83,18 @@
 			</div>		
 		</div>
 		<script type="text/javascript">
+		function selectbelong(id){
+				document.getElementById("hiddenId").value=id;
+			}
+			//切换iframe里的内容用于iframe内部页面	
+			function iframeById(page,id){
+				if(id==""){
+					alert("请选择记录");
+					return;
+				}
+				var url = page+"/"+id;
+			   window.location.href =  url;
+			}
 		</script>
 	</body>
 </html>
