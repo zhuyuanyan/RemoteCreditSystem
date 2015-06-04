@@ -7,12 +7,12 @@
 	</head>
 	<body>
 		<div class="loginBox">
-			<form class="login_form" action="/login_wel" method="post">
+			<form class="login_form" action="/login_wel" method="POST">
 				<img src="../static/img/login.png"/>				
 				<div class="login">
 					<h1>乾康远程授信系统</h1>
-					<input type="text" placeholder="用户名" style="background-image:url('../static/img/login1.png');" />
-					<input type="password" placeholder="密码" style="background-image:url('../static/img/login2.png');"/>
+					<input type="text" placeholder="用户名" id="login_name" name="login_name" style="background-image:url('../static/img/login1.png');" />
+					<input type="password" placeholder="密码" id="login_password" name="login_password" style="background-image:url('../static/img/login2.png');"/>
 					<!--错误信息提示-->
 					<span class="errorMessage">
 						<img src="../static/img/error.png"/>&nbsp;用户名或密码错误！

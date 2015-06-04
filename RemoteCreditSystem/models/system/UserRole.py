@@ -6,10 +6,10 @@ from flask.ext.login import current_user
 
 # 用户、角色 关联表
 class UserRole(db.Model):
-    __tablename__ = 'userrole'
+    __tablename__ = 'rcs_userrole'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('oa_user.id'))
-    role_id = db.Column(db.Integer, db.ForeignKey('oa_role.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('rcs_user.id'))
+    role_id = db.Column(db.Integer, db.ForeignKey('rcs_role.id'))
 
     #外键
     oa_userrole_ibfk_1 = db.relationship('User', backref='userrole_ibfk_1')
