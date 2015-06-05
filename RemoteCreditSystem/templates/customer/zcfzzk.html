@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">
+			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
+			.addTable{margin :5px;text-align :center ;width:99%;}
+			.addTable th{border:1px solid #ddd;background:#a4daff;font-size:13px;}
+			.addinput {width:80%;}
+			.myTable td{font-size:13px;}
+		</style>
+	</head>
+	<body>	
+		<form class="iframeForm">
+<!--*****************************资产**********************************-->			
+			<table class="myTable">
+				<caption>资产</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="70%">
+				</colgroup>
+			<!--*****************************货币资金**********************************-->
+				<tr>
+					<td rowspan="6"><b>货币资金</b></td>
+					<td><b>现金</b></td>
+                    <td></td>
+					<td><label>金额</label><input type="text" value="500"/></td>
+				</tr>
+				<tr>
+					<td rowspan="5"><b>银行存款</b></td>
+					<td><b>活期</b></td>
+					<td>
+						<label>金额</label><input type="text" value="500"/>
+						<label>期限</label><input type="text" value="5"/>
+					</td>	
+				</tr>
+				<tr>
+					<td><b>定期存款</b></td>	
+					<td>
+						<label>金额</label><input type="text" value="500"/>
+						<label>期限</label><input type="text" value="5"/>
+					</td>	
+				</tr>
+				<tr>
+					<td><b>承兑汇票</b></td>	
+					<td>
+						<label>金额</label><input type="text" value="100000"/>
+						<label>保证金额</label><input type="text" value="10000"/>
+						<label>期限</label><input type="text" value="5"/>
+					</td>	
+				</tr>
+				<tr>
+					<td><b>理财产品</b></td>	
+					<td>
+						<label>金额</label><input type="text" value="100000"/>
+						<label>期限</label><input type="text" value="5"/>
+					</td>	
+				</tr>
+				<tr>
+					<td><b>有价证券</b></td>	
+					<td>
+						<label>性质</label><input type="text" value="国有"/>
+						<label>金额</label><input type="text" value="100000"/>
+						<label>期限</label><input type="text" value="5"/>
+					</td>	
+				</tr>			
+			<!--*****************************应收账款**********************************-->
+				<tr>
+					<td rowspan="2"><b>应收账款</b></td>	
+					<td rowspan="2"><b>应收账款种类</b></td>	
+					<td>
+						<b>拖欠前账款</b>
+						<!-- <a class="add" onclick="addTd('tqqzk')"><img src="../../static/img/add.png"/></a>
+						<a class="del" onclick="removeTd('tqqzk')"><img src="../../static/img/del.png"/></a> -->
+					</td>
+					<td>
+						<table class="addTable" id="tqqzk">
+							<tr>
+								<th>账款金额</th>
+								<th>期限</th>
+								<th>剩余金额</th>
+								<th>被拖欠人姓名</th>
+								<th>账款用途</th>
+								<th>还款方式</th>
+								<th>拖欠原因</th>
+								<th>账龄</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="5"/></td>
+								<td><input type="text" class="addinput" value="5000"/></td>
+								<td><input type="text" class="addinput" value="王五"/></td>
+								<td><input type="text" class="addinput" value="种植"/></td>
+								<td><input type="text" class="addinput" value="营业厅"/></td>
+								<td><input type="text" class="addinput" value="无资金"/></td>
+								<td><input type="text" class="addinput" value="1"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<b>拖欠后账款</b>
+						<!-- <a class="add" onclick="addTd('tqhzk')"><img src="../../static/img/add.png"/></a>
+						<a class="del" onclick="removeTd('tqhzk')"><img src="../../static/img/del.png"/></a> -->
+					</td>
+					<td>
+						<table class="addTable" id="tqhzk">
+							<tr>
+								<th>账款金额</th>
+								<th>期限</th>
+								<th>剩余金额</th>
+								<th>被拖欠人姓名</th>
+								<th>还款方式</th>
+								<th>账款用途</th>
+								<th>逾期原因</th>
+								<th>账龄</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="2"/></td>
+								<td><input type="text" class="addinput" value="3000"/></td>
+								<td><input type="text" class="addinput" value="张三"/></td>
+								<td><input type="text" class="addinput" value="亲自"/></td>
+								<td><input type="text" class="addinput" value="牧业"/></td>
+								<td><input type="text" class="addinput" value="没钱"/></td>
+								<td><input type="text" class="addinput" value="1"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>		
+			<!--*****************************预付账款**********************************-->			
+				<tr>
+					<td rowspan="2"><b>预付账款</b></td>	
+					<td rowspan="2"><b>预付款种类</b></td>	
+					<td>
+						<b>预付的货款</b>
+					</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>金额</th>
+								<th>时间</th>
+								<th>用途</th>
+								<th>付款方式</th>
+								<th>期限</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="5000"/></td>
+								<td><input type="text" class="addinput" value="2015-01-01"/></td>
+								<td><input type="text" class="addinput" value="还贷"/></td>
+								<td><input type="text" class="addinput" value="电汇"/></td>
+								<td><input type="text" class="addinput" value="2"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<b>预付的定金</b>
+					</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>金额</th>
+								<th>时间</th>
+								<th>用途</th>
+								<th>付款方式</th>
+								<th>期限</th>
+								<th>定金占比</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="2015-02-02"/></td>
+								<td><input type="text" class="addinput" value="买饲料"/></td>
+								<td><input type="text" class="addinput" value="打卡"/></td>
+								<td><input type="text" class="addinput" value="2"/></td>
+								<td><input type="text" class="addinput" value="20%"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+			<!--*****************************存货**********************************-->
+				<tr>
+					<td rowspan="6"><b>存货</b></td>	
+					<td rowspan="3"><b>原材料</b></td>	
+					<td>
+						<b>主要材料</b>
+					</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>种类</th>
+								<th>金额</th>
+								<th>主要用途</th>
+								<th>运转周期</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="钢材"/></td>
+								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="制造"/></td>
+								<td><input type="text" class="addinput" value="12"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<b>辅助材料</b>
+					</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>种类</th>
+								<th>金额</th>
+								<th>主要用途</th>
+								<th>运转周期</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="水泥"/></td>
+								<td><input type="text" class="addinput" value="10000"/></td>
+								<td><input type="text" class="addinput" value="制造"/></td>
+								<td><input type="text" class="addinput" value="12"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<b>其他原材料</b>
+					</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>种类</th>
+								<th>金额</th>
+								<th>主要用途</th>
+								<th>运转周期</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="木头"/></td>
+								<td><input type="text" class="addinput" value="2000"/></td>
+								<td><input type="text" class="addinput" value="制造"/></td>
+								<td><input type="text" class="addinput" value="12"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<b>半成品</b>
+					</td>
+					<td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>种类</th>
+								<th>金额</th>
+								<th>主要用途</th>
+								<th>运转周期</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<b>产成品</b>
+					</td>
+					<td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>种类</th>
+								<th>金额</th>
+								<th>主要用途</th>
+								<th>运转周期</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<b>其他产品</b>
+					</td>
+					<td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>种类</th>
+								<th>金额</th>
+								<th>主要用途</th>
+								<th>运转周期</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+			<!--*****************************固定资产**********************************-->
+				<tr>
+					<td><b>固定资产</b></td>	
+					<td><b>固定资产名称</b></td>	
+					<td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>固定资产原值</th>
+								<th>累计折旧</th>
+								<th>固定资产净值</th>
+								<th>使用年限</th>
+								<th>已使用年限</th>
+								<th>折旧方法</th>
+								<th>资产属性</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="200000"/></td>
+								<td><input type="text" class="addinput" value="10000"/></td>
+								<td><input type="text" class="addinput" value="190000"/></td>
+								<td><input type="text" class="addinput" value="20年"/></td>
+								<td><input type="text" class="addinput" value="2年"/></td>
+								<td><input type="text" class="addinput" value=""/></td>
+								<td><input type="text" class="addinput" value=""/></td>
+							</tr>
+						</table>
+					</td>	
+				</tr>
+			<!--*****************************无形资产**********************************-->
+				<tr>
+					<td rowspan="3"><b>无形资产</b></td>	
+					<td rowspan="3"><b>种类</b></td>	
+					<td><b>种类</b></td>
+					<td>
+						<label>金额</label><input type="text" value="无"/>
+						<label>期限</label><input type="text" value="无"/>
+					</td>
+				</tr>
+				<tr>	
+					<td><b>转让费</b></td>
+					<td>
+						<label>金额</label><input type="text" value="无"/>
+						<label>转让内容</label><input type="text" value="无"/>
+						<label>期限</label><input type="text" value="无"/>
+					</td>
+				</tr>
+				<tr>	
+					<td><b>待摊租金</b></td>
+					<td>
+						<label>金额</label><input type="text" value="无"/>
+						<label>期限</label><input type="text" value="无"/>
+					</td>
+				</tr>
+			</table>
+<!--*****************************负债**********************************-->
+			<table class="myTable">
+				<caption>负债</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="70%">
+				</colgroup>
+			<!--*****************************货币资金**********************************-->
+				<tr>
+					<td><b>短期借款</b></td>
+					<td></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>贷款用途</th>
+								<th>发放日期</th>
+								<th>贷款金额</th>
+								<th>剩余金额</th>
+								<th>贷款利率</th>
+								<th>还款方式</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>应付账款</b></td>
+					<td></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>账款金额</th>
+								<th>期限</th>
+								<th>剩余金额</th>
+								<th>拖欠人姓名</th>
+								<th>账款用途</th>
+								<th>还款方式</th>
+								<th>拖欠原因</th>
+								<th>账龄</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="2"/></td>
+								<td><input type="text" class="addinput" value="10000"/></td>
+								<td><input type="text" class="addinput" value="张伟"/></td>
+								<td><input type="text" class="addinput" value="投资"/></td>
+								<td><input type="text" class="addinput" value="每月还款"/></td>
+								<td><input type="text" class="addinput" value="周转不灵"/></td>
+								<td><input type="text" class="addinput" value="2"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2"><b>预收账款</b></td>					
+					<td rowspan="2"><b>预收款种类</b></td>
+                    <td><b>预收的货款</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>金额</th>
+								<th>时间</th>
+								<th>用途</th>
+								<th>付款方式</th>
+								<th>期限</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="2014-05-05"/></td>
+								<td><input type="text" class="addinput" value="投资"/></td>
+								<td><input type="text" class="addinput" value="现金"/></td>
+								<td><input type="text" class="addinput" value="2"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+                    <td><b>预收的定金</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>金额</th>
+								<th>时间</th>
+								<th>用途</th>
+								<th>付款方式</th>
+								<th>期限</th>
+								<th>定金占比</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>长期借款</b></td>
+					<td></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>贷款用途</th>
+								<th>发放日期</th>
+								<th>贷款金额</th>
+								<th>剩余金额</th>
+								<th>贷款利率</th>
+								<th>还款方式</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+<!--*****************************所有者权益**********************************-->
+			<table class="myTable">
+				<caption>所有者权益</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+					<td><b>实收资本</b></td>
+					<td><input type="text" value="200000"/></td>
+					<td><b>资本公积</b></td>
+					<td><input type="text" value="无"/></td>
+				</tr>
+				<tr>
+					<td><b>盈余公积</b></td>
+					<td><input type="text" value="无"/></td>
+					<td><b>未分配利润</b></td>
+					<td><input type="text" value="无"/></td>
+				</tr>
+			</table>
+<!--*****************************表外**********************************-->
+			<table class="myTable">
+				<caption>表外</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="70%">
+				</colgroup>
+				<tr>
+					<td><b>房产</b></td>
+					<td></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>金额</th>
+								<th>数量</th>
+								<th>面积</th>
+								<th>产权时间</th>
+								<th>用途</th>
+								<th>有无土地使用证</th>
+								<th>产权归属</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="30000"/></td>
+								<td><input type="text" class="addinput" value="2"/></td>
+								<td><input type="text" class="addinput" value="1000"/></td>
+								<td><input type="text" class="addinput" value="2080-01-01"/></td>
+								<td><input type="text" class="addinput" value="居住"/></td>
+								<td><input type="text" class="addinput" value="有"/></td>
+								<td><input type="text" class="addinput" value="自有"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>车</b></td>
+					<td></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>金额</th>
+								<th>数量</th>
+								<th>用途</th>
+								<th>型号</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="300000"/></td>
+								<td><input type="text" class="addinput" value="1"/></td>
+								<td><input type="text" class="addinput" value="自驾"/></td>
+								<td><input type="text" class="addinput" value="宝马"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>信用卡</b></td>
+					<td></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>贷款用途</th>
+								<th>发放日期</th>
+								<th>贷款金额</th>
+								<th>剩余金额</th>
+								<th>贷款利率</th>
+								<th>还款方式</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="借"/></td>
+								<td><input type="text" class="addinput" value="2015-03-03"/></td>
+								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="5000"/></td>
+								<td><input type="text" class="addinput" value="0.2%"/></td>
+								<td><input type="text" class="addinput" value="打卡"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>私人借款</b></td>
+					<td></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>贷款用途</th>
+								<th>发放日期</th>
+								<th>贷款金额</th>
+								<th>剩余金额</th>
+								<th>贷款利率</th>
+								<th>还款方式</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="借"/></td>
+								<td><input type="text" class="addinput" value="2015-03-03"/></td>
+								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="5000"/></td>
+								<td><input type="text" class="addinput" value="0.2%"/></td>
+								<td><input type="text" class="addinput" value="打卡"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+			</div>
+		</div>
+	</body>
+</html>

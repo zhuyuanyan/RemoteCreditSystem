@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<!--日历-->
+		<script src="../../static/js/date/lhgcore.js"></script>
+		<script src="../../static/js/date/lhgcalendar.js"></script>
+		<style type="text/css">			
+			.myTable td{font-size:13px;}
+		</style>
+	</head>
+	<body>		
+		<form class="iframeForm">
+<!--*****************************道德品质**********************************-->
+			<table class="myTable">
+				<caption>基本情况</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>姓名</b></td>
+					<td><input type="text" name="" value="张三"/></td>
+					<td><b>年龄</b></td>
+					<td><input type="text" name="" value="30"/></td>
+				</tr>
+				<tr>
+					<td><b>职务</b></td>
+					<td><input type="text" name="" value="总经理"/></td>
+					<td><b>户籍所在地</b></td>
+					<td><input type="text" name="" value="江苏常州"/></td>
+				</tr>
+				<tr>
+					<td><b>户籍详细地址</b></td>
+					<td><input type="text" name="" value="江苏常州五角场"/></td>
+					<td><b>家庭地址</b></td>
+					<td><input type="text" name="" value="江苏常州五角场"/></td>
+				</tr>
+				<tr>
+					<td><b>移动电话</b></td>
+					<td colspan="3"><input type="text" name="" value="123456789"/></td>
+				</tr>
+			</table>
+<!--*****************************家庭情况**********************************-->
+			<table class="myTable">
+				<caption>家庭情况</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>家庭成员状况</b></td>
+					<td><input type="text" name="" value="一家三口"/></td>
+					<td><b>婚姻状况</b></td>
+					<td><select name=""><option>已婚</option><option>离异</option></select></td>
+				</tr>
+				<tr>
+					<td><b>家庭结构类型</b></td>
+					<td colspan="3">
+						<select name="">
+							<option>夫妻家庭</option>
+							<option>核心家庭</option>
+							<option>主干家庭</option>
+							<option>联合家庭</option>
+							<option>其他家庭</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+<!--*****************************知识水平**********************************-->
+			<table class="myTable">
+				<caption>知识水平</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>教育程度</b></td>
+					<td colspan="3"><td><input type="text" name="" value="大学"/></td></td>
+				</tr>
+			</table>
+<!--*****************************素质评估**********************************-->
+			<table class="myTable">
+				<caption>素质评估</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>公众形象</b></td>
+					<td>他人评价<input type="text" name="" value="好"/></td>
+					<td><b>健康状况</b></td>
+					<td>
+						定时体检<input type="text" name="" value="有"/><br/>
+						运动情况<input type="text" name="" value="有"/><br/>
+						作息时间<input type="text" name="" value="正常"/>
+					</td>
+				</tr>				
+				<tr>
+					<td><b>不良嗜好</b></td>
+					<td><input type="text" name="" value="无"/></td>
+					<td><b>违法情况及犯罪行为</b></td>
+					<td>
+						刑事案件<input type="text" name="" value="无"/><br/>
+						经济案件<input type="text" name="" value="无"/>
+					</td>
+				</tr>
+			</table>
+
+<!--*****************************信用记录**********************************-->
+			<table class="myTable">
+				<caption>信用记录</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>在银行系统有无逾期</b></td>
+					<td>
+						<label><input type="radio" name="radio" onclick="$('#yqcs').removeAttr('disabled')"/>有</label>
+						逾期次数<input type="text" name="" value="" id="yqcs" disabled/>
+						<label><input type="radio" name="radio" onclick="$('#yqcs').val('');$('#yqcs').attr('disabled','disabled')" checked/>无</label>
+					</td>
+					<td><b>应付账款长期赖账</b></td>
+					<td><input type="text" name="" value="无"/></td>
+				</tr>					
+				<tr>
+					<td><b>应付各种税费、水电煤气费是否拖欠</b></td>
+					<td>
+						<label><input type="radio" name="radio1"/>是</label>
+						<label><input type="radio" name="radio1" checked/>否</label>
+					</td>
+					<td><b>有无其他私人债务拖欠</b></td>
+					<td>						
+						<label><input type="radio" name="radio2"/>有</label>
+						<label><input type="radio" name="radio2" checked/>无</label>
+					</td>
+				</tr>					
+				<tr>
+					<td><b>火车、地铁逃票</b></td>
+					<td>
+						<label><input type="radio" name="radio3"/>有</label>
+						<label><input type="radio" name="radio3" checked/>无</label>
+					</td>
+					<td><b>交通违章</b></td>
+					<td>						
+						<label><input type="radio" name="radio4"/>有</label>
+						<label><input type="radio" name="radio4" checked/>无</label>
+					</td>
+				</tr>					
+				<tr>
+					<td><b>电话欠费</b></td>
+					<td>
+						<label><input type="radio" name="radio5"/>有</label>
+						<label><input type="radio" name="radio5" checked/>无</label>
+					</td>
+					<td><b>签证记录</b></td>
+					<td>
+						拒签次数<input type="text" name="" value=""/><br/>
+						拒签原因<input type="text" name="" value=""/>
+					</td>
+				</tr>				
+			</table>
+
+<!--*****************************社交情况**********************************-->
+			<table class="myTable">
+				<caption>社交情况</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>好友身份特征</b></td>
+					<td><input type="text" name="" value="有身份"/></td>
+					<td><b>与好友互动程度</b></td>
+					<td><input type="text" name="" value="经常"/></td>
+				</tr>	
+			</table>
+<!--*****************************公益行为**********************************-->
+			<table class="myTable">
+				<caption>公益行为</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>捐款</b></td>
+					<td><input type="text" name="" value="无"/></td>
+					<td><b>志愿者活动</b></td>
+					<td><input type="text" name="" value="无"/></td>
+				</tr>	
+			</table>
+<!--*****************************信仰状况**********************************-->
+			<table class="myTable">
+				<caption>信仰状况</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>信仰状况</b></td>
+					<td colspan="3"><input type="text" name="" value="无"/></td>
+				</tr>	
+			</table>
+		</form>
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+			</div>
+		</div>
+	</body>
+</html>

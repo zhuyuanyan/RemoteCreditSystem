@@ -20,6 +20,7 @@
 		<div class="pageTitle">
 			进件任务
 		</div>
+		<form id="tests">
 		<div class="content">
 			<form class="search">				
 				<span>
@@ -93,7 +94,7 @@
 					<col width="10%" />
 					<col width="5%" />
 				</colgroup>
-				{%- for obj in appList%}
+				{%- for obj in appList.items%}
 				<tr onclick="checkTable(this)">
 					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
 					<td>{{obj.customer_name}}</td>
@@ -116,18 +117,10 @@
 					<a class="btn btn-info" title="接受" onclick="iframeById('/zjzxpggl/jjrw_accept',document.getElementById('hiddenId').value)">接受</a>
 					<a class="btn btn-info" title="拒绝" onclick="iframeById('/zjzxpggl/jjrw_refuse',document.getElementById('hiddenId').value)">拒绝</a>
 				</div>
-				<div class="page">
-					<span>共<b>2</b>条数据，当前第<b>1</b>页</span>
-					<a href="#" class="first"><img src="../../static/img/icon_button_first.png"/></a>
-					<a href="#" class="previous"><img src="../../static/img/icon_button_previous.png"/></a>
-					<input type="text"/>
-					<input type="button" value="GO" class="go"/>
-					<span>/页</span>	
-					<a href="#" class="next"><img src="../../static/img/icon_button_next.png"/></a>
-					<a href="#" class="end"><img src="../../static/img/icon_button_end.png"/></a>
-				</div>
+				
 			</div>		
 		</div>
+	</form>
 		<script type="text/javascript">
 		function selectbelong(id){
 				document.getElementById("hiddenId").value=id;

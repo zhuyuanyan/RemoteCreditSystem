@@ -69,6 +69,10 @@ img{border:none;}
 .myTable{width:100%;border-collapse:collapse;}
 .myTable caption{background-color: #135AA4;eight: 30px;line-height: 30px;color: #fff;font-weight: bold;font-size: 16px;}
 .myTable td{border:1px solid #ddd;color:#333;line-height:36px;padding:0 5px;}
+/*可添加行表格*/
+.addTable{margin :5px;text-align :center ;width:99%;border-collapse:collapse;}
+.addTable th{border:1px solid #ddd;background:#a4daff;font-size:13px;}
+.addinput {width:80%;}
 /*tab页面*/
 .tabList{display:block;z-index:1;}
 .tabList li{float:left;width:100px;margin-right: -1px;border: solid 1px #B9C4CF;background: -moz-linear-gradient(center top , rgb(254, 255, 255), rgb(218, 232, 246)) repeat scroll 0% 0% transparent;background-color: #EBF3FA;height: 23px;line-height: 23px;text-align: center;padding: 5px 5px 4px 8px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
@@ -76,6 +80,10 @@ img{border:none;}
 .tabList .active{color: #fff;border-color: #135AA4;background-color: #135AA4;}			
 .tabList .active a{color:#fff;border-right:1px solid #035ac3;border-bottom:1px solid #035ac3;}
 .tabContentList{float:left;width:99.9%;margin-top:-1px;}
+
+.iframeForm{height:380px;overflow:auto;padding-right:20px;}
+
+
 /**************************底部*/
 .bottom{position:absolute;left:0px;right:0px;bottom:0px;height:30px;background-color:#f6f9fe;color:#688899;border-top:1px solid #c0d9f7;text-align:center;font-size:12px;line-height:30px;}
 
@@ -103,6 +111,7 @@ img{border:none;}
 /*按钮*/
 .btn-top{background:url(../img/btn_1_n.png);border:1px solid #0b3f87;}
 .btn{height:25px;padding:0 15px;}
+.add img,.del img{width:16px;height :16px;vertical-align:middle ;cursor:pointer;}
 
 .errorMessage{color:#ff0000;display:none;}
 
