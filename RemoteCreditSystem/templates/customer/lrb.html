@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">
+			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
+			.addTable{margin :5px;text-align :center ;width:99%;}
+			.addTable th{border:1px solid #ddd;background:#a4daff;font-size:13px;}
+			.addinput {width:80%;}
+			.myTable td{font-size:13px;}
+		</style>
+	</head>
+	<body>
+		<form class="iframeForm">
+<!--*****************************本年**********************************-->
+			<table class="myTable">
+				<caption>本年</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="70%">
+				</colgroup>
+			<!--*****************************主营业务收入**********************************-->
+				<tr>
+					<td rowspan="2"><b>主营业务收入</b></td>
+					<td><b>主导业务</b></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>淡季</th>
+								<th>旺季</th>
+								<th>平稳季节</th>
+								<th>销售占比</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="30000"/></td>
+								<td><input type="text" class="addinput" value="20%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>其他业务</b></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>淡季</th>
+								<th>旺季</th>
+								<th>平稳季节</th>
+								<th>销售占比</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="30000"/></td>
+								<td><input type="text" class="addinput" value="20%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			<!--*****************************主营业务成本**********************************-->
+				<tr>
+					<td rowspan="3"><b>主营业务成本</b></td>
+					<td><b>直接材料成本</b></td>
+                    <td></td>
+					<td>
+						<label>金额</label><input type="text" value="500"/>
+						<label>期限</label><input type="text" value="2"/>
+					</td>
+				</tr>
+				<tr>
+					<td><b>直接人工成本</b></td>
+                    <td></td>
+					<td>
+						<label>平均金额</label><input type="text" value="200"/>
+						<label>可变成本占比</label><input type="text"/>
+					</td>
+				</tr>
+				<tr>
+					<td><b>其他</b></td>
+                    <td></td>
+					<td>
+						<label>可变成本占比</label><input type="text"/>
+					</td>
+				</tr>
+			<!--*****************************主营业务税金**********************************-->
+				<tr>
+					<td><b>主营业务税金</b></td>
+					<td><b>种类</b></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>增值税</th>
+								<th>营业税</th>
+								<th>消费税</th>
+								<th>资源税</th>
+								<th>土地增值税</th>
+								<th>地方教育费附加</th>
+								<th>教育费附加</th>
+								<th>城市维护建设费</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="20"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>主营业务利润</b></td>	
+					<td></td>
+					<td></td>
+					<td>
+						<label>时间节点</label><input type="text"/>
+						<label>金额</label><input type="text"/>
+					</td>	
+				</tr>
+				<tr>
+					<td><b>主营业务利润率</b></td>	
+					<td></td>
+					<td></td>
+					<td>
+						<label>时间节点</label><input type="text"/>
+					</td>	
+				</tr>
+				<tr>
+					<td rowspan="3"><b>管理费用</b></td>
+					<td><b>固定人工成本</b></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>工人数</th>
+								<th>工作内容</th>
+								<th>基本工作</th>
+								<th>绩效提点</th>
+								<th>绩效工资</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="2"/></td>
+								<td><input type="text" class="addinput" value="搬运"/></td>
+								<td><input type="text" class="addinput" value="搬运"/></td>
+								<td><input type="text" class="addinput" value="1%"/></td>
+								<td><input type="text" class="addinput" value="100"/></td>
+							</tr>
+						</table>
+						
+					</td>
+				</tr>
+				<tr>
+					<td><b>水电成本</b></td>
+                    <td></td>
+					<td>						
+						<label>水费</label><input type="text" value="50"/>
+						<label>电费</label><input type="text" value="50"/>	
+					</td>
+				</tr>
+				<tr>
+					<td><b>其他管理费用</b></td>
+                    <td></td>
+					<td>						
+						<table class="addTable">
+							<tr>
+								<th>房租租金</th>
+								<th>固定交通成本</th>
+								<th>研发费用</th>
+								<th>公司经费</th>
+								<th>劳动保险费</th>
+								<th>其他费用</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>营业费用</b></td>
+                    <td></td>
+					<td></td>
+					<td>						
+						<label>维修费</label><input type="text" value="50"/>
+						<label>广告费</label><input type="text" value="50"/>	
+					</td>
+				</tr>				
+				<tr>
+					<td><b>财务费用</b></td>
+                    <td></td>
+					<td></td>
+					<td>						
+						<table class="addTable">
+							<tr>
+								<th>利息支出</th>
+								<th>汇兑损失</th>
+								<th>相关手续费</th>
+								<th>其他财务费用</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<table class="myTable">
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+					<td><b>营业利润</b></td>
+					<td><input type="text" value="50"/></td>
+					<td><b>营业利润率</b></td>
+					<td><input type="text" value="60%"/></td>
+				</tr>	
+				<tr>
+					<td><b>营业外收支</b></td>
+					<td><input type="text" value="50"/></td>
+					<td><b>税前利润</b></td>
+					<td><input type="text" value="50"/></td>
+				</tr>	
+				<tr>
+					<td><b>净利润</b></td>
+					<td colspan="3"><input type="text"/></td>
+				</tr>	
+			</table>
+<!--*****************************追溯年**********************************-->
+			<table class="myTable">
+				<caption>追溯年</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="70%">
+				</colgroup>
+				<tr>
+					<td rowspan="2"><b>主营业务收入</b></td>
+					<td><b>主导业务</b></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>淡季</th>
+								<th>旺季</th>
+								<th>平稳季节</th>
+								<th>销售占比</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="30000"/></td>
+								<td><input type="text" class="addinput" value="20%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>其他业务</b></td>
+                    <td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>淡季</th>
+								<th>旺季</th>
+								<th>平稳季节</th>
+								<th>销售占比</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="30000"/></td>
+								<td><input type="text" class="addinput" value="20%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+			</table>
+			<table class="myTable">
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+					<td><b>主营业务成本</b></td>
+					<td><input type="text" value="50"/></td>
+					<td><b>主营业务税金</b></td>
+					<td><input type="text" value="50"/></td>
+				</tr>	
+				<tr>
+					<td><b>主营业务利润</b></td>
+					<td><input type="text" value="1000"/></td>
+					<td><b>主营业务利润率</b></td>
+					<td><input type="text" value="50%"/></td>
+				</tr>	
+				<tr>
+					<td><b>营业费用</b></td>
+					<td><input type="text" value="50"/></td>
+					<td><b>研发费用</b></td>
+					<td><input type="text" value="50"/></td>
+				</tr>		
+				<tr>
+					<td><b>财务费用</b></td>
+					<td><input type="text" value="50"/></td>
+					<td><b>营业利润</b></td>
+					<td><input type="text" value="1000"/></td>
+				</tr>		
+				<tr>
+					<td><b>营业利润率</b></td>
+					<td><input type="text" value="50%"/></td>
+					<td><b>营业外收支</b></td>
+					<td><input type="text" value="50"/></td>
+				</tr>			
+				<tr>
+					<td><b>税前利润</b></td>
+					<td><input type="text" value="1000"/></td>
+					<td><b>净利润</b></td>
+					<td><input type="text" value="1000"/></td>
+				</tr>
+			</table>
+		</form>
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<a class="btn" onclick="javascript:history.go(-1);" title="返回">返回</a>
+			</div>
+		</div>
+		
+	</body>
+</html>

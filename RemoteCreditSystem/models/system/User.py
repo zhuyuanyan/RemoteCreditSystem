@@ -27,8 +27,9 @@ class User(db.Model):
     bhxx = db.Column(db.String(32))
     remark3 = db.Column(db.String(255))
     user_type = db.Column(db.String(1))
+    role = db.Column(db.String(32))
 
-    def __init__(self,login_name,login_password,real_name,sex,mobile,active,email,card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,user_type):
+    def __init__(self,login_name,login_password,real_name,sex,mobile,active,email,card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,user_type,role):
         self.login_name = login_name
         self.login_password = login_password
         self.real_name = real_name
@@ -48,6 +49,7 @@ class User(db.Model):
         self.bhxx = bhxx
         self.remark3 = remark3
         self.user_type = user_type
+        self.role = role
     def add(self):
         db.session.add(self)
 
