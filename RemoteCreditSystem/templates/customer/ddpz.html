@@ -49,7 +49,7 @@
 			</table>
 <!--*****************************家庭情况**********************************-->
 			<table class="myTable">
-				<caption>家庭情况</caption>
+				<caption>家庭情况(20%)</caption>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -57,27 +57,45 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>家庭成员状况</b></td>
-					<td><input type="text" name="" value="一家三口"/></td>
-					<td><b>婚姻状况</b></td>
-					<td><select name=""><option>已婚</option><option>离异</option></select></td>
+					<td><b>家庭其他成员经济收入来源(10%)</b></td>
+					<td>
+						<select name="otherIn" id="otherIn">
+							<option value="100">有</option>
+							<option value="50">无</option>
+						</select>
+					</td>
+					<td><b>婚姻状况(50%)</b></td>
+					<td><select name="merray" id="merray">
+						<option value="100">已婚</option>
+						<option value="60">未婚</option>
+						<option value="30">离异</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
-					<td><b>家庭结构类型</b></td>
-					<td colspan="3">
-						<select name="">
-							<option>夫妻家庭</option>
-							<option>核心家庭</option>
-							<option>主干家庭</option>
-							<option>联合家庭</option>
-							<option>其他家庭</option>
+					<td><b>家庭结构类型(30%)</b></td>
+					<td>
+						<select name="family_type" id="family_type">
+							<option value="100">夫妻家庭(生育)</option>
+							<option value="80">夫妻家庭(未生育)</option>
+							<option value="100">核心家庭</option>
+							<option value="100">主干家庭</option>
+							<option value="100">联合家庭</option>
+							<option value="80">其他家庭</option>
+						</select>
+					</td>
+					<td><b>不良嗜好(10%)</b></td>
+					<td>
+						<select name="blsh" id="blsh">
+							<option value="20">有</option>
+							<option value="100">无</option>
 						</select>
 					</td>
 				</tr>
 			</table>
 <!--*****************************知识水平**********************************-->
 			<table class="myTable">
-				<caption>知识水平</caption>
+				<caption>知识水平(5%)</caption>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -86,12 +104,20 @@
 				</colgroup>
 				<tr>
 					<td><b>教育程度</b></td>
-					<td colspan="3"><td><input type="text" name="" value="大学"/></td></td>
+					<td colspan="3">
+						<td>
+						<select name="jycd" id="jycd">
+							<option value="100">本科及以上</option>
+							<option value="80">大专</option>
+							<option value="60">高中或中专</option>
+							<option value="40">初中及以下</option>
+						</select>
+						</td></td>
 				</tr>
 			</table>
 <!--*****************************素质评估**********************************-->
 			<table class="myTable">
-				<caption>素质评估</caption>
+				<caption>素质评估(15%)</caption>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -99,29 +125,44 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>公众形象</b></td>
-					<td>他人评价<input type="text" name="" value="好"/></td>
-					<td><b>健康状况</b></td>
+					<td><b>公众形象(30%)</b></td>
+					<td>他人评价
+						<select name="ggxx" id="ggxx">
+							<option value="100">好</option>
+							<option value="80">一般</option>
+							<option value="60">差</option>
+						</select></td>
+						
+					<td><b>健康状况(35%)</b></td>
 					<td>
-						定时体检<input type="text" name="" value="有"/><br/>
-						运动情况<input type="text" name="" value="有"/><br/>
+						定时体检
+						<select name="dstj" id="dstj">
+							<option value="100">良好</option>
+							<option value="90">轻微疾病</option>
+							<option value="50">重大疾病</option>
+						</select><br/>
+						运动情况
+						<select name="ydqk" id="ydqk">
+							<option value="100">有运动习惯</option>
+							<option value="80">无运动习惯</option>
+						</select><br/>
 						作息时间<input type="text" name="" value="正常"/>
 					</td>
 				</tr>				
 				<tr>
-					<td><b>不良嗜好</b></td>
-					<td><input type="text" name="" value="无"/></td>
-					<td><b>违法情况及犯罪行为</b></td>
+					<td><b>不良嗜好(35%)</b></td>
 					<td>
-						刑事案件<input type="text" name="" value="无"/><br/>
-						经济案件<input type="text" name="" value="无"/>
-					</td>
+						<select name="blsh1" id="blsh1">
+							<option value="0">有涉毒、涉赌、涉黄嗜好</option>
+							<option value="100">无不良嗜好</option>
+						</select></td>
+					
 				</tr>
 			</table>
 
 <!--*****************************信用记录**********************************-->
 			<table class="myTable">
-				<caption>信用记录</caption>
+				<caption>信用记录(50%)</caption>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -129,56 +170,88 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>在银行系统有无逾期</b></td>
+					<td><b>在银行系统有无逾期(15%)</b></td>
 					<td>
-						<label><input type="radio" name="radio" onclick="$('#yqcs').removeAttr('disabled')"/>有</label>
-						逾期次数<input type="text" name="" value="" id="yqcs" disabled/>
-						<label><input type="radio" name="radio" onclick="$('#yqcs').val('');$('#yqcs').attr('disabled','disabled')" checked/>无</label>
+						<select name="yq" id="yq">
+							<option value="100">征信报告无逾期</option>
+							<option value="80">24个月内无逾期，5年内有逾期</option>
+							<option value="70">24个月内有逾期(逾期<5次),无连续逾期,5年内有逾期</option>
+							<option value="60">24个月内有逾期(逾期<5次),无连续逾期,5年内无逾期</option>
+							<option value="50">24个月内有逾期(逾期<5次),且为连续逾期,5年内有逾期</option>
+							<option value="20">24个月内逾期≥5次</option>
+						</select>
 					</td>
-					<td><b>应付账款长期赖账</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><b>应付账款长期赖账(15%)</b></td>
+					<td>
+						<select name="cqlz" id="cqlz">
+							<option value="20">有</option>
+							<option value="100">无</option>
+						</select>
+					</td>
 				</tr>					
 				<tr>
-					<td><b>应付各种税费、水电煤气费是否拖欠</b></td>
+					<td><b>各种税费、水电煤气费是否拖欠(15%)</b></td>
 					<td>
-						<label><input type="radio" name="radio1"/>是</label>
-						<label><input type="radio" name="radio1" checked/>否</label>
+						<select name="sftq" id="sftq">
+							<option value="20">有</option>
+							<option value="100">无</option>
+						</select>
 					</td>
-					<td><b>有无其他私人债务拖欠</b></td>
+					<td><b>有无其他私人债务拖欠(15%)</b></td>
 					<td>						
-						<label><input type="radio" name="radio2"/>有</label>
-						<label><input type="radio" name="radio2" checked/>无</label>
+						<select name="zwtq" id="zwtq">
+							<option value="20">有</option>
+							<option value="100">无</option>
+						</select>
 					</td>
 				</tr>					
 				<tr>
-					<td><b>火车、地铁逃票</b></td>
+					<td><b>火车、地铁逃票(8%)</b></td>
 					<td>
-						<label><input type="radio" name="radio3"/>有</label>
-						<label><input type="radio" name="radio3" checked/>无</label>
+						<select name="tp" id="tp">
+							<option value="20">有</option>
+							<option value="100">无</option>
+						</select>
 					</td>
-					<td><b>交通违章</b></td>
+					<td><b>交通违章(8%)</b></td>
 					<td>						
-						<label><input type="radio" name="radio4"/>有</label>
-						<label><input type="radio" name="radio4" checked/>无</label>
+						<select name="jtwf" id="jtwf">
+							<option value="20">有</option>
+							<option value="100">无</option>
+						</select>
 					</td>
 				</tr>					
 				<tr>
-					<td><b>电话欠费</b></td>
+					<td><b>电话欠费(2%)</b></td>
 					<td>
-						<label><input type="radio" name="radio5"/>有</label>
-						<label><input type="radio" name="radio5" checked/>无</label>
+						<select name="dhqf" id="dhqf">
+							<option value="20">有</option>
+							<option value="100">无</option>
+						</select>
 					</td>
-					<td><b>签证记录</b></td>
+					<td><b>签证记录(2%)</b></td>
 					<td>
-						拒签次数<input type="text" name="" value=""/><br/>
-						拒签原因<input type="text" name="" value=""/>
+						<select name="qzjl" id="qzjl">
+							<option value="100">无拒签记录</option>
+							<option value="20">有拒签记录</option>
+						</select>
 					</td>
-				</tr>				
+				</tr>
+				<tr>	
+				<td><b>违法情况及犯罪行为(20%)</b></td>
+					<td>
+					<select name="wfxw" id="wfxw">
+							<option value="100">无</option>
+							<option value="0">刑事案件</option>
+							<option value="0">经济案件</option>
+					</select>
+					</td>
+					</tr>			
 			</table>
 
 <!--*****************************社交情况**********************************-->
 			<table class="myTable">
-				<caption>社交情况</caption>
+				<caption>社交情况(5%)</caption>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -186,31 +259,47 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>好友身份特征</b></td>
-					<td><input type="text" name="" value="有身份"/></td>
-					<td><b>与好友互动程度</b></td>
-					<td><input type="text" name="" value="经常"/></td>
+					<td><b>朋友工作(70%)</b></td>
+					<td>
+						<select name="pygz" id="pygz">
+							<option value="100">企事业单位</option>
+							<option value="90">个体工商户</option>
+							<option value="50">无业</option>
+						</select>
+					</td>
+					<td><b>朋友学历(30%)</b></td>
+					<td>
+						<select name="pyxl" id="pyxl">
+							<option value="100">本科及以上学历</option>
+							<option value="90">大专</option>
+							<option value="80">高中及中专</option>
+							<option value="60">初中及以下学历</option>
+						</select>
+					</td>
 				</tr>	
 			</table>
 <!--*****************************公益行为**********************************-->
 			<table class="myTable">
-				<caption>公益行为</caption>
+				<caption>公益行为(4%)</caption>
 				<colgroup>
-					<col width="15%">
+					<col width="5%">
 					<col width="35%">
 					<col width="15%">
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>捐款</b></td>
-					<td><input type="text" name="" value="无"/></td>
-					<td><b>志愿者活动</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><b>有无公益活动</b></td>
+					<td>
+					<select name="gyhd" id="gyhd">
+						<option value="100">捐款</option>
+						<option value="100">志愿者活动</option>
+						<option value="80">无公益活动</option>
+					</select></td>
 				</tr>	
 			</table>
 <!--*****************************信仰状况**********************************-->
 			<table class="myTable">
-				<caption>信仰状况</caption>
+				<caption>信仰状况(1%)</caption>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -218,16 +307,76 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>信仰状况</b></td>
-					<td colspan="3"><input type="text" name="" value="无"/></td>
+					<td><b>宗教信仰(50%)</b></td>
+					<td>
+					<select name="zjxy" id="zjxy">
+						<option value="80">佛教、基督教、伊斯兰教等基本教</option>
+						<option value="0">法轮功、邪教组织、ISIS、恐怖组织</option>
+						<option value="80">无宗教信仰</option>
+					</select></td>
+					<td><b>信仰(50%)</b></td>
+					<td>
+					<select name="xy" id="xy">
+						<option value="100">有</option>
+						<option value="80">无</option>
+					</select></td>
+				</tr>	
+			</table>
+<!--*****************************评分结果**********************************-->
+			<table class="myTable">
+				<caption>评分结果</caption>
+
+				<tr>
+					<td><b>评分结果</b></td>
+					<td><input type="text" id="result" name="result" readonly/></td>
 				</tr>	
 			</table>
 		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
 				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<a class="btn btn-info" onclick="sum()" title="评分">评分</a>
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
+		<script type="text/javascript">
+			
+			function sum(){
+				var total=0;
+				//家庭情况
+				total+=0.2*0.1*parseInt($("#otherIn").val());
+				total+=0.2*0.5*parseInt($("#merray").val());
+				total+=0.2*0.3*parseInt($("#family_type").val());
+				total+=0.2*0.1*parseInt($("#blsh").val());
+				
+				//知识水平
+				total+=0.05*parseInt($("#jycd").val());
+				//素质评估
+				total+=0.15*0.3*parseInt($("#ggxx").val());
+				total+=0.15*0.175*parseInt($("#dstj").val());
+				total+=0.15*0.175*parseInt($("#ydqk").val());
+				total+=0.15*0.35*parseInt($("#blsh1").val());
+				//信用记录
+				total+=0.5*0.15*parseInt($("#yq").val());
+				total+=0.5*0.15*parseInt($("#cqlz").val());
+				total+=0.5*0.15*parseInt($("#sftq").val());
+				total+=0.5*0.15*parseInt($("#zwtq").val());
+				total+=0.5*0.08*parseInt($("#tp").val());
+				total+=0.5*0.08*parseInt($("#jtwf").val());
+				total+=0.5*0.02*parseInt($("#dhqf").val());
+				total+=0.5*0.02*parseInt($("#qzjl").val());
+				total+=0.5*0.2*parseInt($("#wfxw").val());
+				//社交情况
+				total+=0.05*0.7*parseInt($("#pygz").val());
+				total+=0.05*0.3*parseInt($("#pyxl").val());
+				//公益行为
+				total+=0.04*parseInt($("#gyhd").val());
+				//信仰状况
+				total+=0.01*0.5*parseInt($("#zjxy").val());
+				total+=0.01*0.5*parseInt($("#xy").val());
+				$("#result").val(total);
+			}
+
+		</script>
 	</body>
 </html>
