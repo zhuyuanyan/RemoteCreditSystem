@@ -29,6 +29,7 @@
 	    	{%- endfor %}
 		  	{%- endif %}
 		{%- endwith %}
+		<form id="tests">
 		<div class="content">
 			<form class="search">				
 				<span>
@@ -102,7 +103,7 @@
 					<col width="10%" />
 					<col width="5%" />
 				</colgroup>
-				{%- for obj in appList%}
+				{%- for obj in appList.items%}
 				<tr onclick="checkTable(this)">
 					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
 					<td>{{obj.customer_name}}</td>
@@ -126,18 +127,27 @@
 					<a class="btn btn-info" href="javascript:void(0);" title="系统分案" onclick="iframe('/jjrwfa/xtfa')">系统分案</a>
 					<a class="btn" href="javascript:void(0);" title="显示" onclick="iframeById('/jjrwfa/show_jjfa',document.getElementById('hiddenId').value)">显示</a>
 				</div>
-				<div class="page">
-					<span>共<b>2</b>条数据，当前第<b>1</b>页</span>
-					<a href="#" class="first"><img src="../../static/img/icon_button_first.png"/></a>
-					<a href="#" class="previous"><img src="../../static/img/icon_button_previous.png"/></a>
-					<input type="text"/>
-					<input type="button" value="GO" class="go"/>
-					<span>/页</span>	
-					<a href="#" class="next"><img src="../../static/img/icon_button_next.png"/></a>
-					<a href="#" class="end"><img src="../../static/img/icon_button_end.png"/></a>
+				<div class="page-div">
+					{%- if appList.has_prev %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/jjrwfa/jjfa/{{appList.prev_num}}')">&lt;&lt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&lt;&lt;</span>
+					{%- endif %}
+					&#160;第&#160;<font color="#0088cc">{{appList.page}}</font>&#160;页&#160;
+					&#160;共&#160;<font color="#0088cc">{{appList.pages}}</font>&#160;页&#160;
+					{%- if appList.has_next %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/jjrwfa/jjfa/{{appList.next_num}}')">&gt;&gt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&gt;&gt;</span>
+					{%- endif %}
 				</div>
 			</div>		
 		</div>
+	</form>
+		<script src="/static/js/jquery-1.7.2.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/script.js"></script>
+		<script src="/static/js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript">
 			function selectbelong(id){
 				document.getElementById("hiddenId").value=id;
@@ -150,6 +160,10 @@
 				}
 				var url = page+"/"+id;
 			   window.location.href =  url;
+			}
+			function submitForm(formId,action){
+			    document.getElementById(formId).action = action;
+			    document.getElementById(formId).submit();
 			}
 		</script>
 	</body>

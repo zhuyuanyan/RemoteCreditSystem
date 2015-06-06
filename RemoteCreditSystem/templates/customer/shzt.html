@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<!--日历-->
+		<script src="../../static/js/date/lhgcore.js"></script>
+		<script src="../../static/js/date/lhgcalendar.js"></script>
+		<style type="text/css">
+			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
+			.myTable td{font-size:13px;}
+		</style>
+	</head>
+	<body>	
+		<form class="iframeForm">
+<!--*****************************资产状况**********************************-->			
+			<table class="myTable">
+				<caption>资产状况</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td rowspan="2"><b>房子</b></td>
+					<td><b>自有</b></td>
+                    <td>
+						<table class="addTable">
+							<tr>
+								<th>按揭/全额付款</th>
+								<th>房产数量</th>
+								<th>地址</th>
+								<th>购买日期</th>
+								<th>购买价格</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="25000"/></td>
+								<td><input type="text" class="addinput" value="2"/></td>
+								<td><input type="text" class="addinput" value="江苏常州"/></td>
+								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});" value="2008-08-08"/></td>
+								<td><input type="text" class="addinput" value="500000"/></td>
+							</tr>
+							<tr>
+								<th>住房面积</th>
+								<th>装修情况</th>
+								<th>居住起始年月</th>
+								<th colspan ="2">房间格局</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="120"/></td>
+								<td>
+									<select	name="">
+										<option>精装</option>
+										<option>简装</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});" value="2009-01-01"/></td>
+								<td colspan ="2"><input type="text" class="addinput" value="朝南"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+                    <td><b>租赁</b></td>
+					<td><input type="text" value=""/></td>
+				</tr>				
+				<tr>
+					<td><b>车辆</b></td>
+                    <td></td>
+                    <td>
+						<table class="addTable">
+							<tr>
+								<th>车辆数量</th>
+								<th>购置时间</th>
+								<th>购买价格</th>
+								<th>品牌、型号</th>
+								<th>车牌购置方式</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="1"/></td>
+								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});" value="2014-01-01"/></td>
+								<td><input type="text" class="addinput" value="150000"/></td>
+								<td><input type="text" class="addinput" value="朗逸"/></td>
+								<td>
+									<select	name="">
+										<option>竞拍/摇号</option>
+										<option>常规上牌方式</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+<!--*****************************生活环境**********************************-->			
+			<table class="myTable">
+				<caption>生活环境</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td><b>居住区的客观环境</b></td>
+					<td></td>
+                    <td>
+						<table class="addTable">
+							<tr>
+								<th>安全性</th>
+								<th>健康性</th>
+								<th>便利性</th>
+								<th>舒适性</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="好"/></td>
+								<td><input type="text" class="addinput" value="好"/></td>
+								<td><input type="text" class="addinput" value="好"/></td>
+								<td><input type="text" class="addinput" value="好"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>居住区的人文环境</b></td>
+					<td><b>邻里社会特征</b></td>
+                    <td>
+						<table class="addTable">
+							<tr>
+								<th>邻居的友好程度</th>
+								<th>居民受教育程度高低</th>
+								<th>职业种类</th>
+								<th>经济收入水平</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="好"/></td>
+								<td><input type="text" class="addinput" value="好"/></td>
+								<td>
+									<select	name="">
+										<option>公务员/事业单位</option>
+										<option>生意人</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput" value="高"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+			</table>
+<!--*****************************生活时间分配**********************************-->			
+			<table class="myTable">
+				<caption>生活时间分配</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td><b>工作时间</b></td>
+					<td><b>每天工作时间(小时)</b></td>                    
+					<td><input type="text" value="8"/></td>
+				</tr>	
+				<tr>
+					<td rowspan="2"><b>休息时间</b></td>
+					<td><b>休闲娱乐活动</b></td>
+                   <td><input type="text" value="2"/></td>
+				</tr>	
+				<tr>
+					<td><b>户外活动</b></td>
+					<td>
+						<select	name="">
+							<option>散步</option>
+							<option>运动</option>
+							<option>旅游</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+<!--*****************************收入来源**********************************-->			
+			<table class="myTable">
+				<caption>收入来源</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td><b>企业经营</b></td>
+					<td></td>
+                    <td>
+						<table class="addTable">
+							<tr>
+								<th>店铺/公司名称</th>
+								<th>法定代表人</th>
+								<th>实际控制人</th>
+								<th>股权集中度</th>
+								<th>股权构成</th>								
+								<th colspan="2">主营业务经营范围</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="中石油"/></td>
+								<td><input type="text" class="addinput" value="张伟"/></td>
+								<td><input type="text" class="addinput" value="张伟"/></td>
+								<td>
+									<select	name="">
+										<option>股权高度集中</option>
+										<option>股权平衡</option>
+										<option>股权高度分散</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>国家股东</option>
+										<option>法人股东</option>
+										<option>社会公众股东</option>
+									</select>
+								</td>
+								<td colspan="2"><input type="text" class="addinput" value="汽油"/></td>
+							</tr>
+							<tr>
+								<th>店铺/公司固定电话</th>
+								<th>经营地址</th>
+								<th>业务开始日期</th>
+								<th>雇员人数</th>
+								<th>经营场所面积</th>								
+								<th>店铺类型</th>							
+								<th>店铺启用日期</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="05198220808"/></td>
+								<td><input type="text" class="addinput" value="常州南大街"/></td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="2012-01-01"/></td>
+								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="500"/></td>
+								<td>
+									<select	name="">
+										<option>贸易</option>
+										<option>制造</option>
+										<option>服务</option>
+										<option>养殖</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="2014-01-02"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>其他收入来源</b></td>
+					<td><b>第二职业</b></td>
+                    <td><input type="text"/></td></td>
+				</tr>
+			</table>
+<!--*****************************社会福利**********************************-->			
+			<table class="myTable">
+				<caption>社会福利</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="37%">
+					<col width="13%">
+					<col width="37%">
+				</colgroup>
+				<tr>
+					<td><b>五险一金</b></td>                  
+					<td><input type="text" value="200"/></td>
+					<td><b>公积金</b></td>                  
+					<td><input type="text" value="600"/></td>
+				</tr>	
+			</table>
+<!--*****************************收入分配**********************************-->			
+			<table class="myTable">
+				<caption>收入分配</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td rowspan="2"><b>日常生活消费</b></td>  
+					<td><b>消费结构</b></td>                     
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>衣</th>
+								<th>食</th>
+								<th>住</th>
+								<th>行</th>
+								<th>其他</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="150"/></td>
+								<td><input type="text" class="addinput" value="150"/></td>
+								<td><input type="text" class="addinput" value="150"/></td>
+								<td><input type="text" class="addinput" value="150"/></td>
+								<td><input type="text" class="addinput" value="150"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>消费习惯</b></td>                     
+					<td><input type="text"/></td>
+				</tr>
+				<tr>
+					<td rowspan="2"><b>理财结构</b></td>  
+					<td><b>占比</b></td>                     
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>储蓄</th>
+								<th>购买保险</th>
+								<th>购买理财产品</th>
+								<th>投资房地产</th>
+								<th>投资高风险产品</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="1500"/></td>
+								<td><input type="text" class="addinput" value="1500"/></td>
+								<td><input type="text" class="addinput" value="1500"/></td>
+								<td><input type="text" class="addinput" value="1500"/></td>
+								<td><input type="text" class="addinput" value="1500"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+			</table>
+<!--*****************************健康状况**********************************-->			
+			<table class="myTable">
+				<caption>健康状况</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td><b>生理健康</b></td>  
+					<td><b></b></td>                     
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>食欲状况</th>
+								<th>睡眠质量</th>
+								<th>定期体检</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="好"/></td>
+								<td><input type="text" class="addinput" value="好"/></td>
+								<td><input type="text" class="addinput" value="好"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>心理健康</b></td>  
+					<td><b></b></td>                     
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>记忆状况</th>
+								<th>有无消极感受</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="好"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+			</table>
+<!--*****************************家庭关系**********************************-->			
+			<table class="myTable">
+				<caption>家庭关系</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td><b>与配偶的情感关系</b></td>  
+					<td><b></b></td>                     
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>配偶姓名</th>
+								<th>配偶工作单位</th>
+								<th>配偶身份证号码</th>
+								<th>配偶移动电话</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="陈琳"/></td>
+								<td><input type="text" class="addinput" value="常州服装厂"/></td>
+								<td><input type="text" class="addinput" value="320482198609082238"/></td>
+								<td><input type="text" class="addinput" value="15961100229"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>与家庭其他成员关系</b></td>  
+					<td><b></b></td>                     
+					<td><input type="text" value="好"/></td>
+				</tr>	
+				<tr>
+					<td><b>家庭角色的发挥程度</b></td>  
+					<td><b></b></td>                     
+					<td><input type="text" value="好"/></td>
+				</tr>	
+				<tr>
+					<td><b>家庭事务决策能力</b></td>  
+					<td><b>家庭主要决策人</b></td>                     
+					<td><input type="text" value="好"/></td>
+				</tr>	
+			</table>
+<!--*****************************社交状况**********************************-->			
+			<table class="myTable">
+				<caption>社交状况</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td><b>频繁程度</b></td>  
+					<td><b>聚会的次数/周</b></td>                     
+					<td><input type="text" value="好"/></td>
+				</tr>
+				<tr>
+					<td><b>交友状况</b></td>  
+					<td><b></b></td>                     
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>朋友的工作</th>
+								<th>朋友的学历</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>公务员/事业单位</option>
+										<option>做生意</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>高中</option>
+										<option>本科</option>
+										<option>硕士</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+<!--*****************************资产负债状况**********************************-->			
+			<table class="myTable">
+				<caption>资产负债状况</caption>
+				<colgroup>
+					<col width="13%">
+					<col width="13%">
+					<col width="74%">
+				</colgroup>
+				<tr>
+					<td rowspan="2"><b>资产</b></td>  
+					<td><b>储蓄账户</b></td>            
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>生意帐户(开户行)</th>
+								<th>生意帐户(开户账号)</th>
+								<th>个人银行帐户（数量）</th>
+								<th>主要银行开户行</th>
+								<th>主要账户号</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="建设银行"/></td>
+								<td><input type="text" class="addinput" value="600020"/></td>
+								<td><input type="text" class="addinput" value="1"/></td>
+								<td><input type="text" class="addinput" value="建设银行"/></td>
+								<td><input type="text" class="addinput" value="600020"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>其他应收账款</b></td>            
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>借出日期</th>
+								<th>回收日期</th>
+								<th>收息</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
+								<td><input type="text" class="addinput"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="3"><b>负债</b></td>  
+					<td><b>贷记卡</b></td>            
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>信用卡总数</th>
+								<th>授信总额</th>
+								<th>已用额度</th>
+								<th>逾期情况</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="1"/></td>
+								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>银行贷款</b></td>            
+					<td>
+						<b>历史贷款笔数</b>
+						<table class="addTable">
+							<tr>
+								<th>放款日期</th>
+								<th>贷款机构</th>
+								<th>贷款金额</th>
+								<th>利率</th>
+								<th>期限</th>
+								<th>用途</th>
+								<th>还款日期</th>
+								<th>是否有担保</th>
+								<th>逾期情况</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+						<b>尚未到期笔数</b>
+						<table class="addTable">
+							<tr>
+								<th>放款日期</th>
+								<th>贷款机构</th>
+								<th>贷款金额</th>
+								<th>利率</th>
+								<th>期限</th>
+								<th>用途</th>
+								<th>还款日期</th>
+								<th>是否有担保</th>
+								<th>逾期情况</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>其他借款</b></td>            
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>借款来源</th>
+								<th>借款金额</th>
+								<th>利率</th>
+								<th>期限</th>
+								<th>用途</th>
+								<th>借款日期</th>
+								<th>最终还款日期</th>
+								<th>是否正常还款</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="借款"/></td>
+								<td><input type="text" class="addinput" value="200000"/></td>
+								<td><input type="text" class="addinput" value="0.1%"/></td>
+								<td><input type="text" class="addinput" value="2年"/></td>
+								<td><input type="text" class="addinput" value="投资"/></td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="2012-01-01"/></td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="2014-01-01"/></td>
+								<td><input type="text" class="addinput" value="是"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>担保情况</b></td>
+					<td><b></b></td> 
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>是否为其他人担保</th>
+								<th>担保金额</th>
+								<th>担保贷款用途</th>
+								<th>担保期限</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>高中</option>
+										<option>本科</option>
+										<option>硕士</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="无"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+			</div>
+		</div>
+	</body>
+</html>

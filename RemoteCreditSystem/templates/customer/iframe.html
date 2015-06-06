@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<!--日历-->
+		<script src="../../static/js/date/lhgcore.js"></script>
+		<script src="../../static/js/date/lhgcalendar.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">
+			.tabList{display:block;z-index:1;}
+			.tabList li{float:left;width:100px;margin-right: -1px;border: solid 1px #B9C4CF;background: -moz-linear-gradient(center top , rgb(254, 255, 255), rgb(218, 232, 246)) repeat scroll 0% 0% transparent;background-color: #EBF3FA;height: 23px;line-height: 23px;text-align: center;padding: 5px 5px 4px 8px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+			.tabList li a{width:100%;color: #333;text-decoration: none;}
+			.tabList .active{color: #fff;border-color: #135AA4;background-color: #135AA4;}			
+			.tabList .active a{color:#fff;border-right:1px solid #035ac3;border-bottom:1px solid #035ac3;}
+			.tabContentList{float:left;width:99.9%;margin-top:-1px;}
+		</style>
+	</head>
+	<body>
+		<div class="position">
+			当前位置：<span>客户资料/ 还款能力</span>
+		</div>
+		<div class="pageTitle">
+			还款能力
+		</div>
+		<div class="content" style="right:0;">
+			<ul class="tabList">
+				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/zcfzzk')"><a href="javascript:void(0)">资产负债状况</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/lrb')"><a href="javascript:void(0)">利润表</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/xjll')"><a href="javascript:void(0)">现金流量</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/jcjy')"><a href="javascript:void(0)">交叉检验</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/khzl_jyzk')"><a href="javascript:void(0)">经营状况</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/khzl_shzk')"><a href="javascript:void(0)">生活状况</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/khzl_ddpz')"><a href="javascript:void(0)">道德品质</a></li>
+			</ul>
+			<div class="tabContentList">
+			<!--*************第一个标签**********************-->
+				<div id="tab0" class="tabs">
+					<iframe frameborder="0" src="/khzldy/zcfzzk" width="100%" id="myframe" marginheight="0" marginwidth="0" height="420px" ></iframe>					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

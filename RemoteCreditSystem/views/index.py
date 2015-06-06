@@ -8,6 +8,7 @@ from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
 from RemoteCreditSystem import db
+from RemoteCreditSystem.config import PER_PAGE
 
 #get md5 of a input string
 def GetStringMD5(str):
@@ -42,10 +43,11 @@ def welcome():
 def zxpg():        
     return render_template("jjrwfa/zxpg.html")
 
-
-@app.route('/jjrwfa/jjfa', methods=['GET'])
-def jjfa():      
-    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()
+#进件分案页面
+@app.route('/jjrwfa/jjfa/<int:page>', methods=['GET'])
+def jjfa(page): 
+    #获取未分类数据     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1').paginate(page, per_page = PER_PAGE)
     return render_template("jjrwfa/jjfa.html",appList=appList)
 
 @app.route('/jjrwfa/jjrwfaxx', methods=['GET'])
@@ -88,17 +90,59 @@ def insert_jjfa(id):
 
 
 @app.route('/khzldy/khzl', methods=['GET'])
-def khzl():        
-    return render_template("khzldy/khzl.html")
+def khzl():      
+    #获取未分类数据     
+    appList = Rcs_Application_Info.query.all()
+    return render_template("khzldy/khzl.html",appList=appList)
 
-
+#客户资料
 @app.route('/khzldy/khzl_info', methods=['GET'])
 def khzl_info():        
-    return render_template("khzldy/khzl_info.html")
+    return render_template("customer/jbzl.html")
+
+#还款能力页面
+@app.route('/khzldy/khzl_hknl', methods=['GET'])
+def khzl_hknl():        
+    return render_template("customer/iframe.html")
+
+#资产负债
+@app.route('/khzldy/zcfzzk', methods=['GET'])
+def zcfzzk():        
+    return render_template("customer/zcfzzk.html")
+#利润表
+@app.route('/khzldy/lrb', methods=['GET'])
+def lrb():        
+    return render_template("customer/lrb.html")
+
+#现金流量
+@app.route('/khzldy/xjll', methods=['GET'])
+def xjll():        
+    return render_template("customer/xjll.html")
+
+#交叉检验
+@app.route('/khzldy/jcjy', methods=['GET'])
+def jcjy():        
+    return render_template("customer/jcjy.html")
+
+#经营状况
+@app.route('/khzldy/khzl_jyzk', methods=['GET'])
+def khzl_jyzk():        
+    return render_template("customer/jyzk.html")
+
+#生活状态
+@app.route('/khzldy/khzl_shzk', methods=['GET'])
+def khzl_shzk():        
+    return render_template("customer/shzt.html")
+
+#道德品质
+@app.route('/khzldy/khzl_ddpz', methods=['GET'])
+def khzl_ddpz():        
+    return render_template("customer/ddpz.html")
 
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
 def jjrw(): 
-    appList = Rcs_Application_Info.query.filter_by(approve_type='2').all()
+    #获取进件任务数据
+    appList = Rcs_Application_Info.query.filter_by(approve_type='2')
     return render_template("zjzxpggl/jjrw.html",appList=appList)
 
 @app.route('/zjzxpggl/jjrw_accept/<int:id>', methods=['GET'])
@@ -205,8 +249,9 @@ def new_zjxxgl_save():
     zjqx = request.form['zjqx']   
     remark2 = request.form['remark2']   
     bhxx = request.form['bhxx']  
-    remark3 = request.form['remark3']  
-    User(user_name,GetStringMD5('111111'),user_name,sex,phone,1,'',card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,'1').add()  
+    remark3 = request.form['remark3']
+    role = request.form['role'] 
+    User(user_name,GetStringMD5('111111'),user_name,sex,phone,1,'',card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,'1',role).add()  
     db.session.commit()
     return redirect('/pgzjgl/zjxxgl')
 
@@ -230,7 +275,8 @@ def edit_zjxxgl_save(id):
     zjqx = request.form['zjqx']   
     remark2 = request.form['remark2']   
     bhxx = request.form['bhxx']  
-    remark3 = request.form['remark3']  
+    remark3 = request.form['remark3']
+    role = request.form['role']
     user.login_name=user_name
     user.real_name=user_name
     user.sex=sex
@@ -242,6 +288,7 @@ def edit_zjxxgl_save(id):
     user.remark2=remark2
     user.bhxx=bhxx
     user.remark3=remark3
+    user.role=role
     db.session.commit()
     return redirect('/pgzjgl/zjxxgl')
 
