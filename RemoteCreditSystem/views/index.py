@@ -86,15 +86,71 @@ def insert_jjfa(id):
     app.approve_type="2"
     db.session.commit()
     flash('保存成功','success')
-    return redirect("/jjrwfa/jjfa")
+    return redirect("/jjrwfa/jjfa/1")
 
+#信息导入
+@app.route('/mxpg/xxdr', methods=['GET'])
+def xxdr():      
+    return render_template("mxpg/iframe.html")
 
+@app.route('/mxpg/pldr', methods=['GET'])
+def pldr():      
+    return render_template("mxpg/pldr.html")
+@app.route('/mxpg/xxlr', methods=['GET'])
+def xxlr():      
+    #获取未分类数据     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()
+    return render_template("mxpg/xxlr.html",appList=appList)
+
+#授信评估
+@app.route('/mxpg/sxpg', methods=['GET'])
+def sxpg(): 
+    #获取未分类数据     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()     
+    return render_template("mxpg/sxpg.html",appList=appList)
+
+#评估报告
+@app.route('/mxpg/pgbg', methods=['GET'])
+def pgbg():      
+    #获取未分类数据     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all() 
+    return render_template("mxpg/pgbg.html",appList=appList)
+
+#查看评估报告
+@app.route('/mxpg/show_pgbg', methods=['GET'])
+def show_pgbg():    
+    infoList = Rcs_Application_Info.query.all()
+    pet = infoList[0].pet
+    return render_template("mxpg/show_pgbg.html",pet=pet)
+
+#参数管理
+@app.route('/mxpg/csgl', methods=['GET'])
+def csgl():  
+    #添加四级联动(行业)
+    list1 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=2")
+    list2 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=3")
+    list3 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=4")
+    list4 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=5")
+    #区域三级联动
+    list11 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 1 order by name")
+    list22 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 2 order by name")
+    list33 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 3 order by name")
+    return render_template("mxpg/csgl.html",list1=list1,list2=list2,list3=list3,list4=list4,list11=list11,list22=list22,list33=list33)
+#参数配置--进入iframe
+@app.route('/mxpg/iframe_cspz', methods=['GET'])
+def iframe_cspz():    
+    return render_template("mxpg/iframe_cspz.html")
+
+#参数配置--道德品质
+@app.route('/mxpg/cspz_ddpz', methods=['GET'])
+def cspz_ddpz():    
+    return render_template("mxpg/cspz_ddpz.html")
+#客户资料
 @app.route('/khzldy/khzl', methods=['GET'])
 def khzl():      
     #获取未分类数据     
     appList = Rcs_Application_Info.query.all()
     return render_template("khzldy/khzl.html",appList=appList)
-
 #客户资料
 @app.route('/khzldy/khzl_info', methods=['GET'])
 def khzl_info():        
@@ -139,10 +195,20 @@ def khzl_shzk():
 def khzl_ddpz():        
     return render_template("customer/ddpz.html")
 
+#道德品质保存
+@app.route('/khzldy/khzl_ddpz_save', methods=['POST'])
+def khzl_ddpz_save():     
+    total = request.form['result']   
+    infoList = Rcs_Application_Info.query.all()
+    for i in infoList:
+        i.pet=total
+    db.session.commit()
+    return render_template("customer/ddpz.html")
+
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
 def jjrw(): 
     #获取进件任务数据
-    appList = Rcs_Application_Info.query.filter_by(approve_type='2')
+    appList = Rcs_Application_Info.query.filter_by(approve_type='2').all()
     return render_template("zjzxpggl/jjrw.html",appList=appList)
 
 @app.route('/zjzxpggl/jjrw_accept/<int:id>', methods=['GET'])

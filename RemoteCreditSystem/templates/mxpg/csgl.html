@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		
+	</head>
+	<body>
+		<div class="position">
+			当前位置：<span>模型评估 / 参数管理</span>
+		</div>
+		<div class="pageTitle">
+			参数管理
+		</div>
+		<div class="content">
+			<form class="search">
+			<table>
+				<tr>
+					<td><label>贷款投向:</label></td>
+	              <td>
+	              	1:<select id="loanDirection_1" name="loanDirection_1" style="width:20%;margin:3px;" onchange="change_loanDirection_1(this.value);">
+	              	{%- for obj in list1%}
+	              		<option value="{{obj.name}}">{{obj.title}}</option>
+					{%- endfor%}
+	              	</select>
+	              </td>
+	              <td>
+	              	2:<select id="loanDirection_2" name="loanDirection_2" style="width:20%;margin:3px;" onchange="change_loanDirection_2(this.value);">
+	              	{%- for obj in list2%}
+	              		<option value="{{obj.name}}">{{obj.title}}</option>
+					{%- endfor%}
+	              	</select>
+	              	</td>
+	              </tr>
+	              <tr>
+	              <td></td>
+          		<td>
+              	3:<select id="loanDirection_3" name="loanDirection_3" style="width:20%;margin:3px;" onchange="change_loanDirection_3(this.value);">
+              	{%- for obj in list3%}
+              		<option value="{{obj.name}}">{{obj.title}}</option>
+				{%- endfor%}
+              	</select>
+              	</td>
+	              <td>
+	              	4:<select id="loanDirection_4" name="loanDirection_4" style="width:20%;margin:3px;">
+	          		{%- for obj in list4%}
+	              		<option value="{{obj.name}}">{{obj.title}}</option>
+					{%- endfor%}
+	              	</select>
+	              </td>
+	          </tr>
+	          <tr>
+              <td>
+				<tr>
+					<td><label>所属区域:</label></td>
+	              <td>
+	              	1:<select id="regPermResidence_1" name="regPermResidence_1" style="width:20%;margin:3px;" onchange="change_regPermResidence_1(this.value);">
+	              	{%- for obj in list11%}
+	              		<option value="{{obj.name}}">{{obj.title}}</option>
+					{%- endfor%}
+	              	</select>
+	              </td>
+	              <td>
+	              	2:<select id="regPermResidence_2" name="regPermResidence_2" style="width:20%;margin:3px;" onchange="change_regPermResidence_2(this.value);">
+	              	{%- for obj in list22%}
+	              		<option value="{{obj.name}}">{{obj.title}}</option>
+					{%- endfor%}
+	              	</select>
+	              	</td>
+	              </tr>
+	             <tr>
+					<td></td>
+					 <td>
+	              	3:<select id="regPermResidence_3" name="regPermResidence_3" style="width:20%;margin:3px;">
+	              	{%- for obj in list33%}
+	              		<option value="{{obj.name}}">{{obj.title}}</option>
+					{%- endfor%}
+	              	</select>
+	              	</td>
+				
+				</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>
+						<input type="button" class="btn btn-info" onclick="iframe('/mxpg/iframe_cspz')" value="参数设置"/>
+					</td>
+				</tr>
+				</table>
+					
+			</form>
+		</div>	
+		<script type="text/javascript">
+		//贷款投向
+		var loan_direction_array2 = new Array();//用来保存为显示的select元素
+		var loan_direction_array3 = new Array();//用来保存为显示的select元素
+		var loan_direction_array4 = new Array();//用来保存为显示的select元素
+		//户籍所在地
+		var indiv_brt_place_array2 = new Array();//用来保存为显示的select元素
+		var indiv_brt_place_array3 = new Array();//用来保存为显示的select元素
+		$(document).ready(function() {	
+			//贷款投向
+			$("#loanDirection_2 option").each(function(){ //遍历全部option
+				loan_direction_array2.push($(this));
+		    });
+			$("#loanDirection_3 option").each(function(){ //遍历全部option
+				loan_direction_array3.push($(this));
+		    });
+			$("#loanDirection_4 option").each(function(){ //遍历全部option
+				loan_direction_array4.push($(this));
+		    });
+		    //户籍所在地
+			$("#regPermResidence_2 option").each(function(){ //遍历全部option
+				indiv_brt_place_array2.push($(this));
+		    });
+			$("#regPermResidence_3 option").each(function(){ //遍历全部option
+				indiv_brt_place_array3.push($(this));
+		    });
+		})
+	//贷款投向
+	function change_loanDirection_1(objval){
+		$("#loanDirection_2").empty();
+		$.each(loan_direction_array2,function(n,opt) {
+			if(opt.val().split("_")[0] == objval.split("_")[1]){
+				$("#loanDirection_2").append(opt);
+			}
+		});
+		$("#loanDirection_2").get(0).selectedIndex = 0;
+	
+		var tmp = $("#loanDirection_2 option:first");//IE7
+		change_loanDirection_2(tmp.val());
+	}
+	function change_loanDirection_2(objval){
+		$("#loanDirection_3").empty();
+		$.each(loan_direction_array3,function(n,opt) {
+			if(opt.val().split("_")[0] == objval.split("_")[1]){
+				$("#loanDirection_3").append(opt);
+			}
+		});
+		$("#loanDirection_3").get(0).selectedIndex = 0;
+		
+		var tmp = $("#loanDirection_3 option:first");//IE7
+		change_loanDirection_3(tmp.val());
+	}
+	function change_loanDirection_3(objval){
+		$("#loanDirection_4").empty();
+		$.each(loan_direction_array4,function(n,opt) {  
+			if(opt.val().split("_")[0] == objval.split("_")[1]){
+				$("#loanDirection_4").append(opt);
+			}
+		});
+		$("#loanDirection_4").get(0).selectedIndex = 0;
+		
+	}
+
+	//户籍所在地
+	function change_regPermResidence_1(objval){
+		$("#regPermResidence_2").empty();
+		$.each(indiv_brt_place_array2,function(n,opt) { 
+			if(opt.val().split("_")[0] == objval.split("_")[1]){
+				$("#regPermResidence_2").append(opt);
+			}
+		});
+		$("#regPermResidence_2").get(0).selectedIndex = 0;
+
+		
+		var tmp = $("#regPermResidence_2 option:first");//IE7
+		change_regPermResidence_2(tmp.val());
+	}
+	function change_regPermResidence_2(objval){
+		$("#regPermResidence_3").empty();
+		$.each(indiv_brt_place_array3,function(n,opt) {  
+			if(opt.val().split("_")[0] == objval.split("_")[1]){
+				$("#regPermResidence_3").append(opt);
+			}
+		});
+		$("#regPermResidence_3").get(0).selectedIndex = 0;
+		
+	}
+		</script>
+	</body>
+</html>

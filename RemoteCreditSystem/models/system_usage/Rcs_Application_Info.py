@@ -19,8 +19,9 @@ class Rcs_Application_Info(db.Model):
     sh_name = db.Column(db.String(32))
     sp_name = db.Column(db.String(32))
     approve_type = db.Column(db.String(1))
+    pet = db.Column(db.String(32))
 
-    def __init__(self, customer_id,customer_name,card_id,product_name,approve_je,approve_org,approve_area,industry,district,user_name,sh_name,sp_name,approve_type):
+    def __init__(self, customer_id,customer_name,card_id,product_name,approve_je,approve_org,approve_area,industry,district,user_name,sh_name,sp_name,approve_type,pet):
         self.customer_id = customer_id
         self.customer_name = customer_name
         self.card_id = card_id
@@ -34,5 +35,6 @@ class Rcs_Application_Info(db.Model):
         self.sh_name = sh_name
         self.sp_name = sp_name
         self.approve_type = approve_type
+        self.pet = pet
     def add(self):
         db.session.add(self)
