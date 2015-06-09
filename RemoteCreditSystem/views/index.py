@@ -152,6 +152,7 @@ def cspz_ddpz():
 #参数配置--道德品质--保存
 @app.route('/mxpg/cspz_ddpz_save/<score>', methods=['GET'])
 def cspz_ddpz_save(score):
+    Rcs_Parameter.query.filter_by(parameter_name="ddpz").delete()
     Rcs_Parameter("ddpz",score).add()
     db.session.commit()
     return redirect("/mxpg/cspz_ddpz")
@@ -160,6 +161,21 @@ def cspz_ddpz_save(score):
 @app.route('/mxpg/cspz_jyzk', methods=['GET'])
 def cspz_jyzk():    
     return render_template("mxpg/cspz_jyzk.html")
+
+#参数配置--生活状况
+@app.route('/mxpg/cspz_shzt', methods=['GET'])
+def cspz_shzt():   
+    shzt = Rcs_Parameter.query.filter_by(parameter_name="shzt").first()
+    result=shzt.parameter_value 
+    return render_template("mxpg/cspz_shzt.html",result=result)
+
+#参数配置--生活状态--保存
+@app.route('/mxpg/cspz_shzt_save/<score>', methods=['GET'])
+def cspz_shzt_save(score):
+    Rcs_Parameter.query.filter_by(parameter_name="shzt").delete()
+    Rcs_Parameter("shzt",score).add()
+    db.session.commit()
+    return redirect("/mxpg/cspz_shzt")
 
 #客户资料
 @app.route('/khzldy/khzl', methods=['GET'])
@@ -203,8 +219,22 @@ def khzl_jyzk(id):
 
 #生活状态
 @app.route('/khzldy/khzl_shzk/<int:id>', methods=['GET'])
-def khzl_shzk(id):        
-    return render_template("customer/shzt.html")
+def khzl_shzk(id):     
+    shzt = Rcs_Parameter.query.filter_by(parameter_name="shzt").first()
+    result=shzt.parameter_value   
+    return render_template("customer/shzt.html",result=result,id=id)
+
+#生活状态保存
+@app.route('/khzldy/khzl_shzk_save/<int:id>', methods=['POST'])
+def khzl_shzk_save(id):     
+    total = request.form['score_result'] 
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    if score:
+        score.shzt_score=total
+    else:
+        Rcs_Application_Score(id,"","","",total).add()
+    db.session.commit()
+    return redirect("/khzldy/khzl_shzk/"+str(id))
 
 #道德品质
 @app.route('/khzldy/khzl_ddpz/<int:id>', methods=['GET'])
