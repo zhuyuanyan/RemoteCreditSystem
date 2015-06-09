@@ -12,6 +12,7 @@
 		<style type="text/css">
 			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
 			.myTable td{font-size:13px;}
+			select{max-width:120px;}
 		</style>
 	</head>
 	<body>	
@@ -34,38 +35,125 @@
 								<th>房产数量</th>
 								<th>地址</th>
 								<th>购买日期</th>
-								<th>购买价格</th>
+								<th>当前市价总值</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="25000"/></td>
-								<td><input type="text" class="addinput" value="2"/></td>
-								<td><input type="text" class="addinput" value="江苏常州"/></td>
-								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});" value="2008-08-08"/></td>
-								<td><input type="text" class="addinput" value="500000"/></td>
+								<td>
+									<select	name="">
+										<option>按揭</option>
+										<option>全额付款</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>≥5套</option>
+										<option>4套</option>
+										<option>3套</option>
+										<option>2套</option>
+										<option>1套</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});"/></td>
+								<td>
+									<select	name="">
+										<option>≥1亿</option>
+										<option>5000万-1亿元</option>
+										<option>3000-5000万</option>
+										<option>1000-3000万</option>
+										<option>500-1000万</option>
+										<option>300-500万</option>
+										<option>100-300万</option>
+										<option>≤100万</option>
+									</select>
+								</td>
 							</tr>
 							<tr>
-								<th>住房面积</th>
+								<th>住房面积平均值/套</th>
 								<th>装修情况</th>
-								<th>居住起始年月</th>
+								<th>居住年限</th>
 								<th colspan ="2">房间格局</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="120"/></td>
+								<td>
+									<select	name="">
+										<option>≥500㎡/套</option>
+										<option>400-500㎡/套</option>
+										<option>300-400㎡/套</option>
+										<option>200-300㎡/套</option>
+										<option>100-200㎡/套</option>
+										<option>≤100㎡/套</option>
+									</select>
+								</td>
 								<td>
 									<select	name="">
 										<option>精装</option>
 										<option>简装</option>
 									</select>
 								</td>
-								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});" value="2009-01-01"/></td>
-								<td colspan ="2"><input type="text" class="addinput" value="朝南"/></td>
+								<td>
+									<select	name="">
+										<option>≥50年</option>
+										<option>40-50年</option>
+										<option>30-40年</option>
+										<option>20-30年</option>
+										<option>10-20年</option>
+										<option>5-10年</option>
+										<option>≤5年</option>
+									</select>
+								</td>
+								<td colspan ="2">
+									<select	name="">
+										<option>朝南</option>
+										<option>朝北</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
                     <td><b>租赁</b></td>
-					<td><input type="text" value=""/></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>数量</th>
+								<th>平均面积/套</th>
+								<th>总租金/月</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>≥5套</option>
+										<option>4套</option>
+										<option>3套</option>
+										<option>2套</option>
+										<option>1套</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>≥500㎡/套</option>
+										<option>400-500㎡/套</option>
+										<option>300-400㎡/套</option>
+										<option>200-300㎡/套</option>
+										<option>100-200㎡/套</option>
+										<option>≤100㎡/套</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>≥5万元</option>
+										<option>3-5万元</option>
+										<option>1-3万元</option>
+										<option>5000元-1万元</option>
+										<option>3000-5000元</option>
+										<option>≤3000元</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
 				</tr>				
 				<tr>
 					<td><b>车辆</b></td>
@@ -74,16 +162,45 @@
 						<table class="addTable">
 							<tr>
 								<th>车辆数量</th>
-								<th>购置时间</th>
-								<th>购买价格</th>
+								<th>购买价格（总额）</th>
+								<th>平均使用时间</th>
 								<th>品牌、型号</th>
 								<th>车牌购置方式</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="1"/></td>
-								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});" value="2014-01-01"/></td>
-								<td><input type="text" class="addinput" value="150000"/></td>
-								<td><input type="text" class="addinput" value="朗逸"/></td>
+								<td>
+									<select	name="">
+										<option>≥5辆</option>
+										<option>4辆</option>
+										<option>3辆</option>
+										<option>2辆</option>
+										<option>1辆</option>
+										<option>0辆</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>≥3000万</option>
+										<option>2000-3000万</option>
+										<option>1000-2000万</option>
+										<option>500-1000万</option>
+										<option>300-500万</option>
+										<option>100-300万</option>
+										<option>50-100万</option>
+										<option>20-50万</option>
+										<option>10-20万</option>
+										<option>≤10万</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>≤1年</option>
+										<option>1-3年</option>
+										<option>3-5年</option>
+										<option>≥5年</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput"/></td>
 								<td>
 									<select	name="">
 										<option>竞拍/摇号</option>
@@ -115,10 +232,34 @@
 								<th>舒适性</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="好"/></td>
-								<td><input type="text" class="addinput" value="好"/></td>
-								<td><input type="text" class="addinput" value="好"/></td>
-								<td><input type="text" class="addinput" value="好"/></td>
+								<td>
+									<select	name="">
+										<option>安全</option>
+										<option>一般</option>
+										<option>不安全</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>健康</option>
+										<option>一般</option>
+										<option>不健康</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>便利</option>
+										<option>一般</option>
+										<option>不便利</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>舒适</option>
+										<option>一般</option>
+										<option>不舒适</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -130,20 +271,38 @@
 						<table class="addTable">
 							<tr>
 								<th>邻居的友好程度</th>
-								<th>居民受教育程度高低</th>
+								<th>居民平均教育水平  </th>
 								<th>职业种类</th>
 								<th>经济收入水平</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="好"/></td>
-								<td><input type="text" class="addinput" value="好"/></td>
+								<td>
+									<select	name="">
+										<option>友好</option>
+										<option>一般</option>
+										<option>无接触</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>硕士</option>
+										<option>本科</option>
+										<option>高中</option>
+									</select>
+								</td>
 								<td>
 									<select	name="">
 										<option>公务员/事业单位</option>
 										<option>生意人</option>
 									</select>
 								</td>
-								<td><input type="text" class="addinput" value="高"/></td>
+								<td>
+									<select	name="">
+										<option>金领水平</option>
+										<option>白领水平</option>
+										<option>蓝领水平</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -160,20 +319,32 @@
 				<tr>
 					<td><b>工作时间</b></td>
 					<td><b>每天工作时间(小时)</b></td>                    
-					<td><input type="text" value="8"/></td>
+					<td>
+						<select	name="">
+							<option>>8小时</option>
+							<option>8小时</option>
+							<option><8小时</option>
+						</select>
+					</td>
 				</tr>	
 				<tr>
 					<td rowspan="2"><b>休息时间</b></td>
 					<td><b>休闲娱乐活动</b></td>
-                   <td><input type="text" value="2"/></td>
+                   <td>
+						<select	name="">
+							<option>经常</option>
+							<option>偶尔</option>
+							<option>无</option>
+						</select>
+					</td>
 				</tr>	
 				<tr>
 					<td><b>户外活动</b></td>
 					<td>
 						<select	name="">
-							<option>散步</option>
-							<option>运动</option>
-							<option>旅游</option>
+							<option>经常</option>
+							<option>偶尔</option>
+							<option>无</option>
 						</select>
 					</td>
 				</tr>
@@ -200,9 +371,9 @@
 								<th colspan="2">主营业务经营范围</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="中石油"/></td>
-								<td><input type="text" class="addinput" value="张伟"/></td>
-								<td><input type="text" class="addinput" value="张伟"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
 								<td>
 									<select	name="">
 										<option>股权高度集中</option>
@@ -212,28 +383,47 @@
 								</td>
 								<td>
 									<select	name="">
-										<option>国家股东</option>
-										<option>法人股东</option>
-										<option>社会公众股东</option>
+										<option>国家股东+法人股东+社会公众股东</option>
+										<option>国家股东+法人股东</option>
+										<option>法人股东+社会公众股东</option>
 									</select>
 								</td>
-								<td colspan="2"><input type="text" class="addinput" value="汽油"/></td>
+								<td colspan="2"><input type="text" class="addinput"/></td>
 							</tr>
 							<tr>
 								<th>店铺/公司固定电话</th>
 								<th>经营地址</th>
-								<th>业务开始日期</th>
+								<th>经营年限</th>
 								<th>雇员人数</th>
 								<th>经营场所面积</th>								
-								<th>店铺类型</th>							
-								<th>店铺启用日期</th>
+								<th>店铺类型</th>		
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="05198220808"/></td>
-								<td><input type="text" class="addinput" value="常州南大街"/></td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="2012-01-01"/></td>
-								<td><input type="text" class="addinput" value="20"/></td>
-								<td><input type="text" class="addinput" value="500"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td>
+									<select	name="">
+										<option>>20年</option>
+										<option>15-20年</option>
+										<option>10-15年</option>
+										<option>5-10年</option>
+										<option>3-5年</option>
+										<option>1-3年</option>
+										<option><1年</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>>10000人</option>
+										<option>5000-10000人</option>
+										<option>1000-5000人</option>
+										<option>500-1000人</option>
+										<option>150-500人</option>
+										<option>50-150人</option>
+										<option><50人</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput"/></td>
 								<td>
 									<select	name="">
 										<option>贸易</option>
@@ -242,7 +432,6 @@
 										<option>养殖</option>
 									</select>
 								</td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="2014-01-02"/></td>
 							</tr>
 						</table>
 					</td>
@@ -250,7 +439,12 @@
 				<tr>
 					<td><b>其他收入来源</b></td>
 					<td><b>第二职业</b></td>
-                    <td><input type="text"/></td></td>
+                    <td>
+						<select	name="">
+							<option>事业单位/公务员</option>
+							<option>私企员工</option>
+						</select>
+					</td>
 				</tr>
 			</table>
 <!--*****************************社会福利**********************************-->			
@@ -263,10 +457,20 @@
 					<col width="37%">
 				</colgroup>
 				<tr>
-					<td><b>五险一金</b></td>                  
-					<td><input type="text" value="200"/></td>
+					<td><b>社会保险</b></td>                  
+					<td>
+						<select	name="">
+							<option>有</option>
+							<option>无</option>
+						</select>
+					</td>
 					<td><b>公积金</b></td>                  
-					<td><input type="text" value="600"/></td>
+					<td>
+						<select	name="">
+							<option>有</option>
+							<option>无</option>
+						</select>
+					</td>
 				</tr>	
 			</table>
 <!--*****************************收入分配**********************************-->			
@@ -290,39 +494,33 @@
 								<th>其他</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="150"/></td>
-								<td><input type="text" class="addinput" value="150"/></td>
-								<td><input type="text" class="addinput" value="150"/></td>
-								<td><input type="text" class="addinput" value="150"/></td>
-								<td><input type="text" class="addinput" value="150"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
 					<td><b>消费习惯</b></td>                     
-					<td><input type="text"/></td>
+					<td>
+						<select	name="">
+							<option>信用卡+现金</option>
+							<option>现金</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td rowspan="2"><b>理财结构</b></td>  
-					<td><b>占比</b></td>                     
+					<td><b>储蓄、保险、理财产品、房地产、高风险产品占比</b></td>                     
 					<td>
-						<table class="addTable">
-							<tr>
-								<th>储蓄</th>
-								<th>购买保险</th>
-								<th>购买理财产品</th>
-								<th>投资房地产</th>
-								<th>投资高风险产品</th>
-							</tr>
-							<tr>
-								<td><input type="text" class="addinput" value="1500"/></td>
-								<td><input type="text" class="addinput" value="1500"/></td>
-								<td><input type="text" class="addinput" value="1500"/></td>
-								<td><input type="text" class="addinput" value="1500"/></td>
-								<td><input type="text" class="addinput" value="1500"/></td>
-							</tr>
-						</table>
+						<select	name="">
+							<option>稳健型</option>
+							<option>风险偏好型</option>
+							<option>风险厌恶型</option>
+						</select>
 					</td>
 				</tr>	
 			</table>
@@ -345,9 +543,27 @@
 								<th>定期体检</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="好"/></td>
-								<td><input type="text" class="addinput" value="好"/></td>
-								<td><input type="text" class="addinput" value="好"/></td>
+								<td>
+									<select	name="">
+										<option>良好</option>
+										<option>一般</option>
+										<option>差</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>8小时</option>
+										<option>>8小时</option>
+										<option><8小时</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>1年</option>
+										<option>2年</option>
+										<option>>2年</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -362,8 +578,20 @@
 								<th>有无消极感受</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="好"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td>
+									<select	name="">
+										<option>从不忘记任何事</option>
+										<option>偶尔忘记事情</option>
+										<option>时常忘记事情</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>无</option>
+										<option>偶尔</option>
+										<option>经常</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -381,6 +609,11 @@
 					<td><b>与配偶的情感关系</b></td>  
 					<td><b></b></td>                     
 					<td>
+						<select	name="">
+							<option>与配偶感情非常好</option>
+							<option>偶尔吵架</option>
+							<option>经常吵架</option>
+						</select>
 						<table class="addTable">
 							<tr>
 								<th>配偶姓名</th>
@@ -389,10 +622,10 @@
 								<th>配偶移动电话</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="陈琳"/></td>
-								<td><input type="text" class="addinput" value="常州服装厂"/></td>
-								<td><input type="text" class="addinput" value="320482198609082238"/></td>
-								<td><input type="text" class="addinput" value="15961100229"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
 							</tr>
 						</table>
 					</td>
@@ -400,17 +633,29 @@
 				<tr>
 					<td><b>与家庭其他成员关系</b></td>  
 					<td><b></b></td>                     
-					<td><input type="text" value="好"/></td>
+					<td>
+						<select	name="">
+							<option>相处和睦</option>
+							<option>偶尔吵架</option>
+							<option>经常吵架</option>
+						</select>
+					</td>
 				</tr>	
 				<tr>
 					<td><b>家庭角色的发挥程度</b></td>  
 					<td><b></b></td>                     
-					<td><input type="text" value="好"/></td>
+					<td><input type="text"/></td>
 				</tr>	
 				<tr>
-					<td><b>家庭事务决策能力</b></td>  
-					<td><b>家庭主要决策人</b></td>                     
-					<td><input type="text" value="好"/></td>
+					<td><b>参与家庭事务决策能力</b></td>  
+					<td><b></b></td>                     
+					<td>
+						<select	name="">
+							<option>家庭主要决策人</option>
+							<option>偶尔参与决策</option>
+							<option>从不参与决策</option>
+						</select>
+					</td>
 				</tr>	
 			</table>
 <!--*****************************社交状况**********************************-->			
@@ -424,7 +669,15 @@
 				<tr>
 					<td><b>频繁程度</b></td>  
 					<td><b>聚会的次数/周</b></td>                     
-					<td><input type="text" value="好"/></td>
+					<td>
+						<select	name="">
+							<option>每天</option>
+							<option>5-6次</option>
+							<option>3-5次</option>
+							<option>1-3次</option>
+							<option>无</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
 					<td><b>交友状况</b></td>  
@@ -444,9 +697,9 @@
 								</td>
 								<td>
 									<select	name="">
-										<option>高中</option>
-										<option>本科</option>
 										<option>硕士</option>
+										<option>本科</option>
+										<option>高中</option>
 									</select>
 								</td>
 							</tr>
@@ -468,18 +721,44 @@
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>生意帐户(开户行)</th>
-								<th>生意帐户(开户账号)</th>
-								<th>个人银行帐户（数量）</th>
-								<th>主要银行开户行</th>
-								<th>主要账户号</th>
+								<th rowspan="2">生意帐户</th>
+								<th>开户行</th>
+								<th>开户账号</th>
+								<th>储蓄金额</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="建设银行"/></td>
-								<td><input type="text" class="addinput" value="600020"/></td>
-								<td><input type="text" class="addinput" value="1"/></td>
-								<td><input type="text" class="addinput" value="建设银行"/></td>
-								<td><input type="text" class="addinput" value="600020"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td>
+									<select	name="">
+										<option>≥5000万</option>
+										<option>3000-5000万</option>
+										<option>1000-3000万</option>
+										<option>500-1000万</option>
+										<option>300-500万</option>
+										<option>≤300万</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th rowspan="2">个人银行帐户</th>
+								<th>主要银行开户行</th>
+								<th>主要账户号</th>
+								<th>储蓄金额</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td>
+									<select	name="">
+										<option>≥1000万</option>
+										<option>500-1000万</option>
+										<option>300-500万</option>
+										<option>100-300万</option>
+										<option>50-100万</option>
+										<option>≤50万</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -490,13 +769,37 @@
 						<table class="addTable">
 							<tr>
 								<th>借出日期</th>
-								<th>回收日期</th>
+								<th>回收期限</th>
+								<th>金额占储蓄比例</th>
 								<th>收息</th>
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
-								<td><input type="text" class="addinput"/></td>
+								<td>
+									<select	name="">
+										<option>≤1年</option>
+										<option>1-2年</option>
+										<option>2-3年</option>
+										<option>>3年</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>≥30%</option>
+										<option>20%-30%</option>
+										<option>10%-20%</option>
+										<option>5%-10%</option>
+										<option><5%</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option><1000元</option>
+										<option>1000-3000元</option>
+										<option>3000-5000元</option>
+										<option>>5000元</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -508,15 +811,41 @@
 						<table class="addTable">
 							<tr>
 								<th>信用卡总数</th>
-								<th>授信总额</th>
+								<th>单卡最高授信额度</th>
 								<th>已用额度</th>
 								<th>逾期情况</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="1"/></td>
-								<td><input type="text" class="addinput" value="100000"/></td>
-								<td><input type="text" class="addinput" value="50000"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td>
+									<select	name="">
+										<option>3张以上</option>
+										<option>2张</option>
+										<option>1张</option>
+										<option>0张</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>>200万</option>
+										<option>100-200万</option>
+										<option>50-100万</option>
+										<option>30-50万</option>
+										<option>10-30万</option>
+										<option><10万</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput"/></td>								
+								<td>
+									<select	name="">
+										<option>10次以上</option>
+										<option>8-10次</option>
+										<option>6-7次</option>
+										<option>4-5次</option>
+										<option>2-3次</option>
+										<option>1次</option>
+										<option>0次</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -530,7 +859,33 @@
 								<th>放款日期</th>
 								<th>贷款机构</th>
 								<th>贷款金额</th>
-								<th>利率</th>
+								<th colspan="2">利率</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
+								<td>
+									<select	name="">
+										<option>农商行</option>
+										<option>城商行</option>
+										<option>国有4大行</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>>1000万</option>
+										<option>500-1000万</option>
+										<option><500万</option>
+									</select>
+								</td>								
+								<td colspan="2">
+									<select	name="">
+										<option>高于一般水平</option>
+										<option>一般水平</option>
+										<option>低于一般水平</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
 								<th>期限</th>
 								<th>用途</th>
 								<th>还款日期</th>
@@ -538,15 +893,39 @@
 								<th>逾期情况</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td>
+									<select	name="">
+										<option>>1年</option>
+										<option>6个月-1年</option>
+										<option><6个月</option>
+									</select>
+								</td>								
+								<td>
+									<select	name="">
+										<option>房贷</option>
+										<option>车贷</option>
+										<option>经营</option>
+										<option>消费</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
+								<td>
+									<select	name="">
+										<option>是</option>
+										<option>否</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>10次以上</option>
+										<option>8-10次</option>
+										<option>6-7次</option>
+										<option>4-5次</option>
+										<option>2-3次</option>
+										<option>1次</option>
+										<option>0次</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 						<b>尚未到期笔数</b>
@@ -555,7 +934,33 @@
 								<th>放款日期</th>
 								<th>贷款机构</th>
 								<th>贷款金额</th>
-								<th>利率</th>
+								<th colspan="2">利率</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
+								<td>
+									<select	name="">
+										<option>农商行</option>
+										<option>城商行</option>
+										<option>国有4大行</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>>1000万</option>
+										<option>500-1000万</option>
+										<option><500万</option>
+									</select>
+								</td>								
+								<td colspan="2">
+									<select	name="">
+										<option>高于一般水平</option>
+										<option>一般水平</option>
+										<option>低于一般水平</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
 								<th>期限</th>
 								<th>用途</th>
 								<th>还款日期</th>
@@ -563,15 +968,39 @@
 								<th>逾期情况</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td>
+									<select	name="">
+										<option>>1年</option>
+										<option>6个月-1年</option>
+										<option><6个月</option>
+									</select>
+								</td>								
+								<td>
+									<select	name="">
+										<option>房贷</option>
+										<option>车贷</option>
+										<option>经营</option>
+										<option>消费</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
+								<td>
+									<select	name="">
+										<option>是</option>
+										<option>否</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>10次以上</option>
+										<option>8-10次</option>
+										<option>6-7次</option>
+										<option>4-5次</option>
+										<option>2-3次</option>
+										<option>1次</option>
+										<option>0次</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -585,20 +1014,66 @@
 								<th>借款金额</th>
 								<th>利率</th>
 								<th>期限</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>民间借贷</option>
+										<option>小额借款公司</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>>1000万</option>
+										<option>500-1000万</option>
+										<option><500万</option>
+									</select>
+								</td>								
+								<td>
+									<select	name="">
+										<option>高于一般水平</option>
+										<option>一般水平</option>
+										<option>低于一般水平</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>>1年</option>
+										<option>6个月-1年</option>
+										<option>3个月-6个月</option>
+										<option><3个月</option>
+									</select>
+								</td>							
+							</tr>
+							<tr>
 								<th>用途</th>
 								<th>借款日期</th>
-								<th>最终还款日期</th>
+								<th>剩余还款期限</th>
 								<th>是否正常还款</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="借款"/></td>
-								<td><input type="text" class="addinput" value="200000"/></td>
-								<td><input type="text" class="addinput" value="0.1%"/></td>
-								<td><input type="text" class="addinput" value="2年"/></td>
-								<td><input type="text" class="addinput" value="投资"/></td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="2012-01-01"/></td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});" value="2014-01-01"/></td>
-								<td><input type="text" class="addinput" value="是"/></td>
+								<td>
+									<select	name="">
+										<option>经营</option>
+										<option>消费</option>
+										<option>其他</option>
+									</select>
+								</td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
+								<td>
+									<select	name="">
+										<option>1年</option>
+										<option>6个月-1年</option>
+										<option>3个月-6个月</option>
+										<option><3个月</option>
+									</select>
+								</td>								
+								<td>
+									<select	name="">
+										<option>是</option>
+										<option>否</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>
@@ -622,9 +1097,30 @@
 										<option>硕士</option>
 									</select>
 								</td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td>
+									<select	name="">
+										<option>>100%</option>
+										<option>50%-100%</option>
+										<option>10%-50%</option>
+										<option>5%-10%</option>
+										<option><5%</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>经营</option>
+										<option>其他</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>5年以上</option>
+										<option>3-5年</option>
+										<option>2年</option>
+										<option>1年</option>
+										<option><1年</option>
+									</select>
+								</td>
 							</tr>
 						</table>
 					</td>

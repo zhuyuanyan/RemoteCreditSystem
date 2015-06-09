@@ -5,6 +5,8 @@
 		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../templates/mxpg/cspz_ddpz_validation.js.js"></script>
+		<script src="../../static/js/jquery.validate.js"></script>
 		<script src="../../static/js/index.js"></script>
 		<!--日历-->
 		<script src="../../static/js/date/lhgcore.js"></script>
@@ -15,15 +17,16 @@
 		</style>
 	</head>
 	<body>		
-		<form class="iframeForm">
+		<form class="iframeForm" id="iframeForm">
+			<div id="formsId">
 <!--*****************************道德品质**********************************-->
 			<table class="myTable">
 				<caption>道德品质</caption>			
 		<!--*****************************家庭情况**********************************-->
 				<tr>
-					<td rowspan="4"><b>家庭情况</b><br/><input type="text" name="" value="20%"/></td>
-					<td rowspan="2"><b>家庭成员状况</b><br/><input type="text" name="" value="20%"/></td>
-					<td><b>家庭其他成员经济收入来源</b></td>
+					<td rowspan="4"><b>家庭情况</b><br/><input type="text" name="jtqk1" value="" onkeyup="value=value.replace(/[^\d]/g,'')"/>%</td>
+					<td rowspan="2"><b>家庭成员状况</b><br/><input type="text" name="name2" />%</td>
+					<td><b>家庭其他成员经济收入来源</b><br/><input type="text" name="name3" />%</td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -31,14 +34,14 @@
 								<th>无</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="50"/></td>
+								<td><input type="text" name="name4" /></td>
+								<td><input type="text" name="name5" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>不良嗜好</b></td>
+					<td><b>不良嗜好</b><br/><input type="text" name="name6" />%</td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -46,14 +49,14 @@
 								<th>无</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="20"/></td>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name7" /></td>
+								<td><input type="text" name="name8" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>婚姻状况</b><br/><input type="text" name="" value="50%"/></td>
+					<td><b>婚姻状况</b><br/><input type="text" name="name9" />%</td>
 					<td></td>
 					<td>
 						<table class="addTable">
@@ -63,15 +66,15 @@
 								<th>离异</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="60"/></td>
-								<td><input type="text" name="" value="30"/></td>
+								<td><input type="text" name="name10" /></td>
+								<td><input type="text" name="name11" /></td>
+								<td><input type="text" name="name12" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>家庭结构类型</b><br/><input type="text" name="" value="30%"/></td>
+					<td><b>家庭结构类型</b><br/><input type="text" name="name13"/>%</td>
 					<td></td>
 					<td>
 						<table class="addTable">
@@ -87,19 +90,19 @@
 								<th>未生育</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="80"/></td>
-								<td><input type="text" name="" value="60"/></td>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="80"/></td>
+								<td><input type="text" name="name14" /></td>
+								<td><input type="text" name="name15" /></td>
+								<td><input type="text" name="name16" /></td>
+								<td><input type="text" name="name17"/></td>
+								<td><input type="text" name="name18" /></td>
+								<td><input type="text" name="name19" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 		<!--*****************************知识水平**********************************-->
 				<tr>
-					<td><b>知识水平</b><br/><input type="text" name="" value="5%"/></td>
+					<td><b>知识水平</b><br/><input type="text" name="name20" />%</td>
 					<td><b>教育程度</b></td>
 					<td><b></b></td>
 					<td>
@@ -111,18 +114,18 @@
 								<th>初中及以下</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="80"/></td>
-								<td><input type="text" name="" value="60"/></td>
-								<td><input type="text" name="" value="40"/></td>
+								<td><input type="text" name="name21"/></td>
+								<td><input type="text" name="name22" /></td>
+								<td><input type="text" name="name23"/></td>
+								<td><input type="text" name="name24" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 		<!--*****************************素质评估**********************************-->
 				<tr>
-					<td rowspan="4"><b>素质评估</b><br/><input type="text" name="" value="15%"/></td>
-					<td><b>公众形象</b><br/><input type="text" name="" value="30%"/></td>
+					<td rowspan="4"><b>素质评估</b><br/><input type="text" name="name25" />%</td>
+					<td><b>公众形象</b><br/><input type="text" name="name26" />%</td>
 					<td><b>他人评价</b></td>
 					<td>
 						<table class="addTable">
@@ -132,16 +135,16 @@
 								<th>差</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="60-80"/></td>
-								<td><input type="text" name="" value="30"/></td>
+								<td><input type="text" name="name27" /></td>
+								<td><input type="text" name="name28" /></td>
+								<td><input type="text" name="name29"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td rowspan="2"><b>健康状况</b><br/><input type="text" name="" value="35%"/></td>
-					<td><b>定时体检</b></td>
+					<td rowspan="2"><b>健康状况</b><br/><input type="text" name="name30"/>%</td>
+					<td><b>定时体检</b><br/><input type="text" name="name31"/>%</td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -150,15 +153,15 @@
 								<th>重大疾病</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="50-90"/></td>
-								<td><input type="text" name="" value="20-50"/></td>
+								<td><input type="text" name="name32"/></td>
+								<td><input type="text" name="name33" /></td>
+								<td><input type="text" name="name34" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>运动情况</b></td>
+					<td><b>运动情况</b><br/><input type="text" name="name35" />%</td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -166,14 +169,14 @@
 								<th>无运动习惯</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="80"/></td>
+								<td><input type="text" name="name36" /></td>
+								<td><input type="text" name="name37" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>		
 				<tr>
-					<td><b>不良嗜好</b><br/><input type="text" name="" value="35%"/></td>
+					<td><b>不良嗜好</b><br/><input type="text" name="name38"/>%</td>
 					<td></td>
 					<td>
 						<table class="addTable">
@@ -182,65 +185,67 @@
 								<th>无不良嗜好</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="0"/></td>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name39" /></td>
+								<td><input type="text" name="name40" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 		<!--*****************************信用记录**********************************-->
 				<tr>
-					<td rowspan="9"><b>信用记录</b><br/><input type="text" name="" value="50%"/></td>
-					<td><b>违法情况及犯罪行为</b><br/><input type="text" name="" value="20%"/></td>
+					<td rowspan="9"><b>信用记录</b><br/><input type="text" name="name41" />%</td>
+					<td><b>违法情况及犯罪行为</b><br/><input type="text" name="name42" />%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
 							<tr>
+								<th>无</th>
 								<th>刑事案件--涉毒、涉黄、涉赌</th>
 								<th>经济案件--行贿、受贿、逃税漏税</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="0"/></td>
-								<td><input type="text" name="" value="0"/></td>
+								<td><input type="text" name="name95" /></td>
+								<td><input type="text" name="name43" /></td>
+								<td><input type="text" name="name44" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
-					<td><b>在银行系统有无逾期</b><br/><input type="text" name="" value="15%"/></td>
+					<td><b>在银行系统有无逾期</b><br/><input type="text" name="name45" />%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
 							<tr>
 								<th colspan="2">征信报告无逾期</th>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name46"/></td>
 							</tr>
 							<tr>
 								<th rowspan="5">征信报告有逾期</th>
 								<th>24个月内无逾期，5年内有逾期</th>
-								<td><input type="text" name="" value="80"/></td>
+								<td><input type="text" name="name47" /></td>
 							</tr>
 							<tr>
 								<th>24个月内有逾期（逾期<5次），无连续逾期，5年内有逾期</th>
-								<td><input type="text" name="" value="70"/></td>
+								<td><input type="text" name="name48" /></td>
 							</tr>
 							<tr>
 								<th>24个月内有逾期（逾期<5次），无连续逾期，5年内无逾期</th>
-								<td><input type="text" name="" value="60"/></td>
+								<td><input type="text" name="name49" /></td>
 							</tr>
 							<tr>
 								<th>24个月内有逾期（逾期<5次），且为连续逾期，5年内有逾期</th>
-								<td><input type="text" name="" value="50"/></td>
+								<td><input type="text" name="name50" /></td>
 							</tr>
 							<tr>
 								<th>24个月内逾期≥5次</th>
-								<td><input type="text" name="" value="20"/></td>
+								<td><input type="text" name="name51" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
-					<td><b>应付账款长期赖账</b><br/><input type="text" name="" value="15%"/></td>
+					<td><b>应付账款长期赖账</b><br/><input type="text" name="name52" />%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -249,14 +254,14 @@
 								<th>无</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="20"/></td>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name53"/></td>
+								<td><input type="text" name="name54"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>是否拖欠税费、水电煤气费</b><br/><input type="text" name="" value="15%"/></td>
+					<td><b>是否拖欠税费、水电煤气费</b><br/><input type="text" name="name55"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -265,14 +270,14 @@
 								<th>否</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="20"/></td>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name56"/></td>
+								<td><input type="text" name="name57" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>			
 				<tr>
-					<td><b>拖欠其他私人债务</b><br/><input type="text" name="" value="15%"/></td>
+					<td><b>拖欠其他私人债务</b><br/><input type="text" name="name58"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -281,14 +286,14 @@
 								<th>否</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="20"/></td>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name59"/></td>
+								<td><input type="text" name="name60"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>			
 				<tr>
-					<td><b>火车、地铁逃票</b><br/><input type="text" name="" value="8%"/></td>
+					<td><b>火车、地铁逃票</b><br/><input type="text" name="name61"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -297,14 +302,14 @@
 								<th>无</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="20"/></td>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name62"/></td>
+								<td><input type="text" name="name63"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>			
 				<tr>
-					<td><b>交通违章</b><br/><input type="text" name="" value="8%"/></td>
+					<td><b>交通违章</b><br/><input type="text" name="name64"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -313,14 +318,14 @@
 								<th>无</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="20"/></td>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name65"/></td>
+								<td><input type="text" name="name66"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>				
 				<tr>
-					<td><b>电话欠费</b><br/><input type="text" name="" value="2%"/></td>
+					<td><b>电话欠费</b><br/><input type="text" name="name67"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -329,14 +334,14 @@
 								<th>无</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="20"/></td>
-								<td><input type="text" name="" value="100"/></td>
+								<td><input type="text" name="name68"/></td>
+								<td><input type="text" name="name69" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>					
 				<tr>
-					<td><b>签证记录</b><br/><input type="text" name="" value="2%"/></td>
+					<td><b>签证记录</b><br/><input type="text" name="name70"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -345,16 +350,16 @@
 								<th>有拒签记录</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="20"/></td>
+								<td><input type="text" name="name71" /></td>
+								<td><input type="text" name="name72" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 			<!--*****************************社交好友**********************************-->
 				<tr>
-					<td rowspan="2"><b>社交好友</b><br/><input type="text" name="" value="5%"/></td>
-					<td><b>朋友工作</b><br/><input type="text" name="" value="70%"/></td>
+					<td rowspan="2"><b>社交好友</b><br/><input type="text" name="name73"/>%</td>
+					<td><b>朋友工作</b><br/><input type="text" name="name74" />%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -364,15 +369,15 @@
 								<th>无业</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="90"/></td>
-								<td><input type="text" name="" value="50"/></td>
+								<td><input type="text" name="name75"/></td>
+								<td><input type="text" name="name76" /></td>
+								<td><input type="text" name="name77" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
-					<td><b>朋友学历</b><br/><input type="text" name="" value="30%"/></td>
+					<td><b>朋友学历</b><br/><input type="text" name="name78"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -383,17 +388,17 @@
 								<th>初中及以下学历</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="90"/></td>
-								<td><input type="text" name="" value="80"/></td>
-								<td><input type="text" name="" value="60"/></td>
+								<td><input type="text" name="name79"/></td>
+								<td><input type="text" name="name80" /></td>
+								<td><input type="text" name="name81" /></td>
+								<td><input type="text" name="name82"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 			<!--*****************************公益行为**********************************-->
 				<tr>
-					<td><b>公益行为</b><br/><input type="text" name="" value="4%"/></td>
+					<td><b>公益行为</b><br/><input type="text" name="name83"/>%</td>
 					<td><b>有无公益活动</b></td>
 					<td><b></b></td>
 					<td>
@@ -404,17 +409,17 @@
 								<th>无公益活动</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="80"/></td>
+								<td><input type="text" name="name84" /></td>
+								<td><input type="text" name="name85" /></td>
+								<td><input type="text" name="name86" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 			<!--*****************************信仰状况**********************************-->
 				<tr>
-					<td rowspan="2"><b>信仰状况</b><br/><input type="text" name="" value="1%"/></td>
-					<td><b>宗教信仰</b><br/><input type="text" name="" value="50%"/></td>
+					<td rowspan="2"><b>信仰状况</b><br/><input type="text" name="name87"/>%</td>
+					<td><b>宗教信仰</b><br/><input type="text" name="name88"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -427,15 +432,15 @@
 								<th>法轮功、邪教组织、ISIS、恐怖组织</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="80"/></td>
-								<td><input type="text" name="" value="0"/></td>
-								<td><input type="text" name="" value="80"/></td>
+								<td><input type="text" name="name89" /></td>
+								<td><input type="text" name="name90" /></td>
+								<td><input type="text" name="name91" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>信仰</b><br/><input type="text" name="" value="50%"/></td>
+					<td><b>信仰</b><br/><input type="text" name="name92" />%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -444,22 +449,46 @@
 								<th>无</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="" value="100"/></td>
-								<td><input type="text" name="" value="80"/></td>
+								<td><input type="text" name="name93" /></td>
+								<td><input type="text" name="name94" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 			</table>
+		</div>
 		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
-				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+				<a class="btn btn-info" onclick="getSum()" title="提交">提交</a>
+				<a class="btn"  onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
 		<script type="text/javascript">
-			
+			$(document).ready(function() {
+				var result = "{{result}}";
+				if(result!=''){
+					$("input").each(function(i){
+					    $(this).val(result.split(",")[i]);
+					});
+				}
+			})
+
+			function getSum(){
+				if ($("#iframeForm").valid()) {
+					var score = new Array();
+					$("input").each(function(i){
+					    var value = $(this).val();
+					    if(value==''){
+					    	score.push(0);
+					    }else{
+					    	score.push(value);
+					    } 
+					});
+					var url = "/mxpg/cspz_ddpz_save/"+score;
+			   		window.location.href =  url;
+				}
+			}
 		</script>
 	</body>
 </html>
