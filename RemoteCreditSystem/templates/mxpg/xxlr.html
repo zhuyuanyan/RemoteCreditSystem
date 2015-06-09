@@ -104,8 +104,9 @@
 				{%-endfor%}
 			</table>
 			<div class="pagebar">
+				<input type="hidden" value="" id="hiddenId"/>
 				<div class="controlbtn">
-					<a class="btn btn-info" href="javascript:void(0);" onclick="iframe('/khzldy/khzl_hknl')">录入评估要素</a>
+					<a class="btn btn-info" href="javascript:void(0);" onclick="iframeById('/khzldy/khzl_hknl')">录入评估要素</a>
 					<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>					
 				</div>
 				<div class="page">
@@ -121,6 +122,17 @@
 			</div>		
 	
 		<script type="text/javascript">
+		 function selectbelong(id){
+		 	$("#hiddenId").val(id);
+		 }
+		 function iframeById(url){
+		 	var value = $("#hiddenId").val();
+		 	if(value==""){
+		 		alert("请选择记录");
+		 		return;
+		 	}
+		 	window.location.href =  url+"/"+value;
+		 }
 		</script>
 	</body>
 </html>

@@ -4,6 +4,8 @@ import hashlib
 from RemoteCreditSystem import User
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
+from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
@@ -117,11 +119,10 @@ def pgbg():
     return render_template("mxpg/pgbg.html",appList=appList)
 
 #查看评估报告
-@app.route('/mxpg/show_pgbg', methods=['GET'])
-def show_pgbg():    
-    infoList = Rcs_Application_Info.query.all()
-    pet = infoList[0].pet
-    return render_template("mxpg/show_pgbg.html",pet=pet)
+@app.route('/mxpg/show_pgbg/<int:id>', methods=['GET'])
+def show_pgbg(id):    
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    return render_template("mxpg/show_pgbg.html",score=score)
 
 #参数管理
 @app.route('/mxpg/csgl', methods=['GET'])
@@ -143,8 +144,23 @@ def iframe_cspz():
 
 #参数配置--道德品质
 @app.route('/mxpg/cspz_ddpz', methods=['GET'])
-def cspz_ddpz():    
-    return render_template("mxpg/cspz_ddpz.html")
+def cspz_ddpz():
+    ddpz = Rcs_Parameter.query.filter_by(parameter_name="ddpz").first()
+    result=ddpz.parameter_value
+    return render_template("mxpg/cspz_ddpz.html",result=result)
+
+#参数配置--道德品质--保存
+@app.route('/mxpg/cspz_ddpz_save/<score>', methods=['GET'])
+def cspz_ddpz_save(score):
+    Rcs_Parameter("ddpz",score).add()
+    db.session.commit()
+    return redirect("/mxpg/cspz_ddpz")
+
+#参数配置--经营状况
+@app.route('/mxpg/cspz_jyzk', methods=['GET'])
+def cspz_jyzk():    
+    return render_template("mxpg/cspz_jyzk.html")
+
 #客户资料
 @app.route('/khzldy/khzl', methods=['GET'])
 def khzl():      
@@ -157,53 +173,57 @@ def khzl_info():
     return render_template("customer/jbzl.html")
 
 #还款能力页面
-@app.route('/khzldy/khzl_hknl', methods=['GET'])
-def khzl_hknl():        
-    return render_template("customer/iframe.html")
+@app.route('/khzldy/khzl_hknl/<int:id>', methods=['GET'])
+def khzl_hknl(id):        
+    return render_template("customer/iframe.html",id=id)
 
 #资产负债
-@app.route('/khzldy/zcfzzk', methods=['GET'])
-def zcfzzk():        
+@app.route('/khzldy/zcfzzk/<int:id>', methods=['GET'])
+def zcfzzk(id):        
     return render_template("customer/zcfzzk.html")
 #利润表
-@app.route('/khzldy/lrb', methods=['GET'])
-def lrb():        
+@app.route('/khzldy/lrb/<int:id>', methods=['GET'])
+def lrb(id):        
     return render_template("customer/lrb.html")
 
 #现金流量
-@app.route('/khzldy/xjll', methods=['GET'])
-def xjll():        
+@app.route('/khzldy/xjll/<int:id>', methods=['GET'])
+def xjll(id):        
     return render_template("customer/xjll.html")
 
 #交叉检验
-@app.route('/khzldy/jcjy', methods=['GET'])
-def jcjy():        
+@app.route('/khzldy/jcjy/<int:id>', methods=['GET'])
+def jcjy(id):        
     return render_template("customer/jcjy.html")
 
 #经营状况
-@app.route('/khzldy/khzl_jyzk', methods=['GET'])
-def khzl_jyzk():        
+@app.route('/khzldy/khzl_jyzk/<int:id>', methods=['GET'])
+def khzl_jyzk(id):        
     return render_template("customer/jyzk.html")
 
 #生活状态
-@app.route('/khzldy/khzl_shzk', methods=['GET'])
-def khzl_shzk():        
+@app.route('/khzldy/khzl_shzk/<int:id>', methods=['GET'])
+def khzl_shzk(id):        
     return render_template("customer/shzt.html")
 
 #道德品质
-@app.route('/khzldy/khzl_ddpz', methods=['GET'])
-def khzl_ddpz():        
-    return render_template("customer/ddpz.html")
+@app.route('/khzldy/khzl_ddpz/<int:id>', methods=['GET'])
+def khzl_ddpz(id): 
+    ddpz = Rcs_Parameter.query.filter_by(parameter_name="ddpz").first()
+    result=ddpz.parameter_value
+    return render_template("customer/ddpz.html",result=result,id=id)
 
 #道德品质保存
-@app.route('/khzldy/khzl_ddpz_save', methods=['POST'])
-def khzl_ddpz_save():     
-    total = request.form['result']   
-    infoList = Rcs_Application_Info.query.all()
-    for i in infoList:
-        i.pet=total
+@app.route('/khzldy/khzl_ddpz_save/<int:id>', methods=['POST'])
+def khzl_ddpz_save(id):     
+    total = request.form['score_result'] 
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    if score:
+        score.ddpz_score=total
+    else:
+        Rcs_Application_Score(id,total,"","","").add()
     db.session.commit()
-    return render_template("customer/ddpz.html")
+    return redirect("/khzldy/khzl_ddpz/"+str(id))
 
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
 def jjrw(): 

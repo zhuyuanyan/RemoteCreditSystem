@@ -12,6 +12,7 @@
 		<style type="text/css">
 			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
 			.myTable td{font-size:13px;}
+			select{max-width:200px;}
 		</style>
 	</head>
 	<body>		
@@ -61,7 +62,7 @@
 					<td rowspan="18"><b>核心技术</b></td>
 					<td rowspan="4"><b>专利</b></td>
 					<td><b>名称</b></td>
-					<td><input type="text" name="" value="电视机"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>专利类型</b></td>
@@ -75,16 +76,16 @@
 				</tr>
 				<tr>
 					<td><b>专利号</b></td>
-					<td><input type="text" name="" value="0001"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>获得时间</b></td>
-					<td><input type="text" name="" value="2000-01-01"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td rowspan="2"><b>非专利专有技术</b></td>
 					<td><b>名称</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>技术来源</b></td>
@@ -100,7 +101,7 @@
 				<tr>
 					<td rowspan="2"><b>软件著作权</b></td>
 					<td><b>名称</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>技术来源</b></td>
@@ -116,7 +117,7 @@
 				<tr>
 					<td rowspan="2"><b>药品批文</b></td>
 					<td><b>名称</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>技术来源</b></td>
@@ -132,7 +133,7 @@
 				<tr>
 					<td rowspan="2"><b>创新商业模式</b></td>
 					<td><b>名称</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>技术来源</b></td>
@@ -148,7 +149,7 @@
 				<tr>
 					<td rowspan="2"><b>医疗器械批文</b></td>
 					<td><b>名称</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>技术来源</b></td>
@@ -164,7 +165,7 @@
 				<tr>
 					<td rowspan="2"><b>集成电路步图</b></td>
 					<td><b>名称</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>技术来源</b></td>
@@ -180,7 +181,7 @@
 				<tr>
 					<td rowspan="2"><b>其他</b></td>
 					<td><b>名称</b></td>
-					<td><input type="text" name="" value="无"/></td>
+					<td><input type="text" name="" value=""/></td>
 				</tr>
 				<tr>
 					<td><b>技术来源</b></td>
@@ -202,7 +203,7 @@
 					<td colspan="3">
 						<table class="addTable" id="hxtd">
 							<tr>								
-								<th rowspan="2">姓名<input type="text" class="addinput" value="张三"/></th>
+								<th rowspan="4">姓名<input type="text" class="addinput"/></th>
 								<th>性别</th>
 								<th>年龄</th>
 								<th>职位</th>
@@ -213,12 +214,12 @@
 							</tr>
 							<tr>
 								<td><select name=""><option>男</option><option>女</option></select></td>
-								<td><input type="text" class="addinput" value="40"/></td>
-								<td><input type="text" class="addinput" value="导师"/></td>
-								<td><input type="text" class="addinput"/ value="博士"></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="入选"/></td>
-								<td><input type="text" class="addinput"  value="2009-01-01" onclick="J.calendar.get({type:'-'});"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
 							</tr>
 							<tr>
 								<th colspan="2">大学生科技企业</th>
@@ -227,11 +228,820 @@
 								<th>主要成就</th>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="text" class="addinput" value="是"/></td>
-								<td colspan="2"><input type="text" class="addinput" value="博士"/></td>
-								<td colspan="2"><input type="text" class="addinput" value="略"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td colspan="2"><input type="text" class="addinput"/></td>
+								<td colspan="2"><input type="text" class="addinput"/></td>
+								<td colspan="2"><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
 							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+	<!--*****************************行业**********************************-->
+			<table class="myTable">
+				<caption>行业</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="90%">
+				</colgroup>
+				<tr>
+					<td><b>行业政策</b></td>
+					<td>
+						<table class="addTable">
+							<tr>								
+								<th>金融货币政策</th>
+								<th>国家产业政策</th>
+								<th>税收政策</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>宽松</option>
+										<option>一般</option>
+										<option>紧缩</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>扶持</option>
+										<option>一般</option>
+										<option>限制</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>免税</option>
+										<option>出口退税</option>
+										<option>增值税正常（13%）</option>
+										<option>增值税低税率（17%）</option>
+										<option>增收消费税小于等于10%</option>
+										<option>增收消费税小于等于20%</option>
+										<option>增收消费税大于20%</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>行业</b></td>
+					<td>
+						<table class="addTable">
+							<tr>								
+								<th>行业供求关系</th>
+								<th>行业周期性分析</th>
+								<th>行业资产结构</th>
+							</tr>
+							<tr>
+								<td>产品供应/市场需求量
+									<select	name="">
+										<option>小于等于50%</option>
+										<option>小于等于70%</option>
+										<option>小于等于90%</option>
+										<option>小于等于100%</option>
+										<option>小于等于105%</option>
+										<option>小于等于110%</option>
+										<option>小于等于120%</option>
+										<option>大于120%</option>
+									</select>
+								</td>
+								<td>
+									<select	name="" id="zqx" onchange="hyzqx()">
+										<option>周期性行业</option>
+										<option>非周期性</option>
+									</select>
+									<select	name="" id="zqxhy">
+										<option>汽车</option>
+										<option>机械</option>
+										<option>电力</option>
+										<option>原料药</option>
+										<option>石油化工</option>
+										<option>房地产</option>
+										<option>煤炭</option>
+										<option>钢铁</option>
+										<option>造船</option>
+										<option>水泥</option>
+										<option>有色金属</option>
+									</select>
+								</td>
+								<td>固定资产占总资产
+									<select	name="">
+										<option>小于或等于5%</option>
+										<option>小于或等于10%</option>
+										<option>小于或等于20%</option>
+										<option>小于或等于30%</option>
+										<option>小于或等于40%</option>
+										<option>小于或等于50%</option>
+										<option>小于或等于60%</option>
+										<option>小于或等于70%</option>
+										<option>小于或等于80%</option>
+										<option>小于或等于90%</option>
+									</select>
+								</td>
+							</tr>
+							<tr>								
+								<th colspan="3">行业盈利能力</th>
+							</tr>
+							<tr>								
+								<th>净利率</th>
+								<th>平均应收账款周转天数</th>
+								<th>平均存货周转天数</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>大于或等于25%</option>
+										<option>大于或等于20%</option>
+										<option>大于或等于15%</option>
+										<option>大于或等于10%</option>
+										<option>大于或等于5%</option>
+										<option>小于5%</option>
+										<option>小于或等于0%</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>小于或等于7</option>
+										<option>小于或等于15</option>
+										<option>小于或等于30</option>
+										<option>小于或等于60</option>
+										<option>小于或等于90</option>
+										<option>小于或等于180</option>
+										<option>大于180</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>小于或等于7</option>
+										<option>小于或等于15</option>
+										<option>小于或等于30</option>
+										<option>小于或等于60</option>
+										<option>小于或等于90</option>
+										<option>大于90</option>
+									</select>
+								</td>
+							</tr>
+							<tr>								
+								<th colspan="2">行业依赖性</th>
+								<th rowspan="2">行业替代性</th>
+							</tr>
+							<tr>								
+								<th>上游客户</th>
+								<th>下游客户</th>
+							</tr>
+							<tr>
+								<td>供应商数量
+									<select	name="">
+										<option>大于20</option>
+										<option>大于等于18</option>
+										<option>大于等于16</option>
+										<option>大于等于14</option>
+										<option>大于等于12</option>
+										<option>大于等于10</option>
+										<option>大于等于8</option>
+										<option>大于等于6</option>
+										<option>大于等于4</option>
+										<option>大于等于2</option>
+										<option>小于2</option>
+									</select>
+								</td>
+								<td>经销商数量
+									<select	name="">
+										<option>大于50</option>
+										<option>大于等于45</option>
+										<option>大于等于40</option>
+										<option>大于等于35</option>
+										<option>大于等于30</option>
+										<option>大于等于25</option>
+										<option>大于等于20</option>
+										<option>大于等于15</option>
+										<option>大于等于10</option>
+										<option>大于等于5</option>
+										<option>小于5</option>
+									</select>
+								</td>
+								<td>市场上可供选择的类似产品种类
+									<select	name="">
+										<option>小于2</option>
+										<option>小于等于4</option>
+										<option>小于等于7</option>
+										<option>小于等于10</option>
+										<option>小于等于15</option>
+										<option>小于等于20</option>
+										<option>小于等于25</option>
+										<option>小于等于30</option>
+										<option>小于等于30</option>
+									</select>
+								</td>
+							</tr>							
+							<tr>								
+								<th colspan="2">行业发展趋势</th>
+								<th rowspan="2">行业风险分析<br/>近三年来行业内平均破产率分析</th>
+							</tr>
+							<tr>								
+								<th>本行业近一年的平均销售额增长</th>
+								<th>本行业近一年来的平均净利润增长</th>
+							</tr>
+							<tr>
+								<td>本行业近一年的平均销售额增长比率
+									<select	name="">
+										<option>大于100%</option>
+										<option>大于等于50%</option>
+										<option>大于等于40%</option>
+										<option>大于等于30%</option>
+										<option>大于等于25%</option>
+										<option>大于等于20%</option>
+										<option>大于等于15%</option>
+										<option>大于等于10%</option>
+										<option>大于等于5%</option>
+										<option>大于等于0%</option>
+										<option>小于5%</option>
+										<option>小于-20%</option>
+									</select>
+								</td>
+								<td>本行业近一年的平均净利润增长比率
+									<select	name="">
+										<option>大于100%</option>
+										<option>大于等于50%</option>
+										<option>大于等于40%</option>
+										<option>大于等于30%</option>
+										<option>大于等于25%</option>
+										<option>大于等于20%</option>
+										<option>大于等于15%</option>
+										<option>大于等于10%</option>
+										<option>大于等于5%</option>
+										<option>大于等于0%</option>
+										<option>小于5%</option>
+										<option>小于-20%</option>
+									</select>
+								</td>
+								<td>近三年来行业平均破产率
+									<select	name="">
+										<option>小于等于5%</option>
+										<option>小于等于10%</option>
+										<option>小于等于15%</option>
+										<option>小于等于20%</option>
+										<option>小于等于25%</option>
+										<option>小于等于30%</option>
+										<option>小于等于35%</option>
+										<option>小于等于40%</option>
+										<option>小于等于45%</option>
+										<option>小于等于50%</option>
+										<option>大于50%</option>
+									</select>
+								</td>
+							</tr>	
+						</table>
+					</td>
+				</tr>
+			</table>			
+	<!--*****************************企业**********************************-->
+			<table class="myTable">
+				<caption>企业</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="90%">
+				</colgroup>
+			<!--*****************************经营**********************************-->
+				<tr>
+					<td><b>经营</b></td>
+					<td>
+						<table class="addTable">
+							<tr>					
+								<th rowspan="4">市场与产品</th>					
+								<th>产品的差异性</th>
+								<th>买方需求客户对产品的需求<br/>（奢侈品/生活必需品）</th>
+								<th>产品的价格<br/>（客户对价格的可接受程度）</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>产品与众不同，几乎没有替代品，专利得到很好的保护，信誉好</option>
+										<option>产品有些独特，由于产品的复杂性，替代品有限</option>
+										<option>产品无独特之处，有一些现成的替代品，信誉好</option>
+										<option>产品无独特之处，又许多好的替代品，质量一般</option>
+									</select>
+								</td>
+								<td>客户需求周期
+									<select	name="">
+										<option>小于等于3天</option>
+										<option>小于等于7天</option>
+										<option>小于等于15天</option>
+										<option>小于等于30天</option>
+										<option>小于等于45天</option>
+										<option>小于等于60天</option>
+										<option>小于等于90天</option>
+										<option>小于等于180天</option>
+										<option>小于等于360天</option>
+										<option>大于360天</option>
+									</select>
+								</td>
+								<td>可接受此价格的目标客户群比率
+									<select	name="">
+										<option>大于等于95%</option>
+										<option>大于等于90%</option>
+										<option>大于等于80%</option>
+										<option>大于等于70%</option>
+										<option>大于等于60%</option>
+										<option>大于等于50%</option>
+										<option>大于等于40%</option>
+										<option>大于等于30%</option>
+										<option>大于等于20%</option>
+										<option>大于等于10%</option>
+										<option>大于等于5%</option>
+										<option>小于5%</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>市场竞争的激烈程度</th>
+								<th>客户的分散程度</th>
+								<th>销售方法</th>
+							</tr>
+							<tr>
+								<td>经营范围内的竞争性同业数量
+									<select	name="">
+										<option>无</option>
+										<option>等于1家</option>
+										<option>小于等于3家</option>
+										<option>小于等于8家</option>
+										<option>小于等于8家</option>
+										<option>小于等于12家</option>
+										<option>小于等于16家</option>
+										<option>小于等于20家</option>
+										<option>小于等于30家</option>
+										<option>大于30家</option>
+									</select>
+								</td>
+								<td>最大的三个客户占企业总销售额的比率
+									<select	name="">
+										<option>小于等于15%</option>
+										<option>小于等于20%</option>
+										<option>小于等于25%</option>
+										<option>小于等于30%</option>
+										<option>小于等于35%</option>
+										<option>小于等于40%</option>
+										<option>小于等于50%</option>
+										<option>小于等于60%</option>
+										<option>小于等于80%</option>
+										<option>小于等于90%</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>单一销售渠道、单一营销方式</option>
+										<option>固定二至三条销售渠道，单一营销方式/单一销售渠道，多种营销方式</option>
+										<option>固定两至三条销售渠道，多种营销方式</option>
+										<option>四条以上条销售渠道，多种营销方式，并仍在开发新的销售渠道和营销方式</option>
+									</select>
+								</td>
+							</tr>
+							<tr>					
+								<th rowspan="4">生产环节</th>					
+								<th>专利技术</th>
+								<th>技术</th>
+								<th>自然灾害</th>
+							</tr>
+							<tr>
+								<td>拥有专利技术的数量
+									<select	name="">
+										<option>大于等于5</option>
+										<option>等于4</option>
+										<option>等于3</option>
+										<option>等于2</option>
+										<option>等于1</option>
+										<option>等于0</option>
+									</select>
+								</td>
+								<td>能独立解决技术难题的比率
+									<select	name="">
+										<option>等于100%</option>
+										<option>大于等于90%</option>
+										<option>大于等于80%</option>
+										<option>大于等于70%</option>
+										<option>大于等于50%</option>
+										<option>小于50%</option>
+									</select>
+								</td>
+								<td>
+									<select	name="">
+										<option>受自然灾害影响</option>
+										<option>不受自然灾害影响</option>
+									</select>
+								</td>
+							</tr>								
+							<tr>				
+								<th>环境</th>
+								<th colspan="2">劳资关系</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>易造成环境污染</option>
+										<option>不易造成环境污染</option>
+									</select>
+								</td>
+								<td colspan="2">
+									<select	name="">
+										<option>劳资关系融洽，与员工关系和睦</option>
+										<option>劳资关系紧张，与员工多有争执</option>
+									</select>
+								</td>
+							</tr>							
+							<tr>					
+								<th rowspan="2">企业的销售环节</th>					
+								<th colspan="2">销售成本</th>
+								<th>客户群的消费习惯</th>
+							</tr>
+							<tr>
+								<td colspan="2">本企业单位产品的销售成本/行业内单位产品的销售成本
+									<select	name="">
+										<option>小于等于60%</option>
+										<option>小于等于70%</option>
+										<option>小于等于80%</option>
+										<option>小于等于90%</option>
+										<option>小于等于95%</option>
+										<option>小于等于97.5%</option>
+										<option>小于等于100%</option>
+										<option>小于等于102.5%</option>
+										<option>小于等于105%</option>
+										<option>小于等于110%</option>
+										<option>小于等于115%</option>
+										<option>小于等于120%</option>
+									</select>
+								</td>
+								<td>习惯购买同一品牌产品的客户比率
+									<select	name="">
+										<option>大于等于90%</option>
+										<option>大于等于80%</option>
+										<option>大于等于70%</option>
+										<option>大于等于60%</option>
+										<option>大于等于50%</option>
+										<option>大于等于40%</option>
+										<option>大于等于30%</option>
+										<option>大于等于20%</option>
+										<option>大于等于10%</option>
+										<option>小于10%</option>
+									</select>
+								</td>
+							</tr>		
+						</table>
+					</td>
+				</tr>
+			<!--*****************************管理**********************************-->
+				<tr>
+					<td><b>管理</b></td>
+					<td>
+						<table class="addTable">
+							<tr>					
+								<th rowspan="2">管理层的稳定性</th>					
+								<th>管理层组成</th>
+								<th colspan="2">管理层的更换程度</th>
+							</tr>
+							<tr>
+								<td>职业经理人在管理层中的占比
+									<select	name="">
+										<option>大于等于90%</option>
+										<option>大于等于80%</option>
+										<option>大于等于70%</option>
+										<option>大于等于60%</option>
+										<option>大于等于50%</option>
+										<option>大于等于45%</option>
+										<option>大于等于40%</option>
+										<option>大于等于35%</option>
+										<option>大于等于30%</option>
+										<option>大于等于25%</option>
+										<option>小于25%</option>
+									</select>
+								</td>
+								<td colspan="2">最近两年内管理人员的流失率
+									<select	name="">
+										<option>小于等于10%</option>
+										<option>小于等于20%</option>
+										<option>小于等于30%</option>
+										<option>小于等于40%</option>
+										<option>小于等于50%</option>
+										<option>小于等于60%</option>
+										<option>小于等于70%</option>
+										<option>小于等于80%</option>
+										<option>大于80%</option>
+									</select>
+								</td>
+							</tr>
+							<tr>					
+								<th rowspan="6">管理层素质和经验</th>					
+								<th>文化程度</th>
+								<th>年龄结构</th>
+								<th>管理者企业内的平均从业时间</th>
+							</tr>
+							<tr>
+								<td>本科以上人员在管理层中的占比
+									<select	name="">
+										<option>大于等于90%</option>
+										<option>大于等于80%</option>
+										<option>大于等于70%</option>
+										<option>大于等于60%</option>
+										<option>大于等于50%</option>
+										<option>大于等于40%</option>
+										<option>大于等于30%</option>
+										<option>小于30%</option>
+									</select>
+								</td>
+								<td>管理层平均年龄
+									<select	name="">
+										<option>20-25</option>
+										<option>25-30</option>
+										<option>30-40</option>
+										<option>40-50</option>
+										<option>50以上</option>
+									</select>
+								</td>
+								<td>管理者在本企业内的平均从业时间
+									<select	name="">
+										<option>大于等于10年</option>
+										<option>大于等于8年</option>
+										<option>大于等于6年</option>
+										<option>大于等于4年</option>
+										<option>大于等于3年</option>
+										<option>大于等于2年</option>
+										<option>大于等于1年</option>
+										<option>小于1年</option>
+									</select>
+								</td>
+							</tr>
+							<tr>									
+								<th>管理者在行业内的平均从业时间</th>
+								<th colspan="2">开拓精神</th>
+							</tr>
+							<tr>
+								<td>管理者在行业内的平均从业时间
+									<select	name="">
+										<option>大于等于15年</option>
+										<option>大于等于10年</option>
+										<option>大于等于8年</option>
+										<option>大于等于6年</option>
+										<option>大于等于4年</option>
+										<option>大于等于3年</option>
+										<option>大于等于2年</option>
+										<option>大于等于1年</option>
+										<option>小于1年</option>
+									</select>
+								</td>
+								<td colspan="2">企业近两年内的月营业额平均环比增长
+									<select	name="">
+										<option>大于等于20%</option>
+										<option>大于等于15%</option>
+										<option>大于等于12%</option>
+										<option>大于等于10%</option>
+										<option>大于等于8%</option>
+										<option>大于等于6%</option>
+										<option>大于等于4%</option>
+										<option>大于等于2%</option>
+										<option>大于等于0%</option>
+										<option>大于等于-2%</option>
+										<option>大于等于-4%</option>
+										<option>小于-4%</option>
+									</select>
+								</td>
+							</tr>	
+							<tr>									
+								<th>团队精神</th>
+								<th colspan="2">道德品质</th>
+							</tr>
+							<tr>
+								<td>企业每年拓展训练或聚会的次数
+									<select	name="">
+										<option>大于等于10次</option>
+										<option>大于等于8次</option>
+										<option>大于等于5次</option>
+										<option>大于等于3次</option>
+										<option>大于等于1次</option>
+										<option>小于1次</option>
+									</select>
+								</td>
+								<td colspan="2">最近5年内企业出现道德风险事件的次数
+									<select	name="">
+										<option>等于0次</option>
+										<option>等于1次</option>
+										<option>小于等于3次</option>
+										<option>小于等于5次</option>
+										<option>大于5次</option>
+									</select>
+								</td>
+							</tr>	
+							<tr>					
+								<th rowspan="2">经营思想和作风</th>					
+								<th>经营思路的统一性</th>
+								<th colspan="2">作风冒险或谨慎</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>思路统一</option>
+										<option>分歧较多</option>
+									</select>
+								</td>
+								<td colspan="2">
+									<select	name="">
+										<option>冒险</option>
+										<option>谨慎</option>
+									</select>
+								</td>
+							</tr>	
+							<tr>					
+								<th rowspan="2">关联企业的经营管理</th>					
+								<th>债务人的母子公司</th>
+								<th>关联企业主要供应商</th>
+								<th>关联企业主要经销商</th>
+							<tr>
+								<td>
+									<select	name="">
+										<option>母子公司经营良好，运转正常</option>
+										<option>母子公司资金周转困难，运转正常</option>
+										<option>母子公司资金周转困难，运转困难</option>
+									</select>
+								</td>
+								<td>供应商数量
+									<select	name="">
+										<option>大于20</option>
+										<option>大于等于18</option>
+										<option>大于等于16</option>
+										<option>大于等于14</option>
+										<option>大于等于12</option>
+										<option>大于等于10</option>
+										<option>大于等于8</option>
+										<option>大于等于6</option>
+										<option>大于等于4</option>
+										<option>大于等于2</option>
+										<option>小于2</option>
+									</select>
+								</td>
+								<td>经销商数量
+									<select	name="">
+										<option>大于50</option>
+										<option>大于等于45</option>
+										<option>大于等于40</option>
+										<option>大于等于35</option>
+										<option>大于等于30</option>
+										<option>大于等于25</option>
+										<option>大于等于20</option>
+										<option>大于等于15</option>
+										<option>大于等于10</option>
+										<option>大于等于5</option>
+										<option>小于5</option>
+									</select>
+								</td>
+							</tr>
+							<tr>					
+								<th rowspan="2">核心技术人员状况</th>					
+								<th>专业技能分布</th>
+								<th colspan="2">稳定性</th>
+							</tr>
+							<tr>
+								<td>核心技术人员在本行业平均从业时间
+									<select	name="">
+										<option>大于等于20年</option>
+										<option>大于等于15年</option>
+										<option>大于等于10年</option>
+										<option>大于等于8年</option>
+										<option>大于等于6年</option>
+										<option>大于等于4年</option>
+										<option>大于等于2年</option>
+										<option>大于等于1年</option>
+										<option>小于1年</option>
+									</select>
+								</td>
+								<td colspan="2">核心技术人员近两年的流失率
+									<select	name="">
+										<option>小于等于10%</option>
+										<option>小于等于20%</option>
+										<option>小于等于30%</option>
+										<option>小于等于40%</option>
+										<option>小于等于50%</option>
+										<option>小于等于60%</option>
+										<option>小于等于70%</option>
+										<option>小于等于80%</option>
+										<option>大于80%</option>
+									</select>
+								</td>
+							</tr>	
+							<tr>					
+								<th rowspan="2">员工队伍</th>					
+								<th>员工文化</th>
+								<th colspan="2">员工专业性</th>
+							</tr>
+							<tr>
+								<td>大专以上的员工占比
+									<select	name="">
+										<option>大于等于90%</option>
+										<option>大于等于80%</option>
+										<option>大于等于70%</option>
+										<option>大于等于60%</option>
+										<option>大于等于50%</option>
+										<option>大于等于40%</option>
+										<option>大于等于30%</option>
+										<option>小于30%</option>
+									</select>
+								</td>
+								<td colspan="2">员工在本行业的平均从业时间
+									<select	name="">
+										<option>大于等于10年</option>
+										<option>大于等于8年</option>
+										<option>大于等于6年</option>
+										<option>大于等于4年</option>
+										<option>大于等于3年</option>
+										<option>大于等于2年</option>
+										<option>大于等于1年</option>
+										<option>小于1年</option>
+									</select>
+								</td>
+							</tr>	
+							<tr>					
+								<th rowspan="4">内部控制与管理</th>					
+								<th>健全的组织架构</th>
+								<th colspan="2">科学的决策程序</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>矩阵组织式</option>
+										<option>模拟分散化</option>
+										<option>事业部制</option>
+										<option>直线-参谋</option>
+										<option>直线</option>
+									</select>
+								</td>
+								<td colspan="2">决策方式
+									<select	name="">
+										<option>根据实际情况决定决策方式</option>
+										<option>群体决策</option>
+										<option>收集意见，领导决策</option>
+										<option>个体决策（一言堂）</option>
+									</select>
+								</td>
+							</tr>	
+							<tr>									
+								<th>人事管理政策</th>
+								<th colspan="2">公司的发展战略</th>
+							</tr>
+							<tr>
+								<td>
+									<select	name="">
+										<option>规范招聘</option>
+										<option>晋升激励</option>
+										<option>物质激励</option>
+										<option>人性化管理</option>
+										<option>淘汰制度</option>
+									</select>
+								</td>
+								<td colspan="2">决策方式
+									<select	name="">
+										<option>有序扩张</option>
+										<option>百年老店</option>
+										<option>安于现状</option>
+										<option>疯狂扩张</option>
+										<option>收缩规模</option>
+									</select>
+								</td>
+							</tr>	
+							<tr>					
+								<th rowspan="2">财务管理能力</th>					
+								<th>企业成本</th>
+								<th colspan="2">企业流动资金</th>
+							</tr>
+							<tr>
+								<td>同等售价下本企业单位产品的平均成本/行业内产品单位产品的平均成本
+									<select	name="">
+										<option>小于等于60%</option>
+										<option>小于等于70%</option>
+										<option>小于等于80%</option>
+										<option>小于等于90%</option>
+										<option>小于等于95%</option>
+										<option>小于等于97.5%</option>
+										<option>小于等于100%</option>
+										<option>小于等于102.5%</option>
+										<option>小于等于105%</option>
+										<option>小于等于110%</option>
+										<option>小于等于115%</option>
+										<option>小于等于120%</option>
+										<option>大于120%</option>
+									</select>
+								</td>
+								<td colspan="2">企业日均流动资金/企业日均开支
+									<select	name="">
+										<option>大于等于120</option>
+										<option>大于等于90</option>
+										<option>大于等于60</option>
+										<option>大于等于45</option>
+										<option>大于等于30</option>
+										<option>大于等于20</option>
+										<option>大于等于10</option>
+										<option>大于等于5</option>
+										<option>大于等于3</option>
+										<option>小于3</option>
+									</select>
+								</td>
+							</tr>						
 						</table>
 					</td>
 				</tr>
@@ -293,6 +1103,14 @@
 					}
 							
 					//$("#"+table+"_cnt").val(tr.length-2);
+				}
+			}
+			function hyzqx(){
+				if($("#zqx").find("option:selected").html()=="周期性行业"){
+					$("#zqxhy").removeAttr("disabled");
+				}
+				else{
+					$("#zqxhy").attr("disabled","disabled");
 				}
 			}
 		</script>
