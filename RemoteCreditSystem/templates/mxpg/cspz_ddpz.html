@@ -465,18 +465,13 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-		var layout=new FormsLayout("formsId");	
-		window.top.currentWindow.setLayout(layout);
 			$(document).ready(function() {
-				alert("----");
-				// var result = {{result}};
-				// alert(result);
-				// if({{result}}!=''){
-				// 	$("input").each(function(i){
-				// 	    var value = $(this).val();
-				// 	});
-				// }
-				
+				var result = "{{result}}";
+				if(result!=''){
+					$("input").each(function(i){
+					    $(this).val(result.split(",")[i]);
+					});
+				}
 			})
 
 			function getSum(){
