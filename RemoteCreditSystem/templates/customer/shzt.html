@@ -16,7 +16,7 @@
 		</style>
 	</head>
 	<body>	
-		<form class="iframeForm" action="/khzldy/khzl_shzt_save/{{id}}" method="POST">
+		<form class="iframeForm" action="/khzldy/khzl_shzk_save/{{id}}" method="POST">
 <!--*****************************资产状况**********************************-->			
 			<table class="myTable">
 				<caption>资产状况({{result.split(',')[0]}}%)</caption>
@@ -42,13 +42,13 @@
 							</tr>
 							<tr>
 								<td>
-									<select	name="aj">
+									<select	name="aj" id="aj">
 										<option value="{{result.split(',')[3]}}">按揭</option>
 										<option value="{{result.split(',')[40]}}">全额付款</option>
 									</select>
 								</td>
 								<td>
-									<select	name="fcsl">
+									<select	name="fcsl" id="fcsl">
 										<option value="{{result.split(',')[5]}}">≥5套</option>
 										<option value="{{result.split(',')[6]}}">4套</option>
 										<option value="{{result.split(',')[7]}}">3套</option>
@@ -59,7 +59,7 @@
 								<td><input type="text" class="addinput"/></td>
 								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});"/></td>
 								<td>
-									<select	name="sjzz">
+									<select	name="sjzz" id="sjzz">
 										<option value="{{result.split(',')[11]}}">≥1亿</option>
 										<option value="{{result.split(',')[12]}}">5000万-1亿元</option>
 										<option value="{{result.split(',')[13]}}">3000-5000万</option>
@@ -79,7 +79,7 @@
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	name="zfmj" id="zfmj">
 										<option value="{{result.split(',')[20]}}">≥500㎡/套</option>
 										<option value="{{result.split(',')[21]}}">400-500㎡/套</option>
 										<option value="{{result.split(',')[22]}}">300-400㎡/套</option>
@@ -89,13 +89,13 @@
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="zxqk">
 										<option value="{{result.split(',')[27]}}">精装</option>
 										<option value="{{result.split(',')[28]}}">简装</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="jznx">
 										<option value="{{result.split(',')[23]}}">≥50年</option>
 										<option value="{{result.split(',')[23]}}">40-50年</option>
 										<option value="{{result.split(',')[23]}}">30-40年</option>
@@ -106,7 +106,7 @@
 									</select>
 								</td>
 								<td colspan ="2">
-									<select	name="">
+									<select	id="cn">
 										<option value="{{result.split(',')[38]}}">朝南</option>
 										<option value="{{result.split(',')[39]}}">朝北</option>
 									</select>
@@ -117,16 +117,20 @@
 				</tr>	
 				<tr>
                     <td><b>租赁({{result.split(',')[42]}}%)</b></td>
+                    <input type="hidden" value="{{result.split(',')[42]}}" name="zczk4" id="zczk4"/>
 					<td>
 						<table class="addTable">
 							<tr>
 								<th>数量({{result.split(',')[43]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[43]}}" name="zczk5" id="zczk5"/>
 								<th>平均面积/套({{result.split(',')[49]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[49]}}" name="zczk6" id="zczk6"/>
 								<th>总租金/月({{result.split(',')[56]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[56]}}" name="zczk7" id="zczk7"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="zpsl">
 										<option value="{{result.split(',')[44]}}">≥5套</option>
 										<option value="{{result.split(',')[45]}}">4套</option>
 										<option value="{{result.split(',')[46]}}">3套</option>
@@ -135,7 +139,7 @@
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="zpmj">
 										<option value="{{result.split(',')[50]}}">≥500㎡/套</option>
 										<option value="{{result.split(',')[51]}}">400-500㎡/套</option>
 										<option value="{{result.split(',')[52]}}">300-400㎡/套</option>
@@ -145,7 +149,7 @@
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="zpzj">
 										<option value="{{result.split(',')[57]}}">≥5万元</option>
 										<option value="{{result.split(',')[58]}}">3-5万元</option>
 										<option value="{{result.split(',')[59]}}">1-3万元</option>
@@ -160,6 +164,7 @@
 				</tr>				
 				<tr>
 					<td><b>车辆({{result.split(',')[63]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[63]}}" name="zczk8" id="zczk8"/>
                     <td></td>
                     <td>
 						<table class="addTable">
@@ -172,7 +177,7 @@
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="clsl">
 										<option value="{{result.split(',')[65]}}">≥5辆</option>
 										<option value="{{result.split(',')[66]}}">4辆</option>
 										<option value="{{result.split(',')[67]}}">3辆</option>
@@ -182,7 +187,7 @@
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="cljg">
 										<option value="{{result.split(',')[72]}}">≥3000万</option>
 										<option value="{{result.split(',')[73]}}">2000-3000万</option>
 										<option value="{{result.split(',')[74]}}">1000-2000万</option>
@@ -196,7 +201,7 @@
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="clsj">
 										<option value="{{result.split(',')[83]}}">≤1年</option>
 										<option value="{{result.split(',')[84]}}">1-3年</option>
 										<option value="{{result.split(',')[85]}}">3-5年</option>
@@ -205,9 +210,105 @@
 								</td>
 								<td><input type="text" class="addinput"/></td>
 								<td>
-									<select	name="">
+									<select	id="clcp">
 										<option value="{{result.split(',')[88]}}">竞拍/摇号</option>
 										<option value="{{result.split(',')[89]}}">常规上牌方式</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2"><b>资产</b></td>  
+					<td><b>储蓄账户({{result.split(',')[90]}}%)</b></td>    
+					<input type="hidden" value="{{result.split(',')[90]}}" name="zczk9" id="zczk9"/>        
+					<td>
+						<table class="addTable">
+							<tr>
+								<th rowspan="2">生意帐户({{result.split(',')[91]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[91]}}" name="zczk10" id="zczk10"/>
+								<th>开户行</th>
+								<th>开户账号</th>
+								<th>储蓄金额</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td>
+									<select	id="syzh1">
+										<option value="{{result.split(',')[92]}}">≥5000万</option>
+										<option value="{{result.split(',')[93]}}">3000-5000万</option>
+										<option value="{{result.split(',')[94]}}">1000-3000万</option>
+										<option value="{{result.split(',')[95]}}">500-1000万</option>
+										<option value="{{result.split(',')[96]}}">300-500万</option>
+										<option value="{{result.split(',')[97]}}">≤300万</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th rowspan="2">个人银行帐户({{result.split(',')[98]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[98]}}" name="zczk11" id="zczk11"/>
+								<th>主要银行开户行</th>
+								<th>主要账户号</th>
+								<th>储蓄金额</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput"/></td>
+								<td><input type="text" class="addinput"/></td>
+								<td>
+									<select	id="syzh2">
+										<option value="{{result.split(',')[99]}}">≥1000万</option>
+										<option value="{{result.split(',')[100]}}">500-1000万</option>
+										<option value="{{result.split(',')[101]}}">300-500万</option>
+										<option value="{{result.split(',')[102]}}">100-300万</option>
+										<option value="{{result.split(',')[103]}}">50-100万</option>
+										<option value="{{result.split(',')[104]}}">≤50万</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>其他应收账款({{result.split(',')[105]}}%)</b></td>   
+					<input type="hidden" value="{{result.split(',')[105]}}" name="zczk12" id="zczk12"/>         
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>借出日期</th>
+								<th>回收期限({{result.split(',')[106]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[106]}}" name="zczk13" id="zczk13"/>
+								<th>金额占储蓄比例({{result.split(',')[111]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[111]}}" name="zczk14" id="zczk14"/>
+								<th>收息({{result.split(',')[117]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[117]}}" name="zczk15" id="zczk15"/>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
+								<td>
+									<select	id="syzh3">
+										<option value="{{result.split(',')[107]}}">≤1年</option>
+										<option value="{{result.split(',')[108]}}">1-2年</option>
+										<option value="{{result.split(',')[109]}}">2-3年</option>
+										<option value="{{result.split(',')[110]}}">>3年</option>
+									</select>
+								</td>
+								<td>
+									<select	id="syzh4">
+										<option value="{{result.split(',')[112]}}">≥30%</option>
+										<option value="{{result.split(',')[113]}}">20%-30%</option>
+										<option value="{{result.split(',')[114]}}">10%-20%</option>
+										<option value="{{result.split(',')[115]}}">5%-10%</option>
+										<option value="{{result.split(',')[116]}}"><5%</option>
+									</select>
+								</td>
+								<td>
+									<select	id="syzh5">
+										<option value="{{result.split(',')[118]}}"><1000元</option>
+										<option value="{{result.split(',')[119]}}">1000-3000元</option>
+										<option value="{{result.split(',')[120]}}">3000-5000元</option>
+										<option value="{{result.split(',')[121]}}">>5000元</option>
 									</select>
 								</td>
 							</tr>
@@ -218,6 +319,7 @@
 <!--*****************************生活环境**********************************-->			
 			<table class="myTable">
 				<caption>生活环境({{result.split(',')[122]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[122]}}" name="shhj1" id="shhj1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="13%">
@@ -225,39 +327,44 @@
 				</colgroup>
 				<tr>
 					<td><b>居住区的客观环境({{result.split(',')[123]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[123]}}" name="shhj2" id="shhj2"/>
 					<td></td>
                     <td>
 						<table class="addTable">
 							<tr>
 								<th>安全性({{result.split(',')[124]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[124]}}" name="shhj3" id="shhj3"/>
 								<th>健康性({{result.split(',')[128]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[128]}}" name="shhj4" id="shhj4"/>
 								<th>便利性({{result.split(',')[132]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[132]}}" name="shhj5" id="shhj5"/>
 								<th>舒适性({{result.split(',')[136]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[136]}}" name="shhj6" id="shhj6"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="kghj1">
 										<option value="{{result.split(',')[125]}}">安全</option>
 										<option value="{{result.split(',')[126]}}">一般</option>
 										<option value="{{result.split(',')[127]}}">不安全</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="kghj2">
 										<option value="{{result.split(',')[129]}}">健康</option>
 										<option value="{{result.split(',')[130]}}">一般</option>
 										<option value="{{result.split(',')[131]}}">不健康</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="kghj3">
 										<option value="{{result.split(',')[133]}}">便利</option>
 										<option value="{{result.split(',')[134]}}">一般</option>
 										<option value="{{result.split(',')[135]}}">不便利</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="kghj4">
 										<option value="{{result.split(',')[137]}}">舒适</option>
 										<option value="{{result.split(',')[138]}}">一般</option>
 										<option value="{{result.split(',')[139]}}">不舒适</option>
@@ -269,38 +376,43 @@
 				</tr>	
 				<tr>
 					<td><b>居住区的人文环境({{result.split(',')[140]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[140]}}" name="shhj7" id="shhj7"/>
 					<td><b>邻里社会特征</b></td>
                     <td>
 						<table class="addTable">
 							<tr>
 								<th>邻居的友好程度({{result.split(',')[141]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[141]}}" name="shhj8" id="shhj8"/>
 								<th>居民平均教育水平({{result.split(',')[145]}}%)  </th>
+								<input type="hidden" value="{{result.split(',')[145]}}" name="shhj9" id="shhj9"/>
 								<th>职业种类({{result.split(',')[149]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[149]}}" name="shhj10" id="shhj10"/>
 								<th>经济收入水平({{result.split(',')[152]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[152]}}" name="shhj11" id="shhj11"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="rwhj1">
 										<option value="{{result.split(',')[142]}}">友好</option>
 										<option value="{{result.split(',')[143]}}">一般</option>
 										<option value="{{result.split(',')[144]}}">无接触</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="rwhj2">
 										<option value="{{result.split(',')[146]}}">硕士</option>
 										<option value="{{result.split(',')[147]}}">本科</option>
 										<option value="{{result.split(',')[148]}}">高中</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="rwhj3">
 										<option value="{{result.split(',')[150]}}">公务员/事业单位</option>
 										<option value="{{result.split(',')[151]}}">生意人</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="rwhj4">
 										<option value="{{result.split(',')[153]}}">金领水平</option>
 										<option value="{{result.split(',')[154]}}">白领水平</option>
 										<option value="{{result.split(',')[155]}}">蓝领水平</option>
@@ -314,6 +426,7 @@
 <!--*****************************生活时间分配**********************************-->			
 			<table class="myTable">
 				<caption>生活时间分配({{result.split(',')[156]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[156]}}" name="shsjfp1" id="shsjfp1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="13%">
@@ -321,9 +434,10 @@
 				</colgroup>
 				<tr>
 					<td><b>工作时间({{result.split(',')[157]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[157]}}" name="shsjfp2" id="shsjfp2"/>
 					<td><b>每天工作时间(小时)</b></td>                    
 					<td>
-						<select	name="">
+						<select	id="sj1">
 							<option value="{{result.split(',')[158]}}">>8小时</option>
 							<option value="{{result.split(',')[159]}}">8小时</option>
 							<option value="{{result.split(',')[160]}}"><8小时</option>
@@ -332,9 +446,11 @@
 				</tr>	
 				<tr>
 					<td rowspan="2"><b>休息时间({{result.split(',')[161]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[161]}}" name="shsjfp3" id="shsjfp3"/>
 					<td><b>休闲娱乐活动({{result.split(',')[162]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[161]}}" name="shsjfp4" id="shsjfp4"/>
                    <td>
-						<select	name="">
+						<select	id="sj2">
 							<option value="{{result.split(',')[163]}}">经常</option>
 							<option value="{{result.split(',')[164]}}">偶尔</option>
 							<option value="{{result.split(',')[165]}}">无</option>
@@ -343,11 +459,12 @@
 				</tr>	
 				<tr>
 					<td><b>户外活动({{result.split(',')[166]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[161]}}" name="shsjfp5" id="shsjfp5"/>
 					<td>
-						<select	name="">
-							<option value="{{result.split(',')[165]}}">经常</option>
-							<option value="{{result.split(',')[165]}}">偶尔</option>
-							<option value="{{result.split(',')[165]}}">无</option>
+						<select	id="sj3">
+							<option value="{{result.split(',')[167]}}">经常</option>
+							<option value="{{result.split(',')[168]}}">偶尔</option>
+							<option value="{{result.split(',')[169]}}">无</option>
 						</select>
 					</td>
 				</tr>
@@ -355,6 +472,7 @@
 <!--*****************************收入来源**********************************-->			
 			<table class="myTable">
 				<caption>收入来源({{result.split(',')[170]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[170]}}" name="srly1" id="srly1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="13%">
@@ -362,30 +480,36 @@
 				</colgroup>
 				<tr>
 					<td><b>企业经营({{result.split(',')[171]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[171]}}" name="srly2" id="srly2"/>
 					<td></td>
                     <td>
 						<table class="addTable">
 							<tr>
 								<th>店铺/公司名称</th>
-								<th>法定代表人({{result.split(',')[172]}}%)</th>
-								<th>实际控制人({{result.split(',')[173]}}%)</th>
+								<th>法定代表人<!-- ({{result.split(',')[172]}}%) --></th>
+								<input type="hidden" value="{{result.split(',')[172]}}" name="srly3" id="srly3"/>
+								<th>实际控制人<!-- ({{result.split(',')[173]}}%) --></th>
+								<input type="hidden" value="{{result.split(',')[173]}}" name="srly4" id="srly4"/>
 								<th>股权集中度({{result.split(',')[175]}}%)</th>
-								<th>股权构成({{result.split(',')[179]}}%)</th>								
-								<th colspan="2">主营业务经营范围({{result.split(',')[183]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[175]}}" name="srly5" id="srly5"/>
+								<th>股权构成({{result.split(',')[179]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[179]}}" name="srly6" id="srly6"/>								
+								<th colspan="2">主营业务经营范围<!-- ({{result.split(',')[183]}}%) --></th>
+								<input type="hidden" value="{{result.split(',')[183]}}" name="srly7" id="srly7"/>
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput"/></td>
 								<td><input type="text" class="addinput"/></td>
 								<td><input type="text" class="addinput"/></td>
 								<td>
-									<select	name="">
+									<select	id="qyjy1">
 										<option value="{{result.split(',')[176]}}">股权高度集中</option>
 										<option value="{{result.split(',')[177]}}">股权平衡</option>
 										<option value="{{result.split(',')[178]}}">股权高度分散</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="qyjy2">
 										<option value="{{result.split(',')[180]}}">国家股东+法人股东+社会公众股东</option>
 										<option value="{{result.split(',')[181]}}">国家股东+法人股东</option>
 										<option value="{{result.split(',')[182]}}">法人股东+社会公众股东</option>
@@ -397,15 +521,19 @@
 								<th>店铺/公司固定电话</th>
 								<th>经营地址</th>
 								<th>经营年限({{result.split(',')[184]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[184]}}" name="srly8" id="srly8"/>
 								<th>雇员人数({{result.split(',')[192]}}%)</th>
-								<th>经营场所面积({{result.split(',')[200]}}%)</th>								
+								<input type="hidden" value="{{result.split(',')[192]}}" name="srly9" id="srly9"/>
+								<th>经营场所面积<!-- ({{result.split(',')[200]}}%) --></th>
+								<input type="hidden" value="{{result.split(',')[200]}}" name="srly10" id="srly10"/>
 								<th>店铺类型({{result.split(',')[201]}}%)</th>		
+								<input type="hidden" value="{{result.split(',')[201]}}" name="srly11" id="srly11"/>
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput"/></td>
 								<td><input type="text" class="addinput"/></td>
 								<td>
-									<select	name="">
+									<select	id="qyjy3">
 										<option value="{{result.split(',')[185]}}">>20年</option>
 										<option value="{{result.split(',')[186]}}">15-20年</option>
 										<option value="{{result.split(',')[187]}}">10-15年</option>
@@ -416,7 +544,7 @@
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="qyjy4">
 										<option value="{{result.split(',')[193]}}">>10000人</option>
 										<option value="{{result.split(',')[194]}}">5000-10000人</option>
 										<option value="{{result.split(',')[195]}}">1000-5000人</option>
@@ -428,7 +556,7 @@
 								</td>
 								<td><input type="text" class="addinput"/></td>
 								<td>
-									<select	name="">
+									<select	id="qyjy5">
 										<option value="{{result.split(',')[202]}}">贸易</option>
 										<option value="{{result.split(',')[203]}}">制造</option>
 										<option value="{{result.split(',')[204]}}">服务</option>
@@ -441,9 +569,10 @@
 				</tr>
 				<tr>
 					<td><b>其他收入来源({{result.split(',')[206]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[183]}}" name="srly12" id="srly12"/>
 					<td><b>第二职业</b></td>
                     <td>
-						<select	name="">
+						<select	id="qyjy6">
 							<option value="{{result.split(',')[207]}}">事业单位/公务员</option>
 							<option value="{{result.split(',')[208]}}">私企员工</option>
 						</select>
@@ -453,6 +582,7 @@
 <!--*****************************社会福利**********************************-->			
 			<table class="myTable">
 				<caption>社会福利({{result.split(',')[209]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[209]}}" name="shfl1" id="shfl1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="37%">
@@ -460,16 +590,17 @@
 					<col width="37%">
 				</colgroup>
 				<tr>
-					<td><b>社会保险({{result.split(',')[210]}}%)</b></td>                  
+					<td><b>社会保险({{result.split(',')[210]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[210]}}" name="shfl2" id="shfl2"/>                
 					<td>
-						<select	name="">
+						<select	id="shbx1">
 							<option value="{{result.split(',')[211]}}">有</option>
 							<option value="{{result.split(',')[212]}}">无</option>
 						</select>
 					</td>
 					<td><b>公积金({{result.split(',')[213]}}%)</b></td>                  
 					<td>
-						<select	name="">
+						<select	id="shbx2">
 							<option value="{{result.split(',')[214]}}">有</option>
 							<option value="{{result.split(',')[215]}}">无</option>
 						</select>
@@ -479,14 +610,17 @@
 <!--*****************************收入分配**********************************-->			
 			<table class="myTable">
 				<caption>收入分配({{result.split(',')[216]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[216]}}" name="srfp1" id="srfp1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="13%">
 					<col width="74%">
 				</colgroup>
 				<tr>
-					<td rowspan="2"><b>日常生活消费({{result.split(',')[217]}}%)</b></td>  
-					<td><b>消费结构({{result.split(',')[218]}}%)</b></td>                     
+					<td rowspan="2"><b>日常生活消费({{result.split(',')[217]}}%)</b></td> 
+					 <input type="hidden" value="{{result.split(',')[217]}}" name="srfp2" id="srfp2"/>
+					<td><b>消费结构({{result.split(',')[218]}}%)</b></td>            
+					         
 					<td>
 						<table class="addTable">
 							<tr>
@@ -507,9 +641,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>消费习惯({{result.split(',')[224]}}%)</b></td>                     
+					<td><b>消费习惯({{result.split(',')[224]}}%)</b></td>    
+					<input type="hidden" value="{{result.split(',')[224]}}" name="srfp3" id="srfp3"/>                 
 					<td>
-						<select	name="">
+						<select	id="xfxg1">
 							<option value="{{result.split(',')[225]}}">信用卡+现金</option>
 							<option value="{{result.split(',')[226]}}">现金</option>
 						</select>
@@ -517,9 +652,10 @@
 				</tr>
 				<tr>
 					<td rowspan="2"><b>理财结构({{result.split(',')[227]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[227]}}" name="srfp4" id="srfp4"/>
 					<td><b>储蓄、保险、理财产品、房地产、高风险产品占比</b></td>                     
 					<td>
-						<select	name="">
+						<select	id="xfxg2">
 							<option value="{{result.split(',')[228]}}">稳健型</option>
 							<option value="{{result.split(',')[229]}}">风险偏好型</option>
 							<option value="{{result.split(',')[230]}}">风险厌恶型</option>
@@ -530,6 +666,7 @@
 <!--*****************************健康状况**********************************-->			
 			<table class="myTable">
 				<caption>健康状况({{result.split(',')[231]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[231]}}" name="jkzk1" id="jkzk1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="13%">
@@ -537,31 +674,35 @@
 				</colgroup>
 				<tr>
 					<td><b>生理健康({{result.split(',')[232]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[232]}}" name="jkzk2" id="jkzk2"/>
 					<td><b></b></td>                     
 					<td>
 						<table class="addTable">
 							<tr>
 								<th>食欲状况({{result.split(',')[233]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[233]}}" name="jkzk3" id="jkzk3"/>
 								<th>睡眠质量({{result.split(',')[237]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[237]}}" name="jkzk4" id="jkzk4"/>
 								<th>定期体检({{result.split(',')[241]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[241]}}" name="jkzk5" id="jkzk5"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="sljk1">
 										<option value="{{result.split(',')[234]}}">良好</option>
 										<option value="{{result.split(',')[235]}}">一般</option>
 										<option value="{{result.split(',')[236]}}">差</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="sljk2">
 										<option value="{{result.split(',')[238]}}">8小时</option>
 										<option value="{{result.split(',')[239]}}">>8小时</option>
 										<option value="{{result.split(',')[240]}}"><8小时</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="sljk3">
 										<option value="{{result.split(',')[242]}}">1年</option>
 										<option value="{{result.split(',')[243]}}">2年</option>
 										<option value="{{result.split(',')[244]}}">>2年</option>
@@ -573,23 +714,26 @@
 				</tr>
 				<tr>
 					<td><b>心理健康({{result.split(',')[245]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[245]}}" name="jkzk6" id="jkzk6"/>
 					<td><b></b></td>                     
 					<td>
 						<table class="addTable">
 							<tr>
 								<th>记忆状况({{result.split(',')[246]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[246]}}" name="jkzk7" id="jkzk7"/>
 								<th>有无消极感受({{result.split(',')[250]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[250]}}" name="jkzk8" id="jkzk8"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="sljk4">
 										<option value="{{result.split(',')[247]}}">从不忘记任何事</option>
 										<option value="{{result.split(',')[248]}}">偶尔忘记事情</option>
 										<option value="{{result.split(',')[249]}}">时常忘记事情</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="sljk5">
 										<option value="{{result.split(',')[251]}}">无</option>
 										<option value="{{result.split(',')[252]}}">偶尔</option>
 										<option value="{{result.split(',')[253]}}">经常</option>
@@ -603,6 +747,7 @@
 <!--*****************************家庭关系**********************************-->			
 			<table class="myTable">
 				<caption>家庭关系({{result.split(',')[254]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[254]}}" name="jtgx1" id="jtgx1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="13%">
@@ -610,9 +755,10 @@
 				</colgroup>
 				<tr>
 					<td><b>与配偶的情感关系({{result.split(',')[255]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[255]}}" name="jtgx2" id="jtgx2"/>
 					<td><b></b></td>                     
 					<td>
-						<select	name="">
+						<select	id="poqggx1">
 							<option value="{{result.split(',')[256]}}">与配偶感情非常好</option>
 							<option value="{{result.split(',')[257]}}">偶尔吵架</option>
 							<option value="{{result.split(',')[258]}}">经常吵架</option>
@@ -635,9 +781,10 @@
 				</tr>
 				<tr>
 					<td><b>与家庭其他成员关系({{result.split(',')[259]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[259]}}" name="jtgx3" id="jtgx3"/>
 					<td><b></b></td>                     
 					<td>
-						<select	name="">
+						<select	id="poqggx2">
 							<option value="{{result.split(',')[260]}}">相处和睦</option>
 							<option value="{{result.split(',')[261]}}">偶尔吵架</option>
 							<option value="{{result.split(',')[262]}}">经常吵架</option>
@@ -651,9 +798,10 @@
 				</tr>	
 				<tr>
 					<td><b>参与家庭事务决策能力({{result.split(',')[263]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[263]}}" name="jtgx4" id="jtgx4"/>
 					<td><b></b></td>                     
 					<td>
-						<select	name="">
+						<select	id="poqggx3">
 							<option value="{{result.split(',')[264]}}">家庭主要决策人</option>
 							<option value="{{result.split(',')[265]}}">偶尔参与决策</option>
 							<option value="{{result.split(',')[266]}}">从不参与决策</option>
@@ -664,6 +812,7 @@
 <!--*****************************社交状况**********************************-->			
 			<table class="myTable">
 				<caption>社交状况({{result.split(',')[267]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[267]}}" name="sjzk1" id="sjzk1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="13%">
@@ -671,9 +820,10 @@
 				</colgroup>
 				<tr>
 					<td><b>频繁程度({{result.split(',')[268]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[268]}}" name="sjzk2" id="sjzk2"/>
 					<td><b>聚会的次数/周</b></td>                     
 					<td>
-						<select	name="">
+						<select	id="pfcd1">
 							<option value="{{result.split(',')[269]}}">每天</option>
 							<option value="{{result.split(',')[270]}}">5-6次</option>
 							<option value="{{result.split(',')[271]}}">3-5次</option>
@@ -684,22 +834,25 @@
 				</tr>
 				<tr>
 					<td><b>交友状况({{result.split(',')[274]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[274]}}" name="sjzk3" id="sjzk3"/>
 					<td><b></b></td>                     
 					<td>
 						<table class="addTable">
 							<tr>
 								<th>朋友的工作({{result.split(',')[275]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[275]}}" name="sjzk4" id="sjzk4"/>
 								<th>朋友的学历({{result.split(',')[278]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[278]}}" name="sjzk5" id="sjzk5"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="pfcd2">
 										<option value="{{result.split(',')[276]}}">公务员/事业单位</option>
 										<option value="{{result.split(',')[277]}}">做生意</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="pfcd3">
 										<option value="{{result.split(',')[279]}}">硕士</option>
 										<option value="{{result.split(',')[280]}}">本科</option>
 										<option value="{{result.split(',')[281]}}">高中</option>
@@ -710,117 +863,34 @@
 					</td>
 				</tr>
 			</table>
-<!--*****************************资产负债状况**********************************-->			
+		<!--*****************************资产负债状况**********************************-->
 			<table class="myTable">
-				<caption>资产负债状况</caption>
+				<caption>资产负债状况({{result.split(',')[282]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[282]}}" name="zcfzzk1" id="zcfzzk1"/>
 				<colgroup>
 					<col width="13%">
 					<col width="13%">
 					<col width="74%">
 				</colgroup>
 				<tr>
-					<td rowspan="2"><b>资产</b></td>  
-					<td><b>储蓄账户({{result.split(',')[90]}}%)</b></td>            
-					<td>
-						<table class="addTable">
-							<tr>
-								<th rowspan="2">生意帐户({{result.split(',')[91]}}%)</th>
-								<th>开户行</th>
-								<th>开户账号</th>
-								<th>储蓄金额</th>
-							</tr>
-							<tr>
-								<td><input type="text" class="addinput"/></td>
-								<td><input type="text" class="addinput"/></td>
-								<td>
-									<select	name="">
-										<option value="{{result.split(',')[92]}}">≥5000万</option>
-										<option value="{{result.split(',')[93]}}">3000-5000万</option>
-										<option value="{{result.split(',')[94]}}">1000-3000万</option>
-										<option value="{{result.split(',')[95]}}">500-1000万</option>
-										<option value="{{result.split(',')[96]}}">300-500万</option>
-										<option value="{{result.split(',')[97]}}">≤300万</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<th rowspan="2">个人银行帐户({{result.split(',')[98]}}%)</th>
-								<th>主要银行开户行</th>
-								<th>主要账户号</th>
-								<th>储蓄金额</th>
-							</tr>
-							<tr>
-								<td><input type="text" class="addinput"/></td>
-								<td><input type="text" class="addinput"/></td>
-								<td>
-									<select	name="">
-										<option value="{{result.split(',')[99]}}">≥1000万</option>
-										<option value="{{result.split(',')[100]}}">500-1000万</option>
-										<option value="{{result.split(',')[101]}}">300-500万</option>
-										<option value="{{result.split(',')[102]}}">100-300万</option>
-										<option value="{{result.split(',')[103]}}">50-100万</option>
-										<option value="{{result.split(',')[104]}}">≤50万</option>
-									</select>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td><b>其他应收账款({{result.split(',')[105]}}%)</b></td>            
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>借出日期</th>
-								<th>回收期限({{result.split(',')[106]}}%)</th>
-								<th>金额占储蓄比例({{result.split(',')[111]}}%)</th>
-								<th>收息({{result.split(',')[117]}}%)</th>
-							</tr>
-							<tr>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
-								<td>
-									<select	name="">
-										<option value="{{result.split(',')[107]}}">≤1年</option>
-										<option value="{{result.split(',')[108]}}">1-2年</option>
-										<option value="{{result.split(',')[109]}}">2-3年</option>
-										<option value="{{result.split(',')[110]}}">>3年</option>
-									</select>
-								</td>
-								<td>
-									<select	name="">
-										<option value="{{result.split(',')[112]}}">≥30%</option>
-										<option value="{{result.split(',')[113]}}">20%-30%</option>
-										<option value="{{result.split(',')[114]}}">10%-20%</option>
-										<option value="{{result.split(',')[115]}}">5%-10%</option>
-										<option value="{{result.split(',')[116]}}"><5%</option>
-									</select>
-								</td>
-								<td>
-									<select	name="">
-										<option value="{{result.split(',')[118]}}"><1000元</option>
-										<option value="{{result.split(',')[119]}}">1000-3000元</option>
-										<option value="{{result.split(',')[120]}}">3000-5000元</option>
-										<option value="{{result.split(',')[121]}}">>5000元</option>
-									</select>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td rowspan="3"><b>负债({{result.split(',')[282]}}%)</b></td>  
-					<td><b>贷记卡({{result.split(',')[283]}}%)</b></td>            
+					<td rowspan="3"><b>负债</b></td>  
+					
+					<td><b>贷记卡({{result.split(',')[283]}}%)</b></td>    
+					<input type="hidden" value="{{result.split(',')[283]}}" name="zcfzzk2" id="zcfzzk2"/>        
 					<td>
 						<table class="addTable">
 							<tr>
 								<th>信用卡总数({{result.split(',')[284]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[284]}}" name="zcfzzk3" id="zcfzzk3"/>
 								<th>单卡最高授信额度({{result.split(',')[289]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[289]}}" name="zcfzzk4" id="zcfzzk4"/>
 								<th>已用额度</th>
 								<th>逾期情况({{result.split(',')[296]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[296]}}" name="zcfzzk5" id="zcfzzk5"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="xykzs1">
 										<option value="{{result.split(',')[285]}}">3张以上</option>
 										<option value="{{result.split(',')[286]}}">2张</option>
 										<option value="{{result.split(',')[287]}}">1张</option>
@@ -828,7 +898,7 @@
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs2">
 										<option value="{{result.split(',')[290]}}">>200万</option>
 										<option value="{{result.split(',')[291]}}">100-200万</option>
 										<option value="{{result.split(',')[292]}}">50-100万</option>
@@ -839,7 +909,7 @@
 								</td>
 								<td><input type="text" class="addinput"/></td>								
 								<td>
-									<select	name="">
+									<select	id="xykzs3">
 										<option value="{{result.split(',')[297]}}">10次以上</option>
 										<option value="{{result.split(',')[298]}}">8-10次</option>
 										<option value="{{result.split(',')[299]}}">6-7次</option>
@@ -854,34 +924,39 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>银行贷款({{result.split(',')[304]}}%)</b></td>            
+					<td><b>银行贷款({{result.split(',')[304]}}%)</b></td> 
+					<input type="hidden" value="{{result.split(',')[304]}}" name="zcfzzk6" id="zcfzzk6"/>           
 					<td>
 						<b>历史贷款笔数({{result.split(',')[305]}}%)</b>
+						<input type="hidden" value="{{result.split(',')[305]}}" name="zcfzzk7" id="zcfzzk7"/>
 						<table class="addTable">
 							<tr>
 								<th>放款日期</th>
 								<th>贷款机构({{result.split(',')[306]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[306]}}" name="zcfzzk8" id="zcfzzk8"/>
 								<th>贷款金额({{result.split(',')[310]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[310]}}" name="zcfzzk9" id="zcfzzk9"/>
 								<th colspan="2">利率({{result.split(',')[314]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[314]}}" name="zcfzzk10" id="zcfzzk10"/>
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
 								<td>
-									<select	name="">
+									<select	id="xykzs4">
 										<option value="{{result.split(',')[307]}}">农商行</option>
 										<option value="{{result.split(',')[308]}}">城商行</option>
 										<option value="{{result.split(',')[309]}}">国有4大行</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs5">
 										<option value="{{result.split(',')[311]}}">>1000万</option>
 										<option value="{{result.split(',')[312]}}">500-1000万</option>
 										<option value="{{result.split(',')[313]}}"><500万</option>
 									</select>
 								</td>								
 								<td colspan="2">
-									<select	name="">
+									<select	id="xykzs6">
 										<option value="{{result.split(',')[315]}}">高于一般水平</option>
 										<option value="{{result.split(',')[316]}}">一般水平</option>
 										<option value="{{result.split(',')[317]}}">低于一般水平</option>
@@ -890,21 +965,25 @@
 							</tr>
 							<tr>
 								<th>期限({{result.split(',')[318]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[318]}}" name="zcfzzk11" id="zcfzzk11"/>
 								<th>用途({{result.split(',')[322]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[322]}}" name="zcfzzk12" id="zcfzzk12"/>
 								<th>还款日期</th>
 								<th>是否有担保({{result.split(',')[327]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[327]}}" name="zcfzzk13" id="zcfzzk13"/>
 								<th>逾期情况({{result.split(',')[330]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[330]}}" name="zcfzzk14" id="zcfzzk14"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="xykzs7">
 										<option value="{{result.split(',')[319]}}">>1年</option>
 										<option value="{{result.split(',')[320]}}">6个月-1年</option>
 										<option value="{{result.split(',')[321]}}"><6个月</option>
 									</select>
 								</td>								
 								<td>
-									<select	name="">
+									<select	id="xykzs8">
 										<option value="{{result.split(',')[323]}}">房贷</option>
 										<option value="{{result.split(',')[324]}}">车贷</option>
 										<option value="{{result.split(',')[325]}}">经营</option>
@@ -913,13 +992,13 @@
 								</td>
 								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
 								<td>
-									<select	name="">
+									<select	id="xykzs9">
 										<option value="{{result.split(',')[328]}}">是</option>
 										<option value="{{result.split(',')[329]}}">否</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs10">
 										<option value="{{result.split(',')[331]}}">10次以上</option>
 										<option value="{{result.split(',')[332]}}">8-10次</option>
 										<option value="{{result.split(',')[333]}}">6-7次</option>
@@ -932,31 +1011,35 @@
 							</tr>
 						</table>
 						<b>尚未到期笔数({{result.split(',')[338]}}%)</b>
+						<input type="hidden" value="{{result.split(',')[338]}}" name="zcfzzk15" id="zcfzzk15"/>
 						<table class="addTable">
 							<tr>
 								<th>放款日期</th>
 								<th>贷款机构({{result.split(',')[339]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[339]}}" name="zcfzzk16" id="zcfzzk16"/>
 								<th>贷款金额({{result.split(',')[343]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[343]}}" name="zcfzzk17" id="zcfzzk17"/>
 								<th colspan="2">利率({{result.split(',')[347]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[347]}}" name="zcfzzk18" id="zcfzzk18"/>
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
 								<td>
-									<select	name="">
+									<select	id="xykzs11">
 										<option value="{{result.split(',')[340]}}">农商行</option>
 										<option value="{{result.split(',')[341]}}">城商行</option>
 										<option value="{{result.split(',')[342]}}">国有4大行</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs12">
 										<option value="{{result.split(',')[344]}}">>1000万</option>
 										<option value="{{result.split(',')[345]}}">500-1000万</option>
 										<option value="{{result.split(',')[346]}}"><500万</option>
 									</select>
 								</td>								
 								<td colspan="2">
-									<select	name="">
+									<select	id="xykzs13">
 										<option value="{{result.split(',')[348]}}">高于一般水平</option>
 										<option value="{{result.split(',')[349]}}">一般水平</option>
 										<option value="{{result.split(',')[350]}}">低于一般水平</option>
@@ -965,21 +1048,25 @@
 							</tr>
 							<tr>
 								<th>期限({{result.split(',')[351]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[351]}}" name="zcfzzk19" id="zcfzzk19"/>
 								<th>用途({{result.split(',')[355]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[355]}}" name="zcfzzk20" id="zcfzzk20"/>
 								<th>还款日期</th>
 								<th>是否有担保({{result.split(',')[360]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[360]}}" name="zcfzzk21" id="zcfzzk21"/>
 								<th>逾期情况({{result.split(',')[363]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[363]}}" name="zcfzzk22" id="zcfzzk22"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="xykzs14">
 										<option value="{{result.split(',')[352]}}">>1年</option>
 										<option value="{{result.split(',')[353]}}">6个月-1年</option>
 										<option value="{{result.split(',')[354]}}"><6个月</option>
 									</select>
 								</td>								
 								<td>
-									<select	name="">
+									<select	id="xykzs15">
 										<option value="{{result.split(',')[356]}}">房贷</option>
 										<option value="{{result.split(',')[357]}}">车贷</option>
 										<option value="{{result.split(',')[358]}}">经营</option>
@@ -988,13 +1075,13 @@
 								</td>
 								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
 								<td>
-									<select	name="">
+									<select	id="xykzs16">
 										<option value="{{result.split(',')[361]}}">是</option>
 										<option value="{{result.split(',')[362]}}">否</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs17">
 										<option value="{{result.split(',')[364]}}">10次以上</option>
 										<option value="{{result.split(',')[365]}}">8-10次</option>
 										<option value="{{result.split(',')[366]}}">6-7次</option>
@@ -1009,38 +1096,43 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>其他借款({{result.split(',')[371]}}%)</b></td>            
+					<td><b>其他借款({{result.split(',')[371]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[371]}}" name="zcfzzk23" id="zcfzzk23"/>          
 					<td>
 						<table class="addTable">
 							<tr>
 								<th>借款来源({{result.split(',')[372]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[372]}}" name="zcfzzk24" id="zcfzzk24"/>
 								<th>借款金额({{result.split(',')[375]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[375]}}" name="zcfzzk25" id="zcfzzk25"/>
 								<th>利率({{result.split(',')[379]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[379]}}" name="zcfzzk26" id="zcfzzk26"/>
 								<th>期限({{result.split(',')[383]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[383]}}" name="zcfzzk27" id="zcfzzk27"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="xykzs18">
 										<option value="{{result.split(',')[373]}}">民间借贷</option>
 										<option value="{{result.split(',')[374]}}">小额借款公司</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs19">
 										<option value="{{result.split(',')[376]}}">>1000万</option>
 										<option value="{{result.split(',')[377]}}">500-1000万</option>
 										<option value="{{result.split(',')[378]}}"><500万</option>
 									</select>
 								</td>								
 								<td>
-									<select	name="">
+									<select	id="xykzs20">
 										<option value="{{result.split(',')[380]}}">高于一般水平</option>
 										<option value="{{result.split(',')[381]}}">一般水平</option>
 										<option value="{{result.split(',')[382]}}">低于一般水平</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs21">
 										<option value="{{result.split(',')[384]}}">>1年</option>
 										<option value="{{result.split(',')[385]}}">6个月-1年</option>
 										<option value="{{result.split(',')[386]}}">3个月-6个月</option>
@@ -1050,13 +1142,16 @@
 							</tr>
 							<tr>
 								<th>用途({{result.split(',')[388]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[388]}}" name="zcfzzk28" id="zcfzzk28"/>
 								<th>借款日期</th>
 								<th>剩余还款期限({{result.split(',')[392]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[392]}}" name="zcfzzk29" id="zcfzzk29"/>
 								<th>是否正常还款({{result.split(',')[397]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[397]}}" name="zcfzzk30" id="zcfzzk30"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="xykzs22">
 										<option value="{{result.split(',')[389]}}">经营</option>
 										<option value="{{result.split(',')[390]}}">消费</option>
 										<option value="{{result.split(',')[391]}}">其他</option>
@@ -1064,7 +1159,7 @@
 								</td>
 								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
 								<td>
-									<select	name="">
+									<select	id="xykzs23">
 										<option value="{{result.split(',')[393]}}">1年</option>
 										<option value="{{result.split(',')[394]}}">6个月-1年</option>
 										<option value="{{result.split(',')[395]}}">3个月-6个月</option>
@@ -1072,7 +1167,7 @@
 									</select>
 								</td>								
 								<td>
-									<select	name="">
+									<select	id="xykzs24">
 										<option value="{{result.split(',')[398]}}">是</option>
 										<option value="{{result.split(',')[399]}}">否</option>
 									</select>
@@ -1083,17 +1178,21 @@
 				</tr>
 				<tr>
 					<td><b>担保情况({{result.split(',')[400]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[400]}}" name="zcfzzk31" id="zcfzzk31"/>
 					<td><b></b></td> 
 					<td>
 						<table class="addTable">
 							<tr>
 								<th>担保金额(占本人自有资产比例)({{result.split(',')[401]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[401]}}" name="zcfzzk32" id="zcfzzk32"/>
 								<th>担保贷款用途({{result.split(',')[407]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[407]}}" name="zcfzzk33" id="zcfzzk33"/>
 								<th>担保期限({{result.split(',')[410]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[410]}}" name="zcfzzk34" id="zcfzzk34"/>
 							</tr>
 							<tr>
 								<td>
-									<select	name="">
+									<select	id="xykzs25">
 										<option value="{{result.split(',')[402]}}">>100%</option>
 										<option value="{{result.split(',')[403]}}">50%-100%</option>
 										<option value="{{result.split(',')[404]}}">10%-50%</option>
@@ -1102,13 +1201,13 @@
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs26">
 										<option value="{{result.split(',')[408]}}">经营</option>
 										<option value="{{result.split(',')[409]}}">其他</option>
 									</select>
 								</td>
 								<td>
-									<select	name="">
+									<select	id="xykzs27">
 										<option value="{{result.split(',')[411]}}">5年以上</option>
 										<option value="{{result.split(',')[412]}}">3-5年</option>
 										<option value="{{result.split(',')[413]}}">2年</option>
@@ -1132,7 +1231,7 @@
 			</table>
 			<div class="pagebar">			
 			<div class="controlbtn">
-				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<input type="submit" class="btn btn-info" value="提交">
 				<a class="btn btn-info" onclick="sum()" title="评分">评分</a>
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
@@ -1141,12 +1240,103 @@
 		<script type="text/javascript">
 			function sum(){
 				var total=0;
-				//资产状况
+				//资产状况--自有
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#aj").val());
-				alert((parseFloat($("#zczk1").val())/100));
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#fcsl").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#sjzz").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#zfmj").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#zxqk").val());		
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#jznx").val());	
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#cn").val());
+				//资产状况--租
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk5").val())/100)*parseInt($("#zpsl").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk6").val())/100)*parseInt($("#zpmj").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk7").val())/100)*parseInt($("#zpzj").val());
+				//车辆
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseInt($("#clsl").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseInt($("#cljg").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseInt($("#clsj").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseInt($("#clcp").val());
+				//资产状况--储蓄
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk10").val())/100)*parseInt($("#syzh1").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk11").val())/100)*parseInt($("#syzh2").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk13").val())/100)*parseInt($("#syzh3").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk14").val())/100)*parseInt($("#syzh4").val());
+				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk15").val())/100)*parseInt($("#syzh5").val());
+				//生活环境
+				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj2").val())/100)*(parseFloat($("#shhj3").val())/100)*parseInt($("#kghj1").val());
+				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj2").val())/100)*(parseFloat($("#shhj4").val())/100)*parseInt($("#kghj2").val());
+				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj2").val())/100)*(parseFloat($("#shhj5").val())/100)*parseInt($("#kghj3").val());
+				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj2").val())/100)*(parseFloat($("#shhj6").val())/100)*parseInt($("#kghj4").val());
+				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj8").val())/100)*parseInt($("#rwhj1").val());
+				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj9").val())/100)*parseInt($("#rwhj2").val());
+				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj10").val())/100)*parseInt($("#rwhj3").val());
+				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj11").val())/100)*parseInt($("#rwhj4").val());
+				//生活时间分配
+				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp2").val())/100)*parseInt($("#sj1").val());
+				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp3").val())/100)*(parseFloat($("#shsjfp4").val())/100)*parseInt($("#sj2").val());
+				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp3").val())/100)*(parseFloat($("#shsjfp5").val())/100)*parseInt($("#sj3").val());
+				//收入来源--企业经营
+				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly5").val())/100)*parseInt($("#qyjy1").val());
+				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly6").val())/100)*parseInt($("#qyjy2").val());
+				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly8").val())/100)*parseInt($("#qyjy3").val());
+				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly9").val())/100)*parseInt($("#qyjy4").val());
+				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly11").val())/100)*parseInt($("#qyjy5").val());
+				//收入来源--其他收入来源
+				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly12").val())/100)*parseInt($("#qyjy6").val());
+				//社会福利
+				total+=(parseFloat($("#shfl1").val())/100)*(parseFloat($("#shfl2").val())/100)*parseInt($("#shbx1").val());
+				total+=(parseFloat($("#shfl1").val())/100)*(parseFloat($("#shfl2").val())/100)*parseInt($("#shbx2").val());
+				//收入分配
+				total+=(parseFloat($("#srfp1").val())/100)*(parseFloat($("#srfp2").val())/100)*(parseFloat($("#srfp3").val())/100)*parseInt($("#xfxg1").val());
+				total+=(parseFloat($("#srfp1").val())/100)*(parseFloat($("#srfp2").val())/100)*(parseFloat($("#srfp4").val())/100)*parseInt($("#xfxg2").val());
+				//健康状况
+				total+=(parseFloat($("#jkzk1").val())/100)*(parseFloat($("#jkzk2").val())/100)*(parseFloat($("#jkzk3").val())/100)*parseInt($("#sljk1").val());
+				total+=(parseFloat($("#jkzk1").val())/100)*(parseFloat($("#jkzk2").val())/100)*(parseFloat($("#jkzk4").val())/100)*parseInt($("#sljk2").val());
+				total+=(parseFloat($("#jkzk1").val())/100)*(parseFloat($("#jkzk2").val())/100)*(parseFloat($("#jkzk5").val())/100)*parseInt($("#sljk3").val());
+				total+=(parseFloat($("#jkzk1").val())/100)*(parseFloat($("#jkzk6").val())/100)*(parseFloat($("#jkzk7").val())/100)*parseInt($("#sljk4").val());
+				total+=(parseFloat($("#jkzk1").val())/100)*(parseFloat($("#jkzk6").val())/100)*(parseFloat($("#jkzk8").val())/100)*parseInt($("#sljk5").val());
+				//家庭关系
+				total+=(parseFloat($("#jtgx1").val())/100)*(parseFloat($("#jtgx2").val())/100)*parseInt($("#poqggx1").val());
+				total+=(parseFloat($("#jtgx1").val())/100)*(parseFloat($("#jtgx3").val())/100)*parseInt($("#poqggx2").val());
+				total+=(parseFloat($("#jtgx1").val())/100)*(parseFloat($("#jtgx4").val())/100)*parseInt($("#poqggx3").val());
+				//社交状况
+				total+=(parseFloat($("#sjzk1").val())/100)*(parseFloat($("#sjzk2").val())/100)*parseInt($("#pfcd1").val());
+				total+=(parseFloat($("#sjzk1").val())/100)*(parseFloat($("#sjzk3").val())/100)*(parseFloat($("#sjzk4").val())/100)*parseInt($("#pfcd2").val());
+				total+=(parseFloat($("#sjzk1").val())/100)*(parseFloat($("#sjzk3").val())/100)*(parseFloat($("#sjzk5").val())/100)*parseInt($("#pfcd3").val());
+				//资产负债表
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk2").val())/100)*(parseFloat($("#zcfzzk3").val())/100)*parseInt($("#xykzs1").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk2").val())/100)*(parseFloat($("#zcfzzk4").val())/100)*parseInt($("#xykzs2").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk2").val())/100)*(parseFloat($("#zcfzzk5").val())/100)*parseInt($("#xykzs3").val());
 
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk8").val())/100)*parseInt($("#xykzs4").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk9").val())/100)*parseInt($("#xykzs5").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk10").val())/100)*parseInt($("#xykzs6").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk11").val())/100)*parseInt($("#xykzs7").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk12").val())/100)*parseInt($("#xykzs8").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk13").val())/100)*parseInt($("#xykzs9").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk14").val())/100)*parseInt($("#xykzs10").val());
 
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk16").val())/100)*parseInt($("#xykzs11").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk17").val())/100)*parseInt($("#xykzs12").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk18").val())/100)*parseInt($("#xykzs13").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk19").val())/100)*parseInt($("#xykzs14").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk20").val())/100)*parseInt($("#xykzs15").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk21").val())/100)*parseInt($("#xykzs16").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk22").val())/100)*parseInt($("#xykzs17").val());
 
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk25").val())/100)*parseInt($("#xykzs19").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk26").val())/100)*parseInt($("#xykzs20").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk27").val())/100)*parseInt($("#xykzs21").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk28").val())/100)*parseInt($("#xykzs22").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk29").val())/100)*parseInt($("#xykzs23").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk30").val())/100)*parseInt($("#xykzs24").val());
+				
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk32").val())/100)*parseInt($("#xykzs25").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk33").val())/100)*parseInt($("#xykzs26").val());
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk34").val())/100)*parseInt($("#xykzs27").val());
+
+				$("#score_result").val(total);
 			}
 		</script>
 	</body>

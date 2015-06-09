@@ -24,7 +24,7 @@
 				<caption>道德品质</caption>			
 		<!--*****************************家庭情况**********************************-->
 				<tr>
-					<td rowspan="4"><b>家庭情况</b><br/><input type="text" name="jtqk1" value="" onkeyup="value=value.replace(/[^\d]/g,'')"/>%</td>
+					<td rowspan="4"><b>家庭情况</b><br/><input type="text" name="name1" value="" onkeyup="value=value.replace(/[^\d]/g,'')"/>%</td>
 					<td rowspan="2"><b>家庭成员状况</b><br/><input type="text" name="name2" />%</td>
 					<td><b>家庭其他成员经济收入来源</b><br/><input type="text" name="name3" />%</td>
 					<td>
@@ -469,25 +469,30 @@
 				var result = "{{result}}";
 				if(result!=''){
 					$("input").each(function(i){
-					    $(this).val(result.split(",")[i]);
+					    var str = $(this).attr("name").substring(4,$(this).attr("name").length);
+					    $(this).val(result.split(",")[str-1]);
 					});
 				}
 			})
 
 			function getSum(){
-				if ($("#iframeForm").valid()) {
-					var score = new Array();
+				var score = new Array();
+				for(var j=1;j<100;j++){
+					var str = "name"+j;
 					$("input").each(function(i){
-					    var value = $(this).val();
-					    if(value==''){
-					    	score.push(0);
-					    }else{
-					    	score.push(value);
-					    } 
+						if($(this).attr("name")==str){
+							var value = $(this).val();
+						    if(value==''){
+						    	score.push(0);
+						    }else{
+						    	score.push(value);
+						    } 
+						}
+					    
 					});
-					var url = "/mxpg/cspz_ddpz_save/"+score;
-			   		window.location.href =  url;
 				}
+				var url = "/mxpg/cspz_ddpz_save/"+score;
+		   		window.location.href =  url;
 			}
 		</script>
 	</body>

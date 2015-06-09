@@ -1707,21 +1707,28 @@
 				var result = "{{result}}";
 				if(result!=''){
 					$("input").each(function(i){
-					    $(this).val(result.split(",")[i]);
+						var str = $(this).attr("name").substring(4,$(this).attr("name").length);
+					    $(this).val(result.split(",")[str-1]);
 					});
 				}
 			})
 			
 			function getSum(){
 				var score = new Array();
-				$("input").each(function(i){
-				    var value = $(this).val();
-				    if(value==''){
-				    	score.push(0);
-				    }else{
-				    	score.push(value);
-				    } 
-				});
+				for(var j=1;j<420;j++){
+					var str = "name"+j;
+					$("input").each(function(i){
+						if($(this).attr("name")==str){
+							var value = $(this).val();
+						    if(value==''){
+						    	score.push(0);
+						    }else{
+						    	score.push(value);
+						    } 
+						}
+					    
+					});
+				}
 				var url = "/mxpg/cspz_shzt_save/"+score;
 		   		window.location.href =  url;
 			}

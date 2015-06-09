@@ -146,7 +146,9 @@ def iframe_cspz():
 @app.route('/mxpg/cspz_ddpz', methods=['GET'])
 def cspz_ddpz():
     ddpz = Rcs_Parameter.query.filter_by(parameter_name="ddpz").first()
-    result=ddpz.parameter_value
+    result = ""
+    if ddpz:
+        result=ddpz.parameter_value
     return render_template("mxpg/cspz_ddpz.html",result=result)
 
 #参数配置--道德品质--保存
@@ -166,7 +168,9 @@ def cspz_jyzk():
 @app.route('/mxpg/cspz_shzt', methods=['GET'])
 def cspz_shzt():   
     shzt = Rcs_Parameter.query.filter_by(parameter_name="shzt").first()
-    result=shzt.parameter_value 
+    result = ""
+    if shzt:
+        result=shzt.parameter_value 
     return render_template("mxpg/cspz_shzt.html",result=result)
 
 #参数配置--生活状态--保存
@@ -176,6 +180,23 @@ def cspz_shzt_save(score):
     Rcs_Parameter("shzt",score).add()
     db.session.commit()
     return redirect("/mxpg/cspz_shzt")
+
+#参数配置--还款能力
+@app.route('/mxpg/cspz_hknl', methods=['GET'])
+def cspz_hknl():   
+    hknl = Rcs_Parameter.query.filter_by(parameter_name="hknl").first()
+    result = ""
+    if hknl:
+        result=hknl.parameter_value 
+    return render_template("mxpg/cspz_hknl.html",result=result)
+
+#参数配置--还款能力--保存
+@app.route('/mxpg/cspz_hknl_save/<score>', methods=['GET'])
+def cspz_hknl_save(score):
+    Rcs_Parameter.query.filter_by(parameter_name="hknl").delete()
+    Rcs_Parameter("hknl",score).add()
+    db.session.commit()
+    return redirect("/mxpg/cspz_hknl")
 
 #客户资料
 @app.route('/khzldy/khzl', methods=['GET'])
@@ -188,10 +209,29 @@ def khzl():
 def khzl_info():        
     return render_template("customer/jbzl.html")
 
-#还款能力页面
+#还款能力页面(iframe)
 @app.route('/khzldy/khzl_hknl/<int:id>', methods=['GET'])
 def khzl_hknl(id):        
     return render_template("customer/iframe.html",id=id)
+
+#还款能力页面
+@app.route('/khzldy/khzl_hk/<int:id>', methods=['GET'])
+def khzl_hk(id):   
+    hknl = Rcs_Parameter.query.filter_by(parameter_name="hknl").first()
+    result=hknl.parameter_value       
+    return render_template("customer/hknl.html",result=result,id=id)
+
+#还款能力保存
+@app.route('/khzldy/khzl_hknl_save/<int:id>', methods=['POST'])
+def khzl_hknl_save(id):     
+    total = request.form['score_result'] 
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    if score:
+        score.hknl_score=total
+    else:
+        Rcs_Application_Score(id,"",total,"","").add()
+    db.session.commit()
+    return redirect("/khzldy/khzl_hk/"+str(id))
 
 #资产负债
 @app.route('/khzldy/zcfzzk/<int:id>', methods=['GET'])
@@ -230,7 +270,7 @@ def khzl_shzk_save(id):
     total = request.form['score_result'] 
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
-        score.shzt_score=total
+        score.shzk_score=total
     else:
         Rcs_Application_Score(id,"","","",total).add()
     db.session.commit()
