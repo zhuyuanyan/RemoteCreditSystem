@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">			
+			.myTable td{font-size:13px;}
+			input[type=text]{width:80px;}
+		</style>
+	</head>
+	<body>		
+		<form class="iframeForm" id="iframeForm">		
+<!--*****************************还款能力**********************************-->
+			<table class="myTable">
+				<caption>还款能力</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="90%">
+				</colgroup>
+				<tr>
+					<td><b>资产负债率</b><br/><input type="text" name="name1" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>负债/资产》100%</th>
+								<th>90%《负债/资产《100%</th>
+								<th>80%《负债/资产《90%</th>
+								<th>70%《负债/资产《80%</th>
+								<th>60%《负债/资产《70%</th>
+								<th>50%《负债/资产《60%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name3" value=""/></td>
+								<td><input type="text" name="name2" value=""/></td>
+								<td><input type="text" name="name4" value=""/></td>
+								<td><input type="text" name="name5" value=""/></td>
+								<td><input type="text" name="name6" value=""/></td>
+								<td><input type="text" name="name7" value=""/></td>
+							</tr>
+							<tr>
+								<th>40%《负债/资产《50%</th>
+								<th>30%《负债/资产《40%</th>
+								<th>20%《负债/资产《30%</th>
+								<th>10%《负债/资产《20%</th>
+								<th colspan="2">0《负债/资产《10%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name8" value=""/></td>
+								<td><input type="text" name="name9" value=""/></td>
+								<td><input type="text" name="name10" value=""/></td>
+								<td><input type="text" name="name11" value=""/></td>
+								<td colspan="2"><input type="text" name="name12" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>流动比率</b><br/><input type="text" name="name13" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>流动资产/流动负债》200%</th>
+								<th>190%《流动资产/流动负债《200%</th>
+								<th>180%《流动资产/流动负债《190%</th>
+								<th>170%《流动资产/流动负债《180%</th>
+								<th>160%《流动资产/流动负债《170%</th>
+								<th>150%《流动资产/流动负债《160%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name14" value=""/></td>
+								<td><input type="text" name="name15" value=""/></td>
+								<td><input type="text" name="name16" value=""/></td>
+								<td><input type="text" name="name17" value=""/></td>
+								<td><input type="text" name="name18" value=""/></td>
+								<td><input type="text" name="name19" value=""/></td>
+							</tr>
+							<tr>
+								<th>140%《流动资产/流动负债《150%</th>
+								<th>130%《流动资产/流动负债《140%</th>
+								<th>120%《流动资产/流动负债《130%</th>
+								<th>110%《流动资产/流动负债《120%</th>
+								<th colspan="2">100%《流动资产/流动负债《110%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name20" value=""/></td>
+								<td><input type="text" name="name21" value=""/></td>
+								<td><input type="text" name="name22" value=""/></td>
+								<td><input type="text" name="name23" value=""/></td>
+								<td colspan="2"><input type="text" name="name24" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>速动比率</b><br/><input type="text" name="name25" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>速动资产/流动负债》100%</th>
+								<th>90%《速动资产/流动负债《100%</th>
+								<th>80%《速动资产/流动负债《90%</th>
+								<th>70%《速动资产/流动负债《80%</th>
+								<th>60%《速动资产/流动负债《70%</th>
+								<th>50%《速动资产/流动负债《60%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name26" value=""/></td>
+								<td><input type="text" name="name27" value=""/></td>
+								<td><input type="text" name="name28" value=""/></td>
+								<td><input type="text" name="name29" value=""/></td>
+								<td><input type="text" name="name30" value=""/></td>
+								<td><input type="text" name="name31" value=""/></td>
+							</tr>
+							<tr>
+								<th>40%《速动资产/流动负债《50%</th>
+								<th>30%《速动资产/流动负债《40%</th>
+								<th>20%《速动资产/流动负债《30%</th>
+								<th>10%《速动资产/流动负债《20%</th>
+								<th colspan="2">0%《速动资产/流动负债《10%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name32" value=""/></td>
+								<td><input type="text" name="name33" value=""/></td>
+								<td><input type="text" name="name34" value=""/></td>
+								<td><input type="text" name="name35" value=""/></td>
+								<td colspan="2"><input type="text" name="name36" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>存货周转率</b><br/><input type="text" name="name37" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>销售成本/平均存货余额》20</th>
+								<th>17《销售成本/平均存货余额《20</th>
+								<th>14《销售成本/平均存货余额《17</th>
+								<th>11《销售成本/平均存货余额《14</th>
+								<th>8《销售成本/平均存货余额《11</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name38" value=""/></td>
+								<td><input type="text" name="name39" value=""/></td>
+								<td><input type="text" name="name40" value=""/></td>
+								<td><input type="text" name="name41" value=""/></td>
+								<td><input type="text" name="name42" value=""/></td>
+							</tr>
+							<tr>
+								<th>5《销售成本/平均存货余额《8</th>
+								<th>3《销售成本/平均存货余额《5</th>
+								<th>1《销售成本/平均存货余额《3</th>
+								<th colspan="2">0《销售成本/平均存货余额《1</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name43" value=""/></td>
+								<td><input type="text" name="name44" value=""/></td>
+								<td><input type="text" name="name45" value=""/></td>
+								<td colspan="2"><input type="text" name="name46" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>应收账款周转率</b><br/><input type="text" name="name47" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》3</th>
+								<th>2.5《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2《3</th>
+								<th>2《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》2.5</th>
+								<th>1.5《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》2</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name48" value=""/></td>
+								<td><input type="text" name="name49" value=""/></td>
+								<td><input type="text" name="name50" value=""/></td>
+								<td><input type="text" name="name51" value=""/></td>
+							</tr>
+							<tr>
+								<th>1《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》1.5</th>
+								<th>0.5《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》1</th>
+								<th colspan="2">0《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2《0.5</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name52" value=""/></td>
+								<td><input type="text" name="name53" value=""/></td>
+								<td colspan="2"><input type="text" name="name54" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>现金比率</b><br/><input type="text" name="name55" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>35%≤（现金+现金等价物）/流动负债<40%</th>
+								<th>30%≤（现金+现金等价物）/流动负债<35%</th>
+								<th>25%≤（现金+现金等价物）/流动负债<30%</th>
+								<th>20%≤（现金+现金等价物）/流动负债<25%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name56" value=""/></td>
+								<td><input type="text" name="name57" value=""/></td>
+								<td><input type="text" name="name58" value=""/></td>
+								<td><input type="text" name="name59" value=""/></td>
+							</tr>
+							<tr>
+								<th>15%≤（现金+现金等价物）/流动负债<20%</th>
+								<th>10%≤（现金+现金等价物）/流动负债<15%</th>
+								<th>5%≤（现金+现金等价物）/流动负债<10%</th>
+								<th>0%≤（现金+现金等价物）/流动负债<5%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name60" value=""/></td>
+								<td><input type="text" name="name61" value=""/></td>
+								<td><input type="text" name="name62" value=""/></td>
+								<td><input type="text" name="name63" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>总资产周转率</b><br/><input type="text" name="name64" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>销售收入/总资产》0.8</th>
+								<th>0.7《销售收入/总资产《0.8</th>
+								<th>0.6《销售收入/总资产《0.7</th>
+								<th>0.5《销售收入/总资产《0.6</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name65" value=""/></td>
+								<td><input type="text" name="name66" value=""/></td>
+								<td><input type="text" name="name67" value=""/></td>
+								<td><input type="text" name="name68" value=""/></td>
+							</tr>
+							<tr>
+								<th>0.4《销售收入/总资产《0.5</th>
+								<th>0.3《销售收入/总资产《0.4</th>
+								<th>0.2《销售收入/总资产《0.3</th>
+								<th>0.1《销售收入/总资产《0.2</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name69" value=""/></td>
+								<td><input type="text" name="name70" value=""/></td>
+								<td><input type="text" name="name71" value=""/></td>
+								<td><input type="text" name="name72" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>营业周期</b><br/><input type="text" name="name73" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>1《存货周转天数+应收账款周转天数《7</th>
+								<th>7《存货周转天数+应收账款周转天数《15</th>
+								<th>15《存货周转天数+应收账款周转天数《30</th>
+								<th>30《存货周转天数+应收账款周转天数《45</th>
+								<th>45《存货周转天数+应收账款周转天数《75</th>
+								<th>75《存货周转天数+应收账款周转天数《105</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name74" value=""/></td>
+								<td><input type="text" name="name75" value=""/></td>
+								<td><input type="text" name="name76" value=""/></td>
+								<td><input type="text" name="name77" value=""/></td>
+								<td><input type="text" name="name78" value=""/></td>
+								<td><input type="text" name="name79" value=""/></td>
+							</tr>
+							<tr>
+								<th>105《存货周转天数+应收账款周转天数《135</th>
+								<th>135《存货周转天数+应收账款周转天数《170</th>
+								<th>170《存货周转天数+应收账款周转天数《220</th>
+								<th>220《存货周转天数+应收账款周转天数《270</th>
+								<th colspan="2">270《存货周转天数+应收账款周转天数</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name80" value=""/></td>
+								<td><input type="text" name="name81" value=""/></td>
+								<td><input type="text" name="name82" value=""/></td>
+								<td><input type="text" name="name83" value=""/></td>
+								<td colspan="2"><input type="text" name="name84" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>流动资产周转率（次）</b><br/><input type="text" name="name85" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>0.8《主营业务收入净额/平均流动资产总额</th>
+								<th>0.7《主营业务收入净额/平均流动资产总额《0.8</th>
+								<th>0.6《主营业务收入净额/平均流动资产总额《0.7</th>
+								<th>0.5《主营业务收入净额/平均流动资产总额《0.6</th>
+								<th>0.4《主营业务收入净额/平均流动资产总额《0.5</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name86" value=""/></td>
+								<td><input type="text" name="name87" value=""/></td>
+								<td><input type="text" name="name88" value=""/></td>
+								<td><input type="text" name="name89" value=""/></td>
+								<td><input type="text" name="name90" value=""/></td>
+							</tr>
+							<tr>
+								<th>0.3《主营业务收入净额/平均流动资产总额《0.4</th>
+								<th>0.2《主营业务收入净额/平均流动资产总额《0.3</th>
+								<th>0.1《主营业务收入净额/平均流动资产总额《0.2</th>
+								<th colspan="2">0《主营业务收入净额/平均流动资产总额《0.1</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name91" value=""/></td>
+								<td><input type="text" name="name92" value=""/></td>
+								<td><input type="text" name="name93" value=""/></td>
+								<td colspan="2"><input type="text" name="name94" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>资产收益率</b><br/><input type="text" name="name95" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>0《净收益/资产总额《0.15</th>
+								<th>0.15《净收益/资产总额《0.2</th>
+								<th>0.2《净收益/资产总额《0.25</th>
+								<th>0.25《净收益/资产总额《0.3</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name96" value=""/></td>
+								<td><input type="text" name="name97" value=""/></td>
+								<td><input type="text" name="name98" value=""/></td>
+								<td><input type="text" name="name99" value=""/></td>
+							</tr>
+							<tr>
+								<th>0.3《净收益/资产总额《0.35</th>
+								<th>0.35《净收益/资产总额《0.39</th>
+								<th colspan="2">0.39《净收益/资产总额</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name100" value=""/></td>
+								<td><input type="text" name="name101" value=""/></td>
+								<td colspan="2"><input type="text" name="name102" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+<!--*****************************交叉检验**********************************-->
+			<table class="myTable">
+				<caption>交叉检验</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="40%">
+					<col width="10%">
+				</colgroup>
+				<tr>
+					<td rowspan="9"><b>营业额交叉检验</b></td>
+					<td colspan="2">
+						<b>1，年营业额=期末现金-期初现金+经营性现金流出（现金流）</b>
+					</td>
+					<td><input type="text" name="name103"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>2,年营业额=淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数（包括主导业务1，主导业务2，其他业务）</b>
+					</td>
+					<td><input type="text" name="name104"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>3.年营业额=产成品金额*（365/产成品运转周期)（存货产成品）</b>
+					</td>
+					<td><input type="text" name="name105"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>4，年营业额=主营业务成本/[1-（主营业务收入-主营业务成本）/主营业务收入]（主营业务）</b>
+					</td>
+					<td><input type="text" name="name106"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>5，年营业额=企业增值税金额/企业增值税税率</b>
+					</td>
+					<td><input type="text" name="name107"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>6,{（365/原材料运转周期）*原材料金额）/[1-（主营业务收入-主营业务成本）/主营业务收入]}*12</b>
+					</td>
+					<td><input type="text" name="name108"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>7，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务1）</b>
+					</td>
+					<td><input type="text" name="name109"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>8，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务2）</b>
+					</td>
+					<td><input type="text" name="name110"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>9，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（其他业务）</b>
+					</td>
+					<td><input type="text" name="name111"/></td>
+				</tr>
+				<tr>
+					<td rowspan="4"><b>存货检验</b></td>
+					<td colspan="2">
+						<b>期间可变成本=上次进货时存货+期间购买的存货-现有存货</b>
+					</td>
+					<td><input type="text" name="name112"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>库房面积和库房空间大小</b>
+					</td>
+					<td><input type="text" name="name113"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>每年进货量与现存货量对比</b>
+					</td>
+					<td><input type="text" name="name114"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>必耗品推测可变成本</b>
+					</td>
+					<td><input type="text" name="name115"/></td>
+				</tr>
+				<tr>
+					<td rowspan="3"><b>毛利率检验</b></td>
+					<td colspan="2">
+						<b>对比同行毛利率水平检验毛利率</b>
+					</td>
+					<td><input type="text" name="name116"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>（单个商品销售额-单个商品成本）*商品销售占比*100%</b>
+					</td>
+					<td><input type="text" name="name117"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>毛利率=（主营业务收入-主营业务成本）/主营业务收入*100%</b>
+					</td>
+					<td><input type="text" name="name118"/></td>
+				</tr>
+				<tr>
+					<td rowspan="2"><b>权益交叉检验</b></td>
+					<td colspan="2">
+						<b>应有权益=初始权益+期间利润+期间生意外注资-期间生意外大项开支+固定资产升值-固定资产贬值</b>
+					</td>
+					<td><input type="text" name="name119"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>实际权益=资产-负债</b>
+					</td>
+					<td><input type="text" name="name120"/></td>
+				</tr>
+				<tr>
+					<td><b>权益差异率</b></td>
+					<td colspan="3">
+						<table class="addTable">
+							<tr>
+								<th>0%《（实际权益-应有权益）/实际权益《5%</th>
+								<td><input type="text" name="name121" value=""/></td>
+							</tr>
+							<tr>
+								<th>5%《（实际权益-应有权益）/实际权益《10%</th>
+								<td><input type="text" name="name122" value=""/></td>
+							</tr>
+							<tr>
+								<th>10%《（实际权益-应有权益）/实际权益《15%</th>
+								<td><input type="text" name="name123" value=""/></td>
+							</tr>
+							<tr>
+								<th>15%《（实际权益-应有权益）/实际权益《20%</th>
+								<td><input type="text" name="name124" value=""/></td>
+							</tr>
+							<tr>
+								<th>20%《（实际权益-应有权益）/实际权益《25%</th>
+								<td><input type="text" name="name125" value=""/></td>
+							</tr>
+							<tr>
+								<th>25%《（实际权益-应有权益）/实际权益《30%</th>
+								<td><input type="text" name="name126" value=""/></td>
+							</tr>
+							<tr>
+								<th>30%《（实际权益-应有权益）/实际权益《35%</th>
+								<td><input type="text" name="name127" value=""/></td>
+							</tr>
+							<tr>
+								<th>35%《（实际权益-应有权益）/实际权益《40%</th>
+								<td><input type="text" name="name128" value=""/></td>
+							</tr>
+							<tr>
+								<th>40%《（实际权益-应有权益）/实际权益《45%</th>
+								<td><input type="text" name="name129" value=""/></td>
+							</tr>
+							<tr>
+								<th>45%《（实际权益-应有权益）/实际权益《50%</th>
+								<td><input type="text" name="name130" value=""/></td>
+							</tr>
+							<tr>
+								<th>50%《（实际权益-应有权益）/实际权益《55%</th>
+								<td><input type="text" name="name131" value=""/></td>
+							</tr>
+							<tr>
+								<th>55%《（实际权益-应有权益）/实际权益《60%</th>
+								<td><input type="text" name="name132" value=""/></td>
+							</tr>
+							<tr>
+								<th>60%《（实际权益-应有权益）/实际权益《65%</th>
+								<td><input type="text" name="name133" value=""/></td>
+							</tr>
+							<tr>
+								<th>65%《（实际权益-应有权益）/实际权益《70%</th>
+								<td><input type="text" name="name134" value=""/></td>
+							</tr>
+							<tr>
+								<th>70%《（实际权益-应有权益）/实际权益《75%</th>
+								<td><input type="text" name="name135" value=""/></td>
+							</tr>
+							<tr>
+								<th>75%《（实际权益-应有权益）/实际权益《80%</th>
+								<td><input type="text" name="name136" value=""/></td>
+							</tr>
+							<tr>
+								<th>80%《（实际权益-应有权益）/实际权益《85%</th>
+								<td><input type="text" name="name137" value=""/></td>
+							</tr>
+							<tr>
+								<th>85%《（实际权益-应有权益）/实际权益《90%</th>
+								<td><input type="text" name="name138" value=""/></td>
+							</tr>
+							<tr>
+								<th>90%《（实际权益-应有权益）/实际权益《95%</th>
+								<td><input type="text" name="name139" value=""/></td>
+							</tr>
+							<tr>
+								<th>95%《（实际权益-应有权益）/实际权益《100%</th>
+								<td><input type="text" name="name140" value=""/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2"><b>企业月可支</b></td>
+					<td colspan="2">
+						<b>月可支=[（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）-（主营业务成本+主营业务税金+固定人工成本+水电成本+房租租金+固定交通成本+企业增值税+维修费+广告费+公司经费+劳动保险费+其他费用+财务费用）]/12</b>
+					</td>
+					<td><input type="text" name="name141"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>月可用现金=期初现金+经营性现金流入-经营性现金流出+融资现金流入-融资现金流出</b>
+					</td>
+					<td><input type="text" name="name142"/></td>
+				</tr>
+			</table>
+		</form>
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<a class="btn btn-info" onclick="getSum()" title="提交">提交</a>
+				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var result = "{{result}}";
+				if(result!=''){
+					$("input").each(function(i){
+						var str = $(this).attr("name").substring(4,$(this).attr("name").length);
+					    $(this).val(result.split(",")[str-1]);
+					});
+				}
+			})
+
+			function getSum(){
+				var score = new Array();
+				for(var j=1;j<150;j++){
+					var str = "name"+j;
+					$("input").each(function(i){
+						if($(this).attr("name")==str){
+							var value = $(this).val();
+						    if(value==''){
+						    	score.push(0);
+						    }else{
+						    	score.push(value);
+						    } 
+						}
+					    
+					});
+				}
+				var url = "/mxpg/cspz_hknl_save/"+score;
+		   		window.location.href =  url;
+			}
+			
+
+		</script>
+	</body>
+</html>
