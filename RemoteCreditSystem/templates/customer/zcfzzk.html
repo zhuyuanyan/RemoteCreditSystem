@@ -17,7 +17,7 @@
 		</style>
 	</head>
 	<body>	
-		<form class="iframeForm">
+		<form class="iframeForm" id="iframeForm" action="/khzldy/zcfzzk_save/{{id}}" method="POST">
 <!--*****************************资产**********************************-->			
 			<table class="myTable">
 				<caption>资产</caption>
@@ -32,35 +32,35 @@
 					<td rowspan="6"><b>货币资金</b></td>
 					<td><b>现金</b></td>
                     <td></td>
-					<td><label>金额</label><input type="text" value="500"/></td>
+					<td><label>金额</label><input type="text" name="value_1" value="500" onblur="hbzjTotal()"/></td>
 				</tr>
 				<tr>
 					<td rowspan="5"><b>银行存款</b></td>
 					<td><b>活期</b></td>
 					<td>
-						<label>金额</label><input type="text" value="500"/>
+						<label>金额</label><input type="text" value="500" name="value_2" onblur="hbzjTotal()"/>
 						<label>期限</label><input type="text" value="5"/>
 					</td>	
 				</tr>
 				<tr>
 					<td><b>定期存款</b></td>	
 					<td>
-						<label>金额</label><input type="text" value="500"/>
+						<label>金额</label><input type="text" value="500" name="value_3" onblur="hbzjTotal()"/>
 						<label>期限</label><input type="text" value="5"/>
 					</td>	
 				</tr>
 				<tr>
 					<td><b>承兑汇票</b></td>	
 					<td>
-						<label>金额</label><input type="text" value="100000"/>
-						<label>保证金额</label><input type="text" value="10000"/>
+						<label>金额</label><input type="text" value="100000" name="value_4" onblur="hbzjTotal()"/>
+						<label>保证金额</label><input type="text" value="10000" name="value_5" onblur="hbzjTotal()"/>
 						<label>期限</label><input type="text" value="5"/>
 					</td>	
 				</tr>
 				<tr>
 					<td><b>理财产品</b></td>	
 					<td>
-						<label>金额</label><input type="text" value="100000"/>
+						<label>金额</label><input type="text" value="100000" name="value_6" onblur="hbzjTotal()"/>
 						<label>期限</label><input type="text" value="5"/>
 					</td>	
 				</tr>
@@ -68,14 +68,14 @@
 					<td><b>有价证券</b></td>	
 					<td>
 						<label>性质</label><input type="text" value="国有"/>
-						<label>金额</label><input type="text" value="100000"/>
+						<label>金额</label><input type="text" value="100000" name="value_7" onblur="hbzjTotal()"/>
 						<label>期限</label><input type="text" value="5"/>
 					</td>	
 				</tr>	
 			<!--*****************************货币资金总和**********************************-->
 				<tr>
 					<th><b>货币资金总和</b></th>	
-					<th colspan="3"><b>现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额</b><input type="text" value="100000"/></th>	
+					<th colspan="3"><b>现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额</b><input type="text" value="100000" name="value_8"/></th>	
 				</tr>				
 			<!--*****************************应收账款**********************************-->
 				<tr>
@@ -99,7 +99,7 @@
 								<th>账龄</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="100000" name="value_9" onblur="sdzjTotal()"/></td>
 								<td><input type="text" class="addinput" value="5"/></td>
 								<td><input type="text" class="addinput" value="5000"/></td>
 								<td><input type="text" class="addinput" value="王五"/></td>
@@ -130,7 +130,7 @@
 								<th>账龄</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="100000" name="value_10" onblur="sdzjTotal()"/></td>
 								<td><input type="text" class="addinput" value="2"/></td>
 								<td><input type="text" class="addinput" value="3000"/></td>
 								<td><input type="text" class="addinput" value="张三"/></td>
@@ -163,7 +163,7 @@
 			<!--**************************速动资产总和*************************************-->
 				<tr>
 					<th><b>速动资产总和</b></th>	
-					<th colspan="3"><b>现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额+拖欠前账款金额+拖欠后账款金额</b><input type="text" value="100000"/></th>
+					<th colspan="3"><b>现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额+拖欠前账款金额+拖欠后账款金额</b><input type="text" value="100000"  name="value_11"/></th>
 				</tr>	
 			<!--*****************************预付账款**********************************-->			
 				<tr>
@@ -182,7 +182,7 @@
 								<th>期限</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="5000"/></td>
+								<td><input type="text" class="addinput" value="5000" name="value_20" onblur="ldzjTotal()"/></td>
 								<td><input type="text" class="addinput" value="2015-01-01"/></td>
 								<td><input type="text" class="addinput" value="还贷"/></td>
 								<td><input type="text" class="addinput" value="电汇"/></td>
@@ -206,7 +206,7 @@
 								<th>定金占比</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="20000" name="value_21" onblur="ldzjTotal()"/></td>
 								<td><input type="text" class="addinput" value="2015-02-02"/></td>
 								<td><input type="text" class="addinput" value="买饲料"/></td>
 								<td><input type="text" class="addinput" value="打卡"/></td>
@@ -233,7 +233,7 @@
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" value="钢材"/></td>
-								<td><input type="text" class="addinput" value="100000"/></td>
+								<td><input type="text" class="addinput" value="100000" name="value_13" onblur="chzlTotal()"/></td>
 								<td><input type="text" class="addinput" value="制造"/></td>
 								<td><input type="text" class="addinput" value="12"/></td>
 							</tr>
@@ -254,7 +254,7 @@
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" value="水泥"/></td>
-								<td><input type="text" class="addinput" value="10000"/></td>
+								<td><input type="text" class="addinput" value="10000" name="value_14" onblur="chzlTotal()"/></td>
 								<td><input type="text" class="addinput" value="制造"/></td>
 								<td><input type="text" class="addinput" value="12"/></td>
 							</tr>
@@ -275,7 +275,7 @@
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" value="木头"/></td>
-								<td><input type="text" class="addinput" value="2000"/></td>
+								<td><input type="text" class="addinput" value="2000" name="value_15" onblur="chzlTotal()"/></td>
 								<td><input type="text" class="addinput" value="制造"/></td>
 								<td><input type="text" class="addinput" value="12"/></td>
 							</tr>
@@ -297,7 +297,7 @@
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="300" name="value_16" onblur="chzlTotal()"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 							</tr>
@@ -319,9 +319,9 @@
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="200" name="value_17" onblur="chzlTotal()"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="5" name="value_38"/></td>
 							</tr>
 						</table>
 					</td>	
@@ -341,7 +341,7 @@
 							</tr>
 							<tr>
 								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="200" name="value_18" onblur="chzlTotal()"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 							</tr>
@@ -351,39 +351,39 @@
 			<!--**************************上次进货时存货*************************************-->
 				<tr>
 					<td><b>上次进货时存货</b></td>	
-					<td colspan="3"><input type="text" value="100000"/></td>
+					<td colspan="3"><input type="text" value="100000" name="value_39"/></td>
 				</tr>	
 			<!--**************************期间购买的存货*************************************-->
 				<tr>
 					<td><b>期间购买的存货</b></td>	
-					<td colspan="3"><input type="text" value="100000"/></td>
+					<td colspan="3"><input type="text" value="100000" name="value_40"/></td>
 				</tr>	
 			<!--**************************期间销售的存货*************************************-->
 				<tr>
 					<td><b>期间销售的存货</b></td>	
-					<td colspan="3"><input type="text" value="100000"/></td>
+					<td colspan="3"><input type="text" value="100000" name="value_41"/></td>
 				</tr>	
 			<!--**************************存货总和*************************************-->
 				<tr>
 					<th><b>存货总和</b></th>	
-					<th colspan="3"><b>主要材料金额+辅助材料金额+其他原材料金额+半成品金额+产成品金额+其他产品金额</b><input type="text" value="100000"/></th>
+					<th colspan="3"><b>主要材料金额+辅助材料金额+其他原材料金额+半成品金额+产成品金额+其他产品金额</b><input type="text" value="100000" name="value_19" onblur="ldzjTotal()"/></th>
 				</tr>		
 			<!--**************************流动资产总和*************************************-->
 				<tr>
 					<th><b>流动资产总和</b></th>	
-					<th colspan="3"><b>现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额+拖欠前账款金额+拖欠后账款金额+预付的货款金额+预付的定金金额+主要材料金额+辅助材料金额+其他原材料金额+半成品金额+产成品金额+其他产品金额</b><input type="text" value="100000"/></th>
+					<th colspan="3"><b>现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额+拖欠前账款金额+拖欠后账款金额+预付的货款金额+预付的定金金额+主要材料金额+辅助材料金额+其他原材料金额+半成品金额+产成品金额+其他产品金额</b><input type="text" value="100000"  name="value_22"/></th>
 				</tr>
 			<!--*****************************固定资产**********************************-->
 				<tr>
-					<td><b>固定资产</b></td>	
-					<td><b>固定资产名称</b></td>	
+					<td rowspan="2"><b>固定资产</b></td>	
+					<td rowspan="2"><b>固定资产名称</b></td>	
 					<td></td>
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>固定资产原值</th>
+								<th>固定资产原值A</th>
 								<th>累计折旧</th>
-								<th>固定资产净值</th>
+								<th>固定资产净值A</th>
 								<th>使用年限</th>
 								<th>已使用年限</th>
 								<th>折旧方法</th>
@@ -392,7 +392,27 @@
 							<tr>
 								<td><input type="text" class="addinput" value="200000"/></td>
 								<td><input type="text" class="addinput" value="10000"/></td>
-								<td><input type="text" class="addinput" value="190000"/></td>
+								<td><input type="text" class="addinput" value="190000" name="value_23" onblur="gdzcTotal()"/></td>
+								<td><input type="text" class="addinput" value="20年"/></td>
+								<td><input type="text" class="addinput" value="2年"/></td>
+								<td><input type="text" class="addinput" value=""/></td>
+								<td><input type="text" class="addinput" value=""/></td>
+							</tr>
+						</table>
+						<table class="addTable">
+							<tr>
+								<th>固定资产原值B</th>
+								<th>累计折旧</th>
+								<th>固定资产净值B</th>
+								<th>使用年限</th>
+								<th>已使用年限</th>
+								<th>折旧方法</th>
+								<th>资产属性</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="200000"/></td>
+								<td><input type="text" class="addinput" value="10000"/></td>
+								<td><input type="text" class="addinput" value="190000" name="value_24" onblur="gdzcTotal()"/></td>
 								<td><input type="text" class="addinput" value="20年"/></td>
 								<td><input type="text" class="addinput" value="2年"/></td>
 								<td><input type="text" class="addinput" value=""/></td>
@@ -404,7 +424,7 @@
 			<!--**************************固定资产总和*************************************-->
 				<tr>
 					<th><b>固定资产总和</b></th>	
-					<th colspan="3"><b>固定资产净值A+固定资产B</b><input type="text" value="100000"/></th>
+					<th colspan="3"><b>固定资产净值A+固定资产B</b><input type="text" value="100000" name="value_25"/></th>
 				</tr>	
 			<!--*****************************无形资产**********************************-->
 				<tr>
@@ -412,14 +432,14 @@
 					<td rowspan="3"><b>种类</b></td>	
 					<td><b>种类</b></td>
 					<td>
-						<label>金额</label><input type="text" value="无"/>
+						<label>金额</label><input type="text" value="10000" name="value_26" onblur="zzcTotal()"/>
 						<label>期限</label><input type="text" value="无"/>
 					</td>
 				</tr>
 				<tr>	
 					<td><b>转让费</b></td>
 					<td>
-						<label>金额</label><input type="text" value="无"/>
+						<label>金额</label><input type="text" value="2000" name="value_27" onblur="zzcTotal()"/>
 						<label>转让内容</label><input type="text" value="无"/>
 						<label>期限</label><input type="text" value="无"/>
 					</td>
@@ -427,14 +447,14 @@
 				<tr>	
 					<td><b>待摊租金</b></td>
 					<td>
-						<label>金额</label><input type="text" value="无"/>
+						<label>金额</label><input type="text" value="3000" name="value_28" onblur="zzcTotal()"/>
 						<label>期限</label><input type="text" value="无"/>
 					</td>
 				</tr>
 			<!--**************************总资产*************************************-->
 				<tr>
 					<th><b>总资产</b></th>	
-					<th colspan="3"><b>流动资产总和+固定资产总和+无形资产</b><input type="text" value="100000"/></th>
+					<th colspan="3"><b>流动资产总和+固定资产总和+无形资产</b><input type="text" value="100000" name="value_29" /></th>
 				</tr>	
 			</table>
 <!--*****************************负债**********************************-->
@@ -464,7 +484,7 @@
 							<tr>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="15000" name="value_30" onblur="llfzTotal()"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
@@ -491,7 +511,7 @@
 							<tr>
 								<td><input type="text" class="addinput" value="20000"/></td>
 								<td><input type="text" class="addinput" value="2"/></td>
-								<td><input type="text" class="addinput" value="10000"/></td>
+								<td><input type="text" class="addinput" value="10000" name="value_31" onblur="llfzTotal()"/></td>
 								<td><input type="text" class="addinput" value="张伟"/></td>
 								<td><input type="text" class="addinput" value="投资"/></td>
 								<td><input type="text" class="addinput" value="每月还款"/></td>
@@ -515,7 +535,7 @@
 								<th>期限</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="20000" name="value_32" onblur="llfzTotal()"/></td>
 								<td><input type="text" class="addinput" value="2014-05-05"/></td>
 								<td><input type="text" class="addinput" value="投资"/></td>
 								<td><input type="text" class="addinput" value="现金"/></td>
@@ -537,7 +557,7 @@
 								<th>定金占比</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="2000" name="value_33" onblur="llfzTotal()"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
@@ -550,7 +570,7 @@
 			<!--**************************流动负债总和*************************************-->
 				<tr>
 					<th><b>流动负债总和</b></th>	
-					<th colspan="3"><b>短期贷款贷款金额+应付账款剩余金额+预收的货款金额+预收的定金金额</b><input type="text" value="100000"/></th>
+					<th colspan="3"><b>短期贷款贷款金额+应付账款剩余金额+预收的货款金额+预收的定金金额</b><input type="text" value="100000" name="value_34"/></th>
 				</tr>	
 				<tr>
 					<td><b>长期借款</b></td>
@@ -569,7 +589,7 @@
 							<tr>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
-								<td><input type="text" class="addinput" value="无"/></td>
+								<td><input type="text" class="addinput" value="24000" name="value_35" onblur="zfzTotal()"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
 								<td><input type="text" class="addinput" value="无"/></td>
@@ -580,12 +600,12 @@
 			<!--**************************总负债*************************************-->
 				<tr>
 					<th><b>总负债</b></th>	
-					<th colspan="3"><b>流动负债总和+长期贷款贷款金额</b><input type="text" value="100000"/></th>
+					<th colspan="3"><b>流动负债总和+长期贷款贷款金额</b><input type="text" value="100000" name="value_36" onblur="zfzTotal()"/></th>
 				</tr>	
 			<!--**************************实际权益*************************************-->
 				<tr>
 					<th><b>实际权益</b></th>	
-					<th colspan="3"><b>总资产-总负债</b><input type="text" value="100000"/></th>
+					<th colspan="3"><b>总资产-总负债</b><input type="text" value="100000" name="value_37"/></th>
 				</tr>	
 			</table>
 <!--*****************************所有者权益**********************************-->
@@ -718,12 +738,209 @@
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="zcfzl" id="zcfzl"/>
+			<input type="hidden" name="ldbl" id="ldbl"/>
+			<input type="hidden" name="sdbl" id="sdbl"/>
+			<input type="hidden" name="yye3" id="yye3"/>
+			<input type="hidden" name="yye10" id="yye10"/>
+			<input type="hidden" name="yye11" id="yye11"/>
 		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<a class="btn btn-info" onclick="sum()" title="提交">提交</a>
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
+		<script type="text/javascript">
+			//货币资金总和=现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额
+			function hbzjTotal(){
+				var sum=0;
+				var a1=$("input[name=value_1]").val();
+				var a2=$("input[name=value_2]").val();
+				var a3=$("input[name=value_3]").val();
+				var a4=$("input[name=value_4]").val();
+				var a5=$("input[name=value_5]").val();
+				var a6=$("input[name=value_6]").val();
+				var a7=$("input[name=value_7]").val();
+
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				if(a3==""){a3=0;}else{a3=parseFloat(a3);}
+				if(a4==""){a4=0;}else{a4=parseFloat(a4);}
+				if(a5==""){a5=0;}else{a5=parseFloat(a5);}
+				if(a6==""){a6=0;}else{a6=parseFloat(a6);}
+				if(a7==""){a7=0;}else{a7=parseFloat(a7);}
+				sum=a1+a2+a3+a4+a5+a6+a7;
+				$("input[name=value_8]").val(sum);
+				$("input[name=value_8]").click();
+			}
+			//速动资产总和=现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额+拖欠前账款金额+拖欠后账款金额
+			function sdzjTotal(){
+				var sum=0;
+				var a8=$("input[name=value_8]").val();
+				var a9=$("input[name=value_9]").val();
+				var a10=$("input[name=value_10]").val();
+
+				if(a8==""){a8=0;}else{a8=parseFloat(a8);}
+				if(a9==""){a9=0;}else{a9=parseFloat(a9);}
+				if(a10==""){a10=0;}else{a10=parseFloat(a10);}
+				sum=a8+a9+a10;
+				$("input[name=value_11]").val(sum);
+				$("input[name=value_11]").click();
+			}
+			//存货总和=主要材料金额+辅助材料金额+其他原材料金额+半成品金额+产成品金额+其他产品金额
+			function chzlTotal(){
+				var sum=0;
+				var a13=$("input[name=value_13]").val();
+				var a14=$("input[name=value_14]").val();
+				var a15=$("input[name=value_15]").val();
+				var a16=$("input[name=value_16]").val();
+				var a17=$("input[name=value_17]").val();
+				var a18=$("input[name=value_18]").val();
+
+				if(a13==""){a13=0;}else{a13=parseFloat(a13);}
+				if(a14==""){a14=0;}else{a14=parseFloat(a14);}
+				if(a15==""){a15=0;}else{a15=parseFloat(a15);}
+				if(a16==""){a16=0;}else{a16=parseFloat(a16);}
+				if(a17==""){a17=0;}else{a17=parseFloat(a17);}
+				if(a18==""){a18=0;}else{a18=parseFloat(a18);}
+				sum=a13+a14+a15+a16+a17+a18;
+				$("input[name=value_19]").val(sum);
+				$("input[name=value_19]").click();
+			}
+			//流动资产总和=现金金额+活期金额+定期存款金额+承兑汇票金额+承兑汇票保证金+理财产品金额+有价证券金额+拖欠前账款金额+拖欠后账款金额+预付的货款金额+预付的定金金额+主要材料金额+辅助材料金额+其他原材料金额+半成品金额+产成品金额+其他产品金额
+			function ldzjTotal(){
+				var sum=0;
+				var a11=$("input[name=value_11]").val();
+				var a19=$("input[name=value_19]").val();
+				var a20=$("input[name=value_20]").val();
+				var a21=$("input[name=value_21]").val();
+
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a19==""){a19=0;}else{a19=parseFloat(a19);}
+				if(a20==""){a15=0;}else{a20=parseFloat(a20);}
+				if(a21==""){a21=0;}else{a21=parseFloat(a21);}
+				sum=a11+a19+a20+a21;
+				$("input[name=value_22]").val(sum);
+				$("input[name=value_22]").click();
+			}
+			//固定资产总和=固定资产净值A+固定资产B
+			function gdzcTotal(){
+				var sum=0;
+				var a23=$("input[name=value_23]").val();
+				var a24=$("input[name=value_24]").val();
+
+				if(a23==""){a23=0;}else{a23=parseFloat(a23);}
+				if(a24==""){a24=0;}else{a24=parseFloat(a24);}
+				sum=a23+a24;
+				$("input[name=value_25]").val(sum);
+				$("input[name=value_25]").click();
+			}
+
+			//总资产=流动资产总和+固定资产总和+无形资产
+			function zzcTotal(){
+				var sum=0;
+				var a22=$("input[name=value_22]").val();
+				var a25=$("input[name=value_25]").val();
+				var a26=$("input[name=value_26]").val();
+				var a27=$("input[name=value_27]").val();
+				var a28=$("input[name=value_28]").val();
+
+				if(a22==""){a22=0;}else{a22=parseFloat(a22);}
+				if(a25==""){a25=0;}else{a25=parseFloat(a25);}
+				if(a26==""){a26=0;}else{a26=parseFloat(a26);}
+				if(a27==""){a27=0;}else{a27=parseFloat(a27);}
+				if(a28==""){a28=0;}else{a28=parseFloat(a28);}
+				sum=a22+a25+a26+a27+a28;
+				$("input[name=value_29]").val(sum);
+				$("input[name=value_29]").click();
+			}
+			//流动负债总和=短期贷款贷款金额+应付账款剩余金额+预收的货款金额+预收的定金金额
+			function llfzTotal(){
+				var sum=0;
+				var a30=$("input[name=value_30]").val();
+				var a31=$("input[name=value_31]").val();
+				var a32=$("input[name=value_32]").val();
+				var a33=$("input[name=value_33]").val();
+
+				if(a30==""){a30=0;}else{a30=parseFloat(a30);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a32==""){a32=0;}else{a32=parseFloat(a32);}
+				if(a33==""){a33=0;}else{a33=parseFloat(a33);}
+				sum=a30+a31+a32+a33;
+				$("input[name=value_34]").val(sum);
+				$("input[name=value_34]").click();
+			}
+			//总负债=流动负债总和+长期贷款贷款金额
+			function zfzTotal(){
+				var sum=0;
+				var a34=$("input[name=value_34]").val();
+				var a35=$("input[name=value_35]").val();
+
+				if(a34==""){a34=0;}else{a34=parseFloat(a34);}
+				if(a35==""){a35=0;}else{a35=parseFloat(a35);}
+				sum=a34+a35;
+				$("input[name=value_36]").val(sum);
+				$("input[name=value_36]").click();
+				//实际权益=总资产-总负债
+				var sum1= 0;
+				var a29=$("input[name=value_29]").val();
+				if(a29==""){a29=0;}else{a29=parseFloat(a29);}
+				sum1 = a29-sum;
+				$("input[name=value_37]").val(sum1);
+			}
+
+			function sum(){
+				var a36=$("input[name=value_35]").val();
+				if(a36==""){a36=0;}else{a36=parseFloat(a36);}
+				var a29=$("input[name=value_29]").val();
+				if(a29==""){a29=0;}else{a29=parseFloat(a29);}
+				var a22=$("input[name=value_22]").val();
+				if(a22==""){a22=0;}else{a22=parseFloat(a22);}
+				var a34=$("input[name=value_34]").val();
+				if(a34==""){a34=0;}else{a34=parseFloat(a34);}
+				var a11=$("input[name=value_11]").val();
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				//资产负债率
+				var zcfzl = a36/a29;
+				//流动比率
+				var ldbl = a22/a34;
+				//速动比率
+				var sdbl = a11/a34;
+				$("#zcfzl").val(zcfzl);
+				$("#ldbl").val(ldbl);
+				$("#sdbl").val(sdbl);
+				
+
+				//交叉检验所需年营业额（年营业额=产成品金额*（365/产成品运转周期)（存货产成品））
+				var a17=$("input[name=value_17]").val();
+				if(a17==""){a17=0;}else{a17=parseFloat(a17);}
+				var a38=$("input[name=value_38]").val();
+				if(a38==""){a38=0;}else{a38=parseFloat(a38);}
+				var yye3 = a17*(365/a38);
+				$("#yye3").val(yye3);
+
+				//交叉检验所需 现有存货=上次进货时存货+期间购买的存货-期间销售的存货
+				var a39=$("input[name=value_39]").val();
+				if(a39==""){a39=0;}else{a39=parseFloat(a39);}
+				var a40=$("input[name=value_40]").val();
+				if(a40==""){a40=0;}else{a40=parseFloat(a40);}
+				var a41=$("input[name=value_41]").val();
+				if(a41==""){a41=0;}else{a41=parseFloat(a41);}
+				var yye10 = a39+a40-a41;
+				$("#yye10").val(yye10);
+
+				//交叉检验所需 期间购买的存货与存货总和对比
+				var a19=$("input[name=value_19]").val();
+				if(a19==""){a19=0;}else{a19=parseFloat(a19);}
+				var yye11 = a40/a19;
+				$("#yye11").val(yye11);
+
+
+
+				$("#iframeForm").submit();
+			}
+
+		</script>
 	</body>
 </html>

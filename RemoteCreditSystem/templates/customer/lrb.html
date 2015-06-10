@@ -17,7 +17,7 @@
 		</style>
 	</head>
 	<body>
-		<form class="iframeForm">
+		<form class="iframeForm" id="iframeForm" action="/khzldy/lrb_save/{{id}}" method="POST">
 <!--*****************************本年**********************************-->
 			<table class="myTable">
 				<caption>本年</caption>
@@ -41,10 +41,10 @@
 								<th>销售占比</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="20000"/></td>
-								<td><input type="text" class="addinput" value="50000"/></td>
-								<td><input type="text" class="addinput" value="30000"/></td>
-								<td><input type="text" class="addinput" value="20%"/></td>
+								<td><input type="text" class="addinput" value="20000" name="value_1" onblur="total1()"/></td>
+								<td><input type="text" class="addinput" value="50000" name="value_2" onblur="total1()"/></td>
+								<td><input type="text" class="addinput" value="30000" name="value_3" onblur="total1()"/></td>
+								<td><input type="text" class="addinput" value="0.8" name="value_26"/></td>
 							</tr>
 						</table>
 					</td>
@@ -61,10 +61,10 @@
 								<th>销售占比</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="20000"/></td>
-								<td><input type="text" class="addinput" value="50000"/></td>
-								<td><input type="text" class="addinput" value="30000"/></td>
-								<td><input type="text" class="addinput" value="20%"/></td>
+								<td><input type="text" class="addinput" value="20000" name="value_4" onblur="total1()"/></td>
+								<td><input type="text" class="addinput" value="50000" name="value_5" onblur="total1()"/></td>
+								<td><input type="text" class="addinput" value="30000" name="value_6" onblur="total1()"/></td>
+								<td><input type="text" class="addinput" value="0.2" name="value_27"/></td>
 							</tr>
 						</table>
 					</td>
@@ -73,7 +73,7 @@
 				<tr>
 					<th><b>主营业务收入总和</b></th>
 					<th colspan="3"><b>主导业务1（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数）+主导业务2（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数）+其他业务（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数）</b>
-						<input type="text" value="20000"/>
+						<input type="text" value="20000" name="value_7" onblur="total1()"/>
 					</th>
 				</tr>	
 			<!--*****************************主营业务成本**********************************-->
@@ -82,15 +82,15 @@
 					<td><b>原材料</b></td>
                     <td></td>
 					<td>
-						<label>金额</label><input type="text" value="500"/>
-						<label>周期</label><input type="text" value="2"/>
+						<label>金额</label><input type="text" value="500" name="value_8" onblur="total2()"/>
+						<label>周期</label><input type="text" value="2" name="value_25"/>
 					</td>
 				</tr>
 				<tr>
 					<td><b>可变人工成本</b></td>
                     <td></td>
 					<td>
-						<label>平均金额</label><input type="text" value="200"/>
+						<label>平均金额</label><input type="text" value="200" name="value_9" onblur="total2()"/>
 						<label>可变成本占比</label><input type="text"/>
 					</td>
 				</tr>
@@ -98,7 +98,7 @@
 					<td><b>其他可变成本</b></td>
                     <td></td>
 					<td>
-						<label>平均金额</label><input type="text" value="200"/>
+						<label>平均金额</label><input type="text" value="200" name="value_10" onblur="total2()"/>
 						<label>可变成本占比</label><input type="text"/>
 					</td>
 				</tr>
@@ -106,7 +106,7 @@
 				<tr>
 					<th><b>主营业务成本总和</b></th>
 					<th colspan="3"><b>原材料金额+可变人工成本平均金额+其他可变成本平均金额</b>
-						<input type="text" value="20000"/>
+						<input type="text" value="20000" name="value_11" onblur="total2()"/>
 					</th>
 				</tr>	
 			<!--*****************************主营业务税金**********************************-->
@@ -127,14 +127,14 @@
 								<th>城市维护建设费</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="20"/></td>
-								<td><input type="text" class="addinput" value="20"/></td>
-								<td><input type="text" class="addinput" value="20"/></td>
-								<td><input type="text" class="addinput" value="20"/></td>
-								<td><input type="text" class="addinput" value="20"/></td>
-								<td><input type="text" class="addinput" value="20"/></td>
-								<td><input type="text" class="addinput" value="20"/></td>
-								<td><input type="text" class="addinput" value="20"/></td>
+								<td><input type="text" class="addinput" value="20" name="value_35"/></td>
+								<td><input type="text" class="addinput" value="20" name="value_36"/></td>
+								<td><input type="text" class="addinput" value="20" name="value_37"/></td>
+								<td><input type="text" class="addinput" value="20" name="value_38"/></td>
+								<td><input type="text" class="addinput" value="20" name="value_39"/></td>
+								<td><input type="text" class="addinput" value="20" name="value_40"/></td>
+								<td><input type="text" class="addinput" value="20" name="value_41"/></td>
+								<td><input type="text" class="addinput" value="20" name="value_42"/></td>
 							</tr>
 						</table>
 					</td>
@@ -174,7 +174,7 @@
 								<td><input type="text" class="addinput" value="搬运"/></td>
 								<td><input type="text" class="addinput" value="搬运"/></td>
 								<td><input type="text" class="addinput" value="1%"/></td>
-								<td><input type="text" class="addinput" value="100"/></td>
+								<td><input type="text" class="addinput" value="100" name="value_43"/></td>
 							</tr>
 						</table>
 						
@@ -184,8 +184,8 @@
 					<td><b>水电成本</b></td>
                     <td></td>
 					<td>						
-						<label>水费</label><input type="text" value="50"/>
-						<label>电费</label><input type="text" value="50"/>	
+						<label>水费</label><input type="text" value="50" name="value_44"/>
+						<label>电费</label><input type="text" value="50" name="value_45"/>	
 					</td>
 				</tr>
 				<tr>
@@ -202,12 +202,12 @@
 								<th>其他费用</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value="50"/></td>
-								<td><input type="text" class="addinput" value="50"/></td>
-								<td><input type="text" class="addinput" value="50"/></td>
-								<td><input type="text" class="addinput" value="50"/></td>
-								<td><input type="text" class="addinput" value="50"/></td>
-								<td><input type="text" class="addinput" value="50"/></td>
+								<td><input type="text" class="addinput" value="50" name="value_46"/></td>
+								<td><input type="text" class="addinput" value="50" name="value_47"/></td>
+								<td><input type="text" class="addinput" value="50" name="value_48"/></td>
+								<td><input type="text" class="addinput" value="50" name="value_49"/></td>
+								<td><input type="text" class="addinput" value="50" name="value_50"/></td>
+								<td><input type="text" class="addinput" value="50" name="value_51"/></td>
 							</tr>
 						</table>
 					</td>
@@ -264,7 +264,7 @@
 				</tr>	
 				<tr>
 					<td><b>净利润</b></td>
-					<td colspan="3"><input type="text"/></td>
+					<td colspan="3"><input type="text" value="20000" name="value_12"/></td>
 				</tr>	
 			</table>
 <!--*****************************追溯年**********************************-->
@@ -359,23 +359,23 @@
 					<td><b>税前利润</b></td>
 					<td><input type="text" value="1000"/></td>
 					<td><b>净利润</b></td>
-					<td><input type="text" value="1000"/></td>
+					<td><input type="text" value="1000" name="value_13"/></td>
 				</tr>			
 				<tr>
 					<th><b>期初现金</b></th>
-					<th colspan="3"><input type="text" value="500"/></th>
+					<th colspan="3"><input type="text" value="500" name="value_14"/></th>
 				</tr>			
 				<tr>
 					<td><b>经营性现金流入</b></td>
 					<td>
 						来源<input type="text" value="500"/>
-						金额<input type="text" value="500"/>
+						金额<input type="text" value="500" name="value_15"/>
 						方式<select><option>现金</option><option>银行交易</option></select>
 					</td>
 					<td><b>经营性现金流出</b></td>
 					<td>
 						流出方向<input type="text" value="500"/>
-						金额<input type="text" value="500"/>
+						金额<input type="text" value="500" name="value_16"/>
 						方式<select><option>现金</option><option>银行交易</option></select>
 					</td>
 				</tr>			
@@ -387,13 +387,13 @@
 					<td><b>投资现金流入</b></td>
 					<td>
 						来源<input type="text" value="500"/>
-						金额<input type="text" value="500"/>
+						金额<input type="text" value="500" name="value_17"/>
 						方式<select><option>现金</option><option>银行交易</option></select>
 					</td>
 					<td><b>投资现金流出</b></td>
 					<td>
 						流出方向<input type="text" value="500"/>
-						金额<input type="text" value="500"/>
+						金额<input type="text" value="500" name="value_18"/>
 						方式<select><option>现金</option><option>银行交易</option></select>
 					</td>
 				</tr>		
@@ -405,29 +405,29 @@
 					<td><b>融资现金流入</b></td>
 					<td>
 						来源<input type="text" value="500"/>
-						金额<input type="text" value="500"/>
+						金额<input type="text" value="500" name="value_19"/>
 						方式<select><option>现金</option><option>银行交易</option></select>
 					</td>
 					<td><b>融资现金流出</b></td>
 					<td>
 						流出方向<input type="text" value="500"/>
-						金额<input type="text" value="500"/>
+						金额<input type="text" value="500" name="value_20"/>
 						方式<select><option>现金</option><option>银行交易</option></select>
 					</td>
 				</tr>	
 				<tr>
 					<th><b>融资现金净流量</b></th>
-					<th colspan="3"><input type="text" value="500"/></th>
+					<th colspan="3"><input type="text" value="500" name="value_21"/></th>
 				</tr>	
 				<tr>
 					<th><b>期末现金</b></th>
-					<th><input type="text" value="500"/></th>
+					<th><input type="text" value="500" name="value_22"/></th>
 					<th><b>期初权益时点</b></th>
-					<th><input type="text" value="500"/></th>
+					<th><input type="text" value="500" name="value_23"/></th>
 				</tr>	
 				<tr>
 					<th><b>期初权益合计</b></th>
-					<th colspan="3"><input type="text" value="500"/></th>
+					<th colspan="3"><input type="text" value="500" name="value_24"/></th>
 				</tr>		
 				<tr>
 					<td><b>分析期间收入</b></td>
@@ -456,7 +456,7 @@
 					<td><b>其他收入</b></td>
 					<td>保险赔偿<input type="text" value="1000"/></td>
 					<td><b>升值</b></td>
-					<td>企业固定资产<input type="text" value="1000"/></td>
+					<td>企业固定资产<input type="text" value="1000" name="value_33"/></td>
 				</tr>		
 				<tr>
 					<td><b>大项支出合计</b></td>
@@ -487,7 +487,7 @@
 				</tr>			
 				<tr>
 					<td><b>贬值</b></td>
-					<td>企业固定资产<input type="text" value="1000"/></td>
+					<td>企业固定资产<input type="text" value="1000"  name="value_34"/></td>
 					<td><b>表外资产</b></td>
 					<td>
 						房子<input type="text" value="1000"/>
@@ -506,21 +506,21 @@
 				</colgroup>
 				<tr>
 					<td><b>初始权益</b></td>
-					<td><input type="text" value="50"/></td>
+					<td><input type="text" value="50" name="value_28"/></td>
 					<td><b>经营期间每年企业平均净利润</b></td>
-					<td><input type="text" value="50"/></td>
+					<td><input type="text" value="50" name="value_29"/></td>
 				</tr>
 				<tr>
 					<td><b>经营期间大项开支</b></td>
-					<td><input type="text" value="50"/></td>
+					<td><input type="text" value="50" name="value_30"/></td>
 					<td><b>企业固定资产折旧</b></td>
-					<td><input type="text" value="50"/></td>
+					<td><input type="text" value="50" name="value_31"/></td>
 				</tr>
 				<tr>
 					<td><b>经营年限</b></td>
 					<td><input type="text" value="50"/></td>
 					<td><b>外部投资注入或分红</b></td>
-					<td><input type="text" value="50"/></td>
+					<td><input type="text" value="50" name="value_32"/></td>
 				</tr>
 			<!--**************************应有权益*************************************-->
 				<tr>
@@ -531,13 +531,197 @@
 					</th>
 				</tr>
 			</table>	
+
+			<input type="hidden" name="ckye" id="ckye" value="{{appResult.value_1}}"/>
+			<input type="hidden" name="zzc" id="zzc" value="{{appResult.value_2}}"/>
+
+			<input type="hidden" name="chzzl" id="chzzl" />
+			<input type="hidden" name="zzczzl" id="zzczzl"/>
+			<input type="hidden" name="yye1" id="yye1" />
+			<input type="hidden" name="yye2" id="yye2"/>
+			<input type="hidden" name="yye4" id="yye4" />
+			<input type="hidden" name="yye6" id="yye6"/>
+			<input type="hidden" name="yye7" id="yye7" />
+			<input type="hidden" name="yye8" id="yye8"/>
+			<input type="hidden" name="yye9" id="yye9" />
+			<input type="hidden" name="yye13" id="yye13"/>
+			<input type="hidden" name="yye17" id="yye17" />
+			<input type="hidden" name="yye18" id="yye18"/>
 		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<a class="btn btn-info" onclick="sum()" title="提交">提交</a>
 				<a class="btn" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
-		
+		<script type="text/javascript">
+			//主营业务收入总和=主导业务1（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数）+主导业务2（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数）+其他业务（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数） 
+			function total1(){
+				var sum=0;
+				var a1=$("input[name=value_1]").val();
+				var a2=$("input[name=value_2]").val();
+				var a3=$("input[name=value_3]").val();
+				var a4=$("input[name=value_4]").val();
+				var a5=$("input[name=value_5]").val();
+				var a6=$("input[name=value_6]").val();
+
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				if(a3==""){a3=0;}else{a3=parseFloat(a3);}
+				if(a4==""){a4=0;}else{a4=parseFloat(a4);}
+				if(a5==""){a5=0;}else{a5=parseFloat(a5);}
+				if(a6==""){a6=0;}else{a6=parseFloat(a6);}
+				sum=a1+a2+a3+a4+a5+a6;
+				$("input[name=value_7]").val(sum);
+				$("input[name=value_7]").click();
+			}
+			//主营业务成本总和=原材料金额+可变人工成本平均金额+其他可变成本平均金额 
+			function total2(){
+				var sum=0;
+				var a8=$("input[name=value_8]").val();
+				var a9=$("input[name=value_9]").val();
+				var a10=$("input[name=value_10]").val();
+
+				if(a8==""){a8=0;}else{a8=parseFloat(a8);}
+				if(a9==""){a9=0;}else{a9=parseFloat(a9);}
+				if(a10==""){a10=0;}else{a10=parseFloat(a10);}
+				sum=a8+a9+a10;
+				$("input[name=value_11]").val(sum);
+				$("input[name=value_11]").click();
+			}
+
+
+
+
+
+			function sum(){
+				var a11=$("input[name=value_11]").val();
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				var ckye=$("input[name=ckye]").val();
+				if(ckye==""){ckye=0;}else{ckye=parseFloat(ckye);}
+				var a7=$("input[name=value_7]").val();
+				if(a7==""){a7=0;}else{a7=parseFloat(a7);}
+				var zzc=$("input[name=zzc]").val();
+				if(zzc==""){zzc=0;}else{zzc=parseFloat(zzc);}
+
+				//存货周转率
+				var chzzl = a11/ckye;
+				//总资产周转率
+				var zzczzl = a7/zzc;
+
+				$("#chzzl").val(chzzl);
+				$("#zzczzl").val(zzczzl);
+
+				
+
+				//计算交叉检验表
+				
+				var a22=$("input[name=value_22]").val();
+				if(a22==""){a22=0;}else{a22=parseFloat(a22);}
+				var a14=$("input[name=value_14]").val();
+				if(a14==""){a14=0;}else{a14=parseFloat(a14);}
+				var a18=$("input[name=value_18]").val();
+				if(a18==""){a18=0;}else{a18=parseFloat(a18);}
+				var a8=$("input[name=value_8]").val();
+				if(a8==""){a8=0;}else{a8=parseFloat(a8);}
+				var a25=$("input[name=value_25]").val();
+				if(a25==""){a25=0;}else{a25=parseFloat(a25);}
+				var a26=$("input[name=value_26]").val();
+				if(a26==""){a26=0;}else{a26=parseFloat(a26);}
+				var a27=$("input[name=value_27]").val();
+				if(a27==""){a27=0;}else{a27=parseFloat(a27);}
+				var a1=$("input[name=value_1]").val();
+				var a2=$("input[name=value_2]").val();
+				var a3=$("input[name=value_3]").val();
+				var a4=$("input[name=value_4]").val();
+				var a5=$("input[name=value_5]").val();
+				var a6=$("input[name=value_6]").val();
+
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				if(a3==""){a3=0;}else{a3=parseFloat(a3);}
+				if(a4==""){a4=0;}else{a4=parseFloat(a4);}
+				if(a5==""){a5=0;}else{a5=parseFloat(a5);}
+				if(a6==""){a6=0;}else{a6=parseFloat(a6);}
+				var a15=$("input[name=value_15]").val();
+				var a16=$("input[name=value_16]").val();
+				var a19=$("input[name=value_19]").val();
+				var a20=$("input[name=value_20]").val();
+				var a35=$("input[name=value_35]").val();
+				var a36=$("input[name=value_36]").val();
+				var a37=$("input[name=value_37]").val();
+				var a38=$("input[name=value_38]").val();
+				var a39=$("input[name=value_39]").val();
+				var a40=$("input[name=value_40]").val();
+				var a41=$("input[name=value_41]").val();
+				var a42=$("input[name=value_42]").val();
+				var a43=$("input[name=value_43]").val();
+				var a44=$("input[name=value_44]").val();
+				var a45=$("input[name=value_45]").val();
+				var a46=$("input[name=value_46]").val();
+				var a47=$("input[name=value_47]").val();
+				var a48=$("input[name=value_48]").val();
+				var a49=$("input[name=value_49]").val();
+				var a50=$("input[name=value_50]").val();
+				var a51=$("input[name=value_51]").val();
+
+				if(a15==""){a15=0;}else{a15=parseFloat(a15);}
+				if(a16==""){a16=0;}else{a16=parseFloat(a16);}
+				if(a19==""){a19=0;}else{a19=parseFloat(a19);}
+				if(a20==""){a20=0;}else{a20=parseFloat(a20);}
+				if(a35==""){a35=0;}else{a35=parseFloat(a35);}
+				if(a36==""){a36=0;}else{a36=parseFloat(a36);}
+				if(a37==""){a37=0;}else{a37=parseFloat(a37);}
+				if(a38==""){a38=0;}else{a38=parseFloat(a38);}
+				if(a39==""){a39=0;}else{a39=parseFloat(a39);}
+				if(a40==""){a40=0;}else{a40=parseFloat(a40);}
+				if(a41==""){a41=0;}else{a41=parseFloat(a41);}
+				if(a42==""){a42=0;}else{a42=parseFloat(a42);}
+				if(a43==""){a43=0;}else{a43=parseFloat(a43);}
+				if(a44==""){a44=0;}else{a44=parseFloat(a44);}
+				if(a45==""){a45=0;}else{a45=parseFloat(a45);}
+				if(a46==""){a46=0;}else{a46=parseFloat(a46);}
+				if(a47==""){a47=0;}else{a47=parseFloat(a47);}
+				if(a48==""){a48=0;}else{a48=parseFloat(a48);}
+				if(a49==""){a49=0;}else{a49=parseFloat(a49);}
+				if(a50==""){a50=0;}else{a50=parseFloat(a50);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+
+				//年营业额=期末现金-期初现金+经营性现金流出（现金流）
+				var yye1 = a22-a14+a18;
+				//年营业额=淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数
+				var yye2 = a7;
+				//年营业额=主营业务成本/[1-（主营业务收入-主营业务成本）/主营业务收入]（主营业务）
+				var yye4 = a11/(1-(a7-a11)/a7);
+				//{（365/原材料运转周期）*原材料金额）/[1-（主营业务收入-主营业务成本）/主营业务收入]}*12
+				var yye6 = ((365/a25*a8)/(1-(a7-a11)/a7))*12;
+				//年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务1）
+				var yye7 = (a1+a2+a3)/a26;
+				//年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务2）
+				var yye8 = 0;
+				//年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（其他业务）
+				var yye9 = (a4+a5+a6)/a27;
+				//毛利率=（主营业务收入-主营业务成本）/主营业务收入*100%
+				var yye13 =(a7-a11)/a7*100;
+				//月可支=[（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）-（主营业务成本+主营业务税金+固定人工成本+水电成本+房租租金+固定交通成本+企业增值税+维修费+广告费+公司经费+劳动保险费+其他费用+财务费用）]/12
+				var yye17 = (a7-(a11+a35+a36+a37+a38+a39+a40+a41+a42+a43+a44+a45+a46+a47+a48+a49+a50+a51))/12;
+				//月可用现金=期初现金+经营性现金流入-经营性现金流出+融资现金流入-融资现金流出
+				var yye18 = a14+a15-a16+a19-a20;
+
+				$("#yye1").val(yye1);
+				$("#yye2").val(yye2);
+				$("#yye4").val(yye4);
+				$("#yye6").val(yye6);
+				$("#yye7").val(yye7);
+				$("#yye8").val(yye8);
+				$("#yye9").val(yye9);
+				$("#yye13").val(yye13);
+				$("#yye17").val(yye17);
+				$("#yye18").val(yye18);
+
+
+				$("#iframeForm").submit();
+			}
+		</script>
 	</body>
 </html>

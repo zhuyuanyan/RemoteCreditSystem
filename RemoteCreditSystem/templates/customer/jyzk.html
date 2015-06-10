@@ -239,53 +239,53 @@
 			</table>
 	<!--*****************************行业**********************************-->
 			<table class="myTable">
-				<caption>行业({{result.split(',')[0]}})</caption>
+				<caption>行业({{result.split(',')[0]}}%)</caption>
                 <input type="hidden" value="{{result.split(',')[0]}}" name="hy" id="hy"/>
 				<colgroup>
 					<col width="10%">
 					<col width="90%">
 				</colgroup>
 				<tr>
-					<td><b>行业政策({{result.split(',')[1]}})</b>
+					<td><b>行业政策({{result.split(',')[1]}}%)</b>
                     <input type="hidden" value="{{result.split(',')[1]}}" name="hyzc" id="hyzc"/>
                     </td>
 					<td>
 						<table class="addTable">
 							<tr>								
-								<th>金融货币政策({{result.split(',')[2]}})
+								<th>金融货币政策({{result.split(',')[2]}}%)
                                 <input type="hidden" value="{{result.split(',')[2]}}" name="jrhbzc" id="jrhbzc"/>
                                 </th>
-								<th>国家产业政策
+								<th>国家产业政策({{result.split(',')[6]}}%)
                                 <input type="hidden" value="{{result.split(',')[6]}}" name="gjcyzc" id="gjcyzc"/>
                                 </th>
-								<th>税收政策
-                                <input type="hidden" value="{{result.split(',')[17]}}" name="sszc" id="sszc"/>
+								<th>税收政策({{result.split(',')[16]}}%)
+                                <input type="hidden" value="{{result.split(',')[16]}}" name="sszc" id="sszc"/>
                                 </th>
 							</tr>
 							<tr>
 								<td>
-									<select	name="jrhbzc_s" id="jrhbzc_s">
+									<select	name="jrhbzc_s" id="jrhbzc_s" content="金融货币政策">
 										<option value="{{result.split(',')[3]}}">宽松</option>
 										<option value="{{result.split(',')[4]}}">一般</option>
 										<option value="{{result.split(',')[5]}}">紧缩</option>
 									</select>
 								</td>
 								<td>
-									<select	name="gjcyzc_s" id="gjcyzc_s">
+									<select	name="gjcyzc_s" id="gjcyzc_s" content="国家产业政策">
 										<option value="{{result.split(',')[7]}}">扶持</option>
 										<option value="{{result.split(',')[8]}}">一般</option>
 										<option value="{{result.split(',')[9]}}">限制</option>
 									</select>
 								</td>
 								<td>
-									<select	name="sszc_s" id="sszc_s">
+									<select	name="sszc_s" id="sszc_s" content="税收政策">
 										<option value="{{result.split(',')[10]}}">免税</option>
 										<option value="{{result.split(',')[11]}}">出口退税</option>
 										<option value="{{result.split(',')[12]}}">增值税正常（13%）</option>
 										<option value="{{result.split(',')[13]}}">增值税低税率（17%）</option>
 										<option value="{{result.split(',')[14]}}">增收消费税小于等于10%</option>
 										<option value="{{result.split(',')[15]}}">增收消费税小于等于20%</option>
-										<option value="{{result.split(',')[16]}}">增收消费税大于20%</option>
+										<option value="{{result.split(',')[17]}}">增收消费税大于20%</option>
 									</select>
 								</td>
 							</tr>
@@ -305,7 +305,7 @@
 							</tr>
 							<tr>
 								<td>产品供应/市场需求量
-									<select	name="cpgy" id="cpgy">
+									<select	name="cpgy" id="cpgy" content="产品供应/市场需求量">
 										<option value="{{result.split(',')[19]}}">小于等于50%</option>
 										<option value="{{result.split(',')[20]}}">小于等于70%</option>
 										<option value="{{result.split(',')[21]}}">小于等于90%</option>
@@ -321,7 +321,7 @@
 										<option>周期性行业</option>
 										<option value="{{result.split(',')[38]}}">非周期性</option>
 									</select>
-									<select	name="zqxhy" id="zqxhy">
+									<select	name="zqxhy" id="zqxhy" content="周期性行业">
 										<option value="{{result.split(',')[27]}}">汽车</option>
 										<option value="{{result.split(',')[28]}}">机械</option>
 										<option value="{{result.split(',')[29]}}">电力</option>
@@ -339,7 +339,7 @@
                                     <input type="hidden" value="{{result.split(',')[39]}}" name="hyzcjg" id="hyzcjg"/>
                                 </td>
 								<td>固定资产占总资产
-									<select	name="gdzczzzc" id="gdzczzzc">
+									<select	name="gdzczzzc" id="gdzczzzc" content="固定资产占总资产">
 										<option value="{{result.split(',')[40]}}">小于或等于5%</option>
 										<option value="{{result.split(',')[41]}}">小于或等于10%</option>
 										<option value="{{result.split(',')[42]}}">小于或等于20%</option>
@@ -364,7 +364,7 @@
 							</tr>
 							<tr>
 								<td>
-									<select	name="jll" id="jll">
+									<select	name="jll" id="jll" content="净利率">
 										<option value="{{result.split(',')[51]}}">大于或等于25%</option>
 										<option value="{{result.split(',')[52]}}">大于或等于20%</option>
 										<option value="{{result.split(',')[53]}}">大于或等于15%</option>
@@ -375,7 +375,7 @@
 									</select>
 								</td>
 								<td>
-									<select	name="pjyszkzzts" id="pjyszkzzts">
+									<select	name="pjyszkzzts" id="pjyszkzzts" content="平均应收账款周转天数">
                                         <!--此处开始数组游标-2-->
 										<option value="{{result.split(',')[58]}}">小于或等于7</option>
 										<option value="{{result.split(',')[59]}}">小于或等于15</option>
@@ -387,7 +387,7 @@
 									</select>
 								</td>
 								<td>
-									<select	name="pjchzzts" id="pjchzzts">
+									<select	name="pjchzzts" id="pjchzzts" content="平均存货周转天数">
 										<option value="{{result.split(',')[65]}}">小于或等于7</option>
 										<option value="{{result.split(',')[66]}}">小于或等于15</option>
 										<option value="{{result.split(',')[67]}}">小于或等于30</option>
@@ -411,7 +411,7 @@
 							</tr>
 							<tr>
 								<td>供应商数量
-									<select	name="gyssl" id="gyssl">
+									<select	name="gyssl" id="gyssl" content="供应商数量">
 										<option value="{{result.split(',')[73]}}">大于20</option>
 										<option value="{{result.split(',')[74]}}">大于等于18</option>
 										<option value="{{result.split(',')[75]}}">大于等于16</option>
@@ -426,7 +426,7 @@
 									</select>
 								</td>
 								<td>经销商数量
-									<select	name="jxssl" id="jxssl">
+									<select	name="jxssl" id="jxssl" content="经销商数量">
 										<option value="{{result.split(',')[85]}}">大于50</option>
 										<option value="{{result.split(',')[86]}}">大于等于45</option>
 										<option value="{{result.split(',')[87]}}">大于等于40</option>
@@ -441,7 +441,7 @@
 									</select>
 								</td>
 								<td>市场上可供选择的类似产品种类
-									<select	name="lscp" id="lscp">
+									<select	name="lscp" id="lscp" content="市场上可供选择的类似产品种类">
 										<option value="{{result.split(',')[97]}}">小于2</option>
 										<option value="{{result.split(',')[98]}}">小于等于4</option>
 										<option value="{{result.split(',')[99]}}">小于等于7</option>
@@ -468,7 +468,7 @@
 							</tr>
 							<tr>
 								<td>本行业近一年的平均销售额增长比率
-									<select	name="pjxsezzbl" id="pjxsezzbl">
+									<select	name="pjxsezzbl" id="pjxsezzbl" content="本行业近一年的平均销售额增长比率">
 										<option value="{{result.split(',')[108]}}">大于100%</option>
 										<option value="{{result.split(',')[109]}}">大于等于50%</option>
 										<option value="{{result.split(',')[110]}}">大于等于40%</option>
@@ -484,7 +484,7 @@
 									</select>
 								</td>
 								<td>本行业近一年的平均净利润增长比率
-									<select	name="pjjlrzzbl" id="pjjlrzzbl">
+									<select	name="pjjlrzzbl" id="pjjlrzzbl" content="本行业近一年的平均净利润增长比率">
 										<option value="{{result.split(',')[121]}}">大于100%</option>
 										<option value="{{result.split(',')[122]}}">大于等于50%</option>
 										<option value="{{result.split(',')[123]}}">大于等于40%</option>
@@ -500,7 +500,7 @@
 									</select>
 								</td>
 								<td>近三年来行业平均破产率
-									<select	name="hypjpcl" id="hypjpcl">
+									<select	name="hypjpcl" id="hypjpcl" content="近三年来行业平均破产率">
 										<option value="{{result.split(',')[134]}}">小于等于5%</option>
 										<option value="{{result.split(',')[135]}}">小于等于10%</option>
 										<option value="{{result.split(',')[136]}}">小于等于15%</option>
@@ -540,7 +540,7 @@
 							</tr>
 							<tr>
 								<td>
-									<select	name="cpcyx" id="cpcyx">
+									<select	name="cpcyx" id="cpcyx" content="产品的差异性">
 										<option value="{{result.split(',')[146]}}">产品与众不同，几乎没有替代品，专利得到很好的保护，信誉好</option>
 										<option value="{{result.split(',')[147]}}">产品有些独特，由于产品的复杂性，替代品有限</option>
 										<option value="{{result.split(',')[148]}}">产品无独特之处，有一些现成的替代品，信誉好</option>
@@ -548,7 +548,7 @@
 									</select>
 								</td>
 								<td>客户需求周期
-									<select	name="khxqzq" id="khxqzq">
+									<select	name="khxqzq" id="khxqzq" content="客户需求周期">
 										<option value="{{result.split(',')[150]}}">小于等于3天</option>
 										<option value="{{result.split(',')[151]}}">小于等于7天</option>
 										<option value="{{result.split(',')[152]}}">小于等于15天</option>
@@ -562,7 +562,7 @@
 									</select>
 								</td>
 								<td>可接受此价格的目标客户群比率
-									<select	name="mbkhqbl" id="mbkhqbl">
+									<select	name="mbkhqbl" id="mbkhqbl" content="可接受此价格的目标客户群比率">
 										<option value="{{result.split(',')[160]}}">大于等于95%</option>
 										<option value="{{result.split(',')[161]}}">大于等于90%</option>
 										<option value="{{result.split(',')[162]}}">大于等于80%</option>
@@ -585,7 +585,7 @@
 							</tr>
 							<tr>
 								<td>经营范围内的竞争性同业数量
-									<select	name="jzxtysl" id="jzxtysl">
+									<select	name="jzxtysl" id="jzxtysl" content="经营范围内的竞争性同业数量">
 										<option value="{{result.split(',')[172]}}">无</option>
 										<option value="{{result.split(',')[173]}}">等于1家</option>
 										<option value="{{result.split(',')[174]}}">小于等于3家</option>
@@ -599,7 +599,7 @@
 									</select>
 								</td>
 								<td>最大的三个客户占企业总销售额的比率
-									<select	name="zdkhzxsebl" id="zdkhzxsebl">
+									<select	name="zdkhzxsebl" id="zdkhzxsebl" content="最大的三个客户占企业总销售额的比率">
 										<option value="{{result.split(',')[182]}}">小于等于15%</option>
 										<option value="{{result.split(',')[183]}}">小于等于20%</option>
 										<option value="{{result.split(',')[184]}}">小于等于25%</option>
@@ -629,7 +629,7 @@
 							</tr>
 							<tr>
 								<td>拥有专利技术的数量
-									<select	name="zljssl" id="zljssl">
+									<select	name="zljssl" id="zljssl" content="拥有专利技术的数量">
 										<option value="{{result.split(',')[196]}}">大于等于5</option>
 										<option value="{{result.split(',')[197]}}">等于4</option>
 										<option value="{{result.split(',')[198]}}">等于3</option>
@@ -639,7 +639,7 @@
 									</select>
 								</td>
 								<td>能独立解决技术难题的比率
-									<select	name="jjjsntbl" id="jjjsntbl">
+									<select	name="jjjsntbl" id="jjjsntbl" content="能独立解决技术难题的比率">
 										<option value="{{result.split(',')[202]}}">等于100%</option>
 										<option value="{{result.split(',')[203]}}">大于等于90%</option>
 										<option value="{{result.split(',')[204]}}">大于等于80%</option>
@@ -680,7 +680,7 @@
 							</tr>
 							<tr>
 								<td colspan="2">本企业单位产品的销售成本/行业内单位产品的销售成本
-									<select	name="xscb" id="xscb">
+									<select	name="xscb" id="xscb" content="本企业单位产品的销售成本">
 										<option value="{{result.split(',')[214]}}">小于等于60%</option>
 										<option value="{{result.split(',')[215]}}">小于等于70%</option>
 										<option value="{{result.split(',')[216]}}">小于等于80%</option>
@@ -696,7 +696,7 @@
 									</select>
 								</td>
 								<td>习惯购买同一品牌产品的客户比率
-									<select	name="xgkhbl" id="xgkhbl">
+									<select	name="xgkhbl" id="xgkhbl" content="习惯购买同一品牌产品的客户比率">
 										<option value="{{result.split(',')[226]}}">大于等于90%</option>
 										<option value="{{result.split(',')[227]}}">大于等于80%</option>
 										<option value="{{result.split(',')[228]}}">大于等于70%</option>
@@ -725,7 +725,7 @@
 							</tr>
 							<tr>
 								<td>职业经理人在管理层中的占比
-									<select	name="zyjlrzb" id="zyjlrzb">
+									<select	name="zyjlrzb" id="zyjlrzb" content="职业经理人在管理层中的占比">
 										<option value="{{result.split(',')[236]}}">大于等于90%</option>
 										<option value="{{result.split(',')[237]}}">大于等于80%</option>
 										<option value="{{result.split(',')[238]}}">大于等于70%</option>
@@ -740,7 +740,7 @@
 									</select>
 								</td>
 								<td colspan="2">最近两年内管理人员的流失率
-									<select	name="glrylsl" id="glrylsl">
+									<select	name="glrylsl" id="glrylsl" content="最近两年内管理人员的流失率">
 										<option value="{{result.split(',')[247]}}">小于等于10%</option>
 										<option value="{{result.split(',')[248]}}">小于等于20%</option>
 										<option value="{{result.split(',')[249]}}">小于等于30%</option>
@@ -761,7 +761,7 @@
 							</tr>
 							<tr>
 								<td>本科以上人员在管理层中的占比
-									<select	name="bkglczb" id="bkglczb">
+									<select	name="bkglczb" id="bkglczb" content="本科以上人员在管理层中的占比">
 										<option value="{{result.split(',')[256]}}">大于等于90%</option>
 										<option value="{{result.split(',')[257]}}">大于等于80%</option>
 										<option value="{{result.split(',')[258]}}">大于等于70%</option>
@@ -773,7 +773,7 @@
 									</select>
 								</td>
 								<td>管理层平均年龄
-									<select	name="glcpjnl" id="glcpjnl">
+									<select	name="glcpjnl" id="glcpjnl" content="管理层平均年龄">
 										<option value="{{result.split(',')[264]}}">20-25</option>
 										<option value="{{result.split(',')[265]}}">25-30</option>
 										<option value="{{result.split(',')[266]}}">30-40</option>
@@ -782,7 +782,7 @@
 									</select>
 								</td>
 								<td>管理者在本企业内的平均从业时间
-									<select	name="bqypjcysj" id="bqypjcysj">
+									<select	name="bqypjcysj" id="bqypjcysj" content="管理者在本企业内的平均从业时间">
 										<option value="{{result.split(',')[269]}}">大于等于10年</option>
 										<option value="{{result.split(',')[270]}}">大于等于8年</option>
 										<option value="{{result.split(',')[271]}}">大于等于6年</option>
@@ -800,7 +800,7 @@
 							</tr>
 							<tr>
 								<td>管理者在行业内的平均从业时间
-									<select	name="hypjcysj" id="hypjcysj">
+									<select	name="hypjcysj" id="hypjcysj" content="管理者在行业内的平均从业时间">
 										<option value="{{result.split(',')[277]}}">大于等于15年</option>
 										<option value="{{result.split(',')[278]}}">大于等于10年</option>
 										<option value="{{result.split(',')[279]}}">大于等于8年</option>
@@ -813,7 +813,7 @@
 									</select>
 								</td>
 								<td colspan="2">企业近两年内的月营业额平均环比增长
-									<select	name="yyepjhbzz" id="yyepjhbzz">
+									<select	name="yyepjhbzz" id="yyepjhbzz" content="企业近两年内的月营业额平均环比增长">
 										<option value="{{result.split(',')[286]}}">大于等于20%</option>
 										<option value="{{result.split(',')[287]}}">大于等于15%</option>
 										<option value="{{result.split(',')[288]}}">大于等于12%</option>
@@ -836,7 +836,7 @@
 							</tr>
 							<tr>
 								<td>企业每年拓展训练或聚会的次数
-									<select	name="tzxlcs" id="tzxlcs">
+									<select	name="tzxlcs" id="tzxlcs" content="企业每年拓展训练或聚会的次数">
 										<option value="{{result.split(',')[298]}}">大于等于10次</option>
 										<option value="{{result.split(',')[299]}}">大于等于8次</option>
 										<option value="{{result.split(',')[300]}}">大于等于5次</option>
@@ -846,7 +846,7 @@
 									</select>
 								</td>
 								<td colspan="2">最近5年内企业出现道德风险事件的次数
-									<select	name="ddfxsjcs" id="ddfxsjcs">
+									<select	name="ddfxsjcs" id="ddfxsjcs" content="最近5年内企业出现道德风险事件的次数">
 										<option value="{{result.split(',')[304]}}">等于0次</option>
 										<option value="{{result.split(',')[305]}}">等于1次</option>
 										<option value="{{result.split(',')[306]}}">小于等于3次</option>
@@ -862,13 +862,13 @@
 							</tr>
 							<tr>
 								<td>
-									<select	name="jysxtyx" id="jysxtyx">
+									<select	name="jysxtyx" id="jysxtyx" content="经营思路的统一性">
 										<option value="{{result.split(',')[309]}}">思路统一</option>
 										<option value="{{result.split(',')[310]}}">分歧较多</option>
 									</select>
 								</td>
 								<td colspan="2">
-									<select	name="zfmxjs" id="zfmxjs">
+									<select	name="zfmxjs" id="zfmxjs" content="作风冒险或谨慎">
 										<option value="{{result.split(',')[311]}}">冒险</option>
 										<option value="{{result.split(',')[312]}}">谨慎</option>
 									</select>
@@ -888,7 +888,7 @@
 									</select>
 								</td>
 								<td>供应商数量
-									<select	name="glqygys" id="glqygys">
+									<select	name="glqygys" id="glqygys" content="供应商数量">
 										<option value="{{result.split(',')[316]}}">大于20</option>
 										<option value="{{result.split(',')[317]}}">大于等于18</option>
 										<option value="{{result.split(',')[318]}}">大于等于16</option>
@@ -903,7 +903,7 @@
 									</select>
 								</td>
 								<td>经销商数量
-									<select	name="glqyjxs" id="glqyjxs">
+									<select	name="glqyjxs" id="glqyjxs" content="经销商数量">
 										<option value="{{result.split(',')[327]}}">大于50</option>
 										<option value="{{result.split(',')[328]}}">大于等于45</option>
 										<option value="{{result.split(',')[329]}}">大于等于40</option>
@@ -925,7 +925,7 @@
 							</tr>
 							<tr>
 								<td>核心技术人员在本行业平均从业时间
-									<select	name="hxjsrycysj" id="hxjsrycysj">
+									<select	name="hxjsrycysj" id="hxjsrycysj" content="平均从业时间">
 										<option value="{{result.split(',')[338]}}">大于等于20年</option>
 										<option value="{{result.split(',')[339]}}">大于等于15年</option>
 										<option value="{{result.split(',')[340]}}">大于等于10年</option>
@@ -938,7 +938,7 @@
 									</select>
 								</td>
 								<td colspan="2">核心技术人员近两年的流失率
-									<select	name="hxjsrylsl" id="hxjsrylsl">
+									<select	name="hxjsrylsl" id="hxjsrylsl" content="流失率">
 										<option value="{{result.split(',')[347]}}">小于等于10%</option>
 										<option value="{{result.split(',')[348]}}">小于等于20%</option>
 										<option value="{{result.split(',')[349]}}">小于等于30%</option>
@@ -958,7 +958,7 @@
 							</tr>
 							<tr>
 								<td>大专以上的员工占比
-									<select	name="dzysyg" id="dzysyg">
+									<select	name="dzysyg" id="dzysyg" content="大专以上的员工占比">
 										<option value="{{result.split(',')[356]}}">大于等于90%</option>
 										<option value="{{result.split(',')[357]}}">大于等于80%</option>
 										<option value="{{result.split(',')[358]}}">大于等于70%</option>
@@ -970,7 +970,7 @@
 									</select>
 								</td>
 								<td colspan="2">员工在本行业的平均从业时间
-									<select	name="ygpjcysj" id="ygpjcysj">
+									<select	name="ygpjcysj" id="ygpjcysj" content="员工在本行业的平均从业时间">
 										<option value="{{result.split(',')[364]}}">大于等于10年</option>
 										<option value="{{result.split(',')[365]}}">大于等于8年</option>
 										<option value="{{result.split(',')[366]}}">大于等于6年</option>
@@ -989,7 +989,7 @@
 							</tr>
 							<tr>
 								<td>
-									<select	name="qyzzjg" id="qyzzjg">
+									<select	name="qyzzjg" id="qyzzjg" content="健全的组织架构">
 										<option value="{{result.split(',')[372]}}">矩阵组织式</option>
 										<option value="{{result.split(',')[373]}}">模拟分散化</option>
 										<option value="{{result.split(',')[374]}}">事业部制</option>
@@ -998,7 +998,7 @@
 									</select>
 								</td>
 								<td colspan="2">决策方式
-									<select	name="jcfs" id="jcfs">
+									<select	name="jcfs" id="jcfs" content="科学的决策程序">
 										<option value="{{result.split(',')[377]}}">根据实际情况决定决策方式</option>
 										<option value="{{result.split(',')[378]}}">群体决策</option>
 										<option value="{{result.split(',')[379]}}">收集意见，领导决策</option>
@@ -1012,7 +1012,7 @@
 							</tr>
 							<tr>
 								<td>
-									<select	name="rsglzc" id="rsglzc">
+									<select	name="rsglzc" id="rsglzc" content="人事管理政策">
 										<option value="{{result.split(',')[381]}}">规范招聘</option>
 										<option value="{{result.split(',')[382]}}">晋升激励</option>
 										<option value="{{result.split(',')[383]}}">物质激励</option>
@@ -1021,7 +1021,7 @@
 									</select>
 								</td>
 								<td colspan="2">决策方式
-									<select	name="gsfzzl" id="gsfzzl">
+									<select	name="gsfzzl" id="gsfzzl" content="公司的发展战略">
 										<option value="{{result.split(',')[386]}}">有序扩张</option>
 										<option value="{{result.split(',')[387]}}">百年老店</option>
 										<option value="{{result.split(',')[388]}}">安于现状</option>
@@ -1037,7 +1037,7 @@
 							</tr>
 							<tr>
 								<td>同等售价下本企业单位产品的平均成本/行业内产品单位产品的平均成本
-									<select	name="tdjwpjcb" id="tdjwpjcb">
+									<select	name="tdjwpjcb" id="tdjwpjcb" content="平均成本">
 										<option value="{{result.split(',')[391]}}">小于等于60%</option>
 										<option value="{{result.split(',')[392]}}">小于等于70%</option>
 										<option value="{{result.split(',')[393]}}">小于等于80%</option>
@@ -1054,7 +1054,7 @@
 									</select>
 								</td>
 								<td colspan="2">企业日均流动资金/企业日均开支
-									<select	name="rjzj">
+									<select	name="rjzj" id="rjzj" content="企业日均开支">
 										<option value="{{result.split(',')[404]}}">大于等于120</option>
 										<option value="{{result.split(',')[405]}}">大于等于90</option>
 										<option value="{{result.split(',')[406]}}">大于等于60</option>
@@ -1072,14 +1072,14 @@
 					</td>
 				</tr>
 			</table>
-
-        <!--*****************************评分结果**********************************-->
+			 <!--*****************************评分结果**********************************-->
 			<table class="myTable">
 				<caption>评分结果</caption>
 
 				<tr>
 					<td><b>评分结果</b></td>
 					<td><input type="text" id="score_result" name="score_result" readonly/></td>
+					<input type="hidden" id="score_remark" name="score_remark" readonly/>
 				</tr>
 			</table>
 		<div class="pagebar">			
@@ -1089,7 +1089,8 @@
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
-        </form>
+		</form>
+       
 		<script type="text/javascript">			
 			function addTd(table){	//表格添加行
 				var tr= document.getElementById(table).getElementsByTagName("tr");
@@ -1150,8 +1151,10 @@
 					$("#zqxhy").attr("disabled","disabled");
 				}
 			}
+			var type =true;
+			var remark = new Array();
             function sum(){
-
+            	$("#score_remark").val("");
                 var total=0;
                 var hyzc=0;
                 var hy=0;
@@ -1159,50 +1162,76 @@
                 var gl=0;
                 //===行业
 				//行业政策
-				hyzc+=(parseFloat($("#jrhbzc").val())/100)*(parseFloat($("#jrhbzc_s").val())/100)//金融货币政策
-                hyzc+=(parseFloat($("#gjcyzc").val())/100)*(parseFloat($("#gjcyzc_s").val())/100)//国家产业政策
-                hyzc+=(parseFloat($("#sszc").val())/100)*(parseFloat($("#sszc_s").val())/100)//税收政策
+				hyzc+=(parseFloat($("#jrhbzc").val())/100)*(parseFloat(transfer($("#jrhbzc_s")))/100)
+				//金融货币政策
+                hyzc+=(parseFloat($("#gjcyzc").val())/100)*(parseFloat(transfer($("#gjcyzc_s")))/100)
+                //国家产业政策
+                hyzc+=(parseFloat($("#sszc").val())/100)*(parseFloat(transfer($("#sszc_s")))/100)
+                //税收政策
                 total+=(parseFloat($("#hyzc").val())/100)*hyzc//行业政策得分
-                //行业
-{#                total+=(parseFloat($("#cpgy").val())/100)+(parseFloat($("#zqxhy").val())/100)#}
-                hy+=(parseFloat($("#hyzcjg").val())/100)*(parseFloat($("#gdzczzzc").val())/100)//行业资产结构
-                hy+=(parseFloat($("#hyylnl").val())/100)*
-                        (parseFloat($("#jll").val())/100+parseFloat($("#pjyszkzzts").val())/100+parseFloat($("#pjchzzts").val())/100)//行业盈利能力
-                hy+=(parseFloat($("#hyylx").val())/100)*
-                        (parseFloat($("#sykh").val())/100+parseFloat($("#gyssl").val())/100+
-                                parseFloat($("#xykh").val())/100+parseFloat($("#jxssl").val())/100)//行业依赖性
-                hy+=(parseFloat($("#hytdx").val())/100)*(parseFloat($("#lscp").val())/100)//行业替代性
-                hy+=(parseFloat($("#hyfzqs").val())/100)*
-                        (parseFloat($("#pjxsezz").val())/100*parseFloat($("#pjxsezzbl").val())/100+
-                                parseFloat($("#pjjlrzz").val())/100*parseFloat($("#pjjlrzzbl").val())/100)//行业发展趋势
 
-                hy+=parseFloat($("#hyfxfx").val())/100*parseFloat($("#hypjpcl").val())/100
+                //行业
+                total+=(parseFloat(transfer($("#cpgy")))/100)+(parseFloat(transfer($("#zqxhy")))/100)
+                hy+=(parseFloat($("#hyzcjg").val())/100)*(parseFloat(transfer($("#gdzczzzc")))/100)
+                //行业资产结构
+                hy+=(parseFloat($("#hyylnl").val())/100)*
+                        (parseFloat(transfer($("#jll")))/100+parseFloat(transfer($("#pjyszkzzts")))/100+parseFloat(transfer($("#pjchzzts")))/100)//行业盈利能力
+                hy+=(parseFloat($("#hyylx").val())/100)*
+                        (parseFloat($("#sykh").val())/100+parseFloat(transfer($("#gyssl")))/100+
+                                parseFloat($("#xykh").val())/100+parseFloat(transfer($("#jxssl")))/100)
+                                //行业依赖性
+                hy+=(parseFloat($("#hytdx").val())/100)*(parseFloat(transfer($("#lscp")))/100)
+                //行业替代性
+                hy+=(parseFloat($("#hyfzqs").val())/100)*
+                        (parseFloat($("#pjxsezz").val())/100*parseFloat(transfer($("#pjxsezzbl")))/100+
+                                parseFloat($("#pjjlrzz").val())/100*parseFloat(transfer($("#pjjlrzzbl")))/100)//行业发展趋势
+
+                hy+=parseFloat($("#hyfxfx").val())/100*parseFloat(transfer($("#hypjpcl")))/100
                 total+=(parseFloat($("#hy").val())/100)*hy//行业得分
 
                 //===企业
-                jy+=parseFloat($("#cpcyx").val())/100+parseFloat($("#khxqzq").val())/100+parseFloat($("#mbkhqbl").val())/100+
-                    parseFloat($("#jzxtysl").val())/100+parseFloat($("#zbkhzxsebl").val())/100+parseFloat($("#xsff").val())/100//市场与产品
-                jy+=parseFloat($("#zljssl").val())/100+parseFloat($("#jjjsntbl").val())/100+parseFloat($("#zrzh").val())/100+
-                    parseFloat($("#hj").val())/100+parseFloat($("#lzgx").val())/100//生产环节
-                jy+=parseFloat($("#xscb").val())/100+parseFloat($("#xgkhbl").val())/100//企业销售环节
-                gl+=parseFloat($("#zyjlrzb").val())/100+parseFloat($("#glrylsl").val())/100//管理层稳定性
-                gl+=parseFloat($("#bkglczb").val())/100+parseFloat($("#glcpjnl").val())/100+parseFloat($("#bqypjcysj").val())/100+
-                    parseFloat($("#hypjcysj").val())/100+parseFloat($("#yyepjhbzz").val())/100+parseFloat($("#tzxlcs").val())/100+
-                    parseFloat($("#ddfxsjcs").val())/100//管理层素质和经验
-                gl+=parseFloat($("#jysxtyx").val())/100//经营思想统一性
-                gl+=parseFloat($("#mzgs").val())/100+parseFloat($("#glqygys").val())/100+parseFloat($("#glqyjxs").val())/100//关联企业经营管理
-                gl+=parseFloat($("#hxjsrycysj").val())/100+parseFloat($("#hxjsrylsl").val())/100//核心技术人员情况
-                gl+=parseFloat($("#dzysyg").val())/100+parseFloat($("#ygpjcysj").val())/100//员工队伍
-                gl+=parseFloat($("#qyzzjg").val())/100+parseFloat($("#jcfs").val())/100+parseFloat($("#rsglzc").val())/100
-                    +parseFloat($("#gsfzzl").val())/100//内部控制与管理
-                gl+=parseFloat($("#tdjwpjcb").val())/100+parseFloat($("#rjzj").val())/100//财务管理能力
+                jy+=parseFloat(transfer($("#cpcyx")))/100+parseFloat(transfer($("#khxqzq")))/100+parseFloat(transfer($("#mbkhqbl")))/100+parseFloat(transfer($("#jzxtysl")))/100+parseFloat(transfer($("#zdkhzxsebl")))/100+parseFloat(transfer($("#xsff")))/100//市场与产品
+    
+                jy+=parseFloat(transfer($("#zljssl")))/100+parseFloat(transfer($("#jjjsntbl")))/100+parseFloat(transfer($("#zrzh")))/100+parseFloat(transfer($("#hj")))/100+parseFloat(transfer($("#lzgx")))/100//生产环节
+          
+                jy+=parseFloat(transfer($("#xscb")))/100+parseFloat(transfer($("#xgkhbl")))/100//企业销售环节
+               
+                gl+=parseFloat(transfer($("#zyjlrzb")))/100+parseFloat(transfer($("#glrylsl")))/100//管理层稳定性
+                gl+=parseFloat(transfer($("#bkglczb")))/100+parseFloat(transfer($("#glcpjnl")))/100+parseFloat(transfer($("#bqypjcysj")))/100+
+                    parseFloat(transfer($("#hypjcysj")))/100+parseFloat(transfer($("#yyepjhbzz")))/100+parseFloat(transfer($("#tzxlcs")))/100+
+                    parseFloat(transfer($("#ddfxsjcs")))/100//管理层素质和经验
+                gl+=parseFloat(transfer($("#jysxtyx")))/100//经营思想统一性
+                gl+=parseFloat(transfer($("#mzgs")))/100+parseFloat(transfer($("#glqygys")))/100+parseFloat(transfer($("#glqyjxs")))/100//关联企业经营管理
+                gl+=parseFloat(transfer($("#hxjsrycysj")))/100+parseFloat(transfer($("#hxjsrylsl")))/100//核心技术人员情况
+                gl+=parseFloat(transfer($("#dzysyg")))/100+parseFloat(transfer($("#ygpjcysj")))/100//员工队伍
+                gl+=parseFloat(transfer($("#qyzzjg")))/100+parseFloat(transfer($("#jcfs")))/100+parseFloat(transfer($("#rsglzc")))/100
+                    +parseFloat(transfer($("#gsfzzl")))/100//内部控制与管理
+                gl+=parseFloat(transfer($("#tdjwpjcb")))/100+parseFloat(transfer($("#rjzj")))/100//财务管理能力
 
                 qy=parseFloat(jy+gl);
+             	
                 total+=parseFloat($("#qy").val())/100*qy
 
 
-                $("#score_result").val(total);
+                if(!type){
+					$("#score_result").val("不满足准入条件");
+					$("#score_remark").val(remark);
+				}else{
+					$("#score_result").val(total);
+				}
             }
+            function transfer(value){
+				if(value.val()=="禁入"){
+					type = false;
+					remark.push(value.attr("content")+"为禁入");
+					return 0;
+				}else if(value.val()=="准入"){
+					return 0;
+					
+				}else{
+					return value.val();
+				}
+			}
 		</script>
 	</body>
 </html>

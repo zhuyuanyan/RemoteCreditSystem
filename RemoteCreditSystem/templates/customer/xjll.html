@@ -15,7 +15,7 @@
 		</style>
 	</head>
 	<body>		
-		<form class="iframeForm">
+		<form class="iframeForm" id="iframeForm" action="/khzldy/xjll_save/{{id}}" method="POST">
 <!--*****************************现金流量**********************************-->
 			<table class="myTable">
 				<caption>现金流量</caption>
@@ -27,65 +27,65 @@
 				</colgroup>
 				<tr>
 					<td><b>期初现金</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="qcxj" value="{{result.qcxj}}"/></td>
 					<td><b>经营性现金流入</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="jyxxjlr" value="{{result.jyxxjlr}}"/></td>
 				</tr>
 				<tr>
 					<td><b>经营性现金流出</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="jyxxjlc" value="{{result.jyxxjlc}}"/></td>
 					<td><b>经营现金净流量</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="jyxjjll" value="{{result.jyxjjll}}"/></td>
 				</tr>
 				<tr>
 					<td><b>投资现金流入</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="tzxjlr" value="{{result.tzxjlr}}"/></td>
 					<td><b>投资现金流出</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="tzxjlc" value="{{result.tzxjlc}}"/></td>
 				</tr>
 				<tr>
 					<td><b>投资现金净流量</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="tzxjjll" value="{{result.tzxjjll}}"/></td>
 					<td><b>融资现金流入</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="rzxjlr" value="{{result.rzxjlr}}"/></td>
 				</tr>
 				<tr>
 					<td><b>融资现金流出</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="rzxjlc" value="{{result.rzxjlc}}"/></td>
 					<td><b>融资现金净流量</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="rzxjjll" value="{{result.rzxjjll}}"/></td>
 				</tr>
 				<tr>
 					<td><b>期末现金</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="qmxj" value="{{result.qmxj}}"/></td>
 					<td><b>期初权益时点</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="qcqysd" value="{{result.qcqysd}}"/></td>
 				</tr>
 				<tr>
 					<td><b>期初权益合计</b></td>
-					<td colspan="3"><input type="text"/></td>
+					<td colspan="3"><input type="text" name="qcqyhj" value="{{result.qcqyhj}}"/></td>
 				</tr>				
 				<tr>
 					<td><b>分析期间收入</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="fxqjsr" value="{{result.fxqjsr}}"/></td>
 					<td><b>其他收入</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="qtsr" value="{{result.qtsr}}"/></td>
 				</tr>			
 				<tr>
 					<td><b>升值</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="sz" value="{{result.sz}}"/></td>
 					<td><b>大项支出合计</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="dxzchj" value="{{result.dxzchj}}"/></td>
 				</tr>		
 				<tr>
 					<td><b>折旧</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="zj" value="{{result.zj}}"/></td>
 					<td><b>贬值</b></td>
-					<td><input type="text"/></td>
+					<td><input type="text" name="bz" value="{{result.bz}}"/></td>
 				</tr>	
 				<tr>
 					<td><b>表外资产</b></td>
-					<td colspan="3"><input type="text"/></td>
+					<td colspan="3"><input type="text" name="bwzc" value="{{result.bwzc}}"/></td>
 				</tr>				
 				<tr>
 					<td rowspan="3"><b>资产负债率</b></td>
@@ -135,9 +135,14 @@
 		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<a class="btn btn-info" onclick="sum()" title="提交">提交</a>
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
+		<script type="text/javascript">
+			function sum(){
+				$("#iframeForm").submit();
+			}
+		</script>
 	</body>
 </html>
