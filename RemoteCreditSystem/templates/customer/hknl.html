@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">			
+			.myTable td{font-size:13px;}
+			input[type=text]{width:80px;}
+		</style>
+	</head>
+	<body>		
+		<form class="iframeForm" action="/khzldy/khzl_hknl_save/{{id}}" method="POST">		
+<!--*****************************还款能力**********************************-->
+			<table class="myTable">
+				<caption>还款能力</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td><b>资产负债率({{result.split(',')[0]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[0]}}" name="zcfzb" id="zcfzb"/>
+					<td>
+						<select name="" id="zcfzb1">
+							<option value="{{result.split(',')[1]}}">负债/资产》100%</option>
+							<option value="{{result.split(',')[2]}}">90%《负债/资产《100%</option>
+							<option value="{{result.split(',')[3]}}">80%《负债/资产《90%</option>
+							<option value="{{result.split(',')[4]}}">70%《负债/资产《80%</option>
+							<option value="{{result.split(',')[5]}}">60%《负债/资产《70%</option>
+							<option value="{{result.split(',')[6]}}">50%《负债/资产《60%</option>
+							<option value="{{result.split(',')[7]}}">40%《负债/资产《50%</option>
+							<option value="{{result.split(',')[8]}}">30%《负债/资产《40%</option>
+							<option value="{{result.split(',')[9]}}">20%《负债/资产《30%</option>
+							<option value="{{result.split(',')[10]}}">10%《负债/资产《20%</option>
+							<option value="{{result.split(',')[11]}}">0《负债/资产《10%</option>
+						</select>
+					</td>
+					<td><b>流动比率({{result.split(',')[12]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[12]}}" name="ldbl" id="ldbl"/>
+					<td>
+						<select name="" id="ldbl1">
+							<option value="{{result.split(',')[13]}}">流动资产/流动负债》200%</option>
+							<option value="{{result.split(',')[14]}}">190%《流动资产/流动负债《200%</option>
+							<option value="{{result.split(',')[15]}}">180%《流动资产/流动负债《190%</option>
+							<option value="{{result.split(',')[16]}}">170%《流动资产/流动负债《180%</option>
+							<option value="{{result.split(',')[17]}}">160%《流动资产/流动负债《170%</option>
+							<option value="{{result.split(',')[18]}}">150%《流动资产/流动负债《160%</option>
+							<option value="{{result.split(',')[19]}}">140%《流动资产/流动负债《150%</option>
+							<option value="{{result.split(',')[20]}}">130%《流动资产/流动负债《140%</option>
+							<option value="{{result.split(',')[21]}}">120%《流动资产/流动负债《130%</option>
+							<option value="{{result.split(',')[22]}}">110%《流动资产/流动负债《120%</option>
+							<option value="{{result.split(',')[23]}}">100%《流动资产/流动负债《110%</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><b>速动比率({{result.split(',')[24]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[24]}}" name="sdbl" id="sdbl"/>
+					<td>
+						<select name="" id="sdbl1">
+							<option value="{{result.split(',')[25]}}">速动资产/流动负债》100%</option>
+							<option value="{{result.split(',')[26]}}">90%《速动资产/流动负债《100%</option>
+							<option value="{{result.split(',')[27]}}">80%《速动资产/流动负债《90%</option>
+							<option value="{{result.split(',')[28]}}">70%《速动资产/流动负债《80%</option>
+							<option value="{{result.split(',')[29]}}">60%《速动资产/流动负债《70%</option>
+							<option value="{{result.split(',')[30]}}">50%《速动资产/流动负债《60%</option>
+							<option value="{{result.split(',')[31]}}">40%《速动资产/流动负债《50%</option>
+							<option value="{{result.split(',')[32]}}">30%《速动资产/流动负债《40%</option>
+							<option value="{{result.split(',')[33]}}">20%《速动资产/流动负债《30%</option>
+							<option value="{{result.split(',')[34]}}">10%《速动资产/流动负债《20%</option>
+							<option value="{{result.split(',')[35]}}">0%《速动资产/流动负债《10%</option>
+						</select>
+					</td>
+					<td><b>存货周转率({{result.split(',')[36]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[36]}}" name="chzzl" id="chzzl"/>
+					<td>
+						<select name="" id="chzzl1">
+							<option value="{{result.split(',')[37]}}">销售成本/平均存货余额》20</option>
+							<option value="{{result.split(',')[38]}}">17《销售成本/平均存货余额《20</option>
+							<option value="{{result.split(',')[39]}}">14《销售成本/平均存货余额《17</option>
+							<option value="{{result.split(',')[40]}}">11《销售成本/平均存货余额《14</option>
+							<option value="{{result.split(',')[41]}}">8《销售成本/平均存货余额《11</option>
+							<option value="{{result.split(',')[42]}}">5《销售成本/平均存货余额《8</option>
+							<option value="{{result.split(',')[43]}}">3《销售成本/平均存货余额《5</option>
+							<option value="{{result.split(',')[44]}}">1《销售成本/平均存货余额《3</option>
+							<option value="{{result.split(',')[45]}}">0《销售成本/平均存货余额《1</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><b>应收账款周转率({{result.split(',')[46]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[46]}}" name="zzl" id="zzl"/>
+					<td>
+						<select name="" id="zzl1">
+							<option value="{{result.split(',')[47]}}">当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》3</option>
+							<option value="{{result.split(',')[48]}}">2.5《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2《3</option>
+							<option value="{{result.split(',')[49]}}">2《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》2.5</option>
+							<option value="{{result.split(',')[50]}}">1.5《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》2</option>
+							<option value="{{result.split(',')[51]}}">1《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》1.5</option>
+							<option value="{{result.split(',')[52]}}">0.5《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2》1</option>
+							<option value="{{result.split(',')[53]}}">0《当期销售净收入/（期初应收账款余额 + 期末应收账款余额）/ 2《0.5</option>
+						</select>
+					</td>
+					<td><b>现金比率({{result.split(',')[54]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[54]}}" name="xjbl" id="xjbl"/>
+					<td>
+						<select name="" id="xjbl1">
+							<option value="{{result.split(',')[55]}}">35%≤（现金+现金等价物）/流动负债<40%</option>
+							<option value="{{result.split(',')[56]}}">30%≤（现金+现金等价物）/流动负债<35%</option>
+							<option value="{{result.split(',')[57]}}">25%≤（现金+现金等价物）/流动负债<30%</option>
+							<option value="{{result.split(',')[58]}}">20%≤（现金+现金等价物）/流动负债<25%</option>
+							<option value="{{result.split(',')[59]}}">15%≤（现金+现金等价物）/流动负债<20%</option>
+							<option value="{{result.split(',')[60]}}">10%≤（现金+现金等价物）/流动负债<15%</option>
+							<option value="{{result.split(',')[61]}}">5%≤（现金+现金等价物）/流动负债<10%</option>
+							<option value="{{result.split(',')[62]}}">0%≤（现金+现金等价物）/流动负债<5%</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><b>总资产周转率({{result.split(',')[63]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[63]}}" name="zzczzl" id="zzczzl"/>
+					<td>
+						<select name="" id="zzczzl1">
+							<option value="{{result.split(',')[64]}}">销售收入/总资产》0.8</option>
+							<option value="{{result.split(',')[65]}}">0.7《销售收入/总资产《0.8</option>
+							<option value="{{result.split(',')[66]}}">0.6《销售收入/总资产《0.7</option>
+							<option value="{{result.split(',')[67]}}">0.5《销售收入/总资产《0.6</option>
+							<option value="{{result.split(',')[68]}}">0.4《销售收入/总资产《0.5</option>
+							<option value="{{result.split(',')[69]}}">0.3《销售收入/总资产《0.4</option>
+							<option value="{{result.split(',')[70]}}">0.2《销售收入/总资产《0.3</option>
+							<option value="{{result.split(',')[71]}}">0.1《销售收入/总资产《0.2</option>
+						</select>
+					</td>
+					<td><b>营业周期({{result.split(',')[72]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[72]}}" name="yyzq" id="yyzq"/>
+					<td>
+						<select name="" id="yyzq1">
+							<option value="{{result.split(',')[73]}}">1《存货周转天数+应收账款周转天数《7</option>
+							<option value="{{result.split(',')[74]}}">7《存货周转天数+应收账款周转天数《15</option>
+							<option value="{{result.split(',')[75]}}">15《存货周转天数+应收账款周转天数《30</option>
+							<option value="{{result.split(',')[76]}}">30《存货周转天数+应收账款周转天数《45</option>
+							<option value="{{result.split(',')[77]}}">45《存货周转天数+应收账款周转天数《75</option>
+							<option value="{{result.split(',')[78]}}">75《存货周转天数+应收账款周转天数《105</option>
+							<option value="{{result.split(',')[79]}}">105《存货周转天数+应收账款周转天数《135</option>
+							<option value="{{result.split(',')[80]}}">135《存货周转天数+应收账款周转天数《170</option>
+							<option value="{{result.split(',')[81]}}">170《存货周转天数+应收账款周转天数《220</option>
+							<option value="{{result.split(',')[82]}}">220《存货周转天数+应收账款周转天数《270</option>
+							<option value="{{result.split(',')[83]}}">270《存货周转天数+应收账款周转天数</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><b>流动资产周转率（次）({{result.split(',')[84]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[84]}}" name="ldczzl" id="ldczzl"/>
+					<td>
+						<select name="" id="ldczzl1">
+							<option value="{{result.split(',')[85]}}">0.8《主营业务收入净额/平均流动资产总额</option>
+							<option value="{{result.split(',')[86]}}">0.7《主营业务收入净额/平均流动资产总额《0.8</option>
+							<option value="{{result.split(',')[87]}}">0.6《主营业务收入净额/平均流动资产总额《0.7</option>
+							<option value="{{result.split(',')[88]}}">0.5《主营业务收入净额/平均流动资产总额《0.6</option>
+							<option value="{{result.split(',')[89]}}">0.4《主营业务收入净额/平均流动资产总额《0.5</option>
+							<option value="{{result.split(',')[90]}}">0.3《主营业务收入净额/平均流动资产总额《0.4</option>
+							<option value="{{result.split(',')[91]}}">0.2《主营业务收入净额/平均流动资产总额《0.3</option>
+							<option value="{{result.split(',')[92]}}">0.1《主营业务收入净额/平均流动资产总额《0.2</option>
+							<option value="{{result.split(',')[93]}}">0《主营业务收入净额/平均流动资产总额《0.1</option>
+						</select>
+					</td>
+					<td><b>资产收益率({{result.split(',')[94]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[94]}}" name="zcsyl" id="zcsyl"/>
+					<td>
+						<select name="" id="zcsyl1">
+							<option value="{{result.split(',')[95]}}">0《净收益/资产总额《0.15</option>
+							<option value="{{result.split(',')[96]}}">0.15《净收益/资产总额《0.2</option>
+							<option value="{{result.split(',')[97]}}">0.2《净收益/资产总额《0.25</option>
+							<option value="{{result.split(',')[98]}}">0.25《净收益/资产总额《0.3</option>
+							<option value="{{result.split(',')[99]}}">0.3《净收益/资产总额《0.35</option>
+							<option value="{{result.split(',')[100]}}">0.35《净收益/资产总额《0.39</option>
+							<option value="{{result.split(',')[101]}}">0.39《净收益/资产总额</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+<!--*****************************交叉检验**********************************-->
+			<table class="myTable">
+				<caption>交叉检验</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="40%">
+					<col width="10%">
+				</colgroup>
+				<tr>
+					<td rowspan="9"><b>营业额交叉检验</b></td>
+					<td colspan="2">
+						<b>1，年营业额=期末现金-期初现金+经营性现金流出（现金流）</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>2,年营业额=淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数（包括主导业务1，主导业务2，其他业务）</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>3.年营业额=产成品金额*（365/产成品运转周期)（存货产成品）</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>4，年营业额=主营业务成本/[1-（主营业务收入-主营业务成本）/主营业务收入]（主营业务）</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>5，年营业额=企业增值税金额/企业增值税税率</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>6,{（365/原材料运转周期）*原材料金额）/[1-（主营业务收入-主营业务成本）/主营业务收入]}*12</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>7，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务1）</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>8，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务2）</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>9，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（其他业务）</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td rowspan="4"><b>存货检验</b></td>
+					<td colspan="2">
+						<b>期间可变成本=上次进货时存货+期间购买的存货-现有存货</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>库房面积和库房空间大小</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>每年进货量与现存货量对比</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>必耗品推测可变成本</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td rowspan="3"><b>毛利率检验</b></td>
+					<td colspan="2">
+						<b>对比同行毛利率水平检验毛利率</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>（单个商品销售额-单个商品成本）*商品销售占比*100%</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>毛利率=（主营业务收入-主营业务成本）/主营业务收入*100%</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td rowspan="2"><b>权益交叉检验</b></td>
+					<td colspan="2">
+						<b>应有权益=初始权益+期间利润+期间生意外注资-期间生意外大项开支+固定资产升值-固定资产贬值</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>实际权益=资产-负债</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td><b>权益差异率</b></td>
+					<td colspan="3">
+						<select name="" id="qycyl">
+							<option value="{{result.split(',')[120]}}">0%《（实际权益-应有权益）/实际权益《5%</option>
+							<option value="{{result.split(',')[121]}}">5%《（实际权益-应有权益）/实际权益《10%</option>
+							<option value="{{result.split(',')[122]}}">10%《（实际权益-应有权益）/实际权益《15%</option>
+							<option value="{{result.split(',')[123]}}">15%《（实际权益-应有权益）/实际权益《20%</option>
+							<option value="{{result.split(',')[124]}}">20%《（实际权益-应有权益）/实际权益《25%</option>
+							<option value="{{result.split(',')[125]}}">25%《（实际权益-应有权益）/实际权益《30%</option>
+							<option value="{{result.split(',')[126]}}">30%《（实际权益-应有权益）/实际权益《35%</option>
+							<option value="{{result.split(',')[127]}}">35%《（实际权益-应有权益）/实际权益《40%</option>
+							<option value="{{result.split(',')[128]}}">40%《（实际权益-应有权益）/实际权益《45%</option>
+							<option value="{{result.split(',')[129]}}">45%《（实际权益-应有权益）/实际权益《50%</option>
+							<option value="{{result.split(',')[130]}}">50%《（实际权益-应有权益）/实际权益《55%</option>
+							<option value="{{result.split(',')[131]}}">55%《（实际权益-应有权益）/实际权益《60%</option>
+							<option value="{{result.split(',')[132]}}">60%《（实际权益-应有权益）/实际权益《65%</option>
+							<option value="{{result.split(',')[133]}}">65%《（实际权益-应有权益）/实际权益《70%</option>
+							<option value="{{result.split(',')[134]}}">70%《（实际权益-应有权益）/实际权益《75%</option>
+							<option value="{{result.split(',')[135]}}">75%《（实际权益-应有权益）/实际权益《80%</option>
+							<option value="{{result.split(',')[136]}}">80%《（实际权益-应有权益）/实际权益《85%</option>
+							<option value="{{result.split(',')[137]}}">85%《（实际权益-应有权益）/实际权益《90%</option>
+							<option value="{{result.split(',')[138]}}">90%《（实际权益-应有权益）/实际权益《95%</option>
+							<option value="{{result.split(',')[139]}}">95%《（实际权益-应有权益）/实际权益《100%</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="2"><b>企业月可支</b></td>
+					<td colspan="2">
+						<b>月可支=[（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）-（主营业务成本+主营业务税金+固定人工成本+水电成本+房租租金+固定交通成本+企业增值税+维修费+广告费+公司经费+劳动保险费+其他费用+财务费用）]/12</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>月可用现金=期初现金+经营性现金流入-经营性现金流出+融资现金流入-融资现金流出</b>
+					</td>
+					<td><input type="text" name=""/></td>
+				</tr>
+			</table>
+			<!--*****************************评分结果**********************************-->
+			<table class="myTable">
+				<caption>评分结果</caption>
+
+				<tr>
+					<td><b>评分结果</b></td>
+					<td><input type="text" id="score_result" name="score_result" readonly/></td>
+				</tr>	
+			</table>
+		
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<input type="submit" class="btn btn-info" value="提交">
+				<a class="btn btn-info" onclick="sum()" title="评分">评分</a>
+				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+			</div>
+		</div>
+		</form>
+		<script type="text/javascript">
+			function sum(){
+				var total=0;
+				//资产负债率
+				total+=(parseFloat($("#zcfzb").val())/100)*parseFloat($("#zcfzb1").val());
+				//流动比率
+				total+=(parseFloat($("#ldbl").val())/100)*parseFloat($("#ldbl1").val());
+				//速动比率
+				total+=(parseFloat($("#sdbl").val())/100)*parseFloat($("#sdbl1").val());
+				//存货比率
+				total+=(parseFloat($("#chzzl").val())/100)*parseFloat($("#chzzl1").val());
+				//周转率
+				total+=(parseFloat($("#zzl").val())/100)*parseFloat($("#zzl1").val());
+				//现金比率
+				total+=(parseFloat($("#xjbl").val())/100)*parseFloat($("#xjbl1").val());
+				//总资产周转率
+				total+=(parseFloat($("#zzczzl").val())/100)*parseFloat($("#zzczzl1").val());
+				//营业周期
+				total+=(parseFloat($("#yyzq").val())/100)*parseFloat($("#yyzq1").val());
+				//流动资产周转率
+				total+=(parseFloat($("#ldczzl").val())/100)*parseFloat($("#ldczzl1").val());
+				//资产收益率
+				total+=(parseFloat($("#zcsyl").val())/100)*parseFloat($("#zcsyl1").val());
+				//权益差异率
+				total+=parseFloat($("#qycyl").val());
+				$("#score_result").val(total);
+			}
+			
+
+		</script>
+	</body>
+</html>

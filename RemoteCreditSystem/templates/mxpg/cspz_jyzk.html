@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">			
+			.myTable td{font-size:13px;text-align:center;}
+			input[type=text]{width:80px;}
+		</style>
+	</head>
+	<body>		
+		<form class="iframeForm">
+<!--*****************************经营状况**********************************-->
+			<table class="myTable">
+				<caption>行业<input type="text" name="name1" value="30%"/></caption>
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="70%">
+				</colgroup>
+		<!--*****************************行业政策**********************************-->
+				<tr>
+					<td rowspan="3"><b>行业政策</b><br/><input type="text" name="name2" value="20%"/></td>
+					<td><b>金融货币政策</b><br/><input type="text" name="name3" value="20%"/></td>
+					<td><b></b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>宽松</th>
+								<th>一般</th>
+								<th>紧缩</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name4" value="100%"/></td>
+								<td><input type="text" name="name5" value="70%"/></td>
+								<td><input type="text" name="name6" value="30%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>国家产业政策</b><br/><input type="text" name="name7" value="80%"/></td>
+					<td><b></b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>扶持</th>
+								<th>一般</th>
+								<th>限制</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name8" value="50%-100%"/></td>
+								<td><input type="text" name="name9" value="40%"/></td>
+								<td><input type="text" name="name10" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>税收政策</b><input type="text" name="name17"/></td>
+					<td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>免税</th>
+								<th>出口退税</th>
+								<th>增值税正常<br/>（13%）</th>
+								<th>增值税低税率<br/>（17%）</th>
+								<th>增收消费税<br/>小于等于10%</th>
+								<th>增收消费税<br/>小于等于20%</th>
+								<th>增收消费税<br/>大于20%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name11" value="100%"/></td>
+								<td><input type="text" name="name12" value="80%"/></td>
+								<td><input type="text" name="name13" value="60%"/></td>
+								<td><input type="text" name="name14" value="50%"/></td>
+								<td><input type="text" name="name15" value="30%"/></td>
+								<td><input type="text" name="name16" value="10%"/></td>
+								<td><input type="text" name="name18" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+			<!--*****************************行业**********************************-->
+				<tr>
+					<td rowspan="12"><b>行业</b><br/><input type="text" name="name19" value="80%"/></td>
+					<td><b>行业供求关系</b></td>
+					<td><b>产品供应/市场需求量</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>小于等于50%</th>
+								<th>小于等于70%</th>
+								<th>小于等于90%</th>
+								<th>小于等于100%</th>
+								<th>小于等于105%</th>
+								<th>小于等于110%</th>
+								<th>小于等于120%</th>
+								<th>大于120%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name20" value="100%"/></td>
+								<td><input type="text" name="name21" value="90%"/></td>
+								<td><input type="text" name="name22" value="80%"/></td>
+								<td><input type="text" name="name23" value="70%"/></td>
+								<td><input type="text" name="name24" value="50%"/></td>
+								<td><input type="text" name="name25" value="30%"/></td>
+								<td><input type="text" name="name26" value="0%"/></td>
+								<td><input type="text" name="name27" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>行业周期性分析</b></td>
+					<td></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th rowspan="4">周期性行业</th>
+								<th>汽车</th>
+								<th>机械</th>
+								<th>电力</th>
+								<th>原料药</th>
+								<th>石油化工</th>
+								<th>房地产</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name28" value="准入"/></td>
+								<td><input type="text" name="name29" value="准入"/></td>
+								<td><input type="text" name="name30" value="准入"/></td>
+								<td><input type="text" name="name31" value="准入"/></td>
+								<td><input type="text" name="name32" value="禁入"/></td>
+								<td><input type="text" name="name33" value="禁入"/></td>
+							</tr>
+							<tr>
+								<th>煤炭</th>
+								<th>钢铁</th>
+								<th>造船</th>
+								<th>水泥</th>
+								<th colspan="2">有色金属</th>
+							</tr>
+							<tr>
+								
+								<td><input type="text" name="name34" value="禁入"/></td>
+								<td><input type="text" name="name35" value="禁入"/></td>
+								<td><input type="text" name="name36" value="禁入"/></td>
+								<td><input type="text" name="name37" value="禁入"/></td>
+								<td colspan="2"><input type="text" name="name38" value="禁入"/></td>
+							</tr>
+							<tr>
+								<th>非周期性</th>
+								<td colspan="6"><input type="text" name="name39" value="准入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>行业资产结构</b><br/><input type="text" name="name40" value="5%"/></td>
+					<td><b>固定资产占总资产</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>小于或等于5%</th>
+								<th>小于或等于10%</th>
+								<th>小于或等于20%</th>
+								<th>小于或等于30%</th>
+								<th>小于或等于40%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name41" value="100%"/></td>
+								<td><input type="text" name="name42" value="95%"/></td>
+								<td><input type="text" name="name43" value="90%"/></td>
+								<td><input type="text" name="name44" value="85%"/></td>
+								<td><input type="text" name="name45" value="80%"/></td>
+							</tr>
+							<tr>
+								<th>小于或等于50%</th>
+								<th>小于或等于60%</th>
+								<th>小于或等于70%</th>
+								<th>小于或等于80%</th>
+								<th>小于或等于90%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name46" value="60%"/></td>
+								<td><input type="text" name="name47" value="40%"/></td>
+								<td><input type="text" name="name48" value="20%"/></td>
+								<td><input type="text" name="name49" value="10%"/></td>
+								<td><input type="text" name="name50" value="5%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td rowspan="3"><b>行业盈利能力</b><br/><input type="text" name="name51" value="15%"/></td>
+					<td><b>净利率</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>大于或等于25%</th>
+								<th>大于或等于20%</th>
+								<th>大于或等于15%</th>
+								<th>大于或等于10%</th>
+								<th>大于或等于5%</th>
+								<th>小于5%</th>
+								<th>小于或等于0%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name52" value="100%"/></td>
+								<td><input type="text" name="name53" value="75%"/></td>
+								<td><input type="text" name="name54" value="50%"/></td>
+								<td><input type="text" name="name55" value="25%"/></td>
+								<td><input type="text" name="name56" value="12.5%"/></td>
+								<td><input type="text" name="name57" value="0"/></td>
+								<td><input type="text" name="name58" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>平均应收账款周转天数</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>小于或等于7</th>
+								<th>小于或等于15</th>
+								<th>小于或等于30</th>
+								<th>小于或等于60</th>
+								<th>小于或等于90</th>
+								<th>小于或等于180</th>
+								<th>大于180</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name60" value="100%"/></td>
+								<td><input type="text" name="name61" value="75%"/></td>
+								<td><input type="text" name="name62" value="50%"/></td>
+								<td><input type="text" name="name63" value="25%"/></td>
+								<td><input type="text" name="name64" value="12.5%"/></td>
+								<td><input type="text" name="name65" value="0"/></td>
+								<td><input type="text" name="name66" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr>
+					<td><b>平均存货周转天数</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>小于或等于7</th>
+								<th>小于或等于15</th>
+								<th>小于或等于30</th>
+								<th>小于或等于60</th>
+								<th>小于或等于90</th>
+								<th>大于90</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name67" value="100%"/></td>
+								<td><input type="text" name="name68" value="90%"/></td>
+								<td><input type="text" name="name69" value="75%"/></td>
+								<td><input type="text" name="name70" value="50%"/></td>
+								<td><input type="text" name="name71" value="25%"/></td>
+								<td><input type="text" name="name72" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+				<tr>
+					<td rowspan="2"><b>行业依赖性</b><br/><input type="text" name="name73" value="20%"/></td>
+					<td><b>上游客户</b><br/><input type="text" name="name74" value="10%"/></td>
+					<td>
+						<b>供应商数量</b>
+						<table class="addTable">
+							<tr>
+								<th>大于20</th>
+								<th>大于等于18</th>
+								<th>大于等于16</th>
+								<th>大于等于14</th>
+								<th colspan="2">大于等于12</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name75" value="100%"/></td>
+								<td><input type="text" name="name76" value="90%"/></td>
+								<td><input type="text" name="name77" value="80%"/></td>
+								<td><input type="text" name="name78" value="70%"/></td>
+								<td colspan="2"><input type="text" name="name79" value="60%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于10</th>
+								<th>大于等于8</th>
+								<th>大于等于6</th>
+								<th>大于等于4</th>
+								<th>大于等于2</th>
+								<th>小于2</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name80" value="50%"/></td>
+								<td><input type="text" name="name81" value="40%"/></td>
+								<td><input type="text" name="name82" value="30%"/></td>
+								<td><input type="text" name="name83" value="20%"/></td>
+								<td><input type="text" name="name84" value="10%"/></td>
+								<td><input type="text" name="name85" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>下游客户</b><br/><input type="text" name="name86" value="10%"/></td>
+					<td>
+						<b>经销商数量</b>
+						<table class="addTable">
+							<tr>
+								<th>大于50</th>
+								<th>大于等于45</th>
+								<th>大于等于40</th>
+								<th>大于等于35</th>
+								<th colspan="2">大于等于30</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name87" value="100%"/></td>
+								<td><input type="text" name="name88" value="90%"/></td>
+								<td><input type="text" name="name89" value="80%"/></td>
+								<td><input type="text" name="name90" value="70%"/></td>
+								<td colspan="2"><input type="text" name="name91" value="60%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于25</th>
+								<th>大于等于20</th>
+								<th>大于等于15</th>
+								<th>大于等于10</th>
+								<th>大于等于5</th>
+								<th>小于5</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name92" value="50%"/></td>
+								<td><input type="text" name="name93" value="40%"/></td>
+								<td><input type="text" name="name94" value="30%"/></td>
+								<td><input type="text" name="name95" value="20%"/></td>
+								<td><input type="text" name="name96" value="10%"/></td>
+								<td><input type="text" name="name97" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr>
+					<td><b>行业替代性</b><br/><input type="text" name="name98" value="10%"/></td>
+					<td><b>市场上可供选择的类似产品种类</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>小于2</th>
+								<th>小于等于4</th>
+								<th>小于等于7</th>
+								<th>小于等于10</th>
+								<th>小于等于15</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name99" value="100%"/></td>
+								<td><input type="text" name="name100" value="90%"/></td>
+								<td><input type="text" name="name101" value="80%"/></td>
+								<td><input type="text" name="name102" value="70%"/></td>
+								<td><input type="text" name="name103" value="60%"/></td>
+							</tr>
+							<tr>
+								<th>小于等于20</th>
+								<th>小于等于25</th>
+								<th>小于等于30</th>
+								<th colspan="2">小于等于30</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name104" value="40%"/></td>
+								<td><input type="text" name="name105" value="20%"/></td>
+								<td><input type="text" name="name106" value="10%"/></td>
+								<td colspan="2"><input type="text" name="name107" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+				<tr>
+					<td rowspan="2"><b>行业发展趋势</b><br/><input type="text" name="name108" value="30%"/></td>
+					<td><b>本行业近一年的平均销售额增长</b><input type="text" name="name109" value="50%"/></td>
+					<td>
+						<b>本行业近一年的平均销售额增长比率</b>
+						<table class="addTable">
+							<tr>
+								<th>大于100%</th>
+								<th>大于等于50%</th>
+								<th>大于等于40%</th>
+								<th>大于等于30%</th>
+								<th>大于等于25%</th>
+								<th>大于等于20%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name110" value="100%"/></td>
+								<td><input type="text" name="name111" value="90%"/></td>
+								<td><input type="text" name="name112" value="80%"/></td>
+								<td><input type="text" name="name113" value="70%"/></td>
+								<td><input type="text" name="name114" value="60%"/></td>
+								<td><input type="text" name="name115" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于15%</th>
+								<th>大于等于10%</th>
+								<th>大于等于5%</th>
+								<th>大于等于0%</th>
+								<th>小于5%</th>
+								<th>小于-20%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name116" value="40%"/></td>
+								<td><input type="text" name="name117" value="30%"/></td>
+								<td><input type="text" name="name118" value="20%"/></td>
+								<td><input type="text" name="name119" value="10%"/></td>
+								<td><input type="text" name="name120" value="0%"/></td>
+								<td><input type="text" name="name121" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><b>本行业近一年来的平均净利润增长</b><input type="text" name="name122" value="50%"/></td>
+					<td>
+						<b>本行业近一年的平均净利润增长比率</b>
+						<table class="addTable">
+							<tr>
+								<th>大于100%</th>
+								<th>大于等于50%</th>
+								<th>大于等于40%</th>
+								<th>大于等于30%</th>
+								<th>大于等于25%</th>
+								<th>大于等于20%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name123" value="100%"/></td>
+								<td><input type="text" name="name124" value="90%"/></td>
+								<td><input type="text" name="name125" value="80%"/></td>
+								<td><input type="text" name="name126" value="70%"/></td>
+								<td><input type="text" name="name127" value="60%"/></td>
+								<td><input type="text" name="name128" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于15%</th>
+								<th>大于等于10%</th>
+								<th>大于等于5%</th>
+								<th>大于等于0%</th>
+								<th>小于5%</th>
+								<th>小于-20%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name129" value="40%"/></td>
+								<td><input type="text" name="name130" value="30%"/></td>
+								<td><input type="text" name="name131" value="20%"/></td>
+								<td><input type="text" name="name132" value="10%"/></td>
+								<td><input type="text" name="name133" value="0%"/></td>
+								<td><input type="text" name="name134" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>行业风险分析</b><input type="text" name="name135" value="10%"/></td>
+					<td><b>近三年来行业内平均破产率分析</b></td>
+					<td>
+						<b>近三年来行业平均破产率</b>
+						<table class="addTable">
+							<tr>
+								<th>小于等于5%</th>
+								<th>小于等于10%</th>
+								<th>小于等于15%</th>
+								<th>小于等于20%</th>
+								<th>小于等于25%</th>
+								<th>小于等于30%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name136" value="100%"/></td>
+								<td><input type="text" name="name137" value="90%"/></td>
+								<td><input type="text" name="name138" value="80%"/></td>
+								<td><input type="text" name="name139" value="70%"/></td>
+								<td><input type="text" name="name140" value="60%"/></td>
+								<td><input type="text" name="name141" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>小于等于35%</th>
+								<th>小于等于40%</th>
+								<th>小于等于45%</th>
+								<th>小于等于50%</th>
+								<th colspan="2">大于50%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name142" value="30%"/></td>
+								<td><input type="text" name="name143" value="20%"/></td>
+								<td><input type="text" name="name144" value="10%"/></td>
+								<td><input type="text" name="name145" value="0%"/></td>
+								<td colspan="2"><input type="text" name="name146" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>					
+			</table>		
+<!--*****************************企业**********************************-->
+			<table class="myTable">
+				<caption>企业<input type="text" name="name147" value="70%"/></caption>
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="70%">
+				</colgroup>				
+		<!--*****************************经营**********************************-->
+				<tr>
+					<td rowspan="13"><b>经营</b></td>
+					<td rowspan="6"><b>市场与产品</b></td>
+					<td><b>产品的差异性</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>产品与众不同，几乎没有替代品，专利得到很好的保护，信誉好</th>
+								<td><input type="text" name="name148" value="100%"/></td>
+							</tr>
+							<tr>
+								<th>产品有些独特，由于产品的复杂性，替代品有限</th>
+								<td><input type="text" name="name149" value="75%"/></td>
+							</tr>
+							<tr>
+								<th>产品无独特之处，有一些现成的替代品，信誉好</th>
+								<td><input type="text" name="name150" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>产品无独特之处，又许多好的替代品，质量一般</th>
+								<td><input type="text" name="name151" value="25%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>买方需求客户对产品的需求（奢侈品/生活必需品）</b></td>
+					<td>
+						<b>客户需求周期</b>
+						<table class="addTable">
+							<tr>
+								<th>小于等于3天</th>
+								<th>小于等于7天</th>
+								<th>小于等于15天</th>
+								<th>小于等于30天</th>
+								<th>小于等于45天</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name152" value="100%"/></td>
+								<td><input type="text" name="name153" value="90%"/></td>
+								<td><input type="text" name="name154" value="80%"/></td>
+								<td><input type="text" name="name155" value="70%"/></td>
+								<td><input type="text" name="name156" value="60%"/></td>
+							</tr>
+							<tr>
+								<th>小于等于60天</th>
+								<th>小于等于90天</th>
+								<th>小于等于180天</th>
+								<th>小于等于360天</th>
+								<th>大于360天</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name157" value="50%"/></td>
+								<td><input type="text" name="name158" value="40%"/></td>
+								<td><input type="text" name="name159" value="30%"/></td>
+								<td><input type="text" name="name160" value="20%"/></td>
+								<td><input type="text" name="name161" value="10%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr>
+					<td><b>产品的价格（客户对价格的可接受程度）</b></td>
+					<td>
+						<b>可接受此价格的目标客户群比率</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于95%</th>
+								<th>大于等于90%</th>
+								<th>大于等于80%</th>
+								<th>大于等于70%</th>
+								<th>大于等于60%</th>
+								<th>大于等于50%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name162" value="100%"/></td>
+								<td><input type="text" name="name163" value="90%"/></td>
+								<td><input type="text" name="name164" value="80%"/></td>
+								<td><input type="text" name="name165" value="70%"/></td>
+								<td><input type="text" name="name166" value="60%"/></td>
+								<td><input type="text" name="name167" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于40%</th>
+								<th>大于等于30%</th>
+								<th>大于等于20%</th>
+								<th>大于等于10%</th>
+								<th>大于等于5%</th>
+								<th>小于5%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name168" value="40%"/></td>
+								<td><input type="text" name="name169" value="30%"/></td>
+								<td><input type="text" name="name170" value="20%"/></td>
+								<td><input type="text" name="name171" value="10%"/></td>
+								<td><input type="text" name="name172" value="0%"/></td>
+								<td><input type="text" name="name173" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr>
+					<td><b>市场竞争的激烈程度</b></td>
+					<td>
+						<b>经营范围内的竞争性同业数量</b>
+						<table class="addTable">
+							<tr>
+								<th>无</th>
+								<th>等于1家</th>
+								<th>小于等于3家</th>
+								<th>小于等于8家</th>
+								<th>小于等于8家</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name174" value="100%"/></td>
+								<td><input type="text" name="name175" value="90%"/></td>
+								<td><input type="text" name="name176" value="80%"/></td>
+								<td><input type="text" name="name177" value="70%"/></td>
+								<td><input type="text" name="name178" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>小于等于12家</th>
+								<th>小于等于16家</th>
+								<th>小于等于20家</th>
+								<th>小于等于30家</th>
+								<th>大于30家</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name179" value="40%"/></td>
+								<td><input type="text" name="name180" value="30%"/></td>
+								<td><input type="text" name="name181" value="20%"/></td>
+								<td><input type="text" name="name182" value="10%"/></td>
+								<td><input type="text" name="name183" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+				<tr>
+					<td><b>客户的分散程度</b></td>
+					<td>
+						<b>最大的三个客户占企业总销售额的比率</b>
+						<table class="addTable">
+							<tr>
+								<th>小于等于15%</th>
+								<th>小于等于20%</th>
+								<th>小于等于25%</th>
+								<th>小于等于30%</th>
+								<th>小于等于35%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name184" value="100%"/></td>
+								<td><input type="text" name="name185" value="90%"/></td>
+								<td><input type="text" name="name186" value="80%"/></td>
+								<td><input type="text" name="name187" value="70%"/></td>
+								<td><input type="text" name="name188" value="60%"/></td>
+							</tr>
+							<tr>
+								<th>小于等于40%</th>
+								<th>小于等于50%</th>
+								<th>小于等于60%</th>
+								<th>小于等于80%</th>
+								<th>小于等于90%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name189" value="40%"/></td>
+								<td><input type="text" name="name190" value="30%"/></td>
+								<td><input type="text" name="name191" value="20%"/></td>
+								<td><input type="text" name="name192" value="10%"/></td>
+								<td><input type="text" name="name193" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>				
+				<tr>
+					<td><b>销售方法</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>单一销售渠道、单一营销方式</th>
+								<td><input type="text" name="name194" value="20%"/></td>
+							</tr>
+							<tr>
+								<th>固定二至三条销售渠道，单一营销方式/单一销售渠道，多种营销方式</th>
+								<td><input type="text" name="name195" value="40%"/></td>
+							</tr>
+							<tr>
+								<th>固定两至三条销售渠道，多种营销方式</th>
+								<td><input type="text" name="name196" value="80%"/></td>
+							</tr>
+							<tr>
+								<th>四条以上条销售渠道，多种营销方式，并仍在开发新的销售渠道和营销方式</th>
+								<td><input type="text" name="name197" value="100%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="5"><b>生产环节</b></td>
+					<td><b>专利技术</b></td>
+					<td>
+						<b>拥有专利技术的数量</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于5</th>
+								<th>等于4</th>
+								<th>等于3</th>
+								<th>等于2</th>
+								<th>等于1</th>
+								<th>等于0</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name198" value="100%"/></td>
+								<td><input type="text" name="name199" value="90%"/></td>
+								<td><input type="text" name="name200" value="80%"/></td>
+								<td><input type="text" name="name201" value="70%"/></td>
+								<td><input type="text" name="name202" value="60%"/></td>
+								<td><input type="text" name="name203" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>技术</b></td>
+					<td>
+						<b>能独立解决技术难题的比率</b>
+						<table class="addTable">
+							<tr>
+								<th>等于100%</th>
+								<th>大于等于90%</th>
+								<th>大于等于80%</th>
+								<th>大于等于70%</th>
+								<th>大于等于50%</th>
+								<th>小于50%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name204" value="100%"/></td>
+								<td><input type="text" name="name205" value="80%"/></td>
+								<td><input type="text" name="name206" value="60%"/></td>
+								<td><input type="text" name="name207" value="40%"/></td>
+								<td><input type="text" name="name208" value="20%"/></td>
+								<td><input type="text" name="name209" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr>
+					<td><b>自然灾害</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>受自然灾害影响</th>
+								<th>不受自然灾害影响</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name210" value="0%"/></td>
+								<td><input type="text" name="name211" value="100%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+				<tr>
+					<td><b>环境</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>易造成环境污染</th>
+								<th>不易造成环境污染</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name212" value="0%"/></td>
+								<td><input type="text" name="name213" value="100%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+				<tr>
+					<td><b>劳资关系</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>劳资关系融洽，与员工关系和睦</th>
+								<th>劳资关系紧张，与员工多有争执</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name214" value="100%"/></td>
+								<td><input type="text" name="name215" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td rowspan="2"><b>企业的销售环节</b></td>
+					<td><b>销售成本</b></td>
+					<td>
+						<b>本企业单位产品的销售成本/行业内单位产品的销售成本</b>
+						<table class="addTable">
+							<tr>
+								<th>小于等于60%</th>
+								<th>小于等于70%</th>
+								<th>小于等于80%</th>
+								<th>小于等于90%</th>
+								<th>小于等于95%</th>
+								<th>小于等于97.5%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name216" value="100%"/></td>
+								<td><input type="text" name="name217" value="95%"/></td>
+								<td><input type="text" name="name218" value="90%"/></td>
+								<td><input type="text" name="name219" value="85%"/></td>
+								<td><input type="text" name="name220" value="80%"/></td>
+								<td><input type="text" name="name221" value="70%"/></td>
+							</tr>
+							<tr>
+								<th>小于等于100%</th>
+								<th>小于等于102.5%</th>
+								<th>小于等于105%</th>
+								<th>小于等于110%</th>
+								<th>小于等于115%</th>
+								<th>小于等于120%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name222" value="50%"/></td>
+								<td><input type="text" name="name223" value="40%"/></td>
+								<td><input type="text" name="name224" value="30%"/></td>
+								<td><input type="text" name="name225" value="20%"/></td>
+								<td><input type="text" name="name226" value="10%"/></td>
+								<td><input type="text" name="name227" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr>
+					<td><b>客户群的消费习惯</b></td>
+					<td>
+						<b>习惯购买同一品牌产品的客户比率</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于90%</th>
+								<th>大于等于80%</th>
+								<th>大于等于70%</th>
+								<th>大于等于60%</th>
+								<th>大于等于50%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name228" value="100%"/></td>
+								<td><input type="text" name="name229" value="90%"/></td>
+								<td><input type="text" name="name230" value="80%"/></td>
+								<td><input type="text" name="name231" value="70%"/></td>
+								<td><input type="text" name="name232" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于40%</th>
+								<th>大于等于30%</th>
+								<th>大于等于20%</th>
+								<th>大于等于10%</th>
+								<th>小于10%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name233" value="40%"/></td>
+								<td><input type="text" name="name234" value="30%"/></td>
+								<td><input type="text" name="name235" value="20%"/></td>
+								<td><input type="text" name="name236" value="10%"/></td>
+								<td><input type="text" name="name237" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+		<!--*****************************管理**********************************-->
+				<tr>
+					<td rowspan="24"><b>管理</b></td>
+					<td rowspan="2"><b>管理层的稳定性</b></td>
+					<td><b>管理层组成</b></td>
+					<td>
+						<b>职业经理人在管理层中的占比</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于90%</th>
+								<th>大于等于80%</th>
+								<th>大于等于70%</th>
+								<th>大于等于60%</th>
+								<th>大于等于50%</th>
+								<th>大于等于45%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name238" value="100%"/></td>
+								<td><input type="text" name="name239" value="90%"/></td>
+								<td><input type="text" name="name240" value="80%"/></td>
+								<td><input type="text" name="name241" value="70%"/></td>
+								<td><input type="text" name="name242" value="60%"/></td>
+								<td><input type="text" name="name243" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于40%</th>
+								<th>大于等于35%</th>
+								<th>大于等于30%</th>
+								<th>大于等于25%</th>
+								<th colspan="2">小于25%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name244" value="40%"/></td>
+								<td><input type="text" name="name245" value="30%"/></td>
+								<td><input type="text" name="name246" value="20%"/></td>
+								<td><input type="text" name="name247" value="10%"/></td>
+								<td colspan="2"><input type="text" name="name248" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr>
+					<td><b>管理层的更换程度</b></td>
+					<td>
+						<b>最近两年内管理人员的流失率</b>
+						<table class="addTable">
+							<tr>
+								<th>小于等于10%</th>
+								<th>小于等于20%</th>
+								<th>小于等于30%</th>
+								<th>小于等于40%</th>
+								<th>小于等于50%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name249" value="100%"/></td>
+								<td><input type="text" name="name250" value="90%"/></td>
+								<td><input type="text" name="name251" value="80%"/></td>
+								<td><input type="text" name="name252" value="70%"/></td>
+								<td><input type="text" name="name253" value="40%"/></td>
+							</tr>
+							<tr>
+								<th>小于等于60%</th>
+								<th>小于等于70%</th>
+								<th>小于等于80%</th>
+								<th colspan="2">大于80%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name254" value="30%"/></td>
+								<td><input type="text" name="name255" value="20%"/></td>
+								<td><input type="text" name="name256" value="10%"/></td>
+								<td colspan="2"><input type="text" name="name257" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="7"><b>管理层素质和经验</b></td>
+					<td><b>文化程度</b></td>
+					<td>
+						<b>本科以上人员在管理层中的占比</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于90%</th>
+								<th>大于等于80%</th>
+								<th>大于等于70%</th>
+								<th>大于等于60%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name258" value="100%"/></td>
+								<td><input type="text" name="name259" value="90%"/></td>
+								<td><input type="text" name="name260" value="80%"/></td>
+								<td><input type="text" name="name261" value="60%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于50%</th>
+								<th>大于等于40%</th>
+								<th>大于等于30%</th>
+								<th>小于30%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name262" value="40%"/></td>
+								<td><input type="text" name="name263" value="20%"/></td>
+								<td><input type="text" name="name264" value="10%"/></td>
+								<td><input type="text" name="name265" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>年龄结构</b></td>
+					<td>
+						<b>管理层平均年龄</b>
+						<table class="addTable">
+							<tr>
+								<th>20-25</th>
+								<th>25-30</th>
+								<th>30-40</th>
+								<th>40-50</th>
+								<th>50以上</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name266" value="40%"/></td>
+								<td><input type="text" name="name267" value="60%"/></td>
+								<td><input type="text" name="name268" value="100%"/></td>
+								<td><input type="text" name="name269" value="80%"/></td>
+								<td><input type="text" name="name270" value="60%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>		
+				<tr>
+					<td><b>管理者企业内的平均从业时间</b></td>
+					<td>
+						<b>管理者在本企业内的平均从业时间</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于10年</th>
+								<th>大于等于8年</th>
+								<th>大于等于6年</th>
+								<th>大于等于4年</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name271" value="100%"/></td>
+								<td><input type="text" name="name272" value="90%"/></td>
+								<td><input type="text" name="name273" value="80%"/></td>
+								<td><input type="text" name="name274" value="60%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于3年</th>
+								<th>大于等于2年</th>
+								<th>大于等于1年</th>
+								<th>小于1年</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name275" value="40%"/></td>
+								<td><input type="text" name="name276" value="20%"/></td>
+								<td><input type="text" name="name277" value="10%"/></td>
+								<td><input type="text" name="name278" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>			
+				<tr>
+					<td><b>管理者在行业内的平均从业时间</b></td>
+					<td>
+						<b>管理者在行业内的平均从业时间</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于15年</th>
+								<th>大于等于10年</th>
+								<th>大于等于8年</th>
+								<th>大于等于6年</th>
+								<th>大于等于4年</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name279" value="100%"/></td>
+								<td><input type="text" name="name280" value="90%"/></td>
+								<td><input type="text" name="name281" value="80%"/></td>
+								<td><input type="text" name="name282" value="60%"/></td>
+								<td><input type="text" name="name283" value="40%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于3年</th>
+								<th>大于等于2年</th>
+								<th>大于等于1年</th>
+								<th colspan="2">小于1年</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name284" value="30%"/></td>
+								<td><input type="text" name="name285" value="20%"/></td>
+								<td><input type="text" name="name286" value="10%"/></td>
+								<td colspan="2"><input type="text" name="name287" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>				
+				<tr>
+					<td><b>开拓精神</b></td>
+					<td>
+						<b>企业近两年内的月营业额平均环比增长</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于20%</th>
+								<th>大于等于15%</th>
+								<th>大于等于12%</th>
+								<th>大于等于10%</th>
+								<th>大于等于8%</th>
+								<th>大于等于6%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name288" value="100%"/></td>
+								<td><input type="text" name="name289" value="90%"/></td>
+								<td><input type="text" name="name290" value="80%"/></td>
+								<td><input type="text" name="name291" value="70%"/></td>
+								<td><input type="text" name="name292" value="60%"/></td>
+								<td><input type="text" name="name293" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于4%</th>
+								<th>大于等于2%</th>
+								<th>大于等于0%</th>
+								<th>大于等于-2%</th>
+								<th>大于等于-4%</th>
+								<th>小于-4%</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name294" value="40%"/></td>
+								<td><input type="text" name="name295" value="30%"/></td>
+								<td><input type="text" name="name296" value="20%"/></td>
+								<td><input type="text" name="name297" value="10%"/></td>
+								<td><input type="text" name="name298" value="0%"/></td>
+								<td><input type="text" name="name300" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>				
+				<tr>
+					<td><b>团队精神</b></td>
+					<td>
+						<b>企业每年拓展训练或聚会的次数</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于10次</th>
+								<th>大于等于8次</th>
+								<th>大于等于5次</th>
+								<th>大于等于3次</th>
+								<th>大于等于1次</th>
+								<th>小于1次</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name301" value="100%"/></td>
+								<td><input type="text" name="name302" value="80%"/></td>
+								<td><input type="text" name="name303" value="50%"/></td>
+								<td><input type="text" name="name304" value="40%"/></td>
+								<td><input type="text" name="name305" value="20%"/></td>
+								<td><input type="text" name="name306" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>					
+				<tr>
+					<td><b>道德品质</b></td>
+					<td>
+						<b>最近5年内企业出现道德风险事件的次数</b>
+						<table class="addTable">
+							<tr>
+								<th>等于0次</th>
+								<th>等于1次</th>
+								<th>小于等于3次</th>
+								<th>小于等于5次</th>
+								<th>大于5次</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name307" value="100%"/></td>
+								<td><input type="text" name="name308" value="70%"/></td>
+								<td><input type="text" name="name309" value="40%"/></td>
+								<td><input type="text" name="name310" value="0%"/></td>
+								<td><input type="text" name="name311" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>						
+				<tr>
+					<td rowspan="2"><b>经营思想和作风</b></td>
+					<td><b>经营思路的统一性</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>思路统一</th>
+								<th>分歧较多</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name312" value="100%"/></td>
+								<td><input type="text" name="name313" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>						
+				<tr>
+					<td><b>作风冒险或谨慎</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>冒险</th>
+								<th>谨慎</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name314" value="30%"/></td>
+								<td><input type="text" name="name315" value="100%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>						
+				<tr>
+					<td rowspan="3"><b>关联企业的经营管理</b></td>
+					<td><b>债务人的母子公司</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>母子公司经营良好，运转正常</th>
+								<th>母子公司资金周转困难，运转正常</th>
+								<th>母子公司资金周转困难，运转困难</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name316" value="100%"/></td>
+								<td><input type="text" name="name317" value="0%"/></td>
+								<td><input type="text" name="name318" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>						
+				<tr>
+					<td><b>关联企业主要供应商</b></td>
+					<td>
+						<b>供应商数量</b>
+						<table class="addTable">
+							<tr>
+								<th>大于20</th>
+								<th>大于等于18</th>
+								<th>大于等于16</th>
+								<th>大于等于14</th>
+								<th>大于等于12</th>
+								<th>大于等于10</th>
+							</tr>							
+							<tr>
+								<td><input type="text" name="name319" value="100%"/></td>
+								<td><input type="text" name="name320" value="90%"/></td>
+								<td><input type="text" name="name321" value="80%"/></td>
+								<td><input type="text" name="name322" value="70%"/></td>
+								<td><input type="text" name="name323" value="60%"/></td>
+								<td><input type="text" name="name324" value="50%"/></td>
+							</tr>
+							<tr>
+								<th>大于等于8</th>
+								<th>大于等于6</th>
+								<th>大于等于4</th>
+								<th>大于等于2</th>
+								<th colspan="2">小于2</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name325" value="40%"/></td>
+								<td><input type="text" name="name326" value="30%"/></td>
+								<td><input type="text" name="name327" value="20%"/></td>
+								<td><input type="text" name="name328" value="10%"/></td>
+								<td colspan="2"><input type="text" name="name329" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>						
+				<tr>
+					<td><b>关联企业主要经销商</b></td>
+					<td>
+						<b>经销商数量</b>
+						<table class="addTable">
+							<tr>
+								<th>大于50</th>
+								<th>大于等于45</th>
+								<th>大于等于40</th>
+								<th>大于等于35</th>
+								<th>大于等于30</th>
+								<th>大于等于25</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name330" value="100%"/></td>
+								<td><input type="text" name="name331" value="90%"/></td>
+								<td><input type="text" name="name332" value="80%"/></td>
+								<td><input type="text" name="name333" value="70%"/></td>
+								<td><input type="text" name="name334" value="60%"/></td>
+								<td><input type="text" name="name335" value="50%"/></td>
+							</tr>						
+							<tr>
+								<th>大于等于20</th>
+								<th>大于等于15</th>
+								<th>大于等于10</th>
+								<th>大于等于5</th>
+								<th colspan="2">小于5</th>
+							</tr>		
+							<tr>
+								<td><input type="text" name="name336" value="40%"/></td>
+								<td><input type="text" name="name337" value="30%"/></td>
+								<td><input type="text" name="name338" value="20%"/></td>
+								<td><input type="text" name="name339" value="10%"/></td>
+								<td colspan="2"><input type="text" name="name340" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>					
+				<tr>
+					<td rowspan="2"><b>核心技术人员状况</b></td>
+					<td><b>专业技能分布</b></td>
+					<td>
+						<b>核心技术人员在本行业平均从业时间</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于20年</th>
+								<th>大于等于15年</th>
+								<th>大于等于10年</th>
+								<th>大于等于8年</th>
+								<th>大于等于6年</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name341" value="100%"/></td>
+								<td><input type="text" name="name342" value="90%"/></td>
+								<td><input type="text" name="name343" value="80%"/></td>
+								<td><input type="text" name="name344" value="70%"/></td>
+								<td><input type="text" name="name345" value="60%"/></td>
+							</tr>				
+							<tr>
+								<th>大于等于4年</th>
+								<th>大于等于2年</th>
+								<th>大于等于1年</th>
+								<th colspan="2">小于1年</th>
+							</tr>					
+							<tr>
+								<td><input type="text" name="name346" value="40%"/></td>
+								<td><input type="text" name="name347" value="20%"/></td>
+								<td><input type="text" name="name348" value="0%"/></td>
+								<td colspan="2"><input type="text" name="name349" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>					
+				<tr>
+					<td><b>稳定性</b></td>
+					<td>
+						<b>核心技术人员近两年的流失率</b>
+						<table class="addTable">
+							<tr>
+								<th>小于等于10%</th>
+								<th>小于等于20%</th>
+								<th>小于等于30%</th>
+								<th>小于等于40%</th>
+								<th>小于等于50%</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name350" value="100%"/></td>
+								<td><input type="text" name="name351" value="90%"/></td>
+								<td><input type="text" name="name352" value="80%"/></td>
+								<td><input type="text" name="name353" value="70%"/></td>
+								<td><input type="text" name="name354" value="40%"/></td>
+							</tr>						
+							<tr>
+								<th>小于等于60%</th>
+								<th>小于等于70%</th>
+								<th>小于等于80%</th>
+								<th colspan="2">大于80%</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name355" value="30%"/></td>
+								<td><input type="text" name="name356" value="20%"/></td>
+								<td><input type="text" name="name357" value="10%"/></td>
+								<td colspan="2"><input type="text" name="name358" value="禁入"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>					
+				<tr>
+					<td rowspan="2"><b>员工队伍</b></td>
+					<td><b>员工文化</b></td>
+					<td>
+						<b>大专以上的员工占比</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于90%</th>
+								<th>大于等于80%</th>
+								<th>大于等于70%</th>
+								<th>大于等于60%</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name359" value="100%"/></td>
+								<td><input type="text" name="name360" value="90%"/></td>
+								<td><input type="text" name="name361" value="80%"/></td>
+								<td><input type="text" name="name362" value="60%"/></td>
+							</tr>					
+							<tr>
+								<th>大于等于50%</th>
+								<th>大于等于40%</th>
+								<th>大于等于30%</th>
+								<th>小于30%</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name363" value="40%"/></td>
+								<td><input type="text" name="name364" value="20%"/></td>
+								<td><input type="text" name="name365" value="10%"/></td>
+								<td><input type="text" name="name366" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>					
+				<tr>
+					<td><b>员工专业性</b></td>
+					<td>
+						<b>员工在本行业的平均从业时间</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于10年</th>
+								<th>大于等于8年</th>
+								<th>大于等于6年</th>
+								<th>大于等于4年</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name367" value="100%"/></td>
+								<td><input type="text" name="name368" value="90%"/></td>
+								<td><input type="text" name="name369" value="80%"/></td>
+								<td><input type="text" name="name370" value="60%"/></td>
+							</tr>						
+							<tr>
+								<th>大于等于3年</th>
+								<th>大于等于2年</th>
+								<th>大于等于1年</th>
+								<th>小于1年</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name371" value="40%"/></td>
+								<td><input type="text" name="name372" value="20%"/></td>
+								<td><input type="text" name="name373" value="10%"/></td>
+								<td><input type="text" name="name374" value="0%"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>				
+				<tr>
+					<td rowspan="4"><b>内部控制与管理</b></td>
+					<td><b>健全的组织架构</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>矩阵组织式</th>
+								<th>模拟分散化</th>
+								<th>事业部制</th>
+								<th>直线-参谋</th>
+								<th>直线</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name375" value="100%"/></td>
+								<td><input type="text" name="name376" value="80%"/></td>
+								<td><input type="text" name="name377" value="80%"/></td>
+								<td><input type="text" name="name378" value="60%"/></td>
+								<td><input type="text" name="name379" value="40%"/></td>
+							</tr>	
+						</table>
+					</td>
+				</tr>				
+				<tr>
+					<td><b>科学的决策程序</b></td>
+					<td>
+						<b>决策方式</b>
+						<table class="addTable">
+							<tr>
+								<th>根据实际情况决定决策方式</th>
+								<th>群体决策</th>
+								<th>收集意见，领导决策</th>
+								<th>个体决策（一言堂）</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name380" value="100%"/></td>
+								<td><input type="text" name="name381" value="80%"/></td>
+								<td><input type="text" name="name382" value="70%"/></td>
+								<td><input type="text" name="name383" value="40%"/></td>
+							</tr>	
+						</table>
+					</td>
+				</tr>					
+				<tr>
+					<td><b>人事管理政策</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>规范招聘</th>
+								<th>晋升激励</th>
+								<th>物质激励</th>
+								<th>人性化管理</th>
+								<th>淘汰制度</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name384" value="20%"/></td>
+								<td><input type="text" name="name385" value="20%"/></td>
+								<td><input type="text" name="name386" value="20%"/></td>
+								<td><input type="text" name="name387" value="20%"/></td>
+								<td><input type="text" name="name388" value="20%"/></td>
+							</tr>	
+						</table>
+					</td>
+				</tr>					
+				<tr>
+					<td><b>公司的发展战略</b></td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>有序扩张</th>
+								<th>百年老店</th>
+								<th>安于现状</th>
+								<th>疯狂扩张</th>
+								<th>收缩规模</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name389" value="100%"/></td>
+								<td><input type="text" name="name390" value="90%"/></td>
+								<td><input type="text" name="name391" value="60%"/></td>
+								<td><input type="text" name="name392" value="40%"/></td>
+								<td><input type="text" name="name393" value="20%"/></td>
+							</tr>	
+						</table>
+					</td>
+				</tr>			
+				<tr>
+					<td rowspan="2"><b>财务管理能力</b></td>
+					<td><b>企业成本</b></td>
+					<td>
+						<b>同等售价下本企业单位产品的平均成本/行业内产品单位产品的平均成本</b>
+						<table class="addTable">
+							<tr>
+								<th>小于等于60%</th>
+								<th>小于等于70%</th>
+								<th>小于等于80%</th>
+								<th>小于等于90%</th>
+								<th>小于等于95%</th>
+								<th>小于等于97.5%</th>
+								<th>小于等于100%</th>
+							</tr>					
+							<tr>
+								<td><input type="text" name="name394" value="100%"/></td>
+								<td><input type="text" name="name395" value="95%"/></td>
+								<td><input type="text" name="name396" value="90%"/></td>
+								<td><input type="text" name="name397" value="85%"/></td>
+								<td><input type="text" name="name398" value="80%"/></td>
+								<td><input type="text" name="name399" value="70%"/></td>
+								<td><input type="text" name="name400" value="50%"/></td>
+							</tr>						
+							<tr>
+								<th>小于等于102.5%</th>
+								<th>小于等于105%</th>
+								<th>小于等于110%</th>
+								<th>小于等于115%</th>
+								<th>小于等于120%</th>
+								<th colspan="2">大于120%</th>
+							</tr>							
+							<tr>
+								<td><input type="text" name="name401" value="40%"/></td>
+								<td><input type="text" name="name402" value="30%"/></td>
+								<td><input type="text" name="name403" value="20%"/></td>
+								<td><input type="text" name="name404" value="10%"/></td>
+								<td><input type="text" name="name405" value="0%"/></td>
+								<td colspan="2"><input type="text" name="name406" value="禁入"/></td>
+							</tr>	
+						</table>
+					</td>
+				</tr>					
+				<tr>
+					<td><b>企业流动资金</b></td>
+					<td>
+						<b>企业日均流动资金/企业日均开支</b>
+						<table class="addTable">
+							<tr>
+								<th>大于等于120</th>
+								<th>大于等于90</th>
+								<th>大于等于60</th>
+								<th>大于等于45</th>
+								<th>大于等于30</th>
+							</tr>					
+							<tr>
+								<td><input type="text" name="name407" value="100%"/></td>
+								<td><input type="text" name="name408" value="90%"/></td>
+								<td><input type="text" name="name409" value="80%"/></td>
+								<td><input type="text" name="name410" value="70%"/></td>
+								<td><input type="text" name="name411" value="60%"/></td>
+							</tr>				
+							<tr>
+								<th>大于等于20</th>
+								<th>大于等于10</th>
+								<th>大于等于5</th>
+								<th>大于等于3</th>
+								<th>小于3</th>
+							</tr>						
+							<tr>
+								<td><input type="text" name="name412" value="40%"/></td>
+								<td><input type="text" name="name413" value="20%"/></td>
+								<td><input type="text" name="name414" value="10%"/></td>
+								<td><input type="text" name="name415" value="0%"/></td>
+								<td colspan="2"><input type="text" name="name416" value="禁入"/></td>
+							</tr>	
+						</table>
+					</td>
+				</tr>																		
+			</table>
+		</form>
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<a class="btn btn-info" href="#" onclick="getSum()" title="提交">提交</a>
+				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var result = "{{result}}";
+				if(result!=''){
+					$("input").each(function(i){
+					    $(this).val(result.split(",")[i]);
+					});
+				}
+			})
+
+			function getSum(){
+				if ($("#iframeForm").valid()) {
+					var score = new Array();
+					$("input").each(function(i){
+					    var value = $(this).val();
+					    if(value==''){
+					    	score.push(0);
+					    }else{
+					    	score.push(value);
+					    }
+					});
+					var url = "/mxpg/cspz_jyzk_save/"+score;
+			   		window.location.href =  url;
+				}
+			}
+		</script>
+	</body>
+</html>

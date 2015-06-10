@@ -14,7 +14,7 @@
 		</style>
 	</head>
 	<body>		
-		<form class="iframeForm">
+		<form class="iframeForm" action="/khzldy/khzl_ddpz_save/{{id}}" method="POST">
 <!--*****************************道德品质**********************************-->
 			<table class="myTable">
 				<caption>基本情况</caption>
@@ -49,7 +49,9 @@
 			</table>
 <!--*****************************家庭情况**********************************-->
 			<table class="myTable">
-				<caption>家庭情况(20%)</caption>
+				<caption>家庭情况({{result.split(',')[0]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[0]}}" name="jtqk" id="jtqk"/>
+				<input type="hidden" value="{{result.split(',')[1]}}" name="jtqkzk" id="jtqkzk"/>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -57,45 +59,48 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>家庭其他成员经济收入来源(10%)</b></td>
+					<td><b>家庭其他成员经济收入来源({{result.split(',')[2]}}%)</b></td>
 					<td>
 						<select name="otherIn" id="otherIn">
-							<option value="100">有</option>
-							<option value="50">无</option>
+							<option value="{{result.split(',')[3]}}">有</option>
+							<option value="{{result.split(',')[4]}}">无</option>
 						</select>
 					</td>
-					<td><b>婚姻状况(50%)</b></td>
+					<td><b>婚姻状况({{result.split(',')[8]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[8]}}" name="hyzk" id="hyzk"/>
 					<td><select name="merray" id="merray">
-						<option value="100">已婚</option>
-						<option value="60">未婚</option>
-						<option value="30">离异</option>
+						<option value="{{result.split(',')[9]}}">已婚</option>
+						<option value="{{result.split(',')[10]}}">未婚</option>
+						<option value="{{result.split(',')[11]}}">离异</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td><b>家庭结构类型(30%)</b></td>
+					<td><b>家庭结构类型({{result.split(',')[12]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[12]}}" name="jtjglx" id="jtjglx"/>
 					<td>
 						<select name="family_type" id="family_type">
-							<option value="100">夫妻家庭(生育)</option>
-							<option value="80">夫妻家庭(未生育)</option>
-							<option value="100">核心家庭</option>
-							<option value="100">主干家庭</option>
-							<option value="100">联合家庭</option>
-							<option value="80">其他家庭</option>
+							<option value="{{result.split(',')[13]}}">夫妻家庭(生育)</option>
+							<option value="{{result.split(',')[14]}}">夫妻家庭(未生育)</option>
+							<option value="{{result.split(',')[15]}}">核心家庭</option>
+							<option value="{{result.split(',')[16]}}">主干家庭</option>
+							<option value="{{result.split(',')[17]}}">联合家庭</option>
+							<option value="{{result.split(',')[18]}}">其他家庭</option>
 						</select>
 					</td>
-					<td><b>不良嗜好(10%)</b></td>
+					<td><b>不良嗜好({{result.split(',')[5]}}%)</b></td>
 					<td>
 						<select name="blsh" id="blsh">
-							<option value="20">有</option>
-							<option value="100">无</option>
+							<option value="{{result.split(',')[6]}}">有</option>
+							<option value="{{result.split(',')[7]}}">无</option>
 						</select>
 					</td>
 				</tr>
 			</table>
 <!--*****************************知识水平**********************************-->
 			<table class="myTable">
-				<caption>知识水平(5%)</caption>
+				<caption>知识水平({{result.split(',')[19]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[19]}}" name="zssp" id="zssp"/>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -107,17 +112,18 @@
 					<td colspan="3">
 						<td>
 						<select name="jycd" id="jycd">
-							<option value="100">本科及以上</option>
-							<option value="80">大专</option>
-							<option value="60">高中或中专</option>
-							<option value="40">初中及以下</option>
+							<option value="{{result.split(',')[20]}}">本科及以上</option>
+							<option value="{{result.split(',')[21]}}">大专</option>
+							<option value="{{result.split(',')[22]}}">高中或中专</option>
+							<option value="{{result.split(',')[23]}}">初中及以下</option>
 						</select>
 						</td></td>
 				</tr>
 			</table>
 <!--*****************************素质评估**********************************-->
 			<table class="myTable">
-				<caption>素质评估(15%)</caption>
+				<caption>素质评估({{result.split(',')[24]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[24]}}" name="szpg" id="szpg"/>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -125,36 +131,41 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>公众形象(30%)</b></td>
+					<td><b>公众形象({{result.split(',')[25]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[25]}}" name="xx" id="xx"/>
 					<td>他人评价
 						<select name="ggxx" id="ggxx">
-							<option value="100">好</option>
-							<option value="80">一般</option>
-							<option value="60">差</option>
+							<option value="{{result.split(',')[26]}}">好</option>
+							<option value="{{result.split(',')[27]}}">一般</option>
+							<option value="{{result.split(',')[28]}}">差</option>
 						</select></td>
 						
-					<td><b>健康状况(35%)</b></td>
+					<td><b>健康状况({{result.split(',')[29]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[29]}}" name="jkzk" id="jkzk"/>
 					<td>
-						定时体检
+						定时体检({{result.split(',')[30]}}%)
+						<input type="hidden" value="{{result.split(',')[30]}}" name="tj" id="tj"/>
 						<select name="dstj" id="dstj">
-							<option value="100">良好</option>
-							<option value="90">轻微疾病</option>
-							<option value="50">重大疾病</option>
+							<option value="{{result.split(',')[31]}}">良好</option>
+							<option value="{{result.split(',')[32]}}">轻微疾病</option>
+							<option value="{{result.split(',')[33]}}">重大疾病</option>
 						</select><br/>
-						运动情况
+						运动情况({{result.split(',')[34]}}%)
+						<input type="hidden" value="{{result.split(',')[34]}}" name="yd" id="yd"/>
 						<select name="ydqk" id="ydqk">
-							<option value="100">有运动习惯</option>
-							<option value="80">无运动习惯</option>
+							<option value="{{result.split(',')[35]}}">有运动习惯</option>
+							<option value="{{result.split(',')[36]}}">无运动习惯</option>
 						</select><br/>
 						作息时间<input type="text" name="" value="正常"/>
 					</td>
 				</tr>				
 				<tr>
-					<td><b>不良嗜好(35%)</b></td>
+					<td><b>不良嗜好({{result.split(',')[37]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[37]}}" name="sh" id="sh"/>
 					<td>
 						<select name="blsh1" id="blsh1">
-							<option value="0">有涉毒、涉赌、涉黄嗜好</option>
-							<option value="100">无不良嗜好</option>
+							<option value="{{result.split(',')[38]}}">有涉毒、涉赌、涉黄嗜好</option>
+							<option value="{{result.split(',')[39]}}">无不良嗜好</option>
 						</select></td>
 					
 				</tr>
@@ -162,7 +173,8 @@
 
 <!--*****************************信用记录**********************************-->
 			<table class="myTable">
-				<caption>信用记录(50%)</caption>
+				<caption>信用记录({{result.split(',')[40]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[40]}}" name="xyjl" id="xyjl"/>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -170,80 +182,89 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>在银行系统有无逾期(15%)</b></td>
+					<td><b>在银行系统有无逾期({{result.split(',')[44]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[44]}}" name="ywyq" id="ywyq"/>
 					<td>
 						<select name="yq" id="yq">
-							<option value="100">征信报告无逾期</option>
-							<option value="80">24个月内无逾期，5年内有逾期</option>
-							<option value="70">24个月内有逾期(逾期<5次),无连续逾期,5年内有逾期</option>
-							<option value="60">24个月内有逾期(逾期<5次),无连续逾期,5年内无逾期</option>
-							<option value="50">24个月内有逾期(逾期<5次),且为连续逾期,5年内有逾期</option>
-							<option value="20">24个月内逾期≥5次</option>
+							<option value="{{result.split(',')[45]}}">征信报告无逾期</option>
+							<option value="{{result.split(',')[46]}}">24个月内无逾期，5年内有逾期</option>
+							<option value="{{result.split(',')[47]}}">24个月内有逾期(逾期<5次),无连续逾期,5年内有逾期</option>
+							<option value="{{result.split(',')[48]}}">24个月内有逾期(逾期<5次),无连续逾期,5年内无逾期</option>
+							<option value="{{result.split(',')[49]}}">24个月内有逾期(逾期<5次),且为连续逾期,5年内有逾期</option>
+							<option value="{{result.split(',')[50]}}">24个月内逾期≥5次</option>
 						</select>
 					</td>
-					<td><b>应付账款长期赖账(15%)</b></td>
+					<td><b>应付账款长期赖账({{result.split(',')[51]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[51]}}" name="lz1" id="lz1"/>
 					<td>
 						<select name="cqlz" id="cqlz">
-							<option value="20">有</option>
-							<option value="100">无</option>
+							<option value="{{result.split(',')[52]}}">有</option>
+							<option value="{{result.split(',')[53]}}">无</option>
 						</select>
 					</td>
 				</tr>					
 				<tr>
-					<td><b>各种税费、水电煤气费是否拖欠(15%)</b></td>
+					<td><b>各种税费、水电煤气费是否拖欠({{result.split(',')[54]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[54]}}" name="lz2" id="lz2"/>
 					<td>
 						<select name="sftq" id="sftq">
-							<option value="20">有</option>
-							<option value="100">无</option>
+							<option value="{{result.split(',')[55]}}">有</option>
+							<option value="{{result.split(',')[56]}}">无</option>
 						</select>
 					</td>
-					<td><b>有无其他私人债务拖欠(15%)</b></td>
+					<td><b>有无其他私人债务拖欠({{result.split(',')[57]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[57]}}" name="lz3" id="lz3"/>
 					<td>						
 						<select name="zwtq" id="zwtq">
-							<option value="20">有</option>
-							<option value="100">无</option>
+							<option value="{{result.split(',')[58]}}">有</option>
+							<option value="{{result.split(',')[59]}}">无</option>
 						</select>
 					</td>
 				</tr>					
 				<tr>
-					<td><b>火车、地铁逃票(8%)</b></td>
+					<td><b>火车、地铁逃票({{result.split(',')[60]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[60]}}" name="lz4" id="lz4"/>
 					<td>
 						<select name="tp" id="tp">
-							<option value="20">有</option>
-							<option value="100">无</option>
+							<option value="{{result.split(',')[61]}}">有</option>
+							<option value="{{result.split(',')[62]}}">无</option>
 						</select>
 					</td>
-					<td><b>交通违章(8%)</b></td>
+					<td><b>交通违章({{result.split(',')[63]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[63]}}" name="lz5" id="lz5"/>
 					<td>						
 						<select name="jtwf" id="jtwf">
-							<option value="20">有</option>
-							<option value="100">无</option>
+							<option value="{{result.split(',')[64]}}">有</option>
+							<option value="{{result.split(',')[65]}}">无</option>
 						</select>
 					</td>
 				</tr>					
 				<tr>
-					<td><b>电话欠费(2%)</b></td>
+					<td><b>电话欠费({{result.split(',')[66]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[66]}}" name="lz6" id="lz6"/>
 					<td>
 						<select name="dhqf" id="dhqf">
-							<option value="20">有</option>
-							<option value="100">无</option>
+							<option value="{{result.split(',')[67]}}">有</option>
+							<option value="{{result.split(',')[68]}}">无</option>
 						</select>
 					</td>
-					<td><b>签证记录(2%)</b></td>
+					<td><b>签证记录({{result.split(',')[69]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[69]}}" name="lz7" id="lz7"/>
 					<td>
 						<select name="qzjl" id="qzjl">
-							<option value="100">无拒签记录</option>
-							<option value="20">有拒签记录</option>
+							<option value="{{result.split(',')[70]}}">无拒签记录</option>
+							<option value="{{result.split(',')[71]}}">有拒签记录</option>
 						</select>
 					</td>
 				</tr>
 				<tr>	
-				<td><b>违法情况及犯罪行为(20%)</b></td>
+				<td><b>违法情况及犯罪行为({{result.split(',')[41]}}%)</b></td>
+				<input type="hidden" value="{{result.split(',')[41]}}" name="lz8" id="lz8"/>
 					<td>
 					<select name="wfxw" id="wfxw">
-							<option value="100">无</option>
-							<option value="0">刑事案件</option>
-							<option value="0">经济案件</option>
+							<option value="{{result.split(',')[94]}}">无</option>
+							<option value="{{result.split(',')[42]}}">刑事案件</option>
+							<option value="{{result.split(',')[43]}}">经济案件</option>
 					</select>
 					</td>
 					</tr>			
@@ -251,7 +272,8 @@
 
 <!--*****************************社交情况**********************************-->
 			<table class="myTable">
-				<caption>社交情况(5%)</caption>
+				<caption>社交情况({{result.split(',')[72]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[72]}}" name="sj1" id="sj1"/>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -259,28 +281,31 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>朋友工作(70%)</b></td>
+					<td><b>朋友工作({{result.split(',')[73]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[73]}}" name="sj2" id="sj2"/>
 					<td>
 						<select name="pygz" id="pygz">
-							<option value="100">企事业单位</option>
-							<option value="90">个体工商户</option>
-							<option value="50">无业</option>
+							<option value="{{result.split(',')[74]}}">企事业单位</option>
+							<option value="{{result.split(',')[75]}}">个体工商户</option>
+							<option value="{{result.split(',')[76]}}">无业</option>
 						</select>
 					</td>
-					<td><b>朋友学历(30%)</b></td>
+					<td><b>朋友学历({{result.split(',')[77]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[77]}}" name="sj3" id="sj3"/>
 					<td>
 						<select name="pyxl" id="pyxl">
-							<option value="100">本科及以上学历</option>
-							<option value="90">大专</option>
-							<option value="80">高中及中专</option>
-							<option value="60">初中及以下学历</option>
+							<option value="{{result.split(',')[78]}}">本科及以上学历</option>
+							<option value="{{result.split(',')[79]}}">大专</option>
+							<option value="{{result.split(',')[80]}}">高中及中专</option>
+							<option value="{{result.split(',')[81]}}">初中及以下学历</option>
 						</select>
 					</td>
 				</tr>	
 			</table>
 <!--*****************************公益行为**********************************-->
 			<table class="myTable">
-				<caption>公益行为(4%)</caption>
+				<caption>公益行为({{result.split(',')[82]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[82]}}" name="gy" id="gy"/>
 				<colgroup>
 					<col width="5%">
 					<col width="35%">
@@ -291,15 +316,16 @@
 					<td><b>有无公益活动</b></td>
 					<td>
 					<select name="gyhd" id="gyhd">
-						<option value="100">捐款</option>
-						<option value="100">志愿者活动</option>
-						<option value="80">无公益活动</option>
+						<option value="{{result.split(',')[83]}}">捐款</option>
+						<option value="{{result.split(',')[84]}}">志愿者活动</option>
+						<option value="{{result.split(',')[85]}}">无公益活动</option>
 					</select></td>
 				</tr>	
 			</table>
 <!--*****************************信仰状况**********************************-->
 			<table class="myTable">
-				<caption>信仰状况(1%)</caption>
+				<caption>信仰状况({{result.split(',')[86]}}%)</caption>
+				<input type="hidden" value="{{result.split(',')[86]}}" name="xy1" id="xy1"/>
 				<colgroup>
 					<col width="15%">
 					<col width="35%">
@@ -307,18 +333,20 @@
 					<col width="35%">
 				</colgroup>
 				<tr>
-					<td><b>宗教信仰(50%)</b></td>
+					<td><b>宗教信仰({{result.split(',')[87]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[82]}}" name="xy2" id="xy2"/>
 					<td>
 					<select name="zjxy" id="zjxy">
-						<option value="80">佛教、基督教、伊斯兰教等基本教</option>
-						<option value="0">法轮功、邪教组织、ISIS、恐怖组织</option>
-						<option value="80">无宗教信仰</option>
+						<option value="{{result.split(',')[88]}}">佛教、基督教、伊斯兰教等基本教</option>
+						<option value="{{result.split(',')[89]}}">法轮功、邪教组织、ISIS、恐怖组织</option>
+						<option value="{{result.split(',')[90]}}">无宗教信仰</option>
 					</select></td>
-					<td><b>信仰(50%)</b></td>
+					<td><b>信仰({{result.split(',')[91]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[82]}}" name="xy3" id="xy3"/>
 					<td>
 					<select name="xy" id="xy">
-						<option value="100">有</option>
-						<option value="80">无</option>
+						<option value="{{result.split(',')[92]}}">有</option>
+						<option value="{{result.split(',')[93]}}">无</option>
 					</select></td>
 				</tr>	
 			</table>
@@ -328,53 +356,54 @@
 
 				<tr>
 					<td><b>评分结果</b></td>
-					<td><input type="text" id="result" name="result" readonly/></td>
+					<td><input type="text" id="score_result" name="score_result" readonly/></td>
 				</tr>	
 			</table>
-		</form>
+		
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<a class="btn btn-info" href="#" onclick="" title="提交">提交</a>
+				<input type="submit" class="btn btn-info" value="提交">
 				<a class="btn btn-info" onclick="sum()" title="评分">评分</a>
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
+		</form>
 		<script type="text/javascript">
 			
 			function sum(){
 				var total=0;
 				//家庭情况
-				total+=0.2*0.1*parseInt($("#otherIn").val());
-				total+=0.2*0.5*parseInt($("#merray").val());
-				total+=0.2*0.3*parseInt($("#family_type").val());
-				total+=0.2*0.1*parseInt($("#blsh").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseInt($("#otherIn").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#hyzk").val())/100)*parseInt($("#merray").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtjglx").val())/100)*parseInt($("#family_type").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseInt($("#blsh").val());
 				
 				//知识水平
-				total+=0.05*parseInt($("#jycd").val());
-				//素质评估
-				total+=0.15*0.3*parseInt($("#ggxx").val());
-				total+=0.15*0.175*parseInt($("#dstj").val());
-				total+=0.15*0.175*parseInt($("#ydqk").val());
-				total+=0.15*0.35*parseInt($("#blsh1").val());
+				total+=(parseFloat($("#zssp").val())/100)*parseInt($("#jycd").val());
+				//素质评估 
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#xx").val())/100)*parseInt($("#ggxx").val());
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseInt($("#tj").val())/100)*parseInt($("#dstj").val());
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseInt($("#yd").val())/100)*parseInt($("#ydqk").val());
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#sh").val())/100)*parseInt($("#blsh1").val());
 				//信用记录
-				total+=0.5*0.15*parseInt($("#yq").val());
-				total+=0.5*0.15*parseInt($("#cqlz").val());
-				total+=0.5*0.15*parseInt($("#sftq").val());
-				total+=0.5*0.15*parseInt($("#zwtq").val());
-				total+=0.5*0.08*parseInt($("#tp").val());
-				total+=0.5*0.08*parseInt($("#jtwf").val());
-				total+=0.5*0.02*parseInt($("#dhqf").val());
-				total+=0.5*0.02*parseInt($("#qzjl").val());
-				total+=0.5*0.2*parseInt($("#wfxw").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#ywyq").val())/100)*parseInt($("#yq").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz1").val())/100)*parseInt($("#cqlz").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz2").val())/100)*parseInt($("#sftq").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz3").val())/100)*parseInt($("#zwtq").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz4").val())/100)*parseInt($("#tp").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz5").val())/100)*parseInt($("#jtwf").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz6").val())/100)*parseInt($("#dhqf").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz7").val())/100)*parseInt($("#qzjl").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz8").val())/100)*parseInt($("#wfxw").val());
 				//社交情况
-				total+=0.05*0.7*parseInt($("#pygz").val());
-				total+=0.05*0.3*parseInt($("#pyxl").val());
+				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj2").val())/100)*parseInt($("#pygz").val());
+				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj3").val())/100)*parseInt($("#pyxl").val());
 				//公益行为
-				total+=0.04*parseInt($("#gyhd").val());
+				total+=(parseFloat($("#gy").val())/100)*parseInt($("#gyhd").val());
 				//信仰状况
-				total+=0.01*0.5*parseInt($("#zjxy").val());
-				total+=0.01*0.5*parseInt($("#xy").val());
-				$("#result").val(total);
+				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy2").val())/100)*parseInt($("#zjxy").val());
+				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy3").val())/100)*parseInt($("#xy").val());
+				$("#score_result").val(total);
 			}
 
 		</script>

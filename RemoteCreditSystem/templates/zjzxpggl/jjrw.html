@@ -94,7 +94,7 @@
 					<col width="10%" />
 					<col width="5%" />
 				</colgroup>
-				{%- for obj in appList.items%}
+				{%- for obj in appList%}
 				<tr onclick="checkTable(this)">
 					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
 					<td>{{obj.customer_name}}</td>

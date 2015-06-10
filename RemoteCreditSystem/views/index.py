@@ -4,6 +4,8 @@ import hashlib
 from RemoteCreditSystem import User
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
+from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
@@ -86,63 +88,234 @@ def insert_jjfa(id):
     app.approve_type="2"
     db.session.commit()
     flash('保存成功','success')
-    return redirect("/jjrwfa/jjfa")
+    return redirect("/jjrwfa/jjfa/1")
+
+#信息导入
+@app.route('/mxpg/xxdr', methods=['GET'])
+def xxdr():      
+    return render_template("mxpg/iframe.html")
+
+@app.route('/mxpg/pldr', methods=['GET'])
+def pldr():      
+    return render_template("mxpg/pldr.html")
+@app.route('/mxpg/xxlr', methods=['GET'])
+def xxlr():      
+    #获取未分类数据     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()
+    return render_template("mxpg/xxlr.html",appList=appList)
+
+#授信评估
+@app.route('/mxpg/sxpg', methods=['GET'])
+def sxpg(): 
+    #获取未分类数据     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()     
+    return render_template("mxpg/sxpg.html",appList=appList)
+
+#评估报告
+@app.route('/mxpg/pgbg', methods=['GET'])
+def pgbg():      
+    #获取未分类数据     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all() 
+    return render_template("mxpg/pgbg.html",appList=appList)
+
+#查看评估报告
+@app.route('/mxpg/show_pgbg/<int:id>', methods=['GET'])
+def show_pgbg(id):    
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    return render_template("mxpg/show_pgbg.html",score=score)
+
+#参数管理
+@app.route('/mxpg/csgl', methods=['GET'])
+def csgl():  
+    #添加四级联动(行业)
+    list1 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=2")
+    list2 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=3")
+    list3 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=4")
+    list4 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=5")
+    #区域三级联动
+    list11 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 1 order by name")
+    list22 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 2 order by name")
+    list33 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 3 order by name")
+    return render_template("mxpg/csgl.html",list1=list1,list2=list2,list3=list3,list4=list4,list11=list11,list22=list22,list33=list33)
+#参数配置--进入iframe
+@app.route('/mxpg/iframe_cspz', methods=['GET'])
+def iframe_cspz():    
+    return render_template("mxpg/iframe_cspz.html")
+
+#参数配置--道德品质
+@app.route('/mxpg/cspz_ddpz', methods=['GET'])
+def cspz_ddpz():
+    ddpz = Rcs_Parameter.query.filter_by(parameter_name="ddpz").first()
+    result = ""
+    if ddpz:
+        result=ddpz.parameter_value
+    return render_template("mxpg/cspz_ddpz.html",result=result)
+
+#参数配置--道德品质--保存
+@app.route('/mxpg/cspz_ddpz_save/<score>', methods=['GET'])
+def cspz_ddpz_save(score):
+    Rcs_Parameter.query.filter_by(parameter_name="ddpz").delete()
+    Rcs_Parameter("ddpz",score).add()
+    db.session.commit()
+    return redirect("/mxpg/cspz_ddpz")
 
 
+
+#参数配置--经营状况
+@app.route('/mxpg/cspz_jyzk', methods=['GET'])
+def cspz_jyzk():
+    jyzk = Rcs_Parameter.query.filter_by(parameter_name="jyzk").first()
+    result=jyzk.parameter_value
+    return render_template("mxpg/cspz_jyzk.html",result=result)
+
+#参数配置--经营状况--保存
+@app.route('/mxpg/cspz_jyzk_save/<score>', methods=['GET'])
+def cspz_jyzk_save(score):
+    Rcs_Parameter.query.filter_by(parameter_name="jyzk").delete()
+    Rcs_Parameter("jyzk",score).add()
+    db.session.commit()
+    return redirect("/mxpg/cspz_jyzk")
+
+#参数配置--生活状况
+@app.route('/mxpg/cspz_shzt', methods=['GET'])
+def cspz_shzt():   
+    shzt = Rcs_Parameter.query.filter_by(parameter_name="shzt").first()
+    result = ""
+    if shzt:
+        result=shzt.parameter_value 
+    return render_template("mxpg/cspz_shzt.html",result=result)
+
+#参数配置--生活状态--保存
+@app.route('/mxpg/cspz_shzt_save/<score>', methods=['GET'])
+def cspz_shzt_save(score):
+    Rcs_Parameter.query.filter_by(parameter_name="shzt").delete()
+    Rcs_Parameter("shzt",score).add()
+    db.session.commit()
+    return redirect("/mxpg/cspz_shzt")
+
+#参数配置--还款能力
+@app.route('/mxpg/cspz_hknl', methods=['GET'])
+def cspz_hknl():   
+    hknl = Rcs_Parameter.query.filter_by(parameter_name="hknl").first()
+    result = ""
+    if hknl:
+        result=hknl.parameter_value 
+    return render_template("mxpg/cspz_hknl.html",result=result)
+
+#参数配置--还款能力--保存
+@app.route('/mxpg/cspz_hknl_save/<score>', methods=['GET'])
+def cspz_hknl_save(score):
+    Rcs_Parameter.query.filter_by(parameter_name="hknl").delete()
+    Rcs_Parameter("hknl",score).add()
+    db.session.commit()
+    return redirect("/mxpg/cspz_hknl")
+
+#客户资料
 @app.route('/khzldy/khzl', methods=['GET'])
 def khzl():      
     #获取未分类数据     
     appList = Rcs_Application_Info.query.all()
     return render_template("khzldy/khzl.html",appList=appList)
-
 #客户资料
 @app.route('/khzldy/khzl_info', methods=['GET'])
 def khzl_info():        
     return render_template("customer/jbzl.html")
 
+#还款能力页面(iframe)
+@app.route('/khzldy/khzl_hknl/<int:id>', methods=['GET'])
+def khzl_hknl(id):        
+    return render_template("customer/iframe.html",id=id)
+
 #还款能力页面
-@app.route('/khzldy/khzl_hknl', methods=['GET'])
-def khzl_hknl():        
-    return render_template("customer/iframe.html")
+@app.route('/khzldy/khzl_hk/<int:id>', methods=['GET'])
+def khzl_hk(id):   
+    hknl = Rcs_Parameter.query.filter_by(parameter_name="hknl").first()
+    result=hknl.parameter_value       
+    return render_template("customer/hknl.html",result=result,id=id)
+
+#还款能力保存
+@app.route('/khzldy/khzl_hknl_save/<int:id>', methods=['POST'])
+def khzl_hknl_save(id):     
+    total = request.form['score_result'] 
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    if score:
+        score.hknl_score=total
+    else:
+        Rcs_Application_Score(id,"",total,"","").add()
+    db.session.commit()
+    return redirect("/khzldy/khzl_hk/"+str(id))
 
 #资产负债
-@app.route('/khzldy/zcfzzk', methods=['GET'])
-def zcfzzk():        
+@app.route('/khzldy/zcfzzk/<int:id>', methods=['GET'])
+def zcfzzk(id):        
     return render_template("customer/zcfzzk.html")
 #利润表
-@app.route('/khzldy/lrb', methods=['GET'])
-def lrb():        
+@app.route('/khzldy/lrb/<int:id>', methods=['GET'])
+def lrb(id):        
     return render_template("customer/lrb.html")
 
 #现金流量
-@app.route('/khzldy/xjll', methods=['GET'])
-def xjll():        
+@app.route('/khzldy/xjll/<int:id>', methods=['GET'])
+def xjll(id):        
     return render_template("customer/xjll.html")
 
 #交叉检验
-@app.route('/khzldy/jcjy', methods=['GET'])
-def jcjy():        
+@app.route('/khzldy/jcjy/<int:id>', methods=['GET'])
+def jcjy(id):        
     return render_template("customer/jcjy.html")
 
 #经营状况
-@app.route('/khzldy/khzl_jyzk', methods=['GET'])
-def khzl_jyzk():        
-    return render_template("customer/jyzk.html")
+@app.route('/khzldy/khzl_jyzk/<int:id>', methods=['GET'])
+def khzl_jyzk(id):
+    jyzk = Rcs_Parameter.query.filter_by(parameter_name="jyzk").first()
+    result = ""
+    if jyzk :
+        result=jyzk.parameter_value
+
+    return render_template("customer/jyzk.html",result=result,id=id)
 
 #生活状态
-@app.route('/khzldy/khzl_shzk', methods=['GET'])
-def khzl_shzk():        
-    return render_template("customer/shzt.html")
+@app.route('/khzldy/khzl_shzk/<int:id>', methods=['GET'])
+def khzl_shzk(id):     
+    shzt = Rcs_Parameter.query.filter_by(parameter_name="shzt").first()
+    result=shzt.parameter_value   
+    return render_template("customer/shzt.html",result=result,id=id)
+
+#生活状态保存
+@app.route('/khzldy/khzl_shzk_save/<int:id>', methods=['POST'])
+def khzl_shzk_save(id):     
+    total = request.form['score_result'] 
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    if score:
+        score.shzk_score=total
+    else:
+        Rcs_Application_Score(id,"","","",total).add()
+    db.session.commit()
+    return redirect("/khzldy/khzl_shzk/"+str(id))
 
 #道德品质
-@app.route('/khzldy/khzl_ddpz', methods=['GET'])
-def khzl_ddpz():        
-    return render_template("customer/ddpz.html")
+@app.route('/khzldy/khzl_ddpz/<int:id>', methods=['GET'])
+def khzl_ddpz(id): 
+    ddpz = Rcs_Parameter.query.filter_by(parameter_name="ddpz").first()
+    result=ddpz.parameter_value
+    return render_template("customer/ddpz.html",result=result,id=id)
+
+#道德品质保存
+@app.route('/khzldy/khzl_ddpz_save/<int:id>', methods=['POST'])
+def khzl_ddpz_save(id):     
+    total = request.form['score_result'] 
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    if score:
+        score.ddpz_score=total
+    else:
+        Rcs_Application_Score(id,total,"","","").add()
+    db.session.commit()
+    return redirect("/khzldy/khzl_ddpz/"+str(id))
 
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
 def jjrw(): 
     #获取进件任务数据
-    appList = Rcs_Application_Info.query.filter_by(approve_type='2')
+    appList = Rcs_Application_Info.query.filter_by(approve_type='2').all()
     return render_template("zjzxpggl/jjrw.html",appList=appList)
 
 @app.route('/zjzxpggl/jjrw_accept/<int:id>', methods=['GET'])
@@ -357,3 +530,8 @@ def zjjxgl():
 @app.route('/pgzjgl/show_zjjxgl', methods=['GET'])
 def show_zjjxgl():        
     return render_template("pgzjgl/show_zjjxgl.html")
+
+# =================================互联网数据抓取==================
+@app.route('/by_bigdata',methods=['GET', 'POST'])
+def re_bigdata():
+    return redirect('http://192.168.1.137:8080/jbda/')
