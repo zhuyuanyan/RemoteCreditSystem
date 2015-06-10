@@ -5,6 +5,9 @@ from RemoteCreditSystem import User
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Result import Rcs_Application_Result
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Xjll import Rcs_Application_Xjll
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Jcjy import Rcs_Application_Jcjy
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
@@ -232,8 +235,12 @@ def khzl_hknl(id):
 @app.route('/khzldy/khzl_hk/<int:id>', methods=['GET'])
 def khzl_hk(id):   
     hknl = Rcs_Parameter.query.filter_by(parameter_name="hknl").first()
-    result=hknl.parameter_value       
-    return render_template("customer/hknl.html",result=result,id=id)
+    result=hknl.parameter_value     
+    #获取还款结果
+    appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()  
+    #获取交叉检验结果
+    jcjy = Rcs_Application_Jcjy.query.filter_by().first()
+    return render_template("customer/hknl.html",result=result,id=id,appResult=appResult,jcjy=jcjy)
 
 #还款能力保存
 @app.route('/khzldy/khzl_hknl_save/<int:id>', methods=['POST'])
@@ -245,9 +252,9 @@ def khzl_hknl_save(id):
         score.hknl_score=total
         if remark !="":
             score.remark=score.remark+","+remark
-            score.ddpz_score="/"
-            score.jyzk_score="/"
-            score.shzk_score="/"
+            score.ddpz_score=total
+            score.jyzk_score=total
+            score.shzk_score=total
     else:
         Rcs_Application_Score(id,"",total,"","",remark).add()
     db.session.commit()
@@ -256,16 +263,132 @@ def khzl_hknl_save(id):
 #资产负债
 @app.route('/khzldy/zcfzzk/<int:id>', methods=['GET'])
 def zcfzzk(id):        
+    return render_template("customer/zcfzzk.html",id=id)
+#资产负债---保存
+@app.route('/khzldy/zcfzzk_save/<int:id>', methods=['POST'])
+def zcfzzk_save(id):   
+    zcfzl = request.form['zcfzl']   
+    ldbl = request.form['ldbl']   
+    sdbl = request.form['sdbl']
+    #交叉检验所需年营业额
+    yye3 = request.form['yye3']
+    #交叉检验所需存货检验
+    yye10 = request.form['yye10']
+    yye11 = request.form['yye11']
+    #存货总额
+    value_1 = request.form['value_19']
+    #总资产
+    value_2 = request.form['value_29']
+    #流动资产总和
+    value_3 = request.form['value_22']
+    #实际权益
+    value_37 = request.form['value_37']
+    result = Rcs_Application_Result.query.filter_by(application_id=id).first()
+    if result:
+        result.zcfzl=zcfzl
+        result.ldbl=ldbl
+        result.sdbl=sdbl
+        result.value_1=value_1
+        result.value_2=value_2
+        result.value_3=value_3
+    else:
+        Rcs_Application_Result(id,zcfzl,ldbl,sdbl,value_1,value_2,value_3,"","","").add()
+    #交叉检验
+    result1 = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
+    if result1:
+        result1.value3=yye3
+        result1.value10=yye10
+        result1.value11=yye11
+        result1.value15=value_37
+    else:
+        Rcs_Application_Jcjy(id,"","",yye3,"","","","","","",yye10,yye11,"","","",value_37,"","","").add()
+    db.session.commit()
     return render_template("customer/zcfzzk.html")
+
 #利润表
 @app.route('/khzldy/lrb/<int:id>', methods=['GET'])
 def lrb(id):        
-    return render_template("customer/lrb.html")
+    appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
+    return render_template("customer/lrb.html",appResult=appResult,id=id)
+
+#利润表--保存
+@app.route('/khzldy/lrb_save/<int:id>', methods=['POST'])
+def lrb_save(id):   
+    #存货周转率    
+    chzzl = request.form['chzzl']
+    #总资产周转率
+    zzczzl = request.form['zzczzl']
+    #净利润
+    value = request.form['value_13']
+    value_1 = request.form['yye1']
+    value_2 = request.form['yye2']
+    value_4 = request.form['yye4']
+    value_6 = request.form['yye6']
+    value_7 = request.form['yye7']
+    value_8 = request.form['yye8']
+    value_9 = request.form['yye9']
+    value_13 = request.form['yye13']
+    value_17 = request.form['yye17']
+    value_18 = request.form['yye18']
+    #还款能力结果表
+    appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
+    appResult.chzzl=chzzl
+    appResult.zzczzl=zzczzl
+    appResult.value_13=value
+
+    #交叉检验表
+    jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
+    if jcjy:
+        jcjy.value1=value_1
+        jcjy.value2=value_2
+        jcjy.value4=value_4
+        jcjy.value6=value_6
+        jcjy.value7=value_7
+        jcjy.value8=value_8
+        jcjy.value9=value_9
+        jcjy.value13=value_13
+        jcjy.value17=value_17
+        jcjy.value18=value_18
+    else:
+        Rcs_Application_Jcjy(id,value_1,value_2,"",value_4,"",value_6,value_7,value_8,value_9,"","","",value_13,"","","",value_17,value_18).add()
+
+
+    db.session.commit()
+    return redirect("khzldy/lrb/"+str(id))
 
 #现金流量
 @app.route('/khzldy/xjll/<int:id>', methods=['GET'])
-def xjll(id):        
-    return render_template("customer/xjll.html")
+def xjll(id):    
+    result = Rcs_Application_Xjll.query.filter_by(application_id=id).first()
+    return render_template("customer/xjll.html",id=id,result=result)
+
+#现金流量--保存
+@app.route('/khzldy/xjll_save/<int:id>', methods=['POST'])
+def xjll_save(id):  
+    Rcs_Application_Xjll.query.filter_by(application_id=id).delete()
+    qcxj = request.form['qcxj']
+    jyxxjlr = request.form['jyxxjlr']   
+    jyxxjlc = request.form['jyxxjlc']   
+    jyxjjll = request.form['jyxjjll']   
+    tzxjlr = request.form['tzxjlr']   
+    tzxjlc = request.form['tzxjlc']   
+    tzxjjll = request.form['tzxjjll']   
+    rzxjlr = request.form['rzxjlr']   
+    rzxjlc = request.form['rzxjlc']   
+    rzxjjll = request.form['rzxjjll']   
+    qmxj = request.form['qmxj']   
+    qcqysd = request.form['qcqysd']   
+    qcqyhj = request.form['qcqyhj']   
+    fxqjsr = request.form['fxqjsr']   
+    qtsr = request.form['qtsr']   
+    sz = request.form['sz']   
+    dxzchj = request.form['dxzchj']   
+    zj = request.form['zj']   
+    bz = request.form['bz']   
+    bwzc = request.form['bwzc']   
+    Rcs_Application_Xjll(id,qcxj,jyxxjlr,jyxxjlc,jyxjjll,tzxjlr,tzxjlc,tzxjjll,rzxjlr,rzxjlc,rzxjjll,qmxj,qcqysd,qcqyhj,fxqjsr,qtsr,sz,dxzchj,zj,bz,bwzc).add()
+    db.session.commit()
+    return redirect("/khzldy/xjll/"+str(id))
 
 #交叉检验
 @app.route('/khzldy/jcjy/<int:id>', methods=['GET'])
@@ -281,6 +404,23 @@ def khzl_jyzk(id):
         result=jyzk.parameter_value
 
     return render_template("customer/jyzk.html",result=result,id=id)
+#经营状况保存
+@app.route('/khzldy/khzl_jyzk_save/<int:id>', methods=['POST'])
+def khzl_jyzk_save(id):  
+    total = request.form['score_result'] 
+    remark = request.form['score_remark'] 
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    if score:
+        score.jyzk_score=total
+        if remark !="":
+            score.remark=score.remark+","+remark
+            score.hknl_score=total
+            score.shzk_score=total
+            score.ddpz_score=total
+    else:
+        Rcs_Application_Score(id,"","",total,"",remark).add()
+    db.session.commit()
+    return redirect("/khzldy/khzl_jyzk/"+str(id))
 
 #生活状态
 @app.route('/khzldy/khzl_shzk/<int:id>', methods=['GET'])
@@ -299,9 +439,9 @@ def khzl_shzk_save(id):
         score.shzk_score=total
         if remark !="":
             score.remark=score.remark+","+remark
-            score.hknl_score="/"
-            score.jyzk_score="/"
-            score.ddpz_score="/"
+            score.hknl_score=total
+            score.jyzk_score=total
+            score.ddpz_score=total
     else:
         Rcs_Application_Score(id,"","","",total,remark).add()
     db.session.commit()
@@ -324,9 +464,9 @@ def khzl_ddpz_save(id):
         score.ddpz_score=total
         if remark !="":
             score.remark=score.remark+","+remark
-            score.hknl_score="/"
-            score.jyzk_score="/"
-            score.shzk_score="/"
+            score.hknl_score=total
+            score.jyzk_score=total
+            score.shzk_score=total
     else:
         Rcs_Application_Score(id,total,"","","",remark).add()
     db.session.commit()

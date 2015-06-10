@@ -26,35 +26,37 @@
 					<td><b>资产负债率({{result.split(',')[0]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[0]}}" name="zcfzb" id="zcfzb"/>
 					<td>
-						<select name="" id="zcfzb1">
-							<option value="{{result.split(',')[1]}}">负债/资产》100%</option>
-							<option value="{{result.split(',')[2]}}">90%《负债/资产《100%</option>
-							<option value="{{result.split(',')[3]}}">80%《负债/资产《90%</option>
-							<option value="{{result.split(',')[4]}}">70%《负债/资产《80%</option>
-							<option value="{{result.split(',')[5]}}">60%《负债/资产《70%</option>
-							<option value="{{result.split(',')[6]}}">50%《负债/资产《60%</option>
-							<option value="{{result.split(',')[7]}}">40%《负债/资产《50%</option>
-							<option value="{{result.split(',')[8]}}">30%《负债/资产《40%</option>
-							<option value="{{result.split(',')[9]}}">20%《负债/资产《30%</option>
-							<option value="{{result.split(',')[10]}}">10%《负债/资产《20%</option>
-							<option value="{{result.split(',')[11]}}">0《负债/资产《10%</option>
+						<select name="" id="zcfzb1 " disabled>
+							
+							<option value="{{result.split(',')[1]}}" {%- if appResult.zcfzl|float >1 %} selected {%- endif%}>负债/资产》100%</option>
+							
+							<option value="{{result.split(',')[2]}}" {%- if 0.9<appResult.zcfzl|float  and appResult.zcfzl|float <=1 %} selected {%- endif%}>90%《负债/资产《100%</option>
+							<option value="{{result.split(',')[3]}}" {%- if 0.8<appResult.zcfzl|float  and appResult.zcfzl|float <=0.9 %} selected {%- endif%}>80%《负债/资产《90%</option>
+							<option value="{{result.split(',')[4]}}" {%- if 0.7<appResult.zcfzl|float  and appResult.zcfzl|float <=0.8 %} selected {%- endif%}>70%《负债/资产《80%</option>
+							<option value="{{result.split(',')[5]}}" {%- if 0.6<appResult.zcfzl|float  and appResult.zcfzl|float <=0.7 %} selected {%- endif%}>60%《负债/资产《70%</option>
+							<option value="{{result.split(',')[6]}}" {%- if 0.5<appResult.zcfzl|float  and appResult.zcfzl|float <=0.6 %} selected {%- endif%}>50%《负债/资产《60%</option>
+							<option value="{{result.split(',')[7]}}" {%- if 0.4<appResult.zcfzl|float  and appResult.zcfzl|float <=0.5 %} selected {%- endif%}>40%《负债/资产《50%</option>
+							<option value="{{result.split(',')[8]}}" {%- if 0.3<appResult.zcfzl|float  and appResult.zcfzl|float <=0.4 %} selected {%- endif%}>30%《负债/资产《40%</option>
+							<option value="{{result.split(',')[9]}}" {%- if 0.2<appResult.zcfzl|float and appResult.zcfzl|float <=0.3 %} selected {%- endif%}>20%《负债/资产《30%</option>
+							<option value="{{result.split(',')[10]}}" {%- if 0.1<appResult.zcfzl|float  and appResult.zcfzl|float <=0.2 %} selected {%- endif%}>10%《负债/资产《20%</option>
+							<option value="{{result.split(',')[11]}}" {%- if 0<appResult.zcfzl|float  and appResult.zcfzl|float <=0.1 %} selected {%- endif%}>0《负债/资产《10%</option>
 						</select>
 					</td>
 					<td><b>流动比率({{result.split(',')[12]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[12]}}" name="ldbl" id="ldbl"/>
 					<td>
-						<select name="" id="ldbl1">
-							<option value="{{result.split(',')[13]}}">流动资产/流动负债》200%</option>
-							<option value="{{result.split(',')[14]}}">190%《流动资产/流动负债《200%</option>
-							<option value="{{result.split(',')[15]}}">180%《流动资产/流动负债《190%</option>
-							<option value="{{result.split(',')[16]}}">170%《流动资产/流动负债《180%</option>
-							<option value="{{result.split(',')[17]}}">160%《流动资产/流动负债《170%</option>
-							<option value="{{result.split(',')[18]}}">150%《流动资产/流动负债《160%</option>
-							<option value="{{result.split(',')[19]}}">140%《流动资产/流动负债《150%</option>
-							<option value="{{result.split(',')[20]}}">130%《流动资产/流动负债《140%</option>
-							<option value="{{result.split(',')[21]}}">120%《流动资产/流动负债《130%</option>
-							<option value="{{result.split(',')[22]}}">110%《流动资产/流动负债《120%</option>
-							<option value="{{result.split(',')[23]}}">100%《流动资产/流动负债《110%</option>
+						<select name="" id="ldbl1" disabled>
+							<option value="{{result.split(',')[13]}}" {%- if appResult.ldbl|float >2 %} selected {%- endif%}>流动资产/流动负债》200%</option>
+							<option value="{{result.split(',')[14]}}" {%- if 1.9<appResult.ldbl|float  and appResult.ldbl|float <=2 %} selected {%- endif%}>190%《流动资产/流动负债《200%</option>
+							<option value="{{result.split(',')[15]}}" {%- if 1.8<appResult.ldbl|float  and appResult.ldbl|float <=1.9 %} selected {%- endif%}>180%《流动资产/流动负债《190%</option>
+							<option value="{{result.split(',')[16]}}" {%- if 1.7<appResult.ldbl|float  and appResult.ldbl|float <=1.8 %} selected {%- endif%}>170%《流动资产/流动负债《180%</option>
+							<option value="{{result.split(',')[17]}}" {%- if 1.6<appResult.ldbl|float  and appResult.ldbl|float <=1.7 %} selected {%- endif%}>160%《流动资产/流动负债《170%</option>
+							<option value="{{result.split(',')[18]}}" {%- if 1.5<appResult.ldbl|float  and appResult.ldbl|float <=1.6 %} selected {%- endif%}>150%《流动资产/流动负债《160%</option>
+							<option value="{{result.split(',')[19]}}" {%- if 1.4<appResult.ldbl|float  and appResult.ldbl|float <=1.5 %} selected {%- endif%}>140%《流动资产/流动负债《150%</option>
+							<option value="{{result.split(',')[20]}}" {%- if 1.3<appResult.ldbl|float  and appResult.ldbl|float <=1.4 %} selected {%- endif%}>130%《流动资产/流动负债《140%</option>
+							<option value="{{result.split(',')[21]}}" {%- if 1.2<appResult.ldbl|float  and appResult.ldbl|float <=1.3 %} selected {%- endif%}>120%《流动资产/流动负债《130%</option>
+							<option value="{{result.split(',')[22]}}" {%- if 1.1<appResult.ldbl|float  and appResult.ldbl|float <=1.2 %} selected {%- endif%}>110%《流动资产/流动负债《120%</option>
+							<option value="{{result.split(',')[23]}}" {%- if 1<appResult.ldbl|float  and appResult.ldbl|float <=1.1 %} selected {%- endif%}>100%《流动资产/流动负债《110%</option>
 						</select>
 					</td>
 				</tr>
@@ -62,33 +64,33 @@
 					<td><b>速动比率({{result.split(',')[24]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[24]}}" name="sdbl" id="sdbl"/>
 					<td>
-						<select name="" id="sdbl1">
-							<option value="{{result.split(',')[25]}}">速动资产/流动负债》100%</option>
-							<option value="{{result.split(',')[26]}}">90%《速动资产/流动负债《100%</option>
-							<option value="{{result.split(',')[27]}}">80%《速动资产/流动负债《90%</option>
-							<option value="{{result.split(',')[28]}}">70%《速动资产/流动负债《80%</option>
-							<option value="{{result.split(',')[29]}}">60%《速动资产/流动负债《70%</option>
-							<option value="{{result.split(',')[30]}}">50%《速动资产/流动负债《60%</option>
-							<option value="{{result.split(',')[31]}}">40%《速动资产/流动负债《50%</option>
-							<option value="{{result.split(',')[32]}}">30%《速动资产/流动负债《40%</option>
-							<option value="{{result.split(',')[33]}}">20%《速动资产/流动负债《30%</option>
-							<option value="{{result.split(',')[34]}}">10%《速动资产/流动负债《20%</option>
-							<option value="{{result.split(',')[35]}}">0%《速动资产/流动负债《10%</option>
+						<select name="" id="sdbl1" disabled>
+							<option value="{{result.split(',')[25]}}" {%- if 1<appResult.sdbl|float %} selected {%- endif%}>速动资产/流动负债》100%</option>
+							<option value="{{result.split(',')[26]}}" {%- if 0.9<appResult.sdbl|float  and appResult.sdbl|float <=1 %} selected {%- endif%}>90%《速动资产/流动负债《100%</option>
+							<option value="{{result.split(',')[27]}}" {%- if 0.8<appResult.sdbl|float  and appResult.sdbl|float <=0.9 %} selected {%- endif%}>80%《速动资产/流动负债《90%</option>
+							<option value="{{result.split(',')[28]}}" {%- if 0.7<appResult.sdbl|float  and appResult.sdbl|float <=0.8 %} selected {%- endif%}>70%《速动资产/流动负债《80%</option>
+							<option value="{{result.split(',')[29]}}" {%- if 0.6<appResult.sdbl|float  and appResult.sdbl|float <=0.7 %} selected {%- endif%}>60%《速动资产/流动负债《70%</option>
+							<option value="{{result.split(',')[30]}}" {%- if 0.5<appResult.sdbl|float  and appResult.sdbl|float <=0.6 %} selected {%- endif%}>50%《速动资产/流动负债《60%</option>
+							<option value="{{result.split(',')[31]}}" {%- if 0.4<appResult.sdbl|float  and appResult.sdbl|float <=0.5 %} selected {%- endif%}>40%《速动资产/流动负债《50%</option>
+							<option value="{{result.split(',')[32]}}" {%- if 0.3<appResult.sdbl|float  and appResult.sdbl|float <=0.4 %} selected {%- endif%}>30%《速动资产/流动负债《40%</option>
+							<option value="{{result.split(',')[33]}}" {%- if 0.2<appResult.sdbl|float  and appResult.sdbl|float <=0.3 %} selected {%- endif%}>20%《速动资产/流动负债《30%</option>
+							<option value="{{result.split(',')[34]}}" {%- if 0.1<appResult.sdbl|float  and appResult.sdbl|float <=0.2 %} selected {%- endif%}>10%《速动资产/流动负债《20%</option>
+							<option value="{{result.split(',')[35]}}" {%- if 0<appResult.sdbl|float  and appResult.sdbl|float <=0.1 %} selected {%- endif%}>0%《速动资产/流动负债《10%</option>
 						</select>
 					</td>
 					<td><b>存货周转率({{result.split(',')[36]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[36]}}" name="chzzl" id="chzzl"/>
 					<td>
-						<select name="" id="chzzl1">
-							<option value="{{result.split(',')[37]}}">销售成本/平均存货余额》20</option>
-							<option value="{{result.split(',')[38]}}">17《销售成本/平均存货余额《20</option>
-							<option value="{{result.split(',')[39]}}">14《销售成本/平均存货余额《17</option>
-							<option value="{{result.split(',')[40]}}">11《销售成本/平均存货余额《14</option>
-							<option value="{{result.split(',')[41]}}">8《销售成本/平均存货余额《11</option>
-							<option value="{{result.split(',')[42]}}">5《销售成本/平均存货余额《8</option>
-							<option value="{{result.split(',')[43]}}">3《销售成本/平均存货余额《5</option>
-							<option value="{{result.split(',')[44]}}">1《销售成本/平均存货余额《3</option>
-							<option value="{{result.split(',')[45]}}">0《销售成本/平均存货余额《1</option>
+						<select name="" id="chzzl1" disabled>
+							<option value="{{result.split(',')[37]}}" {%- if 20<appResult.chzzl|float %} selected {%- endif%}>销售成本/平均存货余额》20</option>
+							<option value="{{result.split(',')[38]}}" {%- if 17<appResult.chzzl|float  and appResult.chzzl|float <=20 %} selected {%- endif%}>17《销售成本/平均存货余额《20</option>
+							<option value="{{result.split(',')[39]}}" {%- if 14<appResult.chzzl|float  and appResult.chzzl|float <=17 %} selected {%- endif%}>14《销售成本/平均存货余额《17</option>
+							<option value="{{result.split(',')[40]}}" {%- if 11<appResult.chzzl|float  and appResult.chzzl|float <=14 %} selected {%- endif%}>11《销售成本/平均存货余额《14</option>
+							<option value="{{result.split(',')[41]}}" {%- if 8<appResult.chzzl|float  and appResult.chzzl|float <=11 %} selected {%- endif%}>8《销售成本/平均存货余额《11</option>
+							<option value="{{result.split(',')[42]}}" {%- if 5<appResult.chzzl|float  and appResult.chzzl|float <=8 %} selected {%- endif%}>5《销售成本/平均存货余额《8</option>
+							<option value="{{result.split(',')[43]}}" {%- if 3<appResult.chzzl|float  and appResult.chzzl|float <=5 %} selected {%- endif%}>3《销售成本/平均存货余额《5</option>
+							<option value="{{result.split(',')[44]}}" {%- if 1<appResult.chzzl|float  and appResult.chzzl|float <=3 %} selected {%- endif%}>1《销售成本/平均存货余额《3</option>
+							<option value="{{result.split(',')[45]}}" {%- if 0<appResult.chzzl|float  and appResult.chzzl|float <=1 %} selected {%- endif%}>0《销售成本/平均存货余额《1</option>
 						</select>
 					</td>
 				</tr>
@@ -125,15 +127,15 @@
 					<td><b>总资产周转率({{result.split(',')[63]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[63]}}" name="zzczzl" id="zzczzl"/>
 					<td>
-						<select name="" id="zzczzl1">
-							<option value="{{result.split(',')[64]}}">销售收入/总资产》0.8</option>
-							<option value="{{result.split(',')[65]}}">0.7《销售收入/总资产《0.8</option>
-							<option value="{{result.split(',')[66]}}">0.6《销售收入/总资产《0.7</option>
-							<option value="{{result.split(',')[67]}}">0.5《销售收入/总资产《0.6</option>
-							<option value="{{result.split(',')[68]}}">0.4《销售收入/总资产《0.5</option>
-							<option value="{{result.split(',')[69]}}">0.3《销售收入/总资产《0.4</option>
-							<option value="{{result.split(',')[70]}}">0.2《销售收入/总资产《0.3</option>
-							<option value="{{result.split(',')[71]}}">0.1《销售收入/总资产《0.2</option>
+						<select name="" id="zzczzl1" disabled>
+							<option value="{{result.split(',')[64]}}" {%- if 0.8<=appResult.zzczzl|float %} selected {%- endif%}>销售收入/总资产》0.8</option>
+							<option value="{{result.split(',')[65]}}" {%- if 0.7<appResult.zzczzl|float  and appResult.zzczzl|float <=0.8 %} selected {%- endif%}>0.7《销售收入/总资产《0.8</option>
+							<option value="{{result.split(',')[66]}}" {%- if 0.6<appResult.zzczzl|float  and appResult.zzczzl|float <=0.7 %} selected {%- endif%}>0.6《销售收入/总资产《0.7</option>
+							<option value="{{result.split(',')[67]}}" {%- if 0.5<appResult.zzczzl|float  and appResult.zzczzl|float <=0.6 %} selected {%- endif%}>0.5《销售收入/总资产《0.6</option>
+							<option value="{{result.split(',')[68]}}" {%- if 0.4<appResult.zzczzl|float  and appResult.zzczzl|float <=0.5 %} selected {%- endif%}>0.4《销售收入/总资产《0.5</option>
+							<option value="{{result.split(',')[69]}}" {%- if 0.3<appResult.zzczzl|float  and appResult.zzczzl|float <=0.4 %} selected {%- endif%}>0.3《销售收入/总资产《0.4</option>
+							<option value="{{result.split(',')[70]}}" {%- if 0.2<appResult.zzczzl|float  and appResult.zzczzl|float <=0.3 %} selected {%- endif%}>0.2《销售收入/总资产《0.3</option>
+							<option value="{{result.split(',')[71]}}" {%- if 0.1<appResult.zzczzl|float  and appResult.zzczzl|float <=0.2 %} selected {%- endif%}>0.1《销售收入/总资产《0.2</option>
 						</select>
 					</td>
 					<td><b>营业周期({{result.split(',')[72]}}%)</b></td>
@@ -199,94 +201,94 @@
 					<td colspan="2">
 						<b>1，年营业额=期末现金-期初现金+经营性现金流出（现金流）</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value1}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>2,年营业额=淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数（包括主导业务1，主导业务2，其他业务）</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value2}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>3.年营业额=产成品金额*（365/产成品运转周期)（存货产成品）</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value3}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>4，年营业额=主营业务成本/[1-（主营业务收入-主营业务成本）/主营业务收入]（主营业务）</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value4}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>5，年营业额=企业增值税金额/企业增值税税率</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value5}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>6,{（365/原材料运转周期）*原材料金额）/[1-（主营业务收入-主营业务成本）/主营业务收入]}*12</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value6}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>7，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务1）</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value7}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>8，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务2）</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value8}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>9，年营业额=（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（其他业务）</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value9}}" readonly/></td>
 				</tr>
 				<tr>
 					<td rowspan="2"><b>存货检验</b></td>
 					<td colspan="2">
 						<b>现有存货=上次进货时存货+期间购买的存货-期间销售的存货</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value10}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>期间购买的存货与存货总和对比</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value11}}" readonly/></td>
 				</tr>
 				<tr>
 					<td rowspan="2"><b>毛利率检验</b></td>
 					<td colspan="2">
 						<b>对比同行毛利率水平检验毛利率（大数据）</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value12}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>毛利率=（主营业务收入-主营业务成本）/主营业务收入*100%</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value13}}" readonly/></td>
 				</tr>
 				<tr>
 					<td rowspan="2"><b>权益交叉检验</b></td>
 					<td colspan="2">
 						<b>应有权益=初始权益+期间利润+期间生意外注资-期间生意外大项开支+固定资产升值-固定资产贬值</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value14}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>实际权益=资产-负债</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value15}}" readonly/></td>
 				</tr>
 				<tr>
 					<td><b>权益差异率</b></td>
@@ -320,13 +322,13 @@
 					<td colspan="2">
 						<b>月可支=[（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）-（主营业务成本+主营业务税金+固定人工成本+水电成本+房租租金+固定交通成本+企业增值税+维修费+广告费+公司经费+劳动保险费+其他费用+财务费用）]/12</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value17}}" readonly/></td>
 				</tr>
 				<tr>
 					<td colspan="2">
 						<b>月可用现金=期初现金+经营性现金流入-经营性现金流出+融资现金流入-融资现金流出</b>
 					</td>
-					<td><input type="text" name=""/></td>
+					<td><input type="text" name="" value="{{jcjy.value18}}" readonly/></td>
 				</tr>
 			</table>
 			<!--*****************************评分结果**********************************-->
@@ -450,7 +452,7 @@
 				}
 				$("#score_remark").val(remark);
 				if(!type){
-					$("#score_result").val("/");
+					$("#score_result").val("不满足准入条件");
 				}else{
 					$("#score_result").val(total);
 				}

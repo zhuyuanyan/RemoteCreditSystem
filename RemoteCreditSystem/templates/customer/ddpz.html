@@ -407,7 +407,7 @@
 				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy2").val())/100)*parseFloat(transfer($("#zjxy")));
 				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy3").val())/100)*parseFloat(transfer($("#xy")));
 				if(!type){
-					$("#score_result").val("/");
+					$("#score_result").val("不满足准入条件");
 					$("#score_remark").val(remark);
 				}else{
 					$("#score_result").val(total);
