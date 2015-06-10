@@ -29,7 +29,7 @@
 				</tr>
 				<tr>
 					<td class="table-label">企业经营状况得分</td>
-					<td>80</td>
+					<td>{{score.jyzk_score}}</td>
 					<td class="table-label">还款能力得分</td>
 					<td>{{score.hknl_score}}</td>					
 				</tr>
@@ -48,6 +48,10 @@
 				<tr>
 					<td class="table-label">综述</td>
 					<td colspan="3">合格</td>		
+				</tr>
+				<tr>
+					<td class="table-label">备注</td>
+					<td colspan="3" style="color:red">{{score.remark}}</td>		
 				</tr>
 			</table>	
 			<div class="pagebar">			

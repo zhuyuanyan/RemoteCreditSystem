@@ -336,6 +336,7 @@
 				<tr>
 					<td><b>评分结果</b></td>
 					<td><input type="text" id="score_result" name="score_result" readonly/></td>
+					<input type="hidden" id="score_remark" name="score_remark" readonly/>
 				</tr>	
 			</table>
 		
@@ -350,31 +351,118 @@
 		<script type="text/javascript">
 			function sum(){
 				var total=0;
+				$("#score_remark").val("");
+				var type = true;
+				var remark = new Array();
 				//资产负债率
-				total+=(parseFloat($("#zcfzb").val())/100)*parseFloat($("#zcfzb1").val());
+				if(transfer($("#zcfzb1").val())){
+					total+=(parseFloat($("#zcfzb").val())/100)*parseFloat($("#zcfzb1").val());
+				}else{
+
+					remark.push("资产负债率为禁入");
+					type = false;
+				}
 				//流动比率
-				total+=(parseFloat($("#ldbl").val())/100)*parseFloat($("#ldbl1").val());
+				if(transfer($("#ldbl1").val())){
+					total+=(parseFloat($("#ldbl").val())/100)*parseFloat($("#ldbl1").val());
+				}else{
+
+					remark.push("流动比率为禁入");
+					type = false;
+				}
+
 				//速动比率
-				total+=(parseFloat($("#sdbl").val())/100)*parseFloat($("#sdbl1").val());
-				//存货比率
-				total+=(parseFloat($("#chzzl").val())/100)*parseFloat($("#chzzl1").val());
-				//周转率
-				total+=(parseFloat($("#zzl").val())/100)*parseFloat($("#zzl1").val());
-				//现金比率
-				total+=(parseFloat($("#xjbl").val())/100)*parseFloat($("#xjbl1").val());
-				//总资产周转率
-				total+=(parseFloat($("#zzczzl").val())/100)*parseFloat($("#zzczzl1").val());
-				//营业周期
-				total+=(parseFloat($("#yyzq").val())/100)*parseFloat($("#yyzq1").val());
-				//流动资产周转率
-				total+=(parseFloat($("#ldczzl").val())/100)*parseFloat($("#ldczzl1").val());
-				//资产收益率
-				total+=(parseFloat($("#zcsyl").val())/100)*parseFloat($("#zcsyl1").val());
-				//权益差异率
-				total+=parseFloat($("#qycyl").val());
-				$("#score_result").val(total);
-			}
+				if(transfer($("#sdbl1").val())){
+					total+=(parseFloat($("#sdbl").val())/100)*parseFloat($("#sdbl1").val());
+				}else{
+
+					remark.push("速动比率为禁入");
+					type = false;
+				}
 			
+				//存货比率
+				if(transfer($("#chzzl1").val())){
+					total+=(parseFloat($("#chzzl").val())/100)*parseFloat($("#chzzl1").val());
+				}else{
+			
+					remark.push("存货比率为禁入");
+					type = false;
+				}
+	
+				//周转率
+				if(transfer($("#zzl1").val())){
+					total+=(parseFloat($("#zzl").val())/100)*parseFloat($("#zzl1").val());
+				}else{
+				
+					remark.push("周转率为禁入");
+					type = false;
+				}
+			
+				//现金比率
+				if(transfer($("#xjbl1").val())){
+					total+=(parseFloat($("#xjbl").val())/100)*parseFloat($("#xjbl1").val());
+				}else{
+			
+					remark.push("现金比率为禁入");
+					type = false;
+				}
+		
+				//总资产周转率
+				if(transfer($("#zzczzl1").val())){
+					total+=(parseFloat($("#zzczzl").val())/100)*parseFloat($("#zzczzl1").val());
+				}else{
+		
+					remark.push("总资产周转率为禁入");
+					type = false;
+				}
+				
+				//营业周期
+				if(transfer($("#yyzq1").val())){
+					total+=(parseFloat($("#yyzq").val())/100)*parseFloat($("#yyzq1").val());
+				}else{
+			
+					remark.push("营业周期为禁入");
+					type = false;
+				}
+			
+				//流动资产周转率
+				if(transfer($("#ldczzl1").val())){
+					total+=(parseFloat($("#ldczzl").val())/100)*parseFloat($("#ldczzl1").val());
+				}else{	
+					remark.push("流动资产周转率为禁入");
+					type = false;
+				}
+			
+				//资产收益率
+				if(transfer($("#zcsyl1").val())){
+					total+=(parseFloat($("#zcsyl").val())/100)*parseFloat($("#zcsyl1").val());
+				}else{
+					remark.push("资产收益率为禁入");
+					type = false;
+				}
+			
+				//权益差异率
+				if(transfer($("#qycyl").val())){
+					total+=parseFloat($("#qycyl").val());	
+				}else{
+					remark.push("权益差异率为禁入");
+					type = false;
+				}
+				$("#score_remark").val(remark);
+				if(!type){
+					$("#score_result").val("/");
+				}else{
+					$("#score_result").val(total);
+				}
+				
+			}
+			function transfer(value){
+				if(value=="禁入"){
+					return false;
+				}else{
+					return true;
+				}
+			}
 
 		</script>
 	</body>
