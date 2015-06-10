@@ -239,11 +239,17 @@ def khzl_hk(id):
 @app.route('/khzldy/khzl_hknl_save/<int:id>', methods=['POST'])
 def khzl_hknl_save(id):     
     total = request.form['score_result'] 
+    remark = request.form['score_remark'] 
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
         score.hknl_score=total
+        score.remark=remark
+        if remark !="":
+            score.ddpz_score="/"
+            score.jyzk_score="/"
+            score.shzk_score="/"
     else:
-        Rcs_Application_Score(id,"",total,"","").add()
+        Rcs_Application_Score(id,"",total,"","",remark).add()
     db.session.commit()
     return redirect("/khzldy/khzl_hk/"+str(id))
 

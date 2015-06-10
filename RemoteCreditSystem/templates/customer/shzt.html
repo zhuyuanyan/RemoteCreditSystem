@@ -27,9 +27,10 @@
 					<col width="74%">
 				</colgroup>
 				<tr>
-					<td rowspan="2"><b>房子({{result.split(',')[1]}}%)</b></td>
+					<td rowspan="3"><b>房子({{result.split(',')[1]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[1]}}" name="zczk2" id="zczk2"/>
-					<td><b>自有({{result.split(',')[2]}}%)</b></td>
+					<td><input type="radio" name="box1" value="1"/>
+						<b>自有({{result.split(',')[2]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[2]}}" name="zczk3" id="zczk3"/>
                     <td>
 						<table class="addTable">
@@ -116,7 +117,12 @@
 					</td>
 				</tr>	
 				<tr>
-                    <td><b>租赁({{result.split(',')[42]}}%)</b></td>
+					<td><b><input type="radio" name="box1" value="2"/>无({{result.split(',')[41]}}%)</b></td>
+					<input type="hidden" value="{{result.split(',')[42]}}" name="zczk4" id="zczk4"/>
+					<td><b></b></td>
+				</tr>
+				<tr>
+                    <td><b><input type="radio" name="box1" value="3"/>租赁({{result.split(',')[42]}}%)</b></td>
                     <input type="hidden" value="{{result.split(',')[42]}}" name="zczk4" id="zczk4"/>
 					<td>
 						<table class="addTable">
@@ -1240,18 +1246,25 @@
 		<script type="text/javascript">
 			function sum(){
 				var total=0;
-				//资产状况--自有
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#aj").val());
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#fcsl").val());
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#sjzz").val());
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#zfmj").val());
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#zxqk").val());		
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#jznx").val());	
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#cn").val());
-				//资产状况--租
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk5").val())/100)*parseInt($("#zpsl").val());
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk6").val())/100)*parseInt($("#zpmj").val());
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk7").val())/100)*parseInt($("#zpzj").val());
+				var radios = document.getElementsByName("box1");
+				if(radios[0].checked){
+					//资产状况--自有
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#aj").val());
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#fcsl").val());
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#sjzz").val());
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#zfmj").val());
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#zxqk").val());		
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#jznx").val());	
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseInt($("#cn").val());
+				}else if(radios[1].checked){
+
+				}else{
+					//资产状况--租
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk5").val())/100)*parseInt($("#zpsl").val());
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk6").val())/100)*parseInt($("#zpmj").val());
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk7").val())/100)*parseInt($("#zpzj").val());
+				}
+
 				//车辆
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseInt($("#clsl").val());
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseInt($("#cljg").val());

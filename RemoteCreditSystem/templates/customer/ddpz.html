@@ -373,36 +373,36 @@
 			function sum(){
 				var total=0;
 				//家庭情况
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseInt($("#otherIn").val());
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#hyzk").val())/100)*parseInt($("#merray").val());
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtjglx").val())/100)*parseInt($("#family_type").val());
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseInt($("#blsh").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat($("#otherIn").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#hyzk").val())/100)*parseFloat($("#merray").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtjglx").val())/100)*parseFloat($("#family_type").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat($("#blsh").val());
 				
 				//知识水平
-				total+=(parseFloat($("#zssp").val())/100)*parseInt($("#jycd").val());
+				total+=(parseFloat($("#zssp").val())/100)*parseFloat($("#jycd").val());
 				//素质评估 
-				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#xx").val())/100)*parseInt($("#ggxx").val());
-				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseInt($("#tj").val())/100)*parseInt($("#dstj").val());
-				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseInt($("#yd").val())/100)*parseInt($("#ydqk").val());
-				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#sh").val())/100)*parseInt($("#blsh1").val());
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#xx").val())/100)*parseFloat($("#ggxx").val());
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseFloat($("#tj").val())/100)*parseFloat($("#dstj").val());
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseFloat($("#yd").val())/100)*parseFloat($("#ydqk").val());
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#sh").val())/100)*parseFloat($("#blsh1").val());
 				//信用记录
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#ywyq").val())/100)*parseInt($("#yq").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz1").val())/100)*parseInt($("#cqlz").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz2").val())/100)*parseInt($("#sftq").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz3").val())/100)*parseInt($("#zwtq").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz4").val())/100)*parseInt($("#tp").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz5").val())/100)*parseInt($("#jtwf").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz6").val())/100)*parseInt($("#dhqf").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz7").val())/100)*parseInt($("#qzjl").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz8").val())/100)*parseInt($("#wfxw").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#ywyq").val())/100)*parseFloat($("#yq").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz1").val())/100)*parseFloat($("#cqlz").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz2").val())/100)*parseFloat($("#sftq").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz3").val())/100)*parseFloat($("#zwtq").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz4").val())/100)*parseFloat($("#tp").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz5").val())/100)*parseFloat($("#jtwf").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz6").val())/100)*parseFloat($("#dhqf").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz7").val())/100)*parseFloat($("#qzjl").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz8").val())/100)*parseFloat($("#wfxw").val());
 				//社交情况
-				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj2").val())/100)*parseInt($("#pygz").val());
-				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj3").val())/100)*parseInt($("#pyxl").val());
+				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj2").val())/100)*parseFloat($("#pygz").val());
+				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj3").val())/100)*parseFloat($("#pyxl").val());
 				//公益行为
-				total+=(parseFloat($("#gy").val())/100)*parseInt($("#gyhd").val());
+				total+=(parseFloat($("#gy").val())/100)*parseFloat($("#gyhd").val());
 				//信仰状况
-				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy2").val())/100)*parseInt($("#zjxy").val());
-				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy3").val())/100)*parseInt($("#xy").val());
+				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy2").val())/100)*parseFloat($("#zjxy").val());
+				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy3").val())/100)*parseFloat($("#xy").val());
 				$("#score_result").val(total);
 			}
 
