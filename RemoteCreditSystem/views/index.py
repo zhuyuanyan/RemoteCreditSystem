@@ -133,9 +133,9 @@ def csgl():
     list3 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=4")
     list4 = db.session.execute("select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=5")
     #区域三级联动
-    list11 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 1 order by name")
-    list22 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 2 order by name")
-    list33 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from INDIV_BRT_PLACE where levels = 3 order by name")
+    list11 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from indiv_brt_place where levels = 1 order by name")
+    list22 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from indiv_brt_place where levels = 2 order by name")
+    list33 = db.session.execute("select concat(parent_code,'_',type_code) as name,type_name as title from indiv_brt_place where levels = 3 order by name")
     return render_template("mxpg/csgl.html",list1=list1,list2=list2,list3=list3,list4=list4,list11=list11,list22=list22,list33=list33)
 #参数配置--进入iframe
 @app.route('/mxpg/iframe_cspz', methods=['GET'])
