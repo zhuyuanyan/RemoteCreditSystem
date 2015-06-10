@@ -159,10 +159,22 @@ def cspz_ddpz_save(score):
     db.session.commit()
     return redirect("/mxpg/cspz_ddpz")
 
+
+
 #参数配置--经营状况
 @app.route('/mxpg/cspz_jyzk', methods=['GET'])
-def cspz_jyzk():    
-    return render_template("mxpg/cspz_jyzk.html")
+def cspz_jyzk():
+    jyzk = Rcs_Parameter.query.filter_by(parameter_name="jyzk").first()
+    result=jyzk.parameter_value
+    return render_template("mxpg/cspz_jyzk.html",result=result)
+
+#参数配置--经营状况--保存
+@app.route('/mxpg/cspz_jyzk_save/<score>', methods=['GET'])
+def cspz_jyzk_save(score):
+    Rcs_Parameter.query.filter_by(parameter_name="jyzk").delete()
+    Rcs_Parameter("jyzk",score).add()
+    db.session.commit()
+    return redirect("/mxpg/cspz_jyzk")
 
 #参数配置--生活状况
 @app.route('/mxpg/cspz_shzt', methods=['GET'])
@@ -254,8 +266,13 @@ def jcjy(id):
 
 #经营状况
 @app.route('/khzldy/khzl_jyzk/<int:id>', methods=['GET'])
-def khzl_jyzk(id):        
-    return render_template("customer/jyzk.html")
+def khzl_jyzk(id):
+    jyzk = Rcs_Parameter.query.filter_by(parameter_name="jyzk").first()
+    result = ""
+    if jyzk :
+        result=jyzk.parameter_value
+
+    return render_template("customer/jyzk.html",result=result,id=id)
 
 #生活状态
 @app.route('/khzldy/khzl_shzk/<int:id>', methods=['GET'])
@@ -513,3 +530,8 @@ def zjjxgl():
 @app.route('/pgzjgl/show_zjjxgl', methods=['GET'])
 def show_zjjxgl():        
     return render_template("pgzjgl/show_zjjxgl.html")
+
+# =================================互联网数据抓取==================
+@app.route('/by_bigdata',methods=['GET', 'POST'])
+def re_bigdata():
+    return redirect('http://192.168.1.137:8080/jbda/')
