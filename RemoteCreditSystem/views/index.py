@@ -243,8 +243,8 @@ def khzl_hknl_save(id):
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
         score.hknl_score=total
-        score.remark=remark
         if remark !="":
+            score.remark=score.remark+","+remark
             score.ddpz_score="/"
             score.jyzk_score="/"
             score.shzk_score="/"
@@ -291,13 +291,19 @@ def khzl_shzk(id):
 
 #生活状态保存
 @app.route('/khzldy/khzl_shzk_save/<int:id>', methods=['POST'])
-def khzl_shzk_save(id):     
+def khzl_shzk_save(id):  
     total = request.form['score_result'] 
+    remark = request.form['score_remark'] 
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
         score.shzk_score=total
+        if remark !="":
+            score.remark=score.remark+","+remark
+            score.hknl_score="/"
+            score.jyzk_score="/"
+            score.ddpz_score="/"
     else:
-        Rcs_Application_Score(id,"","","",total).add()
+        Rcs_Application_Score(id,"","","",total,remark).add()
     db.session.commit()
     return redirect("/khzldy/khzl_shzk/"+str(id))
 
@@ -312,11 +318,17 @@ def khzl_ddpz(id):
 @app.route('/khzldy/khzl_ddpz_save/<int:id>', methods=['POST'])
 def khzl_ddpz_save(id):     
     total = request.form['score_result'] 
+    remark = request.form['score_remark'] 
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
         score.ddpz_score=total
+        if remark !="":
+            score.remark=score.remark+","+remark
+            score.hknl_score="/"
+            score.jyzk_score="/"
+            score.shzk_score="/"
     else:
-        Rcs_Application_Score(id,total,"","","").add()
+        Rcs_Application_Score(id,total,"","","",remark).add()
     db.session.commit()
     return redirect("/khzldy/khzl_ddpz/"+str(id))
 

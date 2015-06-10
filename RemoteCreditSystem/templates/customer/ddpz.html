@@ -61,14 +61,14 @@
 				<tr>
 					<td><b>家庭其他成员经济收入来源({{result.split(',')[2]}}%)</b></td>
 					<td>
-						<select name="otherIn" id="otherIn">
+						<select name="otherIn" id="otherIn" content="家庭其他成员经济收入来源">
 							<option value="{{result.split(',')[3]}}">有</option>
 							<option value="{{result.split(',')[4]}}">无</option>
 						</select>
 					</td>
 					<td><b>婚姻状况({{result.split(',')[8]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[8]}}" name="hyzk" id="hyzk"/>
-					<td><select name="merray" id="merray">
+					<td><select name="merray" id="merray" content="婚姻状况">
 						<option value="{{result.split(',')[9]}}">已婚</option>
 						<option value="{{result.split(',')[10]}}">未婚</option>
 						<option value="{{result.split(',')[11]}}">离异</option>
@@ -79,7 +79,7 @@
 					<td><b>家庭结构类型({{result.split(',')[12]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[12]}}" name="jtjglx" id="jtjglx"/>
 					<td>
-						<select name="family_type" id="family_type">
+						<select name="family_type" id="family_type" content="家庭结构类型">
 							<option value="{{result.split(',')[13]}}">夫妻家庭(生育)</option>
 							<option value="{{result.split(',')[14]}}">夫妻家庭(未生育)</option>
 							<option value="{{result.split(',')[15]}}">核心家庭</option>
@@ -90,7 +90,7 @@
 					</td>
 					<td><b>不良嗜好({{result.split(',')[5]}}%)</b></td>
 					<td>
-						<select name="blsh" id="blsh">
+						<select name="blsh" id="blsh" content="不良嗜好">
 							<option value="{{result.split(',')[6]}}">有</option>
 							<option value="{{result.split(',')[7]}}">无</option>
 						</select>
@@ -111,7 +111,7 @@
 					<td><b>教育程度</b></td>
 					<td colspan="3">
 						<td>
-						<select name="jycd" id="jycd">
+						<select name="jycd" id="jycd" content="教育程度">
 							<option value="{{result.split(',')[20]}}">本科及以上</option>
 							<option value="{{result.split(',')[21]}}">大专</option>
 							<option value="{{result.split(',')[22]}}">高中或中专</option>
@@ -134,7 +134,7 @@
 					<td><b>公众形象({{result.split(',')[25]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[25]}}" name="xx" id="xx"/>
 					<td>他人评价
-						<select name="ggxx" id="ggxx">
+						<select name="ggxx" id="ggxx" content="他人评价">
 							<option value="{{result.split(',')[26]}}">好</option>
 							<option value="{{result.split(',')[27]}}">一般</option>
 							<option value="{{result.split(',')[28]}}">差</option>
@@ -145,14 +145,14 @@
 					<td>
 						定时体检({{result.split(',')[30]}}%)
 						<input type="hidden" value="{{result.split(',')[30]}}" name="tj" id="tj"/>
-						<select name="dstj" id="dstj">
+						<select name="dstj" id="dstj" content="定时体检">
 							<option value="{{result.split(',')[31]}}">良好</option>
 							<option value="{{result.split(',')[32]}}">轻微疾病</option>
 							<option value="{{result.split(',')[33]}}">重大疾病</option>
 						</select><br/>
 						运动情况({{result.split(',')[34]}}%)
 						<input type="hidden" value="{{result.split(',')[34]}}" name="yd" id="yd"/>
-						<select name="ydqk" id="ydqk">
+						<select name="ydqk" id="ydqk" content="运动情况">
 							<option value="{{result.split(',')[35]}}">有运动习惯</option>
 							<option value="{{result.split(',')[36]}}">无运动习惯</option>
 						</select><br/>
@@ -163,7 +163,7 @@
 					<td><b>不良嗜好({{result.split(',')[37]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[37]}}" name="sh" id="sh"/>
 					<td>
-						<select name="blsh1" id="blsh1">
+						<select name="blsh1" id="blsh1" content="不良嗜好">
 							<option value="{{result.split(',')[38]}}">有涉毒、涉赌、涉黄嗜好</option>
 							<option value="{{result.split(',')[39]}}">无不良嗜好</option>
 						</select></td>
@@ -185,7 +185,7 @@
 					<td><b>在银行系统有无逾期({{result.split(',')[44]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[44]}}" name="ywyq" id="ywyq"/>
 					<td>
-						<select name="yq" id="yq">
+						<select name="yq" id="yq" content="在银行系统有无逾期">
 							<option value="{{result.split(',')[45]}}">征信报告无逾期</option>
 							<option value="{{result.split(',')[46]}}">24个月内无逾期，5年内有逾期</option>
 							<option value="{{result.split(',')[47]}}">24个月内有逾期(逾期<5次),无连续逾期,5年内有逾期</option>
@@ -197,7 +197,7 @@
 					<td><b>应付账款长期赖账({{result.split(',')[51]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[51]}}" name="lz1" id="lz1"/>
 					<td>
-						<select name="cqlz" id="cqlz">
+						<select name="cqlz" id="cqlz" content="应付账款长期赖账">
 							<option value="{{result.split(',')[52]}}">有</option>
 							<option value="{{result.split(',')[53]}}">无</option>
 						</select>
@@ -207,7 +207,7 @@
 					<td><b>各种税费、水电煤气费是否拖欠({{result.split(',')[54]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[54]}}" name="lz2" id="lz2"/>
 					<td>
-						<select name="sftq" id="sftq">
+						<select name="sftq" id="sftq" content="各种税费、水电煤气费是否拖欠">
 							<option value="{{result.split(',')[55]}}">有</option>
 							<option value="{{result.split(',')[56]}}">无</option>
 						</select>
@@ -215,7 +215,7 @@
 					<td><b>有无其他私人债务拖欠({{result.split(',')[57]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[57]}}" name="lz3" id="lz3"/>
 					<td>						
-						<select name="zwtq" id="zwtq">
+						<select name="zwtq" id="zwtq" content="有无其他私人债务拖欠">
 							<option value="{{result.split(',')[58]}}">有</option>
 							<option value="{{result.split(',')[59]}}">无</option>
 						</select>
@@ -225,7 +225,7 @@
 					<td><b>火车、地铁逃票({{result.split(',')[60]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[60]}}" name="lz4" id="lz4"/>
 					<td>
-						<select name="tp" id="tp">
+						<select name="tp" id="tp" content="火车、地铁逃票">
 							<option value="{{result.split(',')[61]}}">有</option>
 							<option value="{{result.split(',')[62]}}">无</option>
 						</select>
@@ -233,7 +233,7 @@
 					<td><b>交通违章({{result.split(',')[63]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[63]}}" name="lz5" id="lz5"/>
 					<td>						
-						<select name="jtwf" id="jtwf">
+						<select name="jtwf" id="jtwf" content="交通违章">
 							<option value="{{result.split(',')[64]}}">有</option>
 							<option value="{{result.split(',')[65]}}">无</option>
 						</select>
@@ -243,7 +243,7 @@
 					<td><b>电话欠费({{result.split(',')[66]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[66]}}" name="lz6" id="lz6"/>
 					<td>
-						<select name="dhqf" id="dhqf">
+						<select name="dhqf" id="dhqf" content="电话欠费">
 							<option value="{{result.split(',')[67]}}">有</option>
 							<option value="{{result.split(',')[68]}}">无</option>
 						</select>
@@ -251,7 +251,7 @@
 					<td><b>签证记录({{result.split(',')[69]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[69]}}" name="lz7" id="lz7"/>
 					<td>
-						<select name="qzjl" id="qzjl">
+						<select name="qzjl" id="qzjl" content="签证记录">
 							<option value="{{result.split(',')[70]}}">无拒签记录</option>
 							<option value="{{result.split(',')[71]}}">有拒签记录</option>
 						</select>
@@ -261,7 +261,7 @@
 				<td><b>违法情况及犯罪行为({{result.split(',')[41]}}%)</b></td>
 				<input type="hidden" value="{{result.split(',')[41]}}" name="lz8" id="lz8"/>
 					<td>
-					<select name="wfxw" id="wfxw">
+					<select name="wfxw" id="wfxw" content="违法情况及犯罪行为">
 							<option value="{{result.split(',')[94]}}">无</option>
 							<option value="{{result.split(',')[42]}}">刑事案件</option>
 							<option value="{{result.split(',')[43]}}">经济案件</option>
@@ -284,7 +284,7 @@
 					<td><b>朋友工作({{result.split(',')[73]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[73]}}" name="sj2" id="sj2"/>
 					<td>
-						<select name="pygz" id="pygz">
+						<select name="pygz" id="pygz" content="朋友工作">
 							<option value="{{result.split(',')[74]}}">企事业单位</option>
 							<option value="{{result.split(',')[75]}}">个体工商户</option>
 							<option value="{{result.split(',')[76]}}">无业</option>
@@ -293,7 +293,7 @@
 					<td><b>朋友学历({{result.split(',')[77]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[77]}}" name="sj3" id="sj3"/>
 					<td>
-						<select name="pyxl" id="pyxl">
+						<select name="pyxl" id="pyxl" content="朋友学历">
 							<option value="{{result.split(',')[78]}}">本科及以上学历</option>
 							<option value="{{result.split(',')[79]}}">大专</option>
 							<option value="{{result.split(',')[80]}}">高中及中专</option>
@@ -315,7 +315,7 @@
 				<tr>
 					<td><b>有无公益活动</b></td>
 					<td>
-					<select name="gyhd" id="gyhd">
+					<select name="gyhd" id="gyhd" content="有无公益活动">
 						<option value="{{result.split(',')[83]}}">捐款</option>
 						<option value="{{result.split(',')[84]}}">志愿者活动</option>
 						<option value="{{result.split(',')[85]}}">无公益活动</option>
@@ -336,7 +336,7 @@
 					<td><b>宗教信仰({{result.split(',')[87]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[82]}}" name="xy2" id="xy2"/>
 					<td>
-					<select name="zjxy" id="zjxy">
+					<select name="zjxy" id="zjxy" content="宗教信仰">
 						<option value="{{result.split(',')[88]}}">佛教、基督教、伊斯兰教等基本教</option>
 						<option value="{{result.split(',')[89]}}">法轮功、邪教组织、ISIS、恐怖组织</option>
 						<option value="{{result.split(',')[90]}}">无宗教信仰</option>
@@ -344,7 +344,7 @@
 					<td><b>信仰({{result.split(',')[91]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[82]}}" name="xy3" id="xy3"/>
 					<td>
-					<select name="xy" id="xy">
+					<select name="xy" id="xy" content="信仰">
 						<option value="{{result.split(',')[92]}}">有</option>
 						<option value="{{result.split(',')[93]}}">无</option>
 					</select></td>
@@ -357,6 +357,7 @@
 				<tr>
 					<td><b>评分结果</b></td>
 					<td><input type="text" id="score_result" name="score_result" readonly/></td>
+					<input type="hidden" id="score_remark" name="score_remark" readonly/>
 				</tr>	
 			</table>
 		
@@ -369,41 +370,58 @@
 		</div>
 		</form>
 		<script type="text/javascript">
-			
+			var type =true;
+			var remark = new Array();
 			function sum(){
+				$("#score_remark").val("");
 				var total=0;
 				//家庭情况
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat($("#otherIn").val());
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#hyzk").val())/100)*parseFloat($("#merray").val());
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtjglx").val())/100)*parseFloat($("#family_type").val());
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat($("#blsh").val());
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat(transfer($("#otherIn")));
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#hyzk").val())/100)*parseFloat(transfer($("#merray")));
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtjglx").val())/100)*parseFloat(transfer($("#family_type")));
+				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat(transfer($("#blsh")));
 				
 				//知识水平
-				total+=(parseFloat($("#zssp").val())/100)*parseFloat($("#jycd").val());
+				total+=(parseFloat($("#zssp").val())/100)*parseFloat(transfer($("#jycd")));
 				//素质评估 
-				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#xx").val())/100)*parseFloat($("#ggxx").val());
-				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseFloat($("#tj").val())/100)*parseFloat($("#dstj").val());
-				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseFloat($("#yd").val())/100)*parseFloat($("#ydqk").val());
-				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#sh").val())/100)*parseFloat($("#blsh1").val());
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#xx").val())/100)*parseFloat(transfer($("#ggxx")));
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseFloat($("#tj").val())/100)*parseFloat(transfer($("#dstj")));
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseFloat($("#yd").val())/100)*parseFloat(transfer($("#ydqk")));
+				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#sh").val())/100)*parseFloat(transfer($("#blsh1")));
 				//信用记录
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#ywyq").val())/100)*parseFloat($("#yq").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz1").val())/100)*parseFloat($("#cqlz").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz2").val())/100)*parseFloat($("#sftq").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz3").val())/100)*parseFloat($("#zwtq").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz4").val())/100)*parseFloat($("#tp").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz5").val())/100)*parseFloat($("#jtwf").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz6").val())/100)*parseFloat($("#dhqf").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz7").val())/100)*parseFloat($("#qzjl").val());
-				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz8").val())/100)*parseFloat($("#wfxw").val());
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#ywyq").val())/100)*parseFloat(transfer($("#yq")));
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz1").val())/100)*parseFloat(transfer($("#cqlz")));
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz2").val())/100)*parseFloat(transfer($("#sftq")));
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz3").val())/100)*parseFloat(transfer($("#zwtq")));
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz4").val())/100)*parseFloat(transfer($("#tp")));
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz5").val())/100)*parseFloat(transfer($("#jtwf")));
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz6").val())/100)*parseFloat(transfer($("#dhqf")));
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz7").val())/100)*parseFloat(transfer($("#qzjl")));
+				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz8").val())/100)*parseFloat(transfer($("#wfxw")));
 				//社交情况
-				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj2").val())/100)*parseFloat($("#pygz").val());
-				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj3").val())/100)*parseFloat($("#pyxl").val());
+				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj2").val())/100)*parseFloat(transfer($("#pygz")));
+				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj3").val())/100)*parseFloat(transfer($("#pyxl")));
 				//公益行为
-				total+=(parseFloat($("#gy").val())/100)*parseFloat($("#gyhd").val());
+				total+=(parseFloat($("#gy").val())/100)*parseFloat(transfer($("#gyhd")));
 				//信仰状况
-				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy2").val())/100)*parseFloat($("#zjxy").val());
-				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy3").val())/100)*parseFloat($("#xy").val());
-				$("#score_result").val(total);
+				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy2").val())/100)*parseFloat(transfer($("#zjxy")));
+				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy3").val())/100)*parseFloat(transfer($("#xy")));
+				if(!type){
+					$("#score_result").val("/");
+					$("#score_remark").val(remark);
+				}else{
+					$("#score_result").val(total);
+				}
+				
+			}
+			function transfer(value){
+				if(value.val()=="禁入"){
+					type = false;
+					remark.push(value.attr("content")+"为禁入");
+					return 0;
+				}else{
+					return value.val();
+				}
 			}
 
 		</script>
