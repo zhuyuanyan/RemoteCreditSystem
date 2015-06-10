@@ -12,10 +12,11 @@
 		</style>
 	</head>
 	<body>		
-		<form class="iframeForm">
+		<form class="iframeForm" id="iframForm">
+        <div id="formsId">
 <!--*****************************经营状况**********************************-->
 			<table class="myTable">
-				<caption>行业<input type="text" name="name1" value="30%"/></caption>
+				<caption>行业<input type="text" name="name1" value="30"/>%</caption>
 				<colgroup>
 					<col width="10%">
 					<col width="10%">
@@ -24,8 +25,8 @@
 				</colgroup>
 		<!--*****************************行业政策**********************************-->
 				<tr>
-					<td rowspan="3"><b>行业政策</b><br/><input type="text" name="name2" value="20%"/></td>
-					<td><b>金融货币政策</b><br/><input type="text" name="name3" value="20%"/></td>
+					<td rowspan="3"><b>行业政策</b><br/><input type="text" name="name2" value="20"/>%</td>
+					<td><b>金融货币政策</b><br/><input type="text" name="name3" value="20"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -35,15 +36,15 @@
 								<th>紧缩</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name4" value="100%"/></td>
-								<td><input type="text" name="name5" value="70%"/></td>
-								<td><input type="text" name="name6" value="30%"/></td>
+								<td><input type="text" name="name4" value="100"/>%</td>
+								<td><input type="text" name="name5" value="70"/>%</td>
+								<td><input type="text" name="name6" value="30"/>%</td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>国家产业政策</b><br/><input type="text" name="name7" value="80%"/></td>
+					<td><b>国家产业政策</b><br/><input type="text" name="name7" value="80"/>%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -53,15 +54,15 @@
 								<th>限制</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name8" value="50%-100%"/></td>
-								<td><input type="text" name="name9" value="40%"/></td>
+								<td><input type="text" name="name8" value="50-100"/>%</td>
+								<td><input type="text" name="name9" value="40"/>%</td>
 								<td><input type="text" name="name10" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>税收政策</b><input type="text" name="name17"/></td>
+					<td><b>税收政策</b><input type="text" name="name18"/></td>
 					<td></td>
 					<td>
 						<table class="addTable">
@@ -75,20 +76,20 @@
 								<th>增收消费税<br/>大于20%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name11" value="100%"/></td>
-								<td><input type="text" name="name12" value="80%"/></td>
-								<td><input type="text" name="name13" value="60%"/></td>
-								<td><input type="text" name="name14" value="50%"/></td>
-								<td><input type="text" name="name15" value="30%"/></td>
-								<td><input type="text" name="name16" value="10%"/></td>
-								<td><input type="text" name="name18" value="0%"/></td>
+								<td><input type="text" name="name11" value="100"/>%</td>
+								<td><input type="text" name="name12" value="80"/>%</td>
+								<td><input type="text" name="name13" value="60"/>%</td>
+								<td><input type="text" name="name14" value="50"/>%</td>
+								<td><input type="text" name="name15" value="30"/>%</td>
+								<td><input type="text" name="name16" value="10"/>%</td>
+								<td><input type="text" name="name17" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 			<!--*****************************行业**********************************-->
 				<tr>
-					<td rowspan="12"><b>行业</b><br/><input type="text" name="name19" value="80%"/></td>
+					<td rowspan="12"><b>行业</b><br/><input type="text" name="name19" value="80"/>%</td>
 					<td><b>行业供求关系</b></td>
 					<td><b>产品供应/市场需求量</b></td>
 					<td>
@@ -104,13 +105,13 @@
 								<th>大于120%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name20" value="100%"/></td>
-								<td><input type="text" name="name21" value="90%"/></td>
-								<td><input type="text" name="name22" value="80%"/></td>
-								<td><input type="text" name="name23" value="70%"/></td>
-								<td><input type="text" name="name24" value="50%"/></td>
-								<td><input type="text" name="name25" value="30%"/></td>
-								<td><input type="text" name="name26" value="0%"/></td>
+								<td><input type="text" name="name20" value="100"/>%</td>
+								<td><input type="text" name="name21" value="90"/>%</td>
+								<td><input type="text" name="name22" value="80"/>%</td>
+								<td><input type="text" name="name23" value="70"/>%</td>
+								<td><input type="text" name="name24" value="50"/>%</td>
+								<td><input type="text" name="name25" value="30"/>%</td>
+								<td><input type="text" name="name26" value="0"/>%</td>
 								<td><input type="text" name="name27" value="禁入"/></td>
 							</tr>
 						</table>
@@ -161,7 +162,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>行业资产结构</b><br/><input type="text" name="name40" value="5%"/></td>
+					<td><b>行业资产结构</b><br/><input type="text" name="name40" value="5"/>%</td>
 					<td><b>固定资产占总资产</b></td>
 					<td>
 						<table class="addTable">
@@ -173,11 +174,11 @@
 								<th>小于或等于40%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name41" value="100%"/></td>
-								<td><input type="text" name="name42" value="95%"/></td>
-								<td><input type="text" name="name43" value="90%"/></td>
-								<td><input type="text" name="name44" value="85%"/></td>
-								<td><input type="text" name="name45" value="80%"/></td>
+								<td><input type="text" name="name41" value="100"/>%</td>
+								<td><input type="text" name="name42" value="95"/>%</td>
+								<td><input type="text" name="name43" value="90"/>%</td>
+								<td><input type="text" name="name44" value="85"/>%</td>
+								<td><input type="text" name="name45" value="80"/>%</td>
 							</tr>
 							<tr>
 								<th>小于或等于50%</th>
@@ -187,17 +188,17 @@
 								<th>小于或等于90%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name46" value="60%"/></td>
-								<td><input type="text" name="name47" value="40%"/></td>
-								<td><input type="text" name="name48" value="20%"/></td>
-								<td><input type="text" name="name49" value="10%"/></td>
-								<td><input type="text" name="name50" value="5%"/></td>
+								<td><input type="text" name="name46" value="60"/>%</td>
+								<td><input type="text" name="name47" value="40"/>%</td>
+								<td><input type="text" name="name48" value="20"/>%</td>
+								<td><input type="text" name="name49" value="10"/>%</td>
+								<td><input type="text" name="name50" value="5"/>%</td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td rowspan="3"><b>行业盈利能力</b><br/><input type="text" name="name51" value="15%"/></td>
+					<td rowspan="3"><b>行业盈利能力</b><br/><input type="text" name="name51" value="15"/>%</td>
 					<td><b>净利率</b></td>
 					<td>
 						<table class="addTable">
@@ -211,13 +212,14 @@
 								<th>小于或等于0%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name52" value="100%"/></td>
-								<td><input type="text" name="name53" value="75%"/></td>
-								<td><input type="text" name="name54" value="50%"/></td>
-								<td><input type="text" name="name55" value="25%"/></td>
-								<td><input type="text" name="name56" value="12.5%"/></td>
+								<td><input type="text" name="name52" value="100"/>%</td>
+								<td><input type="text" name="name53" value="75"/>%</td>
+								<td><input type="text" name="name54" value="50"/>%</td>
+								<td><input type="text" name="name55" value="25"/>%</td>
+								<td><input type="text" name="name56" value="12.5"/>%</td>
 								<td><input type="text" name="name57" value="0"/></td>
 								<td><input type="text" name="name58" value="禁入"/></td>
+
 							</tr>
 						</table>
 					</td>
@@ -236,13 +238,13 @@
 								<th>大于180</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name60" value="100%"/></td>
-								<td><input type="text" name="name61" value="75%"/></td>
-								<td><input type="text" name="name62" value="50%"/></td>
-								<td><input type="text" name="name63" value="25%"/></td>
-								<td><input type="text" name="name64" value="12.5%"/></td>
-								<td><input type="text" name="name65" value="0"/></td>
-								<td><input type="text" name="name66" value="禁入"/></td>
+								<td><input type="text" name="name59" value="100"/>%</td>
+								<td><input type="text" name="name60" value="75"/>%</td>
+								<td><input type="text" name="name61" value="50"/>%</td>
+								<td><input type="text" name="name62" value="25"/>%</td>
+								<td><input type="text" name="name63" value="12.5"/>%</td>
+								<td><input type="text" name="name64" value="0"/></td>
+								<td><input type="text" name="name65" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -260,19 +262,19 @@
 								<th>大于90</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name67" value="100%"/></td>
-								<td><input type="text" name="name68" value="90%"/></td>
-								<td><input type="text" name="name69" value="75%"/></td>
-								<td><input type="text" name="name70" value="50%"/></td>
-								<td><input type="text" name="name71" value="25%"/></td>
-								<td><input type="text" name="name72" value="0%"/></td>
+								<td><input type="text" name="name66" value="100"/>%</td>
+								<td><input type="text" name="name67" value="90"/>%</td>
+								<td><input type="text" name="name68" value="75"/>%</td>
+								<td><input type="text" name="name69" value="50"/>%</td>
+								<td><input type="text" name="name70" value="25"/>%</td>
+								<td><input type="text" name="name71" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
 				</tr>			
 				<tr>
-					<td rowspan="2"><b>行业依赖性</b><br/><input type="text" name="name73" value="20%"/></td>
-					<td><b>上游客户</b><br/><input type="text" name="name74" value="10%"/></td>
+					<td rowspan="2"><b>行业依赖性</b><br/><input type="text" name="name72" value="20"/>%</td>
+					<td><b>上游客户</b><br/><input type="text" name="name73" value="10"/>%</td>
 					<td>
 						<b>供应商数量</b>
 						<table class="addTable">
@@ -284,11 +286,11 @@
 								<th colspan="2">大于等于12</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name75" value="100%"/></td>
-								<td><input type="text" name="name76" value="90%"/></td>
-								<td><input type="text" name="name77" value="80%"/></td>
-								<td><input type="text" name="name78" value="70%"/></td>
-								<td colspan="2"><input type="text" name="name79" value="60%"/></td>
+								<td><input type="text" name="name74" value="100"/>%</td>
+								<td><input type="text" name="name75" value="90"/>%</td>
+								<td><input type="text" name="name76" value="80"/>%</td>
+								<td><input type="text" name="name77" value="70"/>%</td>
+								<td colspan="2"><input type="text" name="name78" value="60"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于10</th>
@@ -299,18 +301,18 @@
 								<th>小于2</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name80" value="50%"/></td>
-								<td><input type="text" name="name81" value="40%"/></td>
-								<td><input type="text" name="name82" value="30%"/></td>
-								<td><input type="text" name="name83" value="20%"/></td>
-								<td><input type="text" name="name84" value="10%"/></td>
-								<td><input type="text" name="name85" value="0%"/></td>
+								<td><input type="text" name="name79" value="50"/>%</td>
+								<td><input type="text" name="name80" value="40"/>%</td>
+								<td><input type="text" name="name81" value="30"/>%</td>
+								<td><input type="text" name="name82" value="20"/>%</td>
+								<td><input type="text" name="name83" value="10"/>%</td>
+								<td><input type="text" name="name84" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>下游客户</b><br/><input type="text" name="name86" value="10%"/></td>
+					<td><b>下游客户</b><br/><input type="text" name="name85" value="10"/>%</td>
 					<td>
 						<b>经销商数量</b>
 						<table class="addTable">
@@ -322,11 +324,11 @@
 								<th colspan="2">大于等于30</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name87" value="100%"/></td>
-								<td><input type="text" name="name88" value="90%"/></td>
-								<td><input type="text" name="name89" value="80%"/></td>
-								<td><input type="text" name="name90" value="70%"/></td>
-								<td colspan="2"><input type="text" name="name91" value="60%"/></td>
+								<td><input type="text" name="name86" value="100"/>%</td>
+								<td><input type="text" name="name87" value="90"/>%</td>
+								<td><input type="text" name="name88" value="80"/>%</td>
+								<td><input type="text" name="name89" value="70"/>%</td>
+								<td colspan="2"><input type="text" name="name90" value="60"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于25</th>
@@ -337,18 +339,18 @@
 								<th>小于5</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name92" value="50%"/></td>
-								<td><input type="text" name="name93" value="40%"/></td>
-								<td><input type="text" name="name94" value="30%"/></td>
-								<td><input type="text" name="name95" value="20%"/></td>
-								<td><input type="text" name="name96" value="10%"/></td>
-								<td><input type="text" name="name97" value="0%"/></td>
+								<td><input type="text" name="name91" value="50"/>%</td>
+								<td><input type="text" name="name92" value="40"/>%</td>
+								<td><input type="text" name="name93" value="30"/>%</td>
+								<td><input type="text" name="name94" value="20"/>%</td>
+								<td><input type="text" name="name95" value="10"/>%</td>
+								<td><input type="text" name="name96" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
 				</tr>		
 				<tr>
-					<td><b>行业替代性</b><br/><input type="text" name="name98" value="10%"/></td>
+					<td><b>行业替代性</b><br/><input type="text" name="name97" value="10"/>%</td>
 					<td><b>市场上可供选择的类似产品种类</b></td>
 					<td>
 						<table class="addTable">
@@ -360,11 +362,11 @@
 								<th>小于等于15</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name99" value="100%"/></td>
-								<td><input type="text" name="name100" value="90%"/></td>
-								<td><input type="text" name="name101" value="80%"/></td>
-								<td><input type="text" name="name102" value="70%"/></td>
-								<td><input type="text" name="name103" value="60%"/></td>
+								<td><input type="text" name="name98" value="100"/>%</td>
+								<td><input type="text" name="name99" value="90"/>%</td>
+								<td><input type="text" name="name100" value="80"/>%</td>
+								<td><input type="text" name="name101" value="70"/>%</td>
+								<td><input type="text" name="name102" value="60"/>%</td>
 							</tr>
 							<tr>
 								<th>小于等于20</th>
@@ -373,17 +375,17 @@
 								<th colspan="2">小于等于30</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name104" value="40%"/></td>
-								<td><input type="text" name="name105" value="20%"/></td>
-								<td><input type="text" name="name106" value="10%"/></td>
-								<td colspan="2"><input type="text" name="name107" value="0%"/></td>
+								<td><input type="text" name="name103" value="40"/>%</td>
+								<td><input type="text" name="name104" value="20"/>%</td>
+								<td><input type="text" name="name105" value="10"/>%</td>
+								<td colspan="2"><input type="text" name="name106" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
 				</tr>			
 				<tr>
-					<td rowspan="2"><b>行业发展趋势</b><br/><input type="text" name="name108" value="30%"/></td>
-					<td><b>本行业近一年的平均销售额增长</b><input type="text" name="name109" value="50%"/></td>
+					<td rowspan="2"><b>行业发展趋势</b><br/><input type="text" name="name107" value="30"/>%</td>
+					<td><b>本行业近一年的平均销售额增长</b><input type="text" name="name108" value="50"/>%</td>
 					<td>
 						<b>本行业近一年的平均销售额增长比率</b>
 						<table class="addTable">
@@ -396,12 +398,12 @@
 								<th>大于等于20%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name110" value="100%"/></td>
-								<td><input type="text" name="name111" value="90%"/></td>
-								<td><input type="text" name="name112" value="80%"/></td>
-								<td><input type="text" name="name113" value="70%"/></td>
-								<td><input type="text" name="name114" value="60%"/></td>
-								<td><input type="text" name="name115" value="50%"/></td>
+								<td><input type="text" name="name109" value="100"/>%</td>
+								<td><input type="text" name="name110" value="90"/>%</td>
+								<td><input type="text" name="name111" value="80"/>%</td>
+								<td><input type="text" name="name112" value="70"/>%</td>
+								<td><input type="text" name="name113" value="60"/>%</td>
+								<td><input type="text" name="name114" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于15%</th>
@@ -412,18 +414,18 @@
 								<th>小于-20%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name116" value="40%"/></td>
-								<td><input type="text" name="name117" value="30%"/></td>
-								<td><input type="text" name="name118" value="20%"/></td>
-								<td><input type="text" name="name119" value="10%"/></td>
-								<td><input type="text" name="name120" value="0%"/></td>
-								<td><input type="text" name="name121" value="禁入"/></td>
+								<td><input type="text" name="name115" value="40"/>%</td>
+								<td><input type="text" name="name116" value="30"/>%</td>
+								<td><input type="text" name="name117" value="20"/>%</td>
+								<td><input type="text" name="name118" value="10"/>%</td>
+								<td><input type="text" name="name119" value="0"/>%</td>
+								<td><input type="text" name="name120" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
-					<td><b>本行业近一年来的平均净利润增长</b><input type="text" name="name122" value="50%"/></td>
+					<td><b>本行业近一年来的平均净利润增长</b><input type="text" name="name121" value="50"/>%</td>
 					<td>
 						<b>本行业近一年的平均净利润增长比率</b>
 						<table class="addTable">
@@ -436,12 +438,12 @@
 								<th>大于等于20%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name123" value="100%"/></td>
-								<td><input type="text" name="name124" value="90%"/></td>
-								<td><input type="text" name="name125" value="80%"/></td>
-								<td><input type="text" name="name126" value="70%"/></td>
-								<td><input type="text" name="name127" value="60%"/></td>
-								<td><input type="text" name="name128" value="50%"/></td>
+								<td><input type="text" name="name122" value="100"/>%</td>
+								<td><input type="text" name="name123" value="90"/>%</td>
+								<td><input type="text" name="name124" value="80"/>%</td>
+								<td><input type="text" name="name125" value="70"/>%</td>
+								<td><input type="text" name="name126" value="60"/>%</td>
+								<td><input type="text" name="name127" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于15%</th>
@@ -452,18 +454,18 @@
 								<th>小于-20%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name129" value="40%"/></td>
-								<td><input type="text" name="name130" value="30%"/></td>
-								<td><input type="text" name="name131" value="20%"/></td>
-								<td><input type="text" name="name132" value="10%"/></td>
-								<td><input type="text" name="name133" value="0%"/></td>
-								<td><input type="text" name="name134" value="禁入"/></td>
+								<td><input type="text" name="name128" value="40"/>%</td>
+								<td><input type="text" name="name129" value="30"/>%</td>
+								<td><input type="text" name="name130" value="20"/>%</td>
+								<td><input type="text" name="name131" value="10"/>%</td>
+								<td><input type="text" name="name132" value="0"/>%</td>
+								<td><input type="text" name="name133" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
 				</tr>	
 				<tr>
-					<td><b>行业风险分析</b><input type="text" name="name135" value="10%"/></td>
+					<td><b>行业风险分析</b><input type="text" name="name134" value="10"/>%</td>
 					<td><b>近三年来行业内平均破产率分析</b></td>
 					<td>
 						<b>近三年来行业平均破产率</b>
@@ -477,12 +479,12 @@
 								<th>小于等于30%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name136" value="100%"/></td>
-								<td><input type="text" name="name137" value="90%"/></td>
-								<td><input type="text" name="name138" value="80%"/></td>
-								<td><input type="text" name="name139" value="70%"/></td>
-								<td><input type="text" name="name140" value="60%"/></td>
-								<td><input type="text" name="name141" value="50%"/></td>
+								<td><input type="text" name="name135" value="100"/>%</td>
+								<td><input type="text" name="name136" value="90"/>%</td>
+								<td><input type="text" name="name137" value="80"/>%</td>
+								<td><input type="text" name="name138" value="70"/>%</td>
+								<td><input type="text" name="name139" value="60"/>%</td>
+								<td><input type="text" name="name140" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>小于等于35%</th>
@@ -492,11 +494,11 @@
 								<th colspan="2">大于50%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name142" value="30%"/></td>
-								<td><input type="text" name="name143" value="20%"/></td>
-								<td><input type="text" name="name144" value="10%"/></td>
-								<td><input type="text" name="name145" value="0%"/></td>
-								<td colspan="2"><input type="text" name="name146" value="禁入"/></td>
+								<td><input type="text" name="name141" value="30"/>%</td>
+								<td><input type="text" name="name142" value="20"/>%</td>
+								<td><input type="text" name="name143" value="10"/>%</td>
+								<td><input type="text" name="name144" value="0"/>%</td>
+								<td colspan="2"><input type="text" name="name145" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -504,7 +506,7 @@
 			</table>		
 <!--*****************************企业**********************************-->
 			<table class="myTable">
-				<caption>企业<input type="text" name="name147" value="70%"/></caption>
+				<caption>企业<input type="text" name="name146" value="70"/>%</caption>
 				<colgroup>
 					<col width="10%">
 					<col width="10%">
@@ -520,19 +522,19 @@
 						<table class="addTable">
 							<tr>
 								<th>产品与众不同，几乎没有替代品，专利得到很好的保护，信誉好</th>
-								<td><input type="text" name="name148" value="100%"/></td>
+								<td><input type="text" name="name147" value="100"/>%</td>
 							</tr>
 							<tr>
 								<th>产品有些独特，由于产品的复杂性，替代品有限</th>
-								<td><input type="text" name="name149" value="75%"/></td>
+								<td><input type="text" name="name148" value="75"/>%</td>
 							</tr>
 							<tr>
 								<th>产品无独特之处，有一些现成的替代品，信誉好</th>
-								<td><input type="text" name="name150" value="50%"/></td>
+								<td><input type="text" name="name149" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>产品无独特之处，又许多好的替代品，质量一般</th>
-								<td><input type="text" name="name151" value="25%"/></td>
+								<td><input type="text" name="name150" value="25"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -550,11 +552,11 @@
 								<th>小于等于45天</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name152" value="100%"/></td>
-								<td><input type="text" name="name153" value="90%"/></td>
-								<td><input type="text" name="name154" value="80%"/></td>
-								<td><input type="text" name="name155" value="70%"/></td>
-								<td><input type="text" name="name156" value="60%"/></td>
+								<td><input type="text" name="name151" value="100"/>%</td>
+								<td><input type="text" name="name152" value="90"/>%</td>
+								<td><input type="text" name="name153" value="80"/>%</td>
+								<td><input type="text" name="name154" value="70"/>%</td>
+								<td><input type="text" name="name155" value="60"/>%</td>
 							</tr>
 							<tr>
 								<th>小于等于60天</th>
@@ -564,11 +566,11 @@
 								<th>大于360天</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name157" value="50%"/></td>
-								<td><input type="text" name="name158" value="40%"/></td>
-								<td><input type="text" name="name159" value="30%"/></td>
-								<td><input type="text" name="name160" value="20%"/></td>
-								<td><input type="text" name="name161" value="10%"/></td>
+								<td><input type="text" name="name156" value="50"/>%</td>
+								<td><input type="text" name="name157" value="40"/>%</td>
+								<td><input type="text" name="name158" value="30"/>%</td>
+								<td><input type="text" name="name159" value="20"/>%</td>
+								<td><input type="text" name="name160" value="10"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -587,12 +589,12 @@
 								<th>大于等于50%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name162" value="100%"/></td>
-								<td><input type="text" name="name163" value="90%"/></td>
-								<td><input type="text" name="name164" value="80%"/></td>
-								<td><input type="text" name="name165" value="70%"/></td>
-								<td><input type="text" name="name166" value="60%"/></td>
-								<td><input type="text" name="name167" value="50%"/></td>
+								<td><input type="text" name="name161" value="100"/>%</td>
+								<td><input type="text" name="name162" value="90"/>%</td>
+								<td><input type="text" name="name163" value="80"/>%</td>
+								<td><input type="text" name="name164" value="70"/>%</td>
+								<td><input type="text" name="name165" value="60"/>%</td>
+								<td><input type="text" name="name166" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于40%</th>
@@ -603,12 +605,12 @@
 								<th>小于5%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name168" value="40%"/></td>
-								<td><input type="text" name="name169" value="30%"/></td>
-								<td><input type="text" name="name170" value="20%"/></td>
-								<td><input type="text" name="name171" value="10%"/></td>
-								<td><input type="text" name="name172" value="0%"/></td>
-								<td><input type="text" name="name173" value="禁入"/></td>
+								<td><input type="text" name="name167" value="40"/>%</td>
+								<td><input type="text" name="name168" value="30"/>%</td>
+								<td><input type="text" name="name169" value="20"/>%</td>
+								<td><input type="text" name="name170" value="10"/>%</td>
+								<td><input type="text" name="name171" value="0"/>%</td>
+								<td><input type="text" name="name172" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -626,11 +628,11 @@
 								<th>小于等于8家</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name174" value="100%"/></td>
-								<td><input type="text" name="name175" value="90%"/></td>
-								<td><input type="text" name="name176" value="80%"/></td>
-								<td><input type="text" name="name177" value="70%"/></td>
-								<td><input type="text" name="name178" value="50%"/></td>
+								<td><input type="text" name="name173" value="100"/>%</td>
+								<td><input type="text" name="name174" value="90"/>%</td>
+								<td><input type="text" name="name175" value="80"/>%</td>
+								<td><input type="text" name="name176" value="70"/>%</td>
+								<td><input type="text" name="name177" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>小于等于12家</th>
@@ -640,11 +642,11 @@
 								<th>大于30家</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name179" value="40%"/></td>
-								<td><input type="text" name="name180" value="30%"/></td>
-								<td><input type="text" name="name181" value="20%"/></td>
-								<td><input type="text" name="name182" value="10%"/></td>
-								<td><input type="text" name="name183" value="0%"/></td>
+								<td><input type="text" name="name178" value="40"/>%</td>
+								<td><input type="text" name="name179" value="30"/>%</td>
+								<td><input type="text" name="name180" value="20"/>%</td>
+								<td><input type="text" name="name181" value="10"/>%</td>
+								<td><input type="text" name="name182" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -662,11 +664,11 @@
 								<th>小于等于35%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name184" value="100%"/></td>
-								<td><input type="text" name="name185" value="90%"/></td>
-								<td><input type="text" name="name186" value="80%"/></td>
-								<td><input type="text" name="name187" value="70%"/></td>
-								<td><input type="text" name="name188" value="60%"/></td>
+								<td><input type="text" name="name183" value="100"/>%</td>
+								<td><input type="text" name="name184" value="90"/>%</td>
+								<td><input type="text" name="name185" value="80"/>%</td>
+								<td><input type="text" name="name186" value="70"/>%</td>
+								<td><input type="text" name="name187" value="60"/>%</td>
 							</tr>
 							<tr>
 								<th>小于等于40%</th>
@@ -676,11 +678,11 @@
 								<th>小于等于90%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name189" value="40%"/></td>
-								<td><input type="text" name="name190" value="30%"/></td>
-								<td><input type="text" name="name191" value="20%"/></td>
-								<td><input type="text" name="name192" value="10%"/></td>
-								<td><input type="text" name="name193" value="0%"/></td>
+								<td><input type="text" name="name188" value="40"/>%</td>
+								<td><input type="text" name="name189" value="30"/>%</td>
+								<td><input type="text" name="name190" value="20"/>%</td>
+								<td><input type="text" name="name191" value="10"/>%</td>
+								<td><input type="text" name="name192" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -691,19 +693,19 @@
 						<table class="addTable">
 							<tr>
 								<th>单一销售渠道、单一营销方式</th>
-								<td><input type="text" name="name194" value="20%"/></td>
+								<td><input type="text" name="name193" value="20"/>%</td>
 							</tr>
 							<tr>
 								<th>固定二至三条销售渠道，单一营销方式/单一销售渠道，多种营销方式</th>
-								<td><input type="text" name="name195" value="40%"/></td>
+								<td><input type="text" name="name194" value="40"/>%</td>
 							</tr>
 							<tr>
 								<th>固定两至三条销售渠道，多种营销方式</th>
-								<td><input type="text" name="name196" value="80%"/></td>
+								<td><input type="text" name="name195" value="80"/>%</td>
 							</tr>
 							<tr>
 								<th>四条以上条销售渠道，多种营销方式，并仍在开发新的销售渠道和营销方式</th>
-								<td><input type="text" name="name197" value="100%"/></td>
+								<td><input type="text" name="name196" value="100"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -723,12 +725,12 @@
 								<th>等于0</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name198" value="100%"/></td>
-								<td><input type="text" name="name199" value="90%"/></td>
-								<td><input type="text" name="name200" value="80%"/></td>
-								<td><input type="text" name="name201" value="70%"/></td>
-								<td><input type="text" name="name202" value="60%"/></td>
-								<td><input type="text" name="name203" value="0%"/></td>
+								<td><input type="text" name="name197" value="100"/>%</td>
+								<td><input type="text" name="name198" value="90"/>%</td>
+								<td><input type="text" name="name199" value="80"/>%</td>
+								<td><input type="text" name="name200" value="70"/>%</td>
+								<td><input type="text" name="name201" value="60"/>%</td>
+								<td><input type="text" name="name202" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -747,12 +749,12 @@
 								<th>小于50%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name204" value="100%"/></td>
-								<td><input type="text" name="name205" value="80%"/></td>
-								<td><input type="text" name="name206" value="60%"/></td>
-								<td><input type="text" name="name207" value="40%"/></td>
-								<td><input type="text" name="name208" value="20%"/></td>
-								<td><input type="text" name="name209" value="0%"/></td>
+								<td><input type="text" name="name203" value="100"/>%</td>
+								<td><input type="text" name="name204" value="80"/>%</td>
+								<td><input type="text" name="name205" value="60"/>%</td>
+								<td><input type="text" name="name206" value="40"/>%</td>
+								<td><input type="text" name="name207" value="20"/>%</td>
+								<td><input type="text" name="name208" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -766,8 +768,8 @@
 								<th>不受自然灾害影响</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name210" value="0%"/></td>
-								<td><input type="text" name="name211" value="100%"/></td>
+								<td><input type="text" name="name209" value="0"/>%</td>
+								<td><input type="text" name="name210" value="100"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -781,8 +783,8 @@
 								<th>不易造成环境污染</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name212" value="0%"/></td>
-								<td><input type="text" name="name213" value="100%"/></td>
+								<td><input type="text" name="name211" value="0"/>%</td>
+								<td><input type="text" name="name212" value="100"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -796,8 +798,8 @@
 								<th>劳资关系紧张，与员工多有争执</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name214" value="100%"/></td>
-								<td><input type="text" name="name215" value="0%"/></td>
+								<td><input type="text" name="name213" value="100"/>%</td>
+								<td><input type="text" name="name214" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -817,12 +819,12 @@
 								<th>小于等于97.5%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name216" value="100%"/></td>
-								<td><input type="text" name="name217" value="95%"/></td>
-								<td><input type="text" name="name218" value="90%"/></td>
-								<td><input type="text" name="name219" value="85%"/></td>
-								<td><input type="text" name="name220" value="80%"/></td>
-								<td><input type="text" name="name221" value="70%"/></td>
+								<td><input type="text" name="name215" value="100"/>%</td>
+								<td><input type="text" name="name216" value="95"/>%</td>
+								<td><input type="text" name="name217" value="90"/>%</td>
+								<td><input type="text" name="name218" value="85"/>%</td>
+								<td><input type="text" name="name219" value="80"/>%</td>
+								<td><input type="text" name="name220" value="70"/>%</td>
 							</tr>
 							<tr>
 								<th>小于等于100%</th>
@@ -833,12 +835,12 @@
 								<th>小于等于120%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name222" value="50%"/></td>
-								<td><input type="text" name="name223" value="40%"/></td>
-								<td><input type="text" name="name224" value="30%"/></td>
-								<td><input type="text" name="name225" value="20%"/></td>
-								<td><input type="text" name="name226" value="10%"/></td>
-								<td><input type="text" name="name227" value="0%"/></td>
+								<td><input type="text" name="name221" value="50"/>%</td>
+								<td><input type="text" name="name222" value="40"/>%</td>
+								<td><input type="text" name="name223" value="30"/>%</td>
+								<td><input type="text" name="name224" value="20"/>%</td>
+								<td><input type="text" name="name225" value="10"/>%</td>
+								<td><input type="text" name="name226" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -856,11 +858,11 @@
 								<th>大于等于50%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name228" value="100%"/></td>
-								<td><input type="text" name="name229" value="90%"/></td>
-								<td><input type="text" name="name230" value="80%"/></td>
-								<td><input type="text" name="name231" value="70%"/></td>
-								<td><input type="text" name="name232" value="50%"/></td>
+								<td><input type="text" name="name227" value="100"/>%</td>
+								<td><input type="text" name="name228" value="90"/>%</td>
+								<td><input type="text" name="name229" value="80"/>%</td>
+								<td><input type="text" name="name230" value="70"/>%</td>
+								<td><input type="text" name="name231" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于40%</th>
@@ -870,11 +872,11 @@
 								<th>小于10%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name233" value="40%"/></td>
-								<td><input type="text" name="name234" value="30%"/></td>
-								<td><input type="text" name="name235" value="20%"/></td>
-								<td><input type="text" name="name236" value="10%"/></td>
-								<td><input type="text" name="name237" value="0%"/></td>
+								<td><input type="text" name="name232" value="40"/>%</td>
+								<td><input type="text" name="name233" value="30"/>%</td>
+								<td><input type="text" name="name234" value="20"/>%</td>
+								<td><input type="text" name="name235" value="10"/>%</td>
+								<td><input type="text" name="name236" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -896,12 +898,12 @@
 								<th>大于等于45%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name238" value="100%"/></td>
-								<td><input type="text" name="name239" value="90%"/></td>
-								<td><input type="text" name="name240" value="80%"/></td>
-								<td><input type="text" name="name241" value="70%"/></td>
-								<td><input type="text" name="name242" value="60%"/></td>
-								<td><input type="text" name="name243" value="50%"/></td>
+								<td><input type="text" name="name237" value="100"/>%</td>
+								<td><input type="text" name="name238" value="90"/>%</td>
+								<td><input type="text" name="name239" value="80"/>%</td>
+								<td><input type="text" name="name240" value="70"/>%</td>
+								<td><input type="text" name="name241" value="60"/>%</td>
+								<td><input type="text" name="name242" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于40%</th>
@@ -911,11 +913,11 @@
 								<th colspan="2">小于25%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name244" value="40%"/></td>
-								<td><input type="text" name="name245" value="30%"/></td>
-								<td><input type="text" name="name246" value="20%"/></td>
-								<td><input type="text" name="name247" value="10%"/></td>
-								<td colspan="2"><input type="text" name="name248" value="0%"/></td>
+								<td><input type="text" name="name243" value="40"/>%</td>
+								<td><input type="text" name="name244" value="30"/>%</td>
+								<td><input type="text" name="name245" value="20"/>%</td>
+								<td><input type="text" name="name246" value="10"/>%</td>
+								<td colspan="2"><input type="text" name="name247" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -933,11 +935,11 @@
 								<th>小于等于50%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name249" value="100%"/></td>
-								<td><input type="text" name="name250" value="90%"/></td>
-								<td><input type="text" name="name251" value="80%"/></td>
-								<td><input type="text" name="name252" value="70%"/></td>
-								<td><input type="text" name="name253" value="40%"/></td>
+								<td><input type="text" name="name248" value="100"/>%</td>
+								<td><input type="text" name="name249" value="90"/>%</td>
+								<td><input type="text" name="name250" value="80"/>%</td>
+								<td><input type="text" name="name251" value="70"/>%</td>
+								<td><input type="text" name="name252" value="40"/>%</td>
 							</tr>
 							<tr>
 								<th>小于等于60%</th>
@@ -946,10 +948,10 @@
 								<th colspan="2">大于80%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name254" value="30%"/></td>
-								<td><input type="text" name="name255" value="20%"/></td>
-								<td><input type="text" name="name256" value="10%"/></td>
-								<td colspan="2"><input type="text" name="name257" value="禁入"/></td>
+								<td><input type="text" name="name253" value="30"/>%</td>
+								<td><input type="text" name="name254" value="20"/>%</td>
+								<td><input type="text" name="name255" value="10"/>%</td>
+								<td colspan="2"><input type="text" name="name256" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -967,10 +969,10 @@
 								<th>大于等于60%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name258" value="100%"/></td>
-								<td><input type="text" name="name259" value="90%"/></td>
-								<td><input type="text" name="name260" value="80%"/></td>
-								<td><input type="text" name="name261" value="60%"/></td>
+								<td><input type="text" name="name257" value="100"/>%</td>
+								<td><input type="text" name="name258" value="90"/>%</td>
+								<td><input type="text" name="name259" value="80"/>%</td>
+								<td><input type="text" name="name260" value="60"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于50%</th>
@@ -979,10 +981,10 @@
 								<th>小于30%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name262" value="40%"/></td>
-								<td><input type="text" name="name263" value="20%"/></td>
-								<td><input type="text" name="name264" value="10%"/></td>
-								<td><input type="text" name="name265" value="0%"/></td>
+								<td><input type="text" name="name261" value="40"/>%</td>
+								<td><input type="text" name="name262" value="20"/>%</td>
+								<td><input type="text" name="name263" value="10"/>%</td>
+								<td><input type="text" name="name264" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1000,11 +1002,11 @@
 								<th>50以上</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name266" value="40%"/></td>
-								<td><input type="text" name="name267" value="60%"/></td>
-								<td><input type="text" name="name268" value="100%"/></td>
-								<td><input type="text" name="name269" value="80%"/></td>
-								<td><input type="text" name="name270" value="60%"/></td>
+								<td><input type="text" name="name265" value="40"/>%</td>
+								<td><input type="text" name="name266" value="60"/>%</td>
+								<td><input type="text" name="name267" value="100"/>%</td>
+								<td><input type="text" name="name268" value="80"/>%</td>
+								<td><input type="text" name="name269" value="60"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1021,10 +1023,10 @@
 								<th>大于等于4年</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name271" value="100%"/></td>
-								<td><input type="text" name="name272" value="90%"/></td>
-								<td><input type="text" name="name273" value="80%"/></td>
-								<td><input type="text" name="name274" value="60%"/></td>
+								<td><input type="text" name="name270" value="100"/>%</td>
+								<td><input type="text" name="name271" value="90"/>%</td>
+								<td><input type="text" name="name272" value="80"/>%</td>
+								<td><input type="text" name="name273" value="60"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于3年</th>
@@ -1033,10 +1035,10 @@
 								<th>小于1年</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name275" value="40%"/></td>
-								<td><input type="text" name="name276" value="20%"/></td>
-								<td><input type="text" name="name277" value="10%"/></td>
-								<td><input type="text" name="name278" value="0%"/></td>
+								<td><input type="text" name="name274" value="40"/>%</td>
+								<td><input type="text" name="name275" value="20"/>%</td>
+								<td><input type="text" name="name276" value="10"/>%</td>
+								<td><input type="text" name="name277" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1054,11 +1056,11 @@
 								<th>大于等于4年</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name279" value="100%"/></td>
-								<td><input type="text" name="name280" value="90%"/></td>
-								<td><input type="text" name="name281" value="80%"/></td>
-								<td><input type="text" name="name282" value="60%"/></td>
-								<td><input type="text" name="name283" value="40%"/></td>
+								<td><input type="text" name="name278" value="100"/>%</td>
+								<td><input type="text" name="name279" value="90"/>%</td>
+								<td><input type="text" name="name280" value="80"/>%</td>
+								<td><input type="text" name="name281" value="60"/>%</td>
+								<td><input type="text" name="name282" value="40"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于3年</th>
@@ -1067,10 +1069,10 @@
 								<th colspan="2">小于1年</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name284" value="30%"/></td>
-								<td><input type="text" name="name285" value="20%"/></td>
-								<td><input type="text" name="name286" value="10%"/></td>
-								<td colspan="2"><input type="text" name="name287" value="0%"/></td>
+								<td><input type="text" name="name283" value="30"/>%</td>
+								<td><input type="text" name="name284" value="20"/>%</td>
+								<td><input type="text" name="name285" value="10"/>%</td>
+								<td colspan="2"><input type="text" name="name286" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1089,12 +1091,12 @@
 								<th>大于等于6%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name288" value="100%"/></td>
-								<td><input type="text" name="name289" value="90%"/></td>
-								<td><input type="text" name="name290" value="80%"/></td>
-								<td><input type="text" name="name291" value="70%"/></td>
-								<td><input type="text" name="name292" value="60%"/></td>
-								<td><input type="text" name="name293" value="50%"/></td>
+								<td><input type="text" name="name287" value="100"/>%</td>
+								<td><input type="text" name="name288" value="90"/>%</td>
+								<td><input type="text" name="name289" value="80"/>%</td>
+								<td><input type="text" name="name290" value="70"/>%</td>
+								<td><input type="text" name="name291" value="60"/>%</td>
+								<td><input type="text" name="name292" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于4%</th>
@@ -1105,12 +1107,12 @@
 								<th>小于-4%</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name294" value="40%"/></td>
-								<td><input type="text" name="name295" value="30%"/></td>
-								<td><input type="text" name="name296" value="20%"/></td>
-								<td><input type="text" name="name297" value="10%"/></td>
-								<td><input type="text" name="name298" value="0%"/></td>
-								<td><input type="text" name="name300" value="禁入"/></td>
+								<td><input type="text" name="name293" value="40"/>%</td>
+								<td><input type="text" name="name294" value="30"/>%</td>
+								<td><input type="text" name="name295" value="20"/>%</td>
+								<td><input type="text" name="name296" value="10"/>%</td>
+								<td><input type="text" name="name297" value="0"/>%</td>
+								<td><input type="text" name="name298" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -1129,12 +1131,12 @@
 								<th>小于1次</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name301" value="100%"/></td>
-								<td><input type="text" name="name302" value="80%"/></td>
-								<td><input type="text" name="name303" value="50%"/></td>
-								<td><input type="text" name="name304" value="40%"/></td>
-								<td><input type="text" name="name305" value="20%"/></td>
-								<td><input type="text" name="name306" value="0%"/></td>
+								<td><input type="text" name="name299" value="100"/>%</td>
+								<td><input type="text" name="name300" value="80"/>%</td>
+								<td><input type="text" name="name301" value="50"/>%</td>
+								<td><input type="text" name="name302" value="40"/>%</td>
+								<td><input type="text" name="name303" value="20"/>%</td>
+								<td><input type="text" name="name304" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1152,11 +1154,11 @@
 								<th>大于5次</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name307" value="100%"/></td>
-								<td><input type="text" name="name308" value="70%"/></td>
-								<td><input type="text" name="name309" value="40%"/></td>
-								<td><input type="text" name="name310" value="0%"/></td>
-								<td><input type="text" name="name311" value="禁入"/></td>
+								<td><input type="text" name="name305" value="100"/>%</td>
+								<td><input type="text" name="name306" value="70"/>%</td>
+								<td><input type="text" name="name307" value="40"/>%</td>
+								<td><input type="text" name="name308" value="0"/>%</td>
+								<td><input type="text" name="name309" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -1171,8 +1173,8 @@
 								<th>分歧较多</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name312" value="100%"/></td>
-								<td><input type="text" name="name313" value="0%"/></td>
+								<td><input type="text" name="name310" value="100"/>%</td>
+								<td><input type="text" name="name311" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1186,8 +1188,8 @@
 								<th>谨慎</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name314" value="30%"/></td>
-								<td><input type="text" name="name315" value="100%"/></td>
+								<td><input type="text" name="name312" value="30"/>%</td>
+								<td><input type="text" name="name313" value="100"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1203,9 +1205,9 @@
 								<th>母子公司资金周转困难，运转困难</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name316" value="100%"/></td>
-								<td><input type="text" name="name317" value="0%"/></td>
-								<td><input type="text" name="name318" value="禁入"/></td>
+								<td><input type="text" name="name314" value="100"/>%</td>
+								<td><input type="text" name="name315" value="0"/>%</td>
+								<td><input type="text" name="name316" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -1224,12 +1226,12 @@
 								<th>大于等于10</th>
 							</tr>							
 							<tr>
-								<td><input type="text" name="name319" value="100%"/></td>
-								<td><input type="text" name="name320" value="90%"/></td>
-								<td><input type="text" name="name321" value="80%"/></td>
-								<td><input type="text" name="name322" value="70%"/></td>
-								<td><input type="text" name="name323" value="60%"/></td>
-								<td><input type="text" name="name324" value="50%"/></td>
+								<td><input type="text" name="name317" value="100"/>%</td>
+								<td><input type="text" name="name318" value="90"/>%</td>
+								<td><input type="text" name="name319" value="80"/>%</td>
+								<td><input type="text" name="name320" value="70"/>%</td>
+								<td><input type="text" name="name321" value="60"/>%</td>
+								<td><input type="text" name="name322" value="50"/>%</td>
 							</tr>
 							<tr>
 								<th>大于等于8</th>
@@ -1239,11 +1241,11 @@
 								<th colspan="2">小于2</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name325" value="40%"/></td>
-								<td><input type="text" name="name326" value="30%"/></td>
-								<td><input type="text" name="name327" value="20%"/></td>
-								<td><input type="text" name="name328" value="10%"/></td>
-								<td colspan="2"><input type="text" name="name329" value="0%"/></td>
+								<td><input type="text" name="name323" value="40"/>%</td>
+								<td><input type="text" name="name324" value="30"/>%</td>
+								<td><input type="text" name="name325" value="20"/>%</td>
+								<td><input type="text" name="name326" value="10"/>%</td>
+								<td colspan="2"><input type="text" name="name327" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1262,12 +1264,12 @@
 								<th>大于等于25</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name330" value="100%"/></td>
-								<td><input type="text" name="name331" value="90%"/></td>
-								<td><input type="text" name="name332" value="80%"/></td>
-								<td><input type="text" name="name333" value="70%"/></td>
-								<td><input type="text" name="name334" value="60%"/></td>
-								<td><input type="text" name="name335" value="50%"/></td>
+								<td><input type="text" name="name328" value="100"/>%</td>
+								<td><input type="text" name="name329" value="90"/>%</td>
+								<td><input type="text" name="name330" value="80"/>%</td>
+								<td><input type="text" name="name331" value="70"/>%</td>
+								<td><input type="text" name="name332" value="60"/>%</td>
+								<td><input type="text" name="name333" value="50"/>%</td>
 							</tr>						
 							<tr>
 								<th>大于等于20</th>
@@ -1277,11 +1279,11 @@
 								<th colspan="2">小于5</th>
 							</tr>		
 							<tr>
-								<td><input type="text" name="name336" value="40%"/></td>
-								<td><input type="text" name="name337" value="30%"/></td>
-								<td><input type="text" name="name338" value="20%"/></td>
-								<td><input type="text" name="name339" value="10%"/></td>
-								<td colspan="2"><input type="text" name="name340" value="0%"/></td>
+								<td><input type="text" name="name334" value="40"/>%</td>
+								<td><input type="text" name="name335" value="30"/>%</td>
+								<td><input type="text" name="name336" value="20"/>%</td>
+								<td><input type="text" name="name337" value="10"/>%</td>
+								<td colspan="2"><input type="text" name="name338" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1300,11 +1302,11 @@
 								<th>大于等于6年</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name341" value="100%"/></td>
-								<td><input type="text" name="name342" value="90%"/></td>
-								<td><input type="text" name="name343" value="80%"/></td>
-								<td><input type="text" name="name344" value="70%"/></td>
-								<td><input type="text" name="name345" value="60%"/></td>
+								<td><input type="text" name="name339" value="100"/>%</td>
+								<td><input type="text" name="name340" value="90"/>%</td>
+								<td><input type="text" name="name341" value="80"/>%</td>
+								<td><input type="text" name="name342" value="70"/>%</td>
+								<td><input type="text" name="name343" value="60"/>%</td>
 							</tr>				
 							<tr>
 								<th>大于等于4年</th>
@@ -1313,10 +1315,10 @@
 								<th colspan="2">小于1年</th>
 							</tr>					
 							<tr>
-								<td><input type="text" name="name346" value="40%"/></td>
-								<td><input type="text" name="name347" value="20%"/></td>
-								<td><input type="text" name="name348" value="0%"/></td>
-								<td colspan="2"><input type="text" name="name349" value="禁入"/></td>
+								<td><input type="text" name="name344" value="40"/>%</td>
+								<td><input type="text" name="name345" value="20"/>%</td>
+								<td><input type="text" name="name346" value="0"/>%</td>
+								<td colspan="2"><input type="text" name="name347" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -1334,11 +1336,11 @@
 								<th>小于等于50%</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name350" value="100%"/></td>
-								<td><input type="text" name="name351" value="90%"/></td>
-								<td><input type="text" name="name352" value="80%"/></td>
-								<td><input type="text" name="name353" value="70%"/></td>
-								<td><input type="text" name="name354" value="40%"/></td>
+								<td><input type="text" name="name348" value="100"/>%</td>
+								<td><input type="text" name="name349" value="90"/>%</td>
+								<td><input type="text" name="name350" value="80"/>%</td>
+								<td><input type="text" name="name351" value="70"/>%</td>
+								<td><input type="text" name="name352" value="40"/>%</td>
 							</tr>						
 							<tr>
 								<th>小于等于60%</th>
@@ -1347,10 +1349,10 @@
 								<th colspan="2">大于80%</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name355" value="30%"/></td>
-								<td><input type="text" name="name356" value="20%"/></td>
-								<td><input type="text" name="name357" value="10%"/></td>
-								<td colspan="2"><input type="text" name="name358" value="禁入"/></td>
+								<td><input type="text" name="name353" value="30"/>%</td>
+								<td><input type="text" name="name354" value="20"/>%</td>
+								<td><input type="text" name="name355" value="10"/>%</td>
+								<td colspan="2"><input type="text" name="name356" value="禁入"/></td>
 							</tr>
 						</table>
 					</td>
@@ -1368,10 +1370,10 @@
 								<th>大于等于60%</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name359" value="100%"/></td>
-								<td><input type="text" name="name360" value="90%"/></td>
-								<td><input type="text" name="name361" value="80%"/></td>
-								<td><input type="text" name="name362" value="60%"/></td>
+								<td><input type="text" name="name357" value="100"/>%</td>
+								<td><input type="text" name="name358" value="90"/>%</td>
+								<td><input type="text" name="name359" value="80"/>%</td>
+								<td><input type="text" name="name360" value="60"/>%</td>
 							</tr>					
 							<tr>
 								<th>大于等于50%</th>
@@ -1380,10 +1382,10 @@
 								<th>小于30%</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name363" value="40%"/></td>
-								<td><input type="text" name="name364" value="20%"/></td>
-								<td><input type="text" name="name365" value="10%"/></td>
-								<td><input type="text" name="name366" value="0%"/></td>
+								<td><input type="text" name="name361" value="40"/>%</td>
+								<td><input type="text" name="name362" value="20"/>%</td>
+								<td><input type="text" name="name363" value="10"/>%</td>
+								<td><input type="text" name="name364" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1400,10 +1402,10 @@
 								<th>大于等于4年</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name367" value="100%"/></td>
-								<td><input type="text" name="name368" value="90%"/></td>
-								<td><input type="text" name="name369" value="80%"/></td>
-								<td><input type="text" name="name370" value="60%"/></td>
+								<td><input type="text" name="name365" value="100"/>%</td>
+								<td><input type="text" name="name366" value="90"/>%</td>
+								<td><input type="text" name="name367" value="80"/>%</td>
+								<td><input type="text" name="name368" value="60"/>%</td>
 							</tr>						
 							<tr>
 								<th>大于等于3年</th>
@@ -1412,10 +1414,10 @@
 								<th>小于1年</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name371" value="40%"/></td>
-								<td><input type="text" name="name372" value="20%"/></td>
-								<td><input type="text" name="name373" value="10%"/></td>
-								<td><input type="text" name="name374" value="0%"/></td>
+								<td><input type="text" name="name369" value="40"/>%</td>
+								<td><input type="text" name="name370" value="20"/>%</td>
+								<td><input type="text" name="name371" value="10"/>%</td>
+								<td><input type="text" name="name372" value="0"/>%</td>
 							</tr>
 						</table>
 					</td>
@@ -1433,11 +1435,11 @@
 								<th>直线</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name375" value="100%"/></td>
-								<td><input type="text" name="name376" value="80%"/></td>
-								<td><input type="text" name="name377" value="80%"/></td>
-								<td><input type="text" name="name378" value="60%"/></td>
-								<td><input type="text" name="name379" value="40%"/></td>
+								<td><input type="text" name="name373" value="100"/>%</td>
+								<td><input type="text" name="name374" value="80"/>%</td>
+								<td><input type="text" name="name375" value="80"/>%</td>
+								<td><input type="text" name="name376" value="60"/>%</td>
+								<td><input type="text" name="name377" value="40"/>%</td>
 							</tr>	
 						</table>
 					</td>
@@ -1454,10 +1456,10 @@
 								<th>个体决策（一言堂）</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name380" value="100%"/></td>
-								<td><input type="text" name="name381" value="80%"/></td>
-								<td><input type="text" name="name382" value="70%"/></td>
-								<td><input type="text" name="name383" value="40%"/></td>
+								<td><input type="text" name="name378" value="100"/>%</td>
+								<td><input type="text" name="name379" value="80"/>%</td>
+								<td><input type="text" name="name380" value="70"/>%</td>
+								<td><input type="text" name="name381" value="40"/>%</td>
 							</tr>	
 						</table>
 					</td>
@@ -1474,11 +1476,11 @@
 								<th>淘汰制度</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name384" value="20%"/></td>
-								<td><input type="text" name="name385" value="20%"/></td>
-								<td><input type="text" name="name386" value="20%"/></td>
-								<td><input type="text" name="name387" value="20%"/></td>
-								<td><input type="text" name="name388" value="20%"/></td>
+								<td><input type="text" name="name382" value="20"/>%</td>
+								<td><input type="text" name="name383" value="20"/>%</td>
+								<td><input type="text" name="name384" value="20"/>%</td>
+								<td><input type="text" name="name385" value="20"/>%</td>
+								<td><input type="text" name="name386" value="20"/>%</td>
 							</tr>	
 						</table>
 					</td>
@@ -1495,11 +1497,11 @@
 								<th>收缩规模</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name389" value="100%"/></td>
-								<td><input type="text" name="name390" value="90%"/></td>
-								<td><input type="text" name="name391" value="60%"/></td>
-								<td><input type="text" name="name392" value="40%"/></td>
-								<td><input type="text" name="name393" value="20%"/></td>
+								<td><input type="text" name="name387" value="100"/>%</td>
+								<td><input type="text" name="name388" value="90"/>%</td>
+								<td><input type="text" name="name389" value="60"/>%</td>
+								<td><input type="text" name="name390" value="40"/>%</td>
+								<td><input type="text" name="name391" value="20"/>%</td>
 							</tr>	
 						</table>
 					</td>
@@ -1520,13 +1522,13 @@
 								<th>小于等于100%</th>
 							</tr>					
 							<tr>
-								<td><input type="text" name="name394" value="100%"/></td>
-								<td><input type="text" name="name395" value="95%"/></td>
-								<td><input type="text" name="name396" value="90%"/></td>
-								<td><input type="text" name="name397" value="85%"/></td>
-								<td><input type="text" name="name398" value="80%"/></td>
-								<td><input type="text" name="name399" value="70%"/></td>
-								<td><input type="text" name="name400" value="50%"/></td>
+								<td><input type="text" name="name392" value="100"/>%</td>
+								<td><input type="text" name="name393" value="95"/>%</td>
+								<td><input type="text" name="name394" value="90"/>%</td>
+								<td><input type="text" name="name395" value="85"/>%</td>
+								<td><input type="text" name="name396" value="80"/>%</td>
+								<td><input type="text" name="name397" value="70"/>%</td>
+								<td><input type="text" name="name398" value="50"/>%</td>
 							</tr>						
 							<tr>
 								<th>小于等于102.5%</th>
@@ -1537,12 +1539,12 @@
 								<th colspan="2">大于120%</th>
 							</tr>							
 							<tr>
-								<td><input type="text" name="name401" value="40%"/></td>
-								<td><input type="text" name="name402" value="30%"/></td>
-								<td><input type="text" name="name403" value="20%"/></td>
-								<td><input type="text" name="name404" value="10%"/></td>
-								<td><input type="text" name="name405" value="0%"/></td>
-								<td colspan="2"><input type="text" name="name406" value="禁入"/></td>
+								<td><input type="text" name="name399" value="40"/>%</td>
+								<td><input type="text" name="name400" value="30"/>%</td>
+								<td><input type="text" name="name401" value="20"/>%</td>
+								<td><input type="text" name="name402" value="10"/>%</td>
+								<td><input type="text" name="name403" value="0"/>%</td>
+								<td colspan="2"><input type="text" name="name404" value="禁入"/></td>
 							</tr>	
 						</table>
 					</td>
@@ -1560,11 +1562,11 @@
 								<th>大于等于30</th>
 							</tr>					
 							<tr>
-								<td><input type="text" name="name407" value="100%"/></td>
-								<td><input type="text" name="name408" value="90%"/></td>
-								<td><input type="text" name="name409" value="80%"/></td>
-								<td><input type="text" name="name410" value="70%"/></td>
-								<td><input type="text" name="name411" value="60%"/></td>
+								<td><input type="text" name="name405" value="100"/>%</td>
+								<td><input type="text" name="name406" value="90"/>%</td>
+								<td><input type="text" name="name407" value="80"/>%</td>
+								<td><input type="text" name="name408" value="70"/>%</td>
+								<td><input type="text" name="name409" value="60"/>%</td>
 							</tr>				
 							<tr>
 								<th>大于等于20</th>
@@ -1574,21 +1576,22 @@
 								<th>小于3</th>
 							</tr>						
 							<tr>
-								<td><input type="text" name="name412" value="40%"/></td>
-								<td><input type="text" name="name413" value="20%"/></td>
-								<td><input type="text" name="name414" value="10%"/></td>
-								<td><input type="text" name="name415" value="0%"/></td>
-								<td colspan="2"><input type="text" name="name416" value="禁入"/></td>
+								<td><input type="text" name="name410" value="40"/>%</td>
+								<td><input type="text" name="name411" value="20"/>%</td>
+								<td><input type="text" name="name412" value="10"/>%</td>
+								<td><input type="text" name="name413" value="0"/>%</td>
+								<td colspan="2"><input type="text" name="name414" value="禁入"/></td>
 							</tr>	
 						</table>
 					</td>
 				</tr>																		
 			</table>
+        </div>
 		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<a class="btn btn-info" href="#" onclick="getSum()" title="提交">提交</a>
-				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+				<a class="btn btn-info" onclick="getSum()" title="提交">提交</a>
+				<a class="btn" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -1596,25 +1599,30 @@
 				var result = "{{result}}";
 				if(result!=''){
 					$("input").each(function(i){
-					    $(this).val(result.split(",")[i]);
+					    var str = $(this).attr("name").substring(4,$(this).attr("name").length);
+					    $(this).val(result.split(",")[str-1]);
 					});
 				}
 			})
 
 			function getSum(){
-				if ($("#iframeForm").valid()) {
-					var score = new Array();
+				var score = new Array();
+				for(var j=1;j<600;j++){
+					var str = "name"+j;
 					$("input").each(function(i){
-					    var value = $(this).val();
-					    if(value==''){
-					    	score.push(0);
-					    }else{
-					    	score.push(value);
-					    }
+						if($(this).attr("name")==str){
+							var value = $(this).val();
+						    if(value==''){
+						    	score.push(0);
+						    }else{
+						    	score.push(value);
+						    }
+						}
+
 					});
-					var url = "/mxpg/cspz_jyzk_save/"+score;
-			   		window.location.href =  url;
 				}
+				var url = "/mxpg/cspz_jyzk_save/"+score;
+		   		window.location.href =  url;
 			}
 		</script>
 	</body>

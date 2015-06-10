@@ -259,7 +259,7 @@
                                 <input type="hidden" value="{{result.split(',')[6]}}" name="gjcyzc" id="gjcyzc"/>
                                 </th>
 								<th>税收政策
-                                <input type="hidden" value="{{result.split(',')[16]}}" name="sszc" id="sszc"/>
+                                <input type="hidden" value="{{result.split(',')[17]}}" name="sszc" id="sszc"/>
                                 </th>
 							</tr>
 							<tr>
@@ -285,7 +285,7 @@
 										<option value="{{result.split(',')[13]}}">增值税低税率（17%）</option>
 										<option value="{{result.split(',')[14]}}">增收消费税小于等于10%</option>
 										<option value="{{result.split(',')[15]}}">增收消费税小于等于20%</option>
-										<option value="{{result.split(',')[17]}}">增收消费税大于20%</option>
+										<option value="{{result.split(',')[16]}}">增收消费税大于20%</option>
 									</select>
 								</td>
 							</tr>
@@ -1072,7 +1072,7 @@
 					</td>
 				</tr>
 			</table>
-		</form>
+
         <!--*****************************评分结果**********************************-->
 			<table class="myTable">
 				<caption>评分结果</caption>
@@ -1089,6 +1089,7 @@
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
+        </form>
 		<script type="text/javascript">			
 			function addTd(table){	//表格添加行
 				var tr= document.getElementById(table).getElementsByTagName("tr");
@@ -1150,6 +1151,7 @@
 				}
 			}
             function sum(){
+
                 var total=0;
                 var hyzc=0;
                 var hy=0;

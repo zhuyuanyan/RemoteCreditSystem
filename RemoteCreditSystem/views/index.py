@@ -166,7 +166,7 @@ def cspz_ddpz_save(score):
 def cspz_jyzk():
     jyzk = Rcs_Parameter.query.filter_by(parameter_name="jyzk").first()
     result=""
-    if result:
+    if jyzk:
         result=jyzk.parameter_value
     return render_template("mxpg/cspz_jyzk.html",result=result)
 
