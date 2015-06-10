@@ -7,10 +7,12 @@
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
 		<style type="text/css">
+			input[type=text]{width:100px;}
 			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
 			.addTable{margin :5px;text-align :center ;width:99%;}
-			.addTable th{border:1px solid #ddd;background:#a4daff;font-size:13px;}
-			.addinput {width:80%;}
+			.myTable th{text-align:left;padding:5px;background:#e8e8e8;border:1px solid #ddd;font-size:13px;}
+			.addTable th{text-align:center;border:1px solid #ddd;background:#a4daff;font-size:13px;}
+			input[type=text].addinput {width:80%;}
 			.myTable td{font-size:13px;}
 		</style>
 	</head>
@@ -20,9 +22,9 @@
 			<table class="myTable">
 				<caption>本年</caption>
 				<colgroup>
+					<col width="12%">
 					<col width="10%">
-					<col width="10%">
-					<col width="10%">
+					<col width="8%">
 					<col width="70%">
 				</colgroup>
 			<!--*****************************主营业务收入**********************************-->
@@ -67,18 +69,25 @@
 						</table>
 					</td>
 				</tr>
+			<!--*****************************主营业务收入总和**********************************-->
+				<tr>
+					<th><b>主营业务收入总和</b></th>
+					<th colspan="3"><b>主导业务1（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数）+主导业务2（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数）+其他业务（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季营业额*平常季月数）</b>
+						<input type="text" value="20000"/>
+					</th>
+				</tr>	
 			<!--*****************************主营业务成本**********************************-->
 				<tr>
 					<td rowspan="3"><b>主营业务成本</b></td>
-					<td><b>直接材料成本</b></td>
+					<td><b>原材料</b></td>
                     <td></td>
 					<td>
 						<label>金额</label><input type="text" value="500"/>
-						<label>期限</label><input type="text" value="2"/>
+						<label>周期</label><input type="text" value="2"/>
 					</td>
 				</tr>
 				<tr>
-					<td><b>直接人工成本</b></td>
+					<td><b>可变人工成本</b></td>
                     <td></td>
 					<td>
 						<label>平均金额</label><input type="text" value="200"/>
@@ -86,12 +95,20 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>其他</b></td>
+					<td><b>其他可变成本</b></td>
                     <td></td>
 					<td>
+						<label>平均金额</label><input type="text" value="200"/>
 						<label>可变成本占比</label><input type="text"/>
 					</td>
 				</tr>
+			<!--*****************************主营主营业务成本总和业务收入总和**********************************-->
+				<tr>
+					<th><b>主营业务成本总和</b></th>
+					<th colspan="3"><b>原材料金额+可变人工成本平均金额+其他可变成本平均金额</b>
+						<input type="text" value="20000"/>
+					</th>
+				</tr>	
 			<!--*****************************主营业务税金**********************************-->
 				<tr>
 					<td><b>主营业务税金</b></td>
@@ -343,8 +360,177 @@
 					<td><input type="text" value="1000"/></td>
 					<td><b>净利润</b></td>
 					<td><input type="text" value="1000"/></td>
-				</tr>
+				</tr>			
+				<tr>
+					<th><b>期初现金</b></th>
+					<th colspan="3"><input type="text" value="500"/></th>
+				</tr>			
+				<tr>
+					<td><b>经营性现金流入</b></td>
+					<td>
+						来源<input type="text" value="500"/>
+						金额<input type="text" value="500"/>
+						方式<select><option>现金</option><option>银行交易</option></select>
+					</td>
+					<td><b>经营性现金流出</b></td>
+					<td>
+						流出方向<input type="text" value="500"/>
+						金额<input type="text" value="500"/>
+						方式<select><option>现金</option><option>银行交易</option></select>
+					</td>
+				</tr>			
+				<tr>
+					<th><b>经营现金净流量</b></th>
+					<th colspan="3"><input type="text" value="500"/></th>
+				</tr>			
+				<tr>
+					<td><b>投资现金流入</b></td>
+					<td>
+						来源<input type="text" value="500"/>
+						金额<input type="text" value="500"/>
+						方式<select><option>现金</option><option>银行交易</option></select>
+					</td>
+					<td><b>投资现金流出</b></td>
+					<td>
+						流出方向<input type="text" value="500"/>
+						金额<input type="text" value="500"/>
+						方式<select><option>现金</option><option>银行交易</option></select>
+					</td>
+				</tr>		
+				<tr>
+					<th><b>投资现金净流量</b></th>
+					<th colspan="3"><input type="text" value="500"/></th>
+				</tr>		
+				<tr>
+					<td><b>融资现金流入</b></td>
+					<td>
+						来源<input type="text" value="500"/>
+						金额<input type="text" value="500"/>
+						方式<select><option>现金</option><option>银行交易</option></select>
+					</td>
+					<td><b>融资现金流出</b></td>
+					<td>
+						流出方向<input type="text" value="500"/>
+						金额<input type="text" value="500"/>
+						方式<select><option>现金</option><option>银行交易</option></select>
+					</td>
+				</tr>	
+				<tr>
+					<th><b>融资现金净流量</b></th>
+					<th colspan="3"><input type="text" value="500"/></th>
+				</tr>	
+				<tr>
+					<th><b>期末现金</b></th>
+					<th><input type="text" value="500"/></th>
+					<th><b>期初权益时点</b></th>
+					<th><input type="text" value="500"/></th>
+				</tr>	
+				<tr>
+					<th><b>期初权益合计</b></th>
+					<th colspan="3"><input type="text" value="500"/></th>
+				</tr>		
+				<tr>
+					<td><b>分析期间收入</b></td>
+					<td colspan="3">
+						<table class="addTable">
+							<tr>
+								<th>其他贷款/借款发放</th>
+								<th>其他贷款/借款偿与利息</th>
+								<th>入股投资</th>
+								<th>退股/分红流入</th>
+								<th>出售固定资产流入</th>
+								<th>银行贷款发放</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="30000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="30000"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>				
+				<tr>
+					<td><b>其他收入</b></td>
+					<td>保险赔偿<input type="text" value="1000"/></td>
+					<td><b>升值</b></td>
+					<td>企业固定资产<input type="text" value="1000"/></td>
+				</tr>		
+				<tr>
+					<td><b>大项支出合计</b></td>
+					<td colspan="3">
+						<table class="addTable">
+							<tr>
+								<th>建筑/装修现金流出</th>
+								<th>购买固定设备现金流出</th>
+								<th>市场营销应收</th>
+								<th>其他经营费用</th>
+								<th>家庭开支</th>
+								<th>其他流出</th>
+							</tr>
+							<tr>
+								<td><input type="text" class="addinput" value="20000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="30000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="50000"/></td>
+								<td><input type="text" class="addinput" value="30000"/></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<th><b>折旧</b></th>
+					<th colspan="3">办公用品<input type="text" value="500"/></th>
+				</tr>			
+				<tr>
+					<td><b>贬值</b></td>
+					<td>企业固定资产<input type="text" value="1000"/></td>
+					<td><b>表外资产</b></td>
+					<td>
+						房子<input type="text" value="1000"/>
+						车<input type="text" value="1000"/>
+					</td>
+				</tr>	
 			</table>
+<!--*****************************经营历史**********************************-->
+			<table class="myTable">
+				<caption>经营历史</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+					<td><b>初始权益</b></td>
+					<td><input type="text" value="50"/></td>
+					<td><b>经营期间每年企业平均净利润</b></td>
+					<td><input type="text" value="50"/></td>
+				</tr>
+				<tr>
+					<td><b>经营期间大项开支</b></td>
+					<td><input type="text" value="50"/></td>
+					<td><b>企业固定资产折旧</b></td>
+					<td><input type="text" value="50"/></td>
+				</tr>
+				<tr>
+					<td><b>经营年限</b></td>
+					<td><input type="text" value="50"/></td>
+					<td><b>外部投资注入或分红</b></td>
+					<td><input type="text" value="50"/></td>
+				</tr>
+			<!--**************************应有权益*************************************-->
+				<tr>
+					<th><b>应有权益</b></th>	
+					<th colspan="3">
+						<b>初始权益+经营期间每年企业平均净利润*经营年限-经营期间大项开支+企业固定资产折旧+外部投资注入或分红</b>
+						<input type="text" value="100000"/>
+					</th>
+				</tr>
+			</table>	
 		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
