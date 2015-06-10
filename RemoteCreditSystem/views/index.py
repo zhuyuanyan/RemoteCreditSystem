@@ -165,7 +165,9 @@ def cspz_ddpz_save(score):
 @app.route('/mxpg/cspz_jyzk', methods=['GET'])
 def cspz_jyzk():
     jyzk = Rcs_Parameter.query.filter_by(parameter_name="jyzk").first()
-    result=jyzk.parameter_value
+    result=""
+    if result:
+        result=jyzk.parameter_value
     return render_template("mxpg/cspz_jyzk.html",result=result)
 
 #参数配置--经营状况--保存
