@@ -26,7 +26,7 @@
 					<td><b>资产负债率({{result.split(',')[0]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[0]}}" name="zcfzb" id="zcfzb"/>
 					<td>
-						<select name="" id="zcfzb1 " disabled>
+						<select name="" id="zcfzb1" >
 							
 							<option value="{{result.split(',')[1]}}" {%- if  appResult.zcfzl|float >1 %} selected {%- endif%}>负债/资产》100%</option>
 							
@@ -444,6 +444,8 @@
 					remark.push("资产负债率为禁入");
 					type = false;
 				}
+				alert("{{result.split(',')[9]}}");
+				alert(parseFloat($("#zcfzb1").val()));
 				//流动比率
 				if(transfer($("#ldbl1").val())){
 					total+=(parseFloat($("#ldbl").val())/100)*parseFloat($("#ldbl1").val());
@@ -452,7 +454,6 @@
 					remark.push("流动比率为禁入");
 					type = false;
 				}
-
 				//速动比率
 				if(transfer($("#sdbl1").val())){
 					total+=(parseFloat($("#sdbl").val())/100)*parseFloat($("#sdbl1").val());
@@ -461,7 +462,7 @@
 					remark.push("速动比率为禁入");
 					type = false;
 				}
-			
+	
 				//存货比率
 				if(transfer($("#chzzl1").val())){
 					total+=(parseFloat($("#chzzl").val())/100)*parseFloat($("#chzzl1").val());
@@ -470,7 +471,7 @@
 					remark.push("存货比率为禁入");
 					type = false;
 				}
-	
+
 				//周转率
 				if(transfer($("#zzl1").val())){
 					total+=(parseFloat($("#zzl").val())/100)*parseFloat($("#zzl1").val());
@@ -479,7 +480,7 @@
 					remark.push("周转率为禁入");
 					type = false;
 				}
-			
+		
 				//现金比率
 				if(transfer($("#xjbl1").val())){
 					total+=(parseFloat($("#xjbl").val())/100)*parseFloat($("#xjbl1").val());
