@@ -1103,6 +1103,13 @@
 						$("#button2").show();
 					}
 				});
+				$("select").each(function(i){
+					var str = $(this).val();
+					if(str=="禁入"){
+						$("#button1").hide();
+						$("#button2").hide();
+					}
+				});
 
 			});	
 			function addTd(table){	//表格添加行
