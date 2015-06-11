@@ -278,7 +278,7 @@
 					<td><input type="text" name="" value="{{jcjy.value13}}" readonly/></td>
 				</tr>
 				<tr>
-					<td rowspan="2"><b>权益交叉检验</b></td>
+					<td rowspan="9"><b>权益交叉检验</b></td>
 					<td colspan="2">
 						<b>应有权益=初始权益+期间利润+期间生意外注资-期间生意外大项开支+固定资产升值-固定资产贬值</b>
 					</td>
@@ -289,6 +289,54 @@
 						<b>实际权益=资产-负债</b>
 					</td>
 					<td><input type="text" name="" value="{{jcjy.value15}}" readonly/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>{[期末现金-期初现金+经营性现金流出（现金流）]-[淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数（包括主导业务1，主导业务2，其他业务）]}
+						/[淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数（包括主导业务1，主导业务2，其他业务）]</b>
+					</td>
+					<td><input type="text" name="value_1" id="value_1" value="" readonly/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>{[产成品金额*（365/产成品运转周期)（存货产成品）]-[淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数（包括主导业务1，主导业务2，其他业务）]}
+						/[产成品金额*（365/产成品运转周期)（存货产成品）]</b>
+					</td>
+					<td><input type="text" name="value_2" id="value_2" value="" readonly/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>{主营业务成本/[1-（主营业务收入-主营业务成本）/主营业务收入]（主营业务）-[产成品金额*（365/产成品运转周期)（存货产成品）]}
+						/{主营业务成本/[1-（主营业务收入-主营业务成本）/主营业务收入]（主营业务）}</b>
+					</td>
+					<td><input type="text" name="value_3" id="value_3" value="" readonly/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>{[企业增值税金额/企业增值税税率-主营业务成本]/[1-（主营业务收入-主营业务成本）/主营业务收入]（主营业务）}
+						/[企业增值税金额/企业增值税税率-主营业务成本]</b>
+					</td>
+					<td><input type="text" name="value_4" id="value_4" value="" readonly/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>{ {(365/原材料运转周期)*原材料金额)/[1-(主营业务收入-主营业务成本)/主营业务收入]}*12-[企业增值税金额/企业增值税税率-主营业务成本]}/{(365/原材料运转周期)*原材料金额)/[1-(主营业务收入-主营业务成本)/主营业务收入]}*12</b>
+					</td>
+					<td><input type="text" name="value_5" id="value_5" value="" readonly/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>[（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务1）-（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务2）]
+						/（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务1）</b>
+					</td>
+					<td><input type="text" name="value_6" id="value_6" value="" readonly/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<b>[（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务2）-（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务1）]
+						/（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）/主导业务1销售占比（主导业务2）</b>
+					</td>
+					<td><input type="text" name="value_7" id="value_7" value="" readonly/></td>
 				</tr>
 				<tr>
 					<td><b>权益差异率</b></td>
@@ -351,6 +399,38 @@
 		</div>
 		</form>
 		<script type="text/javascript">
+			$(document).ready(function() {
+					var value_1 = ("{{jcjy.value1}}"-"{{jcjy.value2}}")/"{{jcjy.value2}}";
+					if(value_1<0.3){
+						$("#value_1").val("{{result.split(',')[142]}}");
+					}else{
+						$("#value_1").val("{{result.split(',')[143]}}");
+					}
+					var value_2 = ("{{jcjy.value3}}"-"{{jcjy.value2}}")/"{{jcjy.value3}}";
+					if(value_2<0.3){
+						$("#value_2").val("{{result.split(',')[144]}}");
+					}else{
+						$("#value_2").val("{{result.split(',')[145]}}");
+					}
+					var value_3 = ("{{jcjy.value4}}"-"{{jcjy.value3}}")/"{{jcjy.value4}}";
+					if(value_3<0.3){
+						$("#value_3").val("{{result.split(',')[146]}}");
+					}else{
+						$("#value_3").val("{{result.split(',')[147]}}");
+					}
+					var value_6 = ("{{jcjy.value7}}"-"{{jcjy.value8}}")/"{{jcjy.value7}}";
+					if(value_6<0.3){
+						$("#value_6").val("{{result.split(',')[152]}}");
+					}else{
+						$("#value_6").val("{{result.split(',')[153]}}");
+					}
+					var value_7 = ("{{jcjy.value8}}"-"{{jcjy.value7}}")/"{{jcjy.value8}}";
+					if(value_7<0.3){
+						$("#value_7").val("{{result.split(',')[154]}}");
+					}else{
+						$("#value_7").val("{{result.split(',')[155]}}");
+					}
+				})
 			function sum(){
 				var total=0;
 				$("#score_remark").val("");

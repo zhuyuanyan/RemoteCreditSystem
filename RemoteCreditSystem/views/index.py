@@ -125,7 +125,8 @@ def pgbg():
 @app.route('/mxpg/show_pgbg/<int:id>', methods=['GET'])
 def show_pgbg(id):    
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-    return render_template("mxpg/show_pgbg.html",score=score)
+    info = Rcs_Application_Info.query.filter_by(id=id).first()
+    return render_template("mxpg/show_pgbg.html",score=score,info=info)
 
 #参数管理
 @app.route('/mxpg/csgl', methods=['GET'])
@@ -255,7 +256,7 @@ def khzl_hknl_save(id):
     if score:
         score.hknl_score=total
         if remark !="":
-            score.remark=score.remark+","+remark
+            score.remark=remark
             score.ddpz_score=total
             score.jyzk_score=total
             score.shzk_score=total
@@ -428,7 +429,7 @@ def khzl_jyzk_save(id):
     if score:
         score.jyzk_score=total
         if remark !="":
-            score.remark=score.remark+","+remark
+            score.remark=remark
             score.hknl_score=total
             score.shzk_score=total
             score.ddpz_score=total
@@ -453,7 +454,7 @@ def khzl_shzk_save(id):
     if score:
         score.shzk_score=total
         if remark !="":
-            score.remark=score.remark+","+remark
+            score.remark=remark
             score.hknl_score=total
             score.jyzk_score=total
             score.ddpz_score=total
@@ -478,7 +479,7 @@ def khzl_ddpz_save(id):
     if score:
         score.ddpz_score=total
         if remark !="":
-            score.remark=score.remark+","+remark
+            score.remark=remark
             score.hknl_score=total
             score.jyzk_score=total
             score.shzk_score=total
