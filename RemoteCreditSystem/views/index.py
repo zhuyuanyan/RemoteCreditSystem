@@ -238,6 +238,10 @@ def khzl_hk(id):
     result=hknl.parameter_value     
     #获取还款结果
     appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()  
+    if not appResult:
+        appResult = Rcs_Application_Result(id,"","","","","","","","","").add()
+    db.session.commit()
+    appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
     #获取交叉检验结果
     jcjy = Rcs_Application_Jcjy.query.filter_by().first()
     return render_template("customer/hknl.html",result=result,id=id,appResult=appResult,jcjy=jcjy)
@@ -308,6 +312,10 @@ def zcfzzk_save(id):
 #利润表
 @app.route('/khzldy/lrb/<int:id>', methods=['GET'])
 def lrb(id):        
+    appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
+    if not appResult:
+        appResult = Rcs_Application_Result(id,"","","","","","","","","").add()
+    db.session.commit()
     appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
     return render_template("customer/lrb.html",appResult=appResult,id=id)
 
