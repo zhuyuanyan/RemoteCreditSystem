@@ -324,8 +324,12 @@ def lrb(id):
 def lrb_save(id):   
     #存货周转率    
     chzzl = request.form['chzzl']
+    if not chzzl:
+        chzzl=0
     #总资产周转率
     zzczzl = request.form['zzczzl']
+    if not zzczzl:
+        zzczzl=0
     #净利润
     value = request.form['value_13']
     value_1 = request.form['yye1']
@@ -340,9 +344,12 @@ def lrb_save(id):
     value_18 = request.form['yye18']
     #还款能力结果表
     appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
-    appResult.chzzl=chzzl
-    appResult.zzczzl=zzczzl
-    appResult.value_13=value
+    if not appResult:
+        Rcs_Application_Result(id,"","","","","","",chzzl,zzczzl,value_13).add()
+    else:
+        appResult.chzzl=chzzl
+        appResult.zzczzl=zzczzl
+        appResult.value_13=value
 
     #交叉检验表
     jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
