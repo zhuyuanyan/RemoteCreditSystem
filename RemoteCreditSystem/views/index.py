@@ -261,6 +261,10 @@ def khzl_hknl_save(id):
             score.ddpz_score=total
             score.jyzk_score=total
             score.shzk_score=total
+        else:
+            score.jyzk_score=""
+            score.ddpz_score=""
+            score.shzk_score=""
     else:
         Rcs_Application_Score(id,"",total,"","",remark).add()
     db.session.commit()
@@ -434,6 +438,10 @@ def khzl_jyzk_save(id):
             score.hknl_score=total
             score.shzk_score=total
             score.ddpz_score=total
+        else:
+            score.hknl_score=""
+            score.ddpz_score=""
+            score.shzk_score=""
     else:
         Rcs_Application_Score(id,"","",total,"",remark).add()
     db.session.commit()
@@ -459,6 +467,10 @@ def khzl_shzk_save(id):
             score.hknl_score=total
             score.jyzk_score=total
             score.ddpz_score=total
+        else:
+            score.hknl_score=""
+            score.jyzk_score=""
+            score.ddpz_score=""
     else:
         Rcs_Application_Score(id,"","","",total,remark).add()
     db.session.commit()
@@ -484,6 +496,10 @@ def khzl_ddpz_save(id):
             score.hknl_score=total
             score.jyzk_score=total
             score.shzk_score=total
+        else:
+            score.hknl_score=""
+            score.jyzk_score=""
+            score.shzk_score=""
     else:
         Rcs_Application_Score(id,total,"","","",remark).add()
     db.session.commit()

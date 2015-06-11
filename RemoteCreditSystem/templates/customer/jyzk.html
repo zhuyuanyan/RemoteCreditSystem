@@ -1099,8 +1099,7 @@
 						$("#button1").hide();
 						$("#button2").hide();
 					}else{
-						$("#button1").show();
-						$("#button2").show();
+						each();
 					}
 				});
 				$("select").each(function(i){
@@ -1111,7 +1110,25 @@
 					}
 				});
 
-			});	
+			});
+
+			function each(){
+				//没禁入
+				var hidd = true;
+				$("select").each(function(i){
+					var str = $(this).val();
+					if(str=="禁入"){
+						$("#button1").hide();
+						$("#button2").hide();
+						//有禁入
+						hidd = false;
+					}
+				})
+				if(hidd){
+					$("#button1").show();
+					$("#button2").show();
+				}
+			}
 			function addTd(table){	//表格添加行
 				var tr= document.getElementById(table).getElementsByTagName("tr");
 				//更新行数
