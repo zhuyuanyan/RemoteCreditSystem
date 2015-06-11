@@ -42,9 +42,9 @@
 				<tr>
 					<td class="table-label">拟授信额度</td>
 					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
-					<td>{{jcjy.value17}}元</td>	
+					<td>0</td>	
 					{%- else%}
-					<td></td>
+					<td>{{jcjy.value17}}元</td>
 					{%-endif%}
 					<td class="table-label">风险等级</td>
 					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}

@@ -433,16 +433,15 @@
 
 
 					$("select").change(function(){
-						var str = $(this).val();
-						if(str=="禁入"){
-							$("#button1").hide();
-							$("#button2").hide();
-						}else{
-							$("#button1").show();
-							$("#button2").show();
-						}
-					});
-					$("select").each(function(i){
+					var str = $(this).val();
+					if(str=="禁入"){
+						$("#button1").hide();
+						$("#button2").hide();
+					}else{
+						each();
+					}
+				});
+				$("select").each(function(i){
 					var str = $(this).val();
 					if(str=="禁入"){
 						$("#button1").hide();
@@ -450,6 +449,24 @@
 					}
 				});
 				})
+
+			function each(){
+				//没禁入
+				var hidd = true;
+				$("select").each(function(i){
+					var str = $(this).val();
+					if(str=="禁入"){
+						$("#button1").hide();
+						$("#button2").hide();
+						//有禁入
+						hidd = false;
+					}
+				})
+				if(hidd){
+					$("#button1").show();
+					$("#button2").show();
+				}
+			}
 			function sum(){
 				var total=0;
 				$("#score_remark").val("");
