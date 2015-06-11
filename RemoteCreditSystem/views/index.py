@@ -709,4 +709,4 @@ def show_zjjxgl():
 # =================================互联网数据抓取==================
 @app.route('/by_bigdata',methods=['GET', 'POST'])
 def re_bigdata():
-    return redirect('http://192.168.1.137:8080/jbda/')
+    return redirect('http://192.168.1.137:8080/jbda/home/loginTest.do?userName=test&userPwd=test')
