@@ -606,9 +606,14 @@
 
 				//存货周转率
 				var chzzl = a11/ckye;
+				if(ckye==0){
+					chzzl=0
+				}
 				//总资产周转率
 				var zzczzl = a7/zzc;
-
+				if(zzc==0){
+					zzczzl=0
+				}
 				$("#chzzl").val(chzzl);
 				$("#zzczzl").val(zzczzl);
 
