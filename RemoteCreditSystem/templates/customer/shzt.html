@@ -1248,19 +1248,30 @@
 			var type =true;
 			var remark = new Array();
 			function sum(){
+
 				$("#score_remark").val("");
 				var total=0;
 				var radios = document.getElementsByName("box1");
+                var zczk1=0;
+
+
 				if(radios[0].checked){
 					//资产状况--自有
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseFloat(transfer($("#aj")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseFloat(transfer($("#fcsl")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseFloat(transfer($("#sjzz")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseFloat(transfer($("#zfmj")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseFloat(transfer($("#zxqk")));		
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseFloat(transfer($("#jznx")));	
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*parseFloat(transfer($("#cn")));
-				}else if(radios[1].checked){
+
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
+                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#fcsl")));
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
+                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#sjzz")));
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
+                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#zfmj")));
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
+                           *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#zxqk")));
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
+                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#jznx")));
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
+                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#cn")));
+
+                }else if(radios[1].checked){
 
 				}else{
 					//资产状况--租
@@ -1359,6 +1370,7 @@
 				}else{
 					$("#score_result").val(total);
 				}
+                alter(total);
 			}
 			function transfer(value){
 				if(value.val()=="禁入"){

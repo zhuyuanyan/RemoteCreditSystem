@@ -1162,51 +1162,54 @@
                 var gl=0;
                 //===行业
 				//行业政策
-				hyzc+=(parseFloat($("#jrhbzc").val())/100)*(parseFloat(transfer($("#jrhbzc_s")))/100)
+				hyzc+=(parseFloat($("#jrhbzc").val())/100)*(parseFloat(transfer($("#jrhbzc_s"))))
 				//金融货币政策
-                hyzc+=(parseFloat($("#gjcyzc").val())/100)*(parseFloat(transfer($("#gjcyzc_s")))/100)
+                hyzc+=(parseFloat($("#gjcyzc").val())/100)*(parseFloat(transfer($("#gjcyzc_s"))))
                 //国家产业政策
-                hyzc+=(parseFloat($("#sszc").val())/100)*(parseFloat(transfer($("#sszc_s")))/100)
+                hyzc+=(parseFloat($("#sszc").val())/100)*(parseFloat(transfer($("#sszc_s"))))
                 //税收政策
                 total+=(parseFloat($("#hyzc").val())/100)*hyzc//行业政策得分
 
                 //行业
-                total+=(parseFloat(transfer($("#cpgy")))/100)+(parseFloat(transfer($("#zqxhy")))/100)
-                hy+=(parseFloat($("#hyzcjg").val())/100)*(parseFloat(transfer($("#gdzczzzc")))/100)
+                total+=(parseFloat(transfer($("#cpgy")))/100)+(parseFloat(transfer($("#zqxhy"))))
+                hy+=(parseFloat($("#hyzcjg").val())/100)*(parseFloat(transfer($("#gdzczzzc"))))
                 //行业资产结构
                 hy+=(parseFloat($("#hyylnl").val())/100)*
-                        (parseFloat(transfer($("#jll")))/100+parseFloat(transfer($("#pjyszkzzts")))/100+parseFloat(transfer($("#pjchzzts")))/100)//行业盈利能力
+                        (parseFloat(transfer($("#jll")))+parseFloat(transfer($("#pjyszkzzts")))+parseFloat(transfer($("#pjchzzts"))))//行业盈利能力
                 hy+=(parseFloat($("#hyylx").val())/100)*
-                        (parseFloat($("#sykh").val())/100+parseFloat(transfer($("#gyssl")))/100+
-                                parseFloat($("#xykh").val())/100+parseFloat(transfer($("#jxssl")))/100)
+                        (parseFloat($("#sykh").val())+parseFloat(transfer($("#gyssl")))+
+                                parseFloat($("#xykh").val())+parseFloat(transfer($("#jxssl"))))
                                 //行业依赖性
-                hy+=(parseFloat($("#hytdx").val())/100)*(parseFloat(transfer($("#lscp")))/100)
+                hy+=(parseFloat($("#hytdx").val())/100)*(parseFloat(transfer($("#lscp"))))
                 //行业替代性
                 hy+=(parseFloat($("#hyfzqs").val())/100)*
-                        (parseFloat($("#pjxsezz").val())/100*parseFloat(transfer($("#pjxsezzbl")))/100+
-                                parseFloat($("#pjjlrzz").val())/100*parseFloat(transfer($("#pjjlrzzbl")))/100)//行业发展趋势
+                        (parseFloat($("#pjxsezz").val())/100*parseFloat(transfer($("#pjxsezzbl")))+
+                                parseFloat($("#pjjlrzz").val())/100*parseFloat(transfer($("#pjjlrzzbl"))))//行业发展趋势
 
-                hy+=parseFloat($("#hyfxfx").val())/100*parseFloat(transfer($("#hypjpcl")))/100
+                hy+=parseFloat($("#hyfxfx").val())/100*parseFloat(transfer($("#hypjpcl")))
                 total+=(parseFloat($("#hy").val())/100)*hy//行业得分
 
                 //===企业
-                jy+=parseFloat(transfer($("#cpcyx")))/100+parseFloat(transfer($("#khxqzq")))/100+parseFloat(transfer($("#mbkhqbl")))/100+parseFloat(transfer($("#jzxtysl")))/100+parseFloat(transfer($("#zdkhzxsebl")))/100+parseFloat(transfer($("#xsff")))/100//市场与产品
+                jy+=parseFloat(transfer($("#cpcyx")))+parseFloat(transfer($("#khxqzq")))+parseFloat(transfer($("#mbkhqbl")))
+                        +parseFloat(transfer($("#jzxtysl")))+parseFloat(transfer($("#zdkhzxsebl")))
+                        +parseFloat(transfer($("#xsff")))//市场与产品
     
-                jy+=parseFloat(transfer($("#zljssl")))/100+parseFloat(transfer($("#jjjsntbl")))/100+parseFloat(transfer($("#zrzh")))/100+parseFloat(transfer($("#hj")))/100+parseFloat(transfer($("#lzgx")))/100//生产环节
+                jy+=parseFloat(transfer($("#zljssl")))+parseFloat(transfer($("#jjjsntbl")))+parseFloat(transfer($("#zrzh")))
+                        +parseFloat(transfer($("#hj")))+parseFloat(transfer($("#lzgx")))//生产环节
           
-                jy+=parseFloat(transfer($("#xscb")))/100+parseFloat(transfer($("#xgkhbl")))/100//企业销售环节
+                jy+=parseFloat(transfer($("#xscb")))+parseFloat(transfer($("#xgkhbl")))//企业销售环节
                
-                gl+=parseFloat(transfer($("#zyjlrzb")))/100+parseFloat(transfer($("#glrylsl")))/100//管理层稳定性
-                gl+=parseFloat(transfer($("#bkglczb")))/100+parseFloat(transfer($("#glcpjnl")))/100+parseFloat(transfer($("#bqypjcysj")))/100+
-                    parseFloat(transfer($("#hypjcysj")))/100+parseFloat(transfer($("#yyepjhbzz")))/100+parseFloat(transfer($("#tzxlcs")))/100+
-                    parseFloat(transfer($("#ddfxsjcs")))/100//管理层素质和经验
-                gl+=parseFloat(transfer($("#jysxtyx")))/100//经营思想统一性
-                gl+=parseFloat(transfer($("#mzgs")))/100+parseFloat(transfer($("#glqygys")))/100+parseFloat(transfer($("#glqyjxs")))/100//关联企业经营管理
-                gl+=parseFloat(transfer($("#hxjsrycysj")))/100+parseFloat(transfer($("#hxjsrylsl")))/100//核心技术人员情况
-                gl+=parseFloat(transfer($("#dzysyg")))/100+parseFloat(transfer($("#ygpjcysj")))/100//员工队伍
-                gl+=parseFloat(transfer($("#qyzzjg")))/100+parseFloat(transfer($("#jcfs")))/100+parseFloat(transfer($("#rsglzc")))/100
-                    +parseFloat(transfer($("#gsfzzl")))/100//内部控制与管理
-                gl+=parseFloat(transfer($("#tdjwpjcb")))/100+parseFloat(transfer($("#rjzj")))/100//财务管理能力
+                gl+=parseFloat(transfer($("#zyjlrzb")))+parseFloat(transfer($("#glrylsl")))//管理层稳定性
+                gl+=parseFloat(transfer($("#bkglczb")))+parseFloat(transfer($("#glcpjnl")))+parseFloat(transfer($("#bqypjcysj")))+
+                    parseFloat(transfer($("#hypjcysj")))+parseFloat(transfer($("#yyepjhbzz")))+parseFloat(transfer($("#tzxlcs")))+
+                    parseFloat(transfer($("#ddfxsjcs")))//管理层素质和经验
+                gl+=parseFloat(transfer($("#jysxtyx")))//经营思想统一性
+                gl+=parseFloat(transfer($("#mzgs")))+parseFloat(transfer($("#glqygys")))+parseFloat(transfer($("#glqyjxs")))//关联企业经营管理
+                gl+=parseFloat(transfer($("#hxjsrycysj")))+parseFloat(transfer($("#hxjsrylsl")))//核心技术人员情况
+                gl+=parseFloat(transfer($("#dzysyg")))+parseFloat(transfer($("#ygpjcysj")))//员工队伍
+                gl+=parseFloat(transfer($("#qyzzjg")))+parseFloat(transfer($("#jcfs")))+parseFloat(transfer($("#rsglzc")))
+                    +parseFloat(transfer($("#gsfzzl")))//内部控制与管理
+                gl+=parseFloat(transfer($("#tdjwpjcb")))+parseFloat(transfer($("#rjzj")))//财务管理能力
 
                 qy=parseFloat(jy+gl);
              	
