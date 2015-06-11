@@ -29,17 +29,19 @@
 				<tr>
 					<td rowspan="3"><b>房子({{result.split(',')[1]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[1]}}" name="zczk2" id="zczk2"/>
-					<td><input type="radio" name="box1" value="1"/>
+					<td><input type="radio" name="box1" value="1" checked/>
 						<b>自有({{result.split(',')[2]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[2]}}" name="zczk3" id="zczk3"/>
                     <td>
 						<table class="addTable">
 							<tr>
 								<th>按揭/全额付款</th>
-								<th>房产数量</th>
+								<th>房产数量({{result.split(',')[4]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[4]}}" name="fc" id="fc"/>
 								<th>地址</th>
 								<th>购买日期</th>
 								<th>当前市价总值({{result.split(',')[3]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[10]}}" name="dqzz" id="dqzz"/>
 							</tr>
 							<tr>
 								<td>
@@ -74,9 +76,13 @@
 							</tr>
 							<tr>
 								<th>住房面积平均值/套({{result.split(',')[19]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[19]}}" name="zfmj1" id="zfmj1"/>
 								<th>装修情况({{result.split(',')[26]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[26]}}" name="zxqk1" id="zxqk1"/>
 								<th>居住年限({{result.split(',')[29]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[29]}}" name="jznx1" id="jznx1"/>
 								<th colspan ="2">房间格局居住年限({{result.split(',')[37]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[37]}}" name="cn1" id="cn1"/>
 							</tr>
 							<tr>
 								<td>
@@ -1254,22 +1260,22 @@
 				var radios = document.getElementsByName("box1");
                 var zczk1=0;
 
-
+                var ziyou=0;
 				if(radios[0].checked){
 					//资产状况--自有
 
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#fc"))/100)*parseFloat(transfer($("#fcsl")));
+
+					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*(parseFloat($("#aj").val())/100)*(parseFloat($("#dqzz").val())/100)*parseFloat(transfer($("#sjzz")));
+
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#fcsl")));
+                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#zfmj1"))/100)*parseFloat(transfer($("#zfmj")));
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#sjzz")));
+                           *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#zxqk1"))/100)*parseFloat(transfer($("#zxqk")));
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#zfmj")));
+                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#jznx1"))/100)*parseFloat(transfer($("#jznx")));
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                           *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#zxqk")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#jznx")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#cn")));
+                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#cn1"))/100)*parseFloat(transfer($("#cn")));
 
                 }else if(radios[1].checked){
 
@@ -1279,7 +1285,6 @@
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk6").val())/100)*parseFloat(transfer($("#zpmj")));
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk7").val())/100)*parseFloat(transfer($("#zpzj")));
 				}
-
 				//车辆
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseFloat(transfer($("#clsl")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseFloat(transfer($("#cljg")));
@@ -1368,11 +1373,9 @@
 					$("#score_result").val("不满足准入条件");
 					$("#score_remark").val(remark);
 				}else{
-					if(total>100){
-						$("#score_result").val("95");
-					}else{
-						$("#score_result").val(total);
-					}
+				
+					$("#score_result").val(total);
+				
 				}
                 alter(total);
 			}

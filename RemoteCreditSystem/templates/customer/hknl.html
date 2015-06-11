@@ -26,7 +26,7 @@
 					<td><b>资产负债率({{result.split(',')[0]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[0]}}" name="zcfzb" id="zcfzb"/>
 					<td>
-						<select name="" id="zcfzb1" >
+						<select name="" id="zcfzb1" disabled>
 							
 							<option value="{{result.split(',')[1]}}" {%- if  appResult.zcfzl|float >1 %} selected {%- endif%}>负债/资产》100%</option>
 							
@@ -444,8 +444,6 @@
 					remark.push("资产负债率为禁入");
 					type = false;
 				}
-				alert("{{result.split(',')[9]}}");
-				alert(parseFloat($("#zcfzb1").val()));
 				//流动比率
 				if(transfer($("#ldbl1").val())){
 					total+=(parseFloat($("#ldbl").val())/100)*parseFloat($("#ldbl1").val());
@@ -535,11 +533,7 @@
 				if(!type){
 					$("#score_result").val("不满足准入条件");
 				}else{
-					if(total>100){
-						("#score_result").val("95");
-					}else{
-						$("#score_result").val(total);
-					}
+					$("#score_result").val(total);
 					
 				}
 				
