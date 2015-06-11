@@ -379,15 +379,17 @@
 				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat(transfer($("#otherIn")));
 				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#hyzk").val())/100)*parseFloat(transfer($("#merray")));
 				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtjglx").val())/100)*parseFloat(transfer($("#family_type")));
-				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat(transfer($("#blsh")));
-				
+{#				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat(transfer($("#blsh")));#}
+
 				//知识水平
 				total+=(parseFloat($("#zssp").val())/100)*parseFloat(transfer($("#jycd")));
-				//素质评估 
+
+				//素质评估
 				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#xx").val())/100)*parseFloat(transfer($("#ggxx")));
 				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseFloat($("#tj").val())/100)*parseFloat(transfer($("#dstj")));
 				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#jkzk").val())/100)*(parseFloat($("#yd").val())/100)*parseFloat(transfer($("#ydqk")));
 				total+=(parseFloat($("#szpg").val())/100)*(parseFloat($("#sh").val())/100)*parseFloat(transfer($("#blsh1")));
+
 				//信用记录
 				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#ywyq").val())/100)*parseFloat(transfer($("#yq")));
 				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz1").val())/100)*parseFloat(transfer($("#cqlz")));
@@ -398,15 +400,19 @@
 				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz6").val())/100)*parseFloat(transfer($("#dhqf")));
 				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz7").val())/100)*parseFloat(transfer($("#qzjl")));
 				total+=(parseFloat($("#xyjl").val())/100)*(parseFloat($("#lz8").val())/100)*parseFloat(transfer($("#wfxw")));
+
 				//社交情况
 				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj2").val())/100)*parseFloat(transfer($("#pygz")));
 				total+=(parseFloat($("#sj1").val())/100)*(parseFloat($("#sj3").val())/100)*parseFloat(transfer($("#pyxl")));
+
 				//公益行为
 				total+=(parseFloat($("#gy").val())/100)*parseFloat(transfer($("#gyhd")));
+
 				//信仰状况
 				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy2").val())/100)*parseFloat(transfer($("#zjxy")));
 				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy3").val())/100)*parseFloat(transfer($("#xy")));
-				if(!type){
+
+                if(!type){
 					$("#score_result").val("不满足准入条件");
 					$("#score_remark").val(remark);
 				}else{
