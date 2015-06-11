@@ -23,9 +23,9 @@
 				</colgroup>
 				<tr>
 					<td class="table-label">客户索引号</td>
-					<td>01</td>
+					<td>{{info.customer_id}}</td>
 					<td class="table-label">客户名称</td>
-					<td>张三</td>					
+					<td>{{info.customer_name}}</td>					
 				</tr>
 				<tr>
 					<td class="table-label">企业经营状况得分</td>
@@ -41,23 +41,35 @@
 				</tr>
 				<tr>
 					<td class="table-label">拟授信额度</td>
-					<td>80</td>	
+					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
+					<td>0</td>	
+					{%- else%}
+					<td></td>
+					{%-endif%}
 					<td class="table-label">风险等级</td>
-					<td>70</td>		
+					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
+					<td>100</td>	
+					{%- else%}
+					<td></td>
+					{%-endif%}	
 				</tr>
 				<tr>
 					<td class="table-label">综述</td>
-					<td colspan="3">合格</td>		
+					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
+					<td colspan="3">不合格</td>		
+					{%- else%}
+					<td colspan="3">合格</td>	
+					{%-endif%}
 				</tr>
 				<tr>
-					<td class="table-label">备注</td>
+					<td class="table-label">禁入原因</td>
 					<td colspan="3" style="color:red">{{score.remark}}</td>		
 				</tr>
 			</table>	
 			<div class="pagebar">			
 				<div class="controlbtn">
 					<a class="btn btn-info" href="javascript:void(0);" title="导出为PDF">导出为PDF</a>
-					<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
+					<a class="btn"  onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
 				</div>
 			</div>
 		<script type="text/javascript">
