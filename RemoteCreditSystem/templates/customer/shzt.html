@@ -56,11 +56,11 @@
 										<option value="{{result.split(',')[6]}}">4套</option>
 										<option value="{{result.split(',')[7]}}">3套</option>
 										<option value="{{result.split(',')[8]}}">2套</option>
-										<option value="{{result.split(',')[9]}}">1套</option>
+										<option value="{{result.split(',')[9]}}" selected>1套</option>
 									</select>
 								</td>
-								<td><input type="text" class="addinput"/></td>
-								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});"/></td>
+								<td><input type="text" class="addinput" value="上海郊区"/></td>
+								<td><input type="text" class="addinput"  onclick="J.calendar.get({type:'-'});" value="2005"/></td>
 								<td>
 									<select	name="sjzz" id="sjzz" content="当前市价总值">
 										<option value="{{result.split(',')[11]}}">≥1亿</option>
@@ -68,7 +68,7 @@
 										<option value="{{result.split(',')[13]}}">3000-5000万</option>
 										<option value="{{result.split(',')[14]}}">1000-3000万</option>
 										<option value="{{result.split(',')[15]}}">500-1000万</option>
-										<option value="{{result.split(',')[16]}}">300-500万</option>
+										<option value="{{result.split(',')[16]}}" selected>300-500万</option>
 										<option value="{{result.split(',')[17]}}">100-300万</option>
 										<option value="{{result.split(',')[18]}}">≤100万</option>
 									</select>
@@ -91,7 +91,7 @@
 										<option value="{{result.split(',')[21]}}">400-500㎡/套</option>
 										<option value="{{result.split(',')[22]}}">300-400㎡/套</option>
 										<option value="{{result.split(',')[23]}}">200-300㎡/套</option>
-										<option value="{{result.split(',')[24]}}">100-200㎡/套</option>
+										<option value="{{result.split(',')[24]}}" selected>100-200㎡/套</option>
 										<option value="{{result.split(',')[25]}}">≤100㎡/套</option>
 									</select>
 								</td>
@@ -107,7 +107,7 @@
 										<option value="{{result.split(',')[23]}}">40-50年</option>
 										<option value="{{result.split(',')[23]}}">30-40年</option>
 										<option value="{{result.split(',')[23]}}">20-30年</option>
-										<option value="{{result.split(',')[23]}}">10-20年</option>
+										<option value="{{result.split(',')[23]}}" selected>10-20年</option>
 										<option value="{{result.split(',')[23]}}">5-10年</option>
 										<option value="{{result.split(',')[23]}}">≤5年</option>
 									</select>
@@ -182,10 +182,14 @@
 						<table class="addTable">
 							<tr>
 								<th>车辆数量({{result.split(',')[64]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[64]}}" name="clsl1" id="clsl1"/>
 								<th>购买价格（总额）({{result.split(',')[71]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[71]}}" name="clsl2" id="clsl2"/>
 								<th>平均使用时间({{result.split(',')[82]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[82]}}" name="clsl3" id="clsl3"/>
 								<th>品牌、型号</th>
 								<th>车牌购置方式({{result.split(',')[87]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[87]}}" name="clsl4" id="clsl4"/>
 							</tr>
 							<tr>
 								<td>
@@ -194,7 +198,7 @@
 										<option value="{{result.split(',')[66]}}">4辆</option>
 										<option value="{{result.split(',')[67]}}">3辆</option>
 										<option value="{{result.split(',')[68]}}">2辆</option>
-										<option value="{{result.split(',')[69]}}">1辆</option>
+										<option value="{{result.split(',')[69]}}" selected>1辆</option>
 										<option value="{{result.split(',')[70]}}">0辆</option>
 									</select>
 								</td>
@@ -207,7 +211,7 @@
 										<option value="{{result.split(',')[76]}}">300-500万</option>
 										<option value="{{result.split(',')[77]}}">100-300万</option>
 										<option value="{{result.split(',')[78]}}">50-100万</option>
-										<option value="{{result.split(',')[79]}}">20-50万</option>
+										<option value="{{result.split(',')[79]}}" selected>20-50万</option>
 										<option value="{{result.split(',')[80]}}">10-20万</option>
 										<option value="{{result.split(',')[81]}}">≤10万</option>
 									</select>
@@ -216,7 +220,7 @@
 									<select	id="clsj" content="平均使用时间">
 										<option value="{{result.split(',')[83]}}">≤1年</option>
 										<option value="{{result.split(',')[84]}}">1-3年</option>
-										<option value="{{result.split(',')[85]}}">3-5年</option>
+										<option value="{{result.split(',')[85]}}" selected>3-5年</option>
 										<option value="{{result.split(',')[86]}}">≥5年</option>
 									</select>
 								</td>
@@ -254,7 +258,7 @@
 										<option value="{{result.split(',')[94]}}">1000-3000万</option>
 										<option value="{{result.split(',')[95]}}">500-1000万</option>
 										<option value="{{result.split(',')[96]}}">300-500万</option>
-										<option value="{{result.split(',')[97]}}">≤300万</option>
+										<option value="{{result.split(',')[97]}}" selected>≤300万</option>
 									</select>
 								</td>
 							</tr>
@@ -275,7 +279,7 @@
 										<option value="{{result.split(',')[101]}}">300-500万</option>
 										<option value="{{result.split(',')[102]}}">100-300万</option>
 										<option value="{{result.split(',')[103]}}">50-100万</option>
-										<option value="{{result.split(',')[104]}}">≤50万</option>
+										<option value="{{result.split(',')[104]}}" selected>≤50万</option>
 									</select>
 								</td>
 							</tr>
@@ -451,7 +455,7 @@
 					<td>
 						<select	id="sj1" content="每天工作时间">
 							<option value="{{result.split(',')[158]}}">>8小时</option>
-							<option value="{{result.split(',')[159]}}">8小时</option>
+							<option value="{{result.split(',')[159]}}" selected>8小时</option>
 							<option value="{{result.split(',')[160]}}"><8小时</option>
 						</select>
 					</td>
@@ -839,7 +843,7 @@
 							<option value="{{result.split(',')[269]}}">每天</option>
 							<option value="{{result.split(',')[270]}}">5-6次</option>
 							<option value="{{result.split(',')[271]}}">3-5次</option>
-							<option value="{{result.split(',')[272]}}">1-3次</option>
+							<option value="{{result.split(',')[272]}}" selected>1-3次</option>
 							<option value="{{result.split(',')[273]}}">无</option>
 						</select>
 					</td>
@@ -1283,20 +1287,9 @@
                 var ziyou=0;
 				if(radios[0].checked){
 					//资产状况--自有
-
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#fc"))/100)*parseFloat(transfer($("#fcsl")));
-
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*(parseFloat($("#aj").val())/100)*(parseFloat($("#dqzz").val())/100)*parseFloat(transfer($("#sjzz")));
-
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#zfmj1"))/100)*parseFloat(transfer($("#zfmj")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                           *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#zxqk1"))/100)*parseFloat(transfer($("#zxqk")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#jznx1"))/100)*parseFloat(transfer($("#jznx")));
-					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)
-                            *(parseFloat($("#aj").val())/100)*parseFloat(transfer($("#cn1"))/100)*parseFloat(transfer($("#cn")));
-
+					var part1= (parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk2").val())/100)*(parseFloat($("#zczk3").val())/100)*(parseFloat($("#aj").val())/100)
+					var part2 = (parseFloat(transfer($("#fc"))/100)*parseFloat(transfer($("#fcsl")))+(parseFloat($("#dqzz").val())/100)*parseFloat(transfer($("#sjzz")))+parseFloat(transfer($("#zfmj1"))/100)*parseFloat(transfer($("#zfmj")))+parseFloat(transfer($("#zxqk1"))/100)*parseFloat(transfer($("#zxqk")))+parseFloat(transfer($("#jznx1"))/100)*parseFloat(transfer($("#jznx")))+parseFloat(transfer($("#cn1"))/100)*parseFloat(transfer($("#cn"))));
+					total+=part1*part2
                 }else if(radios[1].checked){
 
 				}else{
@@ -1305,17 +1298,19 @@
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk6").val())/100)*parseFloat(transfer($("#zpmj")));
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk7").val())/100)*parseFloat(transfer($("#zpzj")));
 				}
+				alert(total);
 				//车辆
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseFloat(transfer($("#clsl")));
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseFloat(transfer($("#cljg")));
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseFloat(transfer($("#clsj")));
-				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)*parseFloat(transfer($("#clcp")));
+				var part3 = (parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)
+				var part4 = (parseFloat($("#clsl1").val())/100)*parseFloat(transfer($("#cljg")))+(parseFloat($("#clsl2").val())/100)*parseFloat(transfer($("#clsj")))+(parseFloat($("#clsl3").val())/100)*parseFloat(transfer($("#clcp")))
+				total+=part3*part4;
+				alert(total);
 				//资产状况--储蓄
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk10").val())/100)*parseFloat(transfer($("#syzh1")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk11").val())/100)*parseFloat(transfer($("#syzh2")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk13").val())/100)*parseFloat(transfer($("#syzh3")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk14").val())/100)*parseFloat(transfer($("#syzh4")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk15").val())/100)*parseFloat(transfer($("#syzh5")));
+				alert(total);
 				//生活环境
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj2").val())/100)*(parseFloat($("#shhj3").val())/100)*parseFloat(transfer($("#kghj1")));
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj2").val())/100)*(parseFloat($("#shhj4").val())/100)*parseFloat(transfer($("#kghj2")));
@@ -1325,10 +1320,12 @@
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj9").val())/100)*parseFloat(transfer($("#rwhj2")));
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj10").val())/100)*parseFloat(transfer($("#rwhj3")));
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj11").val())/100)*parseFloat(transfer($("#rwhj4")));
+				alert(total);
 				//生活时间分配
 				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp2").val())/100)*parseFloat(transfer($("#sj1")));
 				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp3").val())/100)*(parseFloat($("#shsjfp4").val())/100)*parseFloat(transfer($("#sj2")));
 				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp3").val())/100)*(parseFloat($("#shsjfp5").val())/100)*parseFloat(transfer($("#sj3")));
+				alert(total);
 				//收入来源--企业经营
 				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly5").val())/100)*parseFloat(transfer($("#qyjy1")));
 				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly6").val())/100)*parseFloat(transfer($("#qyjy2")));
