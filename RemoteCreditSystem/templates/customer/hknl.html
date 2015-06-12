@@ -399,6 +399,7 @@
 		</div>
 		</form>
 		<script type="text/javascript">
+            var type = true;
 			$(document).ready(function() {
 					var value_1 = ("{{jcjy.value1}}"-"{{jcjy.value2}}")/"{{jcjy.value2}}";
 					if(value_1<0.3){
@@ -433,44 +434,30 @@
 
 
 					$("select").change(function(){
+						var str = $(this).val();
+						if(str=="禁入"){
+{#							$("#button1").hide();#}
+{#							$("#button2").hide();#}
+                            type=false;
+						}else{
+{#							$("#button1").show();#}
+{#							$("#button2").show();#}
+                            type=true;
+						}
+					});
+					$("select").each(function(i){
 					var str = $(this).val();
 					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
-					}else{
-						each();
-					}
-				});
-				$("select").each(function(i){
-					var str = $(this).val();
-					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
+{#						$("#button1").hide();#}
+{#						$("#button2").hide();#}
+                        type=false;
 					}
 				});
 				})
-
-			function each(){
-				//没禁入
-				var hidd = true;
-				$("select").each(function(i){
-					var str = $(this).val();
-					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
-						//有禁入
-						hidd = false;
-					}
-				})
-				if(hidd){
-					$("#button1").show();
-					$("#button2").show();
-				}
-			}
 			function sum(){
 				var total=0;
 				$("#score_remark").val("");
-				var type = true;
+
 				var remark = new Array();
 				//资产负债率
 				if(transfer($("#zcfzb1").val())){
@@ -569,7 +556,7 @@
 				if(!type){
 					$("#score_result").val("不满足准入条件");
 				}else{
-					$("#score_result").val(total);
+					$("#score_result").val(total.toFixed(4));
 					
 				}
 				

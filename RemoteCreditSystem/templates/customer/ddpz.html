@@ -370,44 +370,31 @@
 		</div>
 		</form>
 		<script type="text/javascript">
+            var type =true;
 			$(document).ready(function() {
 				$("select").change(function(){
 					var str = $(this).val();
 					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
+{#						$("#button1").hide();#}
+{#						$("#button2").hide();#}
+                        type=false;
 					}else{
-						each();
+{#						$("#button1").show();#}
+{#						$("#button2").show();#}
+                        type=true;
 					}
 				});
 				$("select").each(function(i){
 					var str = $(this).val();
 					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
+                        type=false
+{#						$("#button1").hide();#}
+{#						$("#button2").hide();#}
 					}
 				});
 
 			});
 
-			function each(){
-				//没禁入
-				var hidd = true;
-				$("select").each(function(i){
-					var str = $(this).val();
-					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
-						//有禁入
-						hidd = false;
-					}
-				})
-				if(hidd){
-					$("#button1").show();
-					$("#button2").show();
-				}
-			}
-			var type =true;
 			var remark = new Array();
 			function sum(){
 
@@ -454,7 +441,7 @@
 					$("#score_result").val("不满足准入条件");
 					$("#score_remark").val(remark);
 				}else{
-					$("#score_result").val(total);
+					$("#score_result").val(total.toFixed(4));
 				}
 				
 			}

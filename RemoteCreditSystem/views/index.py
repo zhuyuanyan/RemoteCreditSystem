@@ -256,15 +256,6 @@ def khzl_hknl_save(id):
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
         score.hknl_score=total
-        if remark !="":
-            score.remark=remark
-            score.ddpz_score=total
-            score.jyzk_score=total
-            score.shzk_score=total
-        else:
-            score.jyzk_score=""
-            score.ddpz_score=""
-            score.shzk_score=""
     else:
         Rcs_Application_Score(id,"",total,"","",remark).add()
     db.session.commit()
@@ -433,15 +424,6 @@ def khzl_jyzk_save(id):
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
         score.jyzk_score=total
-        if remark !="":
-            score.remark=remark
-            score.hknl_score=total
-            score.shzk_score=total
-            score.ddpz_score=total
-        else:
-            score.hknl_score=""
-            score.ddpz_score=""
-            score.shzk_score=""
     else:
         Rcs_Application_Score(id,"","",total,"",remark).add()
     db.session.commit()
@@ -462,15 +444,6 @@ def khzl_shzk_save(id):
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
         score.shzk_score=total
-        if remark !="":
-            score.remark=remark
-            score.hknl_score=total
-            score.jyzk_score=total
-            score.ddpz_score=total
-        else:
-            score.hknl_score=""
-            score.jyzk_score=""
-            score.ddpz_score=""
     else:
         Rcs_Application_Score(id,"","","",total,remark).add()
     db.session.commit()
@@ -491,15 +464,6 @@ def khzl_ddpz_save(id):
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     if score:
         score.ddpz_score=total
-        if remark !="":
-            score.remark=remark
-            score.hknl_score=total
-            score.jyzk_score=total
-            score.shzk_score=total
-        else:
-            score.hknl_score=""
-            score.jyzk_score=""
-            score.shzk_score=""
     else:
         Rcs_Application_Score(id,total,"","","",remark).add()
     db.session.commit()

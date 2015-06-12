@@ -28,6 +28,10 @@
 					<td>{{info.customer_name}}</td>					
 				</tr>
 				<tr>
+                    <input type="hidden" id="jyzk_s" value=“{{score.jyzk_score}}”/>
+                    <input type="hidden" id="hknl_s" value=”{{score.hknl_score}}“/>
+                    <input type="hidden" id="shzt_s" value=“{{score.shzk_score}}”/>
+                    <input type="hidden" id="ddpz_s" value=”{{score.ddpz_score}}“/>
 					<td class="table-label">企业经营状况得分</td>
 					<td>{{score.jyzk_score}}</td>
 					<td class="table-label">还款能力得分</td>
@@ -44,13 +48,14 @@
 					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
 					<td>0</td>	
 					{%- else%}
-					<td>{{jcjy.value17}}元</td>
+{#					<td>{{jcjy.value17}}</td>#}
+                    <td><label id="nsxed"/></td>
 					{%-endif%}
 					<td class="table-label">风险等级</td>
 					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
 					<td>100</td>	
 					{%- else%}
-					<td></td>
+					<td>50</td>
 					{%-endif%}	
 				</tr>
 				<tr>
@@ -62,7 +67,7 @@
 					{%-endif%}
 				</tr>
 				<tr>
-					<td class="table-label">禁入原因</td>
+					<td class="table-label">备注</td>
 					<td colspan="3" style="color:red">{{score.remark}}</td>		
 				</tr>
 			</table>	
@@ -73,7 +78,16 @@
 				</div>
 			</div>
 		<script type="text/javascript">
-			
+			$(document).ready(function(){
+                var jyzk=parseFloat($("#jyzk_s").val());
+                var hknl=parseFloat($("#hknl_s").val());
+                var shzt=parseFloat($("#shzt_s").val());
+                var ddpz=parseFloat($("#ddpz_s").val());
+
+                var result=jyzk*1000-70+hknl*50+shzt*60+ddpz*80-300;
+                $('#nsxed').val(result);
+
+            }
 		</script>
 	</body>
 </html>

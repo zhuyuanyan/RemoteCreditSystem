@@ -1259,39 +1259,25 @@
 				$("select").change(function(){
 					var str = $(this).val();
 					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
+{#						$("#button1").hide();#}
+{#						$("#button2").hide();#}
+                        type=false;
 					}else{
-						each();
+{#						$("#button1").show();#}
+{#						$("#button2").show();#}
+                        type=true;
 					}
 				});
 				$("select").each(function(i){
 					var str = $(this).val();
 					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
+{#						$("#button1").hide();#}
+{#						$("#button2").hide();#}
+                        type=false;
 					}
 				});
 
 			});
-
-			function each(){
-				//没禁入
-				var hidd = true;
-				$("select").each(function(i){
-					var str = $(this).val();
-					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
-						//有禁入
-						hidd = false;
-					}
-				})
-				if(hidd){
-					$("#button1").show();
-					$("#button2").show();
-				}
-			}
 			var type =true;
 			var remark = new Array();
 			function sum(){
@@ -1315,19 +1301,19 @@
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk6").val())/100)*parseFloat(transfer($("#zpmj")));
 					total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk4").val())/100)*(parseFloat($("#zczk7").val())/100)*parseFloat(transfer($("#zpzj")));
 				}
-		
+
 				//车辆
 				var part3 = (parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk8").val())/100)
 				var part4 = (parseFloat($("#clsl1").val())/100)*parseFloat(transfer($("#cljg")))+(parseFloat($("#clsl2").val())/100)*parseFloat(transfer($("#clsj")))+(parseFloat($("#clsl3").val())/100)*parseFloat(transfer($("#clcp")))
 				total+=part3*part4;
-		
+
 				//资产状况--储蓄
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk10").val())/100)*parseFloat(transfer($("#syzh1")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk11").val())/100)*parseFloat(transfer($("#syzh2")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk13").val())/100)*parseFloat(transfer($("#syzh3")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk14").val())/100)*parseFloat(transfer($("#syzh4")));
 				total+=(parseFloat($("#zczk1").val())/100)*(parseFloat($("#zczk9").val())/100)*(parseFloat($("#zczk12").val())/100)*(parseFloat($("#zczk15").val())/100)*parseFloat(transfer($("#syzh5")));
-			
+
 				//生活环境
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj2").val())/100)*(parseFloat($("#shhj3").val())/100)*parseFloat(transfer($("#kghj1")));
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj2").val())/100)*(parseFloat($("#shhj4").val())/100)*parseFloat(transfer($("#kghj2")));
@@ -1337,12 +1323,12 @@
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj9").val())/100)*parseFloat(transfer($("#rwhj2")));
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj10").val())/100)*parseFloat(transfer($("#rwhj3")));
 				total+=(parseFloat($("#shhj1").val())/100)*(parseFloat($("#shhj7").val())/100)*(parseFloat($("#shhj11").val())/100)*parseFloat(transfer($("#rwhj4")));
-			
+
 				//生活时间分配
 				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp2").val())/100)*parseFloat(transfer($("#sj1")));
 				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp3").val())/100)*(parseFloat($("#shsjfp4").val())/100)*parseFloat(transfer($("#sj2")));
 				total+=(parseFloat($("#shsjfp1").val())/100)*(parseFloat($("#shsjfp3").val())/100)*(parseFloat($("#shsjfp5").val())/100)*parseFloat(transfer($("#sj3")));
-			
+
 				//收入来源--企业经营
 				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly5").val())/100)*parseFloat(transfer($("#qyjy1")));
 				total+=(parseFloat($("#srly1").val())/100)*(parseFloat($("#srly2").val())/100)*(parseFloat($("#srly6").val())/100)*parseFloat(transfer($("#qyjy2")));
@@ -1398,7 +1384,7 @@
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk28").val())/100)*parseFloat(transfer($("#xykzs22")));
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk29").val())/100)*parseFloat(transfer($("#xykzs23")));
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk30").val())/100)*parseFloat(transfer($("#xykzs24")));
-				
+
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk32").val())/100)*parseFloat(transfer($("#xykzs25")));
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk33").val())/100)*parseFloat(transfer($("#xykzs26")));
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk34").val())/100)*parseFloat(transfer($("#xykzs27")));
@@ -1407,11 +1393,11 @@
 					$("#score_result").val("不满足准入条件");
 					$("#score_remark").val(remark);
 				}else{
-				
-					$("#score_result").val(total);
-				
+
+					$("#score_result").val(total.toFixed(4));
+
 				}
-                alter(total);
+
 			}
 			function transfer(value){
 				if(value.val()=="禁入"){

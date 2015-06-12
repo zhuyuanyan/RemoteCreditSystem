@@ -1096,87 +1096,73 @@
 				$("select").change(function(){
 					var str = $(this).val();
 					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
+{#						$("#button1").hide();#}
+{#						$("#button2").hide();#}
+                        type=false;
 					}else{
-						each();
+{#						$("#button1").show();#}
+{#						$("#button2").show();#}
+                        type=true;
 					}
 				});
 				$("select").each(function(i){
 					var str = $(this).val();
 					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
+{#						$("#button1").hide();#}
+{#						$("#button2").hide();#}
+                        type=false;
 					}
 				});
 
 			});
-
-			function each(){
-				//没禁入
-				var hidd = true;
-				$("select").each(function(i){
-					var str = $(this).val();
-					if(str=="禁入"){
-						$("#button1").hide();
-						$("#button2").hide();
-						//有禁入
-						hidd = false;
-					}
-				})
-				if(hidd){
-					$("#button1").show();
-					$("#button2").show();
-				}
-			}
 			function addTd(table){	//表格添加行
 				var tr= document.getElementById(table).getElementsByTagName("tr");
 				//更新行数
 				//var cnt = tr.length-2+1;
 				//$("#"+table+"_cnt").val(cnt);
-				
+
 				if(table=="hxtd"){//核心团队
-					$("#"+table).append("<tr>"+							
-											"<th rowspan='4'>姓名<input type='text' class='addinput'/></th>"+	
-											"<th>性别</th>"+	
-											"<th>年龄</th>"+	
-											"<th>职位</th>"+	
-											"<th>最高学历</th>"+	
-											"<th>留学经历</th>"+	
-											"<th>入选国家千人计划</th>"+	
-											"<th>入选时间</th>"+	
-										"</tr>"+	
-										"<tr>"+	
-											"<td><select name=''><option>男</option><option>女</option></select></td>"+	
-											"<td><input type='text' class='addinput'/></td>"+	
-											"<td><input type='text' class='addinput'/></td>"+	
-											"<td><input type='text' class='addinput'/></td>"+	
-											"<td><input type='text' class='addinput'/></td>"+	
-											"<td><input type='text' class='addinput'/></td>"+	
-											"<td><input type='text' class='addinput' onclick='J.calendar.get({type:\"-\"});'/></td>"+	
-										"</tr>"+	
-										"<tr>"+	
-											"<th colspan='2'>大学生科技企业</th>"+	
-											"<th colspan='2'>教育经历</th>"+	
-											"<th colspan='2'>主要工作经历</th>"+	
-											"<th>主要成就</th>"+	
-										"</tr>"+	
-										"<tr>"+	
-											"<td colspan='2'><input type='text' class='addinput'/></td>"+	
-											"<td colspan='2'><input type='text' class='addinput'/></td>"+	
-											"<td colspan='2'><input type='text' class='addinput'/></td>"+	
-											"<td><input type='text' class='addinput'/></td>"+	
+					$("#"+table).append("<tr>"+
+											"<th rowspan='4'>姓名<input type='text' class='addinput'/></th>"+
+											"<th>性别</th>"+
+											"<th>年龄</th>"+
+											"<th>职位</th>"+
+											"<th>最高学历</th>"+
+											"<th>留学经历</th>"+
+											"<th>入选国家千人计划</th>"+
+											"<th>入选时间</th>"+
+										"</tr>"+
+										"<tr>"+
+											"<td><select name=''><option>男</option><option>女</option></select></td>"+
+											"<td><input type='text' class='addinput'/></td>"+
+											"<td><input type='text' class='addinput'/></td>"+
+											"<td><input type='text' class='addinput'/></td>"+
+											"<td><input type='text' class='addinput'/></td>"+
+											"<td><input type='text' class='addinput'/></td>"+
+											"<td><input type='text' class='addinput' onclick='J.calendar.get({type:\"-\"});'/></td>"+
+										"</tr>"+
+										"<tr>"+
+											"<th colspan='2'>大学生科技企业</th>"+
+											"<th colspan='2'>教育经历</th>"+
+											"<th colspan='2'>主要工作经历</th>"+
+											"<th>主要成就</th>"+
+										"</tr>"+
+										"<tr>"+
+											"<td colspan='2'><input type='text' class='addinput'/></td>"+
+											"<td colspan='2'><input type='text' class='addinput'/></td>"+
+											"<td colspan='2'><input type='text' class='addinput'/></td>"+
+											"<td><input type='text' class='addinput'/></td>"+
 										"</tr>");
-				}				
+				}
 			}
 
-			function removeTd(table){ //表格删除行 
+			function removeTd(table){ //表格删除行
 				var tr= document.getElementById(table).getElementsByTagName("tr");
 				if(tr.length>2){
 					for(j=0;j<4;j++){
 						document.getElementById(table).deleteRow(tr.length-1);//删除最后一行
 					}
-							
+
 					//$("#"+table+"_cnt").val(tr.length-2);
 				}
 			}
@@ -1195,6 +1181,7 @@
                 var total=0;
                 var hyzc=0;
                 var hy=0;
+                var hysum=0;
                 var jy=0;
                 var gl=0;
                 //===行业
@@ -1205,17 +1192,17 @@
                 //国家产业政策
                 hyzc+=(parseFloat($("#sszc").val())/100)*(parseFloat(transfer($("#sszc_s"))))
                 //税收政策
-                total+=(parseFloat($("#hyzc").val())/100)*hyzc//行业政策得分
+                hysum+=(parseFloat($("#hyzc").val())/100)*hyzc//行业政策得分
 
                 //行业
-                total+=(parseFloat(transfer($("#cpgy")))/100)+(parseFloat(transfer($("#zqxhy"))))
+                hy+=(0.2*parseFloat(transfer($("#cpgy"))))//行业供求关系
                 hy+=(parseFloat($("#hyzcjg").val())/100)*(parseFloat(transfer($("#gdzczzzc"))))
                 //行业资产结构
                 hy+=(parseFloat($("#hyylnl").val())/100)*
-                        (parseFloat(transfer($("#jll")))+parseFloat(transfer($("#pjyszkzzts")))+parseFloat(transfer($("#pjchzzts"))))//行业盈利能力
+                        (0.4*parseFloat(transfer($("#jll")))+0.3*parseFloat(transfer($("#pjyszkzzts")))+0.3*parseFloat(transfer($("#pjchzzts"))))//行业盈利能力
                 hy+=(parseFloat($("#hyylx").val())/100)*
-                        (parseFloat($("#sykh").val())+parseFloat(transfer($("#gyssl")))+
-                                parseFloat($("#xykh").val())+parseFloat(transfer($("#jxssl"))))
+                        (0.25*parseFloat(transfer($("#sykh")))+0.25*parseFloat(transfer($("#gyssl")))+
+                                0.25*parseFloat(transfer($("#xykh")))+0.25*parseFloat(transfer($("#jxssl"))))
                                 //行业依赖性
                 hy+=(parseFloat($("#hytdx").val())/100)*(parseFloat(transfer($("#lscp"))))
                 //行业替代性
@@ -1223,45 +1210,45 @@
                         (parseFloat($("#pjxsezz").val())/100*parseFloat(transfer($("#pjxsezzbl")))+
                                 parseFloat($("#pjjlrzz").val())/100*parseFloat(transfer($("#pjjlrzzbl"))))//行业发展趋势
 
-                hy+=parseFloat($("#hyfxfx").val())/100*parseFloat(transfer($("#hypjpcl")))
-                total+=(parseFloat($("#hy").val())/100)*hy//行业得分
+                hy+=(parseFloat($("#hyfxfx").val())/100)*parseFloat(transfer($("#hypjpcl")))
+                hysum+=(parseFloat($("#hyhy").val())/100)*hy//行业得分
+
+                total+=(parseFloat($("#hy").val())/100)*hysum//行业总分
+
 
                 //===企业
-                jy+=parseFloat(transfer($("#cpcyx")))+parseFloat(transfer($("#khxqzq")))+parseFloat(transfer($("#mbkhqbl")))
-                        +parseFloat(transfer($("#jzxtysl")))+parseFloat(transfer($("#zdkhzxsebl")))
-                        +parseFloat(transfer($("#xsff")))//市场与产品
-    
-                jy+=parseFloat(transfer($("#zljssl")))+parseFloat(transfer($("#jjjsntbl")))+parseFloat(transfer($("#zrzh")))
-                        +parseFloat(transfer($("#hj")))+parseFloat(transfer($("#lzgx")))//生产环节
-          
-                jy+=parseFloat(transfer($("#xscb")))+parseFloat(transfer($("#xgkhbl")))//企业销售环节
-               
-                gl+=parseFloat(transfer($("#zyjlrzb")))+parseFloat(transfer($("#glrylsl")))//管理层稳定性
-                gl+=parseFloat(transfer($("#bkglczb")))+parseFloat(transfer($("#glcpjnl")))+parseFloat(transfer($("#bqypjcysj")))+
-                    parseFloat(transfer($("#hypjcysj")))+parseFloat(transfer($("#yyepjhbzz")))+parseFloat(transfer($("#tzxlcs")))+
-                    parseFloat(transfer($("#ddfxsjcs")))//管理层素质和经验
-                gl+=parseFloat(transfer($("#jysxtyx")))//经营思想统一性
-                gl+=parseFloat(transfer($("#mzgs")))+parseFloat(transfer($("#glqygys")))+parseFloat(transfer($("#glqyjxs")))//关联企业经营管理
-                gl+=parseFloat(transfer($("#hxjsrycysj")))+parseFloat(transfer($("#hxjsrylsl")))//核心技术人员情况
-                gl+=parseFloat(transfer($("#dzysyg")))+parseFloat(transfer($("#ygpjcysj")))//员工队伍
-                gl+=parseFloat(transfer($("#qyzzjg")))+parseFloat(transfer($("#jcfs")))+parseFloat(transfer($("#rsglzc")))
-                    +parseFloat(transfer($("#gsfzzl")))//内部控制与管理
-                gl+=parseFloat(transfer($("#tdjwpjcb")))+parseFloat(transfer($("#rjzj")))//财务管理能力
+                jy+=0.45*(0.1*parseFloat(transfer($("#cpcyx")))+0.15*parseFloat(transfer($("#khxqzq")))+0.25*parseFloat(transfer($("#mbkhqbl")))
+                        +0.2*parseFloat(transfer($("#jzxtysl")))+0.15*parseFloat(transfer($("#zdkhzxsebl")))
+                        +0.15*parseFloat(transfer($("#xsff"))))//市场与产品
 
-                qy=parseFloat(jy+gl);
-             	
+                jy+=0.15*(0.15*parseFloat(transfer($("#zljssl")))+0.15*parseFloat(transfer($("#jjjsntbl")))+0.2*parseFloat(transfer($("#zrzh")))
+                        +0.2*parseFloat(transfer($("#hj")))+0.3*parseFloat(transfer($("#lzgx"))))//生产环节
+
+                jy+=0.4*(0.7*parseFloat(transfer($("#xscb")))+0.3*parseFloat(transfer($("#xgkhbl"))))//企业销售环节
+
+                gl+=0.1*(0.5*parseFloat(transfer($("#zyjlrzb")))+0.5*parseFloat(transfer($("#glrylsl"))))//管理层稳定性
+                gl+=0.2*(0.1*parseFloat(transfer($("#bkglczb")))+0.1*parseFloat(transfer($("#glcpjnl")))+0.15*parseFloat(transfer($("#bqypjcysj")))+
+                    0.15*parseFloat(transfer($("#hypjcysj")))+0.3*parseFloat(transfer($("#yyepjhbzz")))+0.1*parseFloat(transfer($("#tzxlcs")))+
+                    0.1*parseFloat(transfer($("#ddfxsjcs"))))//管理层素质和经验
+                gl+=0.05*(0.5*parseFloat(transfer($("#jysxtyx")))+0.5*parseFloat(transfer($("#zfmxjs"))))//经营思想统一性
+                gl+=0.05*(0.6*parseFloat(transfer($("#mzgs")))+0.2*parseFloat(transfer($("#glqygys")))+0.2*parseFloat(transfer($("#glqyjxs"))))//关联企业经营管理
+                gl+=0.1*(0.5*parseFloat(transfer($("#hxjsrycysj")))+0.5*parseFloat(transfer($("#hxjsrylsl"))))//核心技术人员情况
+                gl+=0.1*(0.4*parseFloat(transfer($("#dzysyg")))+0.6*parseFloat(transfer($("#ygpjcysj"))))//员工队伍
+                gl+=0.05*(0.25*parseFloat(transfer($("#qyzzjg")))+0.25*parseFloat(transfer($("#jcfs")))+0.25*parseFloat(transfer($("#rsglzc")))
+                    +0.25*parseFloat(transfer($("#gsfzzl"))))//内部控制与管理
+                gl+=0.35*(0.7*parseFloat(transfer($("#tdjwpjcb")))+0.3*parseFloat(transfer($("#rjzj"))))//财务管理能力
+
+                qy=parseFloat(0.5*jy+0.5*gl);
+
                 total+=parseFloat($("#qy").val())/100*qy
+
 
 
                 if(!type){
 					$("#score_result").val("不满足准入条件");
 					$("#score_remark").val(remark);
 				}else{
-					if(total>100){
-						$("#score_result").val("95");
-					}else{
-						$("#score_result").val(total);
-					}
+					$("#score_result").val(total.toFixed(4));
 				}
             }
             function transfer(value){
