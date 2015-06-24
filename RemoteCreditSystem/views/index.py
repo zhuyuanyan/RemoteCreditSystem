@@ -8,6 +8,10 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_App
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Result import Rcs_Application_Result
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Xjll import Rcs_Application_Xjll
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Jcjy import Rcs_Application_Jcjy
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Zcfzb import Rcs_Application_Zcfzb
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Lrb import Rcs_Application_Lrb
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Jyzk import Rcs_Application_Jyzk
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Ddpz import Rcs_Application_Ddpz
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
@@ -33,6 +37,7 @@ def login_wel():
     if request.method == 'POST':
         user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
         if user:
+            login_user(user)
             return render_template("index.html")
         else:
             flash('用户名或密码错误','error')
@@ -263,8 +268,9 @@ def khzl_hknl_save(id):
 
 #资产负债
 @app.route('/khzldy/zcfzzk/<int:id>', methods=['GET'])
-def zcfzzk(id):        
-    return render_template("customer/zcfzzk.html",id=id)
+def zcfzzk(id):   
+    zcfzbData = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
+    return render_template("customer/zcfzzk.html",id=id,data=zcfzbData)
 #资产负债---保存
 @app.route('/khzldy/zcfzzk_save/<int:id>', methods=['POST'])
 def zcfzzk_save(id):   
@@ -303,8 +309,18 @@ def zcfzzk_save(id):
         result1.value15=value_37
     else:
         Rcs_Application_Jcjy(id,"","",yye3,"","","","","","",yye10,yye11,"","","",value_37,"","","").add()
+    
+    #资产负债表页面form数据保存
+    #form json值
+    dataTotal = request.form['dataTotal']
+    zcfzbData = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
+    if zcfzbData:
+        zcfzbData.value_1=dataTotal
+    else:
+        Rcs_Application_Zcfzb(id,dataTotal,'').add()
+
     db.session.commit()
-    return render_template("customer/zcfzzk.html")
+    return redirect("/khzldy/zcfzzk/"+str(id))
 
 #利润表
 @app.route('/khzldy/lrb/<int:id>', methods=['GET'])
@@ -314,7 +330,9 @@ def lrb(id):
         appResult = Rcs_Application_Result(id,"","","","","","","","","").add()
     db.session.commit()
     appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
-    return render_template("customer/lrb.html",appResult=appResult,id=id)
+    #页面数据
+    data = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
+    return render_template("customer/lrb.html",appResult=appResult,id=id,data=data)
 
 #利润表--保存
 @app.route('/khzldy/lrb_save/<int:id>', methods=['POST'])
@@ -364,6 +382,16 @@ def lrb_save(id):
     else:
         Rcs_Application_Jcjy(id,value_1,value_2,"",value_4,"",value_6,value_7,value_8,value_9,"","","",value_13,"","","",value_17,value_18).add()
 
+    #利润表页面form数据保存
+    #form json值
+    dataTotal = request.form['dataTotal']
+    dataTotalSelect = request.form['dataTotalSelect']
+    lrbData = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
+    if lrbData:
+        lrbData.value_1=dataTotal
+        lrbData.value_2=dataTotalSelect
+    else:
+        Rcs_Application_Lrb(id,dataTotal,dataTotalSelect).add()
 
     db.session.commit()
     return redirect("khzldy/lrb/"+str(id))
@@ -414,8 +442,9 @@ def khzl_jyzk(id):
     result = ""
     if jyzk :
         result=jyzk.parameter_value
-
-    return render_template("customer/jyzk.html",result=result,id=id)
+    #页面数据
+    data = Rcs_Application_Jyzk.query.filter_by(application_id=id).first()
+    return render_template("customer/jyzk.html",result=result,id=id,data=data)
 #经营状况保存
 @app.route('/khzldy/khzl_jyzk_save/<int:id>', methods=['POST'])
 def khzl_jyzk_save(id):  
@@ -426,6 +455,18 @@ def khzl_jyzk_save(id):
         score.jyzk_score=total
     else:
         Rcs_Application_Score(id,"","",total,"",remark).add()
+
+    #经营状况页面form数据保存
+    #form json值
+    dataTotal = request.form['dataTotal']
+    dataTotalSelect = request.form['dataTotalSelect']
+    lrbData = Rcs_Application_Jyzk.query.filter_by(application_id=id).first()
+    if lrbData:
+        lrbData.value_1=dataTotal
+        lrbData.value_2=dataTotalSelect
+    else:
+        Rcs_Application_Jyzk(id,dataTotal,dataTotalSelect).add()
+
     db.session.commit()
     return redirect("/khzldy/khzl_jyzk/"+str(id))
 
@@ -454,7 +495,9 @@ def khzl_shzk_save(id):
 def khzl_ddpz(id): 
     ddpz = Rcs_Parameter.query.filter_by(parameter_name="ddpz").first()
     result=ddpz.parameter_value
-    return render_template("customer/ddpz.html",result=result,id=id)
+    #页面数据
+    data = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
+    return render_template("customer/ddpz.html",result=result,id=id,data=data)
 
 #道德品质保存
 @app.route('/khzldy/khzl_ddpz_save/<int:id>', methods=['POST'])
@@ -466,6 +509,17 @@ def khzl_ddpz_save(id):
         score.ddpz_score=total
     else:
         Rcs_Application_Score(id,total,"","","",remark).add()
+
+    #道德品质页面form数据保存
+    #form json值
+    dataTotal = request.form['dataTotal']
+    dataTotalSelect = request.form['dataTotalSelect']
+    ddpzData = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
+    if ddpzData:
+        ddpzData.value_1=dataTotal
+        ddpzData.value_2=dataTotalSelect
+    else:
+        Rcs_Application_Ddpz(id,dataTotal,dataTotalSelect).add()
     db.session.commit()
     return redirect("/khzldy/khzl_ddpz/"+str(id))
 

@@ -14,7 +14,7 @@
 		</style>
 	</head>
 	<body>		
-		<form class="iframeForm" action="/khzldy/khzl_ddpz_save/{{id}}" method="POST">
+		<form class="iframeForm" id="iframeForm" action="/khzldy/khzl_ddpz_save/{{id}}" method="POST">
 <!--*****************************道德品质**********************************-->
 			<table class="myTable">
 				<caption>基本情况</caption>
@@ -362,10 +362,12 @@
 					<td><input type="Textarea" id="score_stop" name="score_stop" /></td>
 				</tr>	
 			</table>
-		
+			<input type="hidden" name="dataTotal" id="dataTotal"/>
+			<input type="hidden" name="dataTotalSelect" id="dataTotalSelect"/>
+
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<input type="submit" class="btn btn-info" id="button1" value="提交" disabled>
+				<input type="button" class="btn btn-info" id="button1" onclick="submitForm()" value="提交" disabled>
 				<input type="button" class="btn btn-info" onclick="sum()" id="button2" value="评分">
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
@@ -374,7 +376,22 @@
 		<script type="text/javascript">
             var type =true;
 			$(document).ready(function() {
-
+				var data_1 = "{{data.value_1}}";
+				var data_2 = "{{data.value_2}}";
+				if(data_1!=''){
+					$("input").each(function(i){
+					    if($(this).attr("type")!="button"){
+					    	$(this).val(data_1.split(",")[i]);
+					    	if($(this).attr("name")=="score_result"){
+					    	}
+					    }
+					});
+				}
+				if(data_2!=''){
+					$("select").each(function(i){
+					    $(this).val(data_2.split(",")[i]);
+					});
+				}
 			});
 
 			var remark = new Array();
@@ -430,6 +447,29 @@
 					$("#button1").attr('disabled',false);
 					$("#score_result").val(total);
 				}
+
+				//记录form json值
+				var inputData = new Array();
+				$("input").each(function(i){
+				    var value = $(this).val();
+					if(value==''){
+				    	inputData.push(0);
+				    }else{
+				    	inputData.push(value);
+				    }  
+				});
+				var selectData = new Array();
+				$("select").each(function(i){
+				    var value = $(this).val();
+					if(value==''){
+				    	selectData.push(0);
+				    }else{
+				    	selectData.push(value);
+				    }   
+				});
+				//form组成json格式
+				$("#dataTotal").val(inputData);
+				$("#dataTotalSelect").val(selectData);
 			}
 			function transfer(value){
 				if(value.val()=="禁入"){
@@ -440,7 +480,9 @@
 					return value.val();
 				}
 			}
-
+			function submitForm(){
+				$("#iframeForm").submit();
+			}
 		</script>
 	</body>
 </html>

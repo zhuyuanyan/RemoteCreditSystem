@@ -2,7 +2,7 @@
 from RemoteCreditSystem import db
 import datetime
 
-# 进件表
+# 进件主表
 class Rcs_Application_Info(db.Model):
     __tablename__ = 'rcs_application_info'
     id = db.Column(db.Integer, primary_key=True)
