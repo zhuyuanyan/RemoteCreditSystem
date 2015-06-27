@@ -15,26 +15,28 @@
 			<h1>&nbsp; Remote credit system</h1>
 			<div class="pull-right">
 				<div class="user-info">
-					您好 , admin / 开发部&nbsp;&nbsp;&nbsp;<span id="time"></span>
+					您好 , {{loginName}} / 开发部&nbsp;&nbsp;&nbsp;<span id="time"></span>
 				</div>
 				<div class="user-operate">
-					<a href="#" class="btn-top" onclick="$('.dialog').show();">
+					<a href="#" class="btn-top"  onclick="changeiframe('change_password/{{current_user.id}}');">
 						<img src="../static/img/icon_1.png"/>修改密码
 					</a>&nbsp;&nbsp;
-					<a href="login.html" class="btn-top">
+					<a href="logout" class="btn-top">
 						<img src="../static/img/icon_2.png"/>退出
 					</a>
 				</div>
 			</div>
 		</div>	
 	<!--***************************************左侧导航*******************************************************-->
-		<div class="left">
+		<div class="container-fluid" style="margin:55px auto 0;">
 			<ul class="nav">
 				<li class="active" onclick="changeNav(this,1);changeiframe('/welcome')">
 					<div onclick="showMenu(1)">
 						<img src="../static/img/1_active.png" class="tip"/>系统首页
 					</div>
 				</li>
+				{%- for obj in privileges %}
+				{%- if obj.privilege_access_value == "jjrwfa" and obj.privilege_operation != "0" %}
 				<li onclick="changeNav(this,2)">
 					<div onclick="showMenu(2)">
 						<img src="../static/img/2.png" class="tip"/>进件任务分案<img src="../static/img/secondNav0.png" class="open"/>
@@ -49,6 +51,8 @@
 						<!-- <li onclick=""><a href="#" title="资信评估专家会审撮合规则维护">资信评估专家会审撮合规则维护</a></li> -->
 					</ul>
 				</li>
+				{%- endif %}
+				{%- if obj.privilege_access_value == "mxpg" and obj.privilege_operation != "0" %}
 				<li onclick="changeNav(this,3)">
 					<div onclick="showMenu(3)">
 						<img src="../static/img/3.png" class="tip"/>模型评估<img src="../static/img/secondNav0.png" class="open"/>
@@ -60,7 +64,9 @@
 						<li onclick="changeiframe('mxpg/pgbg')"><a href="#" title="评估报告">评估报告</a></li>
 						<li onclick="changeiframe('mxpg/csgl')"><a href="#" title="参数管理">参数管理</a></li>
 					</ul>
-				</li>				
+				</li>	
+				{%- endif %}
+				{%- if obj.privilege_access_value == "khzldy" and obj.privilege_operation != "0" %}			
 				<li onclick="changeNav(this,4)">
 					<div onclick="showMenu(4)">
 						<img src="../static/img/4.png" class="tip"/>客户资料调阅<img src="../static/img/secondNav0.png" class="open"/>
@@ -69,6 +75,8 @@
 						<li onclick="changeiframe('khzldy/khzl')"><a href="#" title="客户资料">客户资料</a></li>
 					</ul>
 				</li>
+				{%- endif %}
+				{%- if obj.privilege_access_value == "zjzxpggl" and obj.privilege_operation != "0" %}
 				<li onclick="changeNav(this,5)">
 					<div onclick="showMenu(5)">
 						<img src="../static/img/5.png" class="tip"/>专家资信评估管理<img src="../static/img/secondNav0.png" class="open"/>
@@ -80,6 +88,8 @@
 						<li><a href="#" title="评估中心评审监控">评估中心评审监控</a></li> -->
 					</ul>
 				</li>
+				{%- endif %}
+				{%- if obj.privilege_access_value == "zxpgjl" and obj.privilege_operation != "0" %}
 				<li onclick="changeNav(this,6)">
 					<div onclick="showMenu(6)">
 						<img src="../static/img/6.png" class="tip"/>资信评估结论<img src="../static/img/secondNav0.png" class="open"/>
@@ -88,6 +98,8 @@
 						<li onclick="changeiframe('zxpgjl/pgjl')"><a href="#" title="评估结论">评估结论</a></li>
 					</ul>
 				</li>
+				{%- endif %}
+				{%- if obj.privilege_access_value == "zxpggzwh" and obj.privilege_operation != "0" %}
 				<li onclick="changeNav(this,7)">
 					<div onclick="showMenu(7)">
 						<img src="../static/img/7.png" class="tip"/>资信评估规则维护<img src="../static/img/secondNav0.png" class="open"/>
@@ -96,6 +108,8 @@
 						<li onclick="changeiframe('zxpggzwh/pggzwh')"><a href="#" title="评估规则维护">评估规则维护</a></li>
 					</ul>
 				</li>
+				{%- endif %}
+				{%- if obj.privilege_access_value == "pgzjgl" and obj.privilege_operation != "0" %}
 				<li onclick="changeNav(this,8)">
 					<div onclick="showMenu(8)">
 						<img src="../static/img/8.png" class="tip"/>评估专家管理<img src="../static/img/secondNav0.png" class="open"/>
@@ -110,105 +124,29 @@
 						<li onclick="changeiframe('pgzjgl/zjjxgl')"><a href="#" title="评审专家绩效管理">评审专家绩效管理</a></li>
 					</ul>
 				</li>
-				<!-- <li onclick="changeNav(this,6)">
-					<div onclick="showMenu(6)">
-						<img src="../static/img/6.png" class="tip"/>客户经理管理<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul6">
-						<li><a href="#" title="客户经理参数配置">客户经理参数配置</a></li>
-						<li><a href="#" title="客户经理台账列表">客户经理台账列表</a></li>
-						<li><a href="#" title="客户经理层级信息维护">客户经理层级信息维护</a></li>
-						<li><a href="#" title="客户经理级别调整">客户经理级别调整</a></li>
-						<li><a href="#" title="客户经理从属设置">客户经理从属设置</a></li>
-						<li><a href="#" title="客户经理培训计划列表(卡中心、组长)">客户经理培训计划列表(卡中心、组长)</a></li>
-						<li><a href="#" title="所属客户经理警示书">所属客户经理警示书</a></li>
-						<li><a href="#" title="客户经理警示书列表">客户经理警示书列表</a></li>
-						<li><a href="#" title="创建客户经理警示书(卡中心)">创建客户经理警示书(卡中心)</a></li>
-						<li><a href="#" title="客户经理工资信息列表">客户经理工资信息列表</a></li>
-						<li><a href="#" title="所属客户经理评估列表">所属客户经理评估列表</a></li>
-						<li><a href="#" title="客户经理评估查询">客户经理评估查询</a></li>
-						<li><a href="#" title="客户经理周报">客户经理周报</a></li>
-						<li><a href="#" title="所属客户经理周报列表">所属客户经理周报列表</a></li>
-						<li><a href="#" title="客户经理周报(团队负责人)">客户经理周报(团队负责人)</a></li>
-						<li><a href="#" title="客户经理日报">客户经理日报</a></li>
-						<li><a href="#" title="信息员信息列表">信息员信息列表</a></li>
-						<li><a href="#" title="信息员维护计划列表">信息员维护计划列表</a></li>
-					</ul>
-				</li>
-				<li onclick="changeNav(this,7)">
-					<div onclick="showMenu(7)">
-						<img src="../static/img/7.png" class="tip"/>综合风控管理<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul7">
-						<li><a href="#" title="黑名单数据资料">黑名单数据资料</a></li>
-						<li><a href="#" title="高风险客户名单">高风险客户名单</a></li>
-						<li><a href="#" title="风险客户管理">风险客户管理</a></li>
-						<li><a href="#" title="风险客户管理(卡中心)">风险客户管理(卡中心)</a></li>
-						<li><a href="#" title="客户催收计划列表">客户催收计划列表</a></li>
-						<li><a href="#" title="所属客户经理催收计划列表">所属客户经理催收计划列表</a></li>
-						<li><a href="#" title="风险事项管理">风险事项管理</a></li>
-						<li><a href="#" title="风险事项审核流程(客户经理)">风险事项审核流程(客户经理)</a></li>
-						<li><a href="#" title="风险事项审核流程(卡中心)">风险事项审核流程(卡中心)</a></li>
-						<li><a href="#" title="风险事项审核流程(机构主管)">风险事项审核流程(机构主管)</a></li>
-						<li><a href="#" title="不良资产管理(卡中心)">不良资产管理(卡中心)</a></li>
-						<li><a href="#" title="不良资产规则配置(卡中心)">不良资产规则配置(卡中心)</a></li>
-						<li><a href="#" title="逾期客户列表">逾期客户列表</a></li>
-						<li><a href="#" title="问责记录列表">问责记录列表</a></li>
-						<li><a href="#" title="问责记录查询(卡中心)">问责记录查询(卡中心)</a></li>
-					</ul>
-				</li>
-				<li onclick="changeNav(this,8)">
-					<div onclick="showMenu(8)">
-						<img src="../static/img/8.png" class="tip"/>通知信息<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul8">
-						<li><a href="#" title="审贷会通知">审贷会通知</a></li>
-						<li><a href="#" title="培训通知">培训通知</a></li>
-						<li><a href="#" title="考察成绩通知">考察成绩通知</a></li>
-						<li><a href="#" title="其它通知">其它通知</a></li>
-					</ul>
-				</li>
-				<li onclick="changeNav(this,9)">
-					<div onclick="showMenu(9)">
-						<img src="../static/img/9.png" class="tip"/>报表统计<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul9">
-						<li><a href="#" title="客户经理“灵活金”发卡情况统计">客户经理“灵活金”发卡情况统计</a></li>
-						<li><a href="#" title="支行“灵活金”发卡情况统计">支行“灵活金”发卡情况统计</a></li>
-						<li><a href="#" title="客户经理“灵活金”透支情况统计">客户经理“灵活金”透支情况统计</a></li>
-						<li><a href="#" title="支行“灵活金”透支情况统计">支行“灵活金”透支情况统计</a></li>
-						<li><a href="#" title="客户信息智能报表">客户信息智能报表</a></li>
-						<li><a href="#" title="客户账户智能报表">客户账户智能报表</a></li>
-						<li><a href="#" title="贷后管理数据">贷后管理数据</a></li>
-						<li><a href="#" title="客户经理“灵活金”用信还款情况统计">客户经理“灵活金”用信还款情况统计</a></li>
-						<li><a href="#" title="支行“灵活金”用信还款情况统计">支行“灵活金”用信还款情况统计</a></li>
-						<li><a href="#" title="“灵活金”/信用卡业务流程监测报表(客户经理/微贷经理维度)">“灵活金”/信用卡业务流程监测报表(客户经理/微贷经理维度)</a></li>
-						<li><a href="#" title="“灵活金”/普通信用卡业务流程监测报表(一级支行/二级支行维度)">“灵活金”/普通信用卡业务流程监测报表(一级支行/二级支行维度)</a></li>
-						<li><a href="#" title="(退回)“灵活金”业务/普通信用卡进件质量监测报表统计 (客户经理/微贷经理维度)">(退回)“灵活金”业务/普通信用卡进件质量监测报表统计 (客户经理/微贷经理维度)</a></li>
-						<li><a href="#" title="(退回)“灵活金”/普通信用卡业务进件质量监测报表统计(一级支行/二级支行维度)">(退回)“灵活金”/普通信用卡业务进件质量监测报表统计(一级支行/二级支行维度)</a></li>
-						<li><a href="#" title="(拒绝)“灵活金”业务/普通信用卡进件质量监测报表统计 (客户经理/微贷经理维度)">(拒绝)“灵活金”业务/普通信用卡进件质量监测报表统计 (客户经理/微贷经理维度)</a></li>
-						<li><a href="#" title="(拒绝)“灵活金”/普通信用卡业务进件质量监测报表统计(一级支行/二级支行维度)">(拒绝)“灵活金”/普通信用卡业务进件质量监测报表统计(一级支行/二级支行维度)</a></li>
-						<li><a href="#" title="辅助岗位人员工作质量检测报告">辅助岗位人员工作质量检测报告</a></li>
-						<li><a href="#" title="评审岗位人员风控状况统计">评审岗位人员风控状况统计</a></li>
-					</ul>
-				</li>
+				{%- endif %}
+				{%- if obj.privilege_access_value == "xtgl" and obj.privilege_operation != "0" %}
 				<li onclick="changeNav(this,10)">
 					<div onclick="showMenu(10)">
 						<img src="../static/img/10.png" class="tip"/>系统管理<img src="../static/img/secondNav0.png" class="open"/>
 					</div>
 					<ul class="second-nav" id="ul10">
-						<li><a href="#" title="权限配置">权限配置</a></li>
+						<!-- <li><a href="#" title="权限配置">权限配置</a></li>
 						<li><a href="#" title="数据权限">数据权限</a></li>
 						<li><a href="#" title="单位管理">单位管理</a></li>
-						<li><a href="#" title="部门管理">部门管理</a></li>
-						<li><a href="#" title="角色管理">角色管理</a></li>
-						<li><a href="#" title="用户管理">用户管理</a></li>
-						<li><a href="#" title="操作日志">操作日志</a></li>
+						<li><a href="#" title="部门管理">部门管理</a></li> -->
+						
+						<li onclick="changeiframe('System/user/1')"><a href="#" title="用户管理">用户管理</a></li>
+						<li onclick="changeiframe('System/jsqxgl/1')"><a href="#" title="角色管理">角色权限管理</a></li>
+						<li onclick="changeiframe('System/menu')"><a href="#" title="模块管理">模块管理</a></li>
+						<!-- <li><a href="#" title="操作日志">操作日志</a></li>
 						<li><a href="#" title="登录日志">登录日志</a></li>
 						<li><a href="#" title="数据字典">数据字典</a></li>
-						<li><a href="#" title="系统参数配置">系统参数配置</a></li>
+						<li><a href="#" title="系统参数配置">系统参数配置</a></li> -->
 					</ul>
-				</li> -->
+				</li> 
+				{%- endif %}
+				{%- endfor %}
 			</ul>			
 		</div>	
 	<!--***************************************右侧主页面*******************************************************-->

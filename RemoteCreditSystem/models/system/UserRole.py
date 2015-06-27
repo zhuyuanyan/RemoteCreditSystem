@@ -12,8 +12,8 @@ class UserRole(db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('rcs_role.id'))
 
     #外键
-    oa_userrole_ibfk_1 = db.relationship('User', backref='userrole_ibfk_1')
-    oa_userrole_ibfk_2 = db.relationship('Role', backref='userrole_ibfk_2')
+    rcs_userrole_ibfk_1 = db.relationship('User', backref='rcs_userrole_ibfk_1')
+    rcs_userrole_ibfk_2 = db.relationship('Role', backref='rcs_userrole_ibfk_2')
 
     def __init__(self,user_id,role_id):
         self.user_id = user_id

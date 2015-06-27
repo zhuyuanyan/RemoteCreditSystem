@@ -50,5 +50,20 @@ def page_not_found(error):
 #加载试图--johnny 放在最后防止循环引用
 #---------------------------------
 import views.index
+import views.system.rcs_user
+import views.system.rcs_menu
+
+import views.process.dqdc
+import views.process.dqdcXed_zcfzb
+import views.process.dqdcXed_jcjy
+import views.process.dqdcXed_ysqkfx
+import views.process.dqdcXed_xjlfx
+import views.process.dqdcXed_dbdydcb
+import views.process.dqdcXed_gdzcqd
+import views.process.dqdcXed_kc
+import views.process.dqdcXed_zkqd
+
+
+
 
 

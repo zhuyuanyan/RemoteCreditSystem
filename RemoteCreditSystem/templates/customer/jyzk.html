@@ -16,7 +16,7 @@
 		</style>
 	</head>
 	<body>		
-		<form class="iframeForm" action="/khzldy/khzl_jyzk_save/{{id}}" method="POST">
+		<form class="iframeForm" id="iframeForm" action="/khzldy/khzl_jyzk_save/{{id}}" method="POST">
 <!--*****************************经营状况**********************************-->
 			<table class="myTable">
 				<caption>经营状况</caption>
@@ -30,13 +30,13 @@
 					<td><b>行业</b></td>
 					<td colspan="3">
 						<select	name="">
-							<option>电子信息</option>
-							<option>互联网移动互联网</option>
-							<option>生物医药</option>
-							<option>先进制造</option>
-							<option>新能源及节能环保</option>
-							<option>新材料</option>
-							<option>文化创意</option>
+							<option value="1">电子信息</option>
+							<option value="2">互联网移动互联网</option>
+							<option value="3">生物医药</option>
+							<option value="4">先进制造</option>
+							<option value="5">新能源及节能环保</option>
+							<option value="6">新材料</option>
+							<option value="7">文化创意</option>
 						</select>
 					</td>
 				</tr>
@@ -68,9 +68,9 @@
 					<td><b>专利类型</b></td>
 					<td>
 						<select	name="">
-							<option>发明专利</option>
-							<option>实用新型</option>
-							<option>外观设计</option>
+							<option value="1">发明专利</option>
+							<option value="2">实用新型</option>
+							<option value="3">外观设计</option>
 						</select>
 					</td>
 				</tr>
@@ -91,10 +91,10 @@
 					<td><b>技术来源</b></td>
 					<td>
 						<select	name="">
-							<option>独立知识产权</option>
-							<option>合并研发</option>
-							<option>购买技术</option>
-							<option>其他</option>
+							<option value="1">独立知识产权</option>
+							<option value="2">合并研发</option>
+							<option value="3">购买技术</option>
+							<option value="4">其他</option>
 						</select>
 					</td>
 				</tr>
@@ -107,10 +107,10 @@
 					<td><b>技术来源</b></td>
 					<td>
 						<select	name="">
-							<option>独立知识产权</option>
-							<option>合并研发</option>
-							<option>购买技术</option>
-							<option>其他</option>
+							<option value="1">独立知识产权</option>
+							<option value="2">合并研发</option>
+							<option value="3">购买技术</option>
+							<option value="4">其他</option>
 						</select>
 					</td>
 				</tr>
@@ -123,10 +123,10 @@
 					<td><b>技术来源</b></td>
 					<td>
 						<select	name="">
-							<option>独立知识产权</option>
-							<option>合并研发</option>
-							<option>购买技术</option>
-							<option>其他</option>
+							<option value="1">独立知识产权</option>
+							<option value="2">合并研发</option>
+							<option value="3">购买技术</option>
+							<option value="4">其他</option>
 						</select>
 					</td>
 				</tr>
@@ -139,10 +139,10 @@
 					<td><b>技术来源</b></td>
 					<td>
 						<select	name="">
-							<option>独立知识产权</option>
-							<option>合并研发</option>
-							<option>购买技术</option>
-							<option>其他</option>
+							<option value="1">独立知识产权</option>
+							<option value="2">合并研发</option>
+							<option value="3">购买技术</option>
+							<option value="4">其他</option>
 						</select>
 					</td>
 				</tr>
@@ -155,10 +155,10 @@
 					<td><b>技术来源</b></td>
 					<td>
 						<select	name="">
-							<option>独立知识产权</option>
-							<option>合并研发</option>
-							<option>购买技术</option>
-							<option>其他</option>
+							<option value="1">独立知识产权</option>
+							<option value="2">合并研发</option>
+							<option value="3">购买技术</option>
+							<option value="4">其他</option>
 						</select>
 					</td>
 				</tr>
@@ -171,10 +171,10 @@
 					<td><b>技术来源</b></td>
 					<td>
 						<select	name="">
-							<option>独立知识产权</option>
-							<option>合并研发</option>
-							<option>购买技术</option>
-							<option>其他</option>
+							<option value="1">独立知识产权</option>
+							<option value="2">合并研发</option>
+							<option value="3">购买技术</option>
+							<option value="4">其他</option>
 						</select>
 					</td>
 				</tr>
@@ -187,10 +187,10 @@
 					<td><b>技术来源</b></td>
 					<td>
 						<select	name="">
-							<option>独立知识产权</option>
-							<option>合并研发</option>
-							<option>购买技术</option>
-							<option>其他</option>
+							<option value="1">独立知识产权</option>
+							<option value="2">合并研发</option>
+							<option value="3">购买技术</option>
+							<option value="4">其他</option>
 						</select>
 					</td>
 				</tr>
@@ -1078,42 +1078,42 @@
 
 				<tr>
 					<td><b>评分结果</b></td>
-					<td><input type="text" id="score_result" name="score_result" readonly/></td>
-					<input type="hidden" id="score_remark" name="score_remark" readonly/>
+					<td><input type="text" id="score_result" name="score_result" value="" readonly/></td>
+					<input type="hidden" id="score_remark" name="score_remark" value="" readonly/>
+					<td><b>禁入结果</b></td>
+					<td><input type="Textarea" id="score_stop" name="score_stop" /></td>
 				</tr>
 			</table>
-		<div class="pagebar">			
+			<input type="hidden" name="dataTotal" id="dataTotal"/>
+			<input type="hidden" name="dataTotalSelect" id="dataTotalSelect"/>
+
+		
+		</form>
+       <div class="pagebar">			
 			<div class="controlbtn">
-                <input type="submit" class="btn btn-info" id="button1" value="提交">
+                <input type="button" class="btn btn-info" id="button1" onclick="submitForm()" value="提交" disabled>
 				<input type="button" class="btn btn-info" onclick="sum()" id="button2" value="评分">
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
-		</form>
-       
 		<script type="text/javascript">		
 		$(document).ready(function() {
-				$("select").change(function(){
-					var str = $(this).val();
-					if(str=="禁入"){
-{#						$("#button1").hide();#}
-{#						$("#button2").hide();#}
-                        type=false;
-					}else{
-{#						$("#button1").show();#}
-{#						$("#button2").show();#}
-                        type=true;
-					}
-				});
-				$("select").each(function(i){
-					var str = $(this).val();
-					if(str=="禁入"){
-{#						$("#button1").hide();#}
-{#						$("#button2").hide();#}
-                        type=false;
-					}
-				});
-
+				var data_1 = "{{data.value_1}}";
+				var data_2 = "{{data.value_2}}";
+				if(data_1!=''){
+					$("input").each(function(i){
+					    if($(this).attr("type")!="button"){
+					    	$(this).val(data_1.split(",")[i]);
+					    	if($(this).attr("name")=="score_result"){
+					    	}
+					    }
+					});
+				}
+				if(data_2!=''){
+					$("select").each(function(i){
+					    $(this).val(data_2.split(",")[i]);
+					});
+				}
 			});
 			function addTd(table){	//表格添加行
 				var tr= document.getElementById(table).getElementsByTagName("tr");
@@ -1177,7 +1177,8 @@
 			var type =true;
 			var remark = new Array();
             function sum(){
-            	$("#score_remark").val("");
+            	type=true;
+				remark = new Array();
                 var total=0;
                 var hyzc=0;
                 var hy=0;
@@ -1246,10 +1247,37 @@
 
                 if(!type){
 					$("#score_result").val("不满足准入条件");
-					$("#score_remark").val(remark);
+
+					$("#score_stop").val(remark);
 				}else{
-					$("#score_result").val(total.toFixed(4));
+					$("#score_stop").val("");
+					//能提交
+					$("#button1").attr('disabled',false);
+					$("#score_result").val(total);
 				}
+
+				//记录form json值
+				var inputData = new Array();
+				$("input").each(function(i){
+				    var value = $(this).val();
+					if(value==''){
+				    	inputData.push(0);
+				    }else{
+				    	inputData.push(value);
+				    }  
+				});
+				var selectData = new Array();
+				$("select").each(function(i){
+				    var value = $(this).val();
+					if(value==''){
+				    	selectData.push(0);
+				    }else{
+				    	selectData.push(value);
+				    }   
+				});
+				//form组成json格式
+				$("#dataTotal").val(inputData);
+				$("#dataTotalSelect").val(selectData);
             }
             function transfer(value){
 				if(value.val()=="禁入"){
@@ -1262,6 +1290,10 @@
 				}else{
 					return value.val();
 				}
+			}
+
+			function submitForm(){
+				$("#iframeForm").submit();
 			}
 		</script>
 	</body>
