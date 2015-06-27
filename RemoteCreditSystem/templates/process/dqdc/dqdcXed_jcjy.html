@@ -1,0 +1,929 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>	
+	<meta charset="utf-8">
+	<title>小微贷款业务管理系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+	<meta name="author" content="Muhammad Usman">
+
+	<!-- The styles -->
+	<link href="/static/css/bootstrap_xh.css" rel="stylesheet">
+	<link href="/static/css/main_xh.css" rel="stylesheet">	
+	<!-- ************************验证样式************************-->
+	<script src="/static/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+	<link href="/static/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+	<style type="text/css">	
+		input.btn-mini{width:20px;}	
+		textarea{width:80%;}	
+		.table-list .table-label{width:180px;}	
+	</style>
+	<script type="text/javascript">
+		function setInput(){
+			$('input[type=text]').click();
+		}
+	</script>
+</head>
+
+<body onload="setInput();setTimeOut();parent.parent.scroll(0,0);">		
+	<form id="content" class="content" method="POST" action="/Process/dqdc/dqdcXed_jcjy/{{loan_apply_id}}">
+		{%- with messages = get_flashed_messages(with_categories=true) %}
+		  	{%- if messages %}
+	    	{%- for category, message in messages %}
+	    	<div class="alert alert-{{category}}">
+	      		{{message}}
+	      	</div>
+	    	{%- endfor %}
+		  	{%- endif %}
+		{%- endwith %}
+	<!--*****************************************交叉检验**************************************************-->
+		<i class="icon-bookmark"></i><span class="titletip">交叉检验</span>
+		{%- if cross_examination %}
+		<div class="divBorder">
+			<table class="table-list">				
+				<tr>
+					{%- for obj in cross_examination %}
+						{%- if obj.loan_type == 0 %}
+						<td class="table-label">{{obj.items_name}}</td>
+						<td colspan="6">
+							<span>
+								<input type="hidden" name="type_0" value="0">
+								<input type="hidden" name="name_0" value="{{obj.items_name}}">
+								<textarea name="value_0" onchange="spryMaxLength(this,2048)">{{obj.content}}</textarea>
+								<span class="errorInfo">字符数不得大于2048</span>
+							</span>
+						</td>
+						{%- endif %}
+					{%- endfor %}	
+				</tr>		
+				<tr>
+					{%- for obj in cross_examination %}
+						{%- if obj.loan_type == 1 %}
+						<td class="table-label">{{obj.items_name}}
+							<input type="hidden" name="type_1" value="1">
+							<input type="hidden" name="name_1" value="{{obj.items_name}}">
+							{%- if profit_jcjy %}
+								<input type="button" value="录入文字描述" class="btn btn-info" onclick="changeAction(this)">
+								<input type="hidden" id="record_type" name="record_type" value="2">
+							{%- else %}
+								<input type="button" value="录入详细数据" class="btn btn-info" onclick="changeAction(this)">
+								<input type="hidden" id="record_type" name="record_type" value="1">
+							{%- endif %}
+						</td>
+						<td colspan="6">
+							{%- if profit_jcjy %}
+							<div id="jcjy1" style="display:none">
+							{%- else %}
+							<div id="jcjy1">
+							{%- endif %}
+								<textarea name="value_1" onchange="spryMaxLength(this,2048)">{{obj.content}}</textarea>
+								<span class="errorInfo">字符数不得大于2048</span>
+							</div>	
+							{%- if profit_jcjy %}
+							<div id="jcjy2">	
+							{%- else %}
+							<div style="display:none;" id="jcjy2">	
+							{%- endif %}
+								<input type="button" value="+" onclick="addTd2('tableAll','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+								<input type="button" value="-" onclick="removeTd2('dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+								<div class="divBorder">
+									<div id="tableAll">		
+										<table class="table-list">
+											<tr>
+												<th style="width:20%;">名称</th>
+												<th style="width:20%;">进价</th>
+												<th style="width:20%;">销售价</th>
+												<th style="width:20%;">占比(%)</th>
+												<th style="width:20%;">毛利(%)</th>
+											</tr>	
+										</table>
+										{%- for i in range(maxIndex+1) %}
+											<table class="table-list" id="table{{i}}" rule="block">
+												{%- for obj in profit_jcjy %}
+												
+													{%- if obj.index == i %}
+														{%- if obj.type == 1 %}
+															<tr>
+																<td style="width:20%;">
+																	<input type="text" name="name" value="{{obj.name}}" onchange="setName(this,{{obj.index}})"/>
+																	<input type="hidden" name="type" value="{{obj.type}}" />
+																</td>
+																<td style="width:20%;">
+																	<input type="button" value="+" onclick="addTd3('table{{obj.index}}','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+																	<input type="button" value="-" onclick="removeTd('table{{obj.index}}','dqdcXed_zcfzb');$(this).parent().parent().parent().find('input[name=price]').change();" class="btn btn-info btn-mini"/>	
+																	<input type="hidden" name="bid"/>
+																</td>
+																<td style="width:20%;"><input type="hidden" name="price"/> </td>
+																<td style="width:20%;"> <input type="hidden" name="ratio"/> </td>
+																<td style="width:20%;"><input type="text" name="profit" value="{{obj.profit}}" readonly/></td>
+															</tr>
+														{%- endif %}
+													
+														{%- if obj.type == 2 %}
+															<tr>
+																<td>
+																	<input type="text" name="name" value="{{obj.name}}"/>
+																	<input type="hidden" name="type" value="{{obj.type}}"/>
+																</td>
+																<td><input type="text" name="bid" value="{{obj.bid}}" onchange="Maoli(this);Zmaoli(this,{{obj.index}})"/> </td>
+																<td><input type="text" name="price" value="{{obj.price}}" onchange="Maoli(this);Zmaoli(this,{{obj.index}})"/></td>
+																<td><input type="text" name="ratio" value="{{obj.ratio}}" onchange="Zmaoli(this,{{obj.index}})"/><input type="hidden" name="zc"/> </td>
+																<td><input type="text" name="profit" value="{{obj.profit}}" readonly/> </td>
+															</tr>
+														{%- endif %}
+														
+													{%- endif %}
+													
+												{%- endfor %}	
+											</table>
+										{%- endfor %}
+																	
+									</div>	
+									<table class="table-list" id="tableHj">		
+										{%- for obj in profit_jcjy %}
+											{%- if obj.type == 3 %}						
+											<tr>
+												<td style="width:20%;">
+													<input type="text" name="name" value="{{obj.name}}" readonly/>
+													<input type="hidden" name="type" value="{{obj.type}}"/> 
+												</td>
+												<td style="width:20%;"><input type="hidden" name="bid"/></td>
+												<td style="width:20%;"><input type="hidden" name="price"/></td>
+												<td style="width:20%;"><input type="text" name="ratio" value="{{obj.ratio}}" onchange="ZJQmaoli(this)"/><input type="hidden" name="zcc"/> </td>
+												<td style="width:20%;"><input type="text" name="profit" value="{{obj.profit}}" readonly/> </td>
+											</tr>
+											{%- endif %}
+										{%- endfor %}														
+									</table>
+									<table class="table-list" id="tableTotal">	
+										{%- for obj in profit_jcjy %}
+											{%- if obj.type == 4 %}							
+											<tr>
+												<td style="width:20%;text-align:center;font-weight:bold">总加权毛利率
+													<input type="hidden" name="name" value="{{obj.name}}"/>
+													<input type="hidden" name="type" value="{{obj.type}}"/> 
+												</td>
+												<td style="width:20%;"><input type="hidden" name="bid"/></td>
+												<td style="width:20%;"><input type="hidden" name="price"/></td>
+												<td style="width:20%;"><input type="hidden" name="ratio"/> </td>
+												<td style="width:20%;"><input type="text" name="profit" value="{{obj.profit}}" readonly/> </td>
+											</tr>	
+											{%- endif %}
+										{%- endfor %}														
+									</table>
+								</div>	
+							</div>	
+						</td>	
+						</td>
+						{%- endif %}
+					{%- endfor %}
+				</tr>
+				<tr>
+					{%- for obj in cross_examination %}
+						{%- if obj.loan_type == 2 %}
+						<td class="table-label">{{obj.items_name}}</td>
+						<td colspan="6">
+							<span>
+								<input type="hidden" name="type_2" value="2">
+								<input type="hidden" name="name_2" value="{{obj.items_name}}">
+								<textarea name="value_2" onchange="spryMaxLength(this,2048)">{{obj.content}}</textarea>
+								<span class="errorInfo">字符数不得大于2048</span>
+							</span>
+						</td>	
+						{%- endif %}
+					{%- endfor %}
+				</tr>
+			</table>
+		</div>	
+		<i class="icon-bookmark"></i><span class="titletip">权益交叉检验</span>
+		<div class="divBorder">
+			<table class="table-list" id="qcqyhj">
+				{%- for obj in cross_examination %}
+					{%- if obj.loan_type == 3 %}
+					<tr>
+						<td class="table-label">
+							{%- if obj.index == 0 %}
+								<b>{{obj.items_name}}</b>
+							{%- else %}
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{obj.items_name}}
+							{%- endif %}
+							<input type="hidden" name="type_3" value="3">
+							<input type="hidden" name="name_3" value="{{obj.items_name}}">
+						</td>
+						<td style="text-align:left">
+							{%- if obj.index == 0 %}
+							<input type="text" name="value_3" onkeyup="setJe(this);" maxlength="11" onclick="setJe(this)" value="{{obj.content}}" readonly/>
+							<input type="button" value="+" onclick="addTd('qcqyhj','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+							<input type="button" value="-" onclick="removeTd('qcqyhj','dqdcXed_zcfzb');$('input[name=value_3]').blur();$('input[name=value_4]').blur();" class="btn btn-info btn-mini"/>
+							{%- else %}
+							<input type="text" name="value_3" onkeyup="setJe(this);" onblur='hj(3);yyqy();qyce();qyjcjybl()' maxlength="11" onclick="setJe(this)" value="{{obj.content}}" />
+							{%- endif %}
+							<br/><span class="je">人民币</span>
+							<span class="errorInfo"></span>	
+						</td>
+						<td class="table-label">
+							{%- if obj.index == 0 %}
+								<b>{{cross_examination[cross_examination.index(obj)+count_3].items_name}}</b>
+							{%- else %}
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{cross_examination[cross_examination.index(obj)+count_3].items_name}} 
+							{%- endif %}	
+							<input type="hidden" name="type_4" value="4">
+							<input type="hidden" name="name_4" value="{{cross_examination[cross_examination.index(obj)+count_3].items_name}}">
+						</td>
+						<td>
+							{%- if cross_examination[cross_examination.index(obj)+count_3].index == 0 %}
+							<input type="text" name="value_4" onkeyup="setJe(this);" maxlength="11" onclick="setJe(this)" value="{{obj.content}}" readonly/>
+							<input type="button" value="+" onclick="addTd('qcqyhj','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+							<input type="button" value="-" onclick="removeTd('qcqyhj','dqdcXed_zcfzb');$('input[name=value_3]').blur();$('input[name=value_4]').blur();" class="btn btn-info btn-mini"/>
+							{%- else %}
+							<input type="text" name="value_4" onkeyup="setJe(this);" onblur='hj(4);yyqy();qyce();fxqjljsr();qyjcjybl()' maxlength="11" onclick="setJe(this)" value="{{cross_examination[cross_examination.index(obj)+count_3].content}}" />
+							{%- endif %}
+							<br/><span class="je">人民币</span>
+							<span class="errorInfo"></span>	
+						</td>
+					</tr>
+					{%- endif %}
+				{%- endfor %}																	
+			</table>
+		</div>		
+		<div class="divBorder">
+			<table class="table-list" id="dxzchj">
+				{%- for obj in cross_examination %}
+					{%- if obj.loan_type == 5 %}
+					<tr>
+						<td class="table-label">
+							{%- if obj.index == 0 %}
+								<b>{{obj.items_name}}</b>
+							{%- else %}
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{obj.items_name}}
+							{%- endif %}
+							<input type="hidden" name="type_5" value="5">
+							<input type="hidden" name="name_5" value="{{obj.items_name}}">
+						</td>
+						<td>
+							{%- if obj.index == 0 %}
+							<input type="text" name="value_5" onkeyup="setJe(this);" maxlength="11" onclick="setJe(this)" value="{{obj.content}}" readonly/>
+							<input type="button" value="+" onclick="addTd('dxzchj','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+							<input type="button" value="-" onclick="removeTd('dxzchj','dqdcXed_zcfzb');$('input[name=value_5]').blur();" class="btn btn-info btn-mini"/>
+							{%- else %}
+							<input type="text" name="value_5" onkeyup="setJe(this);" onblur='hj(5);yyqy();qyce();qyjcjybl()' maxlength="11" onclick="setJe(this)" value="{{obj.content}}" />
+							{%- endif %}
+							<br/><span class="je">人民币</span>
+							<span class="errorInfo"></span>	
+						</td>
+					</tr>	
+					{%- endif %}
+				{%- endfor %}															
+			</table>
+		</div>
+		<div class="divBorder">
+			<table class="table-list" id="dxzchj">
+				
+					<tr>
+						{%- for obj in cross_examination %}
+							{%- if obj.loan_type == 6 %}
+							<td class="table-label">
+								<b>{{obj.items_name}} </b>
+								<input type="hidden" name="type_6" value="6">
+								<input type="hidden" name="name_6" value="{{obj.items_name}}">
+							</td>
+							<td>
+								<input type="text" name="value_6" onkeyup="setJe(this);" onblur="yyqy();qyce();fxqjljsr();qyjcjybl()" maxlength="11" onclick="setJe(this)" value="{{obj.content}}"/>
+								<br/><span class="je">人民币</span>
+								<span class="errorInfo"></span>	
+							</td>
+							{%- endif %}
+
+							{%- if obj.loan_type == 7 %}
+							<td class="table-label">
+								<b>{{obj.items_name}} </b>
+								<input type="hidden" name="type_7" value="7">
+								<input type="hidden" name="name_7" value="{{obj.items_name}}">
+							</td>
+							<td>
+								<input type="text" name="value_7" onkeyup="setJe(this);" onblur="yyqy();qyce();fxqjljsr();qyjcjybl()" maxlength="11" onclick="setJe(this)" value="{{obj.content}}"/>
+								<br/><span class="je">人民币</span>
+								<span class="errorInfo"></span>	
+							</td>
+							{%- endif %}
+						{%- endfor %}
+						</tr>
+						<tr>
+						{%- for obj in cross_examination %}
+							{%- if obj.loan_type == 8 %}
+							<td class="table-label">
+								<b>{{obj.items_name}} </b>
+								<input type="hidden" name="type_8" value="8">
+								<input type="hidden" name="name_8" value="{{obj.items_name}}">
+							</td>
+							<td>
+								<input type="text" name="value_8" onkeyup="setJe(this);" onblur="yyqy();qyce();fxqjljsr();qyjcjybl()" maxlength="11" onclick="setJe(this)" value="{{obj.content}}"/>
+								<br/><span class="je">人民币</span>
+								<span class="errorInfo"></span>	
+							</td>
+							{%- endif %}
+
+							{%- if obj.loan_type == 9 %}
+							<td class="table-label">
+								<b>{{obj.items_name}} </b>
+								<input type="hidden" name="type_9" value="9">
+								<input type="hidden" name="name_9" value="{{obj.items_name}}">
+							</td>
+							<td>
+								<input type="text" name="value_9" onkeyup="setJe(this);" onblur="yyqy();qyce();fxqjljsr();qyjcjybl()" maxlength="11" onclick="setJe(this)" value="{{obj.content}}"/>
+								<br/><span class="je">人民币</span>
+								<span class="errorInfo"></span>	
+							</td>
+							{%- endif %}
+						{%- endfor %}
+					</tr>													
+			</table>
+		</div>
+		<div class="divBorder">
+			<table class="table-list" id="dxzchj">
+				<tr>
+					{%- for obj in cross_examination %}
+						{%- if obj.loan_type == 10 %}
+						<td class="table-label">
+							<b>{{obj.items_name}} </b>
+							<input type="hidden" name="type_10" value="10">
+							<input type="hidden" name="name_10" value="{{obj.items_name}}">
+						</td>
+						<td>
+							<input type="text" name="value_10" onclick="setJe2(this)" value="{{obj.content}}" readonly/>
+							<br/><span class="je">人民币</span>
+							<span class="errorInfo"></span>	
+						</td>
+						{%- endif %}
+
+						{%- if obj.loan_type == 11 %}
+						<td class="table-label">
+							<b>{{obj.items_name}} </b>
+							<input type="hidden" name="type_11" value="11">
+							<input type="hidden" name="name_11" value="{{obj.items_name}}">
+						</td>
+						<td>
+							<input type="text" name="value_11" onclick="setJe(this)" value="{{balance_sheet.content}}" readonly/>
+							<br/><span class="je">人民币</span>
+							<span class="errorInfo"></span>	
+						</td>
+						{%- endif %}
+					{%- endfor %}
+				</tr>
+				<tr>
+					{%- for obj in cross_examination %}
+						{%- if obj.loan_type == 12 %}
+						<td class="table-label">
+							<b>{{obj.items_name}} </b>
+							<input type="hidden" name="type_12" value="12">
+							<input type="hidden" name="name_12" value="{{obj.items_name}}">
+						</td>
+						<td>
+							<input type="text" name="value_12" onclick="setJe2(this)" value="{{obj.content}}" readonly/>
+							<br/><span class="je">人民币</span>
+							<span class="errorInfo"></span>	
+						</td>
+						{%- endif %}
+
+						{%- if obj.loan_type == 13 %}
+						<td class="table-label">
+							<b>{{obj.items_name}} </b>
+							<input type="hidden" name="type_13" value="13">
+							<input type="hidden" name="name_13" value="{{obj.items_name}}">
+						</td>
+						<td>
+							<input type="text" name="value_13" onkeyup="setJe(this);" maxlength="11" onclick="setJe(this)" value="{{obj.content}}" readonly/>
+							<br/><span class="je">人民币</span>
+							<span class="errorInfo"></span>	
+						</td>
+						{%- endif %}
+					{%- endfor %}
+				</tr>		
+				<tr>
+					{%- for obj in cross_examination %}
+						{%- if obj.loan_type == 14 %}
+						<td class="table-label">
+							<b>{{obj.items_name}} </b>
+							<input type="hidden" name="type_14" value="14">
+							<input type="hidden" name="name_14" value="{{obj.items_name}}">
+						</td>
+						<td colspan="3">
+							<input type="text" name="value_14" onchange="check(this,1,100)" onkeyup="value=value.replace(/[^\d]/g,'')" style="width:60px" value="{{obj.content}}" readonly/>%
+							<br/>&nbsp;<span class="errorInfo">请输入1-100的有效数字</span>
+						</td>
+						{%- endif %}
+					{%- endfor %}
+				</tr>																
+			</table>
+		</div>
+		{%- else %}
+		<div class="divBorder">
+			<table class="table-list">				
+				<tr>
+					<td class="table-label">销售额交叉检验
+						<input type="hidden" name="type_0" value="0">
+						<input type="hidden" name="name_0" value="销售额交叉检验">
+					</td>
+					<td colspan="6">
+						<span>
+							<textarea name="value_0" onchange="spryMaxLength(this,2048)"></textarea>
+							<span class="errorInfo">字符数不得大于2048</span>
+						</span>
+					</td>	
+				</tr>		
+				<tr>
+					<td class="table-label">毛利润/成本交叉检验
+						<input type="hidden" name="type_1" value="1">
+						<input type="hidden" name="name_1" value="毛利润/成本交叉检验"><br/>
+						<input type="button" name="" value="录入详细数据" class="btn btn-info" onclick="changeAction(this)">
+						<input type="hidden" id="record_type" name="record_type" value="1">
+					</td>
+					<td colspan="6">						
+						<div id="jcjy1">
+							<textarea name="value_1" onchange="spryMaxLength(this,2048)"></textarea>
+							<span class="errorInfo">字符数不得大于2048</span>
+						</div>						
+						<div style="display:none;" id="jcjy2">	
+							<input type="button" value="+" onclick="addTd2('tableAll','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+							<input type="button" value="-" onclick="removeTd2('dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>	
+							<div class="divBorder">
+								<div id="tableAll">		
+									<table class="table-list">
+										<tr>
+											<th style="width:20%;">名称</th>
+											<th style="width:20%;">进价</th>
+											<th style="width:20%;">销售价</th>
+											<th style="width:20%;">占比(%)</th>
+											<th style="width:20%;">毛利(%)</th>
+										</tr>	
+									</table>
+									<table class="table-list" id="table0" rule="block">
+										<tr>
+											<td style="width:20%;">
+												<input type="text" name="name" value="加权毛利率" onchange="setName(this,0)"/>
+												<input type="hidden" name="type" value="1" />
+											</td>
+											<td style="width:20%;">
+												<input type="button" value="+" onclick="addTd3('table0','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+												<input type="button" value="-" onclick="removeTd('table0','dqdcXed_zcfzb');$(this).parent().parent().parent().find('input[name=price]').change();" class="btn btn-info btn-mini"/>	
+												<input type="hidden" name="bid"/>	
+											</td>
+											<td style="width:20%;"><input type="hidden" name="price"/></td>
+											<td style="width:20%;"><input type="hidden" name="ratio"/></td>
+											<td style="width:20%;"><input type="text" name="profit" readonly/></td>
+										</tr>
+										<tr>
+											<td>
+												<input type="text" name="name"/>
+												<input type="hidden" name="type" value="2"/>
+											</td>
+											<td><input type="text" name="bid" onchange="Maoli(this);Zmaoli(this,0)"/></td>
+											<td><input type="text" name="price" onchange="Maoli(this);Zmaoli(this,0)"/></td>
+											<td><input type="text" name="ratio" onchange="Zmaoli(this,0)"/><input type="hidden" name="zc"/></td>
+											<td><input type="text" name="profit" readonly/></td>
+										</tr>											
+									</table>								
+								</div>	
+								<table class="table-list" id="tableHj">								
+									<tr>
+										<td style="width:20%;">
+											<input type="text" name="name" value="加权毛利率" readonly/>
+											<input type="hidden" name="type" value="3"/>
+										</td>
+										<td style="width:20%;"><input type="hidden" name="bid"/></td>
+										<td style="width:20%;"><input type="hidden" name="price"/></td>
+										<td style="width:20%;"><input type="text" name="ratio" onchange="ZJQmaoli(this)"/><input type="hidden" name="zcc"/></td>
+										<td style="width:20%;"><input type="text" name="profit" readonly/></td>
+									</tr>														
+								</table>
+								<table class="table-list" id="tableTotal">								
+									<tr>
+										<td style="width:20%;text-align:center;font-weight:bold">总加权毛利率
+											<input type="hidden" name="name" value="总加权毛利率"/>
+											<input type="hidden" name="type" value="4"/>
+										</td>
+										<td style="width:20%;"><input type="hidden" name="bid"/></td>
+										<td style="width:20%;"><input type="hidden" name="price"/></td>
+										<td style="width:20%;"><input type="hidden" name="ratio"/></td>
+										<td style="width:20%;"><input type="text" name="profit" readonly/></td>
+									</tr>														
+								</table>
+							</div>	
+						</div>	
+					</td>	
+				</tr>
+				<tr>
+					<td class="table-label">其他交叉检验
+						<input type="hidden" name="type_2" value="2">
+						<input type="hidden" name="name_2" value="毛利润/成本交叉检验">
+					</td>
+					<td colspan="6">
+						<span>
+							<textarea name="value_2" onchange="spryMaxLength(this,2048)"></textarea>
+							<span class="errorInfo">字符数不得大于2048</span>
+						</span>
+					</td>	
+				</tr>
+			</table>
+		</div>	
+		<i class="icon-bookmark"></i><span class="titletip">权益交叉检验</span>
+		<div class="divBorder">
+			<table class="table-list" id="qcqyhj">
+				<tr>
+					<td class="table-label">
+						<b>期初权益合计</b>
+						<input type="hidden" name="type_3" value="3">
+						<input type="hidden" name="name_3" value="期初权益合计">
+					</td>
+					<td style="text-align:left">
+						<input type="text" name="value_3" onkeyup="setJe(this);" value="0" onclick="setJe(this)" readonly/>
+						<input type="button" value="+" onclick="addTd('qcqyhj','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+						<input type="button" value="-" onclick="removeTd('qcqyhj','dqdcXed_zcfzb');$('input[name=value_3]').blur();$('input[name=value_4]').blur();" class="btn btn-info btn-mini"/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+					<td class="table-label">
+						<b>分析期间收入合计</b>
+						<input type="hidden" name="type_4" value="4">
+						<input type="hidden" name="name_4" value="分析期间收入合计">
+					</td>
+					<td>
+						<input type="text" name="value_4" onkeyup="setJe(this);" value="0" onclick="setJe(this)" readonly/>
+						<input type="button" value="+" onclick="addTd('qcqyhj','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+						<input type="button" value="-" onclick="removeTd('qcqyhj','dqdcXed_zcfzb');$('input[name=value_3]').blur();$('input[name=value_4]').blur();" class="btn btn-info btn-mini"/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+				</tr>																	
+			</table>
+		</div>		
+		<div class="divBorder">
+			<table class="table-list" id="dxzchj">
+				<tr>
+					<td class="table-label">
+						<b>大项支出合计</b>
+						<input type="hidden" name="type_5" value="5">
+						<input type="hidden" name="name_5" value="大项支出合计">
+					</td>
+					<td>
+						<input type="text" name="value_5" onkeyup="setJe(this);" value="0" onclick="setJe(this)" readonly/>
+						<input type="button" value="+" onclick="addTd('dxzchj','dqdcXed_zcfzb')" class="btn btn-info btn-mini"/>
+						<input type="button" value="-" onclick="removeTd('dxzchj','dqdcXed_zcfzb');$('input[name=value_5]').blur();" class="btn btn-info btn-mini"/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+				</tr>																
+			</table>
+		</div>
+		<div class="divBorder">
+			<table class="table-list" id="dxzchj">
+				<tr>
+					<td class="table-label">
+						<b>其他收入</b>
+						<input type="hidden" name="type_6" value="6">
+						<input type="hidden" name="name_6" value="其他收入">
+					</td>
+					<td>
+						<input type="text" name="value_6" onkeyup="setJe(this);" onblur="yyqy();qyce();fxqjljsr();qyjcjybl()" maxlength="11" onclick="setJe(this)"/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+					<td class="table-label">
+						<b>升值</b>
+						<input type="hidden" name="type_7" value="7">
+						<input type="hidden" name="name_7" value="升值">
+					</td>
+					<td>
+						<input type="text" name="value_7" onkeyup="setJe(this);" onblur="yyqy();qyce();fxqjljsr();qyjcjybl()" maxlength="11" onclick="setJe(this)"/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+				</tr>
+				<tr>
+					<td class="table-label">
+						<b>折旧<br/>（资产负债表内折旧）</b>
+						<input type="hidden" name="type_8" value="8">
+						<input type="hidden" name="name_8" value="折旧(资产负债表内折旧)">
+					</td>
+					<td>
+						<input type="text" name="value_8" onkeyup="setJe(this);" onblur="yyqy();qyce();fxqjljsr();qyjcjybl()" maxlength="11" onclick="setJe(this)"/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+					<td class="table-label">
+						<b>表外资产</b>
+						<input type="hidden" name="type_9" value="9">
+						<input type="hidden" name="name_9" value="表外资产">
+					</td>
+					<td>
+						<input type="text" name="value_9" onkeyup="setJe(this);" onblur="yyqy();qyce();fxqjljsr();qyjcjybl()" maxlength="11" onclick="setJe(this)"/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+				</tr>																
+			</table>
+		</div>
+		<div class="divBorder">
+			<table class="table-list" id="dxzchj">
+				<tr>
+					<td class="table-label">
+						<b>应有权益</b>
+						<input type="hidden" name="type_10" value="10">
+						<input type="hidden" name="name_10" value="应有权益">
+					</td>
+					<td>
+						<input type="text" name="value_10" value="0" onclick="setJe2(this)" readonly/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+					<td class="table-label">
+						<b>实际权益<br/>（资产负债表所有者权益）</b>
+						<input type="hidden" name="type_11" value="11">
+						<input type="hidden" name="name_11" value="实际权益(资产负债表所有者权益)">
+					</td>
+					<td>
+						<input type="text" name="value_11" onkeyup="setJe(this);" value="{{balance_sheet.content}}" onclick="setJe(this)" readonly/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+				</tr>
+				<tr>
+					<td class="table-label">
+						<b>权益差额<br/>（应有权益-实际权益）</b>
+						<input type="hidden" name="type_12" value="12">
+						<input type="hidden" name="name_12" value="权益差额(应有权益-实际权益)">
+					</td>
+					<td>
+						<input type="text" name="value_12" value="0" onclick="setJe2(this)" readonly/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+					<td class="table-label">
+						<b>分析期间累计收入</b>
+						<input type="hidden" name="type_13" value="13">
+						<input type="hidden" name="name_13" value="分析期间累计收入">
+					</td>
+					<td>
+						<input type="text" name="value_13" onkeyup="setJe(this);" value="0" onclick="setJe(this)" readonly/>
+						<br/><span class="je">人民币</span>
+						<span class="errorInfo"></span>	
+					</td>
+				</tr>		
+				<tr>
+					<td class="table-label">
+						<b>权益交叉检验比率</b>
+						<input type="hidden" name="type_14" value="14">
+						<input type="hidden" name="name_14" value="权益交叉检验比率">
+					</td>
+					<td colspan="3">
+						<input type="text" name="value_14" onchange="check(this,1,100)" onkeyup="value=value.replace(/[^\d]/g,'')" style="width:60px" readonly/>%
+						<br/>&nbsp;<span class="errorInfo">请输入1-100的有效数字</span>
+					</td>
+					
+				</tr>																
+			</table>
+		</div>
+		{%- endif %}
+		<input type="submit" value="保存" class="btn btn-info"/>
+	</form>
+
+	<script src="../../../static/js/jquery-1.7.2.min.js"></script>
+	<script src="../../../static/js/bootstrap.min.js"></script>
+	<script src="../../../static/js/script.js"></script>
+	<script src="../../../static/js/process.js"></script>
+	<script type="text/javascript">
+		var max=0;
+		var jegs=0;
+		var num=0;
+		var idCard=0;
+		var phone=0;
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("initial_equity", "none");
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("profit_period", "none");
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("injection_period", "none");
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("pick_period", "none");
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("depreciation", "none");
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("appreciation", "none");
+		var sprytextfield1 = new Spry.Widget.ValidationTextField("price", "none");
+		function hj(num){
+			var sum=0;
+			var length=$("input[name=value_"+num+"]").length;
+			for(i=1;i<length;i++){
+				var a=$("input[name=value_"+num+"]")[i].value;
+				if(a==""){a=0;}else{a=parseInt(a);}
+				sum+=a;
+			}
+			$("input[name=value_"+num+"]")[0].value=sum;
+			$("input[name=value_"+num+"]")[0].click();
+		}
+		function yyqy(){//应有权益=期初权益+分析期间收入-大项支出+其他收入+升值-折旧（计入资产负债表的）-表外资产
+			var sum=0;
+			var a3=$("input[name=value_3]")[0].value;//期初权益
+			var a4=$("input[name=value_4]")[0].value;//分析期间收入
+			var a5=$("input[name=value_5]")[0].value;//大项支出
+			var a6=$("input[name=value_6]").val();//其他收入
+			var a7=$("input[name=value_7]").val();//升值
+			var a8=$("input[name=value_8]").val();//折旧（计入资产负债表的）
+			var a9=$("input[name=value_9]").val();//表外资产
+			if(a3==""){a3=0;}else{a3=parseInt(a3);}
+			if(a4==""){a4=0;}else{a4=parseInt(a4);}
+			if(a5==""){a5=0;}else{a5=parseInt(a5);}
+			if(a6==""){a6=0;}else{a6=parseInt(a6);}
+			if(a7==""){a7=0;}else{a7=parseInt(a7);}
+			if(a8==""){a8=0;}else{a8=parseInt(a8);}
+			if(a9==""){a9=0;}else{a9=parseInt(a9);}
+			sum=a3+a4-a5+a6+a7-a8-a9;
+			$("input[name=value_10]").val(sum);
+			$("input[name=value_10]").click();
+		}
+		function qyce(){//权益差额=应有权益-实际权益
+			var sum=0;
+			var a1=$("input[name=value_10]").val();//应有权益
+			var a2=$("input[name=value_11]").val();//实际权益
+			if(a1==""){a1=0;}else{a1=parseInt(a1);}
+			if(a2==""){a2=0;}else{a2=parseInt(a2);}
+			sum=a1-a2;
+			$("input[name=value_12]").val(sum);
+			$("input[name=value_12]").click();
+		}
+		function fxqjljsr(){//分析期间累计收入=分析期间收入合计			
+			var a1=$("input[name=value_4]")[0].value;//分析期间收入合计			
+			if(a1==""){a1=0;}else{a1=parseInt(a1);}
+			$("input[name=value_13]").val(a1);
+			$("input[name=value_13]").click();
+		}
+		function qyjcjybl(){//权益交叉检验比率= 权益差额/分析期间累计收入
+			var sum=0;
+			var a1=$("input[name=value_12]").val();//权益差额
+			var a2=$("input[name=value_13]").val();//分析期间累计收入
+			if(a1==""){a1=0;}else{a1=parseInt(a1);}
+			if(a2==""){a2=0;}else{a2=parseInt(a2);}
+			if(a2==0){
+				sum=0
+			}
+			else{
+				sum=a1/a2*100;
+				sum=Math.round(sum*100)/100
+			}
+			
+			$("input[name=value_14]").val(sum);
+			$("input[name=value_14]").click();
+		}
+		var i=0;
+		function changeAction(obj){//切换毛利润/成本交叉检验录入方式
+			if(i==0){
+				$(obj).val("录入文字描述");
+				$("#record_type").val("2")
+				$("#jcjy1").hide();
+				$("#jcjy2").show();
+				i=1;
+				doubleIframe("dqdcXed_zcfzb");
+			}
+			else{
+				$(obj).val("录入详细数据");
+				$("#record_type").val("1")
+				$("#jcjy2").hide();
+				$("#jcjy1").show();
+				i=0;
+				doubleIframe("dqdcXed_zcfzb");
+			}
+		}
+		function addTd3(table,frameid){//添加行
+		    //毛利润/成本交叉检验 
+				var num=parseInt(table.slice(5))
+		        $("#"+table).append("<tr>"+
+										"<td><input type='text' name='name'/><input type='hidden' name='type' value='2'/></td>"+
+										"<td><input type='text' name='bid' onchange='Maoli(this);Zmaoli(this,"+num+")'/></td>"+
+										"<td><input type='text' name='price' onchange='Maoli(this);Zmaoli(this,"+num+")'/></td>"+
+										"<td><input type='text' name='ratio' onchange='Zmaoli(this,"+num+")'/><input type='hidden' name='zc'/></td>"+
+										"<td><input type='text' name='profit' readonly/></td>"+
+									"</tr>	");		  
+		    doubleIframe(frameid);
+		}
+		//表格删除行
+		function removeTd(table,frameid){   
+			if(max==0&&jegs==0&&num==0&&idCard==0){//判断页面中是否有错误，如果未判断直接删除可能导致提交按钮不可用
+				var tr= document.getElementById(table).getElementsByTagName("tr");
+				if(tr.length>2){//至少要保留一行
+					document.getElementById(table).deleteRow(tr.length-1);//删除最后一行
+			   }
+				doubleIframe(frameid);
+			}
+			else
+				alert("页面中有错误，请修改后再进行删除操作！")
+		}
+		function addTd2(table,frameid){//添加块
+			var num=$("table[rule=block]").length//获取rule=block的所有table长度
+			var id="table"+num//动态设置id
+			var p=document.createElement("table");//创建一个table元素
+			p.style.width="100%"//设置table的宽度
+			string="<tr>"+//设置table内部HTML
+							"<td style='width:20%;'>"+
+								"<input type='text' name='name' value='加权毛利率' onchange='setName(this,"+num+")'/>"+
+								"<input type='hidden' name='type' value='1' />"+
+							"</td>"+
+							"<td style='width:20%;'>"+
+								"<input type='button' value='+' onclick=addTd3('"+id+"','dqdcXed_zcfzb') class='btn btn-info btn-mini'/>"+
+								"<input type='button' value='-' onclick=\"removeTd('"+id+"','dqdcXed_zcfzb');$(this).parent().parent().parent().find('input[name=price]').change();\" class='btn btn-info btn-mini'/>	"+
+								"<input type='hidden' name='bid'/>"+
+							"</td>"+
+							"<td style='width:20%;'><input type='hidden' name='price'/></td>"+
+							"<td style='width:20%;'><input type='hidden' name='ratio'/></td>"+
+							"<td style='width:20%;'><input type='text' name='profit' readonly/></td>"+
+						"</tr>"+
+						"<tr>"+
+							"<td>"+
+								"<input type='text' name='name'/>"+
+								"<input type='hidden' name='type' value='2' />"+
+							"</td>"+
+							"<td><input type='text' name='bid' onchange='Maoli(this);Zmaoli(this,"+num+")'/></td>"+
+							"<td><input type='text' name='price' onchange='Maoli(this);Zmaoli(this,"+num+")'/></td>"+
+							"<td><input type='text' name='ratio' onchange='Zmaoli(this,"+num+")'/><input type='hidden' name='zc'/></td>"+
+							"<td><input type='text' name='profit' readonly/></td>"+
+						"</tr>	";
+			$(p).html(string);
+			p.id=id;//设置table的id
+			p.setAttribute("rule","block")//给table添加rule属性
+			document.getElementById(table).appendChild(p);//添加table到页面中
+			
+			$("#tableHj").append("<tr>"+//给tableHj添加一行
+										"<td>"+										
+											"<input type='text' name='name' readonly/>"+
+											"<input type='hidden' name='type' value='3' />"+
+										"</td>"+											
+										"<td><input type='hidden' name='bid'/></td>"+
+										"<td><input type='hidden' name='price'/></td>"+
+										"<td><input type='text' name='ratio' onchange='ZJQmaoli(this)'/><input type='hidden' name='zcc'/></td>"+
+										"<td><input type='text' name='profit' readonly/></td>"+
+									"</tr>	");
+			//$("#"+id).before("<p>XX</p>")
+		    doubleIframe(frameid);
+		}		
+		function removeTd2(frameid){  //表格删除行
+			var j=$("table[rule=block]").length-1//获取rule=block的所有table长度
+			var id="table"+j;//设置动态id
+			var tr= document.getElementById("tableHj").getElementsByTagName("tr");//获取tableHj的tr长度
+			if(max==0&&jegs==0&&num==0&&idCard==0){//当页面没有错误时
+				if(j>0){//至少保留一块
+					//alert(id)
+					document.getElementById(id).parentNode.removeChild(document.getElementById(id));//删除最后一个块
+					document.getElementById("tableHj").deleteRow(tr.length-1);//删除tableHj最后一行
+					$("#tableHj").find("input[name=ratio]").change();//计算总加权毛利率
+					doubleIframe(frameid);
+				}
+			}
+			else
+				alert("页面中有错误，请修改后再进行删除操作！")
+		}
+		function setName(obj,count){//设置统计文本框值
+			var text=$(obj).val();
+			var p=$("#tableHj").find("input[name=name]")	
+			p[count].value=text;		
+		}
+		function Maoli(obj){//计算单行毛利
+			var a1=$(obj).parent().parent().find("input[name=bid]").val();
+			var a2=$(obj).parent().parent().find("input[name=price]").val();			
+			if(a1!=""){a1=parseFloat(a1)}else{a1=0}
+			if(a2!=""){a2=parseFloat(a2)}else{a2=0}
+			var sum=parseFloat(1-a1/a2)
+			sum=sum*100
+			sum=sum.toFixed(2)			
+			$(obj).parent().parent().find("input[name=profit]").val(sum)
+		}
+		function Zmaoli(obj,count){//计算加权毛利率
+			var a1=$(obj).parent().parent().find("input[name=ratio]").val();
+			var a2=$(obj).parent().parent().find("input[name=profit]").val();
+			if(a1!=""){a1=parseFloat(a1)}else{a1=0}
+			if(a2!=""){a2=parseFloat(a2)}else{a2=0}
+			var sum=a1*a2
+			$(obj).parent().parent().find("input[name=zc]").val(sum);//暂存sum
+			var total=0;
+			$(obj).parent().parent().parent().find("input[name=zc]").each(function(){//获取计算出来的所有sum值
+				if(this.value!="")//不为空时累加
+					total+=parseFloat(this.value)
+			});
+			total=(total/100).toFixed(2)	
+			//$("#zmaoli_"+count).val(total);//给毛利率赋值
+			var q=$(obj).parent().parent().parent().find("input[name=profit]");
+			q[0].value=total;//给毛利率赋值
+			var p=$("#tableHj").find("input[name=profit]")	
+			p[count].value=total;//给tableHj里的毛利率赋值
+			$("#tableHj").find("input[name=ratio]").change();//计算总加权毛利率
+		}
+		function ZJQmaoli(obj){//计算总加权毛利率
+			var a1=$(obj).parent().parent().find("input[name=ratio]").val();
+			var a2=$(obj).parent().parent().find("input[name=profit]").val();
+			if(a1!=""){a1=parseFloat(a1)}else{a1=0}
+			if(a2!=""){a2=parseFloat(a2)}else{a2=0}
+			var sum=a1*a2
+			$(obj).parent().parent().find("input[name=zcc]").val(sum);
+			var total=0;
+			$(obj).parent().parent().parent().find("input[name=zcc]").each(function(){
+				if(this.value!="")
+					total+=parseFloat(this.value)
+			});
+			total=(total/100).toFixed(2)	
+			$("#tableTotal").contents().find("input[name=profit]").val(total);
+		}
+	</script>
+</body>
+</html>

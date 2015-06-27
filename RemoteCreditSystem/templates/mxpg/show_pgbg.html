@@ -28,10 +28,6 @@
 					<td>{{info.customer_name}}</td>					
 				</tr>
 				<tr>
-                    <input type="hidden" id="jyzk_s" value=“{{score.jyzk_score}}”/>
-                    <input type="hidden" id="hknl_s" value=”{{score.hknl_score}}“/>
-                    <input type="hidden" id="shzt_s" value=“{{score.shzk_score}}”/>
-                    <input type="hidden" id="ddpz_s" value=”{{score.ddpz_score}}“/>
 					<td class="table-label">企业经营状况得分</td>
 					<td>{{score.jyzk_score}}</td>
 					<td class="table-label">还款能力得分</td>
@@ -48,8 +44,7 @@
 					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
 					<td>0</td>	
 					{%- else%}
-{#					<td>{{jcjy.value17}}</td>#}
-                    <td><label id="nsxed"/></td>
+                    <td id="nsxed"></td>
 					{%-endif%}
 					<td class="table-label">风险等级</td>
 					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
@@ -79,15 +74,20 @@
 			</div>
 		<script type="text/javascript">
 			$(document).ready(function(){
-                var jyzk=parseFloat($("#jyzk_s").val());
-                var hknl=parseFloat($("#hknl_s").val());
-                var shzt=parseFloat($("#shzt_s").val());
-                var ddpz=parseFloat($("#ddpz_s").val());
+                var jyzk="{{score.jyzk_score}}";
+                var hknl="{{score.hknl_score}}";
+                var shzt="{{score.shzt_score}}";
+                var ddpz="{{score.ddpz_score}}";
+                if(jyzk!="不满足准入条件"&&hknl!="不满足准入条件"&&shzt!="不满足准入条件"&&ddpz!="不满足准入条件"){
+	                var result=jyzk*1000-70+hknl*50+shzt*60+ddpz*80-300;
+	                if(result<0){
+	 					$("#nsxed").html(0);
+	                }else{
+	                	$("#nsxed").html(result);
+	                }
+                }              
 
-                var result=jyzk*1000-70+hknl*50+shzt*60+ddpz*80-300;
-                $('#nsxed').val(result);
-
-            }
+            })
 		</script>
 	</body>
 </html>

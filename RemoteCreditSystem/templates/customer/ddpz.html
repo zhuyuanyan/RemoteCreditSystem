@@ -14,7 +14,7 @@
 		</style>
 	</head>
 	<body>		
-		<form class="iframeForm" action="/khzldy/khzl_ddpz_save/{{id}}" method="POST">
+		<form class="iframeForm" id="iframeForm" action="/khzldy/khzl_ddpz_save/{{id}}" method="POST">
 <!--*****************************道德品质**********************************-->
 			<table class="myTable">
 				<caption>基本情况</caption>
@@ -163,7 +163,7 @@
 					<td><b>不良嗜好({{result.split(',')[37]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[37]}}" name="sh" id="sh"/>
 					<td>
-						<select name="blsh1" id="blsh1" content="不良嗜好">
+						<select name="blsh1" id="blsh1" content="有涉毒、涉赌、涉黄嗜好">
 							<option value="{{result.split(',')[38]}}">有涉毒、涉赌、涉黄嗜好</option>
 							<option value="{{result.split(',')[39]}}">无不良嗜好</option>
 						</select></td>
@@ -358,12 +358,16 @@
 					<td><b>评分结果</b></td>
 					<td><input type="text" id="score_result" name="score_result" readonly/></td>
 					<input type="hidden" id="score_remark" name="score_remark" readonly/>
+					<td><b>禁入结果</b></td>
+					<td><input type="Textarea" id="score_stop" name="score_stop" /></td>
 				</tr>	
 			</table>
-		
+			<input type="hidden" name="dataTotal" id="dataTotal"/>
+			<input type="hidden" name="dataTotalSelect" id="dataTotalSelect"/>
+
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<input type="submit" class="btn btn-info" id="button1" value="提交">
+				<input type="button" class="btn btn-info" id="button1" onclick="submitForm()" value="提交" disabled>
 				<input type="button" class="btn btn-info" onclick="sum()" id="button2" value="评分">
 				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
@@ -372,40 +376,37 @@
 		<script type="text/javascript">
             var type =true;
 			$(document).ready(function() {
-				$("select").change(function(){
-					var str = $(this).val();
-					if(str=="禁入"){
-{#						$("#button1").hide();#}
-{#						$("#button2").hide();#}
-                        type=false;
-					}else{
-{#						$("#button1").show();#}
-{#						$("#button2").show();#}
-                        type=true;
-					}
-				});
-				$("select").each(function(i){
-					var str = $(this).val();
-					if(str=="禁入"){
-                        type=false
-{#						$("#button1").hide();#}
-{#						$("#button2").hide();#}
-					}
-				});
-
+				var data_1 = "{{data.value_1}}";
+				var data_2 = "{{data.value_2}}";
+				if(data_1!=''){
+					$("input").each(function(i){
+					    if($(this).attr("type")!="button"){
+					    	$(this).val(data_1.split(",")[i]);
+					    	if($(this).attr("name")=="score_result"){
+					    	}
+					    }
+					});
+				}
+				if(data_2!=''){
+					$("select").each(function(i){
+					    $(this).val(data_2.split(",")[i]);
+					});
+				}
 			});
 
 			var remark = new Array();
 			function sum(){
+				type=true;
+				remark = new Array();
 
-				$("#score_remark").val("");
+	
 				var total=0;
 				//家庭情况
 				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat(transfer($("#otherIn")));
 				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#hyzk").val())/100)*parseFloat(transfer($("#merray")));
 				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtjglx").val())/100)*parseFloat(transfer($("#family_type")));
 {#				total+=(parseFloat($("#jtqk").val())/100)*(parseFloat($("#jtqkzk").val())/100)*parseFloat(transfer($("#blsh")));#}
-
+				parseFloat(transfer($("#blsh")));
 				//知识水平
 				total+=(parseFloat($("#zssp").val())/100)*parseFloat(transfer($("#jycd")));
 
@@ -436,25 +437,52 @@
 				//信仰状况
 				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy2").val())/100)*parseFloat(transfer($("#zjxy")));
 				total+=(parseFloat($("#xy1").val())/100)*(parseFloat($("#xy3").val())/100)*parseFloat(transfer($("#xy")));
-
                 if(!type){
 					$("#score_result").val("不满足准入条件");
-					$("#score_remark").val(remark);
+					// $("#score_remark").val(remark);
+					$("#score_stop").val(remark);
 				}else{
-					$("#score_result").val(total.toFixed(4));
+					$("#score_stop").val("");
+					//能提交
+					$("#button1").attr('disabled',false);
+					$("#score_result").val(total);
 				}
-				
+
+				//记录form json值
+				var inputData = new Array();
+				$("input").each(function(i){
+				    var value = $(this).val();
+					if(value==''){
+				    	inputData.push(0);
+				    }else{
+				    	inputData.push(value);
+				    }  
+				});
+				var selectData = new Array();
+				$("select").each(function(i){
+				    var value = $(this).val();
+					if(value==''){
+				    	selectData.push(0);
+				    }else{
+				    	selectData.push(value);
+				    }   
+				});
+				//form组成json格式
+				$("#dataTotal").val(inputData);
+				$("#dataTotalSelect").val(selectData);
 			}
 			function transfer(value){
 				if(value.val()=="禁入"){
-					type = false;
+					type=false;
 					remark.push(value.attr("content")+"为禁入");
 					return 0;
 				}else{
 					return value.val();
 				}
 			}
-
+			function submitForm(){
+				$("#iframeForm").submit();
+			}
 		</script>
 	</body>
 </html>
