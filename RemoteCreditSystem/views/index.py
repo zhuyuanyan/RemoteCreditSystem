@@ -2,6 +2,7 @@
 import hashlib
 
 from RemoteCreditSystem import User
+from RemoteCreditSystem.models import UserRole,Rcs_Privilege
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
@@ -30,6 +31,12 @@ def GetStringMD5(str):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return render_template("login.html")
+
+# 注销
+@app.route('/logout')
+def logout():
+    logout_user()
+    return render_template("login.html")
     
 # 欢迎界面
 @app.route('/login_wel', methods=['POST'])
@@ -38,7 +45,10 @@ def login_wel():
         user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
         if user:
             login_user(user)
-            return render_template("index.html")
+            role = UserRole.query.filter_by(user_id=current_user.id).first().rcs_userrole_ibfk_2
+            print role.id
+            privileges = Rcs_Privilege.query.filter_by(privilege_master="SC_Role",privilege_master_id=role.id,privilege_access="Rcs_Menu").all()
+            return render_template("index.html",loginName=request.form['login_name'],privileges=privileges)
         else:
             flash('用户名或密码错误','error')
             return render_template("login.html")  

@@ -1,0 +1,12 @@
+2015-06-25 17:39:42,989 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\system\rcs_menu.py", line 36, in new_menu
+    Rcs_Menu(request.form['name'],request.form['menu_code'],pId,menu.level+1).add()
+AttributeError: 'NoneType' object has no attribute 'level'
+2015-06-26 10:03:51,336 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\system\rcs_user.py", line 186, in edit_role
+    Rcs_Privilege('Rcs_Role',id,'Rcs_Menu',menu.menu_code,request.form[menu.menu_code]).add()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
+    raise exceptions.BadRequestKeyError(key)
+BadRequestKeyError: 400: Bad Request
