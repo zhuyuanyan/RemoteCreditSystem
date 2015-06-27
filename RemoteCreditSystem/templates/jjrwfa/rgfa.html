@@ -20,7 +20,7 @@
 			人工分案--张三
 		</div>
 		<div class="content">			
-			<table class="myTable">
+			<table class="myTable" id="myTable">
 				<caption>进件资料</caption>
 				<colgroup>
 					<col width="10%">
@@ -62,16 +62,46 @@
 					<td class="table-label">分案客户经理</td>
 					<td colspan="3">{{app.user_name}}</td>		
 				</tr>
+				<tr>
+					<td class="table-label">选择专家</td>
+					<td colspan="3"><select id="experts">{%- for obj in users%}<option value="{{obj.id}}">{{obj.real_name}}</option>{%- endfor%}</select><input type="button" value="+" onclick="addTd()" class="btn btn-info btn-mini" />	<input type="button" value="-" onclick="removeTd()" class="btn btn-info btn-mini" /></td>	
+				</tr>
 			</table>	
 			<div class="pagebar">			
 				<div class="controlbtn">
-					<a class="btn btn-info" href="/jjrwfa/insert_jjfa/{{app.id}}" title="提交">提&nbsp;&nbsp;交</a>
+					<a class="btn btn-info"  onclick="submitForm('/jjrwfa/insert_jjfa/{{app.id}}')" title="提交">提&nbsp;&nbsp;交</a>
 					<a class="btn" href="javascript:void(0);" onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
+			function addTd(){
+				$("#myTable").append("<tr>" + 
+                                "<td class='table-label'>选择专家</td>" + 
+                                "<td colspan='3'><select id='experts'>{%- for obj in users%}<option value='{{obj.id}}'>{{obj.real_name}}</option>{%- endfor%}</select></td>" + 
+                               
+                                
+                            "</tr>");   
+			}		
+			//表格删除行
+			function removeTd(){   
+				var tr= document.getElementById("myTable").getElementsByTagName("tr");
+			    if(tr.length>7){//至少要保留一行
+			        document.getElementById("myTable").deleteRow(tr.length-1);//删除最后一行
+			   }
 			
+			}
+
+			function submitForm(url){
+				var expertId = new Array();
+				$("select").each(function(i){
+					if($(this).attr("id")=="experts"){
+ 						expertId.push($(this).val());
+					}
+					   
+				});
+				window.location.href =  url+"/"+expertId;
+			}
 		</script>
 	</body>
 </html>
