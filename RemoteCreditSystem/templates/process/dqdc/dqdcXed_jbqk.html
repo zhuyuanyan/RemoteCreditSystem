@@ -149,7 +149,7 @@
 						<span id="loan_amount_num">	
 							<input type="text" name="loan_amount_num" value="{{apply_info.loan_amount_num}}" onclick="setJe(this)" maxlength="11" disabled/><br/>
 							<span class="je">人民币</span>	
-							<span class="errorInfo"></span>							
+											
 						</span>	
 					</td>	
 					<td class="table-label">贷款期限（月）<font class="red">*</font></td>
@@ -282,7 +282,7 @@
 						<span id="month_repayment">	
 							<input type="text" name="month_repayment" value="{{apply_info.month_repayment}}" onclick="setJe(this)" maxlength="11" disabled/><br/>
 							<span class="je">人民币</span>	
-							<span class="errorInfo"></span>							
+											
 						</span>	
 					</td>						
 				</tr>	
@@ -328,14 +328,14 @@
 						<span>	
 							<input type="text" name="financing_sources" value="{{obj.financing_sources}}" onchange="spryMaxLength(this,3)" class="tbInput" disabled/><br/>
 							<span>&nbsp;</span>
-							<span class="errorInfo">字符数不得大于256</span>
+		
 						</span>
 					</td>
 					<td>
 						<span>	
 							<input type="text" name="loan_amount" value="{{obj.loan_amount}}" onkeyup="setJe(this);" maxlength="11" class="tbInput" onclick="setJe(this)" disabled/><br/>
 							<span class="je">人民币</span>	
-							<span class="errorInfo"></span>						
+								
 						</span>
 					</td>							
 					<td>
@@ -468,7 +468,7 @@
 						<span>	
 							<input type="text" name="use" value="{{obj.use}}" onchange="spryMaxLength(this,3)" class="tbInput" disabled/><br/>
 							<span>&nbsp;</span>
-							<span class="errorInfo">字符数不得大于256</span>
+				
 						</span>
 					</td>
 					<td>
@@ -482,21 +482,21 @@
 						<span>	
 							<input type="text" name="overage" value="{{obj.overage}}" onkeyup="setJe(this);" maxlength="11" class="tbInput" onclick="setJe(this)" disabled/> <br/>
 							<span class="je">人民币</span>
-							<span class="errorInfo"></span>						
+								
 						</span>
 					</td>	
 					<td>
 						<span >	
 							<input type="text" name="guarantee" value="{{obj.guarantee}}" onchange="spryMaxLength(this,32)" class="tbInput" disabled/><br/>
 							<span>&nbsp;</span>
-							<span class="errorInfo">字符数不得大于32</span>
+				
 						</span>
 					</td>
 					<td>
 						<span >	
 							<input type="text" name="late_information" value="{{obj.late_information}}" onchange="spryMaxLength(this,256)" class="tbInput" disabled/><br/>
 							<span>&nbsp;</span>
-							<span class="errorInfo">字符数不得大于256</span>
+			
 						</span>
 					</td>	
 					<!-- <td><input type="text" name="financing_sources" class="tbInput" value="{{obj.financing_sources}}" disabled/></td>
@@ -528,7 +528,7 @@
 						<span>	
 							<input type="text" name="guarantee_amount" value="{{obj.guarantee_amount}}" onkeyup="setJe(this);" maxlength="11" onclick="setJe(this)" disabled/> <br/>
 							<span class="je">人民币</span>
-							<span class="errorInfo"></span>						
+									
 						</span>
 					</td>						
 				</tr>
@@ -544,7 +544,7 @@
 					<td colspan="7">
 						<span>
 							<textarea name="analysis_conclusion" onchange="spryMaxLength(this,2048)">{{riskanalysis_and_findings.analysis_conclusion}}</textarea>
-							<span class="errorInfo">字符数不得大于2048</span>
+	
 						<span>
 					</td>								
 				</tr>
@@ -553,7 +553,7 @@
 					<td colspan="7">
 						<span>
 							<textarea name="other_deliberations" style="width:80%" onchange="spryMaxLength(this,2048)">{{riskanalysis_and_findings.other_deliberations}}</textarea>
-							<span class="errorInfo">字符数不得大于2048</span>
+
 						</span>						
 					</td>
 				</tr>	
@@ -563,7 +563,7 @@
 					<td colspan="4">
 						<span>
 							<textarea name="positive" style="width:80%"onchange="spryMaxLength(this,2048)">{{riskanalysis_and_findings.positive}}</textarea>
-							<span class="errorInfo">字符数不得大于2048</span>
+				
 						</span>	
 					</td>
 				</tr>
@@ -572,7 +572,7 @@
 					<td colspan="4">
 						<span>
 							<textarea name="opposite" style="width:80%"onchange="spryMaxLength(this,2048)">{{riskanalysis_and_findings.opposite}}</textarea>
-							<span class="errorInfo">字符数不得大于2048</span>
+					
 						</span>	
 					</td>
 				</tr>
@@ -667,7 +667,7 @@
 						<span>	
 							<input type="text" name="amount" style="width:100px;" value="{{riskanalysis_and_findings.amount}}" onkeyup="setJe(this);" maxlength="11" onclick="setJe(this)"/><br/>
 							<span class="je">人民币</span>
-							<span class="errorInfo"></span>						
+										
 						</span>
 					</td>	
 					<td class="table-label" style="width:50px;">期限(月)<font class="red">*</font></td>
@@ -800,7 +800,7 @@
 					<td>
 						<span>
 							<input type="text" style="width:40px" name="rates" value="{{riskanalysis_and_findings.rates}}" onKeyUp="value=value.replace(/[^\d\.]/g,'')" onchange="check(this,0,100)" maxlength="4"/>%<br/>
-							<span class="errorInfo">请输入0-100的数</span>
+						
 						</span>
 					</td>
 					<td class="table-label" style="width:110px;">月还款额（元）<font class="red">*</font></td>
@@ -808,7 +808,7 @@
 						<span>	
 							<input type="text" name="monthly_repayment" value="{{riskanalysis_and_findings.monthly_repayment}}" onkeyup="setJe(this);" maxlength="11" class="tbInput" onclick="setJe(this)"/><br/>
 							<span class="je">人民币</span>
-							<span class="errorInfo"></span>						
+										
 						</span>
 					</td>										
 				</tr>
@@ -817,14 +817,14 @@
 					<td colspan="3" >
 						<span>
 							<input type="text" style="width:70%" name="recommended_way_of_security" onchange="spryMaxLength(this,32)" value="{{riskanalysis_and_findings.recommended_way_of_security}}"/>
-							<span class="errorInfo">字符数不得大于32</span>
+						
 						<span>
 					</td>
 					<td colspan="2" class="table-label"> 月付款占可支配收入比重</td>	
 					<td colspan="2">
 						<span>
 							<input type="text" style="width:40px" name="income_ratio" value="{{riskanalysis_and_findings.income_ratio}}" onKeyUp="value=value.replace(/[^\d\.]/g,'')" onchange="check(this,0,100)" maxlength="4"/>%<br/>
-							<span class="errorInfo">请输入0-100的数</span>
+						
 						</span>
 					</td>	
 				</tr>
@@ -833,7 +833,7 @@
 					<td colspan="7">
 						<span>	
 							<textarea name="approve_reason" onchange="spryMaxLength(this,2048)">{{riskanalysis_and_findings.approve_reason}}</textarea>
-							<span class="errorInfo">字符数不得大于2048</span>
+						
 						</span>
 					</td>															
 				</tr>
@@ -852,7 +852,7 @@
 					<td colspan="7">
 						<span>	
 							<textarea name="refuse_reason" onchange="spryMaxLength(this,2048)">{{riskanalysis_and_findings.refuse_reason}}</textarea>
-							<span class="errorInfo">字符数不得大于2048</span>
+							
 						</span>
 					</td>															
 				</tr>
