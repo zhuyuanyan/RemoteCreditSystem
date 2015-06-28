@@ -19,14 +19,16 @@ from RemoteCreditSystem.models.credit_data.sc_stock import SC_Stock
 from RemoteCreditSystem.models.credit_data.sc_individual_customer import SC_Individual_Customer
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 
 
 
 # 贷款调查——小额贷款
 @app.route('/Process/dqdc/dqdc_xed/<int:id>', methods=['GET'])
 def dqdc_xed(id):
-    loan_apply = SC_Loan_Apply.query.filter_by(id=id).first()
-    return render_template("Process/dqdc/dqdc_xed.html",loan_apply=loan_apply,id=id)
+    info = Rcs_Application_Info.query.filter_by(id=id).first()
+    loan_apply = SC_Loan_Apply.query.filter_by(id=info.loan_id).first()
+    return render_template("Process/dqdc/dqdc_xed.html",loan_apply=loan_apply,id=info.loan_id)
 
 # 贷款调查——小额贷款(基本情况)
 @app.route('/Process/dqdc/dqdcXed_jbqk/<int:id>', methods=['GET'])
@@ -95,7 +97,8 @@ def edit_dqdcXed_jbqk(id):
         # loan_apply.process_status = PROCESS_STATUS_DQDC
 
         #专家建议保存
-        advice = Rcs_Application_Advice.query.filter_by(application_id=id,user_id=current_user.id).first()
+        info = Rcs_Application_Info.query.filter_by(loan_id=id).first()
+        advice = Rcs_Application_Advice.query.filter_by(application_id=info.id,user_id=current_user.id).first()
         if advice:
             #同意
             if request.form['bool_grant'] == '1':
@@ -108,11 +111,11 @@ def edit_dqdcXed_jbqk(id):
         else:
             #同意
             if request.form['bool_grant'] == '1':
-                Rcs_Application_Advice(id,request.form['approve_reason'],"1",request.form['amount']).add()
+                Rcs_Application_Advice(info.id,request.form['approve_reason'],"1",request.form['amount']).add()
             else:
-                Rcs_Application_Advice(id,request.form['refuse_reason'],"2","").add()
+                Rcs_Application_Advice(info.id,request.form['refuse_reason'],"2","").add()
         #专家进件关系表设置为已评估
-        expert = Rcs_Application_Expert.query.filter_by(application_id=id,expert_id=current_user.id).first()
+        expert = Rcs_Application_Expert.query.filter_by(application_id=info.id,expert_id=current_user.id).first()
         if expert:
             expert.operate="1"
         # 事务提交
