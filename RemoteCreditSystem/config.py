@@ -32,13 +32,13 @@ logger.setLevel(logging.WARNING)
 
 _DBUSER = "root"  # 数据库用户名
 _DBPASS = "123456"  # 数据库用户名密码
-_DBHOST = "localhost"  # 服务器
+_DBHOST = "192.168.0.100"  # 服务器
 _DBPORT = '3306' #服务器端口
 _DBNAME = "rcs"  # 数据库名称
 
 PER_PAGE = 10  # 每页数量
-UPLOAD_FOLDER_REL = '/static/upload' #上传目录(相对路径)
-UPLOAD_FOLDER_ABS = os.path.join(_HERE,'static/upload') #上传目录(绝对路径)
+LOCALEXCEL_FOLDER_REL = '/static/upload' #上传目录(相对路径)
+LOCALEXCEL_FOLDER_ABS = os.path.join(_HERE,'static/upload') #上传目录(绝对路径)
 
 # EMAIL_SERVER = "http://192.168.1.100:8888"
 EMAIL_SERVER = "http://oa.cardpay-sh.com"
