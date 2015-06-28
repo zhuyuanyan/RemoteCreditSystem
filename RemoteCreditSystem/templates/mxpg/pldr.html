@@ -6,15 +6,54 @@
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
-		
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
 	</head>
-	<body>
+	<body onload="setTimeOut();">
 		<div class="iframeForm">
-			<form class="search" style="padding:30px;text-align:center;">				
-				选择导入文件：<input type="file"/><br/><br/>
-				<input type="button" class="btn btn-info" value="导入"/>
-				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>		
+			<form id="form_id" class="search" style="padding:60px;text-align:center;" method="POST" enctype="multipart/form-data" action="/pldr/excel_import">	
+				{%- with messages = get_flashed_messages(with_categories=true) %}
+				  	{%- if messages %}
+			    	{%- for category, message in messages %}
+			    	<div class="alert alert-{{category}}">
+			      		{{message}}
+			      	</div>
+			    	{%- endfor %}
+				  	{%- endif %}
+				{%- endwith %}
+				客户姓名：
+					<input type="text" name="customer_name" class="validate[required]"/>&nbsp;
+				客户证件号码：
+					<input type="text" name="cert_no" class="validate[required,custom[chinaIdLoose]]"/>&nbsp;	
+				选择导入文件：
+					<input type="file" name="attachment" class="validate[required]"/>
+					<br><br>
+					<input id="id_save_button" type="button" class="btn btn-info" value="导入"/>
+					<input id="id_back_button" type="button" class="btn" value="返回" onclick="javascript:history.go(-1);"/>		
 			</form>
 		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//前端验证
+				$('#form_id').validationEngine();
+				$("#id_save_button").click(function() {
+					if(!submitFlag){
+						alert("正在处理，请勿重复提交!");
+					}
+					submitFlag = false;
+					// 前端验证 
+					if($('#form_id').validationEngine('validate')){
+						//submit
+						$('#form_id').submit();
+						submitFlag = true;
+					}else{
+						submitFlag = true;
+					}
+				});
+			});
+			
+		</script>
 	</body>
 </html>

@@ -63,6 +63,8 @@ import views.process.dqdcXed_gdzcqd
 import views.process.dqdcXed_kc
 import views.process.dqdcXed_zkqd
 
+import views.mxpg.pldr
+
 
 
 

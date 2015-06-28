@@ -13,7 +13,6 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Zcfzb import Rcs_App
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Lrb import Rcs_Application_Lrb
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Jyzk import Rcs_Application_Jyzk
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Ddpz import Rcs_Application_Ddpz
-from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
@@ -90,9 +89,7 @@ def zxpgzjhsgzwh():
 @app.route('/jjrwfa/rgfa/<int:userId>', methods=['GET'])
 def rgfa(userId):        
     app = Rcs_Application_Info.query.filter_by(id=userId).first()  
-    #选择所有专家
-    users = User.query.filter_by(user_type='1').all()
-    return render_template("jjrwfa/rgfa.html",app=app,users=users)
+    return render_template("jjrwfa/rgfa.html",app=app)
 
 @app.route('/jjrwfa/xtfa', methods=['GET'])
 def xtfa():        
@@ -103,13 +100,10 @@ def show_jjfa(userId):
     app = Rcs_Application_Info.query.filter_by(id=userId).first()   
     return render_template("jjrwfa/show_jjfa.html",app=app)
 
-@app.route('/jjrwfa/insert_jjfa/<int:id>/<expertId>', methods=['GET'])
-def insert_jjfa(id,expertId):  
+@app.route('/jjrwfa/insert_jjfa/<int:id>', methods=['GET'])
+def insert_jjfa(id):  
     app = Rcs_Application_Info.query.filter_by(id=id).first()   
     app.approve_type="2"
-    ids = expertId.split(",")
-    for obj in ids:
-        Rcs_Application_Expert(id,int(obj)).add()
     db.session.commit()
     flash('保存成功','success')
     return redirect("/jjrwfa/jjfa/1")
@@ -541,8 +535,8 @@ def khzl_ddpz_save(id):
 
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
 def jjrw(): 
-    #获取进件任务数据  
-    appList = Rcs_Application_Info.query.filter("approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")").all()
+    #获取进件任务数据
+    appList = Rcs_Application_Info.query.filter_by(approve_type='2').all()
     return render_template("zjzxpggl/jjrw.html",appList=appList)
 
 @app.route('/zjzxpggl/jjrw_accept/<int:id>', methods=['GET'])
@@ -559,7 +553,7 @@ def jjrw_refuse(id):
     return redirect("/zjzxpggl/jjrw")
 @app.route('/zjzxpggl/yjsrw', methods=['GET'])
 def yjsrw():     
-    appList = Rcs_Application_Info.query.filter("approve_type='3' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")").all()  
+    appList = Rcs_Application_Info.query.filter_by(approve_type='3').all()   
     return render_template("zjzxpggl/yjsrw.html",appList=appList)
 
 @app.route('/zjzxpggl/yjsrw_refuse/<int:id>', methods=['GET'])
@@ -587,7 +581,7 @@ def yjsrw_save(id):
 
 @app.route('/zjzxpggl/yjjrw', methods=['GET'])
 def yjjrw():    
-    appList = Rcs_Application_Info.query.filter("approve_type='4' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")").all()     
+    appList = Rcs_Application_Info.query.filter_by(approve_type='4').all()       
     return render_template("zjzxpggl/yjjrw.html",appList=appList)
 @app.route('/zjzxpggl/yjjrw_accept/<int:id>', methods=['GET'])
 def yjjrw_accept(id):    
@@ -613,21 +607,14 @@ def yjjrw_jjyy_save(id):
 #评估结论查看
 @app.route('/zxpgjl/pgjl', methods=['GET'])
 def pgjl():   
-    appList = Rcs_Application_Info.query.filter("approve_type='3'").all()  
+    appList = Rcs_Application_Info.query.filter_by(approve_type='5').all()     
     return render_template("zxpgjl/pgjl.html",appList=appList)
 
 @app.route('/zxpgjl/pgjl_info/<int:id>', methods=['GET'])
 def pgjl_info(id):        
     app = Rcs_Application_Info.query.filter_by(id=id).first()
-    #评估建议
-    advice = Rcs_Application_Advice.query.filter_by(application_id=id).all()
-    #未评估专家
-    expert = Rcs_Application_Expert.query.filter("application_id="+str(id)+" and expert_id not in (select user_id from rcs_application_advice where application_id="+str(id)+")").all()
-    nopass ='true'
-    for obj in advice:
-        if obj.approve_result=='2':
-            nopass = 'false'
-    return render_template("zxpgjl/pgjl_info.html",app=app,advice=advice,expert=expert,nopass=nopass)
+    advice = Rcs_Application_Advice.query.filter_by(application_id=id).first()
+    return render_template("zxpgjl/pgjl_info.html",app=app,advice=advice)
 
 @app.route('/zxpggzwh/pggzwh', methods=['GET'])
 def pggzwh():        
