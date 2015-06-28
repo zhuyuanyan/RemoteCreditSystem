@@ -605,9 +605,9 @@ def yjjrw_jjyy_save(id):
     return redirect("/zjzxpggl/yjjrw")
 
 #评估结论查看
-@app.route('/zxpgjl/pgjl', methods=['GET'])
-def pgjl():   
-    appList = Rcs_Application_Info.query.filter_by(approve_type='5').all()     
+@app.route('/zxpgjl/pgjl/<int:page>', methods=['GET'])
+def pgjl(page):   
+    appList = Rcs_Application_Info.query.filter("approve_type='3'").paginate(page, per_page = PER_PAGE) 
     return render_template("zxpgjl/pgjl.html",appList=appList)
 
 @app.route('/zxpgjl/pgjl_info/<int:id>', methods=['GET'])
