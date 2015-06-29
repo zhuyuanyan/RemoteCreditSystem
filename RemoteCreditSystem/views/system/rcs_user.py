@@ -40,7 +40,7 @@ def new_user():
     else:
         try:
             user = User(request.form['login_name'],GetStringMD5(request.form['login_password']),
-                request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'])
+                request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],"","","","","","","","","")
             user.add()
 
             #清理缓存
