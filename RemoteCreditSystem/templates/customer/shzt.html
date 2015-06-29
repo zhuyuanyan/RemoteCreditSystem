@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
 		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/jquery-1.4.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
 		<!--日历-->
 		<script src="../../static/js/date/lhgcore.js"></script>
@@ -29,7 +29,7 @@
 				<tr>
 					<td rowspan="3"><b>房子({{result.split(',')[1]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[1]}}" name="zczk2" id="zczk2"/>
-					<td><input type="radio" name="box1" value="1" checked/>
+					<td><input type="radio" name="box1" id="box1" value="1" checked/>
 						<b>自有({{result.split(',')[2]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[2]}}" name="zczk3" id="zczk3"/>
                     <td>
@@ -123,12 +123,12 @@
 					</td>
 				</tr>	
 				<tr>
-					<td><b><input type="radio" name="box1" value="2"/>无({{result.split(',')[41]}}%)</b></td>
+					<td><b><input type="radio" name="box1" id="box1" value="2"/>无({{result.split(',')[41]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[42]}}" name="zczk4" id="zczk4"/>
 					<td><b></b></td>
 				</tr>
 				<tr>
-                    <td><b><input type="radio" name="box1" value="3"/>租赁({{result.split(',')[42]}}%)</b></td>
+                    <td><b><input type="radio" name="box1" id="box1" value="3"/>租赁({{result.split(',')[42]}}%)</b></td>
                     <input type="hidden" value="{{result.split(',')[42]}}" name="zczk4" id="zczk4"/>
 					<td>
 						<table class="addTable">
@@ -889,313 +889,112 @@
 					<col width="74%">
 				</colgroup>
 				<tr>
-					<td rowspan="3"><b>负债</b></td>  
+					<td rowspan="4"><b>负债</b></td>  
 					
-					<td><b>贷记卡({{result.split(',')[283]}}%)</b></td>    
+					<td><b>银行贷款({{result.split(',')[283]}}%)</b></td>    
 					<input type="hidden" value="{{result.split(',')[283]}}" name="zcfzzk2" id="zcfzzk2"/>        
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>信用卡总数({{result.split(',')[284]}}%)</th>
+								<th>还款计划({{result.split(',')[284]}}%)</th>
 								<input type="hidden" value="{{result.split(',')[284]}}" name="zcfzzk3" id="zcfzzk3"/>
-								<th>单卡最高授信额度({{result.split(',')[289]}}%)</th>
+								<th>每期还款金额占当期收入比例({{result.split(',')[289]}}%)</th>
 								<input type="hidden" value="{{result.split(',')[289]}}" name="zcfzzk4" id="zcfzzk4"/>
-								<th>已用额度</th>
-								<th>逾期情况({{result.split(',')[296]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[296]}}" name="zcfzzk5" id="zcfzzk5"/>
+							
 							</tr>
 							<tr>
 								<td>
-									<select	id="xykzs1" content="信用卡总数">
-										<option value="{{result.split(',')[285]}}">3张以上</option>
-										<option value="{{result.split(',')[286]}}">2张</option>
-										<option value="{{result.split(',')[287]}}">1张</option>
-										<option value="{{result.split(',')[288]}}">0张</option>
+									<select	id="xykzs1" content="还款计划">
+										<option value="{{result.split(',')[285]}}">一次性还本付息</option>
+										<option value="{{result.split(',')[286]}}">等额本息</option>
+										<option value="{{result.split(',')[287]}}">等额本金</option>
+										<option value="{{result.split(',')[288]}}">按期付息还本</option>
 									</select>
 								</td>
 								<td>
-									<select	id="xykzs2" content="单卡最高授信额度">
-										<option value="{{result.split(',')[290]}}">>200万</option>
-										<option value="{{result.split(',')[291]}}">100-200万</option>
-										<option value="{{result.split(',')[292]}}">50-100万</option>
-										<option value="{{result.split(',')[293]}}">30-50万</option>
-										<option value="{{result.split(',')[294]}}">10-30万</option>
-										<option value="{{result.split(',')[295]}}"><10万</option>
+									<select	id="xykzs2" content="每期还款金额占当期收入比例">
+										<option value="{{result.split(',')[290]}}">＞70</option>
+										<option value="{{result.split(',')[291]}}">50%-70%</option>
+										<option value="{{result.split(',')[292]}}">30%-50%</option>
+										<option value="{{result.split(',')[293]}}">10%-30%</option>
+										<option value="{{result.split(',')[294]}}">＜10%</option>
+							
 									</select>
 								</td>
-								<td><input type="text" class="addinput"/></td>								
-								<td>
-									<select	id="xykzs3" content="逾期情况">
-										<option value="{{result.split(',')[297]}}">10次以上</option>
-										<option value="{{result.split(',')[298]}}">8-10次</option>
-										<option value="{{result.split(',')[299]}}">6-7次</option>
-										<option value="{{result.split(',')[300]}}">4-5次</option>
-										<option value="{{result.split(',')[301]}}">2-3次</option>
-										<option value="{{result.split(',')[302]}}">1次</option>
-										<option value="{{result.split(',')[303]}}">0次</option>
-									</select>
-								</td>
+								
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
-					<td><b>银行贷款({{result.split(',')[304]}}%)</b></td> 
-					<input type="hidden" value="{{result.split(',')[304]}}" name="zcfzzk6" id="zcfzzk6"/>           
-					<td>
-						<b>历史贷款笔数({{result.split(',')[305]}}%)</b>
-						<input type="hidden" value="{{result.split(',')[305]}}" name="zcfzzk7" id="zcfzzk7"/>
-						<table class="addTable">
-							<tr>
-								<th>放款日期</th>
-								<th>贷款机构({{result.split(',')[306]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[306]}}" name="zcfzzk8" id="zcfzzk8"/>
-								<th>贷款金额({{result.split(',')[310]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[310]}}" name="zcfzzk9" id="zcfzzk9"/>
-								<th colspan="2">利率({{result.split(',')[314]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[314]}}" name="zcfzzk10" id="zcfzzk10"/>
-							</tr>
-							<tr>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
-								<td>
-									<select	id="xykzs4" content="贷款机构">
-										<option value="{{result.split(',')[307]}}">农商行</option>
-										<option value="{{result.split(',')[308]}}">城商行</option>
-										<option value="{{result.split(',')[309]}}">国有4大行</option>
-									</select>
-								</td>
-								<td>
-									<select	id="xykzs5" content="贷款金额">
-										<option value="{{result.split(',')[311]}}">>1000万</option>
-										<option value="{{result.split(',')[312]}}">500-1000万</option>
-										<option value="{{result.split(',')[313]}}"><500万</option>
-									</select>
-								</td>								
-								<td colspan="2">
-									<select	id="xykzs6" content="利率">
-										<option value="{{result.split(',')[315]}}">高于一般水平</option>
-										<option value="{{result.split(',')[316]}}">一般水平</option>
-										<option value="{{result.split(',')[317]}}">低于一般水平</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<th>期限({{result.split(',')[318]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[318]}}" name="zcfzzk11" id="zcfzzk11"/>
-								<th>用途({{result.split(',')[322]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[322]}}" name="zcfzzk12" id="zcfzzk12"/>
-								<th>还款日期</th>
-								<th>是否有担保({{result.split(',')[327]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[327]}}" name="zcfzzk13" id="zcfzzk13"/>
-								<th>逾期情况({{result.split(',')[330]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[330]}}" name="zcfzzk14" id="zcfzzk14"/>
-							</tr>
-							<tr>
-								<td>
-									<select	id="xykzs7" content="期限">
-										<option value="{{result.split(',')[319]}}">>1年</option>
-										<option value="{{result.split(',')[320]}}">6个月-1年</option>
-										<option value="{{result.split(',')[321]}}"><6个月</option>
-									</select>
-								</td>								
-								<td>
-									<select	id="xykzs8" content="用途">
-										<option value="{{result.split(',')[323]}}">房贷</option>
-										<option value="{{result.split(',')[324]}}">车贷</option>
-										<option value="{{result.split(',')[325]}}">经营</option>
-										<option value="{{result.split(',')[326]}}">消费</option>
-									</select>
-								</td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
-								<td>
-									<select	id="xykzs9" content="是否有担保">
-										<option value="{{result.split(',')[328]}}">是</option>
-										<option value="{{result.split(',')[329]}}">否</option>
-									</select>
-								</td>
-								<td>
-									<select	id="xykzs10" content="逾期情况">
-										<option value="{{result.split(',')[331]}}">10次以上</option>
-										<option value="{{result.split(',')[332]}}">8-10次</option>
-										<option value="{{result.split(',')[333]}}">6-7次</option>
-										<option value="{{result.split(',')[334]}}">4-5次</option>
-										<option value="{{result.split(',')[335]}}">2-3次</option>
-										<option value="{{result.split(',')[336]}}">1次</option>
-										<option value="{{result.split(',')[337]}}">0次</option>
-									</select>
-								</td>
-							</tr>
-						</table>
-						<b>尚未到期笔数({{result.split(',')[338]}}%)</b>
-						<input type="hidden" value="{{result.split(',')[338]}}" name="zcfzzk15" id="zcfzzk15"/>
-						<table class="addTable">
-							<tr>
-								<th>放款日期</th>
-								<th>贷款机构({{result.split(',')[339]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[339]}}" name="zcfzzk16" id="zcfzzk16"/>
-								<th>贷款金额({{result.split(',')[343]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[343]}}" name="zcfzzk17" id="zcfzzk17"/>
-								<th colspan="2">利率({{result.split(',')[347]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[347]}}" name="zcfzzk18" id="zcfzzk18"/>
-							</tr>
-							<tr>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
-								<td>
-									<select	id="xykzs11" content="贷款机构">
-										<option value="{{result.split(',')[340]}}">农商行</option>
-										<option value="{{result.split(',')[341]}}">城商行</option>
-										<option value="{{result.split(',')[342]}}">国有4大行</option>
-									</select>
-								</td>
-								<td>
-									<select	id="xykzs12" content="贷款金额">
-										<option value="{{result.split(',')[344]}}">>1000万</option>
-										<option value="{{result.split(',')[345]}}">500-1000万</option>
-										<option value="{{result.split(',')[346]}}"><500万</option>
-									</select>
-								</td>								
-								<td colspan="2">
-									<select	id="xykzs13" content="利率">
-										<option value="{{result.split(',')[348]}}">高于一般水平</option>
-										<option value="{{result.split(',')[349]}}">一般水平</option>
-										<option value="{{result.split(',')[350]}}">低于一般水平</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<th>期限({{result.split(',')[351]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[351]}}" name="zcfzzk19" id="zcfzzk19"/>
-								<th>用途({{result.split(',')[355]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[355]}}" name="zcfzzk20" id="zcfzzk20"/>
-								<th>还款日期</th>
-								<th>是否有担保({{result.split(',')[360]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[360]}}" name="zcfzzk21" id="zcfzzk21"/>
-								<th>逾期情况({{result.split(',')[363]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[363]}}" name="zcfzzk22" id="zcfzzk22"/>
-							</tr>
-							<tr>
-								<td>
-									<select	id="xykzs14" content="期限">
-										<option value="{{result.split(',')[352]}}">>1年</option>
-										<option value="{{result.split(',')[353]}}">6个月-1年</option>
-										<option value="{{result.split(',')[354]}}"><6个月</option>
-									</select>
-								</td>								
-								<td>
-									<select	id="xykzs15" content="用途">
-										<option value="{{result.split(',')[356]}}">房贷</option>
-										<option value="{{result.split(',')[357]}}">车贷</option>
-										<option value="{{result.split(',')[358]}}">经营</option>
-										<option value="{{result.split(',')[359]}}">消费</option>
-									</select>
-								</td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
-								<td>
-									<select	id="xykzs16" content="是否有担保">
-										<option value="{{result.split(',')[361]}}">是</option>
-										<option value="{{result.split(',')[362]}}">否</option>
-									</select>
-								</td>
-								<td>
-									<select	id="xykzs17" content="逾期情况">
-										<option value="{{result.split(',')[364]}}">10次以上</option>
-										<option value="{{result.split(',')[365]}}">8-10次</option>
-										<option value="{{result.split(',')[366]}}">6-7次</option>
-										<option value="{{result.split(',')[367]}}">4-5次</option>
-										<option value="{{result.split(',')[368]}}">2-3次</option>
-										<option value="{{result.split(',')[369]}}">1次</option>
-										<option value="{{result.split(',')[370]}}">0次</option>
-									</select>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td><b>其他借款({{result.split(',')[371]}}%)</b></td>  
-					<input type="hidden" value="{{result.split(',')[371]}}" name="zcfzzk23" id="zcfzzk23"/>          
+					<td><b>信用卡({{result.split(',')[295]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[295]}}" name="zcfzzk5" id="zcfzzk5"/>        
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>借款来源({{result.split(',')[372]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[372]}}" name="zcfzzk24" id="zcfzzk24"/>
-								<th>借款金额({{result.split(',')[375]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[375]}}" name="zcfzzk25" id="zcfzzk25"/>
-								<th>利率({{result.split(',')[379]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[379]}}" name="zcfzzk26" id="zcfzzk26"/>
-								<th>期限({{result.split(',')[383]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[383]}}" name="zcfzzk27" id="zcfzzk27"/>
+								<th>月平均还款金额占收入比例</th>
 							</tr>
 							<tr>
 								<td>
-									<select	id="xykzs18" content="借款来源">
-										<option value="{{result.split(',')[373]}}">民间借贷</option>
-										<option value="{{result.split(',')[374]}}">小额借款公司</option>
+									<select	id="xykzs3" content="月平均还款金额占收入比例">
+										<option value="{{result.split(',')[296]}}">＞70%</option>
+										<option value="{{result.split(',')[297]}}">30%-50%</option>
+										<option value="{{result.split(',')[298]}}">10%-30%</option>
+										<option value="{{result.split(',')[299]}}">＜10%</option>
 									</select>
 								</td>
-								<td>
-									<select	id="xykzs19" content="借款金额">
-										<option value="{{result.split(',')[376]}}">>1000万</option>
-										<option value="{{result.split(',')[377]}}">500-1000万</option>
-										<option value="{{result.split(',')[378]}}"><500万</option>
-									</select>
-								</td>								
-								<td>
-									<select	id="xykzs20" content="利率">
-										<option value="{{result.split(',')[380]}}">高于一般水平</option>
-										<option value="{{result.split(',')[381]}}">一般水平</option>
-										<option value="{{result.split(',')[382]}}">低于一般水平</option>
-									</select>
-								</td>
-								<td>
-									<select	id="xykzs21" content="期限">
-										<option value="{{result.split(',')[384]}}">>1年</option>
-										<option value="{{result.split(',')[385]}}">6个月-1年</option>
-										<option value="{{result.split(',')[386]}}">3个月-6个月</option>
-										<option value="{{result.split(',')[387]}}"><3个月</option>
-									</select>
-								</td>							
-							</tr>
-							<tr>
-								<th>用途({{result.split(',')[388]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[388]}}" name="zcfzzk28" id="zcfzzk28"/>
-								<th>借款日期</th>
-								<th>剩余还款期限({{result.split(',')[392]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[392]}}" name="zcfzzk29" id="zcfzzk29"/>
-								<th>是否正常还款({{result.split(',')[397]}}%)</th>
-								<input type="hidden" value="{{result.split(',')[397]}}" name="zcfzzk30" id="zcfzzk30"/>
-							</tr>
-							<tr>
-								<td>
-									<select	id="xykzs22" content="用途">
-										<option value="{{result.split(',')[389]}}">经营</option>
-										<option value="{{result.split(',')[390]}}">消费</option>
-										<option value="{{result.split(',')[391]}}">其他</option>
-									</select>
-								</td>
-								<td><input type="text" class="addinput" onclick="J.calendar.get({type:'-'});"/></td>
-								<td>
-									<select	id="xykzs23" content="剩余还款期限">
-										<option value="{{result.split(',')[393]}}">1年</option>
-										<option value="{{result.split(',')[394]}}">6个月-1年</option>
-										<option value="{{result.split(',')[395]}}">3个月-6个月</option>
-										<option value="{{result.split(',')[396]}}"><3个月</option>
-									</select>
-								</td>								
-								<td>
-									<select	id="xykzs24" content="是否正常还款">
-										<option value="{{result.split(',')[398]}}">是</option>
-										<option value="{{result.split(',')[399]}}">否</option>
-									</select>
-								</td>
+								
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr>
+					<td><b>其他借款({{result.split(',')[300]}}%)</b></td>  
+					<input type="hidden" value="{{result.split(',')[300]}}" name="zcfzzk6" id="zcfzzk6"/>          
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>借款来源({{result.split(',')[301]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[301]}}" name="zcfzzk7" id="zcfzzk7"/>
+								<th>还款计划({{result.split(',')[304]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[304]}}" name="zcfzzk8" id="zcfzzk8"/>
+								<th>每期还款金额占当期收入比例({{result.split(',')[308]}}%)</th>
+								<input type="hidden" value="{{result.split(',')[308]}}" name="zcfzzk9" id="zcfzzk9"/>
+						
+							</tr>
+							<tr>
+								<td>
+									<select	id="xykzs4" content="借款来源">
+										<option value="{{result.split(',')[302]}}">小额借款公司</option>
+										<option value="{{result.split(',')[303]}}">亲戚朋友借款</option>
+									</select>
+								</td>
+								<td>
+									<select	id="xykzs5" content="还款计划">
+										<option value="{{result.split(',')[305]}}">一次性还本付息</option>
+										<option value="{{result.split(',')[306]}}">先息后本</option>
+										<option value="{{result.split(',')[307]}}">等额本息</option>
+									</select>
+								</td>								
+								<td>
+									<select	id="xykzs6" content="每期还款金额占当期收入比例">
+										<option value="{{result.split(',')[309]}}">＞50%</option>
+										<option value="{{result.split(',')[310]}}">30%-50%</option>
+										<option value="{{result.split(',')[311]}}">10%-30%</option>
+										<option value="{{result.split(',')[312]}}">＜10%</option>
+									</select>
+								</td>
+											
+							</tr>
+					
+						</table>
+					</td>
+				</tr>
+				<tr>
+
 					<td><b>担保情况({{result.split(',')[400]}}%)</b></td>
 					<input type="hidden" value="{{result.split(',')[400]}}" name="zcfzzk31" id="zcfzzk31"/>
-					<td><b></b></td> 
+					
 					<td>
 						<table class="addTable">
 							<tr>
@@ -1248,6 +1047,9 @@
 					<td><input type="Textarea" id="score_stop" name="score_stop" /></td>
 				</tr>	
 			</table>
+			<input type="hidden" name="dataTotal" id="dataTotal"/>
+			<input type="hidden" name="dataTotalSelect" id="dataTotalSelect"/>
+			<input type="hidden" name="dataTotalRadio" id="dataTotalRadio"/>
 			<div class="pagebar">			
 			<div class="controlbtn">
 				<input type="submit" class="btn btn-info" id="button1" value="提交" disabled>
@@ -1258,9 +1060,32 @@
 		</form>
 		<script type="text/javascript">
 		$(document).ready(function() {
-		
-
-			});
+			
+			var data_1 = "{{data.value_1}}";
+			var data_2 = "{{data.value_2}}";
+			var data_3 = "{{data.value_3}}";
+			if(data_1!=''){
+				$("input").each(function(i){
+				    if($(this).attr("type")!="button"){
+				    	$(this).val(data_1.split(",")[i]);
+				    	if($(this).attr("name")=="score_result"){
+				    	}
+				    }
+				});
+			}
+			if(data_2!=''){
+			
+				$("select").each(function(i){
+				    var data = data_2.split(",")[i];
+				    data1 = data.split("@@")[0];
+				    data2 = data.split("@@")[1];
+				    if($(this).attr("content")==data1){
+				    	$(this).find("option[text='"+data2+"']").attr("selected",true);
+				    }
+				});
+			}
+			$("input[type='radio'][name=box1][value='"+data_3+"']").attr("checked",true);
+		});
 			var type =true;
 			var remark = new Array();
 			function sum(){
@@ -1341,33 +1166,15 @@
 				total+=(parseFloat($("#sjzk1").val())/100)*(parseFloat($("#sjzk3").val())/100)*(parseFloat($("#sjzk4").val())/100)*parseFloat(transfer($("#pfcd2")));
 				total+=(parseFloat($("#sjzk1").val())/100)*(parseFloat($("#sjzk3").val())/100)*(parseFloat($("#sjzk5").val())/100)*parseFloat(transfer($("#pfcd3")));
 				//资产负债表
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk2").val())/100)*(parseFloat($("#zcfzzk3").val())/100)*parseFloat(transfer($("#xykzs1")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk2").val())/100)*(parseFloat($("#zcfzzk4").val())/100)*parseFloat(transfer($("#xykzs2")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk2").val())/100)*(parseFloat($("#zcfzzk5").val())/100)*parseFloat(transfer($("#xykzs3")));
-
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk8").val())/100)*parseFloat(transfer($("#xykzs4")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk9").val())/100)*parseFloat(transfer($("#xykzs5")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk10").val())/100)*parseFloat(transfer($("#xykzs6")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk11").val())/100)*parseFloat(transfer($("#xykzs7")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk12").val())/100)*parseFloat(transfer($("#xykzs8")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk13").val())/100)*parseFloat(transfer($("#xykzs9")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*(parseFloat($("#zcfzzk14").val())/100)*parseFloat(transfer($("#xykzs10")));
-
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk16").val())/100)*parseFloat(transfer($("#xykzs11")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk17").val())/100)*parseFloat(transfer($("#xykzs12")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk18").val())/100)*parseFloat(transfer($("#xykzs13")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk19").val())/100)*parseFloat(transfer($("#xykzs14")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk20").val())/100)*parseFloat(transfer($("#xykzs15")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk21").val())/100)*parseFloat(transfer($("#xykzs16")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk15").val())/100)*(parseFloat($("#zcfzzk22").val())/100)*parseFloat(transfer($("#xykzs17")));
-
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk25").val())/100)*parseFloat(transfer($("#xykzs19")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk26").val())/100)*parseFloat(transfer($("#xykzs20")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk27").val())/100)*parseFloat(transfer($("#xykzs21")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk28").val())/100)*parseFloat(transfer($("#xykzs22")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk29").val())/100)*parseFloat(transfer($("#xykzs23")));
-				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk23").val())/100)*(parseFloat($("#zcfzzk30").val())/100)*parseFloat(transfer($("#xykzs24")));
-
+				//银行贷款
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk2").val())/100)*((parseFloat($("#zcfzzk3").val())/100)*parseFloat(transfer($("#xykzs1")))+(parseFloat($("#zcfzzk4").val())/100)*parseFloat(transfer($("#xykzs2"))));
+				//信用卡
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk5").val())/100)*parseFloat(transfer($("#xykzs3")));
+				//其他借款
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk7").val())/100)*parseFloat(transfer($("#xykzs4")));
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk8").val())/100)*parseFloat(transfer($("#xykzs5")));
+				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk6").val())/100)*(parseFloat($("#zcfzzk9").val())/100)*parseFloat(transfer($("#xykzs6")));
+				//担保情况
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk32").val())/100)*parseFloat(transfer($("#xykzs25")));
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk33").val())/100)*parseFloat(transfer($("#xykzs26")));
 				total-=(parseFloat($("#zcfzzk1").val())/100)*(parseFloat($("#zcfzzk31").val())/100)*(parseFloat($("#zcfzzk34").val())/100)*parseFloat(transfer($("#xykzs27")));
@@ -1381,6 +1188,34 @@
 					$("#button1").attr('disabled',false);
 					$("#score_result").val(total);
 				}
+
+				//记录form json值
+				var inputData = new Array();
+				$("input").each(function(i){
+				    var value = $(this).val();
+					if(value==''){
+				    	inputData.push(0);
+				    }else{
+				    	inputData.push(value);
+				    }  
+				});
+
+				var selectData = new Array();
+				$("select").each(function(i){
+				    var value = $(this).val();
+				    var text = $(this).find("option:selected").text();
+					if(value==''){
+				    	selectData.push($(this).attr("content")+"@@"+0);
+				    }else{
+				    	selectData.push($(this).attr("content")+"@@"+text);
+				    }  
+			
+				});
+
+				$("#dataTotalRadio").val($("#box1:checked").val());
+				//form组成json格式
+				$("#dataTotal").val(inputData);
+				$("#dataTotalSelect").val(selectData);
 
 			}
 			function transfer(value){

@@ -667,12 +667,17 @@
 					<td rowspan="9"><b>企业经营</b><br/><input type="text" name="name172" value=""/>%</td>
 					<td><b>法定代表人</b></td>
 					<td><input type="text" name="name173" value=""/>%</td>
-					<td></td>
+					<td><b>本人</b><input type="text" name="name417" value=""/>
+						<b>非本人</b><input type="text" name="name418" value=""/>
+					</td>
+
 				</tr>
 				<tr>
 					<td><b>实际控制人</b></td>
 					<td><input type="text" name="name174" value=""/>%</td>
-					<td></td>
+					<td><b>本人</b><input type="text" name="name419" value=""/>
+						<b>非本人</b><input type="text" name="name224" value=""/>
+					</td>
 				</tr>	
 				<tr>
 					<td rowspan="2"><b>股权结构</b><br/><input type="hidden" name="name175" value=""/></td>
@@ -866,22 +871,22 @@
 				<tr>
 					<td rowspan="2"><b>日常生活消费</b><br/><input type="text" name="name218" value=""/>%</td>
 					<td><b>消费结构</b><br/><input type="text" name="name219" value=""/>%</td>
-					<td></td>
+					<td>日常消费占消费总额比例（衣食住行）</td>
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>衣</th>
-								<th>食</th>
-								<th>住</th>
-								<th>行</th>
-								<th>其他</th>
+								<th>＞80%</th>
+								<th>50%-80%</th>
+								<th>30%-50%</th>
+								<th>＜30%</th>
+						
 							</tr>
 							<tr>
 								<td><input type="text" name="name220" value=""/></td>
 								<td><input type="text" name="name221" value=""/></td>
 								<td><input type="text" name="name222" value=""/></td>
 								<td><input type="text" name="name223" value=""/></td>
-								<td><input type="text" name="name224" value=""/></td>
+						
 							</tr>
 						</table>	
 					</td>
@@ -1168,16 +1173,16 @@
 					<col width="70%">
 				</colgroup>
 				<tr>
-					<td rowspan="3"><b>贷记卡</b><br/><input type="text" name="name284" value=""/>%</td>
-					<td><b>信用卡总数 </b><br/><input type="text" name="name285" value=""/>%</td>
-					<td></td>
+					<td rowspan="9"></td>
+					<td rowspan="2"><b>银行贷款 </b><br/><input type="text" name="name284" value=""/>%</td>
+					<td><b>还款计划 </b><br/><input type="text" name="name285" value=""/>%</td>
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>3张以上</th>
-								<th>2张</th>
-								<th>1张</th>
-								<th>0张</th>
+								<th>一次性还本付息</th>
+								<th>等额本息</th>
+								<th>等额本金</th>
+								<th>按期付息还本</th>
 							</tr>
 							<tr>
 								<td><input type="text" name="name286" value=""/></td>
@@ -1189,17 +1194,17 @@
 					</td>
 				</tr>	
 				<tr>
-					<td><b>单卡最高授信额度</b><br/><input type="text" name="name290" value=""/>%</td>
-					<td></td>
+					<td><b>每期还款金额占当期收入比例</b><br/><input type="text" name="name290" value=""/>%</td>
+			
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>>200万</th>
-								<th>100-200万</th>
-								<th>50-100万</th>
-								<th>30-50万</th>
-								<th>10-30万</th>
-								<th><10万</th>
+								<th>＞70%</th>
+								<th>50%-70%</th>
+								<th>30%-50%</th>
+								<th>10%-30%</th>
+								<th>＜10%</th>
+					
 							</tr>
 							<tr>
 								<td><input type="text" name="name291" value=""/></td>
@@ -1207,31 +1212,44 @@
 								<td><input type="text" name="name293" value=""/></td>
 								<td><input type="text" name="name294" value=""/></td>
 								<td><input type="text" name="name295" value=""/></td>
-								<td><input type="text" name="name296" value=""/></td>
+		
 							</tr>
 						</table>	
 					</td>
 				</tr>	
 				<tr>
-					<td><b>逾期情况</b><br/><input type="text" name="name297" value=""/>%</td>
-					<td></td>
+					<td><b>信用卡</b><br/><input type="text" name="name296" value=""/>%</td>
+					<td><b>月平均还款金额占收入比例</b></td>
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>10次以上</th>
-								<th>8-10次</th>
-								<th>6-7次</th>
-								<th>4-5次</th>
-								<th>2-3次</th>
-								<th>1次</th>
-								<th>0次</th>
+								<th>＞70%</th>
+								<th>30%-50%</th>
+								<th>10%-30%</th>
+								<th>＜10%</th>
+						
 							</tr>
 							<tr>
+								<td><input type="text" name="name297" value=""/></td>
 								<td><input type="text" name="name298" value=""/></td>
 								<td><input type="text" name="name299" value=""/></td>
 								<td><input type="text" name="name300" value=""/></td>
-								<td><input type="text" name="name301" value=""/></td>
-								<td><input type="text" name="name302" value=""/></td>
+							
+							</tr>
+						</table>	
+					</td>
+				</tr>
+				<tr>
+					<td rowspan="3"><b>其他借款 </b><br/><input type="text" name="name301" value=""/>%</td>
+					<td><b>借款来源 </b><br/><input type="text" name="name302" value=""/>%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>小额借款公司</th>
+								<th>亲戚朋友借款</th>
+				
+							</tr>
+							<tr>
 								<td><input type="text" name="name303" value=""/></td>
 								<td><input type="text" name="name304" value=""/></td>
 							</tr>
@@ -1239,404 +1257,49 @@
 					</td>
 				</tr>
 				<tr>
-					<td rowspan="18"><b>银行贷款</b><br/><input type="text" name="name305" value=""/>%</td>
-					<td rowspan="9"><b>历史贷款笔数</b><br/><input type="text" name="name306" value=""/>%</td>
-				</tr>	
-				<tr>
-					<td><b>贷款机构</b><br/><input type="text" name="name307" value=""/>%</td>
+					<td><b>还款计划 </b><br/><input type="text" name="name305" value=""/>%</td>
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>农商行</th>
-								<th>城商行</th>
-								<th>国有4大行</th>
+								<th>一次性还本付息</th>
+								<th>先息后本</th>
+								<th>等额本息</th>
+					
 							</tr>
 							<tr>
+								<td><input type="text" name="name306" value=""/></td>
+								<td><input type="text" name="name307" value=""/></td>
 								<td><input type="text" name="name308" value=""/></td>
-								<td><input type="text" name="name309" value=""/></td>
-								<td><input type="text" name="name310" value=""/></td>
 							</tr>
 						</table>	
 					</td>
-				</tr>	
+				</tr>
 				<tr>
-					<td><b>贷款金额</b><br/><input type="text" name="name311" value=""/>%</td>
+					<td><b>每期还款金额占当期收入比例 </b><br/><input type="text" name="name309" value=""/>%</td>
+			
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>>1000万</th>
-								<th>500-1000万</th>
-								<th><500万</th>
+								<th>＞50%</th>
+								<th>30%-50%</th>
+								<th>10%-30%</th>
+								<th>＜10%</th>
 							</tr>
 							<tr>
+								<td><input type="text" name="name310" value=""/></td>
+								<td><input type="text" name="name311" value=""/></td>
 								<td><input type="text" name="name312" value=""/></td>
 								<td><input type="text" name="name313" value=""/></td>
-								<td><input type="text" name="name314" value=""/></td>
 							</tr>
 						</table>	
 					</td>
 				</tr>
-				<tr>
-					<td><b>利率</b><br/><input type="text" name="name315" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>高于一般水平</th>
-								<th>一般水平</th>
-								<th>低于一般水平</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name316" value=""/></td>
-								<td><input type="text" name="name317" value=""/></td>
-								<td><input type="text" name="name318" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td><b>期限</b><br/><input type="text" name="name319" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>>1年</th>
-								<th>6个月-1年</th>
-								<th><6个月</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name320" value=""/></td>
-								<td><input type="text" name="name321" value=""/></td>
-								<td><input type="text" name="name322" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td><b>用途</b><br/><input type="text" name="name323" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>房贷</th>
-								<th>车贷</th>
-								<th>经营</th>
-								<th>消费</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name324" value=""/></td>
-								<td><input type="text" name="name325" value=""/></td>
-								<td><input type="text" name="name326" value=""/></td>
-								<td><input type="text" name="name327" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-
-				<tr>
-					<td><b>是否有担保</b><br/><input type="text" name="name328" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>是</th>
-								<th>否</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name329" value=""/></td>
-								<td><input type="text" name="name330" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td><b>逾期情况</b><br/><input type="text" name="name331" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>10次以上</th>
-								<th>8-10次</th>
-								<th>6-7次</th>
-								<th>4-5次</th>
-								<th>2-3次</th>
-								<th>1次</th>
-								<th>0次</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name332" value=""/></td>
-								<td><input type="text" name="name333" value=""/></td>
-								<td><input type="text" name="name334" value=""/></td>
-								<td><input type="text" name="name335" value=""/></td>
-								<td><input type="text" name="name336" value=""/></td>
-								<td><input type="text" name="name337" value=""/></td>
-								<td><input type="text" name="name338" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td rowspan="9"><b>尚未到期笔数</b><br/><input type="text" name="name339" value=""/>%</td>
-					<td><b>放款日期</b></td>
-				</tr>	
-				<tr>
-					<td><b>贷款机构</b><br/><input type="text" name="name340" value="10%"/></td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>农商行</th>
-								<th>城商行</th>
-								<th>国有4大行</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name341" value=""/></td>
-								<td><input type="text" name="name342" value=""/></td>
-								<td><input type="text" name="name343" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>	
-				<tr>
-					<td><b>贷款金额</b><br/><input type="text" name="name344" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>>1000万</th>
-								<th>500-1000万</th>
-								<th><500万</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name345" value=""/></td>
-								<td><input type="text" name="name346" value=""/></td>
-								<td><input type="text" name="name347" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td><b>利率</b><br/><input type="text" name="name348" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>高于一般水平</th>
-								<th>一般水平</th>
-								<th>低于一般水平</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name349" value=""/></td>
-								<td><input type="text" name="name350" value=""/></td>
-								<td><input type="text" name="name351" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td><b>期限</b><br/><input type="text" name="name352" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>>1年</th>
-								<th>6个月-1年</th>
-								<th><6个月</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name353" value=""/></td>
-								<td><input type="text" name="name354" value=""/></td>
-								<td><input type="text" name="name355" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td><b>用途</b><br/><input type="text" name="name356" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>房贷</th>
-								<th>车贷</th>
-								<th>经营</th>
-								<th>消费</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name357" value=""/></td>
-								<td><input type="text" name="name358" value=""/></td>
-								<td><input type="text" name="name359" value=""/></td>
-								<td><input type="text" name="name360" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td><b>还款日期</b></td>
-					<td><input type="text" name="" value="5%"/></td>
-				</tr>
-				<tr>
-					<td><b>是否有担保</b><br/><input type="text" name="name361" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>是</th>
-								<th>否</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name362" value=""/></td>
-								<td><input type="text" name="name363" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-				<tr>
-					<td><b>逾期情况</b><br/><input type="text" name="name364" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>10次以上</th>
-								<th>8-10次</th>
-								<th>6-7次</th>
-								<th>4-5次</th>
-								<th>2-3次</th>
-								<th>1次</th>
-								<th>0次</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name365" value=""/></td>
-								<td><input type="text" name="name366" value=""/></td>
-								<td><input type="text" name="name367" value=""/></td>
-								<td><input type="text" name="name368" value=""/></td>
-								<td><input type="text" name="name369" value=""/></td>
-								<td><input type="text" name="name370" value=""/></td>
-								<td><input type="text" name="name371" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
-<!--*****************************其他借款**********************************-->
-				<tr>
-					<td rowspan="7"><b>其他借款</b><br/><input type="text" name="name372" value=""/>%</td>
-					<td><b>借款来源</b><br/><input type="text" name="name373" value=""/>%</td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>民间借贷</th>
-								<th>小额借款公司</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name374" value=""/></td>
-								<td><input type="text" name="name375" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>	
-				<tr>
-					<td><b>借款金额</b><br/><input type="text" name="name376" value=""/>%</td>
-					<td></td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>>1000万</th>
-								<th>500-1000万</th>
-								<th><500万</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name377" value=""/></td>
-								<td><input type="text" name="name378" value=""/></td>
-								<td><input type="text" name="name379" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>	
-				<tr>
-					<td><b>利率</b><br/><input type="text" name="name380" value=""/>%</td>
-					<td></td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>高于一般水平</th>
-								<th>一般水平</th>
-								<th>低于一般水平</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name381" value=""/></td>
-								<td><input type="text" name="name382" value=""/></td>
-								<td><input type="text" name="name383" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>		
-				<tr>
-					<td><b>期限</b><br/><input type="text" name="name384" value=""/>%</td>
-					<td></td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>>1年</th>
-								<th>6个月-1年</th>
-								<th>3个月-6个月</th>
-								<th><3个月</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name385" value=""/></td>
-								<td><input type="text" name="name386" value=""/></td>
-								<td><input type="text" name="name387" value=""/></td>
-								<td><input type="text" name="name388" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>			
-				<tr>
-					<td><b>用途</b><br/><input type="text" name="name389" value=""/>%</td>
-					<td></td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>经营</th>
-								<th>消费</th>
-								<th>其他</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name390" value=""/></td>
-								<td><input type="text" name="name391" value=""/></td>
-								<td><input type="text" name="name392" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>			
-				<tr>
-					<td><b>剩余还款期限</b><br/><input type="text" name="name393" value=""/>%</td>
-					<td></td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>1年</th>
-								<th>6个月-1年</th>
-								<th>3个月-6个月</th>
-								<th><3个月</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name394" value=""/></td>
-								<td><input type="text" name="name395" value=""/></td>
-								<td><input type="text" name="name396" value=""/></td>
-								<td><input type="text" name="name397" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>			
-				<tr>
-					<td><b>是否正常还款</b><br/><input type="text" name="name398" value=""/>%</td>
-					<td></td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th>是</th>
-								<th>否</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name399" value=""/></td>
-								<td><input type="text" name="name400" value=""/></td>
-							</tr>
-						</table>	
-					</td>
-				</tr>
+			
 <!--*****************************担保情况**********************************-->
 				<tr>
 					<td rowspan="3"><b>担保情况</b><br/><input type="text" name="name401" value=""/>%</td>
 					<td><b>担保金额（占本人自有资产比例）</b><br/><input type="text" name="name402" value=""/>%</td>
-					<td></td>
+		
 					<td>
 						<table class="addTable">
 							<tr>
@@ -1658,7 +1321,7 @@
 				</tr>	
 				<tr>
 					<td><b>担保贷款用途</b><br/><input type="text" name="name408" value=""/>%</td>
-					<td></td>
+		
 					<td>
 						<table class="addTable">
 							<tr>
@@ -1674,7 +1337,7 @@
 				</tr>	
 				<tr>
 					<td><b>担保期限</b><br/><input type="text" name="name411" value=""/>%</td>
-					<td></td>
+			
 					<td>
 						<table class="addTable">
 							<tr>
@@ -1717,6 +1380,7 @@
 				var score = new Array();
 				for(var j=1;j<420;j++){
 					var str = "name"+j;
+					var ifexit = false;
 					$("input").each(function(i){
 						if($(this).attr("name")==str){
 							var value = $(this).val();
@@ -1725,9 +1389,14 @@
 						    }else{
 						    	score.push(value);
 						    } 
+						    ifexit= true;
 						}
 					    
 					});
+					// 不存在name值，则数组置为0
+					if(!ifexit){
+						score.push(0);
+					}
 				}
 				var url = "/mxpg/cspz_shzt_save/"+score;
 		   		window.location.href =  url;
