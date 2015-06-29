@@ -14,6 +14,7 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Lrb import Rcs_Appli
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Jyzk import Rcs_Application_Jyzk
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Ddpz import Rcs_Application_Ddpz
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Shzk import Rcs_Application_Shzk
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
@@ -491,7 +492,9 @@ def khzl_jyzk_save(id):
 def khzl_shzk(id):     
     shzt = Rcs_Parameter.query.filter_by(parameter_name="shzt").first()
     result=shzt.parameter_value   
-    return render_template("customer/shzt.html",result=result,id=id)
+    #页面数据
+    data = Rcs_Application_Shzk.query.filter_by(application_id=id).first()
+    return render_template("customer/shzt.html",result=result,id=id,data=data)
 
 #生活状态保存
 @app.route('/khzldy/khzl_shzk_save/<int:id>', methods=['POST'])
@@ -503,6 +506,20 @@ def khzl_shzk_save(id):
         score.shzk_score=total
     else:
         Rcs_Application_Score(id,"","","",total,remark).add()
+
+        #道德品质页面form数据保存
+    #form json值
+    dataTotal = request.form['dataTotal']
+    dataTotalSelect = request.form['dataTotalSelect']
+    dataTotalRadio = request.form['dataTotalRadio']
+    shzkData = Rcs_Application_Shzk.query.filter_by(application_id=id).first()
+    if shzkData:
+        shzkData.value_1=dataTotal
+        shzkData.value_2=dataTotalSelect
+        shzkData.value_3=dataTotalRadio
+    else:
+        Rcs_Application_Shzk(id,dataTotal,dataTotalSelect,dataTotalRadio).add()
+
     db.session.commit()
     return redirect("/khzldy/khzl_shzk/"+str(id))
 
