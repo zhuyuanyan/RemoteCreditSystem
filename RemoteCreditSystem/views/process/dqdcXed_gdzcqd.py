@@ -17,14 +17,14 @@ def dqdcXed_gdzcqd(id):
 	fixed_assets_equipment = SC_Fixed_Assets_Equipment.query.filter_by(loan_apply_id=id).all()
 	fixed_assets_car = SC_Fixed_Assets_Car.query.filter_by(loan_apply_id=id).all()
 
-	return render_template("Process/dqdc/dqdcXed_gdzcqd.html",id=id,fixed_assets_estate=fixed_assets_estate,
+	return render_template("process/dqdc/dqdcXed_gdzcqd.html",id=id,fixed_assets_estate=fixed_assets_estate,
 		fixed_assets_equipment=fixed_assets_equipment,fixed_assets_car=fixed_assets_car)
 
 # 贷款调查——新增小额贷款(固定资产清单-房地产)
 @app.route('/Process/dqdc/new_fdc/<int:loan_apply_id>', methods=['GET','POST'])
 def new_fdc(loan_apply_id):
 	if request.method == 'GET':
-		return render_template("Process/dqdc/new_fdc.html",loan_apply_id=loan_apply_id)
+		return render_template("process/dqdc/new_fdc.html",loan_apply_id=loan_apply_id)
 	else:
 		try:
 			SC_Fixed_Assets_Estate(loan_apply_id,request.form['name'],request.form['address'],
@@ -42,14 +42,14 @@ def new_fdc(loan_apply_id):
 			# 消息闪现
 			flash('保存失败','error')
 
-		return redirect('Process/dqdc/dqdcXed_gdzcqd/%d' % loan_apply_id)
+		return redirect('process/dqdc/dqdcXed_gdzcqd/%d' % loan_apply_id)
 
 # 贷款调查——编辑小额贷款(固定资产清单-房地产)
 @app.route('/Process/dqdc/edit_fdc/<int:id>', methods=['GET','POST'])
 def edit_fdc(id):
 	if request.method == 'GET':
 		fixed_assets_estate = SC_Fixed_Assets_Estate.query.filter_by(id=id).first()
-		return render_template("Process/dqdc/edit_fdc.html",fixed_assets_estate=fixed_assets_estate)
+		return render_template("process/dqdc/edit_fdc.html",fixed_assets_estate=fixed_assets_estate)
 	else:
 		try:
 			fixed_assets_estate = SC_Fixed_Assets_Estate.query.filter_by(id=id).first()
@@ -80,7 +80,7 @@ def edit_fdc(id):
 @app.route('/Process/dqdc/new_equipment/<int:loan_apply_id>', methods=['GET','POST'])
 def new_equipment(loan_apply_id):
 	if request.method == 'GET':
-		return render_template("Process/dqdc/new_equipment.html",loan_apply_id=loan_apply_id)
+		return render_template("process/dqdc/new_equipment.html",loan_apply_id=loan_apply_id)
 	else:
 		try:
 			SC_Fixed_Assets_Equipment(loan_apply_id,request.form['name'],request.form['amount'],
@@ -105,7 +105,7 @@ def new_equipment(loan_apply_id):
 def edit_equipment(id):
 	if request.method == 'GET':
 		fixed_assets_equipment = SC_Fixed_Assets_Equipment.query.filter_by(id=id).first()
-		return render_template("Process/dqdc/edit_equipment.html",fixed_assets_equipment=fixed_assets_equipment)
+		return render_template("process/dqdc/edit_equipment.html",fixed_assets_equipment=fixed_assets_equipment)
 	else:
 		try:
 			fixed_assets_equipment = SC_Fixed_Assets_Equipment.query.filter_by(id=id).first()
@@ -136,7 +136,7 @@ def edit_equipment(id):
 @app.route('/Process/dqdc/new_car', methods=['GET','POST'])
 def new_car():
 	if request.method == 'GET':
-		return render_template("Process/dqdc/new_car.html",loan_apply_id=loan_apply_id)
+		return render_template("process/dqdc/new_car.html",loan_apply_id=loan_apply_id)
 	else:
 		loan_apply_id = request.form['hiddenId']
 		try:

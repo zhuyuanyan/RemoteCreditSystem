@@ -20,7 +20,7 @@ def dqdcXed_dbdydcb(id):
 
 	dydb_dec = SC_Dydb_Dec.query.filter_by(loan_apply_id=id).first()
 
-	return render_template("Process/dqdc/dqdcXed_dbdydcb.html",id=id,co_borrower=co_borrower,guaranty=guaranty,
+	return render_template("process/dqdc/dqdcXed_dbdydcb.html",id=id,co_borrower=co_borrower,guaranty=guaranty,
     	guarantees=guarantees,dydb_dec=dydb_dec)
 
 # 贷款调查——编辑小额贷款(担保抵押调查表)
@@ -105,4 +105,4 @@ def edit_dqdcXed_dbdydcb(id):
 		# 消息闪现
 		flash('保存失败','error')
 
-	return redirect('Process/dqdc/dqdcXed_dbdydcb/%d' % id)
+	return redirect('process/dqdc/dqdcXed_dbdydcb/%d' % id)
