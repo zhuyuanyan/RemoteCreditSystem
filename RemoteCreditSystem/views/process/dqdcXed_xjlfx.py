@@ -30,7 +30,7 @@ def dqdcXed_xjlfx(id):
 
 	cash_flow_dec = SC_Cash_Flow_Dec.query.filter_by(loan_apply_id=id).first()
 
-	return render_template("Process/dqdc/dqdcXed_xjlfx.html",id=id,cash_flow=cash_flow,
+	return render_template("process/dqdc/dqdcXed_xjlfx.html",id=id,cash_flow=cash_flow,
 		cash_flow_assist_0=cash_flow_assist_0,cash_flow_assist_1=cash_flow_assist_1,
 		cash_flow_assist_2=cash_flow_assist_2,cash_flow_assist_3=cash_flow_assist_3,
 		cash_flow_dec=cash_flow_dec)

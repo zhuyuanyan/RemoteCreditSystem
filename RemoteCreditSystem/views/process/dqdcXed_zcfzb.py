@@ -36,7 +36,7 @@ def dqdcXed_zcfzb(loan_apply_id):
 		count_6 = SC_Balance_Sheet.query.filter_by(loan_apply_id=loan_apply_id,loan_type=6).count()
 		count_10 = SC_Balance_Sheet.query.filter_by(loan_apply_id=loan_apply_id,loan_type=10).count()
 		count_12 = SC_Balance_Sheet.query.filter_by(loan_apply_id=loan_apply_id,loan_type=12).count()
-		return render_template("Process/dqdc/dqdcXed_zcfzb.html",loan_apply_id=loan_apply_id,
+		return render_template("process/dqdc/dqdcXed_zcfzb.html",loan_apply_id=loan_apply_id,
 			balance_sheets=balance_sheets,count_0=count_0,count_2=count_2,count_4=count_4,count_6=count_6,
 			count_10=count_10,count_12=count_12)
 	else:

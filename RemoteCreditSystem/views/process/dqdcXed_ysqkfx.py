@@ -18,7 +18,7 @@ def dqdcXed_ysqkfx(loan_apply_id):
 		count_21 = SC_Profit_Loss.query.filter_by(loan_apply_id=loan_apply_id,items_type=21).count()
 		count_28 = SC_Profit_Loss.query.filter_by(loan_apply_id=loan_apply_id,items_type=28).count()
 		count_29 = SC_Profit_Loss.query.filter_by(loan_apply_id=loan_apply_id,items_type=29).count()
-		return render_template("Process/dqdc/dqdcXed_ysqkfx.html",loan_apply_id=loan_apply_id,profit_loss=profit_loss,
+		return render_template("process/dqdc/dqdcXed_ysqkfx.html",loan_apply_id=loan_apply_id,profit_loss=profit_loss,
 			count_1=count_1,count_3=count_3,count_21=count_21,count_28=count_28,count_29=count_29)
 	else:
 		try:
