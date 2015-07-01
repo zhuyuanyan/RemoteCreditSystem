@@ -2,7 +2,7 @@
 import hashlib
 
 from RemoteCreditSystem import User
-from RemoteCreditSystem.models import UserRole,Rcs_Access_Right,Rcs_Privilege
+from RemoteCreditSystem.models import UserRole,Rcs_Access_Right
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score

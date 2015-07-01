@@ -11,8 +11,6 @@ from flask.ext.login import current_user
 from RemoteCreditSystem.models import User
 from RemoteCreditSystem.models import Role
 from RemoteCreditSystem.models import UserRole
-from RemoteCreditSystem.models import Rcs_Menu
-from RemoteCreditSystem.models import Rcs_Privilege
 
 
 from RemoteCreditSystem import app
@@ -82,9 +80,13 @@ def edit_user(id):
             user.modify_date = datetime.datetime.now()
 
             user_role = UserRole.query.filter_by(user_id=id).first()
-            user_role.role_id = request.form['roles']
-            user_role.modify_user = current_user.id
-            user_role.modify_date = datetime.datetime.now()
+            if(user_role == None):
+                user_role = UserRole(id,request.form['roles'])
+                user_role.add()
+            else:
+                user_role.role_id = request.form['roles']
+                user_role.modify_user = current_user.id
+                user_role.modify_date = datetime.datetime.now()
 
             # 事务提交
             db.session.commit()
