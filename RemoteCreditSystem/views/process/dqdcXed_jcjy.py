@@ -25,7 +25,7 @@ def dqdcXed_jcjy(loan_apply_id):
 			if obj.index is not None and obj.index > maxIndex:
 				maxIndex = obj.index
 		
-		return render_template("Process/dqdc/dqdcXed_jcjy.html",loan_apply_id=loan_apply_id,
+		return render_template("process/dqdc/dqdcXed_jcjy.html",loan_apply_id=loan_apply_id,
 			cross_examination=cross_examination,count_3=count_3,balance_sheet=balance_sheet,
 			profit_jcjy=profit_jcjy,maxIndex=maxIndex)
 	else:

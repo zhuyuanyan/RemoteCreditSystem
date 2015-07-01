@@ -28,7 +28,7 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Appl
 def dqdc_xed(id):
     info = Rcs_Application_Info.query.filter_by(id=id).first()
     loan_apply = SC_Loan_Apply.query.filter_by(id=info.loan_id).first()
-    return render_template("Process/dqdc/dqdc_xed.html",loan_apply=loan_apply,id=info.loan_id)
+    return render_template("process/dqdc/dqdc_xed.html",loan_apply=loan_apply,id=info.loan_id)
 
 # 贷款调查——小额贷款(基本情况)
 @app.route('/Process/dqdc/dqdcXed_jbqk/<int:id>', methods=['GET'])
@@ -44,7 +44,7 @@ def dqdcXed_jbqk(id):
     #non_financial_analysis = SC_Non_Financial_Analysis.query.filter_by(loan_apply_id=id).first()
     riskanalysis_and_findings = SC_Riskanalysis_And_Findings.query.filter_by(loan_apply_id=id).first()
     
-    return render_template("Process/dqdc/dqdcXed_jbqk.html",id=id,customer=customer,loan_apply=loan_apply,
+    return render_template("process/dqdc/dqdcXed_jbqk.html",id=id,customer=customer,loan_apply=loan_apply,
         apply_info=apply_info,loan_purpose=loan_purpose,credit_history=credit_history,
         guarantees_for_others=guarantees_for_others,riskanalysis_and_findings=riskanalysis_and_findings)
 
@@ -129,4 +129,4 @@ def edit_dqdcXed_jbqk(id):
         # 消息闪现
         flash('保存失败','error')
 
-    return redirect("Process/dqdc/dqdcXed_jbqk/"+str(id))
+    return redirect("process/dqdc/dqdcXed_jbqk/"+str(id))

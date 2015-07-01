@@ -12,7 +12,7 @@ from RemoteCreditSystem import app
 @app.route('/Process/dqdc/dqdcXed_zkqd/<int:id>', methods=['GET'])
 def dqdcXed_zkqd(id):
 	accounts_list = SC_Accounts_List.query.filter_by(loan_apply_id=id).all()
-	return render_template("Process/dqdc/dqdcXed_zkqd.html",id=id,accounts_list=accounts_list)
+	return render_template("process/dqdc/dqdcXed_zkqd.html",id=id,accounts_list=accounts_list)
 
 # 贷款调查——新增小额贷款(账款清单)
 @app.route('/Process/dqdc/new_zkqd', methods=['GET','POST'])
@@ -53,7 +53,7 @@ def new_zkqd():
 def edit_zkqd(id):
 	if request.method == 'GET':
 		accounts_list = SC_Accounts_List.query.filter_by(id=id).first()
-		return render_template("Process/dqdc/edit_zkqd.html",accounts_list=accounts_list)
+		return render_template("process/dqdc/edit_zkqd.html",accounts_list=accounts_list)
 	else:
 		try:
 			accounts_list = SC_Accounts_List.query.filter_by(id=id).first()

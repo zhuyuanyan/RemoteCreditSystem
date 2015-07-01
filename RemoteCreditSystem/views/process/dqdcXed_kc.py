@@ -12,7 +12,7 @@ from RemoteCreditSystem import app
 @app.route('/Process/dqdc/dqdcXed_kc/<int:loan_apply_id>', methods=['GET'])
 def dqdcXed_kc(loan_apply_id):
 	stocks = SC_Stock.query.filter_by(loan_apply_id=loan_apply_id).all()
-	return render_template("Process/dqdc/dqdcXed_kc.html",loan_apply_id=loan_apply_id,stocks=stocks)
+	return render_template("process/dqdc/dqdcXed_kc.html",loan_apply_id=loan_apply_id,stocks=stocks)
 
 # 贷款调查——新增小额贷款(库存)
 @app.route('/Process/dqdc/new_kc/<int:loan_apply_id>', methods=['POST'])

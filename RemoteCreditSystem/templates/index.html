@@ -42,6 +42,7 @@
 						<img src="../static/img/2.png" class="tip"/>进件任务分案<img src="../static/img/secondNav0.png" class="open"/>
 					</div>
 					<ul class="second-nav" id="ul2">
+
 						<li onclick="changeiframe('jjrwfa/zxpg')"><a href="#" title="资信评估">资信评估</a></li>
 						<li onclick="changeiframe('jjrwfa/jjfa/1')"><a href="#" title="进件分案">进件分案</a></li>
 						<li onclick="changeiframe('jjrwfa/jjrwfaxx')"><a href="#" title="进件任务分案信息">进件任务分案信息</a></li>
@@ -58,11 +59,22 @@
 						<img src="../static/img/3.png" class="tip"/>模型评估<img src="../static/img/secondNav0.png" class="open"/>
 					</div>
 					<ul class="second-nav" id="ul3">
-						<li onclick="changeiframe('mxpg/xxdr')"><a href="#" title="信息导入">信息导入</a></li>
+					
                         <li onclick="changeiframe('by_bigdata')"><a href="#" title="信息导入">互联网数据采集</a></li>
 						<li onclick="changeiframe('mxpg/sxpg')"><a href="#" title="授信评估">模型评估</a></li>
 						<li onclick="changeiframe('mxpg/pgbg')"><a href="#" title="评估报告">评估报告</a></li>
 						<li onclick="changeiframe('mxpg/csgl')"><a href="#" title="参数管理">参数管理</a></li>
+					</ul>
+				</li>	
+				{%- endif %}
+				{%- if obj.privilege_access_value == "xxdr" and obj.privilege_operation != "0" %}
+				<li onclick="changeNav(this,9)">
+					<div onclick="showMenu(9)">
+						<img src="../static/img/9.png" class="tip"/>信息导入<img src="../static/img/secondNav0.png" class="open"/>
+					</div>
+					<ul class="second-nav" id="ul9">
+						<li onclick="changeiframe('mxpg/xxdr')"><a href="#" title="信息导入">信息导入</a></li>
+                    
 					</ul>
 				</li>	
 				{%- endif %}

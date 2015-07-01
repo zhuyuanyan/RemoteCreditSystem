@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
 		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/jquery-1.4.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
 		<!--日历-->
 		<script src="../../static/js/date/lhgcore.js"></script>
@@ -29,7 +29,7 @@
 				<tr>
 					<td><b>行业</b></td>
 					<td colspan="3">
-						<select	name="">
+						<select	name="" content="行业">
 							<option value="1">电子信息</option>
 							<option value="2">互联网移动互联网</option>
 							<option value="3">生物医药</option>
@@ -67,7 +67,7 @@
 				<tr>
 					<td><b>专利类型</b></td>
 					<td>
-						<select	name="">
+						<select	name="" content="专利类型">
 							<option value="1">发明专利</option>
 							<option value="2">实用新型</option>
 							<option value="3">外观设计</option>
@@ -90,7 +90,7 @@
 				<tr>
 					<td><b>技术来源</b></td>
 					<td>
-						<select	name="">
+						<select	name="" content="技术来源">
 							<option value="1">独立知识产权</option>
 							<option value="2">合并研发</option>
 							<option value="3">购买技术</option>
@@ -106,7 +106,7 @@
 				<tr>
 					<td><b>技术来源</b></td>
 					<td>
-						<select	name="">
+						<select	name="" content="技术来源1">
 							<option value="1">独立知识产权</option>
 							<option value="2">合并研发</option>
 							<option value="3">购买技术</option>
@@ -122,7 +122,7 @@
 				<tr>
 					<td><b>技术来源</b></td>
 					<td>
-						<select	name="">
+						<select	name="" content="技术来源2">
 							<option value="1">独立知识产权</option>
 							<option value="2">合并研发</option>
 							<option value="3">购买技术</option>
@@ -138,7 +138,7 @@
 				<tr>
 					<td><b>技术来源</b></td>
 					<td>
-						<select	name="">
+						<select	name="" content="技术来源3">
 							<option value="1">独立知识产权</option>
 							<option value="2">合并研发</option>
 							<option value="3">购买技术</option>
@@ -154,7 +154,7 @@
 				<tr>
 					<td><b>技术来源</b></td>
 					<td>
-						<select	name="">
+						<select	name="" content="技术来源4">
 							<option value="1">独立知识产权</option>
 							<option value="2">合并研发</option>
 							<option value="3">购买技术</option>
@@ -170,7 +170,7 @@
 				<tr>
 					<td><b>技术来源</b></td>
 					<td>
-						<select	name="">
+						<select	name="" content="技术来源5">
 							<option value="1">独立知识产权</option>
 							<option value="2">合并研发</option>
 							<option value="3">购买技术</option>
@@ -186,7 +186,7 @@
 				<tr>
 					<td><b>技术来源</b></td>
 					<td>
-						<select	name="">
+						<select	name="" content="技术来源6">
 							<option value="1">独立知识产权</option>
 							<option value="2">合并研发</option>
 							<option value="3">购买技术</option>
@@ -213,7 +213,7 @@
 								<th>入选时间</th>
 							</tr>
 							<tr>
-								<td><select name=""><option>男</option><option>女</option></select></td>
+								<td><select name="" content="性别"><option>男</option><option>女</option></select></td>
 								<td><input type="text" class="addinput"/></td>
 								<td><input type="text" class="addinput"/></td>
 								<td><input type="text" class="addinput"/></td>
@@ -1110,8 +1110,14 @@
 					});
 				}
 				if(data_2!=''){
+	
 					$("select").each(function(i){
-					    $(this).val(data_2.split(",")[i]);
+					    var data = data_2.split(",")[i];
+					    data1 = data.split("@@")[0];
+					    data2 = data.split("@@")[1];
+					    if($(this).attr("content")==data1){
+					    	$(this).find("option[text='"+data2+"']").attr("selected",true);
+					    }
 					});
 				}
 			});
@@ -1269,11 +1275,13 @@
 				var selectData = new Array();
 				$("select").each(function(i){
 				    var value = $(this).val();
+				    var text = $(this).find("option:selected").text();
 					if(value==''){
-				    	selectData.push(0);
+				    	selectData.push($(this).attr("content")+"@@"+0);
 				    }else{
-				    	selectData.push(value);
-				    }   
+				    	selectData.push($(this).attr("content")+"@@"+text);
+				    }  
+			
 				});
 				//form组成json格式
 				$("#dataTotal").val(inputData);
