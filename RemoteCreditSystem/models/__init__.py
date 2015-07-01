@@ -3,6 +3,7 @@
 from RemoteCreditSystem.models.system.User import User
 from RemoteCreditSystem.models.system.Role import Role
 from RemoteCreditSystem.models.system.UserRole import UserRole
+from RemoteCreditSystem.models.system.Rcs_Access_Right import Rcs_Access_Right
 from RemoteCreditSystem.models.system.Rcs_Menu import Rcs_Menu
 from RemoteCreditSystem.models.system.Rcs_Privilege import Rcs_Privilege
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info

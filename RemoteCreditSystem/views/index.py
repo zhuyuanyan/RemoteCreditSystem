@@ -2,7 +2,7 @@
 import hashlib
 
 from RemoteCreditSystem import User
-from RemoteCreditSystem.models import UserRole,Rcs_Privilege
+from RemoteCreditSystem.models import UserRole,Rcs_Access_Right,Rcs_Privilege
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
@@ -21,6 +21,8 @@ from flask.ext.login import login_user, logout_user, current_user, login_require
 from RemoteCreditSystem import app
 from RemoteCreditSystem import db
 from RemoteCreditSystem.config import PER_PAGE
+
+from RemoteCreditSystem.tools.SimpleCache import SimpleCache
 
 #get md5 of a input string
 def GetStringMD5(str):
@@ -41,19 +43,50 @@ def logout():
     return render_template("login.html")
     
 # 欢迎界面
-@app.route('/login_wel', methods=['POST'])
+@app.route('/login_wel', methods=['POST','GET'])
 def login_wel():
     if request.method == 'POST':
         user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
+        simplecache = SimpleCache.getInstance()
         if user:
             login_user(user)
-            role = UserRole.query.filter_by(user_id=current_user.id).first().rcs_userrole_ibfk_2
-            print role.id
-            privileges = Rcs_Privilege.query.filter_by(privilege_master="SC_Role",privilege_master_id=role.id,privilege_access="Rcs_Menu").all()
-            return render_template("index.html",loginName=request.form['login_name'],privileges=privileges)
+            role_id = UserRole.query.filter_by(user_id=current_user.id).first().role_id
+            rcs_access_right = Rcs_Access_Right.query.filter_by(role_id=role_id).order_by("id").all()
+            tree = []
+            if(user.login_name == 'admin'):
+                for key_cache in simplecache:
+                    obj_tmp = simplecache[key_cache]
+                    if(obj_tmp['levels'] == '2' or obj_tmp['levels'] == '3'):
+                        tree.append(obj_tmp)
+            else:
+                for key_cache in simplecache:  
+                    obj_tmp = simplecache[key_cache]
+                    obj_tmp['checked'] = False
+                    for obj_access_right in rcs_access_right:
+                        if(obj_tmp['levels'] != '4'): 
+                            if(obj_tmp['id'] == obj_access_right.resource_id):
+                                obj_tmp['checked'] = True
+                                break;  
+                        elif(obj_tmp['levels'] == '4'):
+                            if(obj_tmp['id'].split("_")[0] == obj_access_right.resource_id):
+                                if(int(obj_access_right.operations) & int(obj_tmp['id'].split("_")[1]) != 0):
+                                    obj_tmp['checked'] = True
+                                break; 
+                    tree.append(obj_tmp)
+                    
+                dellist = []
+                for obj in tree:
+                    if(obj['levels'] == '1' or obj['levels'] == '4' or obj['checked'] == False):
+                        dellist.append(obj)
+                for obj in dellist:
+                    tree.remove(obj)
+            
+            return render_template("index.html",loginName=request.form['login_name'],tree=tree)
         else:
             flash('用户名或密码错误','error')
             return render_template("login.html")  
+    else:
+        return render_template("login.html")
 
 # welcome
 @app.route('/welcome', methods=['GET'])

@@ -8,90 +8,61 @@
 	<meta name="author" content="Muhammad Usman">
 
 	<!-- The styles -->
-	<link href="/static/css/bootstrap.css" rel="stylesheet">
-	<link href="/static/css/main.css" rel="stylesheet">
-	<style type="text/css">
-		.table-list td {border:none;}
-		select{width:80px;}
-		.div-box{border:1px solid #94c1dc;border-bottom:none;background:#efefef;padding:5px;}
-	</style>	
-	<!-- ************************验证样式************************-->
-	<script src="/static/SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-	<link href="/static/SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+	<link href="../../static/css/bootstrap.css" rel="stylesheet">
+	<link href="../../static/css/main.css" rel="stylesheet">
+	<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
+	<script src="../../static/js/jquery-1.7.2.min.js"></script>
+	<script src="../../static/js/index.js"></script>
+	<!--验证样式-->
+	<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+	<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+	<script src="../../static/js/jquery.validationEngine.js"></script>
 	
 </head>
 
 <body>	
 	<div style="margin:15px;">
 		<div class="well place">			
-			<i class="icon-home"></i><a href="#">系统管理</a>/<a href="#">角色权限管理</a>/<a href="#">新增</a>
+			<i class="icon-home"></i><a href="#">系统管理</a>/<a href="#">角色管理</a>/<a href="#">新增</a>
 		</div>		
 		<div class="row-fluid">
-			<form method="POST" action="/System/new_role">
+			<form id="form_id" method="POST" action="/System/new_role.json">
 				<div style="border:1px solid #94c1dc;">
 					<table class="table-list">
 						<tr>
 							<td class="table-label">角色名称<font class="red">*</font></td>
-							<td width="36%">
-								<span id="spry_rolename">
-									<input type="text" id="role_name" name="role_name"/>
-									<span class="textfieldRequiredMsg">角色名称不能为空</span>
-								</span>
-							</td>
-							<td class="table-label">角色级别<font class="red">*</font></td>	
-							<td>
-								<select id="role_level" name="role_level" style="width:270px;">						
-									<option value="2">专家</option>
-									<option value="1">员工</option>
-									<option value="0">系统管理员</option>
-								</select>
-							</td>						
+							<td colspan="3">
+								<input type="text" id="role_name" name="role_name" class="validate[required]"/>
+							</td>				
 						</tr>									
 					</table>
 				</div>
-				
-				<i class="icon-bookmark"></i><span class="titletip">功能权限</span>	
-				{%- for app in data %}				
-				<div class="div-box">				
-					<table class="table-list" cellspacing="10" id="uesr-list">			
-						<tr>
-							<td>
-								<b>+ {{app.name}}</b>
-								<select id="{{app.menu_code}}" name="{{app.menu_code}}" onchange="change_select(this,'{{app.menu_code}}')">
-									<option value="2">维护</option>
-									<option value="1">查询</option>
-									<option value="0">无权限</option>
-								</select>
-							</td>							
-						</tr>
-						<tr>
-							<td>
-								{%- for menu in app.children %}
-									{{menu.name}}
-									<select id="{{menu.menu_code}}" name="{{menu.menu_code}}" class="{{app.menu_code}}" >
-										<option value="2">维护</option>
-										<option value="1">查询</option>
-										<option value="0">无权限</option>
-									</select>
-								{%- endfor %}
-							</td>
-						</tr>	
-					</table>
-				</div>
-				{%- endfor %}
-				
-				<span class="point">*为必填字段</span><br/>
-				<input type="submit" class="btn btn-info" value="提交" style="margin:0;"/>
+				<br>
+				<input id="id_save_button" type="button" class="btn btn-info" value="提交" style="margin:0;"/>
 			</form>
 		</div><!--/row-fluid -->
 	</div><!--/content -->
-
-	<script src="/static/js/jquery-1.7.2.min.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-	<script src="/static/js/script.js"></script>
-	<script src="/static/js/system.js"></script>
+	
 	<script type="text/javascript">
-		var sprytextfield1 = new Spry.Widget.ValidationTextField("spry_rolename", "none", {validateOn:["blur"]});
+		$(document).ready(function(){
+			//前端验证
+			$('#form_id').validationEngine();
+			$("#id_save_button").click(function() {
+				if(!submitFlag){
+					alert("正在处理，请勿重复提交!");
+					return;
+				}
+				submitFlag = false;
+				// 前端验证 
+				if($('#form_id').validationEngine('validate')){
+					//submit
+					$('#form_id').submit();
+					submitFlag = true;
+				}else{
+					submitFlag = true;
+				}
+			});
+		});
 	</script>
 </body>
 </html>
