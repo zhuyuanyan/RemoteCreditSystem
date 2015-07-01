@@ -35,129 +35,22 @@
 						<img src="../static/img/1_active.png" class="tip"/>系统首页
 					</div>
 				</li>
-				{%- for obj in privileges %}
-				{%- if obj.privilege_access_value == "jjrwfa" and obj.privilege_operation != "0" %}
-				<li onclick="changeNav(this,2)">
-					<div onclick="showMenu(2)">
-						<img src="../static/img/2.png" class="tip"/>进件任务分案<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul2">
-
-						<li onclick="changeiframe('jjrwfa/zxpg')"><a href="#" title="资信评估">资信评估</a></li>
-						<li onclick="changeiframe('jjrwfa/jjfa/1')"><a href="#" title="进件分案">进件分案</a></li>
-						<li onclick="changeiframe('jjrwfa/jjrwfaxx')"><a href="#" title="进件任务分案信息">进件任务分案信息</a></li>
-						<li onclick="changeiframe('jjrwfa/zxpgmsgzwh')"><a href="#" title="资信评估模式规则维护">资信评估模式规则维护</a></li>
-						<li onclick="changeiframe('jjrwfa/fagzwh')"><a href="#" title="分案规则维护">分案规则维护</a></li>
-						<li onclick="changeiframe('jjrwfa/zxpgzjhsgzwh')"><a href="#" title="资信评估专家会审规则维护">资信评估专家会审规则维护</a></li>
-						<!-- <li onclick=""><a href="#" title="资信评估专家会审撮合规则维护">资信评估专家会审撮合规则维护</a></li> -->
-					</ul>
-				</li>
-				{%- endif %}
-				{%- if obj.privilege_access_value == "mxpg" and obj.privilege_operation != "0" %}
-				<li onclick="changeNav(this,3)">
-					<div onclick="showMenu(3)">
-						<img src="../static/img/3.png" class="tip"/>模型评估<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul3">
-					
-                        <li onclick="changeiframe('by_bigdata')"><a href="#" title="信息导入">互联网数据采集</a></li>
-						<li onclick="changeiframe('mxpg/sxpg')"><a href="#" title="授信评估">模型评估</a></li>
-						<li onclick="changeiframe('mxpg/pgbg')"><a href="#" title="评估报告">评估报告</a></li>
-						<li onclick="changeiframe('mxpg/csgl')"><a href="#" title="参数管理">参数管理</a></li>
-					</ul>
-				</li>	
-				{%- endif %}
-				{%- if obj.privilege_access_value == "xxdr" and obj.privilege_operation != "0" %}
-				<li onclick="changeNav(this,9)">
-					<div onclick="showMenu(9)">
-						<img src="../static/img/9.png" class="tip"/>信息导入<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul9">
-						<li onclick="changeiframe('mxpg/xxdr')"><a href="#" title="信息导入">信息导入</a></li>
-                    
-					</ul>
-				</li>	
-				{%- endif %}
-				{%- if obj.privilege_access_value == "khzldy" and obj.privilege_operation != "0" %}			
-				<li onclick="changeNav(this,4)">
-					<div onclick="showMenu(4)">
-						<img src="../static/img/4.png" class="tip"/>客户资料调阅<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul4">
-						<li onclick="changeiframe('khzldy/khzl')"><a href="#" title="客户资料">客户资料</a></li>
-					</ul>
-				</li>
-				{%- endif %}
-				{%- if obj.privilege_access_value == "zjzxpggl" and obj.privilege_operation != "0" %}
-				<li onclick="changeNav(this,5)">
-					<div onclick="showMenu(5)">
-						<img src="../static/img/5.png" class="tip"/>专家资信评估管理<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul5">
-						<li onclick="changeiframe('zjzxpggl/jjrw')"><a href="#" title="进件任务">进件任务</a></li>
-						<li onclick="changeiframe('zjzxpggl/yjsrw')"><a href="#" title="已接受任务">已接受任务</a></li>
-						<li onclick="changeiframe('zjzxpggl/yjjrw')"><a href="#" title="已拒绝任务">已拒绝任务</a></li><!-- 
-						<li><a href="#" title="评估中心评审监控">评估中心评审监控</a></li> -->
-					</ul>
-				</li>
-				{%- endif %}
-				{%- if obj.privilege_access_value == "zxpgjl" and obj.privilege_operation != "0" %}
-				<li onclick="changeNav(this,6)">
-					<div onclick="showMenu(6)">
-						<img src="../static/img/6.png" class="tip"/>资信评估结论<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul6">
-						<li onclick="changeiframe('zxpgjl/pgjl/1')"><a href="#" title="评估结论">评估结论</a></li>
-					</ul>
-				</li>
-				{%- endif %}
-				{%- if obj.privilege_access_value == "zxpggzwh" and obj.privilege_operation != "0" %}
-				<li onclick="changeNav(this,7)">
-					<div onclick="showMenu(7)">
-						<img src="../static/img/7.png" class="tip"/>资信评估规则维护<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul7">
-						<li onclick="changeiframe('zxpggzwh/pggzwh')"><a href="#" title="评估规则维护">评估规则维护</a></li>
-					</ul>
-				</li>
-				{%- endif %}
-				{%- if obj.privilege_access_value == "pgzjgl" and obj.privilege_operation != "0" %}
-				<li onclick="changeNav(this,8)">
-					<div onclick="showMenu(8)">
-						<img src="../static/img/8.png" class="tip"/>评估专家管理<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul8">
-						<li onclick="changeiframe('pgzjgl/zjxxgl')"><a href="#" title="专家信息管理">专家信息管理</a></li>
-						<li onclick="changeiframe('pgzjgl/zjcjgl')"><a href="#" title="专家层级管理">专家层级管理</a></li>
-						<li onclick="changeiframe('pgzjgl/zjzxpgqxgl')"><a href="#" title="专家资信评估权限管理">专家资信评估权限管理</a></li>
-						<li onclick="changeiframe('pgzjgl/zjjcgl')"><a href="#" title="专家资信评估任务、进程管理">专家资信评估任务、进程管理</a></li>
-						<li onclick="changeiframe('pgzjgl/zjywlgl')"><a href="#" title="专家资信评估业务量管理">专家资信评估业务量管理</a></li>
-						<li onclick="changeiframe('pgzjgl/zjpgzlgl')"><a href="#" title="专家资信评估质量管理">专家资信评估质量管理</a></li>
-						<li onclick="changeiframe('pgzjgl/zjjxgl')"><a href="#" title="评审专家绩效管理">评审专家绩效管理</a></li>
-					</ul>
-				</li>
-				{%- endif %}
-				{%- if obj.privilege_access_value == "xtgl" and obj.privilege_operation != "0" %}
-				<li onclick="changeNav(this,10)">
-					<div onclick="showMenu(10)">
-						<img src="../static/img/10.png" class="tip"/>系统管理<img src="../static/img/secondNav0.png" class="open"/>
-					</div>
-					<ul class="second-nav" id="ul10">
-						<!-- <li><a href="#" title="权限配置">权限配置</a></li>
-						<li><a href="#" title="数据权限">数据权限</a></li>
-						<li><a href="#" title="单位管理">单位管理</a></li>
-						<li><a href="#" title="部门管理">部门管理</a></li> -->
-						
-						<li onclick="changeiframe('System/user/1')"><a href="#" title="用户管理">用户管理</a></li>
-						<li onclick="changeiframe('System/jsqxgl/1')"><a href="#" title="角色管理">角色权限管理</a></li>
-						<li onclick="changeiframe('System/menu')"><a href="#" title="模块管理">模块管理</a></li>
-						<!-- <li><a href="#" title="操作日志">操作日志</a></li>
-						<li><a href="#" title="登录日志">登录日志</a></li>
-						<li><a href="#" title="数据字典">数据字典</a></li>
-						<li><a href="#" title="系统参数配置">系统参数配置</a></li> -->
-					</ul>
-				</li> 
-				{%- endif %}
+				{%- for obj in tree %}
+					{%- if obj['levels'] == '2' and obj['code'] != 'home' %}
+						<li onclick="changeNav(this,{{obj['index']}})">
+							<div onclick="showMenu({{obj['index']}})">
+								<img src="../static/img/2.png" class="tip"/>{{obj['name']}}<img src="../static/img/secondNav0.png" class="open"/>
+							</div>
+							<ul class="second-nav" id="ul{{obj['index']}}">
+								{%- for obj_c in tree %}
+									{%- if obj_c['levels'] == '3' and obj_c['pId'] == obj['id'] %}
+										<li onclick="changeiframe('{{obj_c['url']}}')"><a href="#" title="{{obj['name']}}">{{obj_c['name']}}</a></li>
+									{%- endif %}
+								{%- endfor %}
+								
+							</ul>
+						</li>
+					{%- endif %}
 				{%- endfor %}
 			</ul>			
 		</div>	

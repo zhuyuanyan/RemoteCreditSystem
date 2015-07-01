@@ -32,15 +32,14 @@
 		<div class="row-fluid">
 			<i class="icon-bookmark"></i><span class="titletip">角色清单</span>			
 			<div style="margin-bottom:5px;">
-				<a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_role')">新增</a>				
+				<a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_role.json')">新增</a>				
 			</div>
 			<div style="border:1px solid #94c1dc;">				
 				<table class="table-list" cellspacing="10" id="uesr-list">
 					<thead>
 						<tr>
 							<th><input type="button" class="btn btn-info btn-mini" value="反选" style="margin:0;" onclick="ChkAllClick()"/></th>
-							<th>角色名称</th>							
-							<th>角色级别</th>							
+							<th>角色名称</th>								
 							<th>操作</th>
 						</tr>
 					</thead>
@@ -48,22 +47,7 @@
 						{%- for role in roles.items %}
 						<tr>
 							<td><input type="checkbox" onclick="changeColor(this)" name="checkbox"/></td>	
-							<td><a href="#" onclick="iframe('System/edit_role/{{role.id}}')">{{role.role_name}}</a></td>	
-							{%- if role.role_level == 0 %}
-								<td>系统管理员</td>
-							{%- elif role.role_level == 1 %}
-								<td>员工</td>
-							{%- elif role.role_level == 2 %}
-								<td>项目经理</td>
-							{%- elif role.role_level == 3 %}
-								<td>主管</td>
-							{%- elif role.role_level == 4 %}
-								<td>总经理</td>
-							{%- elif role.role_level == 5 %}
-								<td>财务</td>
-							{%- elif role.role_level == 6 %}
-								<td>财务总监</td>
-							{%- endif %}
+							<td><a href="#" onclick="iframe('System/edit_role.json/{{role.id}}')">{{role.role_name}}</a></td>	
 							<td>
 								<input type="button" class="btn btn-warning btn-mini" value="删除"/>
 							</td>

@@ -8,12 +8,9 @@ from flask.ext.login import current_user
 class UserRole(db.Model):
     __tablename__ = 'rcs_userrole'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('rcs_user.id'))
-    role_id = db.Column(db.Integer, db.ForeignKey('rcs_role.id'))
+    user_id = db.Column(db.Integer)
+    role_id = db.Column(db.Integer)
 
-    #外键
-    rcs_userrole_ibfk_1 = db.relationship('User', backref='rcs_userrole_ibfk_1')
-    rcs_userrole_ibfk_2 = db.relationship('Role', backref='rcs_userrole_ibfk_2')
 
     def __init__(self,user_id,role_id):
         self.user_id = user_id

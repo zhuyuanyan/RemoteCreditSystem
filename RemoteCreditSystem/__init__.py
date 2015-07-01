@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 #coding=utf-8
 import sys
+import os
+
+_HERE = os.path.dirname(__file__)
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -46,6 +49,29 @@ def page_not_found(error):
 def page_not_found(error):
     return render_template('errors/500.html', error = error), 500
     
+#测试select展示
+def dict(dictName,selectValue,selectText):
+    return '<option>'+dictName+'</option><option>'+dictName+'</option>'
+app.jinja_env.filters['dict'] = dict
+#例
+#<select>
+#	<script>document.write(js.lang.String.decodeHtml('{{"123"|dict("","")}}'))</script>
+#</select>
+
+#页面按钮验证权限
+import logic.system.access_right as access_right
+def checkBtnPri(resource_id,pri_type):
+    return access_right.checkBtnPri(resource_id,pri_type)
+app.jinja_env.filters['checkBtnPri'] = checkBtnPri
+#例
+#{%- if '030010'|checkBtnPri('create') %}
+#    <input id="id_save_button" type="button" class="btn btn-info" value="导入"/>
+#{%- endif %}
+                    
+#读取menus.xml
+import tools.xmlUtil as xmlUtil
+xmlUtil.readXml(os.path.join(_HERE, 'menus.xml'))
+
 #---------------------------------
 #加载试图--johnny 放在最后防止循环引用
 #---------------------------------
