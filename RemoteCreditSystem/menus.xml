@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+	<menu id="000000" code="所有资源" name="所有资源" url="" img="" operations="" >
+		<menu id="010000" code="home" name="系统首页" url="/home.page" img="" operations="" index="1"/>
+		<menu id="020000" code="jjrwfa" name="进件任务分案" url="" img="" operations="" index="2">
+			<menu id="020010" code="zxpg" name="资信评估" url="jjrwfa/zxpg" img="" operations="create|change|browse"/>
+			<menu id="020020" code="jjfa" name="进件分案" url="jjrwfa/jjfa/1" img="" operations="create|change|browse"/>
+			<menu id="020030" code="jjrwfaxx" name="进件任务分案信息" url="jjrwfa/jjrwfaxx" img="" operations="create|change|browse"/>
+			<menu id="020040" code="zxpgmsgzwh" name="资信评估模式规则维护" url="jjrwfa/zxpgmsgzwh" img="" operations="create|change|browse"/>
+			<menu id="020050" code="fagzwh" name="分案规则维护" url="jjrwfa/fagzwh" img="" operations="create|change|browse"/>
+			<menu id="020060" code="zxpgzjhsgzwh" name="资信评估专家会审规则维护" url="jjrwfa/zxpgzjhsgzwh" img="" operations="create|change|browse"/>
+		</menu>
+		<menu id="030000" code="mxpg" name="模型评估" url="" img="" operations="" index="3">
+		    <menu id="030020" code="by_bigdata" name="互联网数据采集" url="by_bigdata" img="" operations="create|change|browse"/>
+		    <menu id="030030" code="sxpg" name="授信评估" url="mxpg/sxpg" img="" operations="create|change|browse"/>
+		    <menu id="030040" code="pgbg" name="评估报告" url="mxpg/pgbg" img="" operations="create|change|browse"/>
+		    <menu id="030050" code="csgl" name="参数管理" url="mxpg/csgl" img="" operations="create|change|browse"/>
+		</menu>
+		<menu id="090000" code="mxpg" name="信息导入" url="" img="" operations="" index="9">
+		    <menu id="090010" code="xxdr" name="信息导入" url="mxpg/xxdr" img="" operations="create|change|browse"/>
+		</menu>
+		<menu id="040000" code="khzldy" name="客户资料调阅" url="" img="" operations="" index="4">
+			<menu id="040010" code="khzl" name="客户资料" url="khzldy/khzl" img="" operations="create|change|browse"/>
+		</menu>
+		<menu id="050000" code="zjzxpggl" name="专家资信评估管理" url="" img="" operations="" index="5">
+			<menu id="050010" code="jjrw" name="进件任务" url="zjzxpggl/jjrw" img="" operations="create|change|browse"/>
+			<menu id="050020" code="yjsrw" name="已接受任务" url="zjzxpggl/yjsrw" img="" operations="create|change|browse"/>
+			<menu id="050030" code="yjjrw" name="已拒绝任务" url="zjzxpggl/yjjrw" img="" operations="create|change|browse"/>
+		</menu>
+		<menu id="060000" code="zxpgjl" name="资信评估结论" url="" img="" operations="" index="6">
+			<menu id="060010" code="pgjl" name="评估结论" url="zxpgjl/pgjl/1" img="" operations="create|change|browse"/>
+		</menu>
+		<menu id="070000" code="zxpggzwh" name="资信评估规则维护" url="" img="" operations="" index="7">
+			<menu id="070010" code="pggzwh" name="评估规则维护" url="zxpggzwh/pggzwh" img="" operations="create|change|browse"/>
+		</menu>
+		<menu id="080000" code="pgzjgl" name="评估专家管理" url="" img="" operations="" index="8">
+			<menu id="080010" code="zjxxgl" name="专家信息管理" url="pgzjgl/zjxxgl" img="" operations="create|change|browse"/>
+			<menu id="080020" code="zjcjgl" name="专家层级管理" url="pgzjgl/zjcjgl" img="" operations="create|change|browse"/>
+			<menu id="080030" code="zjzxpgqxgl" name="专家资信评估权限管理" url="pgzjgl/zjzxpgqxgl" img="" operations="create|change|browse"/>
+			<menu id="080040" code="zjjcgl" name="专家资信评估任务、进程管理" url="pgzjgl/zjjcgl" img="" operations="create|change|browse"/>
+			<menu id="080050" code="zjywlgl" name="专家资信评估业务量管理" url="pgzjgl/zjywlgl" img="" operations="create|change|browse"/>
+			<menu id="080060" code="zjpgzlgl" name="专家资信评估质量管理" url="pgzjgl/zjpgzlgl" img="" operations="create|change|browse"/>
+			<menu id="080070" code="zjjxgl" name="评审专家绩效管理" url="pgzjgl/zjjxgl" img="" operations="create|change|browse"/>
+		</menu>
+		<menu id="990000" code="xtgl" name="系统管理" url="" img="" operations="" index="99" >
+			<menu id="990010" code="user" name="用户管理" url="System/user.page/1" img="" operations="create|change|browse"/>
+			<menu id="990020" code="role" name="角色管理" url="System/role.page/1" img="" operations="create|change|browse"/>
+			<menu id="990030" code="menu" name="权限管理" url="System/menu.page" img="" operations="create|change|browse"/>
+		</menu>
+	</menu>
+</menus>

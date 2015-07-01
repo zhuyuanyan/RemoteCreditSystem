@@ -8,69 +8,72 @@
         <meta name="author" content="Muhammad Usman">
 
         <!-- The styles -->
-        <link href="/static/css/bootstrap.css" rel="stylesheet">
-        <link href="/static/css/main.css" rel="stylesheet">
-        <link rel="stylesheet" href="/static/css/zTreeStyle/zTreeStyle.css" type="text/css">
+        <link href="../../static/css/bootstrap.css" rel="stylesheet">
+        <link href="../../static/css/main.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../static/css/zTreeStyle/zTreeStyle.css" type="text/css">
         <style type="text/css">
             input[type=text]{width:85%;}
         </style>
-        <script src="/static/js/jquery-1.7.2.min.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/static/js/jquery.ztree.core-3.5.js"></script>
-        <script src="/static/js/system.js" type="text/javascript"></script>
-        <script src="/static/js/script.js"></script>
+        <script src="../../static/js/jquery-1.7.2.min.js"></script>
+        <script src="../../static/js/jquery.json-2.4.min.js"></script>
+        <script src="../../static/js/index.js"></script>
+        <script src="../../static/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../static/js/jquery.ztree.core-3.5.js"></script>
+        <script type="text/javascript" src="../../static/js/jquery.ztree.excheck-3.5.js"></script>
+        <script src="../../static/js/system.js" type="text/javascript"></script>
+        <script src="../../static/js/script.js"></script>
         <SCRIPT type="text/javascript">
       	//树节点单击回调
-		var pId = 0;
+		var role_id = 0;
 		function zTreeOnClick(event, treeId, treeNode) {
-			if(treeNode.level>1){
-				$("#new_menu").hide();;
-			}
-			else{
-				$("#new_menu").show();
-			}
-			pId = treeNode.id;
-		    var childNodes = $.fn.zTree.getZTreeObj("tree").transformToArray(treeNode);
-		    childNodes.shift();
-		    var content = "";
-		    //表格赋值
-		    for(var i = 0;i<childNodes.length;i++){
-		        content += "<tr class='num'>" +
-		                        "<td>"+ childNodes[i].name +"</td>"+
-		                        "<td>"+childNodes[i].menu_code+"</td>"+
-		                        "<td>"+
-		                        "<input type='button' class='btn btn-danger btn-mini' onclick=iframe('System/edit_menu/"+childNodes[i].id+"') value='编辑' />"+
-		                        "<input type='button' class='btn btn-danger btn-mini' onclick=iframe('System/edit_menu/"+childNodes[i].id+"') value='删除' />"+
-		                        "</td>"+
-		                    "</tr>";
-		    }
-		    $("table tbody").html(content);
-		    Frame();
+			role_id = treeNode.id;
+			var treeObj = $.fn.zTree.getZTreeObj("menu_tree");
+			treeObj.setting.async.url="/System/menu/tree.json/"+role_id;
+			treeObj.reAsyncChildNodes(null, "refresh");
 		};
 
-		var setting = {
+		var role_tree_setting = {
 			data: {
 				simpleData: {
 					enable: true
+				},
+				key: {
+					name: "role_name"
 				}
 			},
 			async: {
 				enable: true,
-				url:"/System/tree/menu/0"
+				url:"/System/role/tree.json"
 			},
 			callback: {
 				onClick: zTreeOnClick
 			}
 		};		
+		
+		var menu_tree_setting = {
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			check: {
+				enable: true,
+				chkboxType:{ "Y":"ps", "N":"ps"}
+			},
+			async: {
+				enable: true,
+				url:"/System/menu/tree.json/0"
+			}
+		};		
 		$(document).ready(function(){					
-			$.fn.zTree.init($("#tree"), setting);		
-					 	
+			$.fn.zTree.init($("#role_tree"), role_tree_setting);		
+			$.fn.zTree.init($("#menu_tree"), menu_tree_setting);	
 		});
         </SCRIPT>	
     </head>
 
     <body onload="setTimeOut();">	
-        <div style="margin:15px;">
+        <div style="margin:15px;"class="content">
             <div class="well place">			
                 <i class="icon-home"></i><a href="#">系统管理</a>/<a href="#">模块管理</a>
             </div>	
@@ -83,32 +86,49 @@
             {%- endfor %}
             {%- endif %}
             {%- endwith %}
+            <input id="id_save_button" type="button" class="btn btn-info" value="保存" />
+            
             <div class="row-fluid">	
-                <div class="span4">		
-                    <i class="icon-bookmark"></i><span class="titletip">模块列表</span>			
-                    <ul id="tree" class="ztree" style="height:420px;overflow:auto;border:1px solid #94c1dc;"></ul>	
+            	<div class="span4">		
+                    <i class="icon-bookmark"></i><span class="titletip">角色列表</span>			
+                    <ul id="role_tree" class="ztree" style="height:350px;overflow:auto;border:1px solid #94c1dc;"></ul>	
                 </div>
-                <div class="span8" style="margin-top:25px;">
-                    <!--<div class="box-content">  -->
-                    <div id="new_menu" style="margin-bottom:5px;">
-                        <a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_menu/'+pId);">新增</a>
-                    </div>
-                    <div style="border:1px solid #94c1dc;">				
-                        <table class="table-list" cellspacing="10">
-                            <thead>
-                                <tr>
-                                    <th width="30%">名称</th>
-                                    <th width="15%">编码</th>								
-                                    <th width="15%">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody class="center">
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>		
+                <div class="span8">		
+                    <i class="icon-bookmark"></i><span class="titletip">模块列表</span>			
+                    <ul id="menu_tree" class="ztree" style="height:350px;overflow:auto;border:1px solid #94c1dc;"></ul>	
+                </div>	
             </div>
         </div><!--/content -->
+        
+        <script type="text/javascript">
+			$(document).ready(function(){
+				//前端验证
+				$("#id_save_button").click(function() {
+					if(!submitFlag){
+						alert("正在处理，请勿重复提交!");
+						return;
+					}
+					submitFlag = false;
+					if(role_id == 0){
+						alert("请选择角色!");
+						submitFlag = true;
+						return;
+					}
+					var treeObj=$.fn.zTree.getZTreeObj("menu_tree");
+		            nodes = {'nodesJsonStr':$.toJSON(treeObj.getCheckedNodes(true))}
+					var url = "/System/accessright/save.json/"+role_id;
+					$.ajax({
+						url : url,
+						type : "post",
+						data : nodes,
+						success : function(data) {
+							window.location.reload(true);
+							submitFlag = true;
+						}
+					});
+				});
+			});
+		</script>
+		
     </body>
 </html>

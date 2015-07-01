@@ -24,7 +24,7 @@
 		}
 		function disableUser(type,user_id){
 			var get = crud.dom.factory("GET");
-		    var url = "/System/disable_user/"+type+"/"+user_id;
+		    var url = "/System/disable_user.json/"+type+"/"+user_id;
 		    get.doGet(url,disableUserCB);
 		}
 	</script>
@@ -48,7 +48,7 @@
 			{%- endwith %}
 			<i class="icon-bookmark"></i><span class="titletip">使用者列表</span>
 			<div style="margin-bottom:5px;">
-				<a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_user')">新增</a>	
+				<a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_user.json')">新增</a>	
 			</div>
 			<div style="border:1px solid #94c1dc;">				
 				<table class="table-list" cellspacing="10" id="uesr-list">
@@ -66,7 +66,7 @@
 						{%- for obj in users.items %}
 						<tr>
 							<td><input type="checkbox" onclick="changeColor(this)" name="checkbox"/></td>
-							<td><a href="#" onclick="iframe('System/edit_user/{{obj.id}}')">{{obj.login_name}}</a></td>							
+							<td><a href="#" onclick="iframe('System/edit_user.json/{{obj.id}}')">{{obj.login_name}}</a></td>							
 							<td>{{obj.real_name}}</td>
 							{%- if obj.sex == '1' %}
 								<td>男</td>
@@ -94,14 +94,14 @@
 			</div>
 			<div class="page-div">
 				{%- if users.has_prev %}
-					<span style="CURSOR: pointer" onclick="iframe('System/user/{{users.prev_num}}')">&lt;&lt;</span>
+					<span style="CURSOR: pointer" onclick="iframe('System/user.page/{{users.prev_num}}')">&lt;&lt;</span>
 				{%- else %}
 					<span style="CURSOR: pointer">&lt;&lt;</span>
 				{%- endif %}
 				&#160;第&#160;<font color="#0088cc">{{users.page}}</font>&#160;页&#160;
 				&#160;共&#160;<font color="#0088cc">{{users.pages}}</font>&#160;页&#160;
 				{%- if users.has_next %}
-					<span style="CURSOR: pointer" onclick="iframe('System/user/{{users.next_num}}')">&gt;&gt;</span>
+					<span style="CURSOR: pointer" onclick="iframe('System/user.page/{{users.next_num}}')">&gt;&gt;</span>
 				{%- else %}
 					<span style="CURSOR: pointer">&gt;&gt;</span>
 				{%- endif %}
