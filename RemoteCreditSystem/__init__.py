@@ -13,6 +13,8 @@ from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy #建立单app -johnny
 #import ibm_db_sa.ibm_db_sa
 
+from RemoteCreditSystem.tools.StaticDictCache import StaticDictCache
+
 # 初始化
 app = Flask(__name__)
 
@@ -49,9 +51,15 @@ def page_not_found(error):
 def page_not_found(error):
     return render_template('errors/500.html', error = error), 500
     
-#测试select展示
+#读取xml
+import tools.xmlUtil as xmlUtil
+xmlUtil.readMenuXml(os.path.join(_HERE, 'menus.xml'))
+xmlUtil.readStaticDictXml(os.path.join(_HERE, 'static-dictionary.xml'))
+
+#select展示
 def dict(dictName,selectValue,selectText):
-    return '<option>'+dictName+'</option><option>'+dictName+'</option>'
+	staticdictcache = StaticDictCache.getInstance()
+	return staticdictcache.getDict(dictName,selectValue,selectText)
 app.jinja_env.filters['dict'] = dict
 #例
 #<select>
@@ -67,10 +75,6 @@ app.jinja_env.filters['checkBtnPri'] = checkBtnPri
 #{%- if '030010'|checkBtnPri('create') %}
 #    <input id="id_save_button" type="button" class="btn btn-info" value="导入"/>
 #{%- endif %}
-                    
-#读取menus.xml
-import tools.xmlUtil as xmlUtil
-xmlUtil.readXml(os.path.join(_HERE, 'menus.xml'))
 
 #---------------------------------
 #加载试图--johnny 放在最后防止循环引用
