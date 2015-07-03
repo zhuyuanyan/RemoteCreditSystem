@@ -27,7 +27,7 @@ class SC_Balance_Sheet(db.Model):
     loan_apply_id=db.Column(db.Integer)
     loan_type=db.Column(db.Integer) #贷款类型 
     items_name = db.Column(db.String(32)) #名目
-    index=db.Column(db.String(2)) #(同一类别的)序号
+    index=db.Column(db.Integer) #(同一类别的)序号
     content=db.Column(db.String(256)) #文本或数字的内容
     create_user = db.Column(db.Integer)
     create_date = db.Column(db.DateTime)

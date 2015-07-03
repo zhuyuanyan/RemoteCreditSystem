@@ -29,7 +29,7 @@ staff = [{'firstName': 'Delannay', 'name': 'Gaetan', 'age': 112},
 @app.route('/Process/dqdc/dqdcXed_zcfzb/<int:loan_apply_id>', methods=['GET','POST'])
 def dqdcXed_zcfzb(loan_apply_id):
 	if request.method == 'GET':
-		balance_sheets = SC_Balance_Sheet.query.filter_by(loan_apply_id=loan_apply_id).order_by("id").all()
+		balance_sheets = SC_Balance_Sheet.query.filter_by(loan_apply_id=loan_apply_id).order_by("loan_type asc,sc_balance_sheet_index asc").all()
 		count_0 = SC_Balance_Sheet.query.filter_by(loan_apply_id=loan_apply_id,loan_type=0).count()
 		count_2 = SC_Balance_Sheet.query.filter_by(loan_apply_id=loan_apply_id,loan_type=2).count()
 		count_4 = SC_Balance_Sheet.query.filter_by(loan_apply_id=loan_apply_id,loan_type=4).count()

@@ -3,6 +3,7 @@ from RemoteCreditSystem import db
 from RemoteCreditSystem.config import logger
 import RemoteCreditSystem.helpers as helpers
 import datetime
+import base64
 
 from flask import Module, session, request, render_template, redirect, url_for, flash
 from flask.ext.login import current_user
@@ -20,15 +21,22 @@ from RemoteCreditSystem.models.credit_data.sc_individual_customer import SC_Indi
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
-
-
+from RemoteCreditSystem.models.credit_data.sc_excel_table_content import SC_Excel_Table_Content
 
 # 贷款调查——小额贷款
 @app.route('/Process/dqdc/dqdc_xed/<int:id>', methods=['GET'])
 def dqdc_xed(id):
     info = Rcs_Application_Info.query.filter_by(id=id).first()
     loan_apply = SC_Loan_Apply.query.filter_by(id=info.loan_id).first()
-    return render_template("process/dqdc/dqdc_xed.html",loan_apply=loan_apply,id=info.loan_id)
+    sc_excel_table_contents = SC_Excel_Table_Content.query.filter_by(loan_apply_id=loan_apply.id).order_by("sheet_type").all()
+    return render_template("process/dqdc/dqdc_xed.html",loan_apply=loan_apply,id=info.loan_id,sc_excel_table_contents=sc_excel_table_contents)
+
+# 贷款调查——小额贷款
+@app.route('/Process/dqdc/show_excel.page/<int:loan_apply_id>/<int:sheet_type>', methods=['GET'])
+def show_excel(loan_apply_id,sheet_type):
+    sc_excel_table_content = SC_Excel_Table_Content.query.filter_by(loan_apply_id=loan_apply_id,sheet_type=sheet_type).first()
+    table_content = base64.b64decode(sc_excel_table_content.table_content).decode("utf-8")
+    return render_template("process/dqdc/show_excel.html",table_content=table_content)
 
 # 贷款调查——小额贷款(基本情况)
 @app.route('/Process/dqdc/dqdcXed_jbqk/<int:id>', methods=['GET'])
