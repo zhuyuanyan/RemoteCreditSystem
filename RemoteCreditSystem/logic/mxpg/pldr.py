@@ -8,13 +8,27 @@ import re
 import xdrlib
 import xlrd
 import json
+import base64
 
 from RemoteCreditSystem import db
 from RemoteCreditSystem.config import logger
 from RemoteCreditSystem.config import LOCALEXCEL_FOLDER_REL
 from RemoteCreditSystem.config import LOCALEXCEL_FOLDER_ABS
 from RemoteCreditSystem.models.credit_data.sc_local_excel import SC_Local_Excel
+from RemoteCreditSystem.models.credit_data.sc_excel_table_content import SC_Excel_Table_Content
+import RemoteCreditSystem.tools.parseExcelToHtml as parseExcelToHtml
 import RemoteCreditSystem.logic.mxpg.sql as sql
+
+#excel种类
+excel_dict = {
+                    '基本':{'name':'基本情况','code':"1"},
+                    '资负':{'name':'资产负债表','code':"2"},
+                    '经营':{'name':'经营信息','code':"4"},
+                    '损益':{'name':'损益表','code':"8"},
+                    '交叉':{'name':'交叉检验','code':"16"},
+                    '点货':{'name':'点货单','code':"32"},
+                    '固资':{'name':'固定资产','code':"64"}
+                }
 
 def excel_import(request):
     try:
@@ -35,9 +49,12 @@ def excel_import(request):
         #上传
         f.save(ABS_uri)
         #存db
-        SC_Local_Excel(current_user.id,customer_name,cert_no,f_old_name,REL_uri).add()
+        sc_local_excel = SC_Local_Excel(current_user.id,customer_name,cert_no,f_old_name,REL_uri)
+        sc_local_excel.add()
+        db.session.flush()
+        
         #读取excel
-        open_excel(ABS_uri)
+        open_excel(sc_local_excel.id,ABS_uri)
         
         # 事务提交
         db.session.commit()
@@ -48,10 +65,10 @@ def excel_import(request):
         raise
         
 #读取excel
-def open_excel(ABS_uri):
+def open_excel(excel_id,ABS_uri):
     data = xlrd.open_workbook(ABS_uri)
     #sheetCount = len(data.sheets())#返回共多少sheet
-    for sheet in data.sheets():
+    for index,sheet in enumerate(data.sheets()):
         #print sheet.name #sheet名称
         if sheet.name.find("基本") != -1:
             customer_no = GenTargetCustomer(sheet)
@@ -60,18 +77,32 @@ def open_excel(ABS_uri):
             Genrcs_application_info(sheet,customer_id,id)
             GenApplyInfo(sheet,id)
             GenOthers(sheet,id)
+            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['基本']['name'],excel_dict['基本']['code']).add()
         if sheet.name.find("资负") != -1:
             GenZCFZB(sheet,id)
+            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['资负']['name'],excel_dict['资负']['code']).add()
         if sheet.name.find("经营") != -1:
             GenJY(sheet,id)
+            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['经营']['name'],excel_dict['经营']['code']).add()
         if sheet.name.find("损益") != -1:
             GenSY(sheet,id)
+            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['损益']['name'],excel_dict['损益']['code']).add()
         if sheet.name.find("交叉") != -1:
             GenJC(sheet,id)
+            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['交叉']['name'],excel_dict['交叉']['code']).add()
         if sheet.name.find("点货") != -1:
             GenDH(sheet,id)
+            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['点货']['name'],excel_dict['点货']['code']).add()
         if sheet.name.find("固资") != -1:
             GenGDZC(sheet,id)
+            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['固资']['name'],excel_dict['固资']['code']).add()
         # if sheet.name.find("应收") != -1:
             # GenYS(sheet,self.dbHelp,id)
         # if sheet.name.find("应付") != -1:
@@ -259,9 +290,8 @@ def GenZCFZB(sheet,id):
     json_col_2 = json.loads(keyMapZCFZB_col_2)
     nrows = sheet.nrows #行数
     # 循环keyMapZCFZB_col_0
-    index = 0
-    loan_type = 0
-    for rownum in range(0,nrows):
+    index = -1
+    for rownum in range(3,nrows):
         row = sheet.row_values(rownum)
         if json_col_0.has_key(row[0]):
             index = 0
@@ -271,8 +301,9 @@ def GenZCFZB(sheet,id):
         genSql = sql.sqlZCFZB.substitute(loan_apply_id=id,loan_type=loan_type,items_name=row[0],index=index,content=row[1])
         executeSql(genSql)
     
+    index = -1
     # 循环keyMapZCFZB_col_2
-    for rownum in range(0,nrows):
+    for rownum in range(3,nrows):
         row = sheet.row_values(rownum)
         if json_col_2.has_key(row[2]):
             index = 0
@@ -281,7 +312,13 @@ def GenZCFZB(sheet,id):
             index = index + 1
         genSql = sql.sqlZCFZB.substitute(loan_apply_id=id,loan_type=loan_type,items_name=row[2],index=index,content=row[3])
         executeSql(genSql)
+        if(loan_type == 6):
+            #excel里没有社会集资 故 加上一条 保证页面不错乱
+            genSql = sql.sqlZCFZB.substitute(loan_apply_id=id,loan_type=7,items_name='',index=index,content='')
+            executeSql(genSql)
     
+    
+        
 # 资产负债表(经营部分)
 def GenJY(sheet,id):
     keyMap = ["1-0-1-1-21-经营历史和资本积累","2-0-2-1-22-生意现状（组织架构和市场）","3-0-3-1-23-生意现状（财务）",
