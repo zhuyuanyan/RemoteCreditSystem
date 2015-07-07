@@ -1,6 +1,7 @@
 #coding:utf-8
 from RemoteCreditSystem import db
 import datetime
+from flask.ext.login import current_user
 
 # 进件评分表
 class Rcs_Application_Score(db.Model):
@@ -12,6 +13,7 @@ class Rcs_Application_Score(db.Model):
     jyzk_score = db.Column(db.String(32))
     shzk_score = db.Column(db.String(32))
     remark = db.Column(db.String(255))
+    create_user = db.Column(db.Integer)
 
     def __init__(self, application_id,ddpz_score,hknl_score,jyzk_score,shzk_score,remark):
         self.application_id = application_id
@@ -20,6 +22,7 @@ class Rcs_Application_Score(db.Model):
         self.jyzk_score = jyzk_score
         self.shzk_score = shzk_score
         self.remark = remark
+        self.create_user= current_user.id
    
     def add(self):
         db.session.add(self)

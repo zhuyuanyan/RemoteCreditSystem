@@ -214,9 +214,18 @@ def cspz_ddpz():
 #参数配置--道德品质--保存
 @app.route('/mxpg/cspz_ddpz_save/<score>', methods=['GET'])
 def cspz_ddpz_save(score):
-    Rcs_Parameter.query.filter_by(parameter_name="ddpz").delete()
-    Rcs_Parameter("ddpz",score).add()
-    db.session.commit()
+    try:
+        Rcs_Parameter.query.filter_by(parameter_name="ddpz").delete()
+        Rcs_Parameter("ddpz",score).add()
+        db.session.commit()
+        # 消息闪现
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
     return redirect("/mxpg/cspz_ddpz")
 
 
@@ -233,9 +242,18 @@ def cspz_jyzk():
 #参数配置--经营状况--保存
 @app.route('/mxpg/cspz_jyzk_save/<score>', methods=['GET'])
 def cspz_jyzk_save(score):
-    Rcs_Parameter.query.filter_by(parameter_name="jyzk").delete()
-    Rcs_Parameter("jyzk",score).add()
-    db.session.commit()
+    try:
+        Rcs_Parameter.query.filter_by(parameter_name="jyzk").delete()
+        Rcs_Parameter("jyzk",score).add()
+        db.session.commit()
+    # 消息闪现
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
     return redirect("/mxpg/cspz_jyzk")
 
 #参数配置--生活状况
@@ -250,9 +268,18 @@ def cspz_shzt():
 #参数配置--生活状态--保存
 @app.route('/mxpg/cspz_shzt_save/<score>', methods=['GET'])
 def cspz_shzt_save(score):
-    Rcs_Parameter.query.filter_by(parameter_name="shzt").delete()
-    Rcs_Parameter("shzt",score).add()
-    db.session.commit()
+    try:
+        Rcs_Parameter.query.filter_by(parameter_name="shzt").delete()
+        Rcs_Parameter("shzt",score).add()
+        db.session.commit()
+    # 消息闪现
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
     return redirect("/mxpg/cspz_shzt")
 
 #参数配置--还款能力
@@ -267,9 +294,18 @@ def cspz_hknl():
 #参数配置--还款能力--保存
 @app.route('/mxpg/cspz_hknl_save/<score>', methods=['GET'])
 def cspz_hknl_save(score):
-    Rcs_Parameter.query.filter_by(parameter_name="hknl").delete()
-    Rcs_Parameter("hknl",score).add()
-    db.session.commit()
+    try:
+        Rcs_Parameter.query.filter_by(parameter_name="hknl").delete()
+        Rcs_Parameter("hknl",score).add()
+        db.session.commit()
+    # 消息闪现
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
     return redirect("/mxpg/cspz_hknl")
 
 #客户资料

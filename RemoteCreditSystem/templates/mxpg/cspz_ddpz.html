@@ -16,17 +16,26 @@
 			input[type=text]{width:80px;}
 		</style>
 	</head>
-	<body>		
+	<body onload="setTimeOut();">		
 		<form class="iframeForm" id="iframeForm">
 			<div id="formsId">
+			{%- with messages = get_flashed_messages(with_categories=true) %}
+				  	{%- if messages %}
+			    	{%- for category, message in messages %}
+			    	<div class="alert alert-{{category}}">
+			      		{{message}}
+			      	</div>
+			    	{%- endfor %}
+				  	{%- endif %}
+				{%- endwith %}
 <!--*****************************道德品质**********************************-->
 			<table class="myTable">
 				<caption>道德品质</caption>			
 		<!--*****************************家庭情况**********************************-->
 				<tr>
-					<td rowspan="4"><b>家庭情况</b><br/><input type="text" name="name1" value="" onkeyup="value=value.replace(/[^\d]/g,'')"/>%</td>
-					<td rowspan="2"><b>家庭成员状况</b><br/><input type="text" name="name2" />%</td>
-					<td><b>家庭其他成员经济收入来源</b><br/><input type="text" name="name3" />%</td>
+					<td rowspan="6"><b>家庭情况</b><br/><input type="text" name="name1" value="" onkeyup="value=value.replace(/[^\d]/g,'')"/>%</td>
+					<td rowspan="5"><b>家庭成员状况</b><br/><input type="text" name="name2" />%</td>
+					<td><b>经济收入来源</b><br/><input type="text" name="name3" />%</td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -41,7 +50,7 @@
 					</td>
 				</tr>	
 				<tr>
-					<td><b>不良嗜好</b><br/><input type="text" name="name6" />%</td>
+					<td><b>家庭成员不良嗜好</b><br/><input type="text" name="name6" />%</td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -55,6 +64,59 @@
 						</table>
 					</td>
 				</tr>	
+				<tr>
+					<td><b>健康状况</b><br/><input type="text" name="name13" />%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>健康良好</th>
+								<th>健康一般</th>
+								<th>短期轻微疾病</th>
+								<th>长期慢性疾病</th>
+								<th>可治愈重大疾病</th>
+								<th>不可治愈重大疾病</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name14" /></td>
+								<td><input type="text" name="name15" /></td>
+								<td><input type="text" name="name16" /></td>
+								<td><input type="text" name="name17" /></td>
+								<td><input type="text" name="name18" /></td>
+								<td><input type="text" name="name19" /></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>家庭成员违法犯罪</b><br/><input type="text" name="name96" />%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>无违法犯罪</th>
+								<th>有违法犯罪</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name97" /></td>
+								<td><input type="text" name="name98" /></td>
+							</tr>
+						</table>
+					</td>
+				</tr>	
+				<tr>
+					<td><b>家庭成员宗教信仰</b><br/><input type="text" name="name99" />%</td>
+					<td>
+						<table class="addTable">
+							<tr>
+								<th>无宗教信仰/有佛教、基督教、伊斯兰教等合法宗教信仰</th>
+								<th>有法轮功、邪教、ISIS、恐怖组织等非法宗教信仰</th>
+							</tr>
+							<tr>
+								<td><input type="text" name="name100" /></td>
+								<td><input type="text" name="name101" /></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
 				<tr>
 					<td><b>婚姻状况</b><br/><input type="text" name="name9" />%</td>
 					<td></td>
@@ -73,37 +135,11 @@
 						</table>
 					</td>
 				</tr>	
-				<tr>
-					<td><b>家庭结构类型</b><br/><input type="text" name="name13"/>%</td>
-					<td></td>
-					<td>
-						<table class="addTable">
-							<tr>
-								<th colspan="2">夫妻个体家庭</th>
-								<th rowspan="2">离异组合家庭</th>								
-								<th rowspan="2">核心家庭</th>							
-								<th rowspan="2">主干家庭</th>						
-								<th rowspan="2">其他家庭</th>
-							</tr>
-							<tr>
-								<th>生育</th>
-								<th>未生育</th>
-							</tr>
-							<tr>
-								<td><input type="text" name="name14" /></td>
-								<td><input type="text" name="name15" /></td>
-								<td><input type="text" name="name16" /></td>
-								<td><input type="text" name="name17"/></td>
-								<td><input type="text" name="name18" /></td>
-								<td><input type="text" name="name19" /></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
+				
 		<!--*****************************知识水平**********************************-->
 				<tr>
-					<td><b>知识水平</b><br/><input type="text" name="name20" />%</td>
-					<td><b>教育程度</b></td>
+					<td><b>教育程度</b><br/><input type="text" name="name20" />%</td>
+					<td><b>学历</b></td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -126,7 +162,7 @@
 				<tr>
 					<td rowspan="4"><b>素质评估</b><br/><input type="text" name="name25" />%</td>
 					<td><b>公众形象</b><br/><input type="text" name="name26" />%</td>
-					<td><b>他人评价</b></td>
+					<td><b></b></td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -143,8 +179,8 @@
 					</td>
 				</tr>	
 				<tr>
-					<td rowspan="2"><b>健康状况</b><br/><input type="text" name="name30"/>%</td>
-					<td><b>定时体检</b><br/><input type="text" name="name31"/>%</td>
+					<td><b>健康状况</b><br/><input type="text" name="name31"/>%</td>
+					<td><b></b></td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -162,6 +198,7 @@
 				</tr>	
 				<tr>
 					<td><b>运动情况</b><br/><input type="text" name="name35" />%</td>
+					<td><b></b></td>
 					<td>
 						<table class="addTable">
 							<tr>
@@ -212,7 +249,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><b>在银行系统有无逾期</b><br/><input type="text" name="name45" />%</td>
+					<td><b>征信报告</b><br/><input type="text" name="name45" />%</td>
 					<td><b></b></td>
 					<td>
 						<table class="addTable">
@@ -404,12 +441,10 @@
 					<td>
 						<table class="addTable">
 							<tr>
-								<th>捐款</th>
-								<th>志愿者活动</th>
+								<th>捐赠/志愿者</th>
 								<th>无公益活动</th>
 							</tr>
 							<tr>
-								<td><input type="text" name="name84" /></td>
 								<td><input type="text" name="name85" /></td>
 								<td><input type="text" name="name86" /></td>
 							</tr>
@@ -424,17 +459,12 @@
 					<td>
 						<table class="addTable">
 							<tr>
-								<th colspan="2">有宗教信仰</th>
-								<th rowspan="2">无宗教信仰</th>
-							</tr>
-							<tr>
-								<th>佛教、基督教、伊斯兰教等基本教</th>
+								<th>无宗教信仰/有佛教、基督教、伊斯兰教等合法宗教信仰</th>
 								<th>法轮功、邪教组织、ISIS、恐怖组织</th>
 							</tr>
 							<tr>
 								<td><input type="text" name="name89" /></td>
 								<td><input type="text" name="name90" /></td>
-								<td><input type="text" name="name91" /></td>
 							</tr>
 						</table>
 					</td>
@@ -477,8 +507,9 @@
 
 			function getSum(){
 				var score = new Array();
-				for(var j=1;j<100;j++){
+				for(var j=1;j<120;j++){
 					var str = "name"+j;
+					var ifexit = false;
 					$("input").each(function(i){
 						if($(this).attr("name")==str){
 							var value = $(this).val();
@@ -487,9 +518,14 @@
 						    }else{
 						    	score.push(value);
 						    } 
+						    ifexit= true;
 						}
 					    
 					});
+					// 不存在name值，则数组置为0
+					if(!ifexit){
+						score.push(0);
+					}
 				}
 				var url = "/mxpg/cspz_ddpz_save/"+score;
 		   		window.location.href =  url;

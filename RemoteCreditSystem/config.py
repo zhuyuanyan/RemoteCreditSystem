@@ -31,8 +31,8 @@ logger.setLevel(logging.WARNING)
 # _DBNAME = "rcs"  # 数据库名称
 
 _DBUSER = "root"  # 数据库用户名
-_DBPASS = "root"  # 数据库用户名密码
-_DBHOST = "local"  # 服务器
+_DBPASS = "123456"  # 数据库用户名密码
+_DBHOST = "localhost"  # 服务器
 _DBPORT = '3306' #服务器端口
 _DBNAME = "rcs"  # 数据库名称
 

@@ -18,6 +18,10 @@ from RemoteCreditSystem.models.credit_data.sc_local_excel import SC_Local_Excel
 from RemoteCreditSystem.models.credit_data.sc_excel_table_content import SC_Excel_Table_Content
 import RemoteCreditSystem.tools.parseExcelToHtml as parseExcelToHtml
 import RemoteCreditSystem.logic.mxpg.sql as sql
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Ddpz import Rcs_Application_Ddpz
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Shzk import Rcs_Application_Shzk
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Jyzk import Rcs_Application_Jyzk
 
 #excel种类
 excel_dict = {
@@ -107,6 +111,12 @@ def open_excel(excel_id,ABS_uri):
             # GenYS(sheet,self.dbHelp,id)
         # if sheet.name.find("应付") != -1:
             # GenYF(sheet,self.dbHelp,id)
+        if sheet.name.find("道德品质") != -1:
+            GenDDPZ(sheet,cert_no)
+        if sheet.name.find("生存状况") != -1:
+            GenSCZK(sheet,cert_no)
+        if sheet.name.find("经营状况") != -1:
+            GenJYZK(sheet,cert_no)
 
 #执行sql
 def executeSql(sql):
@@ -460,4 +470,54 @@ def GenYF(sheet,id):
         row = sheet.row_values(rownum)
         genSql = sql.sqlYSYF.substitute(loan_apply_id=id,name=row[1],original_price=row[4],occur_date=row[2],deadline=row[3],mode_type=1)
         executeSql(genSql)
+
+# 道德品质
+def GenDDPZ(sheet,cert_no):    
+    nrows = sheet.nrows #行数
+    value_2 = ""
+    info = Rcs_Application_Info.query.filter_by(card_id=cert_no).first()
+    for rownum in range(1,nrows):
+        row = sheet.row_values(rownum)
+        value_2 += row[2]+"@@"+row[3]+","
+    value_2 = value_2[:-1]
+    ddpz = Rcs_Application_Ddpz.query.filter_by(application_id=info.id).first()
+    if ddpz:
+        ddpz.value_2=value_2
+    else:
+        Rcs_Application_Ddpz(info.id,"",value_2).add()
+    db.session.commit()
+
+# 生存状况
+def GenSCZK(sheet,cert_no):    
+    nrows = sheet.nrows #行数
+    value_2 = ""
+    info = Rcs_Application_Info.query.filter_by(card_id=cert_no).first()
+    for rownum in range(0,nrows):
+        row = sheet.row_values(rownum)
+        temp = row[0]
+        value_2 += row[0]+"@@"+row[1]+","
+    value_2 = value_2[:-1]
+    shzk = Rcs_Application_Shzk.query.filter_by(application_id=info.id).first()
+    if shzk:
+        shzk.value_2=value_2
+    else:
+        Rcs_Application_Shzk(info.id,"",value_2).add()
+    db.session.commit()
+
+# 经营状况
+def GenJYZK(sheet,cert_no):    
+    nrows = sheet.nrows #行数
+    value_2 = ""
+    info = Rcs_Application_Info.query.filter_by(card_id=cert_no).first()
+    for rownum in range(0,nrows):
+        row = sheet.row_values(rownum)
+        temp = row[0]
+        value_2 += row[0]+"@@"+row[1]+","
+    value_2 = value_2[:-1]
+    jyzk = Rcs_Application_Jyzk.query.filter_by(application_id=info.id).first()
+    if jyzk:
+        jyzk.value_2=value_2
+    else:
+        Rcs_Application_Jyzk(info.id,"",value_2).add()
+    db.session.commit()
     

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>	
+	<meta charset="utf-8">
+	<title>远程授信系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+	<meta name="author" content="Muhammad Usman">
+
+	<!-- The styles -->
+	<link href="/static/css/bootstrap.css" rel="stylesheet">
+	<link href="/static/css/main.css" rel="stylesheet">
+	<link href="/static/css/alert.css" rel="stylesheet" type="text/css" />
+	<script src="/static/js/jquery-1.7.2.min.js"></script>
+	<script src="/static/js/index.js"></script>
+	<!--验证样式-->
+	<link rel="stylesheet" href="/static/css/validationEngine.jquery.css">
+	<script src="/static/js/jquery.validationEngine-zh_CN.js"></script> 
+	<script src="/static/js/jquery.validationEngine.js"></script>
+	
+</head>
+
+<body>	
+	<div style="margin:15px;">
+	
+		<div class="row-fluid">
+			<form id="form_id" method="POST" action="/parameter/add_tree_save/{{p_id}}">
+				<div style="border:1px solid #94c1dc;">
+					<table class="table-list">
+						<tr>
+							<td class="table-label">模型项名称<font class="red">*</font></td>
+							<td>
+								<input type="text" id="name" name="name"  class="validate[required]"/>
+							</td>				
+						</tr>	
+						<tr>
+							<td class="table-label">权重值<font class="red">*</font></td>
+							<td>
+								<input type="text" id="weight" name="weight"  class="validate[required]"/>
+							</td>				
+						</tr>									
+					</table>
+				</div>
+				<br>
+				<input id="id_save_button" type="button"  onclick="javascript:history.go(-1);" class="btn btn-info" value="提交" style="margin:0;"/>
+			</form>
+		</div><!--/row-fluid -->
+	</div><!--/content -->
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//前端验证
+			$('#form_id').validationEngine();
+			$("#id_save_button").click(function() {
+				if(!submitFlag){
+					alert("正在处理，请勿重复提交!");
+					return;
+				}
+				submitFlag = false;
+				// 前端验证 
+				if($('#form_id').validationEngine('validate')){
+					//submit
+					$('#form_id').submit();
+					submitFlag = true;
+				}else{
+					submitFlag = true;
+				}
+			});
+		});
+	</script>
+</body>
+</html>
