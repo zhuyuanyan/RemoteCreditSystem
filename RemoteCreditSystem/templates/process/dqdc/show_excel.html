@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<title>excel表格</title>
+<script src="/static/js/util.js"></script><!-- html字符转义 -->
+<style type="text/css">
+.content th {
+background-color: #efebde;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #7e7d68;
+border-bottom-color: #7e7d68;
+font-weight: normal;
+padding-top: 5px;
+cursor:url(Cursors/SizeE.cur);
+}
+.content td {
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-top-style: none;
+border-right-style: solid;
+border-bottom-style: solid;
+border-left-style: none;
+border-right-color: #c0c0c0;
+border-bottom-color: #c0c0c0;
+cursor:url(Cursors/ColouredAero_ew.cur);
+}
+.cell {
+cursor:url(Cursors/ColouredAero_prec.cur);
+}
+.content table {
+border: 1px solid #7e7d68;
+}
+.content input {
+border-top-width: 0px;
+border-right-width: 0px;
+border-bottom-width: 0px;
+border-left-width: 0px;
+border-top-style: none;
+border-right-style: none;
+border-bottom-style: none;
+border-left-style: none;
+background-color: transparent;
+}
+</style>
+</head>
+<body>
+<form action="" method="post" id="content" class="content">
+<script type="text/javascript">
+	var content = '{{table_content}}' 
+	document.write(js.lang.String.decodeHtml(content))
+</script>
+</form>
+</body></html>
