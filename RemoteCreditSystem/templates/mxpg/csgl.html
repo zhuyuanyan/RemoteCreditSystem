@@ -6,7 +6,7 @@
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
-		
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
 	</head>
 	<body>
 		<div class="position">
@@ -22,16 +22,12 @@
 					<td><label>贷款投向:</label></td>
 	              <td>
 	              	1:<select id="loanDirection_1" name="loanDirection_1" style="width:20%;margin:3px;" onchange="change_loanDirection_1(this.value);">
-	              	{%- for obj in list1%}
-	              		<option value="{{obj.name}}">{{obj.title}}</option>
-					{%- endfor%}
+	              	<script>document.write(js.lang.String.decodeHtml('{{"loanDirection_1"|dynDict("","")}}'))</script>
 	              	</select>
 	              </td>
 	              <td>
 	              	2:<select id="loanDirection_2" name="loanDirection_2" style="width:20%;margin:3px;" onchange="change_loanDirection_2(this.value);">
-	              	{%- for obj in list2%}
-	              		<option value="{{obj.name}}">{{obj.title}}</option>
-					{%- endfor%}
+	              	<script>document.write(js.lang.String.decodeHtml('{{"loanDirection_2"|dynDict("","")}}'))</script>
 	              	</select>
 	              	</td>
 	              </tr>
@@ -39,16 +35,12 @@
 	              <td></td>
           		<td>
               	3:<select id="loanDirection_3" name="loanDirection_3" style="width:20%;margin:3px;" onchange="change_loanDirection_3(this.value);">
-              	{%- for obj in list3%}
-              		<option value="{{obj.name}}">{{obj.title}}</option>
-				{%- endfor%}
+              	<script>document.write(js.lang.String.decodeHtml('{{"loanDirection_3"|dynDict("","")}}'))</script>
               	</select>
               	</td>
 	              <td>
 	              	4:<select id="loanDirection_4" name="loanDirection_4" style="width:20%;margin:3px;">
-	          		{%- for obj in list4%}
-	              		<option value="{{obj.name}}">{{obj.title}}</option>
-					{%- endfor%}
+	          		<script>document.write(js.lang.String.decodeHtml('{{"loanDirection_4"|dynDict("","")}}'))</script>
 	              	</select>
 	              </td>
 	          </tr>
@@ -58,16 +50,12 @@
 					<td><label>所属区域:</label></td>
 	              <td>
 	              	1:<select id="regPermResidence_1" name="regPermResidence_1" style="width:20%;margin:3px;" onchange="change_regPermResidence_1(this.value);">
-	              	{%- for obj in list11%}
-	              		<option value="{{obj.name}}">{{obj.title}}</option>
-					{%- endfor%}
+	              	<script>document.write(js.lang.String.decodeHtml('{{"regPermResidence_1"|dynDict("","")}}'))</script>
 	              	</select>
 	              </td>
 	              <td>
 	              	2:<select id="regPermResidence_2" name="regPermResidence_2" style="width:20%;margin:3px;" onchange="change_regPermResidence_2(this.value);">
-	              	{%- for obj in list22%}
-	              		<option value="{{obj.name}}">{{obj.title}}</option>
-					{%- endfor%}
+	              	<script>document.write(js.lang.String.decodeHtml('{{"regPermResidence_2"|dynDict("","")}}'))</script>
 	              	</select>
 	              	</td>
 	              </tr>
@@ -75,9 +63,7 @@
 					<td></td>
 					 <td>
 	              	3:<select id="regPermResidence_3" name="regPermResidence_3" style="width:20%;margin:3px;">
-	              	{%- for obj in list33%}
-	              		<option value="{{obj.name}}">{{obj.title}}</option>
-					{%- endfor%}
+	              	<script>document.write(js.lang.String.decodeHtml('{{"regPermResidence_3"|dynDict("","")}}'))</script>
 	              	</select>
 	              	</td>
 				

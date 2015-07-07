@@ -2,7 +2,8 @@
 from lxml import etree#导入lxml库
 from RemoteCreditSystem.tools.SimpleCache import SimpleCache
 from RemoteCreditSystem.tools.StaticDictCache import StaticDictCache
-
+from RemoteCreditSystem.tools.DynDictCache import DynDictCache
+from RemoteCreditSystem import db
 #权限种类
 resource_dict = {
 					'create':{'name':'创建','code':"1"},
@@ -61,7 +62,7 @@ def readMenuXml(path):
 	#for key_cache in simplecache:            
 	#	print key_cache,":",simplecache[key_cache]
 	
-#读取数据字典
+#读取静态数据字典
 def readStaticDictXml(path):
 	# Initialize
 	StaticDictCache()
@@ -91,4 +92,33 @@ def readStaticDictXml(path):
 		
 	#for key_cache in staticdictcache:            
 	#	print key_cache,":",staticdictcache[key_cache]
+	
+#读取动态数据字典
+def readDynDictXml(path):
+	# Initialize
+	DynDictCache()
+	# Getting instance
+	dyndictcache = DynDictCache.getInstance()
+	
+	tree = etree.parse(path)#将xml解析为树结构
+	root = tree.getroot()#获得该树的树根
+	
+	for level_1 in root:#这样便可以遍历根元素的所有子元素(这里是article元素)
+		name=level_1.get("name")#用.get("属性名")可以得到article元素相应属性的值
+		title=level_1.get("title")
+		if(name == None):
+			continue
+		dyndictcache.set(name,{'name':name,'title':title})
+		
+		ls = db.session.execute(level_1.text.strip()).fetchall()
+		
+		children = []
+		for obj in ls:
+			children.append({'name':obj.name,'title':obj.title})
+		tmp = dyndictcache.get(name)
+		tmp['children'] = children
+		dyndictcache.set(name,tmp)
+		
+	#for key_cache in dyndictcache:            
+	#	print key_cache,":",dyndictcache[key_cache]
 			

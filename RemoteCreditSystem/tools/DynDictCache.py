@@ -26,13 +26,13 @@ or
 
 """
 
-class StaticDictCache(collections.OrderedDict):
+class DynDictCache(collections.OrderedDict):
 
     def __new__(cls,*args):
         if not hasattr(cls,'_instance'):
             cls._instance = dict.__new__(cls)
         else:
-            raise Exception('StaticDictCache already initialized')
+            raise Exception('DynDictCache already initialized')
         return cls._instance
 
     @classmethod
@@ -90,21 +90,21 @@ class StaticDictCache(collections.OrderedDict):
             for obj in tmp:
                 if(selectValue != None and selectValue != ""):
                     if(selectValue == obj['name']):
-                        resStr = "".join([resStr,"<option value='"+obj['name']+"' selected>"+obj['title']+"</option>"])
+                        resStr = "".join([resStr,"<option value='"+str(obj['name'])+"' selected>"+str(obj['title'])+"</option>"])
                     else:
-                        resStr = "".join([resStr,"<option value='"+obj['name']+"'>"+obj['title']+"</option>"])
+                        resStr = "".join([resStr,"<option value='"+str(obj['name'])+"'>"+str(obj['title'])+"</option>"])
                 elif(selectText != None and selectText != ""):
                     if(selectText == obj['title']):
-                        resStr = "".join([resStr,"<option value='"+obj['name']+"' selected>"+obj['title']+"</option>"])
+                        resStr = "".join([resStr,"<option value='"+str(obj['name'])+"' selected>"+str(obj['title'])+"</option>"])
                     else:
-                        resStr = "".join([resStr,"<option value='"+obj['name']+"'>"+obj['title']+"</option>"])
+                        resStr = "".join([resStr,"<option value='"+str(obj['name'])+"'>"+str(obj['title'])+"</option>"])
                 else:
-                    resStr = "".join([resStr,"<option value='"+obj['name']+"'>"+obj['title']+"</option>"])
+                    resStr = "".join([resStr,"<option value='"+str(obj['name'])+"'>"+str(obj['title'])+"</option>"])
         return resStr 
         
 def scache(func):
     def wrapper(*args, **kwargs):
-        cache = StaticDictCache.getInstance()
+        cache = DynDictCache.getInstance()
         fn = "scache." + func.__module__ + func.__class__.__name__ + \
              func.__name__ + str(args) + str(kwargs)        
         val = cache.get(fn)
