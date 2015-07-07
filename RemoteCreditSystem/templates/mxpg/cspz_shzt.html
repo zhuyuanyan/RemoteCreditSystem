@@ -11,8 +11,17 @@
 			input[type=text]{width:80px;}
 		</style>
 	</head>
-	<body>		
+	<body onload="setTimeOut();">		
 		<form class="iframeForm">
+			{%- with messages = get_flashed_messages(with_categories=true) %}
+				  	{%- if messages %}
+			    	{%- for category, message in messages %}
+			    	<div class="alert alert-{{category}}">
+			      		{{message}}
+			      	</div>
+			    	{%- endfor %}
+				  	{%- endif %}
+				{%- endwith %}	
 <!--*****************************资产状况**********************************-->
 			<table class="myTable">
 				<caption>资产状况<input type="text" name="name1" value=""/>%</caption>		
