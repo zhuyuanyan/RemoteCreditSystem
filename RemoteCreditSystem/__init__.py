@@ -14,6 +14,7 @@ from flask.ext.sqlalchemy import SQLAlchemy #建立单app -johnny
 #import ibm_db_sa.ibm_db_sa
 
 from RemoteCreditSystem.tools.StaticDictCache import StaticDictCache
+from RemoteCreditSystem.tools.DynDictCache import DynDictCache
 
 # 初始化
 app = Flask(__name__)
@@ -55,12 +56,19 @@ def page_not_found(error):
 import tools.xmlUtil as xmlUtil
 xmlUtil.readMenuXml(os.path.join(_HERE, 'menus.xml'))
 xmlUtil.readStaticDictXml(os.path.join(_HERE, 'static-dictionary.xml'))
+xmlUtil.readDynDictXml(os.path.join(_HERE, 'dynamic-dictionary.xml'))
 
 #select展示
 def dict(dictName,selectValue,selectText):
 	staticdictcache = StaticDictCache.getInstance()
 	return staticdictcache.getDict(dictName,selectValue,selectText)
 app.jinja_env.filters['dict'] = dict
+
+def dynDict(dictName,selectValue,selectText):
+	dyndictcache = DynDictCache.getInstance()
+	return dyndictcache.getDict(dictName,selectValue,selectText)
+app.jinja_env.filters['dynDict'] = dynDict
+
 #例
 #<select>
 #	<script>document.write(js.lang.String.decodeHtml('{{"123"|dict("","")}}'))</script>
