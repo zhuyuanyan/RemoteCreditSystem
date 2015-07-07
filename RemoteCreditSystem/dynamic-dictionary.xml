@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionaries>
+	<dictionary name="loanDirection_1" title="贷款投向1" timeout="10000">
+		select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=2
+	</dictionary>
+	<dictionary name="loanDirection_2" title="贷款投向2" timeout="10000">
+		select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=3
+	</dictionary>
+	<dictionary name="loanDirection_3" title="贷款投向3" timeout="10000">
+		select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=4
+	</dictionary>
+	<dictionary name="loanDirection_4" title="贷款投向4" timeout="10000">
+		select concat(ABVENNAME,'_',ENNAME) as name,CNNAME as title from std_gb where (length(locate)-length(replace(locate,',','')))=5
+	</dictionary>
+	
+	<dictionary name="regPermResidence_1" title="区域三级联动1" timeout="10000">
+		select concat(parent_code,'_',type_code) as name,type_name as title from indiv_brt_place where levels = 1 order by name
+	</dictionary>
+	<dictionary name="regPermResidence_2" title="区域三级联动2" timeout="10000">
+		select concat(parent_code,'_',type_code) as name,type_name as title from indiv_brt_place where levels = 2 order by name
+	</dictionary>
+	<dictionary name="regPermResidence_3" title="区域三级联动3" timeout="10000">
+		select concat(parent_code,'_',type_code) as name,type_name as title from indiv_brt_place where levels = 3 order by name
+	</dictionary>
+</dictionaries>
