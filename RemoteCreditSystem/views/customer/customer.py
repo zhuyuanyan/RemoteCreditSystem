@@ -90,11 +90,12 @@ def customer_jyzk(type,id):
 	ddpz_level_1 = Rcs_Parameter_Tree.query.filter_by(param_type=type,level_type=1).first()
 	ddpz_level_2 = Rcs_Parameter_Tree.query.filter_by(param_type=type,level_type=2).all()
 	ddpz_level_3 = Rcs_Parameter_Tree.query.filter_by(param_type=type,level_type=3).all()
+	ddpz_level_4 = Rcs_Parameter_Tree.query.filter_by(param_type=type,level_type=4).all()
 	all_select = Rcs_Parameter_Select.query.all()
 	#页面数据
 	data = Rcs_Application_Jyzk.query.filter_by(application_id=id).first()
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-	return render_template("customer/new_jyzk.html",ddpz_level_1=ddpz_level_1,ddpz_level_2=ddpz_level_2,ddpz_level_3=ddpz_level_3,all_select=all_select,id=id,data=data,score=score)
+	return render_template("customer/new_jyzk.html",ddpz_level_1=ddpz_level_1,ddpz_level_2=ddpz_level_2,ddpz_level_3=ddpz_level_3,ddpz_level_4=ddpz_level_4,all_select=all_select,id=id,data=data,score=score)
 
 #经营状况保存
 @app.route('/customer/customer_jyzk_save/<int:id>', methods=['POST'])

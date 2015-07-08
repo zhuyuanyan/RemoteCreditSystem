@@ -77,12 +77,19 @@
 		var p_id = 0;
 		var type = "";
 		var posturl = "";
-		var parentId="";
+		var createUser="";
 		function zTreeOnClick(event, treeId, treeNode) {
 		  	//工厂模式
+		  	if(parseInt(treeNode.level_type)<3){
+		  		$("#button2").attr('disabled',true);
+		  		$("#button1").attr('disabled',false);
+		  	}else{
+				$("#button2").attr('disabled',false);
+		  		$("#button1").attr('disabled',true);
+		  	}
 			param_type = treeNode.param_type
 			p_id = treeNode.id
-			parentId=treeNode.pId
+			createUser=treeNode.create_user
 		    var get = crud.dom.factory("GET");
 		    var url = "/parameter/show_row/jyzk/"+p_id;
 		    get.doGet(url,getAllDocCallback);
@@ -135,7 +142,7 @@
 				alert("请先选择左侧节点");
 				return;
 			}
-			if(parentId==null){
+			if(createUser==null){
 				alert("无法删除根节点");
 				return;
 			}
@@ -151,6 +158,14 @@
 					}
 				}
 			});
+		}
+		function editNode(){
+			if(p_id==0){
+				alert("请先选择左侧节点");
+				return;
+			}else{
+				window.location.href = "/parameter/edit_tree/"+p_id;
+			}
 		}
 	</SCRIPT>	
 </head>
@@ -174,9 +189,10 @@
 			<div class="span8" style="margin-top:25px;">
 			<!--<div class="box-content">  -->
 				<div style="margin-bottom:5px;">
-					<a type="button" class="btn btn-info"  onclick="addTree()">新增模型项</a>
-					<a type="button" class="btn btn-info"  onclick="addSelect()">新增模型值</a>
-					<a type="button" class="btn btn-info"  onclick="deleteNode()">删除</a>
+					<input type="button" class="btn btn-info" id="button1" value="新增模型项" onclick="addTree()"></input>
+					<input type="button" value = "新增模型值" class="btn btn-info" id="button2"  onclick="addSelect()"></input>
+					<input type="button" class="btn btn-info" value="删除" onclick="deleteNode()"></input>
+					<input type="button" class="btn btn-info" value="修改"  onclick="editNode()"></input>
 				</div>
 				<div style="border:1px solid #94c1dc;">				
 					<table class="table-list" cellspacing="10">

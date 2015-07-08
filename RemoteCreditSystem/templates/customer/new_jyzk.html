@@ -116,9 +116,10 @@
 						remark.push($(this).attr("content")+"为禁入");
 					}else{
 						totalScore+=(parseFloat(score[2])/parseFloat(score[1])/parseFloat(score[0]));
+				
 					}
 				})
-				totalScore= totalScore/parseFloat($("#lastWeight").val());
+				totalScore= parseFloat(totalScore/parseFloat($("#lastWeight").val())).toFixed(3);
 				$("#score_stop").val(remark);
 				if(remark==""||remark==null){
 					$("#score_result").val(totalScore);
