@@ -20,6 +20,7 @@ from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
 from RemoteCreditSystem import db
+from RemoteCreditSystem.config import logger
 from RemoteCreditSystem.config import PER_PAGE
 
 from RemoteCreditSystem.tools.SimpleCache import SimpleCache
@@ -93,7 +94,34 @@ def login_wel():
 def welcome():        
     return render_template("welcome.html")
 
+# 修改密码
+@app.route('/change_password/<int:id>', methods=['GET','POST'])
+def change_password(id):
+    if request.method == 'POST':
+        try:
+            user = User.query.filter_by(id=id).first()
+            if user.login_password == GetStringMD5(request.form['old_password']):
+                user.login_password = GetStringMD5(request.form['login_password'])
+            else:
+                raise Exception
 
+            # 事务提交
+            db.session.commit()
+            # 消息闪现
+            flash('修改密码成功，请重新登录！','success')
+
+        except:
+            # 回滚
+            db.session.rollback()
+            logger.exception('exception')
+            # 消息闪现
+            flash('修改密码失败，为保障账号安全，请重新登录后再尝试修改！','error')
+
+        logout_user()
+        return redirect("login")
+    else:
+        return render_template("change_password.html")
+    
 @app.route('/jjrwfa/zxpg', methods=['GET'])
 def zxpg():        
     return render_template("jjrwfa/zxpg.html")
