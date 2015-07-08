@@ -1,14 +1,26 @@
-2015-07-01 11:13:26,114 ERROR exception
+2015-07-06 15:34:39,384 ERROR exception
 Traceback (most recent call last):
-  File "D:\Development\eclipse-jee-with-android_workspace\RemoteCreditSystem\RemoteCreditSystem\views\system\rcs_user.py", line 49, in new_user
-    UserRole(user.id,request.form['roles']).add()
-  File "D:\Development\eclipse-jee-with-android_workspace\RemoteCreditSystem\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\parameter\rcs_parameter.py", line 85, in edit_select_save
+    tree = Rcs_Parameter_Tree.query.filter_by(id=p_id).fitst()
+AttributeError: 'BaseQuery' object has no attribute 'fitst'
+2015-07-06 16:36:34,278 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\parameter\rcs_parameter.py", line 65, in add_tree_save
+    name = request.form["name"]
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
     raise exceptions.BadRequestKeyError(key)
 BadRequestKeyError: 400: Bad Request
-2015-07-01 11:15:51,319 ERROR exception
+2015-07-06 16:38:02,315 ERROR exception
 Traceback (most recent call last):
-  File "D:\Development\eclipse-jee-with-android_workspace\RemoteCreditSystem\RemoteCreditSystem\views\system\rcs_user.py", line 49, in new_user
-    UserRole(user.id,request.form['roles']).add()
-  File "D:\Development\eclipse-jee-with-android_workspace\RemoteCreditSystem\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\parameter\rcs_parameter.py", line 65, in add_tree_save
+    name = request.form["name"]
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
+    raise exceptions.BadRequestKeyError(key)
+BadRequestKeyError: 400: Bad Request
+2015-07-07 08:50:17,842 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\parameter\rcs_parameter.py", line 65, in add_tree_save
+    name = request.form["name"]
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
     raise exceptions.BadRequestKeyError(key)
 BadRequestKeyError: 400: Bad Request

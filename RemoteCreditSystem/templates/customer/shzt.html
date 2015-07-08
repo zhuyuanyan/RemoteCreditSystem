@@ -1074,16 +1074,17 @@
 				});
 			}
 			if(data_2!=''){
-			
-				$("select").each(function(i){
-				    var data = data_2.split(",")[i];
-				    data1 = data.split("@@")[0];
-				    data2 = data.split("@@")[1];
-				    if($(this).attr("content")==data1){
-				    	$(this).find("option[text='"+data2+"']").attr("selected",true);
-				    }
-				});
-			}
+					var dataArray = data_2.split(",");
+					for(var j=0;j<dataArray.length;j++){
+						data1 = dataArray[j].split("@@")[0];
+					    data2 = dataArray[j].split("@@")[1];
+					    $("select").each(function(i){
+						    if($(this).attr("content")==data1){
+						    	$(this).find("option[text='"+data2+"']").attr("selected",true);
+						    }
+						});
+					}
+				}
 			$("input[type='radio'][name=box1][value='"+data_3+"']").attr("checked",true);
 		});
 			var type =true;

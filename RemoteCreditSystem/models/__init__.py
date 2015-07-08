@@ -7,7 +7,8 @@ from RemoteCreditSystem.models.system.Rcs_Access_Right import Rcs_Access_Right
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Customer_Information import Rcs_Customer_Information
-
+from RemoteCreditSystem.models.system_usage.Rcs_Parameter_Tree import Rcs_Parameter_Tree
+from RemoteCreditSystem.models.system_usage.Rcs_Parameter_Select import Rcs_Parameter_Select
 
 #流程管理
 from RemoteCreditSystem.models.process import SC_Loan_Apply

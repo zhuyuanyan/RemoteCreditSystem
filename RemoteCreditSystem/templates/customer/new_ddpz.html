@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="/static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="/static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="/static/js/jquery-1.4.2.min.js"></script>
+		<script src="/static/js/index.js"></script>
+		<!--日历-->
+		<script src="/static/js/date/lhgcore.js"></script>
+		<script src="/static/js/date/lhgcalendar.js"></script>
+		<style type="text/css">			
+			.myTable td{font-size:13px;}
+		</style>
+	</head>
+	<body>		
+		<form class="iframeForm" id="iframeForm" action="/customer/customer_ddpz_save/{{id}}" method="POST">
+
+<!--*****************************信仰状况**********************************-->
+			{%- for obj in ddpz_level_2%}
+			<table class="myTable">
+				<caption>{{obj.name}}({{obj.weight}})</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				{%- for level3 in ddpz_level_3%}
+					{%- if level3.pId==obj.id%}
+					<tr>
+						<td><b>{{level3.name}}({{level3.weight}})</b></td>
+						<td><select name="" id="tess" content="{{level3.name}}">
+						{%- for allSelect in all_select%}	
+							{%- if allSelect.tree_id==level3.id%}
+							
+								<option value="{{obj.weight}}/{{level3.weight}}/{{allSelect.score}}">{{allSelect.name}}</option>
+							
+							{%- endif%}
+						{%- endfor%}
+						</select></td>
+					</tr>	
+					{%- endif%}
+				{%- endfor%}
+			</table>
+			{%- endfor%}
+			<input type="hidden" name="lastWeight" id="lastWeight" value="{{ddpz_level_1.weight}}"/>
+
+<!--*****************************评分结果**********************************-->
+			<table class="myTable">
+				<caption>评分结果</caption>
+				<tr>
+					<td><b>评分结果</b></td>
+					<td><input type="text" id="score_result" name="score_result" value="{{score.ddpz_score}}" readonly/></td>
+					<input type="hidden" id="score_remark" name="score_remark" readonly/>
+					<td><b>禁入结果</b></td>
+					<td><input type="Textarea" id="score_stop" value="{{score.remark}}" name="score_stop" /></td>
+				</tr>	
+			</table>
+			<input type="hidden" name="dataTotalSelect" id="dataTotalSelect"/>
+
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<input type="button" class="btn btn-info" id="button1" onclick="submitForm()" value="提交" >
+				<input type="button" class="btn btn-info" onclick="sum()" id="button2" value="评分">
+				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
+			</div>
+		</div>
+		</form>
+		<script type="text/javascript">
+     		$(document).ready(function() {
+				var data_2 = "{{data.value_2}}";
+				
+				if(data_2!=''){
+					var dataArray = data_2.split(",");
+					for(var j=0;j<dataArray.length;j++){
+						data1 = dataArray[j].split("@@")[0];
+					    data2 = dataArray[j].split("@@")[1];
+					    $("select").each(function(i){
+						    if($(this).attr("content")==data1){
+						    	$(this).find("option[text='"+data2+"']").attr("selected",true);
+						    }
+						});
+					}
+				}
+
+			});
+
+
+     		var remark = new Array();
+     		function sum(){
+     			remark = new Array();
+     			var selectData = new Array();
+				$("select").each(function(i){
+				    var value = $(this).val();
+				    var text = $(this).find("option:selected").text();
+					if(value==''){
+				    	selectData.push($(this).attr("content")+"@@"+0);
+				    }else{
+				    	selectData.push($(this).attr("content")+"@@"+text);
+				    }  
+			
+				});
+
+				//form组成json格式
+				$("#dataTotalSelect").val(selectData);
+
+				//计算分值
+				var totalScore = 0;
+				$("select").each(function(i){
+					var value = $(this).val();
+					var score = value.split("/");
+					if(score[2]=="禁入"){
+						remark.push($(this).attr("content")+"为禁入");
+					}else{
+						totalScore+=(parseFloat(score[2])/parseFloat(score[1])/parseFloat(score[0]));
+					}
+				})
+				totalScore= parseFloat(totalScore/parseFloat($("#lastWeight").val())).toFixed(3);
+				$("#score_stop").val(remark);
+				if(remark==""||remark==null){
+					$("#score_result").val(totalScore);
+				}else{
+					$("#score_result").val("");
+				}
+     		}
+     		function submitForm(){
+
+
+				$("#iframeForm").submit();
+			}
+		</script>
+	</body>
+</html>
