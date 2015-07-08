@@ -32,10 +32,8 @@ def model_jyzk():
 def show_tree(param_type):
 	orgs = Rcs_Parameter_Tree.query.filter("pId is null").order_by("id").all()
 	orgs_list = []
-	orgs_list+=orgs
 	if orgs:
 		for obj in orgs:
-			print int(obj.id)
 			sql = "FIND_IN_SET(id ,getParamList('"+str(obj.id)+"')) and param_type='"+str(param_type)+"'"
 			orgs_list += Rcs_Parameter_Tree.query.filter(sql).order_by("id").all()
 	orgs_list = list(set(orgs_list))
