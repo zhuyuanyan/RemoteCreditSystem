@@ -81,32 +81,32 @@ def open_excel(excel_id,ABS_uri):
             Genrcs_application_info(sheet,customer_id,id)
             GenApplyInfo(sheet,id)
             GenOthers(sheet,id)
-            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['基本']['name'],excel_dict['基本']['code']).add()
+            #table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            #SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['基本']['name'],excel_dict['基本']['code']).add()
         if sheet.name.find("资负") != -1:
             GenZCFZB(sheet,id)
-            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['资负']['name'],excel_dict['资负']['code']).add()
+            #table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            #SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['资负']['name'],excel_dict['资负']['code']).add()
         if sheet.name.find("经营") != -1:
             GenJY(sheet,id)
-            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['经营']['name'],excel_dict['经营']['code']).add()
+            #table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            #SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['经营']['name'],excel_dict['经营']['code']).add()
         if sheet.name.find("损益") != -1:
             GenSY(sheet,id)
-            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['损益']['name'],excel_dict['损益']['code']).add()
+            #table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            #SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['损益']['name'],excel_dict['损益']['code']).add()
         if sheet.name.find("交叉") != -1:
             GenJC(sheet,id)
-            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['交叉']['name'],excel_dict['交叉']['code']).add()
+            #table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            #SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['交叉']['name'],excel_dict['交叉']['code']).add()
         if sheet.name.find("点货") != -1:
             GenDH(sheet,id)
-            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['点货']['name'],excel_dict['点货']['code']).add()
+            #table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            #SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['点货']['name'],excel_dict['点货']['code']).add()
         if sheet.name.find("固资") != -1:
             GenGDZC(sheet,id)
-            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['固资']['name'],excel_dict['固资']['code']).add()
+            #table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            #SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['固资']['name'],excel_dict['固资']['code']).add()
         # if sheet.name.find("应收") != -1:
             # GenYS(sheet,self.dbHelp,id)
         # if sheet.name.find("应付") != -1:
