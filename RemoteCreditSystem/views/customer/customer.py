@@ -14,6 +14,8 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Jyzk import Rcs_Appl
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Ddpz import Rcs_Application_Ddpz
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Shzk import Rcs_Application_Shzk
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Jcjy import Rcs_Application_Jcjy
 
 # 模型管理(道德品质)
 @app.route('/customer/customer_ddpz/<type>/<int:id>', methods=['GET'])
@@ -117,3 +119,43 @@ def customer_jyzk_save(id):
 	    Rcs_Application_Jyzk(id,"",dataTotalSelect).add()
 	db.session.commit()
 	return redirect("/customer/customer_jyzk/jyzk/"+str(id))
+
+#查看评估报告
+@app.route('/mxpg/show_pgbg/<int:id>', methods=['GET'])
+def show_pgbg(id):    
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    info = Rcs_Application_Info.query.filter_by(id=id).first()
+    jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
+
+    pet = ""
+    #获取道德品质统计
+    ddpz = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
+    ddpz_null = 0
+    if ddpz:
+    	value = ddpz.value_2.split(",")
+    	for obj in value:
+    		if "@@无数据" in obj:
+    			ddpz_null+=1
+    	pet+= "道德品质:"+str(ddpz_null)+"/"+ str(len(value))+","
+
+    #获取生活状况统计
+    shzk = Rcs_Application_Shzk.query.filter_by(application_id=id).first()
+    shzk_null = 0
+    if shzk:
+    	value = shzk.value_2.split(",")
+    	for obj in value:
+    		if "@@无数据" in obj:
+    			shzk_null+=1
+    	pet += "生活状况:"+str(shzk_null)+"/"+ str(len(value))+","
+
+    #获取经营状况统计
+    jyzk = Rcs_Application_Jyzk.query.filter_by(application_id=id).first()
+    jyzk_null = 0
+    if jyzk:
+    	value = jyzk.value_2.split(",")
+    	for obj in value:
+    		if "@@无数据" in obj:
+    			jyzk_null+=1
+    	pet += "经营状况:"+str(jyzk_null)+"/"+ str(len(value))
+
+    return render_template("mxpg/show_pgbg.html",score=score,info=info,jcjy=jcjy,pet=pet)

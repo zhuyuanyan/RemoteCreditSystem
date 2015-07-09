@@ -31,6 +31,7 @@
 					<tr>
 						<td><b>{{level3.name}}({{level3.weight}})</b></td>
 						<td><select name="" id="tess" content="{{level3.name}}">
+							<option value="{{obj.weight}}/{{level3.weight}}/0">无数据</option>
 						{%- for allSelect in all_select%}	
 							{%- if allSelect.tree_id==level3.id%}
 							
@@ -115,7 +116,7 @@
 					if(score[2]=="禁入"){
 						remark.push($(this).attr("content")+"为禁入");
 					}else{
-						totalScore+=(parseFloat(score[2])/parseFloat(score[1])/parseFloat(score[0]));
+						totalScore+=((parseFloat(score[2])/100)*parseFloat(score[1])/parseFloat(score[0]));
 					}
 				})
 				totalScore= parseFloat(totalScore/parseFloat($("#lastWeight").val())).toFixed(3);
