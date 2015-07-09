@@ -58,14 +58,14 @@
 			</div>
 			<div class="page-div">
 				{%- if roles.has_prev %}
-					<span style="CURSOR: pointer" onclick="iframe('System/jsqxgl/{{roles.prev_num}}')">&lt;&lt;</span>
+					<span style="CURSOR: pointer" onclick="iframe('System/role.page/{{roles.prev_num}}')">&lt;&lt;</span>
 				{%- else %}
 					<span style="CURSOR: pointer">&lt;&lt;</span>
 				{%- endif %}
 				&#160;第&#160;<font color="#0088cc">{{roles.page}}</font>&#160;页&#160;
 				&#160;共&#160;<font color="#0088cc">{{roles.pages}}</font>&#160;页&#160;
 				{%- if roles.has_next %}
-					<span style="CURSOR: pointer" onclick="iframe('System/jsqxgl/{{roles.next_num}}')">&gt;&gt;</span>
+					<span style="CURSOR: pointer" onclick="iframe('System/role.page/{{roles.next_num}}')">&gt;&gt;</span>
 				{%- else %}
 					<span style="CURSOR: pointer">&gt;&gt;</span>
 				{%- endif %}
