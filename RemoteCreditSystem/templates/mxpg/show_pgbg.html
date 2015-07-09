@@ -65,6 +65,10 @@
 					<td class="table-label">备注</td>
 					<td colspan="3" style="color:red">{{score.remark}}</td>		
 				</tr>
+				<tr>
+					<td class="table-label">未评估项统计</td>
+					<td colspan="3" >{{pet}}</td>		
+				</tr>
 			</table>	
 			<div class="pagebar">			
 				<div class="controlbtn">
@@ -76,14 +80,16 @@
 			$(document).ready(function(){
                 var jyzk="{{score.jyzk_score}}";
                 var hknl="{{score.hknl_score}}";
-                var shzt="{{score.shzt_score}}";
+                var shzk="{{score.shzk_score}}";
                 var ddpz="{{score.ddpz_score}}";
-                if(jyzk!="不满足准入条件"&&hknl!="不满足准入条件"&&shzt!="不满足准入条件"&&ddpz!="不满足准入条件"){
-	                var result=jyzk*1000-70+hknl*50+shzt*60+ddpz*80-300;
+                var je = "{{info.approve_je}}";
+                if(jyzk!="不满足准入条件"&&hknl!="不满足准入条件"&&shzk!="不满足准入条件"&&ddpz!="不满足准入条件"){
+	                var result=parseFloat(je)*parseFloat(jyzk)*parseFloat(shzk)*parseFloat(ddpz);
+
 	                if(result<0){
 	 					$("#nsxed").html(0);
 	                }else{
-	                	$("#nsxed").html(result);
+	                	$("#nsxed").html(result+"万");
 	                }
                 }              
 

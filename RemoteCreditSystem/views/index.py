@@ -204,13 +204,6 @@ def pgbg():
     appList = Rcs_Application_Info.query.filter_by(approve_type='1').all() 
     return render_template("mxpg/pgbg.html",appList=appList)
 
-#查看评估报告
-@app.route('/mxpg/show_pgbg/<int:id>', methods=['GET'])
-def show_pgbg(id):    
-    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-    info = Rcs_Application_Info.query.filter_by(id=id).first()
-    jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
-    return render_template("mxpg/show_pgbg.html",score=score,info=info,jcjy=jcjy)
 
 #参数管理
 @app.route('/mxpg/csgl', methods=['GET'])
