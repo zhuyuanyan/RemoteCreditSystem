@@ -171,6 +171,7 @@ def autoChild(p_id):
 	else:
 		try:
 			Rcs_Parameter_Tree.query.filter_by(id=p_id).delete()
+			# Rcs_Parameter_Select.query.filter_by()
 			db.session.commit()
 			# 消息闪现
 			flash('保存成功','success')
@@ -181,3 +182,22 @@ def autoChild(p_id):
 		    # 消息闪现
 		    flash('保存失败','error')
 		return "true"
+
+#计算总分值
+@app.route('/parameter/scoreTotal/<score>', methods=['GET'])
+def scoreTotal(score):
+	pet = score.split(",")
+	value = 0
+	for obj in pet:
+		if int(obj)!=0:
+			select = Rcs_Parameter_Select.query.filter_by(id=obj).first()
+			tree = Rcs_Parameter_Tree.query.filter_by(id=id).first()
+			value = select.score
+			count(select.tree_id,value)
+
+
+#递归计算select分值
+def count(id,value):
+	tree = Rcs_Parameter_Tree.query.filter_by(id=id).first()
+	if tree.weight:
+		value += float() 

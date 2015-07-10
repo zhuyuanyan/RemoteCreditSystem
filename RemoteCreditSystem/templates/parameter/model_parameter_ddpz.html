@@ -80,13 +80,6 @@
 		var createUser="";
 		function zTreeOnClick(event, treeId, treeNode) {
 		  	//工厂模式
-		  	if(parseInt(treeNode.level_type)<3){
-		  		$("#button2").attr('disabled',true);
-		  		$("#button1").attr('disabled',false);
-		  	}else{
-				$("#button2").attr('disabled',false);
-		  		$("#button1").attr('disabled',true);
-		  	}
 			param_type = treeNode.param_type
 			p_id = treeNode.id
 			createUser=treeNode.create_user
