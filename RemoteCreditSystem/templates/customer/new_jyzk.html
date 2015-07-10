@@ -17,35 +17,30 @@
 		<form class="iframeForm" id="iframeForm" action="/customer/customer_jyzk_save/{{id}}" method="POST">
 
 <!--*****************************信仰状况**********************************-->
-			{%- for obj in ddpz_level_2%}
 			<table class="myTable">
-				<caption>{{obj.name}}({{obj.weight}})</caption>
-				<colgroup>
-					<col width="15%">
-					<col width="35%">
-					<col width="15%">
-					<col width="35%">
-				</colgroup>
-				{%- for level3 in ddpz_level_3%}
-					{%- if level3.pId==obj.id%}
-					<tr>
-						<td><b>{{level3.name}}({{level3.weight}})</b></td>
-						<td><select name="" id="tess" content="{{level3.name}}">
-							<option value="{{obj.weight}}/{{level3.weight}}/0">无数据</option>
-						{%- for allSelect in all_select%}	
-							{%- if allSelect.tree_id==level3.id%}
+
+			<colgroup>
+				<col width="15%">
+				<col width="35%">
+				<col width="15%">
+				<col width="35%">
+			</colgroup>
+			{%- for level3 in ddpz_level%}
+				<tr>
+					<td><b>{{level3.name}}</b></td>
+					<td><select name="" id="tess" content="{{level3.name}}">
+						<option value="0">无数据</option>
+					{%- for allSelect in all_select%}	
+						{%- if allSelect.tree_id==level3.id%}
 							
-								<option value="{{obj.weight}}/{{level3.weight}}/{{allSelect.score}}">{{allSelect.name}}</option>
-							
-							{%- endif%}
-						{%- endfor%}
-						</select></td>
-					</tr>	
-					{%- endif%}
-				{%- endfor%}
-			</table>
+							<option value="{{allSelect.tree_id}}/{{allSelect.score}}">{{allSelect.name}}</option>
+						
+						{%- endif%}
+					{%- endfor%}
+					</select></td>
+				</tr>	
 			{%- endfor%}
-			<input type="hidden" name="lastWeight" id="lastWeight" value="{{ddpz_level_1.weight}}"/>
+		</table>
 
 <!--*****************************评分结果**********************************-->
 			<table class="myTable">
