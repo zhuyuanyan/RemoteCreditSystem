@@ -2,13 +2,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
-		<link href="/static/css/btn.css" rel="stylesheet" type="text/css" />
-		<link href="/static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="/static/js/jquery-1.4.2.min.js"></script>
-		<script src="/static/js/index.js"></script>
+		<link href="../../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../../static/js/jquery-1.4.2.min.js"></script>
+		<script src="../../../static/js/index.js"></script>
 		<!--日历-->
-		<script src="/static/js/date/lhgcore.js"></script>
-		<script src="/static/js/date/lhgcalendar.js"></script>
+		<script src="../../../static/js/date/lhgcore.js"></script>
+		<script src="../../../static/js/date/lhgcalendar.js"></script>
+		<script src="../../../static/js/util.js"></script><!-- html字符转义 -->
 		<style type="text/css">			
 			.myTable td{font-size:13px;}
 		</style>
@@ -33,7 +34,7 @@
 					{%- for allSelect in all_select%}	
 						{%- if allSelect.tree_id==level3.id%}
 							
-							<option value="{{allSelect.tree_id}}/{{allSelect.score}}">{{allSelect.name}}</option>
+							<option value="{{allSelect.id}}/{{allSelect.score}}">{{allSelect.name}}</option>
 						
 						{%- endif%}
 					{%- endfor%}
@@ -77,6 +78,7 @@
 					    data2 = dataArray[j].split("@@")[1];
 					    $("select").each(function(i){
 						    if($(this).attr("content")==data1){
+						    	data2 = js.lang.String.decodeHtml(data2);
 						    	$(this).find("option[text='"+data2+"']").attr("selected",true);
 						    }
 						});
@@ -124,11 +126,10 @@
 						url : url,
 						type : "get",
 						success : function(data) {
-							
+							$("#score_result").val(data);
 						}
 					});
 
-					// $("#score_result").val(totalScore);
 				}else{
 					$("#score_result").val("");
 				}

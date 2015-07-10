@@ -2,13 +2,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
-		<link href="/static/css/btn.css" rel="stylesheet" type="text/css" />
-		<link href="/static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="/static/js/jquery-1.4.2.min.js"></script>
-		<script src="/static/js/index.js"></script>
+		<link href="../../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../../static/js/jquery-1.4.2.min.js"></script>
+		<script src="../../../static/js/index.js"></script>
 		<!--日历-->
-		<script src="/static/js/date/lhgcore.js"></script>
-		<script src="/static/js/date/lhgcalendar.js"></script>
+		<script src="../../../static/js/date/lhgcore.js"></script>
+		<script src="../../../static/js/date/lhgcalendar.js"></script>
+		<script src="../../../static/js/util.js"></script><!-- html字符转义 -->
 		<style type="text/css">			
 			.myTable td{font-size:13px;}
 		</style>
@@ -33,7 +34,7 @@
 					{%- for allSelect in all_select%}	
 						{%- if allSelect.tree_id==level3.id%}
 							
-							<option value="{{allSelect.tree_id}}/{{allSelect.score}}">{{allSelect.name}}</option>
+							<option value="{{allSelect.id}}/{{allSelect.score}}">{{allSelect.name}}</option>
 						
 						{%- endif%}
 					{%- endfor%}
@@ -75,6 +76,7 @@
 					    data2 = dataArray[j].split("@@")[1];
 					    $("select").each(function(i){
 						    if($(this).attr("content")==data1){
+						    	data2 = js.lang.String.decodeHtml(data2);
 						    	$(this).find("option[text='"+data2+"']").attr("selected",true);
 						    }
 						});
@@ -104,21 +106,28 @@
 				$("#dataTotalSelect").val(selectData);
 
 				//计算分值
-				var totalScore = 0;
+				var totalScore = new Array();
 				$("select").each(function(i){
 					var value = $(this).val();
 					var score = value.split("/");
-					if(score[2]=="禁入"){
+					if(score[1]=="禁入"){
 						remark.push($(this).attr("content")+"为禁入");
 					}else{
-						totalScore+=((parseFloat(score[2])/100)*parseFloat(score[1])/parseFloat(score[0]));
+						totalScore.push(score[0]);
 				
 					}
 				})
-				totalScore= parseFloat(totalScore/parseFloat($("#lastWeight").val())).toFixed(3);
 				$("#score_stop").val(remark);
 				if(remark==""||remark==null){
-					$("#score_result").val(totalScore);
+					//ajax请求，后台计算分值
+					var url = "/parameter/scoreTotal/"+totalScore;
+					$.ajax({
+						url : url,
+						type : "get",
+						success : function(data) {
+							$("#score_result").val(data);
+						}
+					});
 				}else{
 					$("#score_result").val("");
 				}

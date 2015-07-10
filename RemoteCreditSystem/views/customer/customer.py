@@ -60,7 +60,7 @@ def customer_shzk(type,id):
 
 
 	#页面数据
-	data = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
+	data = Rcs_Application_Shzk.query.filter_by(application_id=id).first()
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
 	return render_template("customer/new_shzk.html",ddpz_level=ddpz_level,all_select=all_select,id=id,data=data,score=score)
 #生活状况保存
@@ -96,7 +96,7 @@ def customer_jyzk(type,id):
 
 
 	#页面数据
-	data = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
+	data = Rcs_Application_Jyzk.query.filter_by(application_id=id).first()
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
 	return render_template("customer/new_jyzk.html",ddpz_level=ddpz_level,all_select=all_select,id=id,data=data,score=score)
 #经营状况保存
@@ -159,3 +159,28 @@ def show_pgbg(id):
     	pet += "经营状况:"+str(jyzk_null)+"/"+ str(len(value))
 
     return render_template("mxpg/show_pgbg.html",score=score,info=info,jcjy=jcjy,pet=pet)
+
+#计算总分值
+@app.route('/parameter/scoreTotal/<score>', methods=['GET'])
+def scoreTotal(score):
+	pet = score.split(",")
+	value = 0
+	totalValue = 0
+	for obj in pet:
+		if int(obj)!=0:
+			select = Rcs_Parameter_Select.query.filter_by(id=obj).first()
+			tree = Rcs_Parameter_Tree.query.filter_by(id=select.tree_id).first()
+			value = float(select.score)*float(tree.weight)
+			count(tree.pId,value)
+			totalValue+=count(tree.pId,value)
+	return str(totalValue)
+
+
+#递归计算select分值
+def count(id,value):
+	tree = Rcs_Parameter_Tree.query.filter_by(id=id).first()
+	if tree.level_type:
+		value = float(value)/float(tree.weight)
+		return count(tree.pId,value)
+	else:
+		return value
