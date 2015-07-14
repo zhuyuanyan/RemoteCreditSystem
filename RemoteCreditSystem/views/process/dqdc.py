@@ -138,3 +138,42 @@ def edit_dqdcXed_jbqk(id):
         flash('保存失败','error')
 
     return redirect("process/dqdc/dqdcXed_jbqk/"+str(id))
+
+# 最后个sheet显示专家建议
+@app.route('/Process/dqdc/show_advice.page/<int:loan_apply_id>', methods=['GET'])
+def show_advice(loan_apply_id):
+    info = Rcs_Application_Info.query.filter_by(loan_id=loan_apply_id).first()
+    rcs = Rcs_Application_Advice.query.filter_by(application_id=info.id,user_id=current_user.id).first()
+
+    return render_template("process/dqdc/show_advice.html",loan_apply_id=loan_apply_id,rcs=rcs)
+
+# 专家建议保存
+@app.route('/Process/dqdc/save_advice/<int:loan_apply_id>', methods=['POST'])
+def save_advice(loan_apply_id):
+    try:
+        result = request.form['result']
+        advice = request.form['advice']
+        je = request.form['je']
+        info = Rcs_Application_Info.query.filter_by(loan_id=loan_apply_id).first()
+        rcs = Rcs_Application_Advice.query.filter_by(application_id=info.id,user_id=current_user.id).first()
+        if rcs:
+            rcs.approve_advice = advice
+            rcs.approve_result = result
+            rcs.approve_ed = je
+            #普通专家
+            rcs.advice_type = "1"
+        else:
+            Rcs_Application_Advice(info.id,advice,result,je,"1").add()
+        expert = Rcs_Application_Expert.query.filter_by(application_id=info.id,expert_id=current_user.id).first()
+        if expert:
+            #设置专家已完成此进件评估
+            expert.operate = 1
+        db.session.commit()
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
+    return redirect("Process/dqdc/show_advice.page/"+str(loan_apply_id))

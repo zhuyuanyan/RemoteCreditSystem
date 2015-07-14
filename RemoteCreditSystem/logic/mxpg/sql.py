@@ -5,6 +5,8 @@
 datePattern = '((^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(10|12|0?[13578])([-\/\._])(3[01]|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(11|0?[469])([-\/\._])(30|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(0?2)([-\/\._])(2[0-8]|1[0-9]|0?[1-9])$)|(^([2468][048]00)([-\/\._])(0?2)([-\/\._])(29)$)|(^([3579][26]00)([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][0][48])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][0][48])([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][2468][048])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][2468][048])([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][13579][26])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][13579][26])([-\/\._])(0?2)([-\/\._])(29)$))'
 
 from string import Template
+from flask.ext.login import current_user
+import datetime
 # sc_target_customer
 sqlTargetCustomer = Template("INSERT INTO `sc_target_customer` \
 					(`receiver`, `reception_type`, `yingxiao_status`, `client_status`, \
@@ -165,6 +167,6 @@ sqlYSYF = Template("INSERT INTO `sc_accounts_list` \
 
 #进件表
 sql_rcs_application_info = Template("INSERT INTO `rcs_application_info` \
-			(`customer_id`, `customer_name`, `card_id`, `loan_id`,`approve_je`,approve_type) \
+			(`customer_id`, `customer_name`, `card_id`, `loan_id`,`approve_je`,approve_type,`create_user`,`create_time`) \
 			VALUES \
-			('$customer_id', '$customer_name', '$card_id', $loan_id,'$approve_je','1')")		
+			('$customer_id', '$customer_name', '$card_id', $loan_id,'$approve_je','1','$create_user','$create_time')")		

@@ -1,5 +1,5 @@
 #coding:utf-8
-# from jpype import *
+from jpype import *
 import os
 _HERE = os.path.dirname(__file__)
 

@@ -12,15 +12,17 @@ class Rcs_Application_Advice(db.Model):
     approve_result = db.Column(db.String(32))
     approve_ed = db.Column(db.String(32))
     user_id = db.Column(db.Integer, db.ForeignKey('rcs_user.id'))
+    advice_type = db.Column(db.Integer)
 
     #外键
     rcs_advice_ibfk_1 = db.relationship('User', backref='rcs_advice_ibfk_1')
 
-    def __init__(self, application_id,approve_advice,approve_result,approve_ed):
+    def __init__(self, application_id,approve_advice,approve_result,approve_ed,advice_type):
         self.application_id = application_id
         self.approve_advice = approve_advice
         self.approve_result = approve_result
         self.approve_ed = approve_ed
+        self.advice_type = advice_type
         self.user_id = current_user.id
    
     def add(self):
