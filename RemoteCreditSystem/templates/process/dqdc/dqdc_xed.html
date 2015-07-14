@@ -45,6 +45,10 @@
 						$('#dqdcXed_zcfzb').attr('src','/Process/dqdc/show_excel.page/{{id}}/{{obj.sheet_type}}')" href="javascript:void(0)">{{obj.sheet_name}}</a> 
 					</li>
 				{%- endfor %}
+				<li class="selectTag">
+						<a onclick="selectTag('tagContent1',this);
+						$('#dqdcXed_zcfzb').attr('src','/Process/dqdc/show_advice.page/{{id}}')" href="javascript:void(0)">专家建议</a> 
+					</li>
 			</ul>
 			<!-- 一级content -->
 			<div id="tagContent" class="Content">

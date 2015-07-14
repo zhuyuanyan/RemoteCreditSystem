@@ -36,9 +36,18 @@ def customer_ddpz_save(id):
 	remark = request.form['score_stop'] 
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
 	if score:
-	    score.ddpz_score=total
+		if remark:
+			score.remark=remark
+			score.ddpz_score=0
+			score.total_approve =0
+		else:
+			score.ddpz_score=float('%.2f'% float(total))
+			score.remark=""
+			if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
+				totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
+				score.total_approve = float('%.2f'% totalScore)
 	else:
-	    Rcs_Application_Score(id,total,"","","",remark).add()
+	    Rcs_Application_Score(id,float('%.2f'% float(total)),"","","",remark,"").add()
     #道德品质页面form数据保存
 	#form json值
 	dataTotalSelect = request.form['dataTotalSelect']
@@ -70,11 +79,18 @@ def customer_shzk_save(id):
 	remark = request.form['score_stop'] 
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
 	if score:
-	    score.shzk_score=total
 	    if remark:
 	    	score.remark=remark
+	    	score.shzk_score=0
+	    	score.total_approve =0
+	    else:
+			score.shzk_score=float('%.2f'% float(total))
+			score.remark=""
+			if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
+				totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
+				score.total_approve = float('%.2f'% totalScore)
 	else:
-	    Rcs_Application_Score(id,"","","",total,remark).add()
+	    Rcs_Application_Score(id,"","","",float('%.2f'% float(total)),remark,"").add()
     #生活状况页面form数据保存
 	#form json值
 	dataTotalSelect = request.form['dataTotalSelect']
@@ -106,9 +122,18 @@ def customer_jyzk_save(id):
 	remark = request.form['score_stop'] 
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
 	if score:
-	    score.jyzk_score=total
+		if remark:
+			score.remark=remark
+			score.jyzk_score=0
+			score.total_approve =0
+		else:	
+			score.jyzk_score=float('%.2f'% float(total))
+			score.remark=""
+			if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
+				totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
+				score.total_approve = float('%.2f'% float(totalScore))  
 	else:
-	    Rcs_Application_Score(id,"","",total,"",remark).add()
+	    Rcs_Application_Score(id,"","",float('%.2f'% float(total)),"",remark,"").add()
     #经营状况页面form数据保存
 	#form json值
 	dataTotalSelect = request.form['dataTotalSelect']
@@ -125,8 +150,6 @@ def customer_jyzk_save(id):
 def show_pgbg(id):    
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     info = Rcs_Application_Info.query.filter_by(id=id).first()
-    jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
-
     pet = ""
     #获取道德品质统计
     ddpz = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
@@ -158,7 +181,8 @@ def show_pgbg(id):
     			jyzk_null+=1
     	pet += "经营状况:"+str(jyzk_null)+"/"+ str(len(value))
 
-    return render_template("mxpg/show_pgbg.html",score=score,info=info,jcjy=jcjy,pet=pet)
+
+    return render_template("mxpg/show_pgbg.html",score=score,info=info,pet=pet)
 
 #计算总分值
 @app.route('/parameter/scoreTotal/<score>', methods=['GET'])

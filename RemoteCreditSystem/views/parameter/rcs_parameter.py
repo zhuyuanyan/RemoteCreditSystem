@@ -182,14 +182,14 @@ def autoChild(p_id):
 		    flash('保存失败','error')
 		return "true"
 
-# #同级下重名判断
-# @app.route('/parameter/doubleName/<int:p_id>/<int:type>/<name>', methods=['GET'])
-# def doubleName(p_id,type,name):
-# 	if type==1:
-# 		tree = Rcs_Parameter_Tree.query.filter_by(pId=p_id).all()
-# 		for obj in tree:
-# 			if name==obj.name:
-# 				return helpers.show_result_success("")
-# 		else:
-# 			return helpers.show_result_fail("")
+#同级下重名判断
+@app.route('/parameter/doubleName/<int:p_id>/<int:type>/<name>', methods=['GET'])
+def doubleName(p_id,type,name):
+	if type==1:
+		tree = Rcs_Parameter_Tree.query.filter_by(pId=p_id).all()
+		for obj in tree:
+			if name==obj.name:
+				return helpers.show_result_success("")
+		else:
+			return helpers.show_result_fail("")
 	

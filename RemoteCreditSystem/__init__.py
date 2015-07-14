@@ -85,11 +85,11 @@ app.jinja_env.filters['checkBtnPri'] = checkBtnPri
 #{%- endif %}
 
 #启动java虚拟机
-# from jpype import *
-# jarpath = os.path.join(_HERE, 'ext_class/ReadExcel.jar')
-# jvmArg = "-Djava.class.path=" + jarpath
-# startJVM(getDefaultJVMPath(),"-ea",jvmArg)
-#shutdownJVM()
+from jpype import *
+jarpath = os.path.join(_HERE, 'ext_class/ReadExcel.jar')
+jvmArg = "-Djava.class.path=" + jarpath
+startJVM(getDefaultJVMPath(),"-ea",jvmArg)
+# shutdownJVM()
     
 #---------------------------------
 #加载试图--johnny 放在最后防止循环引用

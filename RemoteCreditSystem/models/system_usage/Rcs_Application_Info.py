@@ -21,6 +21,8 @@ class Rcs_Application_Info(db.Model):
     approve_type = db.Column(db.String(1))
     pet = db.Column(db.String(32))
     loan_id = db.Column(db.Integer)
+    create_user = db.Column(db.Integer)
+    create_time = db.Column(db.DateTime)
 
     def __init__(self, customer_id,customer_name,card_id,product_name,approve_je,approve_org,approve_area,industry,district,user_name,sh_name,sp_name,approve_type,pet):
         self.customer_id = customer_id
