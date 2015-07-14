@@ -23,8 +23,9 @@ class Rcs_Application_Info(db.Model):
     loan_id = db.Column(db.Integer)
     create_user = db.Column(db.Integer)
     create_time = db.Column(db.DateTime)
+    model_type = db.Column(db.Integer)
 
-    def __init__(self, customer_id,customer_name,card_id,product_name,approve_je,approve_org,approve_area,industry,district,user_name,sh_name,sp_name,approve_type,pet):
+    def __init__(self, customer_id,customer_name,card_id,product_name,approve_je,approve_org,approve_area,industry,district,user_name,sh_name,sp_name,approve_type,pet,model_type):
         self.customer_id = customer_id
         self.customer_name = customer_name
         self.card_id = card_id
@@ -39,5 +40,6 @@ class Rcs_Application_Info(db.Model):
         self.sp_name = sp_name
         self.approve_type = approve_type
         self.pet = pet
+        self.model_type=model_type
     def add(self):
         db.session.add(self)

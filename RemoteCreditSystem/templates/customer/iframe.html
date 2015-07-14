@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
-		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
-		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<link href="../../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../../static/js/jquery-1.7.2.min.js"></script>
 		<!--日历-->
-		<script src="../../static/js/date/lhgcore.js"></script>
-		<script src="../../static/js/date/lhgcalendar.js"></script>
-		<script src="../../static/js/index.js"></script>
+		<script src="../../../static/js/date/lhgcore.js"></script>
+		<script src="../../../static/js/date/lhgcalendar.js"></script>
+		<script src="../../../static/js/index.js"></script>
 		<style type="text/css">
 			.tabList{display:block;z-index:1;}
 			.tabList li{float:left;width:100px;margin-right: -1px;border: solid 1px #B9C4CF;background: -moz-linear-gradient(center top , rgb(254, 255, 255), rgb(218, 232, 246)) repeat scroll 0% 0% transparent;background-color: #EBF3FA;height: 23px;line-height: 23px;text-align: center;padding: 5px 5px 4px 8px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
@@ -18,13 +17,27 @@
 			.tabContentList{float:left;width:99.9%;margin-top:-1px;}
 		</style>
 	</head>
-	<body>
-			<ul class="tabList">
+	<body >
+		<div class="position">
+			当前位置：<span>信息录入</span>
+		</div>
+		<div class="pageTitle">
+			{%- if type=="1"%}
+			传统信息录入
+			{%- else%}
+			标准信息录入
+			{%- endif%}
+		</div>
+		<div class="content">
+		
+				<ul class="tabList">
+				{%- if type=="1"%}
 				 <li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/zcfzzk/{{id}}')"><a href="javascript:void(0)">资产负债状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/lrb/{{id}}')"><a href="javascript:void(0)">利润表</a></li>
 				<!-- <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/xjll/{{id}}')"><a href="javascript:void(0)">现金流量</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/jcjy/{{id}}')"><a href="javascript:void(0)">交叉检验</a></li> -->
 				<li  onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/khzl_hk/{{id}}')"><a href="javascript:void(0)">还款能力</a></li>
+				{%- endif%}
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_jyzk/jyzk/{{id}}')"><a href="javascript:void(0)">经营状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_shzk/shzk/{{id}}')"><a href="javascript:void(0)">生存状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_ddpz/ddpz/{{id}}')"><a href="javascript:void(0)">道德品质</a></li>
@@ -33,9 +46,24 @@
 			<div class="tabContentList">
 			<!--*************第一个标签**********************-->
 				<div id="tab0" class="tabs">
-					<iframe frameborder="0" src="/khzldy/zcfzzk/{{id}}" width="100%" id="myframe" marginheight="0" marginwidth="0" height="420px" ></iframe>					
+					<iframe frameborder="0" src="/khzldy/zcfzzk/{{id}}" width="100%" id="myframe" marginheight="0" marginwidth="0" height="430px" ></iframe>					
 				</div>
 			</div>
+		
 
+		</div>	
+		<script type="text/javascript">
+		function selectbelong(id){
+		 	$("#hiddenId").val(id);
+		 }
+		 function iframeById(url){
+		 	var value = $("#hiddenId").val();
+		 	if(value==""){
+		 		alert("请选择记录");
+		 		return;
+		 	}
+		 	window.location.href =  url+"/"+value;
+		 }
+		</script>
 	</body>
 </html>

@@ -176,10 +176,6 @@ def insert_jjfa(id,expertId):
     flash('保存成功','success')
     return redirect("/jjrwfa/jjfa/1")
 
-#信息导入
-@app.route('/mxpg/xxdr', methods=['GET'])
-def xxdr():      
-    return render_template("mxpg/iframe.html")
 
 @app.route('/mxpg/pldr', methods=['GET'])
 def pldr():      
@@ -188,6 +184,9 @@ def pldr():
 def xxlr():      
     #获取未分类数据     
     appList = Rcs_Application_Info.query.filter_by(create_user=current_user.id).all()
+    for obj in appList:
+        if not obj.model_type:
+            obj.model_type="0"
     return render_template("mxpg/xxlr.html",appList=appList)
 
 #授信评估
@@ -341,9 +340,9 @@ def khzl_info():
     return render_template("customer/jbzl.html")
 
 #还款能力页面(iframe)
-@app.route('/khzldy/khzl_hknl/<int:id>', methods=['GET'])
-def khzl_hknl(id):        
-    return render_template("customer/iframe.html",id=id)
+@app.route('/khzldy/khzl_hknl/<type>/<int:id>', methods=['GET'])
+def khzl_hknl(type,id):        
+    return render_template("customer/iframe.html",id=id,type=type)
 
 #还款能力页面
 @app.route('/khzldy/khzl_hk/<int:id>', methods=['GET'])
@@ -427,6 +426,10 @@ def zcfzzk_save(id):
     else:
         Rcs_Application_Zcfzb(id,dataTotal,'').add()
 
+    info = Rcs_Application_Info.query.filter_by(id=id).first()
+    if info:
+        #设置为传统模型
+        info.model_type=1
     db.session.commit()
     return redirect("/khzldy/zcfzzk/"+str(id))
 
@@ -511,6 +514,10 @@ def lrb_save(id):
     else:
         Rcs_Application_Score(id,"",float('%.2f'% float(value_17)),"","","","").add()
 
+    info = Rcs_Application_Info.query.filter_by(id=id).first()
+    if info:
+        #设置为传统模型
+        info.model_type=1
     db.session.commit()
     return redirect("khzldy/lrb/"+str(id))
 
