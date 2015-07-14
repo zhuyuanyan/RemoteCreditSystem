@@ -2,19 +2,23 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
-		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="../../static/js/jquery-1.7.2.min.js"></script>
-		<script src="../../static/js/index.js"></script>
+		<link href="../../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../../static/js/index.js"></script>
 		<!--日历-->
-		<script src="../../static/js/date/lhgcore.js"></script>
-		<script src="../../static/js/date/lhgcalendar.js"></script>
-		<style type="text/css">
-			
-		</style>
+		<script src="../../../static/js/date/lhgcore.js"></script>
+		<script src="../../../static/js/date/lhgcalendar.js"></script>
 	</head>
-	<body>
-		<div class="iframeForm">
+	<body >
+		<div class="position">
+			当前位置：<span>信息录入</span>
+		</div>
+		<div class="pageTitle">
+			信息录入
+		</div>
+		<div class="content">
+			<div class="">
 			<form class="search">				
 				<span>
 					客户索引号：<input type="text"/>
@@ -89,7 +93,7 @@
 				</colgroup>
 				{%- for obj in appList%}
 				<tr onclick="checkTable(this)">
-					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
+					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}},{{obj.model_type}})"/></td>
 					<td>{{obj.customer_name}}</td>
 					<td>{{obj.card_id}}</td>
 					<td>{{obj.product_name}}</td>
@@ -107,8 +111,9 @@
 			<div class="pagebar">
 				<input type="hidden" value="" id="hiddenId"/>
 				<div class="controlbtn">
-					<a class="btn btn-info" href="javascript:void(0);" onclick="iframeById('/khzldy/khzl_hknl')">录入评估要素</a>
-					<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>					
+					<a class="btn btn-info" href="javascript:void(0);" id="history" onclick="iframeById('/khzldy/khzl_hknl/1')">录入传统评估要素</a>
+					<a class="btn btn-info" href="javascript:void(0);" id="static" onclick="iframeById('/khzldy/khzl_hknl/2')" >录入标准评估要素</a>
+								
 				</div>
 				<div class="page">
 					<span>共<b>2</b>条数据，当前第<b>1</b>页</span>
@@ -120,12 +125,25 @@
 					<a href="#" class="next"><img src="../../static/img/icon_button_next.png"/></a>
 					<a href="#" class="end"><img src="../../static/img/icon_button_end.png"/></a>
 				</div>
-			</div>	
+			</div>
+		</div>
 		</div>	
-	
 		<script type="text/javascript">
-		 function selectbelong(id){
+		function selectbelong(id,type){
 		 	$("#hiddenId").val(id);
+		 	if(type=="0"){
+		 		$("#static").attr("disabled",false);
+		 		$("#history").attr("disabled",false);
+		 	}else{
+		 		if(type=="1"){
+		 		$("#static").attr("disabled",true);
+		 		$("#history").attr("disabled",false);
+			 	}else{
+					$("#static").attr("disabled",false);
+			 		$("#history").attr("disabled",true);
+			 	}
+		 	}
+
 		 }
 		 function iframeById(url){
 		 	var value = $("#hiddenId").val();
