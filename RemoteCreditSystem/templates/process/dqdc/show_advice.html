@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<link href="../../../static/css/bootstrap.css" rel="stylesheet">
+		<script src="../../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../../static/js/index.js"></script>
+		<!--日历-->
+		<script src="../../../static/js/date/lhgcore.js"></script>
+		<script src="../../../static/js/date/lhgcalendar.js"></script>
+		<style type="text/css">
+		</style>
+	</head>
+	<body onload="setTimeOut();">	
+		<form id="submitForm" action="/Process/dqdc/save_advice/{{loan_apply_id}}" method="POST">
+			{%- with messages = get_flashed_messages(with_categories=true) %}
+		  	{%- if messages %}
+	    	{%- for category, message in messages %}
+	    	<div class="alert alert-{{category}}">
+	      		{{message}}
+	      	</div>
+	    	{%- endfor %}
+		  	{%- endif %}
+		{%- endwith %}
+			<table class="myTable">
+				<caption>专家建议</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td class="table-label">授信结果</td>
+					<td><select id="result" name="result" value="{{rcs.approve_result}}">
+							<option value="1">同意发放</option>
+							<option value="2">拒绝发放</option>
+					</td>
+					<td class="table-label">授信额度</td>
+					<td><input type="text" id="je" name="je" value="{{rcs.approve_ed}}">元</td>					
+				</tr>
+				<tr>
+					<td class="table-label">授信建议</td>
+					<td colspan="3"><textarea  id="advice" name="advice"> {{rcs.approve_advice}}</textarea>
+					</td>
+			
+				</tr>
+
+			</table>	
+		</form>
+			<div class="pagebar">			
+				<div class="controlbtn">
+					<a class="btn btn-info" href="javascript:void(0);" onclick="save()" title="提交">提交</a>
+					<a class="btn"  onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
+				</div>
+			</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+            
+
+            })
+
+            function save(){
+            	$("#submitForm").submit();
+            }
+		</script>
+	</body>
+</html>

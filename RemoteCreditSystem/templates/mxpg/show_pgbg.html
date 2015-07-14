@@ -41,16 +41,12 @@
 				</tr>
 				<tr>
 					<td class="table-label">拟授信额度</td>
-					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
-					<td>0</td>	
-					{%- else%}
-                    <td id="nsxed"></td>
-					{%-endif%}
+                    <td id="nsxed">{{score.total_approve}}元</td>
 					<td class="table-label">风险等级</td>
 					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
 					<td>100</td>	
 					{%- else%}
-					<td>50</td>
+					<td>0</td>
 					{%-endif%}	
 				</tr>
 				<tr>
@@ -72,26 +68,13 @@
 			</table>	
 			<div class="pagebar">			
 				<div class="controlbtn">
-					<a class="btn btn-info" href="javascript:void(0);" title="导出为PDF">导出为PDF</a>
+					
 					<a class="btn"  onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
 				</div>
 			</div>
 		<script type="text/javascript">
 			$(document).ready(function(){
-                var jyzk="{{score.jyzk_score}}";
-                var hknl="{{score.hknl_score}}";
-                var shzk="{{score.shzk_score}}";
-                var ddpz="{{score.ddpz_score}}";
-                var je = "{{info.approve_je}}";
-                if(jyzk!="不满足准入条件"&&hknl!="不满足准入条件"&&shzk!="不满足准入条件"&&ddpz!="不满足准入条件"){
-	                var result=parseFloat(je)*parseFloat(jyzk)*parseFloat(shzk)*parseFloat(ddpz);
-
-	                if(result<0){
-	 					$("#nsxed").html(0);
-	                }else{
-	                	$("#nsxed").html(result+"万");
-	                }
-                }              
+            
 
             })
 		</script>

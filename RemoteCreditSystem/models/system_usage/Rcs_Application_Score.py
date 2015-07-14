@@ -14,15 +14,19 @@ class Rcs_Application_Score(db.Model):
     shzk_score = db.Column(db.String(32))
     remark = db.Column(db.String(255))
     create_user = db.Column(db.Integer)
+    create_time = db.Column(db.DateTime)
+    total_approve = db.Column(db.String(32))
 
-    def __init__(self, application_id,ddpz_score,hknl_score,jyzk_score,shzk_score,remark):
+    def __init__(self, application_id,ddpz_score,hknl_score,jyzk_score,shzk_score,remark,total_approve):
         self.application_id = application_id
         self.ddpz_score = ddpz_score
         self.hknl_score = hknl_score
         self.jyzk_score = jyzk_score
         self.shzk_score = shzk_score
-        self.remark = remark
+        self.total_approve = total_approve
+        self.shzk_score = shzk_score
         self.create_user= current_user.id
+        self.create_time = datetime.datetime.now()
    
     def add(self):
         db.session.add(self)

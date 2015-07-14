@@ -130,7 +130,7 @@ def zxpg():
 @app.route('/jjrwfa/jjfa/<int:page>', methods=['GET'])
 def jjfa(page): 
     #获取未分类数据     
-    appList = Rcs_Application_Info.query.filter_by(approve_type='1').paginate(page, per_page = PER_PAGE)
+    appList = Rcs_Application_Info.query.filter_by(approve_type='1',create_user=current_user.id).paginate(page, per_page = PER_PAGE)
     return render_template("jjrwfa/jjfa.html",appList=appList)
 
 @app.route('/jjrwfa/jjrwfaxx', methods=['GET'])
@@ -187,7 +187,7 @@ def pldr():
 @app.route('/mxpg/xxlr', methods=['GET'])
 def xxlr():      
     #获取未分类数据     
-    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()
+    appList = Rcs_Application_Info.query.filter_by(create_user=current_user.id).all()
     return render_template("mxpg/xxlr.html",appList=appList)
 
 #授信评估
@@ -357,7 +357,8 @@ def khzl_hk(id):
     db.session.commit()
     appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
     #获取交叉检验结果
-    jcjy = Rcs_Application_Jcjy.query.filter_by().first()
+    jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
+
     return render_template("customer/hknl.html",result=result,id=id,appResult=appResult,jcjy=jcjy)
 
 #还款能力保存
@@ -369,7 +370,7 @@ def khzl_hknl_save(id):
     if score:
         score.hknl_score=total
     else:
-        Rcs_Application_Score(id,"",total,"","",remark).add()
+        Rcs_Application_Score(id,"",total,"","",remark,"").add()
     db.session.commit()
     return redirect("/khzldy/khzl_hk/"+str(id))
 
@@ -500,6 +501,16 @@ def lrb_save(id):
     else:
         Rcs_Application_Lrb(id,dataTotal,dataTotalSelect).add()
 
+    #保存还款能力分值(月可支)
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    if score:
+        score.hknl_score = float('%.2f'% float(value_17))
+        if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
+            totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
+            score.total_approve = float('%.2f'% totalScore) 
+    else:
+        Rcs_Application_Score(id,"",float('%.2f'% float(value_17)),"","","","").add()
+
     db.session.commit()
     return redirect("khzldy/lrb/"+str(id))
 
@@ -561,7 +572,7 @@ def khzl_jyzk_save(id):
     if score:
         score.jyzk_score=total
     else:
-        Rcs_Application_Score(id,"","",total,"",remark).add()
+        Rcs_Application_Score(id,"","",total,"",remark,"").add()
 
     #经营状况页面form数据保存
     #form json值
@@ -595,7 +606,7 @@ def khzl_shzk_save(id):
     if score:
         score.shzk_score=total
     else:
-        Rcs_Application_Score(id,"","","",total,remark).add()
+        Rcs_Application_Score(id,"","","",total,remark,"").add()
 
         #道德品质页面form数据保存
     #form json值
@@ -631,7 +642,7 @@ def khzl_ddpz_save(id):
     if score:
         score.ddpz_score=total
     else:
-        Rcs_Application_Score(id,total,"","","",remark).add()
+        Rcs_Application_Score(id,total,"","","",remark,"").add()
 
     #道德品质页面form数据保存
     #form json值
@@ -686,8 +697,9 @@ def yjsrw_kspg(id):
 def yjsrw_save(id):    
     app = Rcs_Application_Info.query.filter_by(id=id).first()  
     app.approve_type="5"
-
-    Rcs_Application_Advice(id,request.form['approve_idea'],request.form['approve_result'],request.form['approve_ed'],'').add()
+    #普通专家
+    advice_type=1
+    Rcs_Application_Advice(id,request.form['approve_idea'],request.form['approve_result'],request.form['approve_ed'],advice_type).add()
 
     db.session.commit()    
     return redirect("/zjzxpggl/yjsrw")
@@ -727,14 +739,37 @@ def pgjl(page):
 def pgjl_info(id):        
     app = Rcs_Application_Info.query.filter_by(id=id).first()
     #评估建议
-    advice = Rcs_Application_Advice.query.filter_by(application_id=id).all()
+    advice = Rcs_Application_Advice.query.filter_by(application_id=id,advice_type=1).all()
     #未评估专家
     expert = Rcs_Application_Expert.query.filter("application_id="+str(id)+" and expert_id not in (select user_id from rcs_application_advice where application_id="+str(id)+")").all()
-    nopass ='true'
-    for obj in advice:
-        if obj.approve_result=='2':
-            nopass = 'false'
-    return render_template("zxpgjl/pgjl_info.html",app=app,advice=advice,expert=expert,nopass=nopass)
+    #最终决策人员建议
+    last_advice = Rcs_Application_Advice.query.filter_by(application_id=id,advice_type=2).first()
+    #获取模型审批额度
+    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+    return render_template("zxpgjl/pgjl_info.html",app=app,advice=advice,expert=expert,level=current_user.user_type,last_advice=last_advice,score=score)
+
+@app.route('/zxpgjl/save_pgjl_info/<int:id>', methods=['POST'])
+def save_pgjl_info(id):
+    try:
+        last_advice = request.form['last_advice']
+        last_approve = request.form['last_approve']
+        advice = Rcs_Application_Advice.query.filter_by(application_id=id,user_id=current_user.id).first()
+        if advice:
+            advice.approve_result = last_advice
+            advice.approve_ed = last_approve
+        else:
+            Rcs_Application_Advice(id,"",last_advice,last_approve,"2").add()
+        db.session.commit()
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
+    return redirect("/zxpgjl/pgjl_info/"+str(id))
+
+
 
 @app.route('/zxpggzwh/pggzwh', methods=['GET'])
 def pggzwh():        
@@ -744,7 +779,7 @@ def pggzwh():
 @app.route('/pgzjgl/zjxxgl', methods=['GET'])
 def zjxxgl():
     #获取专家信息 
-    user = User.query.filter_by(user_type='1').all()          
+    user = User.query.filter("user_type='1' or user_type='2'").all()          
     return render_template("pgzjgl/zjxxgl.html",user=user)
 #新增
 @app.route('/pgzjgl/new_zjxxgl', methods=['GET'])
@@ -765,7 +800,8 @@ def new_zjxxgl_save():
     bhxx = request.form['bhxx']  
     remark3 = request.form['remark3']
     role = request.form['role'] 
-    User(user_name,GetStringMD5('111111'),user_name,sex,phone,1,'',card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,'1',role).add()  
+    level = request.form['level']
+    User(user_name,GetStringMD5('111111'),user_name,sex,phone,1,'',card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,level,role).add()  
     db.session.commit()
     return redirect('/pgzjgl/zjxxgl')
 
