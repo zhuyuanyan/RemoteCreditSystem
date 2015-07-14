@@ -2,13 +2,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
-		<link href="/static/css/btn.css" rel="stylesheet" type="text/css" />
-		<link href="/static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="/static/js/jquery-1.4.2.min.js"></script>
-		<script src="/static/js/index.js"></script>
+		<link href="../../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../../static/js/jquery-1.4.2.min.js"></script>
+		<script src="../../../static/js/index.js"></script>
 		<!--日历-->
-		<script src="/static/js/date/lhgcore.js"></script>
-		<script src="/static/js/date/lhgcalendar.js"></script>
+		<script src="../../../static/js/date/lhgcore.js"></script>
+		<script src="../../../static/js/date/lhgcalendar.js"></script>
+		<script src="../../../static/js/util.js"></script><!-- html字符转义 -->
 		<style type="text/css">			
 			.myTable td{font-size:13px;}
 		</style>
@@ -17,35 +18,30 @@
 		<form class="iframeForm" id="iframeForm" action="/customer/customer_shzk_save/{{id}}" method="POST">
 
 <!--*****************************信仰状况**********************************-->
-			{%- for obj in ddpz_level_2%}
 			<table class="myTable">
-				<caption>{{obj.name}}({{obj.weight}})</caption>
-				<colgroup>
-					<col width="15%">
-					<col width="35%">
-					<col width="15%">
-					<col width="35%">
-				</colgroup>
-				{%- for level3 in ddpz_level_3%}
-					{%- if level3.pId==obj.id%}
-					<tr>
-						<td><b>{{level3.name}}({{level3.weight}})</b></td>
-						<td><select name="" id="tess" content="{{level3.name}}">
-							<option value="{{obj.weight}}/{{level3.weight}}/0">无数据</option>
-						{%- for allSelect in all_select%}	
-							{%- if allSelect.tree_id==level3.id%}
+
+			<colgroup>
+				<col width="15%">
+				<col width="35%">
+				<col width="15%">
+				<col width="35%">
+			</colgroup>
+			{%- for level3 in ddpz_level%}
+				<tr>
+					<td><b>{{level3.name}}</b></td>
+					<td><select name="" id="tess" content="{{level3.name}}">
+						<option value="0">无数据</option>
+					{%- for allSelect in all_select%}	
+						{%- if allSelect.tree_id==level3.id%}
 							
-								<option value="{{obj.weight}}/{{level3.weight}}/{{allSelect.score}}">{{allSelect.name}}</option>
-							
-							{%- endif%}
-						{%- endfor%}
-						</select></td>
-					</tr>	
-					{%- endif%}
-				{%- endfor%}
-			</table>
+							<option value="{{allSelect.id}}/{{allSelect.score}}">{{allSelect.name}}</option>
+						
+						{%- endif%}
+					{%- endfor%}
+					</select></td>
+				</tr>	
 			{%- endfor%}
-			<input type="hidden" name="lastWeight" id="lastWeight" value="{{ddpz_level_1.weight}}"/>
+		</table>
 
 <!--*****************************评分结果**********************************-->
 			<table class="myTable">
@@ -72,7 +68,6 @@
 		<script type="text/javascript">
      		$(document).ready(function() {
 				var data_2 = "{{data.value_2}}";
-				
 				if(data_2!=''){
 					var dataArray = data_2.split(",");
 					for(var j=0;j<dataArray.length;j++){
@@ -80,6 +75,7 @@
 					    data2 = dataArray[j].split("@@")[1];
 					    $("select").each(function(i){
 						    if($(this).attr("content")==data1){
+						    	data2 = js.lang.String.decodeHtml(data2);
 						    	$(this).find("option[text='"+data2+"']").attr("selected",true);
 						    }
 						});
@@ -109,20 +105,27 @@
 				$("#dataTotalSelect").val(selectData);
 
 				//计算分值
-				var totalScore = 0;
+				var totalScore = new Array();
 				$("select").each(function(i){
 					var value = $(this).val();
 					var score = value.split("/");
-					if(score[2]=="禁入"){
+					if(score[1]=="禁入"){
 						remark.push($(this).attr("content")+"为禁入");
 					}else{
-						totalScore+=((parseFloat(score[2])/100)*parseFloat(score[1])/parseFloat(score[0]));
+						totalScore.push(score[0]);
 					}
 				})
-				totalScore= parseFloat(totalScore/parseFloat($("#lastWeight").val())).toFixed(3);
 				$("#score_stop").val(remark);
 				if(remark==""||remark==null){
-					$("#score_result").val(totalScore);
+					//ajax请求，后台计算分值
+					var url = "/parameter/scoreTotal/"+totalScore;
+					$.ajax({
+						url : url,
+						type : "get",
+						success : function(data) {
+							$("#score_result").val(data);
+						}
+					});
 				}else{
 					$("#score_result").val("");
 				}

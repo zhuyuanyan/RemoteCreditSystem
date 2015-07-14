@@ -15,7 +15,7 @@ from RemoteCreditSystem.models import Rcs_Parameter_Select
 # 模型参数管理(道德品质)
 @app.route('/parameter/model_ddpz', methods=['GET'])
 def model_ddpz():
-    return render_template("parameter/model_parameter_ddpz.html")
+	return render_template("parameter/model_parameter_ddpz.html")
 
 # 模型参数管理(生活状况)
 @app.route('/parameter/model_shzk', methods=['GET'])
@@ -35,11 +35,11 @@ def show_tree(param_type):
 	if orgs:
 		for obj in orgs:
 			sql = "FIND_IN_SET(id ,getParamList('"+str(obj.id)+"')) and param_type='"+str(param_type)+"'"
-			orgs_list += Rcs_Parameter_Tree.query.filter(sql).order_by("id").all()
-	orgs_list = list(set(orgs_list))
+			orgs_list = Rcs_Parameter_Tree.query.filter(sql).order_by("id").all()
+
 	for obj in orgs_list:
 		obj.open = 1
-	orgs_json = helpers.show_result_content(list(set(orgs_list)))
+	orgs_json = helpers.show_result_content(orgs_list)
 	orgs_json_obj = json.loads(orgs_json)
 	return json.dumps(orgs_json_obj)# 返回json
 
@@ -65,7 +65,6 @@ def add_tree(p_id):
 #新增模型项页面save
 @app.route('/parameter/add_tree_save/<int:p_id>', methods=['POST'])
 def add_tree_save(p_id):
-
 	try:
 		name = request.form["name"]
 		weight = request.form["weight"]
@@ -162,7 +161,7 @@ def edit_select_save(p_id):
 	    flash('保存失败','error')
 	return redirect("/parameter/model_"+tree.param_type)
 
-#判断是否存在子节点
+#判断是否存在子节点(不存在，删除)
 @app.route('/parameter/autoChild/<int:p_id>', methods=['GET'])
 def autoChild(p_id):
 	tree = Rcs_Parameter_Tree.query.filter_by(pId=p_id).all()
@@ -171,6 +170,7 @@ def autoChild(p_id):
 	else:
 		try:
 			Rcs_Parameter_Tree.query.filter_by(id=p_id).delete()
+			Rcs_Parameter_Select.query.filter_by(tree_id=p_id).delete()
 			db.session.commit()
 			# 消息闪现
 			flash('保存成功','success')
@@ -181,3 +181,15 @@ def autoChild(p_id):
 		    # 消息闪现
 		    flash('保存失败','error')
 		return "true"
+
+# #同级下重名判断
+# @app.route('/parameter/doubleName/<int:p_id>/<int:type>/<name>', methods=['GET'])
+# def doubleName(p_id,type,name):
+# 	if type==1:
+# 		tree = Rcs_Parameter_Tree.query.filter_by(pId=p_id).all()
+# 		for obj in tree:
+# 			if name==obj.name:
+# 				return helpers.show_result_success("")
+# 		else:
+# 			return helpers.show_result_fail("")
+	

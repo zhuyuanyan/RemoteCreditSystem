@@ -80,13 +80,6 @@
 		var createUser="";
 		function zTreeOnClick(event, treeId, treeNode) {
 		  	//工厂模式
-		  	if(parseInt(treeNode.level_type)<3){
-		  		$("#button2").attr('disabled',true);
-		  		$("#button1").attr('disabled',false);
-		  	}else{
-				$("#button2").attr('disabled',false);
-		  		$("#button1").attr('disabled',true);
-		  	}
 			param_type = treeNode.param_type
 			p_id = treeNode.id
 			createUser=treeNode.create_user
@@ -146,18 +139,22 @@
 				alert("无法删除根节点");
 				return;
 			}
-			var url = "/parameter/autoChild/"+p_id;
-			$.ajax({
-				url : url,
-				type : "get",
-				success : function(data) {
-					if(data=="false"){
-						alert("请先删除子节点");
-					}else{
-						window.location.reload();
-					}
-				}
-			});
+			
+			if(window.confirm('你确定要删除吗？')){
+                 var url = "/parameter/autoChild/"+p_id;
+					$.ajax({
+						url : url,
+						type : "get",
+						success : function(data) {
+							if(data=="false"){
+								alert("请先删除子节点");
+							}else{
+								window.location.reload();
+							}
+						}
+					});
+              
+              }
 		}
 		function editNode(){
 			if(p_id==0){

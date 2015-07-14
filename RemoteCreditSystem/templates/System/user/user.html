@@ -17,7 +17,6 @@
 	<script type="text/javascript">
 		function disableUserCB(json){
 			var objs = $.evalJSON(json);
-			alert(objs.info);
 			if(objs.result=="Success"){
 				location.reload();
 			}

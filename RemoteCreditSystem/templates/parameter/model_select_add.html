@@ -53,6 +53,8 @@
 			//前端验证
 			$('#form_id').validationEngine();
 			$("#id_save_button").click(function() {
+				//先判断是否重名
+				// doubleName();
 				if(!submitFlag){
 					alert("正在处理，请勿重复提交!");
 					return;
@@ -68,6 +70,18 @@
 				}
 			});
 		});
+
+		// function doubleName(){
+			
+		// 	var url = "/parameter/doubleName/{{p_id}}/1/"+$("#name").val();
+		// 	$.ajax({
+		// 		url : url,
+		// 		type : "get",
+		// 		success : function(data) {
+					
+		// 		}
+		// 	});
+		// }
 	</script>
 </body>
 </html>
