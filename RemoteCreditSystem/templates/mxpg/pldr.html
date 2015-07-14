@@ -14,7 +14,14 @@
 		<script src="../../static/js/jquery.validationEngine.js"></script> 
 	</head>
 	<body onload="setTimeOut();">
-		<div class="iframeForm">
+		<div class="position">
+			当前位置：<span>信息录入 / 批量导入</span>
+		</div>
+		<div class="pageTitle">
+			批量导入
+		</div>
+		<div class="content">
+			<div class="iframeForm">
 			<form id="form_id" class="search" style="padding:60px;text-align:center;" method="POST" enctype="multipart/form-data" action="/pldr/excel_import">	
 				{%- with messages = get_flashed_messages(with_categories=true) %}
 				  	{%- if messages %}
@@ -36,8 +43,9 @@
 					<input id="id_back_button" type="button" class="btn" value="返回" onclick="javascript:history.go(-1);"/>	
 			</form>
 		</div>
+		</div>	
 		<script type="text/javascript">
-			$(document).ready(function(){
+		$(document).ready(function(){
 				//前端验证
 				$('#form_id').validationEngine();
 				$("#id_save_button").click(function() {
@@ -56,7 +64,6 @@
 					}
 				});
 			});
-			
 		</script>
 	</body>
 </html>
