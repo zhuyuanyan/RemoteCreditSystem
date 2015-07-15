@@ -109,6 +109,7 @@ import views.process.dqdcXed_kc
 import views.process.dqdcXed_zkqd
 
 import views.mxpg.pldr
+import views.xxlr.xxlr
 
 import views.parameter.rcs_parameter
 import views.customer.customer
