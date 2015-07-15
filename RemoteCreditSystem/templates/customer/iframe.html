@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<link href="../../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../../static/css/alert.css" rel="stylesheet" type="text/css" />
 		<link href="../../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../../static/js/jquery-1.7.2.min.js"></script>
 		<!--日历-->
@@ -17,27 +18,40 @@
 			.tabContentList{float:left;width:99.9%;margin-top:-1px;}
 		</style>
 	</head>
-	<body >
+	<body onload="setTimeOut();">
 		<div class="position">
 			当前位置：<span>信息录入</span>
 		</div>
+		{%- with messages = get_flashed_messages(with_categories=true) %}
+		  	{%- if messages %}
+	    	{%- for category, message in messages %}
+	    	<div class="alert alert-{{category}}">
+	      		{{message}}
+	      	</div>
+	    	{%- endfor %}
+		  	{%- endif %}
+		{%- endwith %}
 		<div class="pageTitle">
-			{%- if type=="1"%}
-			传统信息录入
-			{%- else%}
-			标准信息录入
-			{%- endif%}
+			{%- if type=="1" %}
+				传统信息录入
+			{%- else %}
+				标准信息录入
+			{%- endif %}
 		</div>
 		<div class="content">
 		
 				<ul class="tabList">
-				{%- if type=="1"%}
-				 <li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/zcfzzk/{{id}}')"><a href="javascript:void(0)">资产负债状况</a></li>
+				{%- if type=="1" %}
+				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/zcfzzk/{{id}}')"><a href="javascript:void(0)">资产负债状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/lrb/{{id}}')"><a href="javascript:void(0)">利润表</a></li>
 				<!-- <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/xjll/{{id}}')"><a href="javascript:void(0)">现金流量</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/jcjy/{{id}}')"><a href="javascript:void(0)">交叉检验</a></li> -->
-				<li  onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/khzl_hk/{{id}}')"><a href="javascript:void(0)">还款能力</a></li>
-				{%- endif%}
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/khzl_hk/{{id}}')"><a href="javascript:void(0)">还款能力</a></li>
+				{%- else %}
+				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/zcfzb_bz/{{id}}')"><a href="javascript:void(0)">资产负债-标准</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/lrb_bz/{{id}}')"><a href="javascript:void(0)">利润表-标准</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/xjllb_bz/{{id}}')"><a href="javascript:void(0)">现金流量-标准</a></li>
+				{%- endif %}
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_jyzk/jyzk/{{id}}')"><a href="javascript:void(0)">经营状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_shzk/shzk/{{id}}')"><a href="javascript:void(0)">生存状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_ddpz/ddpz/{{id}}')"><a href="javascript:void(0)">道德品质</a></li>
@@ -46,7 +60,11 @@
 			<div class="tabContentList">
 			<!--*************第一个标签**********************-->
 				<div id="tab0" class="tabs">
-					<iframe frameborder="0" src="/khzldy/zcfzzk/{{id}}" width="100%" id="myframe" marginheight="0" marginwidth="0" height="430px" ></iframe>					
+					{%- if type=="1"%}
+					<iframe frameborder="0" src="/khzldy/zcfzzk/{{id}}" width="100%" id="myframe" marginheight="0" marginwidth="0" height="400px" ></iframe>	
+					{%- else %}
+					<iframe frameborder="0" src="/xxlr/zcfzb_bz/{{id}}" width="100%" id="myframe" marginheight="0" marginwidth="0" height="400px" ></iframe>
+					{%- endif %}				
 				</div>
 			</div>
 		

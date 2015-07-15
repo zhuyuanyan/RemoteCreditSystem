@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/base64.js"></script>
+		<script src="../../static/js/util.js"></script>
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script>	
+		
+		<style type="text/css">			
+			.myTable td{font-size:13px;}
+			input[type=text]{width:80px;}
+			.tdCenter{text-align: center;}
+			input:read-only{background-color: #D9D9D9;}
+			.tdBgClr{background-color: #87CEFA}
+		</style>
+	</head>
+	<body>		
+<!--*****************************资产负债表**********************************-->
+		{%- if table_content != '' %}
+			<script type="text/javascript">
+				var content = '{{table_content}}'; 
+				document.write('<form id="form_id" class="" action="" method="POST">'+unescape(content));
+			</script>
+		{%- else %}
+		<form id="form_id" class="" action="" method="POST">
+		<table class="myTable">
+				<caption>资产负债表</caption>
+				<colgroup>
+					<col width="20%">
+					<col width="15%">
+					<col width="15%">
+					<col width="20%">
+					<col width="15%">
+					<col width="15%">
+				</colgroup>
+				<tr>
+					<td class="tdCenter tdBgClr"><b>资产</b></td>
+					<td class="tdCenter tdBgClr"><b>年初余额</b></td>
+					<td class="tdCenter tdBgClr"><b>期末余额</b></td>
+					<td class="tdCenter tdBgClr"><b>负债和所有者权益（或股东权益）</b></td>
+					<td class="tdCenter tdBgClr"><b>年初余额</b></td>
+					<td class="tdCenter tdBgClr"><b>期末余额</b></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">流动资产：</td>
+					<td class="tdCenter"></td>
+					<td class="tdCenter"></td>
+					<td class="tdBgClr">流动负债：</td>
+					<td class="tdCenter"></td>
+					<td class="tdCenter"></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">货币资金</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">短期借款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">交易性金融资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">交易性金融负债</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">应收票据</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">应付票据</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">应收账款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">应付账款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">预付款项</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">预收款项</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">应收利息</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">应付职工薪酬</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">应收股利</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">应交税费</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">其他应收款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">应付利息</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">存货</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">应付股利</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">一年内到期的非流动资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">其他应付款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">其他流动资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">一年内到期的非流动负债</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr"></td>
+					<td></td>
+					<td></td>
+					<td class="tdBgClr">其他流动负债</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr"><b>流动资产合计</b></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdBgClr"><b>流动负债合计</b></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">非流动资产：</td>
+					<td class="tdCenter"></td>
+					<td class="tdCenter"></td>
+					<td class="tdBgClr">非流动负债：</td>
+					<td class="tdCenter"></td>
+					<td class="tdCenter"></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">可供出售金融资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">长期借款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">持有至到期投资</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">应付债券</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">长期应收款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">长期应付款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">长期股权投资</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">专项应付款</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">投资性房地产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">预计负债</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">固定资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">递延所得税负债</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">减：累计折旧</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">其他非流动负债</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">固定资产净值</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdBgClr"><b>非流动负债合计</b></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">减：固定资产减值准备</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr"><b>负债合计</b></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">固定资产净额</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdBgClr"></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">在建工程</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">所有者权益（或股东权益）：</td>
+					<td class="tdCenter"></td>
+					<td class="tdCenter"></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">工程物资</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">实收资本（或股本）</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">固定资产清理</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">资本公积</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">生产性生物资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">减：库存股</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">无形资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdBgClr">专项储备</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">无形资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">盈余公积</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">商誉</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr">未分配利润</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">长期待摊费用</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr"><b>所有者权益（或股东权益）合计</b></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">递延所得税资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">其他非流动资产</td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr"><b>非流动资产合计</b></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdBgClr"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr"><b>资产总计</b></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdBgClr"><b>负债和所有者权益（或股东权益）合计</b></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+				</tr>
+				
+			</table>
+		
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<input type="button" class="btn btn-info" id="id_save_button" value="提交">
+			</div>
+		</div>
+		{%- endif %}
+		</form>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//前端验证
+				$('#form_id').validationEngine();
+				$("#id_save_button").click(function() {
+					if(!submitFlag){
+						alert("正在处理，请勿重复提交!");
+						return;
+					}
+					submitFlag = false;
+					// 前端验证 
+					if($('#form_id').validationEngine('validate')){
+						//submit
+						var b = new Base64(); 
+						updateAllDOMFields(document.getElementById("form_id"));
+						var content = {'content':b.encode(escape($("#form_id").html()))};
+						var url = "/xxlr/zcfzb_bz/save.json/{{loan_apply_id}}";
+						$.ajax({
+							url : url,
+							type : "POST",
+							data:content,
+							success : function(data) {
+								parent.location.reload();
+								submitFlag = true;
+							}
+						});
+					}else{
+						submitFlag = true;
+					}
+				});
+			});
+			
+		</script>
+	</body>
+</html>
