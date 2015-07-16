@@ -461,6 +461,18 @@
 					</td>
 				</tr>
 			</table>
+			<table class="addTable">
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="30%">
+					<col width="20%">
+				</colgroup>
+				<tr>
+					<th colspan="3">标准还款能力参数</th>
+					<td><input type="text" name="name141" value=""/></td>
+				</tr>
+			</table>
 		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
@@ -481,7 +493,7 @@
 
 			function getSum(){
 				var score = new Array();
-				for(var j=1;j<200;j++){
+				for(var j=1;j<150;j++){
 					var str = "name"+j;
 					var ifexit = false;
 					$("input").each(function(i){

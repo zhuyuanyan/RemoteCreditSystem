@@ -157,7 +157,7 @@
 					<td class="tdCenter">1</td>
 					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" id="value1" class="validate[required,custom[number]]" value="100" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">加：年初未分配利润</span></td>
@@ -283,6 +283,7 @@
 					alert("正在处理，请勿重复提交!");
 					return;
 				}
+				var value1 = document.getElementById("value1").value;
 				submitFlag = false;
 				// 前端验证 
 				if($('#form_id').validationEngine('validate')){
@@ -290,7 +291,8 @@
 					var b = new Base64(); 
 					updateAllDOMFields(document.getElementById("form_id"));
 					var content = {'content':b.encode(escape($("#form_id").html()))};
-					var url = "/xxlr/lrb_bz/save.json/{{loan_apply_id}}";
+					
+					var url = "/xxlr/lrb_bz/save.json/{{loan_apply_id}}/"+value1;
 					$.ajax({
 						url : url,
 						type : "POST",
