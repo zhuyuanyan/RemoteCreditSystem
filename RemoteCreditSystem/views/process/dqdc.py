@@ -27,10 +27,13 @@ from RemoteCreditSystem.models.credit_data.sc_excel_table_content import SC_Exce
 @app.route('/Process/dqdc/dqdc_xed/<int:id>', methods=['GET'])
 def dqdc_xed(id):
     info = Rcs_Application_Info.query.filter_by(id=id).first()
-    loan_apply = SC_Loan_Apply.query.filter_by(id=info.loan_id).first()
-    sc_excel_table_contents = SC_Excel_Table_Content.query.filter_by(loan_apply_id=loan_apply.id).order_by("sheet_type").all()
-    return render_template("process/dqdc/dqdc_xed.html",loan_apply=loan_apply,id=info.loan_id,sc_excel_table_contents=sc_excel_table_contents)
-
+    if info.loan_id:
+        loan_apply = SC_Loan_Apply.query.filter_by(id=info.loan_id).first()
+        sc_excel_table_contents = SC_Excel_Table_Content.query.filter_by(loan_apply_id=loan_apply.id).order_by("sheet_type").all()
+        return render_template("process/dqdc/dqdc_xed.html",info=info,id=info.loan_id,sc_excel_table_contents=sc_excel_table_contents)
+    else:
+        sc_excel_table_contents=''
+        return render_template("process/dqdc/dqdc_xed.html",info=info,sc_excel_table_contents=sc_excel_table_contents)
 # 贷款调查——小额贷款
 @app.route('/Process/dqdc/show_excel.page/<int:loan_apply_id>/<int:sheet_type>', methods=['GET'])
 def show_excel(loan_apply_id,sheet_type):
@@ -140,21 +143,21 @@ def edit_dqdcXed_jbqk(id):
     return redirect("process/dqdc/dqdcXed_jbqk/"+str(id))
 
 # 最后个sheet显示专家建议
-@app.route('/Process/dqdc/show_advice.page/<int:loan_apply_id>', methods=['GET'])
-def show_advice(loan_apply_id):
-    info = Rcs_Application_Info.query.filter_by(loan_id=loan_apply_id).first()
+@app.route('/Process/dqdc/show_advice.page/<int:application_id>', methods=['GET'])
+def show_advice(application_id):
+    info = Rcs_Application_Info.query.filter_by(id=application_id).first()
     rcs = Rcs_Application_Advice.query.filter_by(application_id=info.id,user_id=current_user.id).first()
 
-    return render_template("process/dqdc/show_advice.html",loan_apply_id=loan_apply_id,rcs=rcs)
+    return render_template("process/dqdc/show_advice.html",loan_apply_id=application_id,rcs=rcs)
 
 # 专家建议保存
-@app.route('/Process/dqdc/save_advice/<int:loan_apply_id>', methods=['POST'])
-def save_advice(loan_apply_id):
+@app.route('/Process/dqdc/save_advice/<int:application_id>', methods=['POST'])
+def save_advice(application_id):
     try:
         result = request.form['result']
         advice = request.form['advice']
         je = request.form['je']
-        info = Rcs_Application_Info.query.filter_by(loan_id=loan_apply_id).first()
+        info = Rcs_Application_Info.query.filter_by(id=application_id).first()
         rcs = Rcs_Application_Advice.query.filter_by(application_id=info.id,user_id=current_user.id).first()
         if rcs:
             rcs.approve_advice = advice
@@ -176,4 +179,4 @@ def save_advice(loan_apply_id):
         logger.exception('exception')
         # 消息闪现
         flash('保存失败','error')
-    return redirect("Process/dqdc/show_advice.page/"+str(loan_apply_id))
+    return redirect("Process/dqdc/show_advice.page/"+str(application_id))

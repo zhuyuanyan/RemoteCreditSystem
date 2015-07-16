@@ -149,6 +149,21 @@ def fagzwh():
 def zxpgzjhsgzwh():        
     return render_template("jjrwfa/zxpgzjhsgzwh.html")
 
+#进入新增进件页面
+@app.route('/jjrwfa/new_jjfa', methods=['GET'])
+def new_jjfa():        
+    return render_template("jjrwfa/new_jjfa.html")
+
+#新增进件保存页面
+@app.route('/jjrwfa/save_jjfa', methods=['POST'])
+def save_jjfa():
+    print "----"
+    name = request.form['name']
+    card_id = request.form['card_id']
+    db.engine.execute("insert into rcs_application_info(customer_name,card_id,approve_type,create_user) values('"+name+"','"+card_id+"','1',"+str(current_user.id)+")")
+
+    return redirect("/jjrwfa/jjfa/1")
+
 @app.route('/jjrwfa/rgfa/<int:userId>', methods=['GET'])
 def rgfa(userId):        
     app = Rcs_Application_Info.query.filter_by(id=userId).first()  

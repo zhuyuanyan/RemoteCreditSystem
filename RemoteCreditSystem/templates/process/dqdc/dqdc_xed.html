@@ -29,9 +29,9 @@
 					<table class="table-list">
 						<tr>
 							<td class="table-label">贷款编号</td>
-							<td width="120px">{{loan_apply.id}}</td>
+							<td width="120px">{{info.loan_id}}</td>
 							<td class="table-label">客户名称</td>
-							<td>{{loan_apply.customer_name}}</td>
+							<td>{{info.customer_name}}</td>
 
 						</tr>														
 					</table>
@@ -47,15 +47,21 @@
 				{%- endfor %}
 				<li class="selectTag">
 						<a onclick="selectTag('tagContent1',this);
-						$('#dqdcXed_zcfzb').attr('src','/Process/dqdc/show_advice.page/{{id}}')" href="javascript:void(0)">专家建议</a> 
+						$('#dqdcXed_zcfzb').attr('src','/Process/dqdc/show_advice.page/{{info.id}}')" href="javascript:void(0)">专家建议</a> 
 					</li>
 			</ul>
 			<!-- 一级content -->
 			<div id="tagContent" class="Content">
 <!-- ************************************************第二个标签的内容*************************************************** -->
+				{%- if sc_excel_table_contents%}
 				<div class="tagContent selectTag" id="tagContent1">
 					<iframe frameborder="0" width="100%;" id="dqdcXed_zcfzb" src="/Process/dqdc/show_excel.page/{{id}}/1" style="height:350px;"></iframe>
-				</div><!-- /资产负债表 -->		
+				</div><!-- /资产负债表 -->	
+				{%- else%}	
+				<div class="tagContent selectTag" id="tagContent1">
+					<iframe frameborder="0" width="100%;" id="dqdcXed_zcfzb" src="/Process/dqdc/show_advice.page/{{info.id}}" style="height:350px;"></iframe>
+				</div><!-- /专家建议 -->
+				{%- endif%}	
 			</div><!-- /tagContent -->	
 		</div><!--/row-fluid -->
 	</div><!--/content -->
