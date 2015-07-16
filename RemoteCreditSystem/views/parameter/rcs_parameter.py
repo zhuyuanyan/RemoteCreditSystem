@@ -20,12 +20,12 @@ def model_ddpz():
 # 模型参数管理(生活状况)
 @app.route('/parameter/model_shzk', methods=['GET'])
 def model_shzk():
-    return render_template("parameter/model_parameter_shzk.html")
+	return render_template("parameter/model_parameter_shzk.html")
 
 # 模型参数管理(经营状况)
 @app.route('/parameter/model_jyzk', methods=['GET'])
 def model_jyzk():
-    return render_template("parameter/model_parameter_jyzk.html")
+	return render_template("parameter/model_parameter_jyzk.html")
 
 #左侧加载树
 @app.route('/parameter/show_tree/<param_type>', methods=['POST'])
@@ -74,12 +74,11 @@ def add_tree_save(p_id):
 		# 消息闪现
 		flash('保存成功','success')
 	except:
-	    # 回滚
-	    db.session.rollback()
-	    logger.exception('exception')
-	    # 消息闪现
-	    flash('保存失败','error')
-
+		# 回滚
+		db.session.rollback()
+		logger.exception('exception')
+		# 消息闪现
+		flash('保存失败','error')
 	return redirect("/parameter/model_"+tree.param_type)
 
 #修改模型项页面
@@ -101,11 +100,11 @@ def edit_tree_save(p_id):
 		# 消息闪现
 		flash('保存成功','success')
 	except:
-	    # 回滚
-	    db.session.rollback()
-	    logger.exception('exception')
-	    # 消息闪现
-	    flash('保存失败','error')
+		# 回滚
+		db.session.rollback()
+		logger.exception('exception')
+		# 消息闪现
+		flash('保存失败','error')
 	return redirect("/parameter/model_"+tree.param_type)
 
 #新增模型值页面
@@ -126,11 +125,11 @@ def add_select_save(p_id):
 		# 消息闪现
 		flash('保存成功','success')
 	except:
-	    # 回滚
-	    db.session.rollback()
-	    logger.exception('exception')
-	    # 消息闪现
-	    flash('保存失败','error')
+		# 回滚
+		db.session.rollback()
+		logger.exception('exception')
+		# 消息闪现
+		flash('保存失败','error')
 	return redirect("/parameter/model_"+tree.param_type)
 
 #修改模型值页面
@@ -154,11 +153,11 @@ def edit_select_save(p_id):
 		# 消息闪现
 		flash('保存成功','success')
 	except:
-	    # 回滚
-	    db.session.rollback()
-	    logger.exception('exception')
-	    # 消息闪现
-	    flash('保存失败','error')
+		# 回滚
+		db.session.rollback()
+		logger.exception('exception')
+		# 消息闪现
+		flash('保存失败','error')
 	return redirect("/parameter/model_"+tree.param_type)
 
 #判断是否存在子节点(不存在，删除)
@@ -175,11 +174,11 @@ def autoChild(p_id):
 			# 消息闪现
 			flash('保存成功','success')
 		except:
-		    # 回滚
-		    db.session.rollback()
-		    logger.exception('exception')
-		    # 消息闪现
-		    flash('保存失败','error')
+			# 回滚
+			db.session.rollback()
+			logger.exception('exception')
+			# 消息闪现
+			flash('保存失败','error')
 		return "true"
 
 #同级下重名判断
