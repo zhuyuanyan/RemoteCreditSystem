@@ -206,7 +206,7 @@ def count(id,value):
     parent_tree=Rcs_Parameter_Tree.query.filter_by(pId=tree.pId).first()
 
     if tree.level_type:
-        value = parent_tree.weight*float(value)/float(tree.weight)
+        value = float(parent_tree.weight)*float(value)/float(tree.weight)
         return count(tree.pId,value)
     else:
 		return value
