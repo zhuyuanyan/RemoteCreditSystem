@@ -191,10 +191,16 @@ def scoreTotal(score):
 	value = 0
 	totalValue = 0
 	for obj in pet:
-		if int(obj)!=0:
+		if "@" not in obj:
 			select = Rcs_Parameter_Select.query.filter_by(id=obj).first()
 			tree = Rcs_Parameter_Tree.query.filter_by(id=select.tree_id).first()
 			value = (float(select.score)/100)*float(tree.weight)
+			totalValue+=count(tree.id,value)
+		else:
+			#无数据默认为满分值
+			tree_id=obj.split("@")[0]
+			tree = Rcs_Parameter_Tree.query.filter_by(id=tree_id).first()
+			value = float(tree.weight)
 			totalValue+=count(tree.id,value)
 	return str(totalValue)
 
@@ -214,8 +220,6 @@ def count(id,value):
 				total+=float(obj.weight)
 				
 			value = float(parent.weight)*float(value)/float(total)
-			print tree.name
-			print value
 			return count(tree.pId,value)
 		else:
 			return value
