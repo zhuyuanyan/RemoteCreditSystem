@@ -30,7 +30,7 @@
 				<tr>
 					<td><b>{{level3.name}}</b></td>
 					<td><select name="" id="tess" content="{{level3.name}}">
-						<option value="0">无数据</option>
+						<option value="{{level3.id}}@0">无数据</option>
 					{%- for allSelect in all_select%}	
 						{%- if allSelect.tree_id==level3.id%}
 							
