@@ -30,6 +30,7 @@ def xxlr_zcfzb_bz(loan_apply_id):
 def xxlr_zcfzb_bz_save(loan_apply_id):
 	try:
 		xxlr.xxlr_zcfzb_bz_save(loan_apply_id,request)
+
 		# 消息闪现
 		flash('保存成功','success')
 		return helpers.show_result_success("")
@@ -49,10 +50,10 @@ def xxlr_lrb_bz(loan_apply_id):
 	return render_template("xxlr/lrb_bz.html",loan_apply_id=loan_apply_id,sc_application_lrb=sc_application_lrb,table_content=table_content)
 
 # 保存 标准 利润表
-@app.route('/xxlr/lrb_bz/save.json/<int:loan_apply_id>', methods=['POST'])
-def xxlr_lrb_bz_save(loan_apply_id):
+@app.route('/xxlr/lrb_bz/save.json/<int:loan_apply_id>/<value1>', methods=['POST'])
+def xxlr_lrb_bz_save(loan_apply_id,value1):
 	try:
-		xxlr.xxlr_lrb_bz_save(loan_apply_id,request)
+		xxlr.xxlr_lrb_bz_save(loan_apply_id,request,value1)
 		# 消息闪现
 		flash('保存成功','success')
 		return helpers.show_result_success("")

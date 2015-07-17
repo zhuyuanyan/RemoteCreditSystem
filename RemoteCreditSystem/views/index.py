@@ -149,6 +149,21 @@ def fagzwh():
 def zxpgzjhsgzwh():        
     return render_template("jjrwfa/zxpgzjhsgzwh.html")
 
+#进入新增进件页面
+@app.route('/jjrwfa/new_jjfa', methods=['GET'])
+def new_jjfa():        
+    return render_template("jjrwfa/new_jjfa.html")
+
+#新增进件保存页面
+@app.route('/jjrwfa/save_jjfa', methods=['POST'])
+def save_jjfa():
+    print "----"
+    name = request.form['name']
+    card_id = request.form['card_id']
+    db.engine.execute("insert into rcs_application_info(customer_name,card_id,approve_type,create_user) values('"+name+"','"+card_id+"','1',"+str(current_user.id)+")")
+
+    return redirect("/jjrwfa/jjfa/1")
+
 @app.route('/jjrwfa/rgfa/<int:userId>', methods=['GET'])
 def rgfa(userId):        
     app = Rcs_Application_Info.query.filter_by(id=userId).first()  
@@ -214,85 +229,7 @@ def csgl():
 def iframe_cspz():    
     return render_template("mxpg/iframe_cspz.html")
 
-#参数配置--道德品质
-@app.route('/mxpg/cspz_ddpz', methods=['GET'])
-def cspz_ddpz():
-    ddpz = Rcs_Parameter.query.filter_by(parameter_name="ddpz").first()
-    result = ""
-    if ddpz:
-        result=ddpz.parameter_value
-    return render_template("mxpg/cspz_ddpz.html",result=result)
 
-#参数配置--道德品质--保存
-@app.route('/mxpg/cspz_ddpz_save/<score>', methods=['GET'])
-def cspz_ddpz_save(score):
-    try:
-        Rcs_Parameter.query.filter_by(parameter_name="ddpz").delete()
-        Rcs_Parameter("ddpz",score).add()
-        db.session.commit()
-        # 消息闪现
-        flash('保存成功','success')
-    except:
-        # 回滚
-        db.session.rollback()
-        logger.exception('exception')
-        # 消息闪现
-        flash('保存失败','error')
-    return redirect("/mxpg/cspz_ddpz")
-
-
-
-#参数配置--经营状况
-@app.route('/mxpg/cspz_jyzk', methods=['GET'])
-def cspz_jyzk():
-    jyzk = Rcs_Parameter.query.filter_by(parameter_name="jyzk").first()
-    result=""
-    if jyzk:
-        result=jyzk.parameter_value
-    return render_template("mxpg/cspz_jyzk.html",result=result)
-
-#参数配置--经营状况--保存
-@app.route('/mxpg/cspz_jyzk_save/<score>', methods=['GET'])
-def cspz_jyzk_save(score):
-    try:
-        Rcs_Parameter.query.filter_by(parameter_name="jyzk").delete()
-        Rcs_Parameter("jyzk",score).add()
-        db.session.commit()
-    # 消息闪现
-        flash('保存成功','success')
-    except:
-        # 回滚
-        db.session.rollback()
-        logger.exception('exception')
-        # 消息闪现
-        flash('保存失败','error')
-    return redirect("/mxpg/cspz_jyzk")
-
-#参数配置--生活状况
-@app.route('/mxpg/cspz_shzt', methods=['GET'])
-def cspz_shzt():   
-    shzt = Rcs_Parameter.query.filter_by(parameter_name="shzt").first()
-    result = ""
-    if shzt:
-        result=shzt.parameter_value 
-    return render_template("mxpg/cspz_shzt.html",result=result)
-
-#参数配置--生活状态--保存
-@app.route('/mxpg/cspz_shzt_save/<score>', methods=['GET'])
-def cspz_shzt_save(score):
-    try:
-        Rcs_Parameter.query.filter_by(parameter_name="shzt").delete()
-        Rcs_Parameter("shzt",score).add()
-        db.session.commit()
-    # 消息闪现
-        flash('保存成功','success')
-    except:
-        # 回滚
-        db.session.rollback()
-        logger.exception('exception')
-        # 消息闪现
-        flash('保存失败','error')
-    return redirect("/mxpg/cspz_shzt")
 
 #参数配置--还款能力
 @app.route('/mxpg/cspz_hknl', methods=['GET'])
