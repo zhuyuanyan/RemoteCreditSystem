@@ -194,23 +194,26 @@ def scoreTotal(score):
 		if int(obj)!=0:
 			select = Rcs_Parameter_Select.query.filter_by(id=obj).first()
 			tree = Rcs_Parameter_Tree.query.filter_by(id=select.tree_id).first()
-			value = (float(select.score)/100)*float(tree.weight)
-			# count(tree.pId,value) //重复计算
-			totalValue+=count(tree.pId,value)
+			value = (float(select.score)/100)
+			totalValue+=count(tree.id,value)
 	return str(totalValue)
 
 
 #递归计算select分值
 def count(id,value):
-    tree = Rcs_Parameter_Tree.query.filter_by(id=id).first()
-    parent_tree=Rcs_Parameter_Tree.query.filter_by(pId=tree.pId).first()
-    if parent_tree is not None:
-        p_weight=float(parent_tree.weight)
-    else:
-        p_weight=1
-
-    if tree.level_type:
-        value = p_weight*float(value)/float(tree.weight)
-        return count(tree.pId,value)
-    else:
-		return value
+	#查找当前节点
+	tree = Rcs_Parameter_Tree.query.filter_by(id=id).first()
+	if tree.level_type:
+		if int(tree.level_type)!=1:
+			#查找父节点
+			parent = Rcs_Parameter_Tree.query.filter_by(id=tree.pId).first()
+			#查找父节点下所有子节点
+			child_all = Rcs_Parameter_Tree.query.filter_by(pId=parent.id).all()
+			total = 0
+			for obj in child_all:
+				total+=float(obj.weight)
+				
+			value = float(tree.weight)*float(value)/float(total)
+			return count(tree.pId,value)
+		else:
+			return float(value)*float(tree.weight)
