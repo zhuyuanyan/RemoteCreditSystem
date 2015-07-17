@@ -195,16 +195,22 @@ def scoreTotal(score):
 			select = Rcs_Parameter_Select.query.filter_by(id=obj).first()
 			tree = Rcs_Parameter_Tree.query.filter_by(id=select.tree_id).first()
 			value = (float(select.score)/100)*float(tree.weight)
-			count(tree.pId,value)
+			# count(tree.pId,value) //重复计算
 			totalValue+=count(tree.pId,value)
 	return str(totalValue)
 
 
 #递归计算select分值
 def count(id,value):
-	tree = Rcs_Parameter_Tree.query.filter_by(id=id).first()
-	if tree.level_type:
-		value = float(value)/float(tree.weight)
-		return count(tree.pId,value)
-	else:
+    tree = Rcs_Parameter_Tree.query.filter_by(id=id).first()
+    parent_tree=Rcs_Parameter_Tree.query.filter_by(pId=tree.pId).first()
+    if parent_tree is not None:
+        p_weight=float(parent_tree.weight)
+    else:
+        p_weight=1
+
+    if tree.level_type:
+        value = p_weight*float(value)/float(tree.weight)
+        return count(tree.pId,value)
+    else:
 		return value
