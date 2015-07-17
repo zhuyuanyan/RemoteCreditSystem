@@ -194,7 +194,7 @@ def scoreTotal(score):
 		if int(obj)!=0:
 			select = Rcs_Parameter_Select.query.filter_by(id=obj).first()
 			tree = Rcs_Parameter_Tree.query.filter_by(id=select.tree_id).first()
-			value = (float(select.score)/100)
+			value = (float(select.score)/100)*float(tree.weight)
 			totalValue+=count(tree.id,value)
 	return str(totalValue)
 
@@ -213,7 +213,9 @@ def count(id,value):
 			for obj in child_all:
 				total+=float(obj.weight)
 				
-			value = float(tree.weight)*float(value)/float(total)
+			value = float(parent.weight)*float(value)/float(total)
+			print tree.name
+			print value
 			return count(tree.pId,value)
 		else:
-			return float(value)*float(tree.weight)
+			return value
