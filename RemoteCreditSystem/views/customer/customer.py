@@ -35,6 +35,8 @@ def customer_ddpz_save(id):
 	total = request.form['score_result'] 
 	remark = request.form['score_stop'] 
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+	tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
+
 	if score:
 		if remark:
 			score.remark=remark
@@ -45,6 +47,8 @@ def customer_ddpz_save(id):
 			score.remark=""
 			if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
 				totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
+				for obj in tree:
+					totalScore = totalScore*float(obj.weight)
 				score.total_approve = float('%.2f'% totalScore)
 	else:
 	    Rcs_Application_Score(id,float('%.2f'% float(total)),"","","",remark,"").add()
@@ -78,6 +82,7 @@ def customer_shzk_save(id):
 	total = request.form['score_result'] 
 	remark = request.form['score_stop'] 
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+	tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
 	if score:
 	    if remark:
 	    	score.remark=remark
@@ -88,6 +93,8 @@ def customer_shzk_save(id):
 			score.remark=""
 			if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
 				totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
+				for obj in tree:
+					totalScore = totalScore*float(obj.weight)
 				score.total_approve = float('%.2f'% totalScore)
 	else:
 	    Rcs_Application_Score(id,"","","",float('%.2f'% float(total)),remark,"").add()
@@ -121,6 +128,7 @@ def customer_jyzk_save(id):
 	total = request.form['score_result'] 
 	remark = request.form['score_stop'] 
 	score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+	tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
 	if score:
 		if remark:
 			score.remark=remark
@@ -131,6 +139,8 @@ def customer_jyzk_save(id):
 			score.remark=""
 			if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
 				totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
+				for obj in tree:
+					totalScore = totalScore*float(obj.weight)
 				score.total_approve = float('%.2f'% float(totalScore))  
 	else:
 	    Rcs_Application_Score(id,"","",float('%.2f'% float(total)),"",remark,"").add()
@@ -218,8 +228,10 @@ def count(id,value):
 			total = 0
 			for obj in child_all:
 				total+=float(obj.weight)
-				
-			value = float(parent.weight)*float(value)/float(total)
+			if int(parent.level_type)==1:
+				value = float(value)/float(total)
+			else:
+				value = float(parent.weight)*float(value)/float(total)
 			return count(tree.pId,value)
 		else:
 			return value

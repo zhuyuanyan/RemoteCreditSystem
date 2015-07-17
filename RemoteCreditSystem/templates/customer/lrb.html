@@ -237,8 +237,8 @@
                     <td></td>
 					<td></td>
 					<td>						
-						<label>维修费</label><input type="text" value=""/>
-						<label>广告费</label><input type="text" value=""/>	
+						<label>维修费</label><input type="text" value="" name="value_56"/>
+						<label>广告费</label><input type="text" value="" name="value_57"/>	
 					</td>
 				</tr>				
 				<tr>
@@ -254,10 +254,10 @@
 								<th>其他财务费用</th>
 							</tr>
 							<tr>
-								<td><input type="text" class="addinput" value=""/></td>
-								<td><input type="text" class="addinput" value=""/></td>
-								<td><input type="text" class="addinput" value=""/></td>
-								<td><input type="text" class="addinput" value=""/></td>
+								<td><input type="text" class="addinput" value="" name="value_58"/></td>
+								<td><input type="text" class="addinput" value="" name="value_59"/></td>
+								<td><input type="text" class="addinput" value="" name="value_60"/></td>
+								<td><input type="text" class="addinput" value="" name="value_61"/></td>
 							</tr>
 						</table>
 					</td>
@@ -712,6 +712,12 @@
 				var a49=$("input[name=value_49]").val();
 				var a50=$("input[name=value_50]").val();
 				var a51=$("input[name=value_51]").val();
+				var a56=$("input[name=value_56]").val();
+				var a57=$("input[name=value_57]").val();
+				var a58=$("input[name=value_58]").val();
+				var a59=$("input[name=value_59]").val();
+				var a60=$("input[name=value_60]").val();
+				var a61=$("input[name=value_61]").val();
 
 				if(a15==""){a15=0;}else{a15=parseFloat(a15);}
 				if(a16==""){a16=0;}else{a16=parseFloat(a16);}
@@ -734,6 +740,12 @@
 				if(a49==""){a49=0;}else{a49=parseFloat(a49);}
 				if(a50==""){a50=0;}else{a50=parseFloat(a50);}
 				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a56==""){a56=0;}else{a56=parseFloat(a56);}
+				if(a57==""){a57=0;}else{a57=parseFloat(a57);}
+				if(a58==""){a58=0;}else{a58=parseFloat(a58);}
+				if(a59==""){a59=0;}else{a59=parseFloat(a59);}
+				if(a60==""){a60=0;}else{a60=parseFloat(a60);}
+				if(a61==""){a61=0;}else{a61=parseFloat(a61);}
 
 				//年营业额=期末现金-期初现金+经营性现金流出（现金流）
 				var yye1 = a22-a14+a18;
@@ -767,7 +779,7 @@
 					yye13 =(a7-a11)/a7*100;
 				}
 				//月可支=[（淡季月营业额*淡季月数+旺季月营业额*旺季月数+平常季月营业额*平常季月数）-（主营业务成本+主营业务税金+固定人工成本+水电成本+房租租金+固定交通成本+企业增值税+维修费+广告费+公司经费+劳动保险费+其他费用+财务费用）]/12
-				var yye17 = (a7-(a11+a35+a36+a37+a38+a39+a40+a41+a42+a43+a44+a45+a46+a47+a48+a49+a50+a51))/12;
+				var yye17 = (a7-(a11+a35+a36+a37+a38+a39+a40+a41+a42+a43+a44+a45+a46+a47+a48+a49+a50+a51+a56+a57+a58+a59+a60+a61))/12;
 				//月可用现金=期初现金+经营性现金流入-经营性现金流出+融资现金流入-融资现金流出
 				var yye18 = a14+a15-a16+a19-a20;
 
