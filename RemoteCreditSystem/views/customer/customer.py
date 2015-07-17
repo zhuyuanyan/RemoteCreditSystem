@@ -204,9 +204,13 @@ def scoreTotal(score):
 def count(id,value):
     tree = Rcs_Parameter_Tree.query.filter_by(id=id).first()
     parent_tree=Rcs_Parameter_Tree.query.filter_by(pId=tree.pId).first()
+    if parent_tree:
+        p_weight=float(parent_tree.weight)
+    else:
+        p_weight=1
 
     if tree.level_type:
-        value = float(parent_tree.weight)*float(value)/float(tree.weight)
+        value = p_weight*float(value)/float(tree.weight)
         return count(tree.pId,value)
     else:
 		return value
