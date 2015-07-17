@@ -7,7 +7,7 @@ class SC_Application_Zcfzb(db.Model):
     __tablename__ = 'sc_application_zcfzb'
     id = db.Column(db.Integer, primary_key=True)
     loan_apply_id = db.Column(db.Integer)
-    table_content = db.Column(db.BLOB)
+    table_content = db.Column(db.String(5000))
 
     def __init__(self, loan_apply_id,table_content):
         self.loan_apply_id = loan_apply_id

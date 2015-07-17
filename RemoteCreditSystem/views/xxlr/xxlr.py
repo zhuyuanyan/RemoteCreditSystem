@@ -20,25 +20,28 @@ import RemoteCreditSystem.logic.xxlr.xxlr as xxlr
 @app.route('/xxlr/zcfzb_bz/<int:loan_apply_id>', methods=['GET'])
 def xxlr_zcfzb_bz(loan_apply_id):
 	sc_application_zcfzb = SC_Application_Zcfzb.query.filter_by(loan_apply_id=loan_apply_id).first()
-	table_content = ''
-	if(sc_application_zcfzb != None):
-		table_content = base64.b64decode(sc_application_zcfzb.table_content).decode("utf-8")
-	return render_template("xxlr/zcfzb_bz.html",loan_apply_id=loan_apply_id,sc_application_zcfzb=sc_application_zcfzb,table_content=table_content)
+
+	return render_template("xxlr/zcfzb_bz.html",loan_apply_id=loan_apply_id,sc_application_zcfzb=sc_application_zcfzb)
 
 # 保存 标准 资产负债表
-@app.route('/xxlr/zcfzb_bz/save.json/<int:loan_apply_id>', methods=['POST'])
-def xxlr_zcfzb_bz_save(loan_apply_id):
+@app.route('/xxlr/zcfzb_bz/save.json/<int:loan_apply_id>/<score>', methods=['GET'])
+def xxlr_zcfzb_bz_save(loan_apply_id,score):
 	try:
-		xxlr.xxlr_zcfzb_bz_save(loan_apply_id,request)
-
+		# xxlr.xxlr_zcfzb_bz_save(loan_apply_id,request)
+		zcfzb = SC_Application_Zcfzb.query.filter_by(loan_apply_id=loan_apply_id).first()
+		if zcfzb:
+			zcfzb.table_content = score
+		else:
+			zcfzb = SC_Application_Zcfzb(loan_apply_id,score).add()
+		# 事务提交
+		db.session.commit()
 		# 消息闪现
 		flash('保存成功','success')
-		return helpers.show_result_success("")
 	except:
 		logger.exception('exception')
 		# 消息闪现
 		flash('保存失败','error')
-		return helpers.show_result_fail("")
+	return redirect("/xxlr/zcfzb_bz/"+str(loan_apply_id))
 
 # 标准 利润表
 @app.route('/xxlr/lrb_bz/<int:loan_apply_id>', methods=['GET'])

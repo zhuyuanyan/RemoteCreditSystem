@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
 		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="/static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
 		<script src="../../static/js/base64.js"></script>
 		<script src="../../static/js/util.js"></script>
@@ -23,12 +23,7 @@
 	</head>
 	<body>		
 <!--*****************************资产负债表**********************************-->
-		{%- if table_content != '' %}
-			<script type="text/javascript">
-				var content = '{{table_content}}'; 
-				document.write('<form id="form_id" class="" action="" method="POST">'+unescape(content));
-			</script>
-		{%- else %}
+
 		<form id="form_id" class="" action="" method="POST">
 		<table class="myTable">
 				<caption>资产负债表</caption>
@@ -58,107 +53,107 @@
 				</tr>
 				<tr>
 					<td class="tdBgClr">货币资金</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_1_1"  onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_1_2"  onblur="total2()"  class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">短期借款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_2_1"  onblur="total3()"   class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_2_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">交易性金融资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_3_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_3_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">交易性金融负债</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_4_1"  onblur="total3()"   class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_4_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">应收票据</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_5_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_5_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">应付票据</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_6_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_6_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">应收账款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_7_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_7_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">应付账款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_8_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_8_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">预付款项</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_9_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_9_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">预收款项</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_10_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_10_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">应收利息</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_11_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_11_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">应付职工薪酬</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_12_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_12_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">应收股利</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_13_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_13_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">应交税费</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_14_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_14_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">其他应收款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_15_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_15_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">应付利息</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_16_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_16_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">存货</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_17_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_17_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">应付股利</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_18_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_18_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">一年内到期的非流动资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_19_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_19_2"  onblur="total2()"   class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">其他应付款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_20_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_20_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">其他流动资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_21_1"   onblur="total1()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_21_2"  onblur="total2()"  class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">一年内到期的非流动负债</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_22_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_22_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr"></td>
 					<td></td>
 					<td></td>
 					<td class="tdBgClr">其他流动负债</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_23_1" onblur="total3()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_23_2" onblur="total4()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr"><b>流动资产合计</b></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_24_1"   onblur="total1(),total17()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_24_2"  onblur="total2(),total18()"  class="validate[required,custom[number]]"  value="0" readonly/></td>
 					<td class="tdBgClr"><b>流动负债合计</b></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_25_1" onblur="total3()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_25_2" onblur="total4()" class="validate[required,custom[number]]"  value="0" readonly/></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">非流动资产：</td>
@@ -170,179 +165,179 @@
 				</tr>
 				<tr>
 					<td class="tdBgClr">可供出售金融资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_26_1" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_26_2" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">长期借款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_27_1" onblur="total7()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_27_2" onblur="total8()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">持有至到期投资</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_28_1" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_28_2" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">应付债券</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_29_1" onblur="total7()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_29_2" onblur="total8()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">长期应收款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_30_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_30_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">长期应付款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_31_1" onblur="total7()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_31_2" onblur="total8()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">长期股权投资</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_32_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_32_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">专项应付款</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_33_1" onblur="total7()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_33_2" onblur="total8()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">投资性房地产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_34_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_34_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">预计负债</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_35_1" onblur="total7()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_35_2" onblur="total8()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">固定资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_36_1" onblur="total5()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_36_2" onblur="total6()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">递延所得税负债</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_37_1" onblur="total7()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_37_2" onblur="total8()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">减：累计折旧</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_38_1" onblur="total5()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_38_2" onblur="total6()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">其他非流动负债</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_39_1" onblur="total7()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_39_2" onblur="total8()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">固定资产净值</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_40_1" onblur="total5()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_40_2" onblur="total6()" class="validate[required,custom[number]]"  value="0" readonly/></td>
 					<td class="tdBgClr"><b>非流动负债合计</b></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_41_1" onblur="total7()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_41_2" onblur="total8()" class="validate[required,custom[number]]"  value="0" readonly/></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">减：固定资产减值准备</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_42_1" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_42_2" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr"><b>负债合计</b></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_43_1" onblur="total9(),total19()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_43_2" onblur="total10(),total20()" class="validate[required,custom[number]]"  value="0" readonly/></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">固定资产净额</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_44_1" onblur="total11(),total15()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_44_2" onblur="total12(),total16()" class="validate[required,custom[number]]"  value="0" readonly/></td>
 					<td class="tdBgClr"></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_45_1" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_45_2" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">在建工程</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_46_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_46_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">所有者权益（或股东权益）：</td>
 					<td class="tdCenter"></td>
 					<td class="tdCenter"></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">工程物资</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_47_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_47_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">实收资本（或股本）</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_48_1" onblur="total13()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_48_2" onblur="total14()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">固定资产清理</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_49_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_49_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">资本公积</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_50_1" onblur="total13()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_50_2" onblur="total14()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">生产性生物资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_51_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_51_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">减：库存股</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_52_1" onblur="total13()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_52_2" onblur="total14()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">无形资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="value_53_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_53_2" onblur="total16()"/></td>
 					<td class="tdBgClr">专项储备</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_54_1" onblur="total13()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_54_2" onblur="total14()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">无形资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_55_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_55_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">盈余公积</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_56_1" onblur="total13()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_56_2" onblur="total14()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">商誉</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_57_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_57_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr">未分配利润</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_58_1" onblur="total13()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_58_2" onblur="total14()" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">长期待摊费用</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_59_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_59_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr"><b>所有者权益（或股东权益）合计</b></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_60_1" onblur="total13(),total19()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_60_2" onblur="total14(),total20()" class="validate[required,custom[number]]"  value="0" readonly/></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">递延所得税资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_61_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_61_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr"></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr">其他非流动资产</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_62_1" onblur="total15()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_62_2" onblur="total16()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr"></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr"><b>非流动资产合计</b></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_63_1" onblur="total15(),total17()" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="value_63_2" onblur="total16(),total18()" class="validate[required,custom[number]]" value="0" /></td>
 					<td class="tdBgClr"></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td class="tdBgClr"><b>资产总计</b></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_64_1" onblur="total17()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_64_2" onblur="total18()" class="validate[required,custom[number]]"  value="0" readonly/></td>
 					<td class="tdBgClr"><b>负债和所有者权益（或股东权益）合计</b></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_65_1" onblur="total19()" class="validate[required,custom[number]]"  value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="value_65_2" onblur="total20()" class="validate[required,custom[number]]"  value="0" readonly/></td>
 				</tr>
 				
 			</table>
@@ -352,10 +347,21 @@
 				<input type="button" class="btn btn-info" id="id_save_button" value="提交">
 			</div>
 		</div>
-		{%- endif %}
-		</form>
+			</form>
 		<script type="text/javascript">
 			$(document).ready(function(){
+				//加载数据
+				var result = "{{sc_application_zcfzb.table_content}}";
+				if(result!=''){
+					$("input").each(function(i){
+						if($(this).attr("type")!="button"){
+					   	 	$(this).val(result.split(",")[i]);
+						}
+					});
+				}
+
+
+
 				//前端验证
 				$('#form_id').validationEngine();
 				$("#id_save_button").click(function() {
@@ -367,7 +373,7 @@
 					// 前端验证 
 					if($('#form_id').validationEngine('validate')){
 						//submit
-						var b = new Base64(); 
+					/*	var b = new Base64(); 
 						updateAllDOMFields(document.getElementById("form_id"));
 						var content = {'content':b.encode(escape($("#form_id").html()))};
 						var url = "/xxlr/zcfzb_bz/save.json/{{loan_apply_id}}";
@@ -379,13 +385,360 @@
 								parent.location.reload();
 								submitFlag = true;
 							}
+						});*/
+						//save
+						var score = new Array();
+						$("input").each(function(i){
+							if($(this).attr("type")!="button"){
+								var value = $(this).val();
+							    if(value==0){
+							    	score.push(0);
+							    }else{
+							    	score.push(value);
+							    } 
+							}
+											    
 						});
+						var url = "/xxlr/zcfzb_bz/save.json/{{loan_apply_id}}/"+score;
+		   				window.location.href =  url;
+
 					}else{
 						submitFlag = true;
 					}
 				});
 			});
-			
+			function total1(){
+				var a11=$("input[name=value_1_1]").val();
+				var a31=$("input[name=value_3_1]").val();
+				var a51=$("input[name=value_5_1]").val();
+				var a71=$("input[name=value_7_1]").val();
+				var a91=$("input[name=value_9_1]").val();
+				var a111=$("input[name=value_11_1]").val();
+				var a131=$("input[name=value_13_1]").val();
+				var a151=$("input[name=value_15_1]").val();
+				var a171=$("input[name=value_17_1]").val();
+				var a191=$("input[name=value_19_1]").val();
+				var a211=$("input[name=value_21_1]").val();
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+				if(a131==""){a131=0;}else{a131=parseFloat(a131);}
+				if(a151==""){a151=0;}else{a151=parseFloat(a151);}
+				if(a171==""){a171=0;}else{a171=parseFloat(a171);}
+				if(a191==""){a191=0;}else{a191=parseFloat(a191);}
+				if(a211==""){a211=0;}else{a211=parseFloat(a211);}
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111 +a131 +a151 +a171 +a191 +a211;
+				$("input[name=value_24_1]").val(a241);
+			}
+			function total2(){
+				var a11=$("input[name=value_1_2]").val();
+				var a31=$("input[name=value_3_2]").val();
+				var a51=$("input[name=value_5_2]").val();
+				var a71=$("input[name=value_7_2]").val();
+				var a91=$("input[name=value_9_2]").val();
+				var a111=$("input[name=value_11_2]").val();
+				var a131=$("input[name=value_13_2]").val();
+				var a151=$("input[name=value_15_2]").val();
+				var a171=$("input[name=value_17_2]").val();
+				var a191=$("input[name=value_19_2]").val();
+				var a211=$("input[name=value_21_2]").val();
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+				if(a131==""){a131=0;}else{a131=parseFloat(a131);}
+				if(a151==""){a151=0;}else{a151=parseFloat(a151);}
+				if(a171==""){a171=0;}else{a171=parseFloat(a171);}
+				if(a191==""){a191=0;}else{a191=parseFloat(a191);}
+				if(a211==""){a211=0;}else{a211=parseFloat(a211);}
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111 +a131 +a151 +a171 +a191 +a211;
+				$("input[name=value_24_2]").val(a241);
+			}
+			function total3(){
+				var a11=$("input[name=value_2_1]").val();
+				var a31=$("input[name=value_4_1]").val();
+				var a51=$("input[name=value_6_1]").val();
+				var a71=$("input[name=value_8_1]").val();
+				var a91=$("input[name=value_10_1]").val();
+				var a111=$("input[name=value_12_1]").val();
+				var a131=$("input[name=value_14_1]").val();
+				var a151=$("input[name=value_16_1]").val();
+				var a171=$("input[name=value_18_1]").val();
+				var a191=$("input[name=value_20_1]").val();
+				var a211=$("input[name=value_22_1]").val();
+				var a231=$("input[name=value_23_1]").val();
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+				if(a131==""){a131=0;}else{a131=parseFloat(a131);}
+				if(a151==""){a151=0;}else{a151=parseFloat(a151);}
+				if(a171==""){a171=0;}else{a171=parseFloat(a171);}
+				if(a191==""){a191=0;}else{a191=parseFloat(a191);}
+				if(a211==""){a211=0;}else{a211=parseFloat(a211);}
+				if(a231==""){a231=0;}else{a231=parseFloat(a231);}
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111 +a131 +a151 +a171 +a191 +a211+a231;
+				$("input[name=value_25_1]").val(a241);
+			}
+			function total4(){
+				var a11=$("input[name=value_2_2]").val();
+				var a31=$("input[name=value_4_2]").val();
+				var a51=$("input[name=value_6_2]").val();
+				var a71=$("input[name=value_8_2]").val();
+				var a91=$("input[name=value_10_2]").val();
+				var a111=$("input[name=value_12_2]").val();
+				var a131=$("input[name=value_14_2]").val();
+				var a151=$("input[name=value_16_2]").val();
+				var a171=$("input[name=value_18_2]").val();
+				var a191=$("input[name=value_20_2]").val();
+				var a211=$("input[name=value_22_2]").val();
+				var a231=$("input[name=value_23_2]").val();
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+				if(a131==""){a131=0;}else{a131=parseFloat(a131);}
+				if(a151==""){a151=0;}else{a151=parseFloat(a151);}
+				if(a171==""){a171=0;}else{a171=parseFloat(a171);}
+				if(a191==""){a191=0;}else{a191=parseFloat(a191);}
+				if(a211==""){a211=0;}else{a211=parseFloat(a211);}
+				if(a231==""){a231=0;}else{a231=parseFloat(a231);}
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111 +a131 +a151 +a171 +a191 +a211+a231;
+				$("input[name=value_25_2]").val(a241);
+			}
+			function total5(){
+				var a1=$("input[name=value_36_1]").val();
+				var a2=$("input[name=value_38_1]").val();
+
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+
+				var a3 = a1-a2;
+				$("input[name=value_40_1]").val(a3);
+			}
+			function total6(){
+				var a1=$("input[name=value_36_2]").val();
+				var a2=$("input[name=value_38_2]").val();
+
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+
+				var a3 = a1-a2;
+				$("input[name=value_40_2]").val(a3);
+			}
+			function total7(){
+				var a11=$("input[name=value_27_1]").val();
+				var a31=$("input[name=value_29_1]").val();
+				var a51=$("input[name=value_31_1]").val();
+				var a71=$("input[name=value_33_1]").val();
+				var a91=$("input[name=value_35_1]").val();
+				var a111=$("input[name=value_37_1]").val();
+				var a131=$("input[name=value_39_1]").val();
+
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+				if(a131==""){a131=0;}else{a131=parseFloat(a131);}
+
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111 +a131;
+				$("input[name=value_41_1]").val(a241);
+			}
+			function total8(){
+				var a11=$("input[name=value_27_2]").val();
+				var a31=$("input[name=value_29_2]").val();
+				var a51=$("input[name=value_31_2]").val();
+				var a71=$("input[name=value_33_2]").val();
+				var a91=$("input[name=value_35_2]").val();
+				var a111=$("input[name=value_37_2]").val();
+				var a131=$("input[name=value_39_2]").val();
+
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+				if(a131==""){a131=0;}else{a131=parseFloat(a131);}
+
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111 +a131;
+				$("input[name=value_41_2]").val(a241);
+			}
+			function total9(){
+				var a1=$("input[name=value_25_1]").val();
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				var a2=$("input[name=value_41_1]").val();
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				var a3 = a1+a2;
+				$("input[name=value_43_1]").val(a3);
+			}
+			function total10(){
+				var a1=$("input[name=value_25_2]").val();
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				var a2=$("input[name=value_41_2]").val();
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				var a3 = a1+a2;
+				$("input[name=value_43_2]").val(a3);
+			}
+			function total11(){
+				var a1=$("input[name=value_40_1]").val();
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				var a2=$("input[name=value_42_1]").val();
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				var a3 = a1-a2;
+				$("input[name=value_44_1]").val(a3);
+			}
+			function total12(){
+				var a1=$("input[name=value_40_2]").val();
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				var a2=$("input[name=value_42_2]").val();
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				var a3 = a1-a2;
+				$("input[name=value_44_2]").val(a3);
+			}
+			function total13(){
+				var a11=$("input[name=value_48_1]").val();
+				var a31=$("input[name=value_50_1]").val();
+				var a51=$("input[name=value_52_1]").val();
+				var a71=$("input[name=value_54_1]").val();
+				var a91=$("input[name=value_56_1]").val();
+				var a111=$("input[name=value_58_1]").val();
+
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111;
+				$("input[name=value_60_1]").val(a241);
+			}
+			function total14(){
+				var a11=$("input[name=value_48_2]").val();
+				var a31=$("input[name=value_50_2]").val();
+				var a51=$("input[name=value_52_2]").val();
+				var a71=$("input[name=value_54_2]").val();
+				var a91=$("input[name=value_56_2]").val();
+				var a111=$("input[name=value_58_2]").val();
+
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111;
+				$("input[name=value_60_2]").val(a241);
+			}
+			function total15(){
+				var a11=$("input[name=value_30_1]").val();
+				var a31=$("input[name=value_32_1]").val();
+				var a51=$("input[name=value_34_1]").val();
+				var a71=$("input[name=value_44_1]").val();
+				var a91=$("input[name=value_46_1]").val();
+				var a111=$("input[name=value_47_1]").val();
+				var a131=$("input[name=value_49_1]").val();
+				var a151=$("input[name=value_51_1]").val();
+				var a171=$("input[name=value_53_1]").val();
+				var a191=$("input[name=value_55_1]").val();
+				var a211=$("input[name=value_57_1]").val();
+				var a231=$("input[name=value_59_1]").val();
+				var a251=$("input[name=value_61_1]").val();
+				var a271=$("input[name=value_62_1]").val();
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+				if(a131==""){a131=0;}else{a131=parseFloat(a131);}
+				if(a151==""){a151=0;}else{a151=parseFloat(a151);}
+				if(a171==""){a171=0;}else{a171=parseFloat(a171);}
+				if(a191==""){a191=0;}else{a191=parseFloat(a191);}
+				if(a211==""){a211=0;}else{a211=parseFloat(a211);}
+				if(a231==""){a231=0;}else{a231=parseFloat(a231);}
+				if(a251==""){a251=0;}else{a251=parseFloat(a251);}
+				if(a271==""){a271=0;}else{a271=parseFloat(a271);}
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111 +a131 +a151 +a171 +a191 +a211+a231+a251+a271;
+				$("input[name=value_63_1]").val(a241);
+			}
+			function total16(){
+				var a11=$("input[name=value_30_2]").val();
+				var a31=$("input[name=value_32_2]").val();
+				var a51=$("input[name=value_34_2]").val();
+				var a71=$("input[name=value_44_2]").val();
+				var a91=$("input[name=value_46_2]").val();
+				var a111=$("input[name=value_47_2]").val();
+				var a131=$("input[name=value_49_2]").val();
+				var a151=$("input[name=value_51_2]").val();
+				var a171=$("input[name=value_53_2]").val();
+				var a191=$("input[name=value_55_2]").val();
+				var a211=$("input[name=value_57_2]").val();
+				var a231=$("input[name=value_59_2]").val();
+				var a251=$("input[name=value_61_2]").val();
+				var a271=$("input[name=value_62_2]").val();
+				if(a11==""){a11=0;}else{a11=parseFloat(a11);}
+				if(a31==""){a31=0;}else{a31=parseFloat(a31);}
+				if(a51==""){a51=0;}else{a51=parseFloat(a51);}
+				if(a71==""){a71=0;}else{a71=parseFloat(a71);}
+				if(a91==""){a91=0;}else{a91=parseFloat(a91);}
+				if(a111==""){a111=0;}else{a111=parseFloat(a111);}
+				if(a131==""){a131=0;}else{a131=parseFloat(a131);}
+				if(a151==""){a151=0;}else{a151=parseFloat(a151);}
+				if(a171==""){a171=0;}else{a171=parseFloat(a171);}
+				if(a191==""){a191=0;}else{a191=parseFloat(a191);}
+				if(a211==""){a211=0;}else{a211=parseFloat(a211);}
+				if(a231==""){a231=0;}else{a231=parseFloat(a231);}
+				if(a251==""){a251=0;}else{a251=parseFloat(a251);}
+				if(a271==""){a271=0;}else{a271=parseFloat(a271);}
+				var a241 = a11 +a31 +a51 +a71 +a91 +a111 +a131 +a151 +a171 +a191 +a211+a231+a251+a271;
+				$("input[name=value_63_2]").val(a241);
+			}
+			function total17(){
+				var a1=$("input[name=value_24_1]").val();
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				var a2=$("input[name=value_63_1]").val();
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				var a3 = a1+a2;
+				$("input[name=value_64_1]").val(a3);
+			}
+			function total18(){
+				var a1=$("input[name=value_24_2]").val();
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				var a2=$("input[name=value_63_2]").val();
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				var a3 = a1+a2;
+				$("input[name=value_64_2]").val(a3);
+			}
+			function total19(){
+				var a1=$("input[name=value_43_1]").val();
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				var a2=$("input[name=value_60_1]").val();
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				var a3 = a1+a2;
+				$("input[name=value_65_1]").val(a3);
+			}
+			function total20(){
+				var a1=$("input[name=value_43_2]").val();
+				if(a1==""){a1=0;}else{a1=parseFloat(a1);}
+				var a2=$("input[name=value_60_2]").val();
+				if(a2==""){a2=0;}else{a2=parseFloat(a2);}
+				var a3 = a1+a2;
+				$("input[name=value_65_2]").val(a3);
+			}
 		</script>
 	</body>
 </html>
