@@ -111,7 +111,7 @@ def compute_hknl_bz(loan_apply_id,zcfzb_form_data,lrb_form_data,xjllb_form_data)
         if(lrb_form_data):
             #解析利润表信息
             tmp={}
-            for key_value in zcfzb_form_data.split('&'):
+            for key_value in lrb_form_data.split('&'):
                 tmp[key_value.split("=")[0]]=key_value.split("=")[1]
             #计算
             #form_data['B1_1']='%.2f' % (string.atof(tmp[''])/string.atof(tmp['']))
@@ -119,7 +119,7 @@ def compute_hknl_bz(loan_apply_id,zcfzb_form_data,lrb_form_data,xjllb_form_data)
         if(xjllb_form_data):
             #解析现金流信息
             tmp={}
-            for key_value in zcfzb_form_data.split('&'):
+            for key_value in xjllb_form_data.split('&'):
                 tmp[key_value.split("=")[0]]=key_value.split("=")[1]
             #计算
             #form_data['B1_1']='%.2f' % (string.atof(tmp[''])/string.atof(tmp['']))
@@ -129,9 +129,11 @@ def compute_hknl_bz(loan_apply_id,zcfzb_form_data,lrb_form_data,xjllb_form_data)
         for d,x in form_data.items():
             tmp += d+"="+x+"&"
         if(sc_application_hknl):
-            sc_application_hknl.form_data = tmp[0:len(tmp)-1]
+            if(tmp != ''):
+                sc_application_hknl.form_data = tmp[0:len(tmp)-1]
         else:
-            SC_Application_Hknl(loan_apply_id,tmp[0:len(tmp)-1]).add()
+            if(tmp != ''):
+                SC_Application_Hknl(loan_apply_id,tmp[0:len(tmp)-1]).add()
         
         db.session.commit()
     except:
