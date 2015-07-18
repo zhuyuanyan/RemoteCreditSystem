@@ -8,6 +8,10 @@
 		<script src="../../static/js/index.js"></script>
 		<script src="../../static/js/base64.js"></script>
 		<script src="../../static/js/util.js"></script>
+		<script src="../../static/js/Date.js"></script>
+		<script src="../../static/js/Stack.js"></script>
+		<script src="../../static/js/Tokanizer.js"></script>
+		<script src="../../static/js/Evaluator.js"></script>
 		<!--验证样式-->
 		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
 		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
@@ -21,6 +25,30 @@
 			.tdPadding2{padding-left: 52px;}
 			input:read-only{background-color: #D9D9D9;}
 		</style>
+		<script type="text/javascript">
+			var rules = [
+			             
+			            ]
+			var exp = new Expression("");
+
+			function Convert(strExp)
+			{
+			    if (strExp == null || strExp == undefined)
+			    {
+			        alert ("No expression is specified!");
+			        return false;
+			    }
+
+			    exp.Expression(strExp);
+			    return exp.Parse();
+			}
+
+			function Compute(strExp)
+			{
+			    exp.Expression(strExp);
+			    return exp.Evaluate();
+			}
+		</script>
 	</head>
 	<body>			
 <!--*****************************利润表**********************************-->	
@@ -50,225 +78,226 @@
 				<tr>
 					<td>一、主营业务收入</td>
 					<td class="tdCenter">1</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C7"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">减：主营业务成本</span></td>
 					<td class="tdCenter">4</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">主营业务税金及附加</span></td>
 					<td class="tdCenter">5</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td>二、主营业务利润（亏损以“－”号填列）</td>
 					<td class="tdCenter">10</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">加：其他业务利润（亏损以“－”号填列）</span></td>
 					<td class="tdCenter">11</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">减：营业费用</span></td>
 					<td class="tdCenter">14</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">管理费用</span></td>
 					<td class="tdCenter">15</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">财务费用</span></td>
 					<td class="tdCenter">16</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td>三、营业利润（亏损以“－”号填列）</td>
 					<td class="tdCenter">18</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">加：投资收益（亏损以“－”号填列）</span></td>
 					<td class="tdCenter">19</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">补贴收入</span></td>
 					<td class="tdCenter">22</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">营业外收入</span></td>
 					<td class="tdCenter">23</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">减：营业外支出</span></td>
 					<td class="tdCenter">25</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td>四、利润总额（亏损总额以“－”号填列）</td>
 					<td class="tdCenter">27</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">减：所得税</span></td>
 					<td class="tdCenter">28</td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name=""  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E"  class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td>五、净利润</td>
 					<td class="tdCenter">1</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" id="value1" class="validate[required,custom[number]]" value="100" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" id="value1" class="validate[required,custom[number]]" value="100" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">加：年初未分配利润</span></td>
 					<td class="tdCenter">2</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">其他转入</span></td>
 					<td class="tdCenter">4</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td>六、可供分配的利润</td>
 					<td class="tdCenter">8</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">减：提取法定盈余公积</span></td>
 					<td class="tdCenter">9</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">提取法定公益金</span></td>
 					<td class="tdCenter">10</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">提取职工奖励及福利基金</span></td>
 					<td class="tdCenter">11</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">提取储备基金</span></td>
 					<td class="tdCenter">12</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">提取企业发展基金</span></td>
 					<td class="tdCenter">13</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">利润归还投资</span></td>
 					<td class="tdCenter">14</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td>七、可供投资者分配的利润</td>
 					<td class="tdCenter">16</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding1">减：应付优先股股利</span></td>
 					<td class="tdCenter">17</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">提取任意盈余公积</span></td>
 					<td class="tdCenter">18</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">应付普通股股利</span></td>
 					<td class="tdCenter">19</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td><span class="tdPadding2">转作资本（或股本）的普通股股利</span></td>
 					<td class="tdCenter">20</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				<tr>
 					<td>八、未分配利润</td>
 					<td class="tdCenter">25</td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="C" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="E" class="validate[required,custom[number]]" value="0" /></td>
 				</tr>
 				
 			</table>
 		
 		<div class="pagebar">			
 			<div class="controlbtn">
+				<input type="button" class="btn btn-info" id="id_count_button" value="计算">
 				 <input type="button" class="btn btn-info" id="id_save_button" value="提交">
 			</div>
 		</div>
