@@ -13,6 +13,7 @@ import RemoteCreditSystem.helpers as helpers
 from RemoteCreditSystem.models.system_usage.SC_Application_Lrb import SC_Application_Lrb
 from RemoteCreditSystem.models.system_usage.SC_Application_Xjllb import SC_Application_Xjllb
 from RemoteCreditSystem.models.system_usage.SC_Application_Zcfzb import SC_Application_Zcfzb
+from RemoteCreditSystem.models.system_usage.SC_Application_Hknl import SC_Application_Hknl
 
 import RemoteCreditSystem.logic.xxlr.xxlr as xxlr
 
@@ -30,13 +31,6 @@ def xxlr_zcfzb_bz(loan_apply_id):
 def xxlr_zcfzb_bz_save(loan_apply_id):
 	try:
 		xxlr.xxlr_zcfzb_bz_save(loan_apply_id,request)
-		# zcfzb = SC_Application_Zcfzb.query.filter_by(loan_apply_id=loan_apply_id).first()
-		# if zcfzb:
-		# 	zcfzb.table_content = score
-		# else:
-		# 	zcfzb = SC_Application_Zcfzb(loan_apply_id,score).add()
-		# # 事务提交
-		# db.session.commit()
 		# 消息闪现
 		flash('保存成功','success')
 		return helpers.show_result_success("")
@@ -92,3 +86,16 @@ def xxlr_xjllb_bz_save(loan_apply_id):
 		# 消息闪现
 		flash('保存失败','error')
 		return helpers.show_result_fail("")
+	
+# 标准 还款能力
+@app.route('/xxlr/hknl_bz/<int:loan_apply_id>', methods=['GET'])
+def xxlr_hknl_bz(loan_apply_id):
+	sc_application_hknl = SC_Application_Hknl.query.filter_by(loan_apply_id=loan_apply_id).first()
+	#取出还款能力旧数据
+	form_data = {}
+	if(sc_application_hknl):
+		tmp = sc_application_hknl.form_data
+		for key_value in tmp.split('&'):
+			form_data[key_value.split("=")[0]]=key_value.split("=")[1]
+			
+	return render_template("xxlr/hknl_bz.html",loan_apply_id=loan_apply_id,form_data=form_data)

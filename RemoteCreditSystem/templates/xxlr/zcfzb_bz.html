@@ -419,7 +419,8 @@
 						//submit
 						var b = new Base64(); 
 						updateAllDOMFields(document.getElementById("form_id"));
-						var content = {'content':b.encode(escape($("#form_id").html()))};
+						var form_data = $("#form_id").serialize(); 
+						var content = {'content':b.encode(escape($("#form_id").html())),'form_data':form_data};
 						var url = "/xxlr/zcfzb_bz/save.json/{{loan_apply_id}}";
 						$.ajax({
 							url : url,
