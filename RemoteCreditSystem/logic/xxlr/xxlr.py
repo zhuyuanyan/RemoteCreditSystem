@@ -151,15 +151,15 @@ def compute_hknl_bz(loan_apply_id):
         form_data['B2_1']='%.2f' % (string.atof(tmp_zcfzb['F28'])/string.atof(tmp_zcfzb['C41']))
         form_data['B2_6']='%.2f' % (string.atof(tmp_zcfzb['F28'])/string.atof(tmp_xjllb['C15']))
         
-        form_data['B3_1']='%.2f' % (string.atof(tmp_syb['D8'])/((string.atof(tmp_zcfzb['B14'])+string.atof(tmp_zcfzb['C14']))/2))
+        form_data['B3_1']='%.2f' % (string.atof(tmp_lrb['E8'])/((string.atof(tmp_zcfzb['B14'])+string.atof(tmp_zcfzb['C14']))/2))
         form_data['B3_2']='%.2f' % (string.atof(tmp_zcfzb['C9'])/((string.atof(tmp_zcfzb['B9'])+string.atof(tmp_zcfzb['C9']))/2))
-        form_data['B3_3']='%.2f' % (string.atof(tmp_syb['D7'])/((string.atof(tmp_zcfzb['B18'])+string.atof(tmp_zcfzb['C18']))/2))
-        form_data['B3_4']='%.2f' % (string.atof(tmp_syb['D7'])/((string.atof(tmp_zcfzb['B29'])+string.atof(tmp_zcfzb['C29']))/2))
-        form_data['B3_5']='%.2f' % (string.atof(tmp_syb['D7'])/((string.atof(tmp_zcfzb['B41'])+string.atof(tmp_zcfzb['C41']))/2))
+        form_data['B3_3']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B18'])+string.atof(tmp_zcfzb['C18']))/2))
+        form_data['B3_4']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B29'])+string.atof(tmp_zcfzb['C29']))/2))
+        form_data['B3_5']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B41'])+string.atof(tmp_zcfzb['C41']))/2))
             
-        form_data['B4_1']='%.2f' % (string.atof(tmp_syb['D23'])/((string.atof(tmp_zcfzb['B41'])+string.atof(tmp_zcfzb['C41']))/2))
-        form_data['B4_']='%.2f' % ((string.atof(tmp_syb['D7'])-string.atof(tmp_syb['D8']))/string.atof(tmp_syb['D7']))
-        form_data['B4_6']='%.2f' % (string.atof(tmp_syb['D23'])/string.atof(tmp_syb['D7']))
+        form_data['B4_1']='%.2f' % (string.atof(tmp_lrb['E22'])/((string.atof(tmp_zcfzb['B41'])+string.atof(tmp_zcfzb['C41']))/2))
+        form_data['B4_']='%.2f' % ((string.atof(tmp_lrb['E7'])-string.atof(tmp_lrb['E8']))/string.atof(tmp_lrb['E7']))
+        form_data['B4_6']='%.2f' % (string.atof(tmp_lrb['E22'])/string.atof(tmp_lrb['E7']))
         
         res = ''
         #保存计算后的form_data
