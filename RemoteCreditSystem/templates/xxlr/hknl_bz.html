@@ -8,11 +8,6 @@
 		<script src="../../static/js/index.js"></script>
 		<script src="../../static/js/base64.js"></script>
 		<script src="../../static/js/util.js"></script>
-		<!--验证样式-->
-		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
-		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
-		<script src="../../static/js/jquery.validationEngine.js"></script>	
-		
 		<style type="text/css">			
 			.myTable td{font-size:13px;}
 			input[type=text]{width:80px;}
@@ -262,35 +257,14 @@
 			</table>
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<input type="button" class="btn btn-info" id="id_count_button" value="计算">
+				<input type="button" class="btn btn-info" id="id_save_button" value="确定">
 			</div>
 		</div>
 		</form>
 		<script type="text/javascript">
 		$(document).ready(function(){
-			//前端验证
-			$('#form_id').validationEngine();
-			$("#id_count_button").click(function() {
-				if(!submitFlag){
-					alert("正在处理，请勿重复提交!");
-					return;
-				}
-				submitFlag = false;
-				// 前端验证 
-				if($('#form_id').validationEngine('validate')){
-					//submit
-					var url = "/xxlr/hknl_bz/save.json/{{loan_apply_id}}";
-					$.ajax({
-						url : url,
-						type : "POST",
-						success : function(data) {
-							parent.location.reload();
-							submitFlag = true;
-						}
-					});
-				}else{
-					submitFlag = true;
-				}
+			$("#id_save_button").click(function() {
+				parent.location.reload();
 			});
 		});
 		

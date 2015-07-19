@@ -114,6 +114,11 @@ def xxlr_syb_bz_save(loan_apply_id):
 # 标准 还款能力
 @app.route('/xxlr/hknl_bz/<int:loan_apply_id>', methods=['GET'])
 def xxlr_hknl_bz(loan_apply_id):
+	try:
+		xxlr.compute_hknl_bz(loan_apply_id)
+	except:
+		logger.exception('exception')
+		
 	sc_application_hknl = SC_Application_Hknl.query.filter_by(loan_apply_id=loan_apply_id).first()
 	#取出还款能力旧数据
 	form_data = {}
@@ -123,17 +128,3 @@ def xxlr_hknl_bz(loan_apply_id):
 			form_data[key_value.split("=")[0]]=key_value.split("=")[1]
 			
 	return render_template("xxlr/hknl_bz.html",loan_apply_id=loan_apply_id,form_data=form_data)
-
-# 计算 标准还款能力
-@app.route('/xxlr/hknl_bz/save.json/<int:loan_apply_id>', methods=['POST'])
-def xxlr_hknl_bz_save(loan_apply_id):
-	try:
-		xxlr.compute_hknl_bz(loan_apply_id)
-		# 消息闪现
-		flash('保存成功','success')
-		return helpers.show_result_success("")
-	except:
-		logger.exception('exception')
-		# 消息闪现
-		flash('保存失败','error')
-		return helpers.show_result_fail("")
