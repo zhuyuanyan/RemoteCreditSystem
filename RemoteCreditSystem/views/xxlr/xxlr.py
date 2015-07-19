@@ -13,6 +13,7 @@ import RemoteCreditSystem.helpers as helpers
 from RemoteCreditSystem.models.system_usage.SC_Application_Lrb import SC_Application_Lrb
 from RemoteCreditSystem.models.system_usage.SC_Application_Xjllb import SC_Application_Xjllb
 from RemoteCreditSystem.models.system_usage.SC_Application_Zcfzb import SC_Application_Zcfzb
+from RemoteCreditSystem.models.system_usage.SC_Application_Syb import SC_Application_Syb
 from RemoteCreditSystem.models.system_usage.SC_Application_Hknl import SC_Application_Hknl
 
 import RemoteCreditSystem.logic.xxlr.xxlr as xxlr
@@ -63,7 +64,7 @@ def xxlr_lrb_bz_save(loan_apply_id,value1):
 		# 消息闪现
 		flash('保存失败','error')
 		return helpers.show_result_fail("")
-   
+	
 # 标准 现金流量表
 @app.route('/xxlr/xjllb_bz/<int:loan_apply_id>', methods=['GET'])
 def xxlr_xjllb_bz(loan_apply_id):
@@ -87,6 +88,29 @@ def xxlr_xjllb_bz_save(loan_apply_id):
 		flash('保存失败','error')
 		return helpers.show_result_fail("")
 	
+# 标准 损益表
+@app.route('/xxlr/syb_bz/<int:loan_apply_id>', methods=['GET'])
+def xxlr_syb_bz(loan_apply_id):
+	sc_application_syb = SC_Application_Syb.query.filter_by(loan_apply_id=loan_apply_id).first()
+	table_content = ''
+	if(sc_application_syb != None):
+		table_content = base64.b64decode(sc_application_syb.table_content).decode("utf-8")
+	return render_template("xxlr/syb_bz.html",loan_apply_id=loan_apply_id,sc_application_syb=sc_application_syb,table_content=table_content)
+
+# 保存 标准 损益表
+@app.route('/xxlr/syb_bz/save.json/<int:loan_apply_id>', methods=['POST'])
+def xxlr_syb_bz_save(loan_apply_id):
+	try:
+		xxlr.xxlr_syb_bz_save(loan_apply_id,request)
+		# 消息闪现
+		flash('保存成功','success')
+		return helpers.show_result_success("")
+	except:
+		logger.exception('exception')
+		# 消息闪现
+		flash('保存失败','error')
+		return helpers.show_result_fail("")
+	
 # 标准 还款能力
 @app.route('/xxlr/hknl_bz/<int:loan_apply_id>', methods=['GET'])
 def xxlr_hknl_bz(loan_apply_id):
@@ -99,3 +123,17 @@ def xxlr_hknl_bz(loan_apply_id):
 			form_data[key_value.split("=")[0]]=key_value.split("=")[1]
 			
 	return render_template("xxlr/hknl_bz.html",loan_apply_id=loan_apply_id,form_data=form_data)
+
+# 计算 标准还款能力
+@app.route('/xxlr/hknl_bz/save.json/<int:loan_apply_id>', methods=['POST'])
+def xxlr_hknl_bz_save(loan_apply_id):
+	try:
+		xxlr.compute_hknl_bz(loan_apply_id)
+		# 消息闪现
+		flash('保存成功','success')
+		return helpers.show_result_success("")
+	except:
+		logger.exception('exception')
+		# 消息闪现
+		flash('保存失败','error')
+		return helpers.show_result_fail("")

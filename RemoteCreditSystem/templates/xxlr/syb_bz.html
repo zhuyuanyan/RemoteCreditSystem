@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/base64.js"></script>
+		<script src="../../static/js/util.js"></script>
+		<script src="../../static/js/Date.js"></script>
+		<script src="../../static/js/Stack.js"></script>
+		<script src="../../static/js/Tokanizer.js"></script>
+		<script src="../../static/js/Evaluator.js"></script>
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script>	
+		
+		<style type="text/css">			
+			.myTable td{font-size:13px;}
+			input[type=text]{width:80px;}
+			.tdCenter{text-align: center;}
+			.tdPadding1{padding-left: 26px;}
+			.tdPadding2{padding-left: 52px;}
+			input:read-only{background-color: #D9D9D9;}
+		</style>
+		<script type="text/javascript">
+			var rules = [
+			             'C10=C7-(C8+C9)',
+			             'D10=D7-(D8+D9)',
+			             'E10=E7-(E8+E9)',
+			             'C15=C10+C11-(C12+C13+C14)',
+			             'D15=D10+D11-(D12+D13+D14)',
+			             'E15=E10+E11-(E12+E13+E14)',
+			             'C20=C15+(C16+C17+C18)-C19',
+			             'D20=D15+(D16+D17+C18)-D19',
+			             'E20=E15+(E16+E17+E18)-E19',
+			             'C22=C20-C21',
+			             'D22=D20-D21',
+			             'E22=E20-E21',
+			             'C25=C22+(C23+C24)',
+			             'D25=D22+(D23+D24)',
+			             'E25=E22+(E23+E24)',
+			             'C32=C25-(C33+C34+C35+C36)',
+			             'D32=D25-(D33+D34+D35+D36)',
+			             'E32=E25-(E33+E34+E35+E36)',
+			             'C37=C32-(C33+C34+C35+C36)',
+			             'D37=D32-(D33+D34+D35+D36)',
+			             'E37=E32-(E33+E34+E35+E36)'
+			            ]
+			var exp = new Expression("");
+
+			function Convert(strExp)
+			{
+			    if (strExp == null || strExp == undefined)
+			    {
+			        alert ("No expression is specified!");
+			        return false;
+			    }
+
+			    exp.Expression(strExp);
+			    return exp.Parse();
+			}
+
+			function Compute(strExp)
+			{
+			    exp.Expression(strExp);
+			    return exp.Evaluate();
+			}
+		</script>
+	</head>
+	<body>			
+<!--*****************************利润表**********************************-->	
+		{%- if table_content != '' %}
+		<script type="text/javascript">
+			var content = '{{table_content}}' 
+			document.write('<form id="form_id" class="" action="" method="POST">'+unescape(content))
+		</script>
+		{%- else %}
+		<form id="form_id" class="" action="" method="POST">
+		<table class="myTable">
+				<caption>利润表</caption>
+				<colgroup>
+					<col width="35%">
+					<col width="5%">
+					<col width="30%">
+					<col width="30%">
+				</colgroup>
+				<tr>
+					<td class="tdCenter"><b>项目</b></td>
+					<td class="tdCenter"><b>行次</b></td>
+					<td class="tdCenter"><b>本月数</b></td>
+					<td class="tdCenter"><b>本年累计数</b></td>
+				</tr>
+				<tr>
+					<td><b>一、主营业务收入</b></td>
+					<td class="tdCenter">1</td>
+					<td class="tdCenter"><input type="text" name="C7"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D7"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>减：主营业务成本</td>
+					<td class="tdCenter">2</td>
+					<td class="tdCenter"><input type="text" name="C8"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D8"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>营业费用</td>
+					<td class="tdCenter">3</td>
+					<td class="tdCenter"><input type="text" name="C9"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D9"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>主营业务税金及附加</td>
+					<td class="tdCenter">4</td>
+					<td class="tdCenter"><input type="text" name="C10"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D10"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td><b>二、主营业务利润</b></td>
+					<td class="tdCenter">5</td>
+					<td class="tdCenter"><input type="text" name="C11"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D11"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>加：其他业务利润</td>
+					<td class="tdCenter">6</td>
+					<td class="tdCenter"><input type="text" name="C12"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D12"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>减：管理费用</td>
+					<td class="tdCenter">7</td>
+					<td class="tdCenter"><input type="text" name="C13"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D13"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>财务费用</td>
+					<td class="tdCenter">8</td>
+					<td class="tdCenter"><input type="text" name="C14"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D14"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td><b>三、营业利润</b></td>
+					<td class="tdCenter">9</td>
+					<td class="tdCenter"><input type="text" name="C15"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D15"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>加：投资收益</td>
+					<td class="tdCenter">10</td>
+					<td class="tdCenter"><input type="text" name="C16"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D16"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>补贴收入</td>
+					<td class="tdCenter">11</td>
+					<td class="tdCenter"><input type="text" name="C17"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D17"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>营业外收入</td>
+					<td class="tdCenter">12</td>
+					<td class="tdCenter"><input type="text" name="C18"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D18"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>减：营业外支出</td>
+					<td class="tdCenter">13</td>
+					<td class="tdCenter"><input type="text" name="C19"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D19"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>加：以前年度损益调整</td>
+					<td class="tdCenter">14</td>
+					<td class="tdCenter"><input type="text" name="C20"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D20"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td><b>四、利润总额</b></td>
+					<td class="tdCenter">15</td>
+					<td class="tdCenter"><input type="text" name="C21"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D21"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td>减：所得税</td>
+					<td class="tdCenter">16</td>
+					<td class="tdCenter"><input type="text" name="C22"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D22"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td><b>五、净利润</b></td>
+					<td class="tdCenter">17</td>
+					<td class="tdCenter"><input type="text" name="C23"  class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="D23"  class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				
+			</table>
+		
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<input type="button" class="btn btn-info" id="id_count_button" value="计算">
+				 <input type="button" class="btn btn-info" id="id_save_button" value="提交">
+			</div>
+		</div>
+		{%- endif %}
+		</form>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			//前端验证
+			$('#form_id').validationEngine();
+			$("#id_save_button").click(function() {
+				if(!submitFlag){
+					alert("正在处理，请勿重复提交!");
+					return;
+				}
+				submitFlag = false;
+				// 前端验证 
+				if($('#form_id').validationEngine('validate')){
+					//submit
+					var b = new Base64(); 
+					updateAllDOMFields(document.getElementById("form_id"));
+					var form_data = $("#form_id").serialize(); 
+					var content = {'content':b.encode(escape($("#form_id").html())),'form_data':form_data};
+					var url = "/xxlr/syb_bz/save.json/{{loan_apply_id}}";
+					$.ajax({
+						url : url,
+						type : "POST",
+						data:content,
+						success : function(data) {
+							parent.location.reload();
+							submitFlag = true;
+						}
+					});
+				}else{
+					submitFlag = true;
+				}
+			});
+			
+			//计算
+			$("#id_count_button").click(function() {
+				for(index in rules){
+					var rule = rules[index];
+					var sum_name = rule.split("=")[0];
+					var strExp = rule.split("=")[1];
+					//将编码换成数值
+					var code = "";
+					var sb = "";
+					for(var i = 0;i<strExp.length;i++){
+						if("^,*,/,%,+,-,(,)".indexOf(strExp[i])<0){
+							code += strExp[i];
+						}
+						else{
+							if(code != ""){
+								sb += $("input[name='"+code+"']").val();
+								code = "";
+							}
+							sb += strExp[i];
+						}
+					}
+					if(code != ""){
+						sb += $("input[name='"+code+"']").val();
+						code = "";
+					}
+					$("input[name='"+sum_name+"']").val(Compute(sb));
+					exp.Reset();
+				}
+			});
+		});
+		
+		</script>
+	</body>
+</html>

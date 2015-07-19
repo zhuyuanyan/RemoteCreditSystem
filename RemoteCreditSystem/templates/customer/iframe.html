@@ -22,21 +22,22 @@
 		<div class="position">
 			当前位置：<span>信息录入</span>
 		</div>
-		{%- with messages = get_flashed_messages(with_categories=true) %}
-		  	{%- if messages %}
-	    	{%- for category, message in messages %}
-	    	<div class="alert alert-{{category}}">
-	      		{{message}}
-	      	</div>
-	    	{%- endfor %}
-		  	{%- endif %}
-		{%- endwith %}
+		
 		<div class="pageTitle">
 			{%- if type=="1" %}
 				传统信息录入
 			{%- else %}
 				标准信息录入
 			{%- endif %}
+			{%- with messages = get_flashed_messages(with_categories=true) %}
+			  	{%- if messages %}
+		    	{%- for category, message in messages %}
+		    	<div class="alert alert-{{category}}" style="padding-top: 15px;">
+		      		{{message}}
+		      	</div>
+		    	{%- endfor %}
+			  	{%- endif %}
+			{%- endwith %}
 		</div>
 		<div class="content">
 		
@@ -51,6 +52,7 @@
 				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/zcfzb_bz/{{id}}')"><a href="javascript:void(0)">资产负债-标准</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/lrb_bz/{{id}}')"><a href="javascript:void(0)">利润表-标准</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/xjllb_bz/{{id}}')"><a href="javascript:void(0)">现金流量-标准</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/syb_bz/{{id}}')"><a href="javascript:void(0)">损益表-标准</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/hknl_bz/{{id}}')"><a href="javascript:void(0)">还款能力-标准</a></li>
 				{%- endif %}
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_jyzk/jyzk/{{id}}')"><a href="javascript:void(0)">经营状况</a></li>
