@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/base64.js"></script>
+		<script src="../../static/js/util.js"></script>
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script>	
+		
+		<style type="text/css">			
+			.myTable td{font-size:13px;}
+			input[type=text]{width:80px;}
+			.tdCenter{text-align: center;}
+			.tdPadding1{padding-left: 26px;}
+			.tdPadding2{padding-left: 52px;}
+			input:read-only{background-color: #D9D9D9;}
+		</style>
+	</head>
+	<body>			
+		<form id="form_id" class="" action="" method="POST">
+			<table class="myTable">
+				<caption>短期偿债能力分析</caption>
+				<colgroup>
+					<col width="5%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+				<tr>
+					<td class="tdCenter"><b>序号</b></td>
+					<td class="tdCenter"><b>项目</b></td>
+					<td class="tdCenter"><b>结果</b></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">1</td>
+					<td class="tdCenter">流动比率</td>
+					<td class="tdCenter"><input type="text" name="B1_1"   
+						{%- if form_data.has_key('B1_1') %}
+							value="{{form_data['B1_1']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">2</td>
+					<td class="tdCenter">速动比率</td>
+					<td class="tdCenter"><input type="text" name="B1_2"   
+						{%- if form_data.has_key('B1_2') %}
+							value="{{form_data['B1_2']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+			</table>
+			<table class="myTable">
+				<caption>长期偿债能力分析</caption>
+				<colgroup>
+					<col width="5%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+				<tr>
+					<td class="tdCenter"><b>序号</b></td>
+					<td class="tdCenter"><b>项目</b></td>
+					<td class="tdCenter"><b>结果</b></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">1</td>
+					<td class="tdCenter">资产负债率</td>
+					<td class="tdCenter"><input type="text" name="B2_1"   
+						{%- if form_data.has_key('B2_1') %}
+							value="{{form_data['B2_1']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">6</td>
+					<td class="tdCenter">偿债保障比率</td>
+					<td class="tdCenter"><input type="text" name="B2_6"   
+						{%- if form_data.has_key('B2_6') %}
+							value="{{form_data['B2_6']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">7</td>
+					<td class="tdCenter">利息保障倍数</td>
+					<td class="tdCenter"><input type="text" name="B2_7"   
+						{%- if form_data.has_key('B2_7') %}
+							value="{{form_data['B2_7']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">8</td>
+					<td class="tdCenter">现金利息保障倍数</td>
+					<td class="tdCenter"><input type="text" name="B2_8"   
+						{%- if form_data.has_key('B2_8') %}
+							value="{{form_data['B2_8']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+			</table>
+			<table class="myTable">
+				<caption>营运分析编辑</caption>
+				<colgroup>
+					<col width="5%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+				<tr>
+					<td class="tdCenter"><b>序号</b></td>
+					<td class="tdCenter"><b>项目</b></td>
+					<td class="tdCenter"><b>结果</b></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">1</td>
+					<td class="tdCenter">存货周转率</td>
+					<td class="tdCenter"><input type="text" name="B3_1"   
+						{%- if form_data.has_key('B3_1') %}
+							value="{{form_data['B3_1']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">2</td>
+					<td class="tdCenter">应收账款周转率</td>
+					<td class="tdCenter"><input type="text" name="B3_2"   
+						{%- if form_data.has_key('B3_2') %}
+							value="{{form_data['B3_2']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">3</td>
+					<td class="tdCenter">流动资产周转率</td>
+					<td class="tdCenter"><input type="text" name="B3_3"   
+						{%- if form_data.has_key('B3_3') %}
+							value="{{form_data['B3_3']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">4</td>
+					<td class="tdCenter">固定资产周转率</td>
+					<td class="tdCenter"><input type="text" name="B3_4"   
+						{%- if form_data.has_key('B3_4') %}
+							value="{{form_data['B3_4']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">5</td>
+					<td class="tdCenter">总资产周转率</td>
+					<td class="tdCenter"><input type="text" name="B3_5"   
+						{%- if form_data.has_key('B3_5') %}
+							value="{{form_data['B3_5']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+			</table>
+			<table class="myTable">
+				<caption>盈利分析</caption>
+				<colgroup>
+					<col width="5%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+				<tr>
+					<td class="tdCenter"><b>序号</b></td>
+					<td class="tdCenter"><b>项目</b></td>
+					<td class="tdCenter"><b>结果</b></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">1</td>
+					<td class="tdCenter">资产报酬率</td>
+					<td class="tdCenter"><input type="text" name="B4_1"   
+						{%- if form_data.has_key('B4_1') %}
+							value="{{form_data['B4_1']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter"></td>
+					<td class="tdCenter">毛利率</td>
+					<td class="tdCenter"><input type="text" name="B4_"   
+						{%- if form_data.has_key('B4_') %}
+							value="{{form_data['B4_']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">6</td>
+					<td class="tdCenter">销售净利率</td>
+					<td class="tdCenter"><input type="text" name="B4_6"   
+						{%- if form_data.has_key('B4_6') %}
+							value="{{form_data['B4_6']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">7</td>
+					<td class="tdCenter">成本费用净利率</td>
+					<td class="tdCenter"><input type="text" name="B4_7"   
+						{%- if form_data.has_key('B4_7') %}
+							value="{{form_data['B4_7']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+			</table>
+			<table class="myTable">
+				<caption>发展分析编辑</caption>
+				<colgroup>
+					<col width="5%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+				<tr>
+					<td class="tdCenter"><b>序号</b></td>
+					<td class="tdCenter"><b>项目</b></td>
+					<td class="tdCenter"><b>结果</b></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">1</td>
+					<td class="tdCenter">营业增长率</td>
+					<td class="tdCenter"><input type="text" name="B5_1"   
+						{%- if form_data.has_key('B5_1') %}
+							value="{{form_data['B5_1']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">2</td>
+					<td class="tdCenter">资本积累率</td>
+					<td class="tdCenter"><input type="text" name="B5_2"   
+						{%- if form_data.has_key('B5_2') %}
+							value="{{form_data['B5_2']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">3</td>
+					<td class="tdCenter">总资产增长率</td>
+					<td class="tdCenter"><input type="text" name="B5_3"   
+						{%- if form_data.has_key('B5_3') %}
+							value="{{form_data['B5_3']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter">4</td>
+					<td class="tdCenter">固定资产成新率</td>
+					<td class="tdCenter"><input type="text" name="B5_4"   
+						{%- if form_data.has_key('B5_4') %}
+							value="{{form_data['B5_4']}}"
+						{%- endif %}
+					readonly/></td>
+				</tr>
+			</table>
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<input type="button" class="btn btn-info" id="id_count_button" value="计算">
+			</div>
+		</div>
+		</form>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			//前端验证
+			$('#form_id').validationEngine();
+			$("#id_count_button").click(function() {
+				if(!submitFlag){
+					alert("正在处理，请勿重复提交!");
+					return;
+				}
+				submitFlag = false;
+				// 前端验证 
+				if($('#form_id').validationEngine('validate')){
+					//submit
+					var url = "/xxlr/hknl_bz/save.json/{{loan_apply_id}}";
+					$.ajax({
+						url : url,
+						type : "POST",
+						success : function(data) {
+							parent.location.reload();
+							submitFlag = true;
+						}
+					});
+				}else{
+					submitFlag = true;
+				}
+			});
+		});
+		
+		</script>
+	</body>
+</html>

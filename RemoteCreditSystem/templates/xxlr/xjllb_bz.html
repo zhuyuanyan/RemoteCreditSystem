@@ -33,8 +33,9 @@
 			             'F5=C17+C18+C19+C20+C21-C18',
 			             'F10=F6+F7+F8+F9-F8',//错误的公式
 			             'F11=F5-F10',
-			             'F16=F13+F4+F15',
+			             'F16=F13+F14+F15',
 			             'F20=F17+F18+F19',
+			             'F21=F16-F20',
 			             'C27=C15+F11+F21+C26',
 			             //C30公式错误
 			             'F31=C30+C31+C32+C33+C34+C35+C36+C37+C38+C39+C40+C41+C42+F26+F27+F28+F29+F30-C32-C32',
@@ -397,7 +398,8 @@
 					//submit
 					var b = new Base64(); 
 					updateAllDOMFields(document.getElementById("form_id"));
-					var content = {'content':b.encode(escape($("#form_id").html()))};
+					var form_data = $("#form_id").serialize(); 
+					var content = {'content':b.encode(escape($("#form_id").html())),'form_data':form_data};
 					var url = "/xxlr/xjllb_bz/save.json/{{loan_apply_id}}";
 					$.ajax({
 						url : url,

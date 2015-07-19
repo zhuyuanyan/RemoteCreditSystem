@@ -127,7 +127,7 @@ function setTimeOut(){
     setTimeout(function(){
         $(".alert-success").fadeOut("slow");
         $(".alert-error").fadeOut("slow");
-    },3000)
+    },1500)
 }
 
 /**
