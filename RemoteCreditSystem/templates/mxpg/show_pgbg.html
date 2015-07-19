@@ -23,31 +23,30 @@
 				</colgroup>
 				<tr>
 					<td class="table-label">客户索引号</td>
-					<td>{{info.customer_id}}</td>
+					<td>{{info.id}}</td>
 					<td class="table-label">客户名称</td>
 					<td>{{info.customer_name}}</td>					
 				</tr>
 				<tr>
 					<td class="table-label">企业经营状况得分</td>
 					<td>{{score.jyzk_score}}</td>
-					<td class="table-label">还款能力得分</td>
-					<td>{{score.hknl_score}}</td>					
+					<td class="table-label">道德品质得分</td>
+					<td>{{score.ddpz_score}}</td>				
 				</tr>
 				<tr>
 					<td class="table-label">生活状态得分</td>
-					<td>{{score.shzk_score}}</td>	
-					<td class="table-label">道德品质得分</td>
-					<td>{{score.ddpz_score}}</td>		
+					<td colspan="3">{{score.shzk_score}}</td>	
+					
 				</tr>
 				<tr>
 					<td class="table-label">拟授信额度</td>
-                    <td id="nsxed">{{score.total_approve}}元</td>
-					<td class="table-label">风险等级</td>
+                    <td id="nsxed" colspan="3">{{score.total_approve}}元</td>
+					<!-- <td class="table-label">风险等级</td>
 					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
 					<td>100</td>	
 					{%- else%}
 					<td>0</td>
-					{%-endif%}	
+					{%-endif%}	 -->
 				</tr>
 				<tr>
 					<td class="table-label">综述</td>
