@@ -160,6 +160,14 @@ def customer_jyzk_save(id):
 def show_pgbg(id):    
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     info = Rcs_Application_Info.query.filter_by(id=id).first()
+    tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
+    for obj in tree:
+		if 'ddpz' in obj.param_type:
+			score.ddpz_score = float(obj.weight)*float(score.ddpz_score)
+		if 'shzk' in obj.param_type:
+			score.shzk_score = float(obj.weight)*float(score.shzk_score)
+		if 'jyzk' in obj.param_type:
+			score.jyzk_score = float(obj.weight)*float(score.jyzk_score)
     pet = ""
     #获取道德品质统计
     ddpz = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
