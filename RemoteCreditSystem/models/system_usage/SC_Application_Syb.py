@@ -2,9 +2,9 @@
 from RemoteCreditSystem import db
 from flask.ext.login import current_user
 
-# SC_Application_Xjllb
-class SC_Application_Xjllb(db.Model):
-    __tablename__ = 'sc_application_xjllb'
+# SC_Application_Syb
+class SC_Application_Syb(db.Model):
+    __tablename__ = 'sc_application_syb'
     id = db.Column(db.Integer, primary_key=True)
     loan_apply_id = db.Column(db.Integer)
     table_content = db.Column(db.BLOB)
