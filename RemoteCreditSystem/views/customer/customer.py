@@ -179,7 +179,7 @@ def show_pgbg(id):
     			ddpz_null+=1
     	pet+= "道德品质:"+str(ddpz_null)+"/"+ str(len(value))+","
 
-    #获取生活状况统计
+    #获取生存状况统计
     shzk = Rcs_Application_Shzk.query.filter_by(application_id=id).first()
     shzk_null = 0
     if shzk:
@@ -187,7 +187,7 @@ def show_pgbg(id):
     	for obj in value:
     		if "@@无数据" in obj:
     			shzk_null+=1
-    	pet += "生活状况:"+str(shzk_null)+"/"+ str(len(value))+","
+    	pet += "生存状况:"+str(shzk_null)+"/"+ str(len(value))+","
 
     #获取经营状况统计
     jyzk = Rcs_Application_Jyzk.query.filter_by(application_id=id).first()
