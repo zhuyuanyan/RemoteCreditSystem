@@ -91,9 +91,9 @@
 				<tr>
 					<td class="tdCenter"><b>资产</b></td>
 					<td class="tdCenter"><b>行次</b></td>
-					<td class="tdCenter"><b>上月同期累计</b></td>
-					<td class="tdCenter"><b>本月数</b></td>
-					<td class="tdCenter"><b>本月累计数</b></td>
+					<td class="tdCenter"><b>上年金额</b></td>
+					<td class="tdCenter"><b>本年金额</b></td>
+					<td class="tdCenter"><b>下年预期金额</b></td>
 				</tr>
 				<tr>
 					<td>一、主营业务收入</td>
@@ -347,7 +347,7 @@
 						type : "POST",
 						data:content,
 						success : function(data) {
-							parent.location.reload();
+							window.location.reload();
 							submitFlag = true;
 						}
 					});
