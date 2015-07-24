@@ -145,26 +145,56 @@ def compute_hknl_bz(loan_apply_id):
                 tmp_syb[key_value.split("=")[0]]=key_value.split("=")[1]
             
         #计算
-        form_data['B1_1']='%.2f' % (string.atof(tmp_zcfzb['C18'])/string.atof(tmp_zcfzb['F18']))
-        form_data['B1_2']='%.2f' % ((string.atof(tmp_zcfzb['C18'])-string.atof(tmp_zcfzb['C14']))/string.atof(tmp_zcfzb['F18']))
-        
-        form_data['B2_1']='%.2f' % (string.atof(tmp_zcfzb['F28'])/string.atof(tmp_zcfzb['C41']))
-        form_data['B2_6']='%.2f' % (string.atof(tmp_zcfzb['F28'])/string.atof(tmp_xjllb['C15']))
-        
-        form_data['B3_1']='%.2f' % (string.atof(tmp_lrb['E8'])/((string.atof(tmp_zcfzb['B14'])+string.atof(tmp_zcfzb['C14']))*2))
-        form_data['B3_2']='%.2f' % (string.atof(tmp_zcfzb['C9'])/((string.atof(tmp_zcfzb['B9'])+string.atof(tmp_zcfzb['C9']))*2))
-        form_data['B3_3']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B18'])+string.atof(tmp_zcfzb['C18']))*2))
-        form_data['B3_4']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B25'])+string.atof(tmp_zcfzb['C25']))*2))
-        form_data['B3_5']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B41'])+string.atof(tmp_zcfzb['C41']))*2))
-            
-        form_data['B4_1']='%.2f' % (string.atof(tmp_lrb['E22'])/((string.atof(tmp_zcfzb['B41'])+string.atof(tmp_zcfzb['C41']))*2))
-        form_data['B4_']='%.2f' % ((string.atof(tmp_lrb['E7'])-string.atof(tmp_lrb['E8']))/string.atof(tmp_lrb['E7']))
-        form_data['B4_6']='%.2f' % (string.atof(tmp_lrb['E22'])/string.atof(tmp_lrb['E7']))
-        
+        if float(tmp_zcfzb['F18'])==0:
+            form_data['B1_1']=0
+        else:
+            form_data['B1_1']='%.2f' % (string.atof(tmp_zcfzb['C18'])/string.atof(tmp_zcfzb['F18']))
+        if float(tmp_zcfzb['F18'])==0:
+            form_data['B1_2']=0
+        else:
+            form_data['B1_2']='%.2f' % ((string.atof(tmp_zcfzb['C18'])-string.atof(tmp_zcfzb['C14']))/string.atof(tmp_zcfzb['F18']))
+        if float(tmp_zcfzb['C41'])==0:
+            form_data['B2_1']=0
+        else:
+            form_data['B2_1']='%.2f' % (string.atof(tmp_zcfzb['F28'])/string.atof(tmp_zcfzb['C41']))
+        if float(tmp_zcfzb['C15'])==0:
+            form_data['B2_6']=0
+        else:
+            form_data['B2_6']='%.2f' % (string.atof(tmp_zcfzb['F28'])/string.atof(tmp_xjllb['C15']))
+        if float(tmp_zcfzb['B14'])==0 and float(tmp_zcfzb['C14'])==0:
+            form_data['B3_1']=0
+        else:
+            form_data['B3_1']='%.2f' % (string.atof(tmp_lrb['E8'])/((string.atof(tmp_zcfzb['B14'])+string.atof(tmp_zcfzb['C14']))*2))
+        if float(tmp_zcfzb['B9'])==0 and float(tmp_zcfzb['C9'])==0:
+            form_data['B3_2']=0
+        else:
+            form_data['B3_2']='%.2f' % (string.atof(tmp_zcfzb['C9'])/((string.atof(tmp_zcfzb['B9'])+string.atof(tmp_zcfzb['C9']))*2))
+        if float(tmp_zcfzb['B18'])==0 and float(tmp_zcfzb['C18'])==0:
+            form_data['B3_3']=0
+        else:
+            form_data['B3_3']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B18'])+string.atof(tmp_zcfzb['C18']))*2))
+        if float(tmp_zcfzb['B25'])==0 and float(tmp_zcfzb['C25'])==0:
+            form_data['B3_4']=0
+        else:
+            form_data['B3_4']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B25'])+string.atof(tmp_zcfzb['C25']))*2))
+        if float(tmp_zcfzb['B41'])==0 and float(tmp_zcfzb['C41'])==0:
+            form_data['B3_5']=0
+        else:
+            form_data['B3_5']='%.2f' % (string.atof(tmp_lrb['E7'])/((string.atof(tmp_zcfzb['B41'])+string.atof(tmp_zcfzb['C41']))*2))
+        if float(tmp_zcfzb['B41'])==0 and float(tmp_zcfzb['C41'])==0:
+            form_data['B4_1']=0
+        else:    
+            form_data['B4_1']='%.2f' % (string.atof(tmp_lrb['E22'])/((string.atof(tmp_zcfzb['B41'])+string.atof(tmp_zcfzb['C41']))*2))
+        if float(tmp_lrb['E7'])==0:
+            form_data['B4_1']=0
+            form_data['B4_6']=0
+        else:
+            form_data['B4_']='%.2f' % ((string.atof(tmp_lrb['E7'])-string.atof(tmp_lrb['E8']))/string.atof(tmp_lrb['E7']))
+            form_data['B4_6']='%.2f' % (string.atof(tmp_lrb['E22'])/string.atof(tmp_lrb['E7']))
         res = ''
         #保存计算后的form_data
         for d,x in form_data.items():
-            res += d+"="+x+"&"
+            res += str(d)+"="+str(x)+"&"
         if(sc_application_hknl):
             if(res):
                 sc_application_hknl.form_data = res[0:len(res)-1]
