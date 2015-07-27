@@ -10,7 +10,7 @@ class SC_Excel_Table_Content(db.Model):
 	excel_id=db.Column(db.Integer)
 	table_content=db.Column(db.BLOB)
 	sheet_name=db.Column(db.String)
-	sheet_type=db.Column(db.String)
+	sheet_type=db.Column(db.Integer)
 
 	def __init__(self,loan_apply_id,excel_id,table_content,sheet_name,sheet_type):
 		self.loan_apply_id = loan_apply_id
