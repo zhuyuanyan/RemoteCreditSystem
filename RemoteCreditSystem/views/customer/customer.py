@@ -367,7 +367,7 @@ def access(id):
 		score.total_approve = float('%.2f'% float(totalScore))
 		score.remark = remark
 	else:
-		Rcs_Application_Score(id,totalValue_ddpz,totalValue_hknl,totalValue_jyzk,totalValue_shzk,remark,float('%.2f'% float(totalScore))).add()
+		Rcs_Application_Score(id,totalValue_ddpz,totalValue_hknl,totalValue_jyzk,totalValue_shzk,remark,float('%.2f'% float(totalScore)),'').add()
 	db.session.commit()
 	return helpers.show_result_success('') # 返回json
 

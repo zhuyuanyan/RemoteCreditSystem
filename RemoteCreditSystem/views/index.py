@@ -305,18 +305,6 @@ def khzl_hk(id):
 
     return render_template("customer/hknl.html",result=result,id=id,appResult=appResult,jcjy=jcjy)
 
-#还款能力保存
-@app.route('/khzldy/khzl_hknl_save/<int:id>', methods=['POST'])
-def khzl_hknl_save(id):     
-    total = request.form['score_result'] 
-    remark = request.form['score_remark'] 
-    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-    if score:
-        score.hknl_score=total
-    else:
-        Rcs_Application_Score(id,"",total,"","",remark,"").add()
-    db.session.commit()
-    return redirect("/khzldy/khzl_hk/"+str(id))
 
 
 # #资产负债---保存
