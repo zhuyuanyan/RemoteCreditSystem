@@ -127,10 +127,18 @@ def zxpg():
     return render_template("jjrwfa/zxpg.html")
 
 #进件分案页面
-@app.route('/jjrwfa/jjfa/<int:page>', methods=['GET'])
-def jjfa(page): 
-    #获取未分类数据     
-    appList = Rcs_Application_Info.query.filter_by(approve_type='1',create_user=current_user.id).paginate(page, per_page = PER_PAGE)
+@app.route('/jjrwfa/jjfa/<int:page>', methods=['GET','POST'])
+def jjfa(page):
+    sql=" create_user="+str(current_user.id)+" and approve_type='1'"
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and customer_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"    
+    #获取未分类数据   
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
     return render_template("jjrwfa/jjfa.html",appList=appList)
 
 @app.route('/jjrwfa/jjrwfaxx', methods=['GET'])
@@ -157,7 +165,6 @@ def new_jjfa():
 #新增进件保存页面
 @app.route('/jjrwfa/save_jjfa', methods=['POST'])
 def save_jjfa():
-    print "----"
     name = request.form['name']
     card_id = request.form['card_id']
     db.engine.execute("insert into rcs_application_info(customer_name,card_id,approve_type,create_user) values('"+name+"','"+card_id+"','1',"+str(current_user.id)+")")
@@ -195,14 +202,23 @@ def insert_jjfa(id,expertId):
 @app.route('/mxpg/pldr', methods=['GET'])
 def pldr():      
     return render_template("mxpg/pldr.html")
-@app.route('/mxpg/xxlr', methods=['GET'])
-def xxlr():      
-    #获取未分类数据     
-    appList = Rcs_Application_Info.query.filter_by(create_user=current_user.id).all()
-    for obj in appList:
+@app.route('/mxpg/xxlr/<int:page>', methods=['GET','POST'])
+def xxlr(page):
+    sql=" create_user="+str(current_user.id)
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and customer_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"
+    #获取未分类数据   
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
+    length = len(Rcs_Application_Info.query.filter(sql).all())
+    for obj in appList.items:
         if not obj.model_type:
             obj.model_type="0"
-    return render_template("mxpg/xxlr.html",appList=appList)
+    return render_template("mxpg/xxlr.html",appList=appList,length=length)
 
 #授信评估
 @app.route('/mxpg/sxpg', methods=['GET'])
@@ -289,309 +305,167 @@ def khzl_hk(id):
 
     return render_template("customer/hknl.html",result=result,id=id,appResult=appResult,jcjy=jcjy)
 
-#还款能力保存
-@app.route('/khzldy/khzl_hknl_save/<int:id>', methods=['POST'])
-def khzl_hknl_save(id):     
-    total = request.form['score_result'] 
-    remark = request.form['score_remark'] 
-    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-    if score:
-        score.hknl_score=total
-    else:
-        Rcs_Application_Score(id,"",total,"","",remark,"").add()
-    db.session.commit()
-    return redirect("/khzldy/khzl_hk/"+str(id))
 
-#资产负债
-@app.route('/khzldy/zcfzzk/<int:id>', methods=['GET'])
-def zcfzzk(id):   
-    zcfzbData = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
-    return render_template("customer/zcfzzk.html",id=id,data=zcfzbData)
-#资产负债---保存
-@app.route('/khzldy/zcfzzk_save/<int:id>', methods=['POST'])
-def zcfzzk_save(id):   
-    zcfzl = request.form['zcfzl']   
-    ldbl = request.form['ldbl']   
-    sdbl = request.form['sdbl']
-    #交叉检验所需年营业额
-    yye3 = request.form['yye3']
-    #交叉检验所需存货检验
-    yye10 = request.form['yye10']
-    yye11 = request.form['yye11']
-    #存货总额
-    value_1 = request.form['value_19']
-    #总资产
-    value_2 = request.form['value_29']
-    #流动资产总和
-    value_3 = request.form['value_22']
-    #实际权益
-    value_37 = request.form['value_37']
-    result = Rcs_Application_Result.query.filter_by(application_id=id).first()
-    if result:
-        result.zcfzl=zcfzl
-        result.ldbl=ldbl
-        result.sdbl=sdbl
-        result.value_1=value_1
-        result.value_2=value_2
-        result.value_3=value_3
-    else:
-        Rcs_Application_Result(id,zcfzl,ldbl,sdbl,value_1,value_2,value_3,"","","").add()
-    #交叉检验
-    result1 = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
-    if result1:
-        result1.value3=yye3
-        result1.value10=yye10
-        result1.value11=yye11
-        result1.value15=value_37
-    else:
-        Rcs_Application_Jcjy(id,"","",yye3,"","","","","","",yye10,yye11,"","","",value_37,"","","").add()
+
+# #资产负债---保存
+# @app.route('/khzldy/zcfzzk_save/<int:id>', methods=['POST'])
+# def zcfzzk_save(id):   
+#     zcfzl = request.form['zcfzl']   
+#     ldbl = request.form['ldbl']   
+#     sdbl = request.form['sdbl']
+#     #交叉检验所需年营业额
+#     yye3 = request.form['yye3']
+#     #交叉检验所需存货检验
+#     yye10 = request.form['yye10']
+#     yye11 = request.form['yye11']
+#     #存货总额
+#     value_1 = request.form['value_19']
+#     #总资产
+#     value_2 = request.form['value_29']
+#     #流动资产总和
+#     value_3 = request.form['value_22']
+#     #实际权益
+#     value_37 = request.form['value_37']
+#     result = Rcs_Application_Result.query.filter_by(application_id=id).first()
+#     if result:
+#         result.zcfzl=zcfzl
+#         result.ldbl=ldbl
+#         result.sdbl=sdbl
+#         result.value_1=value_1
+#         result.value_2=value_2
+#         result.value_3=value_3
+#     else:
+#         Rcs_Application_Result(id,zcfzl,ldbl,sdbl,value_1,value_2,value_3,"","","").add()
+#     #交叉检验
+#     result1 = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
+#     if result1:
+#         result1.value3=yye3
+#         result1.value10=yye10
+#         result1.value11=yye11
+#         result1.value15=value_37
+#     else:
+#         Rcs_Application_Jcjy(id,"","",yye3,"","","","","","",yye10,yye11,"","","",value_37,"","","").add()
     
-    #资产负债表页面form数据保存
-    #form json值
-    dataTotal = request.form['dataTotal']
-    zcfzbData = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
-    if zcfzbData:
-        zcfzbData.value_1=dataTotal
-    else:
-        Rcs_Application_Zcfzb(id,dataTotal,'').add()
+#     #资产负债表页面form数据保存
+#     #form json值
+#     dataTotal = request.form['dataTotal']
+#     zcfzbData = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
+#     if zcfzbData:
+#         zcfzbData.value_1=dataTotal
+#     else:
+#         Rcs_Application_Zcfzb(id,dataTotal,'').add()
 
-    info = Rcs_Application_Info.query.filter_by(id=id).first()
-    if info:
-        #设置为传统模型
-        info.model_type=1
-    db.session.commit()
-    return redirect("/khzldy/zcfzzk/"+str(id))
+#     info = Rcs_Application_Info.query.filter_by(id=id).first()
+#     if info:
+#         #设置为传统模型
+#         info.model_type=1
+#     db.session.commit()
+#     return redirect("/khzldy/zcfzzk/"+str(id))
 
-#利润表
-@app.route('/khzldy/lrb/<int:id>', methods=['GET'])
-def lrb(id):        
-    appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
-    if not appResult:
-        appResult = Rcs_Application_Result(id,"","","","","","","","","").add()
-    db.session.commit()
-    appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
-    #页面数据
-    data = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
-    return render_template("customer/lrb.html",appResult=appResult,id=id,data=data)
 
-#利润表--保存
-@app.route('/khzldy/lrb_save/<int:id>', methods=['POST'])
-def lrb_save(id):   
-    #存货周转率    
-    chzzl = request.form['chzzl']
-    if not chzzl:
-        chzzl=0
-    #总资产周转率
-    zzczzl = request.form['zzczzl']
-    if not zzczzl:
-        zzczzl=0
-    #净利润
-    value = request.form['value_13']
-    value_1 = request.form['yye1']
-    value_2 = request.form['yye2']
-    value_4 = request.form['yye4']
-    value_6 = request.form['yye6']
-    value_7 = request.form['yye7']
-    value_8 = request.form['yye8']
-    value_9 = request.form['yye9']
-    value_13 = request.form['yye13']
-    value_17 = request.form['yye17']
-    value_18 = request.form['yye18']
-    #还款能力结果表
-    appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
-    if not appResult:
-        Rcs_Application_Result(id,"","","","","","",chzzl,zzczzl,value_13).add()
-    else:
-        appResult.chzzl=chzzl
-        appResult.zzczzl=zzczzl
-        appResult.value_13=value
 
-    #交叉检验表
-    jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
-    if jcjy:
-        jcjy.value1=value_1
-        jcjy.value2=value_2
-        jcjy.value4=value_4
-        jcjy.value6=value_6
-        jcjy.value7=value_7
-        jcjy.value8=value_8
-        jcjy.value9=value_9
-        jcjy.value13=value_13
-        jcjy.value17=value_17
-        jcjy.value18=value_18
-    else:
-        Rcs_Application_Jcjy(id,value_1,value_2,"",value_4,"",value_6,value_7,value_8,value_9,"","","",value_13,"","","",value_17,value_18).add()
+# #利润表--保存
+# @app.route('/khzldy/lrb_save/<int:id>', methods=['POST'])
+# def lrb_save(id):   
+#     #存货周转率    
+#     chzzl = request.form['chzzl']
+#     if not chzzl:
+#         chzzl=0
+#     #总资产周转率
+#     zzczzl = request.form['zzczzl']
+#     if not zzczzl:
+#         zzczzl=0
+#     #净利润
+#     value = request.form['value_13']
+#     value_1 = request.form['yye1']
+#     value_2 = request.form['yye2']
+#     value_4 = request.form['yye4']
+#     value_6 = request.form['yye6']
+#     value_7 = request.form['yye7']
+#     value_8 = request.form['yye8']
+#     value_9 = request.form['yye9']
+#     value_13 = request.form['yye13']
+#     value_17 = request.form['yye17']
+#     value_18 = request.form['yye18']
+#     #还款能力结果表
+#     appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
+#     if not appResult:
+#         Rcs_Application_Result(id,"","","","","","",chzzl,zzczzl,value_13).add()
+#     else:
+#         appResult.chzzl=chzzl
+#         appResult.zzczzl=zzczzl
+#         appResult.value_13=value
 
-    #利润表页面form数据保存
-    #form json值
-    dataTotal = request.form['dataTotal']
-    dataTotalSelect = request.form['dataTotalSelect']
-    lrbData = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
-    if lrbData:
-        lrbData.value_1=dataTotal
-        lrbData.value_2=dataTotalSelect
-    else:
-        Rcs_Application_Lrb(id,dataTotal,dataTotalSelect).add()
+#     #交叉检验表
+#     jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
+#     if jcjy:
+#         jcjy.value1=value_1
+#         jcjy.value2=value_2
+#         jcjy.value4=value_4
+#         jcjy.value6=value_6
+#         jcjy.value7=value_7
+#         jcjy.value8=value_8
+#         jcjy.value9=value_9
+#         jcjy.value13=value_13
+#         jcjy.value17=value_17
+#         jcjy.value18=value_18
+#     else:
+#         Rcs_Application_Jcjy(id,value_1,value_2,"",value_4,"",value_6,value_7,value_8,value_9,"","","",value_13,"","","",value_17,value_18).add()
 
-    #保存还款能力分值(月可支)
-    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-    if score:
-        score.hknl_score = float('%.2f'% float(value_17))
-        if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
-            totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
-            score.total_approve = float('%.2f'% totalScore) 
-    else:
-        Rcs_Application_Score(id,"",float('%.2f'% float(value_17)),"","","","").add()
+#     #利润表页面form数据保存
+#     #form json值
+#     dataTotal = request.form['dataTotal']
+#     dataTotalSelect = request.form['dataTotalSelect']
+#     lrbData = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
+#     if lrbData:
+#         lrbData.value_1=dataTotal
+#         lrbData.value_2=dataTotalSelect
+#     else:
+#         Rcs_Application_Lrb(id,dataTotal,dataTotalSelect).add()
 
-    info = Rcs_Application_Info.query.filter_by(id=id).first()
-    if info:
-        #设置为传统模型
-        info.model_type=1
-    db.session.commit()
-    return redirect("khzldy/lrb/"+str(id))
+#     #保存传统还款能力分值(月可支)
+#     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+#     if score:
+#         score.month_profit = float('%.2f'% float(value_17))
+#     else:
+#         Rcs_Application_Score(id,"","","","","","",float('%.2f'% float(value_17))).add()
 
-#现金流量
-@app.route('/khzldy/xjll/<int:id>', methods=['GET'])
-def xjll(id):    
-    result = Rcs_Application_Xjll.query.filter_by(application_id=id).first()
-    return render_template("customer/xjll.html",id=id,result=result)
+#     info = Rcs_Application_Info.query.filter_by(id=id).first()
+#     if info:
+#         #设置为传统模型
+#         info.model_type=1
+#     db.session.commit()
+#     return redirect("khzldy/lrb/"+str(id))
 
-#现金流量--保存
-@app.route('/khzldy/xjll_save/<int:id>', methods=['POST'])
-def xjll_save(id):  
-    Rcs_Application_Xjll.query.filter_by(application_id=id).delete()
-    qcxj = request.form['qcxj']
-    jyxxjlr = request.form['jyxxjlr']   
-    jyxxjlc = request.form['jyxxjlc']   
-    jyxjjll = request.form['jyxjjll']   
-    tzxjlr = request.form['tzxjlr']   
-    tzxjlc = request.form['tzxjlc']   
-    tzxjjll = request.form['tzxjjll']   
-    rzxjlr = request.form['rzxjlr']   
-    rzxjlc = request.form['rzxjlc']   
-    rzxjjll = request.form['rzxjjll']   
-    qmxj = request.form['qmxj']   
-    qcqysd = request.form['qcqysd']   
-    qcqyhj = request.form['qcqyhj']   
-    fxqjsr = request.form['fxqjsr']   
-    qtsr = request.form['qtsr']   
-    sz = request.form['sz']   
-    dxzchj = request.form['dxzchj']   
-    zj = request.form['zj']   
-    bz = request.form['bz']   
-    bwzc = request.form['bwzc']   
-    Rcs_Application_Xjll(id,qcxj,jyxxjlr,jyxxjlc,jyxjjll,tzxjlr,tzxjlc,tzxjjll,rzxjlr,rzxjlc,rzxjjll,qmxj,qcqysd,qcqyhj,fxqjsr,qtsr,sz,dxzchj,zj,bz,bwzc).add()
-    db.session.commit()
-    return redirect("/khzldy/xjll/"+str(id))
 
-#交叉检验
-@app.route('/khzldy/jcjy/<int:id>', methods=['GET'])
-def jcjy(id):        
-    return render_template("customer/jcjy.html")
+# #现金流量--保存
+# @app.route('/khzldy/xjll_save/<int:id>', methods=['POST'])
+# def xjll_save(id):  
+#     Rcs_Application_Xjll.query.filter_by(application_id=id).delete()
+#     qcxj = request.form['qcxj']
+#     jyxxjlr = request.form['jyxxjlr']   
+#     jyxxjlc = request.form['jyxxjlc']   
+#     jyxjjll = request.form['jyxjjll']   
+#     tzxjlr = request.form['tzxjlr']   
+#     tzxjlc = request.form['tzxjlc']   
+#     tzxjjll = request.form['tzxjjll']   
+#     rzxjlr = request.form['rzxjlr']   
+#     rzxjlc = request.form['rzxjlc']   
+#     rzxjjll = request.form['rzxjjll']   
+#     qmxj = request.form['qmxj']   
+#     qcqysd = request.form['qcqysd']   
+#     qcqyhj = request.form['qcqyhj']   
+#     fxqjsr = request.form['fxqjsr']   
+#     qtsr = request.form['qtsr']   
+#     sz = request.form['sz']   
+#     dxzchj = request.form['dxzchj']   
+#     zj = request.form['zj']   
+#     bz = request.form['bz']   
+#     bwzc = request.form['bwzc']   
+#     Rcs_Application_Xjll(id,qcxj,jyxxjlr,jyxxjlc,jyxjjll,tzxjlr,tzxjlc,tzxjjll,rzxjlr,rzxjlc,rzxjjll,qmxj,qcqysd,qcqyhj,fxqjsr,qtsr,sz,dxzchj,zj,bz,bwzc).add()
+#     db.session.commit()
+#     return redirect("/khzldy/xjll/"+str(id))
 
-#经营状况
-@app.route('/khzldy/khzl_jyzk/<int:id>', methods=['GET'])
-def khzl_jyzk(id):
-    jyzk = Rcs_Parameter.query.filter_by(parameter_name="jyzk").first()
-    result = ""
-    if jyzk :
-        result=jyzk.parameter_value
-    #页面数据
-    data = Rcs_Application_Jyzk.query.filter_by(application_id=id).first()
-    return render_template("customer/jyzk.html",result=result,id=id,data=data)
-#经营状况保存
-@app.route('/khzldy/khzl_jyzk_save/<int:id>', methods=['POST'])
-def khzl_jyzk_save(id):  
-    total = request.form['score_result'] 
-    remark = request.form['score_remark'] 
-    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-    if score:
-        score.jyzk_score=total
-    else:
-        Rcs_Application_Score(id,"","",total,"",remark,"").add()
-
-    #经营状况页面form数据保存
-    #form json值
-    dataTotal = request.form['dataTotal']
-    dataTotalSelect = request.form['dataTotalSelect']
-    lrbData = Rcs_Application_Jyzk.query.filter_by(application_id=id).first()
-    if lrbData:
-        lrbData.value_1=dataTotal
-        lrbData.value_2=dataTotalSelect
-    else:
-        Rcs_Application_Jyzk(id,dataTotal,dataTotalSelect).add()
-
-    db.session.commit()
-    return redirect("/khzldy/khzl_jyzk/"+str(id))
-
-#生活状态
-@app.route('/khzldy/khzl_shzk/<int:id>', methods=['GET'])
-def khzl_shzk(id):     
-    shzt = Rcs_Parameter.query.filter_by(parameter_name="shzt").first()
-    result=shzt.parameter_value   
-    #页面数据
-    data = Rcs_Application_Shzk.query.filter_by(application_id=id).first()
-    return render_template("customer/shzt.html",result=result,id=id,data=data)
-
-#生活状态保存
-@app.route('/khzldy/khzl_shzk_save/<int:id>', methods=['POST'])
-def khzl_shzk_save(id):  
-    total = request.form['score_result'] 
-    remark = request.form['score_remark'] 
-    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-    if score:
-        score.shzk_score=total
-    else:
-        Rcs_Application_Score(id,"","","",total,remark,"").add()
-
-        #道德品质页面form数据保存
-    #form json值
-    dataTotal = request.form['dataTotal']
-    dataTotalSelect = request.form['dataTotalSelect']
-    dataTotalRadio = request.form['dataTotalRadio']
-    shzkData = Rcs_Application_Shzk.query.filter_by(application_id=id).first()
-    if shzkData:
-        shzkData.value_1=dataTotal
-        shzkData.value_2=dataTotalSelect
-        shzkData.value_3=dataTotalRadio
-    else:
-        Rcs_Application_Shzk(id,dataTotal,dataTotalSelect,dataTotalRadio).add()
-
-    db.session.commit()
-    return redirect("/khzldy/khzl_shzk/"+str(id))
-
-#道德品质
-@app.route('/khzldy/khzl_ddpz/<int:id>', methods=['GET'])
-def khzl_ddpz(id): 
-    ddpz = Rcs_Parameter.query.filter_by(parameter_name="ddpz").first()
-    result=ddpz.parameter_value
-    #页面数据
-    data = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
-    return render_template("customer/ddpz.html",result=result,id=id,data=data)
-
-#道德品质保存
-@app.route('/khzldy/khzl_ddpz_save/<int:id>', methods=['POST'])
-def khzl_ddpz_save(id):     
-    total = request.form['score_result'] 
-    remark = request.form['score_remark'] 
-    score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-    if score:
-        score.ddpz_score=total
-    else:
-        Rcs_Application_Score(id,total,"","","",remark,"").add()
-
-    #道德品质页面form数据保存
-    #form json值
-    dataTotal = request.form['dataTotal']
-    dataTotalSelect = request.form['dataTotalSelect']
-    ddpzData = Rcs_Application_Ddpz.query.filter_by(application_id=id).first()
-    if ddpzData:
-        ddpzData.value_1=dataTotal
-        ddpzData.value_2=dataTotalSelect
-    else:
-        Rcs_Application_Ddpz(id,dataTotal,dataTotalSelect).add()
-    db.session.commit()
-    return redirect("/khzldy/khzl_ddpz/"+str(id))
 
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
 def jjrw(): 

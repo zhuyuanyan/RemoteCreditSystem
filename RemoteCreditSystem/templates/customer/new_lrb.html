@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/base64.js"></script>
+		<script src="../../static/js/util.js"></script>
+		
+		<script src="../../static/js/Date.js"></script>
+		<script src="../../static/js/Stack.js"></script>
+		<script src="../../static/js/Tokanizer.js"></script>
+		<script src="../../static/js/Evaluator.js"></script>
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script>	
+		
+		<style type="text/css">			
+			.myTable td{font-size:13px;}
+			input[type=text]{width:100px;}
+			.tdCenter{text-align: center;}
+			input:read-only{background-color: #D9D9D9;}
+			.tdBgClr{background-color: #87CEFA}
+			textarea{resize: none;}
+		</style>
+		<script type="text/javascript">
+			
+		</script>
+	</head>
+	<body>		
+<!--*****************************利润表**********************************-->
+		<form id="form_id" class="" action="" method="POST">
+		<table class="myTable">
+				<caption>利润表</caption>
+				<tr>
+					<td class="tdCenter tdBgClr" rowspan="3"><b>项目</b></td>
+					<td class="tdCenter tdBgClr"><b>分类</b></td>
+					<td class="tdCenter tdBgClr"><b>淡季月份</b></td>
+					<td class="tdCenter tdBgClr"><b>一般月份</b></td>
+					<td class="tdCenter tdBgClr"><b>旺季月份</b></td>
+					<td class="tdCenter tdBgClr"><b>调查当月<br/>（至  日）</b></td>
+					<td class="tdCenter tdBgClr" rowspan="3"><b>总计</b></td>
+					<td class="tdCenter tdBgClr" rowspan="3"><b>月平均</b></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><b>月份</b></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><b>月数</b></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2" style="text-align:right"><b>主营业务收入（1）</b></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2"><b>可变成本（成本率<input type="text" name="" style="width:50px"/>）（2）</b></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2" style="text-align:right"><b>毛利= (1)-(2)</b></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr" rowspan="15"><b>营业费用</b></td>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2" style="text-align:right"><b>营业费用小计(3)</b></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2" style="text-align:right"><b>分期还款（经营）(4)</b></td>
+					<td class="tdCenter"><input type="text" name="" /></td>
+					<td class="tdCenter"><input type="text" name="" /></td>
+					<td class="tdCenter"><input type="text" name="" /></td>
+					<td class="tdCenter"><input type="text" name="" /></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2" style="text-align:right"><b>净利润=(1)-(2)-(3)-(4)</b></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr" rowspan="4"><b>其他</b></td>
+					<td class="tdBgClr">1 家庭开支-</td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">2 分期付款(私人用途)-</td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">3 其它开支-</td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">4 其它收入+</td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2" style="text-align:right"><b>每月可支配资金</b></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr" colspan="2">其它影响现金流的因素、 未来12个月的<br/>支出/收入计划:</td>
+					<td colspan="6"><textarea name="" style="width:95%"></textarea></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr">主营业务收入详述</td>
+					<td colspan="3"><textarea name="" style="width:95%"></textarea></td>
+					<td class="tdCenter tdBgClr">可变成本详述</td>
+					<td colspan="3"><textarea name="" style="width:95%"></textarea></td>
+				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr">其他收入分析</td>
+					<td ><textarea name="" style="width:95%"></textarea></td>
+					<td class="tdCenter tdBgClr">家庭开支及其他开支详情</td>
+					<td colspan="2"><textarea name="" style="width:95%"></textarea></td>
+					<td class="tdCenter tdBgClr">利润表其他介绍</td>
+					<td colspan="2"><textarea name="" style="width:95%"></textarea></td>
+				</tr>
+			</table>
+		
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<input type="button" class="btn btn-info" id="id_count_button" value="计算">
+				<input type="button" class="btn btn-info" id="id_save_button" value="提交">
+			</div>
+		</div>
+		</form>
+		<script type="text/javascript">
+			
+		</script>
+	</body>
+</html>
