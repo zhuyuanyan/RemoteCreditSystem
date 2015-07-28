@@ -15,9 +15,7 @@
 		</style>
 	</head>
 	<body>		
-		<form class="iframeForm" id="iframeForm" action="/customer/customer_shzk_save/{{id}}" method="POST">
-
-<!--*****************************信仰状况**********************************-->
+		<form class="iframeForm" id="form_data">
 			<table class="myTable">
 
 			<colgroup>
@@ -29,12 +27,12 @@
 			{%- for level3 in ddpz_level%}
 				<tr>
 					<td><b>{{level3.name}}</b></td>
-					<td><select name="" id="tess" content="{{level3.name}}">
-						<option value="{{level3.id}}@0">无数据</option>
+					<td><select name="tess" id="tess" content="{{level3.name}}">
+						<option value="{{level3.id}}*0">无数据</option>
 					{%- for allSelect in all_select%}	
 						{%- if allSelect.tree_id==level3.id%}
 							
-							<option value="{{allSelect.id}}/{{allSelect.score}}">{{allSelect.name}}</option>
+							<option value="{{allSelect.id}}">{{allSelect.name}}</option>
 						
 						{%- endif%}
 					{%- endfor%}
@@ -42,29 +40,13 @@
 				</tr>	
 			{%- endfor%}
 		</table>
-
-<!--*****************************评分结果**********************************-->
-			<table class="myTable">
-				<caption>评分结果</caption>
-
-				<tr>
-					<td><b>评分结果</b></td>
-					<td><input type="text" id="score_result" name="score_result" value="{{score.shzk_score}}" readonly/></td>
-					<input type="hidden" id="score_remark" name="score_remark" readonly/>
-					<td><b>禁入结果</b></td>
-					<td><input type="Textarea" id="score_stop" value="{{score.remark}}" name="score_stop" /></td>
-				</tr>	
-			</table>
-			<input type="hidden" name="dataTotalSelect" id="dataTotalSelect"/>
-
+</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
 				<input type="button" class="btn btn-info" id="button1" onclick="submitForm()" value="提交" >
-				<input type="button" class="btn btn-info" onclick="sum()" id="button2" value="评分">
-				<a class="btn" href="#" onclick="javascript:history.go(-1);" title="返回">返回</a>
 			</div>
 		</div>
-		</form>
+		
 		<script type="text/javascript">
      		$(document).ready(function() {
 				var data_2 = "{{data.value_2}}";
@@ -131,9 +113,33 @@
 				}
      		}
      		function submitForm(){
+     			//保存下拉框值
+     			var selectData = new Array();
+				$("select").each(function(i){
+				    var value = $(this).val();
+				    var text = $(this).find("option:selected").text();
+					if(value==''){
+				    	selectData.push($(this).attr("content")+"@@"+0);
+				    }else{
+				    	selectData.push($(this).attr("content")+"@@"+text);
+				    }  
+			
+				});
+					var form_data = $("#form_data").serialize(); 
+					var content = {'form_data':form_data,'selectData':selectData+""};
+					var url = "/customer/customer_shzk_save/{{id}}";
+					$.ajax({
+						url : url,
+						type : "POST",
+						data:content,
+						success : function(data) {
+							window.location.reload();
+						}
+					});
 
 
-				$("#iframeForm").submit();
+
+				// $("#iframeForm").submit();
 			}
 		</script>
 	</body>
