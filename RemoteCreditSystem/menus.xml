@@ -18,7 +18,7 @@
 		</menu>
 		<menu id="090000" code="mxpg" name="信息录入" url="" img="" operations="" index="9">
 		    <menu id="090010" code="pldr" name="批量导入" url="mxpg/pldr" img="" operations="create|change|browse"/>
-		    <menu id="090020" code="xxlr" name="信息录入" url="mxpg/xxlr" img="" operations="create|change|browse"/>
+		    <menu id="090020" code="xxlr" name="信息录入" url="mxpg/xxlr/1" img="" operations="create|change|browse"/>
 		</menu>
 		<menu id="040000" code="khzldy" name="客户资料调阅" url="" img="" operations="" index="4">
 			<menu id="040010" code="khzl" name="客户资料" url="khzldy/khzl" img="" operations="create|change|browse"/>

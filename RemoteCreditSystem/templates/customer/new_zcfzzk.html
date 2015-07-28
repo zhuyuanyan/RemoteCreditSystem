@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<style type="text/css">
+			input[type=text]{width:100px;}
+			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
+			.addTable{margin :5px;text-align :center ;width:99%;}
+			.myTable th{text-align:left;padding:5px;background:#e8e8e8;border:1px solid #ddd;font-size:13px;}
+			.addTable th{text-align:center;border:1px solid #ddd;background:#a4daff;font-size:13px;}
+			input[type=text].addinput {width:80%;}
+			.myTable td{font-size:13px;}
+		</style>
+	</head>
+	<body>	
+		<form class="" id="iframeForm" action="" method="POST">
+<!--*****************************资产**********************************-->			
+			<table class="myTable">
+				<caption>资产负债表</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+				</colgroup>
+				<tr>
+					<td colspan="2"><b>资  产</b></td>
+					<td><b>检验方式</b></td>
+                    <td colspan="2"><b>负  债</b></td>
+					<td><b>检验方式</b></td>
+				</tr>
+				<tr>
+					<td><b>流动资产</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>短期负债</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td><b>现金及银行存款</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>应付账款</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td>现金/支票</td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>其他应付账款</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td>银行存款</td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>预收账款</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td><b>应收账款</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>短期贷款</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td><b>预付账款</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td>信用卡透支</td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                   <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td><b>存货</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td>其他机构贷款</td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td><b>固定资产</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td>个人借款</td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td><b>其他资产</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>长期负债</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td>待摊租金</td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>其他负债</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td>预付押金</td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>或有负债（为他人担保余额）</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td>其他预付账款</td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>负债总计</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td>其他</td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>所有者权益</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+				<tr>
+					<td><b>资产总计</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><input type="text" name=""  value="" /></td>
+					<td><b>负债和所有者权益总计</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><input type="text" name=""  value="" /></td>
+				</tr>
+			</table>
+			<table class="myTable">
+				
+				<colgroup>
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+					<col width="10%">
+				</colgroup>
+				<tr>
+					<td><b>借款金额/所有者权益</b></td>
+					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td><b>资产负债率</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><b>流动比率</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+                    <td><b>速动比率</b></td>
+                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+				</tr>
+				<tr>
+					<td colspan="8"><b>表外项目及评价</b></td>
+				</tr>
+				<tr>
+					<td colspan="8"><Textarea  id="" name="" ></Textarea></td>
+				</tr>
+				</table>
+		</form>
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<a class="btn btn-info" onclick="sum()" title="提交">提交</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				})
+
+		</script>
+	</body>
+</html>

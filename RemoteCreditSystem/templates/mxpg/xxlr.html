@@ -19,34 +19,20 @@
 		</div>
 		<div class="content">
 			<div class="">
-			<form class="search">				
-				<span>
-					客户索引号：<input type="text"/>
-				</span>
-				<span>
-					进件银行：<select><option>---请选择---</option></select>
-				</span>
-				<span>
-					进件区域：<select><option>---请选择---</option></select>
-				</span>	
-				<span>
-					进件机构：<select><option>---请选择---</option></select>
-				</span>
-				<span>
-					&nbsp;&nbsp;&nbsp;进件行业：<select><option>---请选择---</option></select>
-				</span>
-				<span>
-					进件商圈：<select><option>---请选择---</option></select>
-				</span>
-				<span>
-					进件产品：<select><option>---请选择---</option></select>
-				</span>
-				<!-- <span>
-					进件日期：<input type="text" onclick="J.calendar.get({type:'-'});"/>
-				</span>	 -->				
-				<span class="searchButton">
-					<input type="button" class="btn btn-info" value="筛选"/>
-				</span>
+			<form id="tests" action="/mxpg/xxlr/1" method="POST">	
+				<table style="width:80%;height:50px">
+				<tr>	
+				<td>
+					客户名称：<input type="text" name="customer_name"/>
+				</td>
+				<td>
+					证件号码：<input type="text" name="card_id"/>
+				</td>
+							
+				<td>
+					<input type="submit" class="btn btn-info" value="筛选"/>
+				</td>
+				</tr>	
 			</form>
 			<table class="table-list">
 				<colgroup>
@@ -91,7 +77,7 @@
 					<col width="10%" />
 					<col width="5%" />
 				</colgroup>
-				{%- for obj in appList%}
+				{%- for obj in appList.items%}
 				<tr onclick="checkTable(this)">
 					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}},{{obj.model_type}})"/></td>
 					<td>{{obj.customer_name}}</td>
@@ -111,19 +97,24 @@
 			<div class="pagebar">
 				<input type="hidden" value="" id="hiddenId"/>
 				<div class="controlbtn">
-					<a class="btn btn-info" href="javascript:void(0);" id="history" onclick="iframeById('/khzldy/khzl_hknl/1')">录入传统评估要素</a>
-					<a class="btn btn-info" href="javascript:void(0);" id="static" onclick="iframeById('/khzldy/khzl_hknl/2')" >录入标准评估要素</a>
+					<input class="btn btn-info" id="history" onclick="iframeById('/khzldy/khzl_hknl/1')" value="录入传统评估要素"></input>
+					<input class="btn btn-info"  id="static" onclick="iframeById('/khzldy/khzl_hknl/2')" value="录入标准评估要素" ></input>
 								
 				</div>
 				<div class="page">
-					<span>共<b>2</b>条数据，当前第<b>1</b>页</span>
-					<a href="#" class="first"><img src="../../static/img/icon_button_first.png"/></a>
-					<a href="#" class="previous"><img src="../../static/img/icon_button_previous.png"/></a>
-					<input type="text"/>
-					<input type="button" value="GO" class="go"/>
-					<span>/页</span>	
-					<a href="#" class="next"><img src="../../static/img/icon_button_next.png"/></a>
-					<a href="#" class="end"><img src="../../static/img/icon_button_end.png"/></a>
+					共&#160;<font color="#0088cc">{{length}}</font>条
+					{%- if appList.has_prev %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/mxpg/xxlr/{{appList.prev_num}}')">&lt;&lt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&lt;&lt;</span>
+					{%- endif %}
+					&#160;第&#160;<font color="#0088cc">{{appList.page}}</font>&#160;页&#160;
+					&#160;共&#160;<font color="#0088cc">{{appList.pages}}</font>&#160;页&#160;
+					{%- if appList.has_next %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/mxpg/xxlr/{{appList.next_num}}')">&gt;&gt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&gt;&gt;</span>
+					{%- endif %}
 				</div>
 			</div>
 		</div>
@@ -136,8 +127,8 @@
 		 		$("#history").attr("disabled",false);
 		 	}else{
 		 		if(type=="1"){
-		 		$("#static").attr("disabled",true);
-		 		$("#history").attr("disabled",false);
+			 		$("#static").attr("disabled",true);
+			 		$("#history").attr("disabled",false);
 			 	}else{
 					$("#static").attr("disabled",false);
 			 		$("#history").attr("disabled",true);
@@ -152,6 +143,11 @@
 		 		return;
 		 	}
 		 	window.location.href =  url+"/"+value;
+		 }
+
+		 function submitForm(id,url){
+		 	document.getElementById(id).action = url;
+		 	document.getElementById(id).submit();
 		 }
 		</script>
 	</body>

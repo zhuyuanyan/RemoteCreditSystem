@@ -2,13 +2,16 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-		<link href="/static/css/main.css" rel="stylesheet" type="text/css" />
-		<link href="/static/css/bootstrap.css" rel="stylesheet">
-
-		<script src="../../../static/js/jquery-1.7.2.min.js"></script>
-		<script src="../../../static/js/index.js"></script>
-
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
 		<style type="text/css">
 			
 		</style>
@@ -22,7 +25,7 @@
 			新增进件
 		</div>
 
-		<form name="submitForm" action="/jjrwfa/save_jjfa" method="POST">
+		<form id="form_id" action="/jjrwfa/save_jjfa" method="POST" >
 		<div class="content">
 			<table class="myTable">
 				<caption>客户信息</caption>
@@ -34,21 +37,40 @@
 				</colgroup>
 				<tr>
 					<td class="table-label">客户名称</td>
-					<td><input type="text" name="name"/></td>
-					<td class="table-label">身份证号码/营业执照号码</td>
-					<td><input type="text" name="card_id"/></td>					
+					<td><input type="text" name="name" class="validate[required]"/></td>
+					<td class="table-label" style="width:20%">身份证号码/营业执照号码</td>
+					<td><input type="text" name="card_id"  class="validate[required,custom[chinaIdLoose]]"/></td>					
 				</tr>
 				
 			</table>
 			<div class="pagebar">			
 				<div class="controlbtn">
-					<input class="btn btn-info" href="javascript:void(0);" type="submit" value="保存"></input>
+					<input id="id_save_button" class="btn btn-info" type="button" value="保存"></input>
 					<input class="btn btn-info" type="button" onclick="javascript:history.go(-1);" value="返回"/>
 				</div>
 			</div>
 		</div>
 	</form>
 		<script type="text/javascript">
+			$(document).ready(function(){
+			//前端验证
+			$('#form_id').validationEngine();
+			$("#id_save_button").click(function() {
+				if(!submitFlag){
+					alert("正在处理，请勿重复提交!");
+					return;
+				}
+				submitFlag = false;
+				// 前端验证 
+				if($('#form_id').validationEngine('validate')){
+					//submit
+					$('#form_id').submit();
+					submitFlag = true;
+				}else{
+					submitFlag = true;
+				}
+			});
+		});
 		</script>
 	</body>
 </html>

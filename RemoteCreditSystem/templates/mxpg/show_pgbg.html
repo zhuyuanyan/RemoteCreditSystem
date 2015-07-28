@@ -51,25 +51,27 @@
 				</tr>
 				<tr>
 					<td class="table-label">综述</td>
-					{%- if score.jyzk_score=='不满足准入条件' or score.hknl_score=='不满足准入条件' or score.shzk_score=='不满足准入条件' or score.ddpz_score=='不满足准入条件'%}
-					<td colspan="3">不合格</td>		
-					{%- else%}
-					<td colspan="3">合格</td>	
-					{%-endif%}
+					{%- if score%}
+						{%- if score.jyzk_score|float==0 or score.hknl_score|float==0 or score.shzk_score|float==0 or score.ddpz_score|float==0%}
+						<td colspan="3">不合格</td>		
+						{%- else%}
+						<td colspan="3">合格</td>	
+						{%-endif%}
+					{%- endif%}
 				</tr>
 				<tr>
 					<td class="table-label">备注</td>
 					<td colspan="3" style="color:red">{{score.remark}}</td>		
 				</tr>
 				<tr>
-					<td class="table-label">未评估项统计</td>
+					<td class="table-label">未评估项/总项</td>
 					<td colspan="3" >{{pet}}</td>		
 				</tr>
 			</table>	
 			<div class="pagebar">			
 				<div class="controlbtn">
-					
-					<a class="btn"  onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
+					<a class="btn btn-info"  onclick="access()" title="评估">评&nbsp;&nbsp;估</a>
+					<a class="btn"  onclick="parent.location.href='/mxpg/xxlr/1'" title="返回">返&nbsp;&nbsp;回</a>
 				</div>
 			</div>
 		<script type="text/javascript">
@@ -89,6 +91,17 @@
 	                       num=num.replace(re,"$1,$2")  
 	           	}  
 	           	return num;
+            }
+
+            function access(){
+            	var url = "/customer/access/{{info.id}}";
+				$.ajax({
+					url : url,
+					type : "POST",
+					success : function(data) {
+						window.location.reload();
+					}
+				});
             }
 		</script>
 	</body>

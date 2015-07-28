@@ -31,34 +31,20 @@
 		{%- endwith %}
 
 		<div class="content">
-			<form class="search" id="tests">				
-				<span>
-					进件机构：<select><option>---请选择---</option></select>
-				</span>
-				<span>
-					进件区域：<select><option>---请选择---</option></select>
-				</span>
-				<span>
-					&nbsp;&nbsp;&nbsp;&nbsp;行业：<select><option>---请选择---</option></select>
-				</span>	
-				<span>
-					商圈：<input type="text"/>
-				</span>
-				<span>
-					客户经理：<input type="text"/>
-				</span>
-				<span>
-					&nbsp;&nbsp;&nbsp;审核人：<input type="text"/>
-				</span>
-				<span>
-					审批人：<input type="text"/>
-				</span>
-				<!-- <span>
-					进件日期：<input type="text" onclick="J.calendar.get({type:'/'});"/>
-				</span>	 -->				
-				<span class="searchButton">
-					<input type="button" class="btn btn-info" value="筛选"/>
-				</span>
+			<form id="tests" action="/jjrwfa/jjfa/1" method="POST">	
+				<table style="width:80%;height:50px">
+				<tr>	
+				<td>
+					客户名称：<input type="text" name="customer_name" value="{{customer_name}}"/>
+				</td>
+				<td>
+					证件号码：<input type="text" name="card_id" value="{{card_id}}"/>
+				</td>
+							
+				<td>
+					<input type="submit" class="btn btn-info" value="筛选"/>
+				</td>
+				</tr>	
 			</form>
 			<table class="table-list">
 				<colgroup>
@@ -128,7 +114,7 @@
 					<a class="btn btn-info" href="javascript:void(0);" title="系统分案" onclick="iframe('/jjrwfa/xtfa')">系统分案</a>
 					<a class="btn" href="javascript:void(0);" title="显示" onclick="iframeById('/jjrwfa/show_jjfa',document.getElementById('hiddenId').value)">显示</a>
 				</div>
-				<div class="page-div">
+				<div class="page">
 					{%- if appList.has_prev %}
 						<span style="CURSOR: pointer" onclick="submitForm('tests','/jjrwfa/jjfa/{{appList.prev_num}}')">&lt;&lt;</span>
 					{%- else %}
