@@ -47,17 +47,12 @@ def xxlr_lrb_bz_save(loan_apply_id,request,value1):
         if info:
             #设置为标准模型
             info.model_type=2
-        #获取还款能力参数配置数据
-        parm = Rcs_Parameter.query.filter_by(parameter_name='hknl').first()
-        if parm:
-            value = parm.parameter_value.split(',')
-            value = value[140]
-            #获取标准还款能力数据
-            score = Rcs_Application_Score.query.filter_by(application_id=loan_apply_id).first()
-            if score:
-                score.hknl_score = float(value)*float(pet)
-            else:
-                Rcs_Application_Score(loan_apply_id,'',float(value)*float(pet),'','','','').add()
+        #获取标准还款能力数据
+        score = Rcs_Application_Score.query.filter_by(application_id=loan_apply_id).first()
+        if score:
+            score.month_profit = float(pet)
+        else:
+            Rcs_Application_Score(loan_apply_id,'','','','','','',pet).add()
 
         db.session.commit()
     except:
@@ -143,7 +138,6 @@ def compute_hknl_bz(loan_apply_id):
             tmp_syb={}
             for key_value in syb_form_data.split('&'):
                 tmp_syb[key_value.split("=")[0]]=key_value.split("=")[1]
-            
         #计算
         if float(tmp_zcfzb['F18'])==0:
             form_data['B1_1']=0

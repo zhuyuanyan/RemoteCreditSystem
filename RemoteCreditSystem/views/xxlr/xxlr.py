@@ -32,13 +32,11 @@ def xxlr_zcfzb_bz(loan_apply_id):
 def xxlr_zcfzb_bz_save(loan_apply_id):
 	try:
 		xxlr.xxlr_zcfzb_bz_save(loan_apply_id,request)
-		# 消息闪现
-		flash('保存成功','success')
+
 		return helpers.show_result_success("")
 	except:
 		logger.exception('exception')
-		# 消息闪现
-		flash('保存失败','error')
+	
 		return helpers.show_result_fail("")
 	# return redirect("/xxlr/zcfzb_bz/"+str(loan_apply_id))
 
@@ -56,13 +54,11 @@ def xxlr_lrb_bz(loan_apply_id):
 def xxlr_lrb_bz_save(loan_apply_id,value1):
 	try:
 		xxlr.xxlr_lrb_bz_save(loan_apply_id,request,value1)
-		# 消息闪现
-		flash('保存成功','success')
+
 		return helpers.show_result_success("")
 	except:
 		logger.exception('exception')
-		# 消息闪现
-		flash('保存失败','error')
+	
 		return helpers.show_result_fail("")
 	
 # 标准 现金流量表
@@ -79,13 +75,11 @@ def xxlr_xjllb_bz(loan_apply_id):
 def xxlr_xjllb_bz_save(loan_apply_id):
 	try:
 		xxlr.xxlr_xjllb_bz_save(loan_apply_id,request)
-		# 消息闪现
-		flash('保存成功','success')
+	
 		return helpers.show_result_success("")
 	except:
 		logger.exception('exception')
-		# 消息闪现
-		flash('保存失败','error')
+		
 		return helpers.show_result_fail("")
 	
 # 标准 损益表
@@ -102,13 +96,11 @@ def xxlr_syb_bz(loan_apply_id):
 def xxlr_syb_bz_save(loan_apply_id):
 	try:
 		xxlr.xxlr_syb_bz_save(loan_apply_id,request)
-		# 消息闪现
-		flash('保存成功','success')
+		
 		return helpers.show_result_success("")
 	except:
 		logger.exception('exception')
-		# 消息闪现
-		flash('保存失败','error')
+	
 		return helpers.show_result_fail("")
 	
 # 标准 还款能力
@@ -126,5 +118,4 @@ def xxlr_hknl_bz(loan_apply_id):
 		tmp = sc_application_hknl.form_data
 		for key_value in tmp.split('&'):
 			form_data[key_value.split("=")[0]]=key_value.split("=")[1]
-			
 	return render_template("xxlr/hknl_bz.html",loan_apply_id=loan_apply_id,form_data=form_data)
