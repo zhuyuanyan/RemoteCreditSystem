@@ -192,14 +192,19 @@ def open_excel(excel_id,ABS_uri):
     print "---------------3"
     #sheetCount = len(data.sheets())#返回共多少sheet
     for index,sheet in enumerate(data.sheets()):
+        print "---------------4"
         #print sheet.name #sheet名称
         if sheet.name.find("建议") != -1:
+            print "---------------5"
             id = Genrcs_application_info(sheet)
             card_id = sheet.row(14)[6].value
+            print "---------------9"
             table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+            print "---------------10"
             SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['建议']['name'],excel_dict['建议']['code']).add()
+            print "---------------11"
             break
-    print "---------------4"
+    print "---------------12"
     if id != -1:     
         for d,x in excel_dict.items():
             #print "key:"+d+",value:"+x
@@ -221,7 +226,6 @@ def open_excel(excel_id,ABS_uri):
                                 else:
                                     tmp += "0@@"
                             tmp = tmp[0:len(tmp)-2]
-                            print tmp
                             Rcs_Application_Zcfzb(id,tmp).add()
                         if sheet.name == '利润简表':
                             for i in range(0, len(lrb_arr)):
@@ -245,11 +249,10 @@ def open_excel(excel_id,ABS_uri):
                             Rcs_Application_Xjll(id,tmp).add()
                             
                         break
-    print "---------------5"
+    print "---------------13"
     for index,sheet in enumerate(data.sheets()):
         if sheet.name == '经营状态' or sheet.name == '生存状态' or sheet.name == '道德品质' :
             parseModel(sheet,card_id)
-    print "---------------6"
                 
 #执行sql
 def executeSql(sql):
@@ -259,10 +262,12 @@ def executeSql(sql):
     
 #进件表
 def Genrcs_application_info(sheet):
+    print "---------------6"
     customer_name = sheet.row(14)[1].value
     credentials_no = sheet.row(14)[6].value
-    
+    print "---------------7"
     genSql = sql.sql_rcs_application_info.substitute(customer_name=customer_name,card_id=credentials_no,create_user=current_user.id,create_time=datetime.datetime.now())
+    print "---------------8"
     return executeSql(genSql)
 
 #读取数据
