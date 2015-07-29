@@ -69,7 +69,7 @@
 					<td class="tdCenter"><input type="text" name="" readonly/></td>
 				</tr>
 				<tr>
-					<td class="tdBgClr" colspan="2"><b>可变成本（成本率<input type="text" name="" style="width:50px"/>）（2）</b></td>
+					<td class="tdBgClr" colspan="2"><b>可变成本（成本率）（2）</b></td>
 					<td class="tdCenter"><input type="text" name=""/></td>
 					<td class="tdCenter"><input type="text" name=""/></td>
 					<td class="tdCenter"><input type="text" name=""/></td>
@@ -313,17 +313,28 @@
 					<td class="tdCenter tdBgClr">利润表其他介绍</td>
 					<td colspan="2"><textarea name="" style="width:95%"></textarea></td>
 				</tr>
+				<tr>
+					<td class="tdCenter tdBgClr">备注</td>
+					<td colspan="7"><textarea name="" style="width:95%"></textarea></td>
+					
+				</tr>
 			</table>
 		
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<input type="button" class="btn btn-info" id="id_count_button" value="计算">
-				<input type="button" class="btn btn-info" id="id_save_button" value="提交">
+				<a class="btn btn-info" onclick="sum()" title="提交">提交</a>
 			</div>
 		</div>
 		</form>
 		<script type="text/javascript">
-			
+			$(document).ready(function() {
+				data = "{{content}}";
+				content = data.split("@@");
+				$("input,Textarea").each(function(i){
+					$(this).val(content[i]);
+				});
+			})
+
 		</script>
 	</body>
 </html>
