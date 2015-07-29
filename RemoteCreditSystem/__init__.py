@@ -85,8 +85,9 @@ app.jinja_env.filters['checkBtnPri'] = checkBtnPri
 #{%- endif %}
 
 #启动java虚拟机
+print "--------------------2222"
 from jpype import *
-jarpath = os.path.join(_HERE, 'ext_class/ReadExcel.jar')
+jarpath = os.path.join(_HERE, '/data/www/rcs/RemoteCreditSystem/ext_class/ReadExcel.jar')
 jvmArg = "-Djava.class.path=" + jarpath
 startJVM(getDefaultJVMPath(),"-ea",jvmArg)
 print "-----------------------------------1111"
