@@ -1,26 +1,357 @@
-2015-07-06 15:34:39,384 ERROR exception
+2015-07-28 15:29:13,378 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\parameter\rcs_parameter.py", line 85, in edit_select_save
-    tree = Rcs_Parameter_Tree.query.filter_by(id=p_id).fitst()
-AttributeError: 'BaseQuery' object has no attribute 'fitst'
-2015-07-06 16:36:34,278 ERROR exception
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 69, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 104, in open_excel
+    parseModel(sheet,card_id)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 133, in parseModel
+    arry.append(before_value+"@@"+value)
+TypeError: coercing to Unicode: need string or buffer, float found
+2015-07-28 15:31:50,841 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\parameter\rcs_parameter.py", line 65, in add_tree_save
-    name = request.form["name"]
-  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
-    raise exceptions.BadRequestKeyError(key)
-BadRequestKeyError: 400: Bad Request
-2015-07-06 16:38:02,315 ERROR exception
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 69, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 104, in open_excel
+    parseModel(sheet,card_id)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 138, in parseModel
+    db.session.commit()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 721, in commit
+    self.transaction.commit()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 354, in commit
+    self._prepare_impl()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1818, in flush
+    self._flush(objects)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\util\langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1900, in _flush
+    flush_context.execute()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 525, in execute
+    uow
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\persistence.py", line 64, in save_obj
+    table, insert)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 662, in execute
+    params)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 874, in _execute_context
+    context)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\util\compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 867, in _execute_context
+    context)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\MySQLdb\cursors.py", line 202, in execute
+    self.errorhandler(self, exc, value)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (OperationalError) (1241, 'Operand should contain 1 column(s)') 'INSERT INTO rcs_application_jyzk (application_id, value_1, value_2, value_select, create_user, create_time) VALUES (%s, %s, %s, %s, %s, %s)' ('1', '', [u'\u56fd\u5bb6\u4ea7\u4e1a\u653f\u7b56@@\u4e00\u822c', u'\u7a0e\u6536\u653f\u7b56@@\u589e\u6536\u6d88\u8d39\u7a0e\u8d8520%', u'\u4ea7\u54c1\u4f9b\u5e94/\u5e02\u573a\u9700\u6c42\u91cf@@\u226490%', u'\u5468\u671f\u6027/\u975e\u5468\u671f\u6027@@\u77f3\u6cb9\u5316\u5de5', u'\u56fa\u5b9a\u8d44\u4ea7\u5360\u603b\u8d44\u4ea7\u6bd4\u7387@@\u22645%', u'\u51c0\u5229\u7387@@\u226515%', u'\u5e73\u5747\u5e94\u6536\u8d26\u6b3e\u5468\u8f6c\u5929\u6570@@\u22647', u'\u5e73\u5747\u5b58\u8d27\u5468\u8f6c\u5929\u6570@@\u226415', u'\u4f9b\u5e94\u5546\u6570\u91cf@@\u226518', u'\u7ecf\u9500\u5546\u6570\u91cf@@\uff1c5', u'\u5e02\u573a\u4e0a\u53ef\u4f9b\u9009\u62e9\u7684\u7c7b\u4f3c\u4ea7\u54c1\u79cd\u7c7b@@\uff1e30', u'\u672c\u884c\u4e1a\u8fd1\u4e00\u5e74\u7684\u5e73\u5747\u9500\u552e\u989d\u589e\u957f\u6bd4\u7387@@\uff1c-20%', u'\u672c\u884c\u4e1a\u8fd1\u4e00\u5e74\u7684\u5e73\u5747\u51c0\u5229\u6da6\u589e\u957f\u6bd4\u7387@@\u22650%', u'\u8fd1\u4e09\u5e74\u6765\u884c\u4e1a\u5e73\u5747\u7834\u4ea7\u7387@@\uff1e50%', u'\u4ea7\u54c1\u7684\u5dee\u5f02\u6027@@\u4ea7\u54c1\u65e0\u72ec\u7279\u4e4b\u5904\uff0c\u6709\u8bb8\u591a\u597d\u7684\u66ff\u4ee3\u54c1\uff0c\u8d28\u91cf\u4e00\u822c', u'\u5ba2\u6237\u9700\u6c42\u5468\u671f@@\u22643\u5929', u'\u53ef\u63a5\u53d7\u6b64\u4ef7\u683c\u7684\u76ee\u6807\u5ba2\u6237\u7fa4\u6bd4\u7387@@\u226590%', u'\u7ecf\u8425\u8303\u56f4\u5185\u7684\u7ade\u4e89\u6027\u540c\u4e1a\u6570\u91cf@@1\u5bb6', u'\u6700\u5927\u7684\u4e09\u4e2a\u5ba2\u6237\u5360\u4f01\u4e1a\u603b\u9500\u552e\u989d\u7684\u6bd4\u7387@@\u22645%', u'\u9500\u552e\u65b9\u6cd5@@\u5355\u4e00\u9500\u552e\u6e20\u9053\u3001\u5355\u4e00\u8425\u9500\u65b9\u5f0f', u'\u62e5\u6709\u4e13\u5229\u6280\u672f\u7684\u6570\u91cf@@2.0', u'\u80fd\u72ec\u7acb\u89e3\u51b3\u6280\u672f\u96be\u9898\u7684\u6bd4\u7387@@\u226590%', u'\u53d7\u81ea\u7136\u707e\u5bb3\u5f71\u54cd@@\u53d7\u81ea\u7136\u707e\u5bb3\u5f71\u54cd', u'\u73af\u5883@@\u6613\u9020\u6210\u73af\u5883\u6c61\u67d3', u'\u52b3\u8d44\u5173\u7cfb@@\u52b3\u8d44\u5173\u7cfb\u878d\u6d3d\uff0c\u4e0e\u5458\u5de5\u5173\u7cfb\u548c\u7766', u'\u672c\u4f01\u4e1a\u5355\u4f4d\u4ea7\u54c1\u7684\u9500\u552e\u6210\u672c/\u884c\u4e1a\u5185\u5355\u4f4d\u4ea7\u54c1\u7684\u9500\u552e\u6210\u672c@@\u226460%', u'\u4e60\u60ef\u8d2d\u4e70\u540c\u4e00\u54c1\u724c\u4ea7\u54c1\u7684\u5ba2\u6237\u6bd4\u7387@@\u226580%', u'\u804c\u4e1a\u7ecf\u7406\u4eba\u5728\u7ba1\u7406\u5c42\u4e2d\u7684\u5360\u6bd4@@\u226570%', u'\u6700\u8fd1\u4e24\u5e74\u5185\u7ba1\u7406\u4eba\u5458\u7684\u6d41\u5931\u7387@@\u226420%', u'\u672c\u79d1\u4ee5\u4e0a\u4eba\u5458\u5728\u7ba1\u7406\u5c42\u4e2d\u7684\u5360\u6bd4@@\u226570%', u'\u7ba1\u7406\u5c42\u5e73\u5747\u5e74\u9f84@@20-25', u'\u7ba1\u7406\u8005\u5728\u672c\u4f01\u4e1a\u5185\u7684\u5e73\u5747\u4ece\u4e1a\u65f6\u95f4@@\u226510\u5e74', u'\u7ba1\u7406\u8005\u5728\u884c\u4e1a\u5185\u7684\u5e73\u5747\u4ece\u4e1a\u65f6\u95f4@@\u226510\u5e74', u'\u4f01\u4e1a\u8fd1\u4e24\u5e74\u5185\u7684\u6708\u8425\u4e1a\u989d\u5e73\u5747\u73af\u6bd4\u589e\u957f@@\u226510%', u'\u4f01\u4e1a\u6bcf\u5e74\u62d3\u5c55\u8bad\u7ec3\u6216\u805a\u4f1a\u7684\u6b21\u6570@@\u22658\u6b21', u'\u6700\u8fd15\u5e74\u5185\u4f01\u4e1a\u51fa\u73b0\u9053\u5fb7\u98ce\u9669\u4e8b\u4ef6\u7684\u6b21\u6570@@\u22643\u6b21', u'\u7ecf\u8425\u601d\u8def@@\u601d\u8def\u7edf\u4e00\uff08\u4f4e\u98ce\u9669\uff09', u'\u4f5c\u98ce@@\u8c28\u614e\uff08\u4f4e\u98ce\u9669\uff09', u'\u503a\u52a1\u4eba\u7684\u6bcd\u5b50\u516c\u53f8\u8fd0\u8425\u60c5\u51b5@@\u6bcd\u5b50\u516c\u53f8\u7ecf\u8425\u826f\u597d\uff0c\u8fd0\u8f6c\u6b63\u5e38', u'\u4f9b\u5e94\u5546\u6570\u91cf@@\u226516', u'\u7ecf\u9500\u5546\u6570\u91cf@@\u226516', u'\u6838\u5fc3\u6280\u672f\u4eba\u5458\u5728\u672c\u884c\u4e1a\u5e73\u5747\u4ece\u4e1a\u65f6\u95f4@@\u226510\u5e74', u'\u6838\u5fc3\u6280\u672f\u4eba\u5458\u8fd1\u4e24\u5e74\u7684\u6d41\u5931\u7387@@\u226410%', u'\u5927\u4e13\u4ee5\u4e0a\u7684\u5458\u5de5\u5360\u6bd4@@\u226560%', u'\u5458\u5de5\u5728\u672c\u884c\u4e1a\u7684\u5e73\u5747\u4ece\u4e1a\u65f6\u95f4@@\u226510\u5e74', u'\u7ec4\u7ec7\u67b6\u6784@@\u6a21\u62df\u5206\u6563\u5316', u'\u51b3\u7b56\u65b9\u5f0f@@\u6536\u96c6\u610f\u89c1\uff0c\u9886\u5bfc\u51b3\u7b56', u'\u4eba\u4e8b\u7ba1\u7406@@\u6dd8\u6c70\u5236\u5ea6', u'\u53d1\u5c55\u6218\u7565@@\u6709\u5e8f\u6269\u5f20', u'\u540c\u7b49\u552e\u4ef7\u4e0b\u672c\u4f01\u4e1a\u5355\u4f4d\u4ea7\u54c1\u7684\u5e73\u5747\u6210\u672c/\u884c\u4e1a\u5185\u4ea7\u54c1\u5355\u4f4d\u4ea7\u54c1\u7684\u5e73\u5747\u6210\u672c@@\u2264110%', u'\u4f01\u4e1a\u65e5\u5747\u6d41\u52a8\u8d44\u91d1/\u4f01\u4e1a\u65e5\u5747\u5f00\u652f@@\u22655'], '', 1L, datetime.datetime(2015, 7, 28, 15, 31, 50, 754000))
+2015-07-28 16:12:30,895 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\parameter\rcs_parameter.py", line 65, in add_tree_save
-    name = request.form["name"]
-  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
-    raise exceptions.BadRequestKeyError(key)
-BadRequestKeyError: 400: Bad Request
-2015-07-07 08:50:17,842 ERROR exception
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 69, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 104, in open_excel
+    parseModel(sheet,card_id)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 130, in parseModel
+    jyzk+=getColValue(row,ncols)+"@@"+value+","
+TypeError: coercing to Unicode: need string or buffer, float found
+2015-07-28 16:13:49,500 ERROR exception
 Traceback (most recent call last):
-  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\parameter\rcs_parameter.py", line 65, in add_tree_save
-    name = request.form["name"]
-  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\werkzeug\datastructures.py", line 391, in __getitem__
-    raise exceptions.BadRequestKeyError(key)
-BadRequestKeyError: 400: Bad Request
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 69, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 104, in open_excel
+    parseModel(sheet,card_id)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 144, in parseModel
+    Rcs_Application_Shzk("1",'',sczk,'').add()
+TypeError: __init__() takes exactly 6 arguments (5 given)
+2015-07-28 16:46:27,657 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 69, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 104, in open_excel
+    if sheet.name == '经营状态' or sheet.name == '生存状态' or sheet.name == '道德品质' :
+AttributeError: 'tuple' object has no attribute 'name'
+2015-07-28 17:51:16,844 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 69, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 90, in open_excel
+    table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\tools\parseExcelToHtml.py", line 10, in parser
+    return jd.readExcelToHtml(path,index,True).replace("\n", "<br>")
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\jpype\_jclass.py", line 88, in _javaGetAttr
+    raise ex
+AttributeError: 'cn.JXLReadExcel' object has no attribute 'readExcelToHtml'
+2015-07-29 10:08:02,434 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 223, in open_excel
+    arr = xjl_arr[i].split['-']
+TypeError: 'builtin_function_or_method' object has no attribute '__getitem__'
+2015-07-29 10:12:31,931 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 225, in open_excel
+    arr = xjl_arr[i].split['-']
+TypeError: 'builtin_function_or_method' object has no attribute '__getitem__'
+2015-07-29 10:17:50,677 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 224, in open_excel
+    print int(arr[0])
+UnboundLocalError: local variable 'arr' referenced before assignment
+2015-07-29 10:31:19,072 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 228, in open_excel
+    tmp += sheet.row(int(arr[0]))[letters.index(arr[1])].value + "@@"
+TypeError: unsupported operand type(s) for +: 'float' and 'str'
+2015-07-29 10:57:32,207 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 236, in open_excel
+    print str(value.encode('utf-8'))
+AttributeError: 'float' object has no attribute 'encode'
+2015-07-29 11:01:32,470 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 236, in open_excel
+    print str(value.encode('utf-8'))
+AttributeError: 'float' object has no attribute 'encode'
+2015-07-29 11:02:13,017 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 236, in open_excel
+    print str(value.encode('gbk'))
+AttributeError: 'float' object has no attribute 'encode'
+2015-07-29 11:04:54,845 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 234, in open_excel
+    tmp += str(value.encode('gbk')) + "@@"
+AttributeError: 'float' object has no attribute 'encode'
+2015-07-29 11:06:10,686 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 173, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 235, in open_excel
+    tmp += str(value.encode('gbk')) + "@@"
+AttributeError: 'float' object has no attribute 'encode'
+2015-07-29 11:28:21,207 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 174, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 213, in open_excel
+    value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
+ValueError: 'Q18' is not in list
+2015-07-29 12:24:50,562 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 174, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 244, in open_excel
+    parseModel(sheet,card_id)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 314, in parseModel
+    db.session.commit()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 721, in commit
+    self.transaction.commit()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 354, in commit
+    self._prepare_impl()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1818, in flush
+    self._flush(objects)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\util\langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1900, in _flush
+    flush_context.execute()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 525, in execute
+    uow
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\persistence.py", line 64, in save_obj
+    table, insert)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 662, in execute
+    params)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 874, in _execute_context
+    context)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\util\compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 867, in _execute_context
+    context)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\MySQLdb\cursors.py", line 202, in execute
+    self.errorhandler(self, exc, value)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (OperationalError) (1366, "Incorrect string value: '\\xC6\\xE4\\xCB\\xFB\\xD3\\xA6...' for column 'table_value' at row 1") 'INSERT INTO rcs_application_zcfzb (application_id, table_value, table_content, create_user, create_time) VALUES (%s, %s, %s, %s, %s)' (57, '23.0@@444.0@@555.0@@666.0@@1.0@@2.0@@23.0@@42.0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@555.0@@0@@5.0@@0@@-522.0@@0@@33.0@@0@@-522.0@@0@@0@@16.8181818182@@0@@0.0324324324324@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@\xc6\xe4\xcb\xfb\xd3\xa6\xb8\xb6\xd5\xcb\xbf\xee\xb5\xc4\xb9\xb9\xb3\xc9\xa3\xba\xd3\xa6\xb8\xb6\xc6\xb1\xbe\xdd\xa1\xa2\xc6\xe4\xcb\xfb\xd3\xa6\xb8\xb6\xbf\xee\xa1\xa2\xd3\xa6\xb8\xb6\xb9\xa4\xd7\xca\xa1\xa2\xd3\xa6\xb8\xb6\xb8\xa3\xc0\xfb\xb7\xd1\xa1\xa2\xd3\xa6\xb8\xb6\xb9\xc9\xc0\xfb\xa1\xa2\xd3\xa6\xbd\xbb\xcb\xb0\xbd\xf0\xa1\xa2\xd4\xa4\xcc\xe1\xb7\xd1\xd3\xc3\xb5\xc8@@\xb2\xe2\xca\xd41@@\xb2\xe2\xca\xd42@@\xb2\xe2\xca\xd43@@\xb2\xe2\xca\xd44', None, 1L, datetime.datetime(2015, 7, 29, 12, 24, 49, 600000))
+2015-07-29 12:25:49,898 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 174, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 245, in open_excel
+    parseModel(sheet,card_id)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 315, in parseModel
+    db.session.commit()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 721, in commit
+    self.transaction.commit()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 354, in commit
+    self._prepare_impl()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1818, in flush
+    self._flush(objects)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\util\langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1900, in _flush
+    flush_context.execute()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 525, in execute
+    uow
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\persistence.py", line 64, in save_obj
+    table, insert)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 662, in execute
+    params)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 874, in _execute_context
+    context)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\util\compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 867, in _execute_context
+    context)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\MySQLdb\cursors.py", line 202, in execute
+    self.errorhandler(self, exc, value)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (OperationalError) (1366, "Incorrect string value: '\\xC6\\xE4\\xCB\\xFB\\xD3\\xA6...' for column 'table_value' at row 1") 'INSERT INTO rcs_application_zcfzb (application_id, table_value, table_content, create_user, create_time) VALUES (%s, %s, %s, %s, %s)' (58, '23.0@@444.0@@555.0@@666.0@@1.0@@2.0@@23.0@@42.0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@555.0@@0@@5.0@@0@@-522.0@@0@@33.0@@0@@-522.0@@0@@0@@16.8181818182@@0@@0.0324324324324@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@\xc6\xe4\xcb\xfb\xd3\xa6\xb8\xb6\xd5\xcb\xbf\xee\xb5\xc4\xb9\xb9\xb3\xc9\xa3\xba\xd3\xa6\xb8\xb6\xc6\xb1\xbe\xdd\xa1\xa2\xc6\xe4\xcb\xfb\xd3\xa6\xb8\xb6\xbf\xee\xa1\xa2\xd3\xa6\xb8\xb6\xb9\xa4\xd7\xca\xa1\xa2\xd3\xa6\xb8\xb6\xb8\xa3\xc0\xfb\xb7\xd1\xa1\xa2\xd3\xa6\xb8\xb6\xb9\xc9\xc0\xfb\xa1\xa2\xd3\xa6\xbd\xbb\xcb\xb0\xbd\xf0\xa1\xa2\xd4\xa4\xcc\xe1\xb7\xd1\xd3\xc3\xb5\xc8@@\xb2\xe2\xca\xd41@@\xb2\xe2\xca\xd42@@\xb2\xe2\xca\xd43@@\xb2\xe2\xca\xd44', None, 1L, datetime.datetime(2015, 7, 29, 12, 25, 49, 39000))
+2015-07-29 12:29:50,473 ERROR exception
+Traceback (most recent call last):
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\views\mxpg\pldr.py", line 14, in excel_import
+    pldr.excel_import(request)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 174, in excel_import
+    open_excel(sc_local_excel.id,ABS_uri)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 245, in open_excel
+    parseModel(sheet,card_id)
+  File "E:\Workspace\RemoteCreditSystem\trunk\RemoteCreditSystem\logic\mxpg\pldr.py", line 315, in parseModel
+    db.session.commit()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\scoping.py", line 149, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 721, in commit
+    self.transaction.commit()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 354, in commit
+    self._prepare_impl()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 334, in _prepare_impl
+    self.session.flush()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1818, in flush
+    self._flush(objects)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1936, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\util\langhelpers.py", line 58, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\session.py", line 1900, in _flush
+    flush_context.execute()
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 372, in execute
+    rec.execute(self)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 525, in execute
+    uow
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\persistence.py", line 64, in save_obj
+    table, insert)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\orm\persistence.py", line 569, in _emit_insert_statements
+    execute(statement, params)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 662, in execute
+    params)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 761, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 874, in _execute_context
+    context)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 1024, in _handle_dbapi_exception
+    exc_info
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\util\compat.py", line 195, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\base.py", line 867, in _execute_context
+    context)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\sqlalchemy\engine\default.py", line 324, in do_execute
+    cursor.execute(statement, parameters)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\MySQLdb\cursors.py", line 202, in execute
+    self.errorhandler(self, exc, value)
+  File "E:\Workspace\RemoteCreditSystem\trunk\virtualenv32\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (OperationalError) (1366, "Incorrect string value: '\\xC6\\xE4\\xCB\\xFB\\xD3\\xA6...' for column 'table_value' at row 1") 'INSERT INTO rcs_application_zcfzb (application_id, table_value, table_content, create_user, create_time) VALUES (%s, %s, %s, %s, %s)' (59, '23.0@@444.0@@555.0@@666.0@@1.0@@2.0@@23.0@@42.0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@0@@0@@5.0@@0@@555.0@@0@@5.0@@0@@-522.0@@0@@33.0@@0@@-522.0@@0@@0@@16.8181818182@@0@@0.0324324324324@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@0@@\xc6\xe4\xcb\xfb\xd3\xa6\xb8\xb6\xd5\xcb\xbf\xee\xb5\xc4\xb9\xb9\xb3\xc9\xa3\xba\xd3\xa6\xb8\xb6\xc6\xb1\xbe\xdd\xa1\xa2\xc6\xe4\xcb\xfb\xd3\xa6\xb8\xb6\xbf\xee\xa1\xa2\xd3\xa6\xb8\xb6\xb9\xa4\xd7\xca\xa1\xa2\xd3\xa6\xb8\xb6\xb8\xa3\xc0\xfb\xb7\xd1\xa1\xa2\xd3\xa6\xb8\xb6\xb9\xc9\xc0\xfb\xa1\xa2\xd3\xa6\xbd\xbb\xcb\xb0\xbd\xf0\xa1\xa2\xd4\xa4\xcc\xe1\xb7\xd1\xd3\xc3\xb5\xc8@@\xb2\xe2\xca\xd41@@\xb2\xe2\xca\xd42@@\xb2\xe2\xca\xd43@@\xb2\xe2\xca\xd44', None, 1L, datetime.datetime(2015, 7, 29, 12, 29, 49, 650000))
