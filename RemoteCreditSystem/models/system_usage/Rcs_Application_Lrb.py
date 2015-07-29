@@ -8,8 +8,8 @@ class Rcs_Application_Lrb(db.Model):
     __tablename__ = 'rcs_application_lrb'
     id = db.Column(db.Integer, primary_key=True)
     application_id = db.Column(db.Integer)
-    table_value = db.Column(db.String)
-    table_content = db.Column(db.String)
+    table_value = db.Column(db.String(5000))
+    table_content = db.Column(db.BLOB)
     create_user = db.Column(db.Integer)
     create_time = db.Column(db.DateTime)
     

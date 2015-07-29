@@ -8,6 +8,7 @@ from RemoteCreditSystem import app
 from RemoteCreditSystem import db
 from RemoteCreditSystem.config import PER_PAGE
 import RemoteCreditSystem.helpers as helpers
+import json
 
 from RemoteCreditSystem.models import Rcs_Parameter_Tree
 from RemoteCreditSystem.models import Rcs_Parameter_Select
@@ -17,6 +18,9 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Shzk import Rcs_Appl
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Jcjy import Rcs_Application_Jcjy
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Zcfzb import Rcs_Application_Zcfzb
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Lrb import Rcs_Application_Lrb
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Xjll import Rcs_Application_Xjll
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 
 # 模型管理(道德品质)
@@ -34,26 +38,7 @@ def customer_ddpz(type,id):
 #道德品质保存
 @app.route('/customer/customer_ddpz_save/<int:id>', methods=['POST'])
 def customer_ddpz_save(id):     
-	# total = request.form['score_result'] 
-	# remark = request.form['score_stop'] 
-	# score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-	# tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
 
-	# if score:
-	# 	if remark:
-	# 		score.remark=remark
-	# 		score.ddpz_score=0
-	# 		score.total_approve =0
-	# 	else:
-	# 		score.ddpz_score=float('%.2f'% float(total))
-	# 		score.remark=""
-	# 		if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
-	# 			totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
-	# 			for obj in tree:
-	# 				totalScore = totalScore*float(obj.weight)
-	# 			score.total_approve = float('%.2f'% totalScore)
-	# else:
-	#     Rcs_Application_Score(id,float('%.2f'% float(total)),"","","",remark,"").add()
     #道德品质页面form数据保存
 	#form json值
 
@@ -84,25 +69,7 @@ def customer_shzk(type,id):
 #生活状况保存
 @app.route('/customer/customer_shzk_save/<int:id>', methods=['POST'])
 def customer_shzk_save(id):     
-	# total = request.form['score_result'] 
-	# remark = request.form['score_stop'] 
-	# score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-	# tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
-	# if score:
-	#     if remark:
-	#     	score.remark=remark
-	#     	score.shzk_score=0
-	#     	score.total_approve =0
-	#     else:
-	# 		score.shzk_score=float('%.2f'% float(total))
-	# 		score.remark=""
-	# 		if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
-	# 			totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
-	# 			for obj in tree:
-	# 				totalScore = totalScore*float(obj.weight)
-	# 			score.total_approve = float('%.2f'% totalScore)
-	# else:
-	#     Rcs_Application_Score(id,"","","",float('%.2f'% float(total)),remark,"").add()
+
     #生活状况页面form数据保存
 	#form json值
 	form_data = request.form['form_data']
@@ -132,25 +99,7 @@ def customer_jyzk(type,id):
 #经营状况保存
 @app.route('/customer/customer_jyzk_save/<int:id>', methods=['POST'])
 def customer_jyzk_save(id):     
-	# total = request.form['score_result'] 
-	# remark = request.form['score_stop'] 
-	# score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-	# tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
-	# if score:
-	# 	if remark:
-	# 		score.remark=remark
-	# 		score.jyzk_score=0
-	# 		score.total_approve =0
-	# 	else:	
-	# 		score.jyzk_score=float('%.2f'% float(total))
-	# 		score.remark=""
-	# 		if score.ddpz_score and score.hknl_score and score.jyzk_score and score.shzk_score:
-	# 			totalScore = float(score.ddpz_score)*float(score.hknl_score)*float(score.jyzk_score)*float(score.shzk_score)
-	# 			for obj in tree:
-	# 				totalScore = totalScore*float(obj.weight)
-	# 			score.total_approve = float('%.2f'% float(totalScore))  
-	# else:
-	#     Rcs_Application_Score(id,"","",float('%.2f'% float(total)),"",remark,"").add()
+
     #经营状况页面form数据保存
 	#form json值
 	form_data = request.form['form_data']
@@ -374,18 +323,27 @@ def access(id):
 
 #资产负债（小微贷）
 @app.route('/customer/zcfzzk/<int:id>', methods=['GET'])
-def zcfzzk(id):   
-    return render_template("customer/new_zcfzzk.html",id=id)
+def zcfzzk(id):
+	data = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
+	content = ''
+	if data:
+		content = data.table_value
+	return render_template("customer/new_zcfzzk.html",id=id,content=content)
 
 #利润表（小微贷）
 @app.route('/customer/lrb/<int:id>', methods=['GET'])
-def lrb(id):        
-
-    return render_template("customer/new_lrb.html",id=id)
+def lrb(id): 
+	data = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
+	content = ''
+	if data:
+		content = data.table_value       
+	return render_template("customer/new_lrb.html",id=id,content=content)
 
 #现金流量（小微贷）
 @app.route('/customer/xjl/<int:id>', methods=['GET'])
 def xjl(id): 
-
-
-	return render_template("customer/new_xjl.html",id=id)
+	data = Rcs_Application_Xjll.query.filter_by(application_id=id).first()
+	content = ''
+	if data:
+		content = data.table_value
+	return render_template("customer/new_xjl.html",id=id,content=content)
