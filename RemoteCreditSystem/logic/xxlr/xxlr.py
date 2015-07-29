@@ -183,7 +183,7 @@ def compute_hknl_bz(loan_apply_id):
             form_data['B4_1']=0
             form_data['B4_6']=0
         else:
-            form_data['B4_']='%.2f' % ((string.atof(tmp_lrb['E7'])-string.atof(tmp_lrb['E8']))/string.atof(tmp_lrb['E7']))
+            form_data['B4_1']='%.2f' % ((string.atof(tmp_lrb['E7'])-string.atof(tmp_lrb['E8']))/string.atof(tmp_lrb['E7']))
             form_data['B4_6']='%.2f' % (string.atof(tmp_lrb['E22'])/string.atof(tmp_lrb['E7']))
         res = ''
         #保存计算后的form_data
