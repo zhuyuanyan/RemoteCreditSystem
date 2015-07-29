@@ -89,6 +89,9 @@ from jpype import *
 jarpath = os.path.join(_HERE, 'ext_class/ReadExcel.jar')
 jvmArg = "-Djava.class.path=" + jarpath
 startJVM(getDefaultJVMPath(),"-ea",jvmArg)
+print "-----------------------------------1111"
+print getDefaultJVMPath()
+print jarpath
 # shutdownJVM()
     
 #---------------------------------
