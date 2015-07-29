@@ -184,9 +184,12 @@ def excel_import(request):
         
 #读取excel
 def open_excel(excel_id,ABS_uri):
+    print "---------------1"
     card_id = ''
     id=-1
+    print "---------------2"
     data = xlrd.open_workbook(ABS_uri)
+    print "---------------3"
     #sheetCount = len(data.sheets())#返回共多少sheet
     for index,sheet in enumerate(data.sheets()):
         #print sheet.name #sheet名称
@@ -196,6 +199,7 @@ def open_excel(excel_id,ABS_uri):
             table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
             SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['建议']['name'],excel_dict['建议']['code']).add()
             break
+    print "---------------4"
     if id != -1:     
         for d,x in excel_dict.items():
             #print "key:"+d+",value:"+x
@@ -241,9 +245,11 @@ def open_excel(excel_id,ABS_uri):
                             Rcs_Application_Xjll(id,tmp).add()
                             
                         break
+    print "---------------5"
     for index,sheet in enumerate(data.sheets()):
         if sheet.name == '经营状态' or sheet.name == '生存状态' or sheet.name == '道德品质' :
             parseModel(sheet,card_id)
+    print "---------------6"
                 
 #执行sql
 def executeSql(sql):
