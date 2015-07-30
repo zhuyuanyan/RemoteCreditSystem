@@ -2,7 +2,7 @@
 import hashlib
 
 from RemoteCreditSystem import User
-from RemoteCreditSystem.models import UserRole,Rcs_Access_Right
+from RemoteCreditSystem.models import UserRole,Rcs_Access_Right,Indiv_Brt_Place
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
@@ -165,9 +165,54 @@ def new_jjfa():
 #新增进件保存页面
 @app.route('/jjrwfa/save_jjfa', methods=['POST'])
 def save_jjfa():
-    name = request.form['name']
-    card_id = request.form['card_id']
-    db.engine.execute("insert into rcs_application_info(customer_name,card_id,approve_type,create_user) values('"+name+"','"+card_id+"','1',"+str(current_user.id)+")")
+    try:
+        name = request.form['name']
+        card_id = request.form['card_id']
+        index_id = request.form['index_id']
+        bank_id = request.form['bank_id']
+        place_all = ''
+        place_all_name = ''
+        #联动1
+        regPermResidence_1 = request.form['regPermResidence_1']
+        indiv = Indiv_Brt_Place.query.filter_by(type_code=regPermResidence_1.split('_')[1]).first()
+        place_all_name+=indiv.type_name
+        place_all+=regPermResidence_1.split('_')[1]
+        place = Indiv_Brt_Place.query.filter_by(parent_code=regPermResidence_1.split('_')[1]).first()
+        if place:
+            #联动2
+            regPermResidence_2 = request.form['regPermResidence_2']
+            indiv_1 = Indiv_Brt_Place.query.filter_by(type_code=regPermResidence_2.split('_')[1]).first()
+            place_all+="|"+regPermResidence_2.split('_')[1]
+            place_all_name+=indiv_1.type_name
+            place_2 = Indiv_Brt_Place.query.filter_by(parent_code=regPermResidence_2.split('_')[1]).first()
+            if place_2:
+                regPermResidence_3 = request.form['regPermResidence_3']
+                indiv_2 = Indiv_Brt_Place.query.filter_by(type_code=regPermResidence_3.split('_')[1]).first()
+                place_all+="|"+regPermResidence_3.split('_')[1]
+                place_all_name+=indiv_2.type_name
+ 
+        org_id = request.form['org_id']
+        industry_id = request.form['industry_id']
+        district_id = request.form['district_id']
+        product_id = request.form['product_id']
+        approve_limit = request.form['approve_limit']
+        manager_id = request.form['manager_id']
+        sh_user = request.form['sh_user']
+        sp_user = request.form['sp_user']
+        #进件状态为1
+        approve_type = '1'
+        #进件模型类型,未定义
+        model_type=0
+        Rcs_Application_Info(index_id,name,card_id,product_id,approve_limit,org_id,place_all_name,place_all,industry_id,district_id,manager_id,sh_user,sp_user,approve_type,model_type).add()
+        db.session.commit()
+        # 消息闪现
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
 
     return redirect("/jjrwfa/jjfa/1")
 
@@ -305,166 +350,6 @@ def khzl_hk(id):
 
     return render_template("customer/hknl.html",result=result,id=id,appResult=appResult,jcjy=jcjy)
 
-
-
-# #资产负债---保存
-# @app.route('/khzldy/zcfzzk_save/<int:id>', methods=['POST'])
-# def zcfzzk_save(id):   
-#     zcfzl = request.form['zcfzl']   
-#     ldbl = request.form['ldbl']   
-#     sdbl = request.form['sdbl']
-#     #交叉检验所需年营业额
-#     yye3 = request.form['yye3']
-#     #交叉检验所需存货检验
-#     yye10 = request.form['yye10']
-#     yye11 = request.form['yye11']
-#     #存货总额
-#     value_1 = request.form['value_19']
-#     #总资产
-#     value_2 = request.form['value_29']
-#     #流动资产总和
-#     value_3 = request.form['value_22']
-#     #实际权益
-#     value_37 = request.form['value_37']
-#     result = Rcs_Application_Result.query.filter_by(application_id=id).first()
-#     if result:
-#         result.zcfzl=zcfzl
-#         result.ldbl=ldbl
-#         result.sdbl=sdbl
-#         result.value_1=value_1
-#         result.value_2=value_2
-#         result.value_3=value_3
-#     else:
-#         Rcs_Application_Result(id,zcfzl,ldbl,sdbl,value_1,value_2,value_3,"","","").add()
-#     #交叉检验
-#     result1 = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
-#     if result1:
-#         result1.value3=yye3
-#         result1.value10=yye10
-#         result1.value11=yye11
-#         result1.value15=value_37
-#     else:
-#         Rcs_Application_Jcjy(id,"","",yye3,"","","","","","",yye10,yye11,"","","",value_37,"","","").add()
-    
-#     #资产负债表页面form数据保存
-#     #form json值
-#     dataTotal = request.form['dataTotal']
-#     zcfzbData = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
-#     if zcfzbData:
-#         zcfzbData.value_1=dataTotal
-#     else:
-#         Rcs_Application_Zcfzb(id,dataTotal,'').add()
-
-#     info = Rcs_Application_Info.query.filter_by(id=id).first()
-#     if info:
-#         #设置为传统模型
-#         info.model_type=1
-#     db.session.commit()
-#     return redirect("/khzldy/zcfzzk/"+str(id))
-
-
-
-# #利润表--保存
-# @app.route('/khzldy/lrb_save/<int:id>', methods=['POST'])
-# def lrb_save(id):   
-#     #存货周转率    
-#     chzzl = request.form['chzzl']
-#     if not chzzl:
-#         chzzl=0
-#     #总资产周转率
-#     zzczzl = request.form['zzczzl']
-#     if not zzczzl:
-#         zzczzl=0
-#     #净利润
-#     value = request.form['value_13']
-#     value_1 = request.form['yye1']
-#     value_2 = request.form['yye2']
-#     value_4 = request.form['yye4']
-#     value_6 = request.form['yye6']
-#     value_7 = request.form['yye7']
-#     value_8 = request.form['yye8']
-#     value_9 = request.form['yye9']
-#     value_13 = request.form['yye13']
-#     value_17 = request.form['yye17']
-#     value_18 = request.form['yye18']
-#     #还款能力结果表
-#     appResult = Rcs_Application_Result.query.filter_by(application_id=id).first()
-#     if not appResult:
-#         Rcs_Application_Result(id,"","","","","","",chzzl,zzczzl,value_13).add()
-#     else:
-#         appResult.chzzl=chzzl
-#         appResult.zzczzl=zzczzl
-#         appResult.value_13=value
-
-#     #交叉检验表
-#     jcjy = Rcs_Application_Jcjy.query.filter_by(application_id=id).first()
-#     if jcjy:
-#         jcjy.value1=value_1
-#         jcjy.value2=value_2
-#         jcjy.value4=value_4
-#         jcjy.value6=value_6
-#         jcjy.value7=value_7
-#         jcjy.value8=value_8
-#         jcjy.value9=value_9
-#         jcjy.value13=value_13
-#         jcjy.value17=value_17
-#         jcjy.value18=value_18
-#     else:
-#         Rcs_Application_Jcjy(id,value_1,value_2,"",value_4,"",value_6,value_7,value_8,value_9,"","","",value_13,"","","",value_17,value_18).add()
-
-#     #利润表页面form数据保存
-#     #form json值
-#     dataTotal = request.form['dataTotal']
-#     dataTotalSelect = request.form['dataTotalSelect']
-#     lrbData = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
-#     if lrbData:
-#         lrbData.value_1=dataTotal
-#         lrbData.value_2=dataTotalSelect
-#     else:
-#         Rcs_Application_Lrb(id,dataTotal,dataTotalSelect).add()
-
-#     #保存传统还款能力分值(月可支)
-#     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
-#     if score:
-#         score.month_profit = float('%.2f'% float(value_17))
-#     else:
-#         Rcs_Application_Score(id,"","","","","","",float('%.2f'% float(value_17))).add()
-
-#     info = Rcs_Application_Info.query.filter_by(id=id).first()
-#     if info:
-#         #设置为传统模型
-#         info.model_type=1
-#     db.session.commit()
-#     return redirect("khzldy/lrb/"+str(id))
-
-
-# #现金流量--保存
-# @app.route('/khzldy/xjll_save/<int:id>', methods=['POST'])
-# def xjll_save(id):  
-#     Rcs_Application_Xjll.query.filter_by(application_id=id).delete()
-#     qcxj = request.form['qcxj']
-#     jyxxjlr = request.form['jyxxjlr']   
-#     jyxxjlc = request.form['jyxxjlc']   
-#     jyxjjll = request.form['jyxjjll']   
-#     tzxjlr = request.form['tzxjlr']   
-#     tzxjlc = request.form['tzxjlc']   
-#     tzxjjll = request.form['tzxjjll']   
-#     rzxjlr = request.form['rzxjlr']   
-#     rzxjlc = request.form['rzxjlc']   
-#     rzxjjll = request.form['rzxjjll']   
-#     qmxj = request.form['qmxj']   
-#     qcqysd = request.form['qcqysd']   
-#     qcqyhj = request.form['qcqyhj']   
-#     fxqjsr = request.form['fxqjsr']   
-#     qtsr = request.form['qtsr']   
-#     sz = request.form['sz']   
-#     dxzchj = request.form['dxzchj']   
-#     zj = request.form['zj']   
-#     bz = request.form['bz']   
-#     bwzc = request.form['bwzc']   
-#     Rcs_Application_Xjll(id,qcxj,jyxxjlr,jyxxjlc,jyxjjll,tzxjlr,tzxjlc,tzxjjll,rzxjlr,rzxjlc,rzxjjll,qmxj,qcqysd,qcqyhj,fxqjsr,qtsr,sz,dxzchj,zj,bz,bwzc).add()
-#     db.session.commit()
-#     return redirect("/khzldy/xjll/"+str(id))
 
 
 @app.route('/zjzxpggl/jjrw', methods=['GET'])

@@ -41,6 +41,50 @@
 					<td class="table-label" style="width:20%">身份证号码/营业执照号码</td>
 					<td><input type="text" name="card_id"  class="validate[required,custom[chinaIdLoose]]"/></td>					
 				</tr>
+				<tr>
+					<td class="table-label">客户索引号</td>
+					<td><input type="text" name="index_id" class="validate[required]"/></td>
+					<td class="table-label">进件银行标识</td>
+					<td><input type="text" name="bank_id"  class="validate[required]"/></td>					
+				</tr>
+				<tr>
+					<td><label>所属区域:</label></td>
+	              	<td colspan="3">
+		              	<select id="regPermResidence_1" name="regPermResidence_1" style="width:20%;margin:3px;" onchange="change_regPermResidence_1(this.value);">
+		              	<script>document.write(js.lang.String.decodeHtml('{{"regPermResidence_1"|dynDict("","")}}'))</script>
+		              	</select>
+		              	<select id="regPermResidence_2" name="regPermResidence_2" style="width:20%;margin:3px;" onchange="change_regPermResidence_2(this.value);">
+		              	<script>document.write(js.lang.String.decodeHtml('{{"regPermResidence_2"|dynDict("","")}}'))</script>
+		              	</select>
+		              	<select id="regPermResidence_3" name="regPermResidence_3" style="width:20%;margin:3px;">
+		              	<script>document.write(js.lang.String.decodeHtml('{{"regPermResidence_3"|dynDict("","")}}'))</script>
+		              	</select>
+	              	</td>				
+				</tr>
+				<tr>
+					<td class="table-label">进件机构标识</td>
+					<td><input type="text" name="org_id" class="validate[required]"/></td>
+					<td class="table-label">进件行业标识</td>
+					<td><input type="text" name="industry_id"  class="validate[required]"/></td>					
+				</tr>
+				<tr>
+					<td class="table-label">进件商圈标识</td>
+					<td><input type="text" name="district_id" class="validate[required]"/></td>
+					<td class="table-label">进件产品标识</td>
+					<td><input type="text" name="product_id"  class="validate[required]"/></td>					
+				</tr>
+				<tr>
+					<td class="table-label">拟授信额度</td>
+					<td><input type="text" name="approve_limit" class="validate[required]"/>元</td>
+					<td class="table-label">客户经理</td>
+					<td><input type="text" name="manager_id"  class="validate[required]"/></td>					
+				</tr>
+				<tr>
+					<td class="table-label">审核人</td>
+					<td><input type="text" name="sh_user" class="validate[required]"/></td>
+					<td class="table-label">审批人</td>
+					<td><input type="text" name="sp_user"  class="validate[required]"/></td>					
+				</tr>
 				
 			</table>
 			<div class="pagebar">			
@@ -52,6 +96,9 @@
 		</div>
 	</form>
 		<script type="text/javascript">
+			//户籍所在地
+			var indiv_brt_place_array2 = new Array();//用来保存为显示的select元素
+			var indiv_brt_place_array3 = new Array();//用来保存为显示的select元素
 			$(document).ready(function(){
 			//前端验证
 			$('#form_id').validationEngine();
@@ -70,7 +117,41 @@
 					submitFlag = true;
 				}
 			});
+
+
+			//户籍所在地
+			$("#regPermResidence_2 option").each(function(){ //遍历全部option
+				indiv_brt_place_array2.push($(this));
+		    });
+			$("#regPermResidence_3 option").each(function(){ //遍历全部option
+				indiv_brt_place_array3.push($(this));
+		    });
 		});
+
+			//户籍所在地
+			function change_regPermResidence_1(objval){
+				$("#regPermResidence_2").empty();
+				$.each(indiv_brt_place_array2,function(n,opt) { 
+					if(opt.val().split("_")[0] == objval.split("_")[1]){
+						$("#regPermResidence_2").append(opt);
+					}
+				});
+				$("#regPermResidence_2").get(0).selectedIndex = 0;
+
+				
+				var tmp = $("#regPermResidence_2 option:first");//IE7
+				change_regPermResidence_2(tmp.val());
+			}
+			function change_regPermResidence_2(objval){
+				$("#regPermResidence_3").empty();
+				$.each(indiv_brt_place_array3,function(n,opt) {  
+					if(opt.val().split("_")[0] == objval.split("_")[1]){
+						$("#regPermResidence_3").append(opt);
+					}
+				});
+				$("#regPermResidence_3").get(0).selectedIndex = 0;
+		
+	}
 		</script>
 	</body>
 </html>
