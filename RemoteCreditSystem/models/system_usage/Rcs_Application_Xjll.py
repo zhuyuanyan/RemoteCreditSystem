@@ -14,9 +14,10 @@ class Rcs_Application_Xjll(db.Model):
     create_user = db.Column(db.Integer)
     create_time = db.Column(db.DateTime)
     
-    def __init__(self, application_id,table_value):
+    def __init__(self, application_id,table_value,table_content):
         self.application_id = application_id
         self.table_value = table_value
+        self.table_content = table_content
         self.create_user = current_user.id
         self.create_time = datetime.datetime.now()
    
