@@ -36,7 +36,7 @@ excel_dict = {
                     '资产负债':{'name':'资产','code':32},
                     '利润简表':{'name':'利润','code':64},
                     '标准利润表':{'name':'标准利润','code':128},
-                    '现金流':{'name':'现金','code':256},
+                    '现金流量表':{'name':'现金','code':256},
                     '交叉检验':{'name':'交叉','code':512},
                     '点货单':{'name':'点货','code':1024},
                     '固定资产':{'name':'固资','code':2048},
@@ -161,8 +161,8 @@ def excel_import(request):
         f.filename = f_new_name
         if not os.path.exists(os.path.join(LOCALEXCEL_FOLDER_ABS,str(current_user.id))):
             os.mkdir(os.path.join(LOCALEXCEL_FOLDER_ABS,str(current_user.id)))
-        ABS_uri = os.path.join(LOCALEXCEL_FOLDER_ABS,'%d\\%s' % (current_user.id,f.filename))
-        REL_uri = os.path.join(LOCALEXCEL_FOLDER_REL,'%d\\%s' % (current_user.id,f.filename))
+        ABS_uri = os.path.join(LOCALEXCEL_FOLDER_ABS,'%d/%s' % (current_user.id,f.filename))
+        REL_uri = os.path.join(LOCALEXCEL_FOLDER_REL,'%d/%s' % (current_user.id,f.filename))
         
         #上传
         f.save(ABS_uri)
@@ -184,75 +184,68 @@ def excel_import(request):
         
 #读取excel
 def open_excel(excel_id,ABS_uri):
-    print "---------------1"
-    card_id = ''
-    id=-1
-    print "---------------2"
-    data = xlrd.open_workbook(ABS_uri)
-    print "---------------3"
-    #sheetCount = len(data.sheets())#返回共多少sheet
-    for index,sheet in enumerate(data.sheets()):
-        print "---------------4"
-        #print sheet.name #sheet名称
-        if sheet.name.find("建议") != -1:
-            print "---------------5"
-            id = Genrcs_application_info(sheet)
-            card_id = sheet.row(14)[6].value
-            print "---------------9"
-            table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-            print "---------------10"
-            SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['建议']['name'],excel_dict['建议']['code']).add()
-            print "---------------11"
-            break
-    print "---------------12"
-    if id != -1:     
-        for d,x in excel_dict.items():
-            #print "key:"+d+",value:"+x
-            if d != '建议':
-                for index,sheet in enumerate(data.sheets()):
-                    #print sheet.name #sheet名称
-                    if sheet.name == d:
-                        table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
-                        SC_Excel_Table_Content(id,excel_id,table_content,excel_dict[d]['name'],excel_dict[d]['code']).add()
-                        
-                        #读数据
-                        tmp = ''
-                        if sheet.name == '资产负债':
-                            for i in range(0, len(zcfcb_arr)):
-                                arr = zcfcb_arr[i].split('-')
-                                value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
-                                if value:
-                                    tmp += str(value).encode('utf-8') + "@@"
-                                else:
-                                    tmp += "0@@"
-                            tmp = tmp[0:len(tmp)-2]
-                            Rcs_Application_Zcfzb(id,tmp).add()
-                        if sheet.name == '利润简表':
-                            for i in range(0, len(lrb_arr)):
-                                arr = lrb_arr[i].split('-')
-                                value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
-                                if value:
-                                    tmp += str(value).encode('utf-8') + "@@"
-                                else:
-                                    tmp += "0@@"
-                            tmp = tmp[0:len(tmp)-2]
-                            Rcs_Application_Lrb(id,tmp).add()
-                        if sheet.name == '现金流':
-                            for i in range(0, len(xjl_arr)):
-                                arr = xjl_arr[i].split('-')
-                                value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
-                                if value:
-                                    tmp += str(value).encode('utf-8') + "@@"
-                                else:
-                                    tmp += "0@@"
-                            tmp = tmp[:-2]
-                            Rcs_Application_Xjll(id,tmp).add()
-                            
-                        break
-    print "---------------13"
-    for index,sheet in enumerate(data.sheets()):
-        if sheet.name == '经营状态' or sheet.name == '生存状态' or sheet.name == '道德品质' :
-            parseModel(sheet,card_id)
+    try:
+      card_id = ''
+      id=-1
+      data = xlrd.open_workbook(ABS_uri)
+      #sheetCount = len(data.sheets())#返回共多少sheet
+      for index,sheet in enumerate(data.sheets()):
+          #print sheet.name #sheet名称
+          if sheet.name.find("建议") != -1:
+              id = Genrcs_application_info(sheet)
+              card_id = sheet.row(14)[6].value
+              table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+              SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['建议']['name'],excel_dict['建议']['code']).add()
+              break
+      if id != -1:     
+          for d,x in excel_dict.items():
+              #print "key:"+d+",value:"+x
+              if d != '建议':
+                  for index,sheet in enumerate(data.sheets()):
+                      #print sheet.name #sheet名称
+                      if sheet.name == d:
+                          table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+                          SC_Excel_Table_Content(id,excel_id,table_content,excel_dict[d]['name'],excel_dict[d]['code']).add()
+                          
+                          #读数据
+                          tmp = ''
+                          if sheet.name == '资产负债':
+                              for i in range(0, len(zcfcb_arr)):
+                                  arr = zcfcb_arr[i].split('-')
+                                  value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
+                                  if value:
+                                      tmp += str(value).encode('utf-8') + "@@"
+                                  else:
+                                      tmp += "0@@"
+                              tmp = tmp[0:len(tmp)-2]
+                              Rcs_Application_Zcfzb(id,tmp,'').add()
+                          if sheet.name == '利润简表':
+                              for i in range(0, len(lrb_arr)):
+                                  arr = lrb_arr[i].split('-')
+                                  value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
+                                  if value:
+                                      tmp += str(value).encode('utf-8') + "@@"
+                                  else:
+                                      tmp += "0@@"
+                              tmp = tmp[0:len(tmp)-2]
+                              Rcs_Application_Lrb(id,tmp,'').add()
+                          if sheet.name == '现金流':
+                              for i in range(0, len(xjl_arr)):
+                                  arr = xjl_arr[i].split('-')
+                                  value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
+                                  if value:
+                                      tmp += str(value).encode('utf-8') + "@@"
+                                  else:
+                                      tmp += "0@@"
+                              tmp = tmp[:-2]
+                              Rcs_Application_Xjll(id,tmp,'').add()
+                              
+                          break
+      for index,sheet in enumerate(data.sheets()):
+          if sheet.name == '经营状态' or sheet.name == '生存状态' or sheet.name == '道德品质' :
+              parseModel(sheet,card_id)
+    except:
+      logger.exception('exception')
                 
 #执行sql
 def executeSql(sql):
@@ -262,12 +255,9 @@ def executeSql(sql):
     
 #进件表
 def Genrcs_application_info(sheet):
-    print "---------------6"
     customer_name = sheet.row(14)[1].value
     credentials_no = sheet.row(14)[6].value
-    print "---------------7"
     genSql = sql.sql_rcs_application_info.substitute(customer_name=customer_name,card_id=credentials_no,create_user=current_user.id,create_time=datetime.datetime.now())
-    print "---------------8"
     return executeSql(genSql)
 
 #读取数据

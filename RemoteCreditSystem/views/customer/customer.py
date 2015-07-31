@@ -1,6 +1,6 @@
 # coding:utf-8
 import hashlib
-
+import base64
 from RemoteCreditSystem import User
 from flask import request, render_template,flash,redirect
 from flask.ext.login import login_user, logout_user, current_user, login_required
@@ -326,24 +326,108 @@ def access(id):
 def zcfzzk(id):
 	data = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
 	content = ''
+	table_content=''
 	if data:
-		content = data.table_value
-	return render_template("customer/new_zcfzzk.html",id=id,content=content)
+		if data.table_content:
+			table_content = base64.b64decode(data.table_content).decode("utf-8")
+		else:
+			content = data.table_value
+	return render_template("customer/new_zcfzzk.html",id=id,content=content,table_content=table_content)
+
+#资产负债保存（小微贷）
+@app.route('/customer/zcfzzk_save/<int:id>', methods=['POST'])
+def zcfzzk_save(id):
+	try:
+		content = request.form['content']
+		data = Rcs_Application_Zcfzb.query.filter_by(application_id=id).first()
+		if data:
+			data.table_content = content
+		else:
+			Rcs_Application_Zcfzb(id,'',content).add()
+		info = Rcs_Application_Info.query.filter_by(id=id).first()
+		if info:
+		    #设置为小微贷模型
+		    info.model_type=1
+		db.session.commit()
+
+	except:
+	    # 回滚
+	    db.session.rollback()
+	    logger.exception('exception')
+
+	return redirect('/customer/zcfzzk/'+str(id))
 
 #利润表（小微贷）
 @app.route('/customer/lrb/<int:id>', methods=['GET'])
 def lrb(id): 
 	data = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
 	content = ''
+	table_content=''
 	if data:
-		content = data.table_value       
-	return render_template("customer/new_lrb.html",id=id,content=content)
+		if data.table_content:
+			table_content = base64.b64decode(data.table_content).decode("utf-8")
+		else:
+			content = data.table_value     
+	return render_template("customer/new_lrb.html",id=id,content=content,table_content=table_content)
+#利润表保存（小微贷）
+@app.route('/customer/lrb_save/<int:id>/<value>', methods=['POST'])
+def lrb_save(id,value):
+	try:
+		content = request.form['content']
+		data = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
+		if data:
+			data.table_content = content
+		else:
+			Rcs_Application_Lrb(id,'',content).add()
+		#获取标准还款能力数据
+		score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+		if score:
+		    score.month_profit = float(value)
+		else:
+		    Rcs_Application_Score(id,'','','','','','',value).add()
+		info = Rcs_Application_Info.query.filter_by(id=id).first()
+		if info:
+		    #设置为小微贷模型
+		    info.model_type=1
+		db.session.commit()
+	except:
+	    # 回滚
+	    db.session.rollback()
+	    logger.exception('exception')
+
+	return redirect('/customer/lrb/'+str(id))
 
 #现金流量（小微贷）
 @app.route('/customer/xjl/<int:id>', methods=['GET'])
 def xjl(id): 
 	data = Rcs_Application_Xjll.query.filter_by(application_id=id).first()
 	content = ''
+	table_content=''
 	if data:
-		content = data.table_value
-	return render_template("customer/new_xjl.html",id=id,content=content)
+		if data.table_content:
+			table_content = base64.b64decode(data.table_content).decode("utf-8")
+		else:
+			content = data.table_value    
+	return render_template("customer/new_xjl.html",id=id,content=content,table_content=table_content)
+
+#现金流量（小微贷）
+@app.route('/customer/xjl_save/<int:id>', methods=['POST'])
+def xjl_save(id):
+	try:
+		content = request.form['content']
+		data = Rcs_Application_Xjll.query.filter_by(application_id=id).first()
+		if data:
+			data.table_content = content
+		else:
+			Rcs_Application_Xjll(id,'',content).add()
+		info = Rcs_Application_Info.query.filter_by(id=id).first()
+		if info:
+		    #设置为小微贷模型
+		    info.model_type=1
+		db.session.commit()
+	except:
+	    # 回滚
+	    db.session.rollback()
+	    logger.exception('exception')
+
+	return redirect('/customer/xjl/'+str(id))
