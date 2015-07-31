@@ -13,12 +13,9 @@
 			
 		</style>
 	</head>
-	<body>
+	<body onload="setTimeOut();">
 		<div class="position">
 			当前位置：<span>进件任务分案 / 进件分案</span>
-		</div>
-		<div class="pageTitle">
-			进件分案
 		</div>
 		{%- with messages = get_flashed_messages(with_categories=true) %}
 		  	{%- if messages %}
@@ -29,6 +26,9 @@
 	    	{%- endfor %}
 		  	{%- endif %}
 		{%- endwith %}
+		<div class="pageTitle">
+			进件分案
+		</div>
 
 		<div class="content">
 			<form id="tests" action="/jjrwfa/jjfa/1" method="POST">	
@@ -58,10 +58,11 @@
 					<col width="5%" />
 					<col width="5%" />
 					<col width="10%" />
-					<col width="5%" />
+					<col />
+					<col />
 				</colgroup>
 				<tr>
-					<th width="50"></th>
+					<th></th>
 					<th>客户名称</th>
 					<th>证件号码</th>
 					<th>产品名称</th>
@@ -87,7 +88,8 @@
 					<col width="5%" />
 					<col width="5%" />
 					<col width="10%" />
-					<col width="5%" />
+					<col />
+					<col />
 				</colgroup>
 				{%- for obj in appList.items%}
 				<tr onclick="checkTable(this)">

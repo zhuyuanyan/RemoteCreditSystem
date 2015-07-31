@@ -2,10 +2,21 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
-		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
-		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
-		<script src="../../static/js/jquery-1.7.2.min.js"></script>
-		<script src="../../static/js/index.js"></script>
+		<link href="/static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="/static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="/static/js/jquery-1.7.2.min.js"></script>
+		<script src="/static/js/index.js"></script>
+		<script src="/static/js/base64.js"></script>
+		<script src="/static/js/util.js"></script>
+		
+		<script src="/static/js/Date.js"></script>
+		<script src="/static/js/Stack.js"></script>
+		<script src="/static/js/Tokanizer.js"></script>
+		<script src="/static/js/Evaluator.js"></script>
+		<!--验证样式-->
+		<link rel="stylesheet" href="/static/css/validationEngine.jquery.css">
+		<script src="/static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="/static/js/jquery.validationEngine.js"></script>	
 		<style type="text/css">
 			input[type=text]{width:100px;}
 			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
@@ -14,10 +25,52 @@
 			.addTable th{text-align:center;border:1px solid #ddd;background:#a4daff;font-size:13px;}
 			input[type=text].addinput {width:80%;}
 			.myTable td{font-size:13px;}
+			.tdBgClr{background-color: #87CEFA}
+			input:read-only{background-color: #D9D9D9;}
 		</style>
+		<script type="text/javascript">
+			var rules = [
+						'F5=F6+F7',
+			            'F4=F5+F8+F9+F10',
+			            'F12=F13+F14+F15+F16',
+			            'F17=F4+F11+F12',
+			            'O8=O9+O10+O11',
+			            'O4=O5+O6+O7+O8',
+			            'O15=O4+O12+O13+O14',
+			            'O16=F17-O15',
+			            'O17=O16+O15',
+			            'H18=O15/F17',
+			            'L18=F4/O4'
+			            ]
+			var exp = new Expression("");
+
+			function Convert(strExp)
+			{
+			    if (strExp == null || strExp == undefined)
+			    {
+			        alert ("No expression is specified!");
+			        return false;
+			    }
+
+			    exp.Expression(strExp);
+			    return exp.Parse();
+			}
+
+			function Compute(strExp)
+			{
+			    exp.Expression(strExp);
+			    return exp.Evaluate();
+			}
+		</script>
 	</head>
-	<body>	
-		<form class="" id="iframeForm" action="" method="POST">
+	<body>
+		{%- if table_content != '' %}
+			<script type="text/javascript">
+				var content = '{{table_content}}'; 
+				document.write('<form id="form_id" class="" action="" method="POST">'+unescape(content));
+			</script>
+		{%- else %}
+		<form class="" id="form_id" action="">
 <!--*****************************资产**********************************-->			
 			<table class="myTable">
 				<caption>资产负债表</caption>
@@ -32,136 +85,136 @@
 					<col width="20%">
 				</colgroup>
 				<tr>
-					<td colspan="3"><b>资  产</b></td>
-					<td><b>检验方式</b></td>
-                    <td colspan="3"><b>负  债</b></td>
-					<td><b>检验方式</b></td>
+					<td colspan="3" class="tdBgClr"><b>资  产</b></td>
+					<td class="tdBgClr"><b>检验方式</b></td>
+                    <td colspan="3" class="tdBgClr"><b>负  债</b></td>
+					<td class="tdBgClr"><b>检验方式</b></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>流动资产</b></td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>流动资产</b></td>
+					<td class="tdCenter"><input type="text" name="F4" class="" value="0" readonly/></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>短期负债</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>短期负债</b></td>
+                    <td><input type="text" name="O4" class="" value="0" /readonly></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>现金及银行存款</b></td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>现金及银行存款</b></td>
+					<td><input type="text" name="F5" class="" value="0" readonly/></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>应付账款</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>应付账款</b></td>
+                    <td><input type="text" name="O5" class="" value="0" /></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2">现金/支票</td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">现金/支票</td>
+					<td><input type="text" name="F6" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>其他应付账款</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>其他应付账款</b></td>
+                    <td><input type="text" name="O6" class="" value="0" /></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2">银行存款</td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">银行存款</td>
+					<td><input type="text" name="F7" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>预收账款</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>预收账款</b></td>
+                    <td><input type="text" name="O7" class="" value="0" /></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>应收账款</b></td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>应收账款</b></td>
+					<td><input type="text" name="F8" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>短期贷款</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>短期贷款</b></td>
+                    <td><input type="text" name="O8" class="" value="0" /readonly></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>预付账款</b></td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>预付账款</b></td>
+					<td><input type="text" name="F9" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2">信用卡透支</td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">信用卡透支</td>
+                    <td><input type="text" name="O9" class="" value="0" /></td>
                    <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>存货</b></td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>存货</b></td>
+					<td><input type="text" name="F10" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2">其他机构贷款</td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">其他机构贷款</td>
+                    <td><input type="text" name="O10" class="" value="0" /></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>固定资产</b></td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>固定资产</b></td>
+					<td><input type="text" name="F11" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2">个人借款</td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">个人借款</td>
+                    <td><input type="text" name="O11" class="" value="0" /></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>其他资产</b></td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>其他资产</b></td>
+					<td><input type="text" name="F12" class="" value="0" readonly/></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>长期负债</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>长期负债</b></td>
+                    <td><input type="text" name="O12" class="" value="0" /></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2">待摊租金</td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">待摊租金</td>
+					<td><input type="text" name="F13" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>其他负债</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>其他负债</b></td>
+                    <td><input type="text" name="O13" class="" value="0" /></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2">预付押金</td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">预付押金</td>
+					<td><input type="text" name="F14" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>或有负债（为他人担保余额）</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>或有负债（为他人担保余额）</b></td>
+                    <td><input type="text" name="O14" class="" value="0" /></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2">其他预付账款</td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">其他预付账款</td>
+					<td><input type="text" name="F15" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>负债总计</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>负债总计</b></td>
+                    <td><input type="text" name="O15" class="" value="0" readonly/></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2">其他</td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr">其他</td>
+					<td><input type="text" name="F16" class="" value="0" /></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>所有者权益</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>所有者权益</b></td>
+                    <td><input type="text" name="O16" class="" value="0" readonly/></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>资产总计</b></td>
-					<td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>资产总计</b></td>
+					<td><input type="text" name="F17" class="" value="0" readonly/></td>
 					<td><input type="text" name=""  value="" /></td>
-					<td colspan="2"><b>负债和所有者权益总计</b></td>
-                    <td><input type="text" name="" class="validate[required,custom[number]]" value="0" /></td>
+					<td colspan="2" class="tdBgClr"><b>负债和所有者权益总计</b></td>
+                    <td><input type="text" name="O17" class="" value="0" readonly/></td>
                     <td><input type="text" name=""  value="" /></td>
 				</tr>
 			
 				<tr>
-					<td><b>借款金额/所有者权益</b></td>
+					<td class="tdBgClr"><b>借款金额/所有者权益</b></td>
 					<td><input type="text" name=""  value="0" /></td>
-					<td><b>资产负债率</b></td>
-                    <td><input type="text" name=""  value="0" /></td>
-                    <td><b>流动比率</b></td>
-                    <td><input type="text" name=""  value="0" /></td>
+					<td class="tdBgClr"><b>资产负债率</b></td>
+                    <td><input type="text" name="H18"  value="0" readonly/></td>
+                    <td class="tdBgClr"><b>流动比率</b></td>
+                    <td><input type="text" name="L18"  value="0" readonly/></td>
                     <td><input type="text" name=""  value="0" /></td>
                     <td><input type="text" name=""  value="0" /></td>
 				</tr>
 				<tr>
-					<td colspan="8"><b>表外项目及评价</b></td>
+					<td colspan="8" class="tdBgClr"><b>表外项目及评价</b></td>
 				</tr>
 				<tr>
 					<td colspan="8"><Textarea  id="" name="" ></Textarea></td>
@@ -180,7 +233,7 @@
 					<col width="15%">
 					<col width="15%">
 				</colgroup>
-				<tr><td colspan="10"><b>借款金额/所有者权益</b></td></tr>
+				<tr><td colspan="10" class="tdBgClr"><b>借款金额/所有者权益</b></td></tr>
 					<th>负债项目</th>
 					<th>欠款对象</th>
 					<th>欠款金额(元)</th>
@@ -275,40 +328,101 @@
 					<td><input type="text" name=""  value="" /></td>
 					<td><input type="text" name=""  value="" /></td>
 				</tr>
-				<tr><td colspan="10"><b>其他应付账款详述</b></td></tr>
+				<tr><td colspan="10" class="tdBgClr"><b>其他应付账款详述</b></td></tr>
 				<tr><td colspan="10"><Textarea  id="" name="" ></Textarea></td></tr>
-				<tr><td colspan="10"><b>其他应付账款详述</b></td></tr>
+				<tr><td colspan="10" class="tdBgClr"><b>其他应付账款详述</b></td></tr>
 				<tr>
-					<td colspan="2"><b>现金交叉检验</b></td>
+					<td colspan="2" class="tdBgClr"><b>现金交叉检验</b></td>
 					<td colspan="3"><Textarea  id="" name="" ></Textarea></td>
-					<td colspan="2"><b>应收账款交叉检验</b></td>
+					<td colspan="2" class="tdBgClr"><b>应收账款交叉检验</b></td>
 					<td colspan="3"><Textarea  id="" name="" ></Textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"><b>存货交叉检验</b></td>
+					<td colspan="2" class="tdBgClr"><b>存货交叉检验</b></td>
 					<td colspan="3"><Textarea  id="" name="" ></Textarea></td>
-					<td colspan="2"><b>其他交叉检验</b></td>
+					<td colspan="2" class="tdBgClr"><b>其他交叉检验</b></td>
 					<td colspan="3"><Textarea  id="" name="" ></Textarea></td>
 				</tr>
 				</table>
-		</form>
 		<div class="pagebar">			
 			<div class="controlbtn">
-				<a class="btn btn-info" onclick="submitForm()" title="提交">提交</a>
+				<input type="button" class="btn btn-info" id="id_count_button" value="计算">
+				<input type="button" class="btn btn-info" id="id_save_button" value="提交">
 			</div>
 		</div>
+		{%- endif %}
+		</form>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				data = "{{content}}";
-				content = data.split("@@");
-				$("input,Textarea").each(function(i){
-					$(this).val(content[i]);
-				});
+				data_content = "{{table_content}}";
+				if(data_content==''&&data!=''){
+					content = data.split("@@");
+					$("input,Textarea").each(function(i){
+						if($(this).attr("type")!='button'){
+							$(this).val(content[i]);
+						}
+					});
+				}
+			//前端验证
+			$('#form_id').validationEngine();
+			
+			$("#id_count_button").click(function() {
+				for(index in rules){
+					var rule = rules[index];
+					var sum_name = rule.split("=")[0];
+					var strExp = rule.split("=")[1];
+					//将编码换成数值
+					var code = "";
+					var sb = "";
+					for(var i = 0;i<strExp.length;i++){
+						if("^,*,/,%,+,-,(,)".indexOf(strExp[i])<0){
+							code += strExp[i];
+						}
+						else{
+							if(code != ""){
+								sb += $("input[name='"+code+"']").val();
+								code = "";
+							}
+							sb += strExp[i];
+						}
+					}
+					if(code != ""){
+						sb += $("input[name='"+code+"']").val();
+						code = "";
+					}
+					$("input[name='"+sum_name+"']").val(Compute(sb));
+					exp.Reset();
+				}
+			})
+			$("#id_save_button").click(function() {
+				if(!submitFlag){
+						alert("正在处理，请勿重复提交!");
+						return;
+				}
+				submitFlag = false;
+				// 前端验证 
+				if($('#form_id').validationEngine('validate')){
+					//submit
+					var b = new Base64(); 
+					updateAllDOMFields(document.getElementById("form_id"));
+					var content = {'content':b.encode(escape($("#form_id").html()))};
+					var url = "/customer/zcfzzk_save/{{id}}";
+					$.ajax({
+						url : url,
+						type : "POST",
+						data:content,
+						success : function(data) {
+							window.location.reload();
+							submitFlag = true;
+						}
+					});
+				}else{
+					submitFlag = true;
+				}
 			})
 
-			function submitForm(){
-				
-			}
+			})
 		</script>
 	</body>
 </html>
