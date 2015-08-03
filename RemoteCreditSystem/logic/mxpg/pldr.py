@@ -9,6 +9,7 @@ import xdrlib
 import xlrd
 import json
 import base64
+import zlib
 
 from RemoteCreditSystem import db
 from RemoteCreditSystem.config import logger
@@ -194,7 +195,7 @@ def open_excel(excel_id,ABS_uri):
           if sheet.name.find("建议") != -1:
               id = Genrcs_application_info(sheet)
               card_id = sheet.row(14)[6].value
-              table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+              table_content = zlib.compress(base64.b64encode(parseExcelToHtml.parser(ABS_uri, index)))
               SC_Excel_Table_Content(id,excel_id,table_content,excel_dict['建议']['name'],excel_dict['建议']['code']).add()
               break
       if id != -1:     
@@ -204,7 +205,7 @@ def open_excel(excel_id,ABS_uri):
                   for index,sheet in enumerate(data.sheets()):
                       #print sheet.name #sheet名称
                       if sheet.name == d:
-                          table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
+                          table_content = zlib.compress(base64.b64encode(parseExcelToHtml.parser(ABS_uri, index)))
                           SC_Excel_Table_Content(id,excel_id,table_content,excel_dict[d]['name'],excel_dict[d]['code']).add()
                           
                           #读数据

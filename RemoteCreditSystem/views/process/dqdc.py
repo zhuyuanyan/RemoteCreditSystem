@@ -4,6 +4,7 @@ from RemoteCreditSystem.config import logger
 import RemoteCreditSystem.helpers as helpers
 import datetime
 import base64
+import zlib
 
 from flask import Module, session, request, render_template, redirect, url_for, flash
 from flask.ext.login import current_user
@@ -27,7 +28,7 @@ def dqdc_xed(id):
 @app.route('/Process/dqdc/show_excel.page/<int:loan_apply_id>/<int:sheet_type>', methods=['GET'])
 def show_excel(loan_apply_id,sheet_type):
     sc_excel_table_content = SC_Excel_Table_Content.query.filter_by(loan_apply_id=loan_apply_id,sheet_type=sheet_type).first()
-    table_content = base64.b64decode(sc_excel_table_content.table_content).decode("utf-8")
+    table_content = base64.b64decode(zlib.decompress(sc_excel_table_content.table_content)).decode("utf-8")
     return render_template("process/dqdc/show_excel.html",table_content=table_content)
 
 # 最后个sheet显示专家建议
