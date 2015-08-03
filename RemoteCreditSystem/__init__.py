@@ -84,16 +84,6 @@ app.jinja_env.filters['checkBtnPri'] = checkBtnPri
 #    <input id="id_save_button" type="button" class="btn btn-info" value="导入"/>
 #{%- endif %}
 
-#启动java虚拟机
-print "--------------------2222"
-from jpype import *
-jarpath = os.path.join(_HERE, '/data/www/rcs/RemoteCreditSystem/ext_class/ReadExcel.jar')
-jvmArg = "-Djava.class.path=" + jarpath
-startJVM(getDefaultJVMPath(),"-ea",jvmArg)
-print "-----------------------------------1111"
-print getDefaultJVMPath()
-print jarpath
-# shutdownJVM()
     
 #---------------------------------
 #加载试图--johnny 放在最后防止循环引用
@@ -109,6 +99,8 @@ import views.xxlr.xxlr
 
 import views.parameter.rcs_parameter
 import views.customer.customer
+
+import views.accessLog.access_log
 
 
 

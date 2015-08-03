@@ -15,7 +15,7 @@
 	</head>
 	<body onload="setTimeOut();">
 		<div class="position">
-			当前位置：<span>进件任务分案 / 进件分案</span>
+			当前位置：<span>评估专家管理 / 评估日志</span>
 		</div>
 		{%- with messages = get_flashed_messages(with_categories=true) %}
 		  	{%- if messages %}
@@ -27,11 +27,11 @@
 		  	{%- endif %}
 		{%- endwith %}
 		<div class="pageTitle">
-			进件分案
+			评估日志
 		</div>
 
 		<div class="content">
-			<form id="tests" action="/jjrwfa/jjfa/1" method="POST">	
+			<form id="tests" action="/accessLog/list/1" method="POST">	
 				<table style="width:80%;height:50px">
 				<tr>	
 				<td>
@@ -48,88 +48,54 @@
 			</form>
 			<table class="table-list">
 				<colgroup>
-					<col width="5%" />
-					<col width="10%" />
 					<col width="15%" />
-					<col width="10%" />
-					<col width="10%" />
-					<col width="10%" />
-					<col width="10%" />
-					<col width="5%" />
-					<col width="5%" />
-					<col width="10%" />
-					<col />
-					<col />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
 				</colgroup>
 				<tr>
-					<th></th>
 					<th>客户名称</th>
 					<th>证件号码</th>
-					<th>产品名称</th>
-					<th>申请额度</th>
-					<th>进件机构</th>
-					<th>进件区域</th>
-					<th>行业</th>
-					<th>商圈</th>
-					<th>客户经理</th>
-					<th>审核人</th>
-					<th>审批人</th>
+					<th>进件结果</th>
+					<th>授信额度</th>
+					<th>评估专家名称</th>
+					<th>评估时间</th>
 				</tr>
 			</table>
 			<table class="table-list">
 				<colgroup>					
-					<col width="5%" />
-					<col width="10%" />
 					<col width="15%" />
-					<col width="10%" />
-					<col width="10%" />
-					<col width="10%" />
-					<col width="10%" />
-					<col width="5%" />
-					<col width="5%" />
-					<col width="10%" />
-					<col />
-					<col />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
 				</colgroup>
 				{%- for obj in appList.items%}
 				<tr onclick="checkTable(this)">
-					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
 					<td>{{obj.customer_name}}</td>
 					<td>{{obj.card_id}}</td>
-					<td>{{obj.product_name}}</td>
-					<td>{{obj.approve_je}}</td>
-					<td>{{obj.approve_org}}</td>
-					<td>{{obj.approve_area}}</td>
-					<td>{{obj.industry}}</td>
-					<td>{{obj.district}}</td>
-					<td>{{obj.user_name}}</td>
-					<td>{{obj.sh_name}}</td>
-					<td>{{obj.sp_name}}</td>
+					<td>{{obj.approve_result}}</td>
+					<td>{{obj.approve_ed}}</td>
+					<td>{{obj.expert_name}}</td>
+					<td>{{obj.create_time}}</td>
 				</tr>
 				{%-endfor%}
 			</table>
 			<div class="pagebar">
 				<input type="hidden" id="hiddenId"/>
-				<div class="controlbtn">
-					{%- if not current_user.user_type%}
-						<a class="btn btn-info" href="javascript:void(0);" title="新建进件" onclick="iframe('jjrwfa/new_jjfa')">新建进件</a>
-					{%- elif current_user.user_type=='2'%}
-					<a class="btn btn-info" href="javascript:void(0);" title="人工分案" onclick="iframeById('/jjrwfa/rgfa',document.getElementById('hiddenId').value)">人工分案</a>
-
-					<a class="btn btn-info" href="javascript:void(0);" title="系统分案" onclick="iframe('/jjrwfa/xtfa')">系统分案</a>
-					{%- endif%}
-					<a class="btn" href="javascript:void(0);" title="显示" onclick="iframeById('/jjrwfa/show_jjfa',document.getElementById('hiddenId').value)">显示</a>
-				</div>
 				<div class="page">
 					{%- if appList.has_prev %}
-						<span style="CURSOR: pointer" onclick="submitForm('tests','/jjrwfa/jjfa/{{appList.prev_num}}')">&lt;&lt;</span>
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/accessLog/list/{{appList.prev_num}}')">&lt;&lt;</span>
 					{%- else %}
 						<span style="CURSOR: pointer">&lt;&lt;</span>
 					{%- endif %}
 					&#160;第&#160;<font color="#0088cc">{{appList.page}}</font>&#160;页&#160;
 					&#160;共&#160;<font color="#0088cc">{{appList.pages}}</font>&#160;页&#160;
 					{%- if appList.has_next %}
-						<span style="CURSOR: pointer" onclick="submitForm('tests','/jjrwfa/jjfa/{{appList.next_num}}')">&gt;&gt;</span>
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/accessLog/list/{{appList.next_num}}')">&gt;&gt;</span>
 					{%- else %}
 						<span style="CURSOR: pointer">&gt;&gt;</span>
 					{%- endif %}
@@ -141,18 +107,6 @@
 		<script src="/static/js/script.js"></script>
 		<script src="/static/js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript">
-			function selectbelong(id){
-				document.getElementById("hiddenId").value=id;
-			}
-			//切换iframe里的内容用于iframe内部页面	
-			function iframeById(page,id){
-				if(id==""){
-					alert("请选择记录");
-					return;
-				}
-				var url = page+"/"+id;
-			   window.location.href =  url;
-			}
 			function submitForm(formId,action){
 			    document.getElementById(formId).action = action;
 			    document.getElementById(formId).submit();

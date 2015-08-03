@@ -85,7 +85,7 @@ img{border:none;}
 
 
 /**************************底部*/
-.bottom{position:absolute;left:0px;right:0px;bottom:0px;height:30px;background-color:#f6f9fe;color:#688899;border-top:1px solid #c0d9f7;text-align:center;font-size:12px;line-height:30px;}
+.bottom{position:fixed;left:0px;right:0px;bottom:0px;height:30px;background-color:#f6f9fe;color:#688899;border-top:1px solid #c0d9f7;text-align:center;font-size:12px;line-height:30px;}
 
 /*弹出框*/
 .dialog{position:absolute;top:0;left:0;z-index:10;width:100%;height:100%;background:rgba(0,0,0,0.5);display:none;}
