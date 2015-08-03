@@ -21,12 +21,12 @@
 		    <menu id="090020" code="xxlr" name="信息录入" url="mxpg/xxlr/1" img="" operations="create|change|browse"/>
 		</menu>
 		<menu id="040000" code="khzldy" name="客户资料调阅" url="" img="" operations="" index="4">
-			<menu id="040010" code="khzl" name="客户资料" url="khzldy/khzl" img="" operations="create|change|browse"/>
+			<menu id="040010" code="khzl" name="客户资料" url="khzldy/khzl/1" img="" operations="create|change|browse"/>
 		</menu>
 		<menu id="050000" code="zjzxpggl" name="专家资信评估管理" url="" img="" operations="" index="5">
-			<menu id="050010" code="jjrw" name="进件任务" url="zjzxpggl/jjrw" img="" operations="create|change|browse"/>
-			<menu id="050020" code="yjsrw" name="已接受任务" url="zjzxpggl/yjsrw" img="" operations="create|change|browse"/>
-			<menu id="050030" code="yjjrw" name="已拒绝任务" url="zjzxpggl/yjjrw" img="" operations="create|change|browse"/>
+			<!-- <menu id="050010" code="jjrw" name="进件任务" url="zjzxpggl/jjrw" img="" operations="create|change|browse"/> -->
+			<menu id="050020" code="yjsrw" name="评估任务" url="zjzxpggl/yjsrw/1" img="" operations="create|change|browse"/>
+			<!-- <menu id="050030" code="yjjrw" name="已拒绝任务" url="zjzxpggl/yjjrw" img="" operations="create|change|browse"/> -->
 		</menu>
 		<menu id="060000" code="zxpgjl" name="资信评估结论" url="" img="" operations="" index="6">
 			<menu id="060010" code="pgjl" name="评估结论" url="zxpgjl/pgjl/1" img="" operations="create|change|browse"/>
@@ -36,12 +36,14 @@
 		</menu>
 		<menu id="080000" code="pgzjgl" name="评估专家管理" url="" img="" operations="" index="8">
 			<menu id="080010" code="zjxxgl" name="专家信息管理" url="pgzjgl/zjxxgl" img="" operations="create|change|browse"/>
-			<menu id="080020" code="zjcjgl" name="专家层级管理" url="pgzjgl/zjcjgl" img="" operations="create|change|browse"/>
-			<menu id="080030" code="zjzxpgqxgl" name="专家资信评估权限管理" url="pgzjgl/zjzxpgqxgl" img="" operations="create|change|browse"/>
+			<!-- <menu id="080020" code="zjcjgl" name="专家层级管理" url="pgzjgl/zjcjgl" img="" operations="create|change|browse"/>
+			<menu id="080030" code="zjzxpgqxgl" name="专家资信评估权限管理" url="pgzjgl/zjzxpgqxgl" img="" operations="create|change|browse"/> -->
 			<menu id="080040" code="zjjcgl" name="专家资信评估任务、进程管理" url="pgzjgl/zjjcgl" img="" operations="create|change|browse"/>
 			<menu id="080050" code="zjywlgl" name="专家资信评估业务量管理" url="pgzjgl/zjywlgl" img="" operations="create|change|browse"/>
 			<menu id="080060" code="zjpgzlgl" name="专家资信评估质量管理" url="pgzjgl/zjpgzlgl" img="" operations="create|change|browse"/>
 			<menu id="080070" code="zjjxgl" name="评审专家绩效管理" url="pgzjgl/zjjxgl" img="" operations="create|change|browse"/>
+			<menu id="080080" code="pgjl" name="评估记录" url="accessLog/list/1" img="" operations="create|change|browse"/>
+			<menu id="080090" code="qxhyjl" name="缺席会议记录" url="accessLog/absent/1" img="" operations="create|change|browse"/>
 		</menu>
 		<menu id="990000" code="xtgl" name="系统管理" url="" img="" operations="" index="99" >
 			<menu id="990010" code="user" name="用户管理" url="System/user.page/1" img="" operations="create|change|browse"/>

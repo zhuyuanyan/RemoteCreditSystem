@@ -14,6 +14,7 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Ap
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.credit_data.sc_excel_table_content import SC_Excel_Table_Content
+from RemoteCreditSystem.models import Rcs_Application_Log
 
 # 贷款调查——小额贷款
 @app.route('/Process/dqdc/dqdc_xed/<int:id>', methods=['GET'])
@@ -58,6 +59,8 @@ def save_advice(application_id):
         if expert:
             #设置专家已完成此进件评估
             expert.operate = 1
+        #保存进件日志
+        Rcs_Application_Log(application_id,info.card_id,info.customer_name,result,je).add()
         db.session.commit()
         flash('保存成功','success')
     except:

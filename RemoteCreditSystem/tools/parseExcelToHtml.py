@@ -3,11 +3,14 @@ from jpype import *
 import os
 _HERE = os.path.dirname(__file__)
 
+
 def parser(path,index):
     #java.lang.System.out.println("hello world")
-    print "----------14"
+    if not isJVMStarted():
+    	startJVM('/usr/java/jdk1.6.0_45/jre/lib/i386/client/libjvm.so',"-ea",'-Djava.class.path=/data/www/rcs/RemoteCreditSystem/ext_class/ReadExcel.jar')
     TXL = JPackage('cn').JXLReadExcel  
-    print "----------15"
     jd = TXL()
-    print "----------16"
-    return jd.readExcelToHtml(path,index,True).replace("\n", "<br>")
+    result = jd.readExcelToHtml(path,index,True).replace("\n", "<br>")
+    return result
+
+

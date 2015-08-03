@@ -229,7 +229,7 @@ def open_excel(excel_id,ABS_uri):
                                       tmp += "0@@"
                               tmp = tmp[0:len(tmp)-2]
                               Rcs_Application_Lrb(id,tmp,'').add()
-                          if sheet.name == '现金流':
+                          if sheet.name == '现金流量表':
                               for i in range(0, len(xjl_arr)):
                                   arr = xjl_arr[i].split('-')
                                   value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
