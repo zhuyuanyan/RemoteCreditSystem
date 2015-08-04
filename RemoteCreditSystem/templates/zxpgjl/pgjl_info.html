@@ -80,8 +80,8 @@
 				<tr>
 					<td class="table-label">审批额度</td>
 					{%- if score%}
-					<td>{{score.total_approve}}元
-					<input type="button" class="btn btn-info" onclick="iframe('/mxpg/show_pgbg/{{app.id}}')" value="查询模型结果"></input>
+					<td><span  style="display:block;width:100px;float:left;">{{score.total_approve}}元</span>
+					<input type="button" class="btn btn-info" onclick="iframe('/mxpg/show_pgbg/{{app.id}}/readonly')" value="查询模型结果"></input>
 					</td>
 					{%- else%}		
 					<td>0元</td>

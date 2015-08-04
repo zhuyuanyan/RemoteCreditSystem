@@ -114,9 +114,9 @@ def customer_jyzk_save(id):
 	db.session.commit()
 	return redirect("/customer/customer_jyzk/jyzk/"+str(id))
 
-#查看评估报告
-@app.route('/mxpg/show_pgbg/<int:id>', methods=['GET'])
-def show_pgbg(id):    
+#查看评估报告(评估)
+@app.route('/mxpg/show_pgbg/<int:id>/<type>', methods=['GET'])
+def show_pgbg(id,type):    
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     info = Rcs_Application_Info.query.filter_by(id=id).first()
     tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
@@ -163,7 +163,7 @@ def show_pgbg(id):
     	pet += "经营状况:"+str(jyzk_null)+"/"+ str(len(value))
 
 
-    return render_template("mxpg/show_pgbg.html",score=score,info=info,pet=pet)
+    return render_template("mxpg/show_pgbg.html",score=score,info=info,pet=pet,type=type)
 
 #计算总分值
 @app.route('/parameter/scoreTotal/<score>', methods=['GET'])

@@ -13,6 +13,7 @@ from RemoteCreditSystem import app
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
 from RemoteCreditSystem.models.credit_data.sc_excel_table_content import SC_Excel_Table_Content
 from RemoteCreditSystem.models import Rcs_Application_Log
 
@@ -35,8 +36,8 @@ def show_excel(loan_apply_id,sheet_type):
 def show_advice(application_id):
     info = Rcs_Application_Info.query.filter_by(id=application_id).first()
     rcs = Rcs_Application_Advice.query.filter_by(application_id=info.id,user_id=current_user.id).first()
-
-    return render_template("process/dqdc/show_advice.html",loan_apply_id=application_id,rcs=rcs)
+    score = Rcs_Application_Score.query.filter_by(application_id=application_id).first()
+    return render_template("process/dqdc/show_advice.html",loan_apply_id=application_id,rcs=rcs,score=score)
 
 # 专家建议保存
 @app.route('/Process/dqdc/save_advice/<int:application_id>', methods=['POST'])
