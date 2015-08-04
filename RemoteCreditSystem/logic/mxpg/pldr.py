@@ -9,7 +9,6 @@ import xdrlib
 import xlrd
 import json
 import base64
-import zlib
 
 from RemoteCreditSystem import db
 from RemoteCreditSystem.config import logger
@@ -290,6 +289,7 @@ def open_excel(excel_id,ABS_uri,info):
                                   tmp += "0@@"
                           tmp = tmp[:-2]
                           Rcs_Application_Xjll(info.id,tmp,'').add()
+                          
                       break
       for index,sheet in enumerate(data.sheets()):
           if sheet.name == '经营状态' or sheet.name == '生存状态' or sheet.name == '道德品质' :

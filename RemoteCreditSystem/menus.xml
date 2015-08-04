@@ -17,7 +17,7 @@
 		    <menu id="030050" code="csgl" name="参数管理" url="mxpg/csgl" img="" operations="create|change|browse"/>
 		</menu>
 		<menu id="090000" code="mxpg" name="信息录入" url="" img="" operations="" index="9">
-		    <menu id="090010" code="pldr" name="批量导入" url="mxpg/pldr" img="" operations="create|change|browse"/>
+		    <menu id="090010" code="pldr" name="批量导入" url="mxpg/pldr/1" img="" operations="create|change|browse"/>
 		    <menu id="090020" code="xxlr" name="信息录入" url="mxpg/xxlr/1" img="" operations="create|change|browse"/>
 		</menu>
 		<menu id="040000" code="khzldy" name="客户资料调阅" url="" img="" operations="" index="4">
@@ -44,6 +44,7 @@
 			<menu id="080070" code="zjjxgl" name="评审专家绩效管理" url="pgzjgl/zjjxgl" img="" operations="create|change|browse"/>
 			<menu id="080080" code="pgjl" name="评估记录" url="accessLog/list/1" img="" operations="create|change|browse"/>
 			<menu id="080090" code="qxhyjl" name="缺席会议记录" url="accessLog/absent/1" img="" operations="create|change|browse"/>
+			<menu id="080100" code="pgcsjl" name="评估超时记录" url="accessLog/overtime/1" img="" operations="create|change|browse"/>
 		</menu>
 		<menu id="990000" code="xtgl" name="系统管理" url="" img="" operations="" index="99" >
 			<menu id="990010" code="user" name="用户管理" url="System/user.page/1" img="" operations="create|change|browse"/>

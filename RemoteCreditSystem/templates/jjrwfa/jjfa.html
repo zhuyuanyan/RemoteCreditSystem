@@ -3,12 +3,15 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
-		<!--日历-->
-		<script src="../../static/js/date/lhgcore.js"></script>
-		<script src="../../static/js/date/lhgcalendar.js"></script>
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
 		<style type="text/css">
 			
 		</style>
@@ -17,21 +20,22 @@
 		<div class="position">
 			当前位置：<span>进件任务分案 / 进件分案</span>
 		</div>
-		{%- with messages = get_flashed_messages(with_categories=true) %}
-		  	{%- if messages %}
-	    	{%- for category, message in messages %}
-	    	<div class="alert alert-{{category}}">
-	      		{{message}}
-	      	</div>
-	    	{%- endfor %}
-		  	{%- endif %}
-		{%- endwith %}
+
 		<div class="pageTitle">
 			进件分案
 		</div>
 
 		<div class="content">
 			<form id="tests" action="/jjrwfa/jjfa/1" method="POST">	
+			{%- with messages = get_flashed_messages(with_categories=true) %}
+			  	{%- if messages %}
+		    	{%- for category, message in messages %}
+		    	<div class="alert alert-{{category}}">
+		      		{{message}}
+		      	</div>
+		    	{%- endfor %}
+			  	{%- endif %}
+			{%- endwith %}
 				<table style="width:80%;height:50px">
 				<tr>	
 				<td>
