@@ -18,6 +18,6 @@ def excel_import():
             logger.exception('exception')
             # 消息闪现
             flash('保存失败','error')
-        return redirect("/mxpg/pldr")
+        return redirect("/mxpg/pldr/1")
     else:
-        return redirect("/mxpg/pldr")
+        return redirect("/mxpg/pldr/1")

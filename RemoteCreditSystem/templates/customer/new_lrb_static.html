@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/base64.js"></script>
+		<script src="../../static/js/util.js"></script>
+		
+		<script src="../../static/js/Date.js"></script>
+		<script src="../../static/js/Stack.js"></script>
+		<script src="../../static/js/Tokanizer.js"></script>
+		<script src="../../static/js/Evaluator.js"></script>
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script>	
+		
+		<style type="text/css">
+			input[type=text]{width:100px;}
+			label{display:inline-block;width:95px;text-align:right;margin-right:5px;}
+			.addTable{margin :5px;text-align :center ;width:99%;}
+			.myTable th{text-align:left;padding:5px;background:#e8e8e8;border:1px solid #ddd;font-size:13px;}
+			.addTable th{text-align:center;border:1px solid #ddd;background:#a4daff;font-size:13px;}
+			input[type=text].addinput {width:80%;}
+			.myTable td{font-size:13px;}
+			.tdBgClr{background-color: #87CEFA}
+			input:read-only{background-color: #D9D9D9;}
+		</style>
+		<script type="text/javascript">
+			
+		var rules = [
+						'C6=C4-C5',
+						'D6=D4-D5',
+						'E6=E4-E5',
+						'F6=F4-F5',
+						'G6=G4-G5',
+						'H6=H4-H5',
+						'I6=I4-I5',
+						'J6=J4-J5',
+						'K6=K4-K5',
+						'L6=L4-L5',
+						'M6=M4-M5',
+						'N6=N4-N5',
+						'O6=O4-O5',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'D7=D8+D9+D10+D11+D12+D13+D14+D15+D16+D17+D18+D19+D20+D21+D22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+						'C7=C8+C9+C10+C11+C12+C13+C14+C15+C16+C17+C18+C19+C20+C21+C22',
+			            ]
+			var exp = new Expression("");
+
+			function Convert(strExp)
+			{
+			    if (strExp == null || strExp == undefined)
+			    {
+			        alert ("No expression is specified!");
+			        return false;
+			    }
+
+			    exp.Expression(strExp);
+			    return exp.Parse();
+			}
+
+			function Compute(strExp)
+			{
+			    exp.Expression(strExp);
+			    return exp.Evaluate();
+			}
+		</script>
+	</head>
+	<body>		
+<!--*****************************利润表**********************************-->
+		<form id="form_id" class="" action="" method="POST">
+		<table class="myTable">
+				<caption>利润表</caption>
+				<tr>
+					<td class="tdCenter tdBgClr" colspan="2"><b>项目</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>年月</b></td>
+					<td class="tdCenter tdBgClr"><b>调查当月<br/>（至  日）</b></td>
+					<td class="tdCenter tdBgClr"><b>总计</b></td>
+					<td class="tdCenter tdBgClr"><b>月平均</b></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2"><b>主营业务收入</b></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2"><b>可变成本（成本率）</b></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2"><b>毛利= (1)-(2)</b></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2"><b>营业费用合计</b></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">1</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">2</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">3</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">4</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">5</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">6</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">7</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">8</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">9</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">10</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">11</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">12</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">13</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">14</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">15</td>
+					<td class="tdBgClr"><input type="text" name="" style="width:100px"/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2" style="text-align:right">分期还款（经营）<b>(4)</b></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2"><b>净利润=(1)-(2)-(3)-(4)</b></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">1</td>
+					<td class="tdBgClr">家庭开支</td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">2</td>
+					<td class="tdBgClr">分期付款(私人用途)</td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">3</td>
+					<td class="tdBgClr">其它开支</td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr">4</td>
+					<td class="tdBgClr">其它收入</td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name=""/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+				<tr>
+					<td class="tdBgClr" colspan="2" style="text-align:right"><b>每月可支配资金</b></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+					<td class="tdCenter"><input type="text" name="" readonly/></td>
+				</tr>
+			</table>
+		
+		<div class="pagebar">			
+			<div class="controlbtn">
+				<input type="button" class="btn btn-info" id="id_count_button" value="计算">
+				<input type="button" class="btn btn-info" id="id_save_button" value="提交">
+			</div>
+		</div>
+		</form>
+		<script type="text/javascript">
+			
+		</script>
+	</body>
+</html>

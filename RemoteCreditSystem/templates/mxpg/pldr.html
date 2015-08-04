@@ -12,17 +12,19 @@
 		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
 		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
 		<script src="../../static/js/jquery.validationEngine.js"></script> 
-	</head>
+		<style> 
+	  </style> 
+		</head>
 	<body onload="setTimeOut();">
 		<div class="position">
 			当前位置：<span>信息录入 / 批量导入</span>
 		</div>
+
 		<div class="pageTitle">
 			批量导入
 		</div>
 		<div class="content">
-			<div class="iframeForm">
-			<form id="form_id" class="search" style="padding:60px;text-align:center;" method="POST" enctype="multipart/form-data" action="/pldr/excel_import">	
+			<form id="tests" action="/mxpg/pldr/1" method="POST">	
 				{%- with messages = get_flashed_messages(with_categories=true) %}
 				  	{%- if messages %}
 			    	{%- for category, message in messages %}
@@ -32,19 +34,130 @@
 			    	{%- endfor %}
 				  	{%- endif %}
 				{%- endwith %}
-				客户姓名：
-					<input type="text" name="customer_name" class="validate[required]"/>&nbsp;
-				客户证件号码：
-					<input type="text" name="cert_no" class="validate[required,custom[chinaIdLoose]]"/>&nbsp;	
-				选择导入文件：
-					<input type="file" name="attachment" class="validate[required]"/>
-					<br><br>
-					<input id="id_save_button" type="button" class="btn btn-info" value="导入"/>
+				<table style="width:80%;height:50px">
+				<tr>	
+				<td>
+					客户名称：<input type="text" name="customer_name" value="{{customer_name}}"/>
+				</td>
+				<td>
+					证件号码：<input type="text" name="card_id" value="{{card_id}}"/>
+				</td>
+							
+				<td>
+					<input type="submit" class="btn btn-info" value="筛选"/>
+				</td>
+				</tr>	
+			</form>
+			<table class="table-list">
+				<colgroup>
+					<col width="5%" />
+					<col width="10%" />
+					<col width="15%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="5%" />
+					<col width="5%" />
+					<col width="10%" />
+					<col />
+					<col />
+				</colgroup>
+				<tr>
+					<th></th>
+					<th>客户名称</th>
+					<th>证件号码</th>
+					<th>产品名称</th>
+					<th>申请额度</th>
+					<th>进件机构</th>
+					<th>进件区域</th>
+					<th>行业</th>
+					<th>商圈</th>
+					<th>客户经理</th>
+					<th>审核人</th>
+					<th>审批人</th>
+				</tr>
+			</table>
+			<table class="table-list">
+				<colgroup>					
+					<col width="5%" />
+					<col width="10%" />
+					<col width="15%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="5%" />
+					<col width="5%" />
+					<col width="10%" />
+					<col />
+					<col />
+				</colgroup>
+				{%- for obj in appList.items%}
+				<tr onclick="checkTable(this)">
+					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
+					<td>{{obj.customer_name}}</td>
+					<td>{{obj.card_id}}</td>
+					<td>{{obj.product_name}}</td>
+					<td>{{obj.approve_je}}</td>
+					<td>{{obj.approve_org}}</td>
+					<td>{{obj.approve_area}}</td>
+					<td>{{obj.industry}}</td>
+					<td>{{obj.district}}</td>
+					<td>{{obj.user_name}}</td>
+					<td>{{obj.sh_name}}</td>
+					<td>{{obj.sp_name}}</td>
+				</tr>
+				{%-endfor%}
+			</table>
+			<div class="pagebar">
+				<div class="controlbtn">
+					<a class="btn btn-info" href="javascript:void(0);" title="导入" id="id_upload_button" onclick="showDialog()">导入</a>
+				</div>
+				<div class="page">
+					{%- if appList.has_prev %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/mxpg/pldr/{{appList.prev_num}}')">&lt;&lt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&lt;&lt;</span>
+					{%- endif %}
+					&#160;第&#160;<font color="#0088cc">{{appList.page}}</font>&#160;页&#160;
+					&#160;共&#160;<font color="#0088cc">{{appList.pages}}</font>&#160;页&#160;
+					{%- if appList.has_next %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/mxpg/pldr/{{appList.next_num}}')">&gt;&gt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&gt;&gt;</span>
+					{%- endif %}
+				</div>
+			</div>	
+		<div class="dialog" id="dialog1">
+			<form id="form_id" class="dialog-box"  method="POST" enctype="multipart/form-data" action="/pldr/excel_import">
+				<input type="hidden" id="hiddenId" name="hiddenId"/>
+				<div class="dialog-top">
+					导入
+					<span onclick="hideDialog()"></span>
+				</div>
+				<div class="dialog-content">
+					<table>						
+						<tr>
+							<td>选择导入文件：</td>
+							<td width="310px">
+								<input type="file" name="attachment" class="validate[required]"/>
+							</td>
+						</tr>
+						
+					</table>
+				</div>
+				<div class="dialog-bottom">
+					<input id="id_save_button" type="button" class="btn btn-info" value="导入"/> 
+					<input type="button" class="btn" value="取消" onclick="hideDialog()"/>
+				</div>
 			</form>
 		</div>
-		</div>	
+
+	</div>	
 		<script type="text/javascript">
 		$(document).ready(function(){
+			$("#dialog1").hide();
 				//前端验证
 				$('#form_id').validationEngine();
 				$("#id_save_button").click(function() {
@@ -62,7 +175,22 @@
 						submitFlag = true;
 					}
 				});
+
+				$("#id_upload_button").click(function() {
+					var hiddenId = $("#hiddenId").val();
+					if(hiddenId!=""){			
+						$(".dialog",window.location.document).show();
+					}else{
+						alert("请选择记录!");
+					}
+		    	});
 			});
+		function hideDialog(){
+			$("#dialog1").hide();
+		}
+		function selectbelong(id){
+				document.getElementById("hiddenId").value=id;
+			}
 		</script>
 	</body>
 </html>

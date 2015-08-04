@@ -24,8 +24,9 @@ class Rcs_Application_Info(db.Model):
     create_user = db.Column(db.Integer)
     create_time = db.Column(db.DateTime)
     model_type = db.Column(db.Integer)
+    effect_time = db.Column(db.DateTime)
 
-    def __init__(self, customer_id,customer_name,card_id,product_name,approve_je,approve_org,approve_area,approve_area_id,industry,district,user_name,sh_name,sp_name,approve_type,model_type):
+    def __init__(self, customer_id,customer_name,card_id,product_name,approve_je,approve_org,approve_area,approve_area_id,industry,district,user_name,sh_name,sp_name,approve_type,model_type,effect_time):
         self.customer_id = customer_id
         self.customer_name = customer_name
         self.card_id = card_id
@@ -43,5 +44,6 @@ class Rcs_Application_Info(db.Model):
         self.model_type=model_type
         self.create_user=current_user.id
         self.create_time=datetime.datetime.now()
+        self.effect_time=effect_time
     def add(self):
         db.session.add(self)
