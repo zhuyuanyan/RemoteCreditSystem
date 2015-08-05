@@ -196,7 +196,6 @@ def excel_import(request):
             os.mkdir(os.path.join(LOCALEXCEL_FOLDER_ABS,str(current_user.id)))
         ABS_uri = os.path.join(LOCALEXCEL_FOLDER_ABS,'%d/%s' % (current_user.id,f.filename))
         REL_uri = os.path.join(LOCALEXCEL_FOLDER_REL,'%d/%s' % (current_user.id,f.filename))
-        
         #上传
         f.save(ABS_uri)
         #存db
@@ -335,6 +334,7 @@ def parseModel(sheet,info):
             #列数
             ncols = sheet.ncols
             for i in range(sheet.nrows):
+              if i>0:
                 value = sheet.row(i)[ncols-1].value
                 row = sheet.row(i)
                 #递归获取下拉框前面的标题值
