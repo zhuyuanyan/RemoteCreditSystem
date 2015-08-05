@@ -273,7 +273,7 @@
 				</tr>
 				<tr>
 					<td colspan="2"><b>期初现金</b></td>
-					<td><input type="text" name="C4"></td>
+					<td><input type="text" name="C4" readonly></td>
                     <td><input type="text" name="D4" readonly></td>
                     <td><input type="text" name="E4" readonly></td>
                     <td><input type="text" name="F4" readonly></td>
@@ -822,7 +822,9 @@
                          content = data.split("@@");
                          $("input,Textarea").each(function(i){
                               if($(this).attr("type")!='button'){
-                                   $(this).val(content[i]);
+                                   if(content.length>i){
+                                        $(this).val(content[i]);
+                                    }
                               }
                          });
                     }

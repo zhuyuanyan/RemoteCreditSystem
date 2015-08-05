@@ -360,7 +360,9 @@
 					content = data.split("@@");
 					$("input,Textarea").each(function(i){
 						if($(this).attr("type")!='button'){
-							$(this).val(content[i]);
+							if(content.length>i){
+                                $(this).val(content[i]);
+                            }
 						}
 					});
 				}
