@@ -2,14 +2,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
-		<link href="../../../static/css/btn.css" rel="stylesheet" type="text/css" />
-		<link href="../../../static/css/main.css" rel="stylesheet" type="text/css" />
-		<link href="../../../static/css/bootstrap.css" rel="stylesheet">
-		<script src="../../../static/js/jquery-1.7.2.min.js"></script>
-		<script src="../../../static/js/index.js"></script>
+		<link href="/static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="/static/css/main.css" rel="stylesheet" type="text/css" />
+		<link href="/static/css/bootstrap.css" rel="stylesheet">
+		<script src="/static/js/jquery-1.7.2.min.js"></script>
+		<script src="/static/js/index.js"></script>
 		<!--日历-->
-		<script src="../../../static/js/date/lhgcore.js"></script>
-		<script src="../../../static/js/date/lhgcalendar.js"></script>
+		<script src="/static/js/date/lhgcore.js"></script>
+		<script src="/static/js/date/lhgcalendar.js"></script>
 		<style type="text/css">
 		</style>
 	</head>
@@ -24,7 +24,27 @@
 	    	{%- endfor %}
 		  	{%- endif %}
 		{%- endwith %}
+		<table class="myTable">
+			<caption>评估模型</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
+				</colgroup>
+				<tr>
+					<td class="table-label">模型授信额度</td>
+					{%- if score%}
+					<td><span  style="display:block;width:100px;float:left;">{{score.total_approve}}元</span>
+					<input type="button" class="btn btn-info" onclick="iframe('/mxpg/show_pgbg/{{score.application_id}}/readonly')" value="查询模型结果"></input>
+					</td>
+					{%- else%}		
+					<td>0元</td>
+					{%- endif%}
+				</tr>
+		</table>
 			<table class="myTable">
+				
 				<caption>专家建议</caption>
 				<colgroup>
 					<col width="15%">
@@ -52,8 +72,8 @@
 		</form>
 			<div class="pagebar">			
 				<div class="controlbtn">
-					<a class="btn btn-info" href="javascript:void(0);" onclick="save()" title="提交">提交</a>
-					<a class="btn"  onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
+					<input type="button" class="btn btn-info"  onclick="save()" value="提交"/>
+					<input type="button" class="btn" onclick="javascript:history.go(-1);" value="返回"/>
 				</div>
 			</div>
 		<script type="text/javascript">

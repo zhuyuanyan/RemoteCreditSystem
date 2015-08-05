@@ -80,8 +80,8 @@
 				<tr>
 					<td class="table-label">审批额度</td>
 					{%- if score%}
-					<td>{{score.total_approve}}元
-					<input type="button" class="btn btn-info" onclick="iframe('/mxpg/show_pgbg/{{app.id}}')" value="查询模型结果"></input>
+					<td><span  style="display:block;width:100px;float:left;">{{score.total_approve}}元</span>
+					<input type="button" class="btn btn-info" onclick="iframe('/mxpg/show_pgbg/{{app.id}}/readonly')" value="查询模型结果"></input>
 					</td>
 					{%- else%}		
 					<td>0元</td>
@@ -124,15 +124,14 @@
 					{%- if level=="2"%}
 						<tr>
 							<td class="table-label">管理员评估建议</td>
-							<td><select name="last_advice" value="{{last_advice.approve_advice}}">
+							<td><select name="last_advice" value="{{last_advice.approve_result}}" {%- if last_advice.approve_result %} disabled {%- endif%}>
 								<option value="1">建议发放</option>
 								<option value="2">拒绝发放</option>
 								</select> </td>	
 							
 							<td class="table-label">发放额度</td>
-							<td colspan="3"><input type="text" name="last_approve" value="{{last_advice.approve_ed}}"/>元</td>
-							<td></td>	
-							<td></td>
+							<td colspan="3"><input type="text" name="last_approve" value="{{last_advice.approve_ed}}" {%- if last_advice.approve_ed%} readonly {%- endif%}/>元</td>
+							
 						</tr>
 					{%- endif%}
 				{%- else%}
@@ -158,7 +157,8 @@
 			</table>	
 			<div class="pagebar">			
 				<div class="controlbtn">
-					{%- if level=="2"%}
+					<!-- 决策岗并且未操作 -->
+					{%- if level=="2" and not last_advice.approve_result%}
 					<input class="btn btn-info" href="javascript:void(0);" type="submit" value="保存"></input>
 					{%- endif%}
 					<input class="btn btn-info" type="button" onclick="javascript:history.go(-1);" value="返回"/>

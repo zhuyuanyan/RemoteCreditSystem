@@ -45,9 +45,9 @@ EMAIL_SERVER = "http://oa.cardpay-sh.com"
 
 EMAIL_SEND = "qkjr_no_reply@163.com"
 
-Approval_type_ORG = 1#部门 
-Approval_type_PRJ = 2#项目
-Approval_type_CAIWU = 3#财务
+Application_Type_Create = 1#新增进件
+Application_Type_Approve = 2#申请进件(已分配给专家)
+Application_Type_Finish = 3#进件最终评审完成
 
 class Config(object):
     SECRET_KEY = '\xb5\xc8\xfb\x18\xba\xc7*\x03\xbe\x91{\xfd\xe0L\x9f\xe3\\\xb3\xb1P\xac\xab\x061'

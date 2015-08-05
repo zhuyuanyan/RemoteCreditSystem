@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<!--日历-->
+		<script src="../../static/js/date/lhgcore.js"></script>
+		<script src="../../static/js/date/lhgcalendar.js"></script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body onload="setTimeOut();">
+		<div class="position">
+			当前位置：<span>评估专家管理 / 缺席会审记录</span>
+		</div>
+		{%- with messages = get_flashed_messages(with_categories=true) %}
+		  	{%- if messages %}
+	    	{%- for category, message in messages %}
+	    	<div class="alert alert-{{category}}">
+	      		{{message}}
+	      	</div>
+	    	{%- endfor %}
+		  	{%- endif %}
+		{%- endwith %}
+		<div class="pageTitle">
+			缺席会审记录
+		</div>
+
+		<div class="content">
+			<form id="tests" action="/accessLog/absent/1" method="POST">	
+				<table style="width:80%;height:50px">
+				<tr>	
+				<td>
+					客户名称：<input type="text" name="customer_name" value="{{customer_name}}"/>
+				</td>
+				<td>
+					证件号码：<input type="text" name="card_id" value="{{card_id}}"/>
+				</td>
+				<td>
+					专家名称：<input type="text" name="expert_name" value="{{expert_name}}"/>
+				</td>		
+				<td>
+					<input type="submit" class="btn btn-info" value="筛选"/>
+				</td>
+				</tr>	
+			</form>
+			<table class="table-list">
+				<colgroup>
+					<col width="30%" />
+					<col width="30%" />
+					<col width="30%" />
+				</colgroup>
+				<tr>
+					<th>进件名称</th>
+					<th>证件号码</th>
+					<th>缺席会审专家</th>
+				</tr>
+			</table>
+			<table class="table-list">
+				<colgroup>					
+					<col width="30%" />
+					<col width="30%" />
+					<col width="30%" />
+				</colgroup>
+				{%- for obj in appList.items%}
+				<tr onclick="checkTable(this)">
+					<td>{{obj.customer_name}}</td>
+					<td>{{obj.card_id}}</td>
+					<td>{{obj.expert_name}}</td>
+				</tr>
+				{%-endfor%}
+			</table>
+			<div class="pagebar">
+				<input type="hidden" id="hiddenId"/>
+				<div class="page">
+					{%- if appList.has_prev %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/accessLog/absent/{{appList.prev_num}}')">&lt;&lt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&lt;&lt;</span>
+					{%- endif %}
+					&#160;第&#160;<font color="#0088cc">{{appList.page}}</font>&#160;页&#160;
+					&#160;共&#160;<font color="#0088cc">{{appList.pages}}</font>&#160;页&#160;
+					{%- if appList.has_next %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/accessLog/absent/{{appList.next_num}}')">&gt;&gt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&gt;&gt;</span>
+					{%- endif %}
+				</div>
+			</div>		
+		</div>
+		<script src="/static/js/jquery-1.7.2.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/script.js"></script>
+		<script src="/static/js/bootstrap-datepicker.js"></script>
+		<script type="text/javascript">
+			function submitForm(formId,action){
+			    document.getElementById(formId).action = action;
+			    document.getElementById(formId).submit();
+			}
+		</script>
+	</body>
+</html>
