@@ -21,34 +21,20 @@
 			评估结论
 		</div>
 		<div class="content">
-			<form class="search" id="tests">				
-				<span>
-					进件机构：<select><option>---请选择---</option></select>
-				</span>
-				<span>
-					进件区域：<select><option>---请选择---</option></select>
-				</span>
-				<span>
-					&nbsp;&nbsp;&nbsp;&nbsp;行业：<select><option>---请选择---</option></select>
-				</span>	
-				<span>
-					商圈：<input type="text"/>
-				</span>
-				<span>
-					客户经理：<input type="text"/>
-				</span>
-				<span>
-					&nbsp;&nbsp;&nbsp;审核人：<input type="text"/>
-				</span>
-				<span>
-					审批人：<input type="text"/>
-				</span>
-				<!-- <span>
-					进件日期：<input type="text" onclick="J.calendar.get({type:'/'});"/>
-				</span>	 -->				
-				<span class="searchButton">
-					<input type="button" class="btn btn-info" value="筛选"/>
-				</span>
+			<form id="tests" action="/zxpgjl/pgjl/1" method="POST">	
+				<table style="width:80%;height:50px">
+				<tr>	
+				<td>
+					客户名称：<input type="text" name="customer_name" value="{{customer_name}}"/>
+				</td>
+				<td>
+					证件号码：<input type="text" name="card_id" value="{{card_id}}"/>
+				</td>
+							
+				<td>
+					<input type="submit" class="btn btn-info" value="筛选"/>
+				</td>
+				</tr>	
 			</form>
 			<table class="table-list">
 				<colgroup>

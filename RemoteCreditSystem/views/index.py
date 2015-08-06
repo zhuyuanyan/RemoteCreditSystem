@@ -292,18 +292,38 @@ def xxlr(page):
     return render_template("mxpg/xxlr.html",appList=appList,length=length)
 
 #授信评估
-@app.route('/mxpg/sxpg', methods=['GET'])
-def sxpg(): 
+@app.route('/mxpg/sxpg/<int:page>', methods=['GET','POST'])
+def sxpg(page): 
+    sql = "approve_type in (1,2)"
+    customer_name=''
+    card_id=''
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and customer_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"
     #获取未分类数据     
-    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()     
-    return render_template("mxpg/sxpg.html",appList=appList)
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)   
+    return render_template("mxpg/sxpg.html",appList=appList,customer_name=customer_name,card_id=card_id)
 
 #评估报告
-@app.route('/mxpg/pgbg', methods=['GET'])
-def pgbg():      
+@app.route('/mxpg/pgbg/<int:page>', methods=['GET','POST'])
+def pgbg(page):   
+    sql = "1=1"
+    customer_name=''
+    card_id=''
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and customer_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"   
     #获取未分类数据     
-    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all() 
-    return render_template("mxpg/pgbg.html",appList=appList)
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
+    return render_template("mxpg/pgbg.html",appList=appList,customer_name=customer_name,card_id=card_id)
 
 
 #参数管理
@@ -448,9 +468,19 @@ def yjsrw(page):
 #     return redirect("/zjzxpggl/yjjrw")
 
 #评估结论查看
-@app.route('/zxpgjl/pgjl/<int:page>', methods=['GET'])
-def pgjl(page):   
-    appList = Rcs_Application_Info.query.filter("approve_type in (2,3)").paginate(page, per_page = PER_PAGE) 
+@app.route('/zxpgjl/pgjl/<int:page>', methods=['GET','POST'])
+def pgjl(page):
+    sql = "approve_type in (2,3)"
+    if not current_user.user_type:
+        sql+=" and create_user="+str(current_user.id)
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and customer_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"  
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE) 
     return render_template("zxpgjl/pgjl.html",appList=appList)
 
 @app.route('/zxpgjl/pgjl_info/<int:id>', methods=['GET'])

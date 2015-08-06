@@ -10,16 +10,17 @@
 			<menu id="020050" code="fagzwh" name="分案规则维护" url="jjrwfa/fagzwh" img="" operations="create|change|browse"/>
 			<menu id="020060" code="zxpgzjhsgzwh" name="资信评估专家会审规则维护" url="jjrwfa/zxpgzjhsgzwh" img="" operations="create|change|browse"/>
 		</menu>
-		<menu id="030000" code="mxpg" name="模型评估" url="" img="" operations="" index="3">
-		    <menu id="030020" code="by_bigdata" name="互联网数据采集" url="by_bigdata" img="" operations="create|change|browse"/>
-		    <menu id="030030" code="sxpg" name="授信评估" url="mxpg/sxpg" img="" operations="create|change|browse"/>
-		    <menu id="030040" code="pgbg" name="评估报告" url="mxpg/pgbg" img="" operations="create|change|browse"/>
-		    <menu id="030050" code="csgl" name="参数管理" url="mxpg/csgl" img="" operations="create|change|browse"/>
-		</menu>
 		<menu id="090000" code="mxpg" name="信息录入" url="" img="" operations="" index="9">
 		    <menu id="090010" code="pldr" name="批量导入" url="mxpg/pldr/1" img="" operations="create|change|browse"/>
 		    <menu id="090020" code="xxlr" name="信息录入" url="mxpg/xxlr/1" img="" operations="create|change|browse"/>
 		</menu>
+		<menu id="030000" code="mxpg" name="模型评估" url="" img="" operations="" index="3">
+		    <menu id="030020" code="by_bigdata" name="互联网数据采集" url="by_bigdata" img="" operations="create|change|browse"/>
+		    <menu id="030030" code="sxpg" name="授信评估" url="mxpg/sxpg/1" img="" operations="create|change|browse"/>
+		    <menu id="030040" code="pgbg" name="评估报告" url="mxpg/pgbg/1" img="" operations="create|change|browse"/>
+		    <menu id="030050" code="csgl" name="参数管理" url="mxpg/csgl" img="" operations="create|change|browse"/>
+		</menu>
+		
 		<menu id="040000" code="khzldy" name="客户资料调阅" url="" img="" operations="" index="4">
 			<menu id="040010" code="khzl" name="客户资料" url="khzldy/khzl/1" img="" operations="create|change|browse"/>
 		</menu>

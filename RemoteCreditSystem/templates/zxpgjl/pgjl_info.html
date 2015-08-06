@@ -121,7 +121,7 @@
 						</tr>
 					{%- endfor%}
 					<!-- 决策专家页面 -->
-					{%- if level=="2"%}
+					{%- if last_advice.approve_result%}
 						<tr>
 							<td class="table-label">管理员评估建议</td>
 							<td><select name="last_advice" value="{{last_advice.approve_result}}" {%- if last_advice.approve_result %} disabled {%- endif%}>
@@ -132,6 +132,11 @@
 							<td class="table-label">发放额度</td>
 							<td colspan="3"><input type="text" name="last_approve" value="{{last_advice.approve_ed}}" {%- if last_advice.approve_ed%} readonly {%- endif%}/>元</td>
 							
+						</tr>
+					{%- else%}
+						<tr>
+							<td class="table-label">管理员评估建议</td>
+							<td colspan="5">暂无评估</td>
 						</tr>
 					{%- endif%}
 				{%- else%}
