@@ -44,9 +44,10 @@
 				<ul class="tabList">
 				{%- if type=="1" %}
 				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/zcfzzk/{{id}}')"><a href="javascript:void(0)">资产负债表-传统</a></li>
-				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/lrb/{{id}}')"><a href="javascript:void(0)">利润表-传统</a></li>
+				<!-- <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/lrb/{{id}}')"><a href="javascript:void(0)">利润简表-传统</a></li> -->
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/lrbs/{{id}}')"><a href="javascript:void(0)">标准利润表-传统</a></li>
 				 <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/xjl/{{id}}')"><a href="javascript:void(0)">现金流量表-传统</a></li>
-				<!--<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/jcjy/{{id}}')"><a href="javascript:void(0)">交叉检验</a></li> -->
+
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/khzl_hk/{{id}}')"><a href="javascript:void(0)">还款能力-传统</a></li>
 				{%- else %}
 				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/zcfzb_bz/{{id}}')"><a href="javascript:void(0)">资产负债表-标准</a></li>
@@ -58,7 +59,7 @@
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_jyzk/jyzk/{{id}}')"><a href="javascript:void(0)">经营状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_shzk/shzk/{{id}}')"><a href="javascript:void(0)">生存状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_ddpz/ddpz/{{id}}')"><a href="javascript:void(0)">道德品质</a></li>
-				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/mxpg/show_pgbg/{{id}}')"><a href="javascript:void(0)">评估结果</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/mxpg/show_pgbg/{{id}}/write')"><a href="javascript:void(0)">评估结果</a></li>
 			</ul>
 			<div class="tabContentList">
 			<!--*************第一个标签**********************-->

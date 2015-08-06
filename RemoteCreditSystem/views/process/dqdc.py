@@ -4,7 +4,6 @@ from RemoteCreditSystem.config import logger
 import RemoteCreditSystem.helpers as helpers
 import datetime
 import base64
-import zlib
 
 from flask import Module, session, request, render_template, redirect, url_for, flash
 from flask.ext.login import current_user
@@ -14,6 +13,7 @@ from RemoteCreditSystem import app
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
 from RemoteCreditSystem.models.credit_data.sc_excel_table_content import SC_Excel_Table_Content
 from RemoteCreditSystem.models import Rcs_Application_Log
 
@@ -28,7 +28,7 @@ def dqdc_xed(id):
 @app.route('/Process/dqdc/show_excel.page/<int:loan_apply_id>/<int:sheet_type>', methods=['GET'])
 def show_excel(loan_apply_id,sheet_type):
     sc_excel_table_content = SC_Excel_Table_Content.query.filter_by(loan_apply_id=loan_apply_id,sheet_type=sheet_type).first()
-    table_content = base64.b64decode(zlib.decompress(sc_excel_table_content.table_content)).decode("utf-8")
+    table_content = base64.b64decode(sc_excel_table_content.table_content).decode("utf-8")
     return render_template("process/dqdc/show_excel.html",table_content=table_content)
 
 # 最后个sheet显示专家建议
@@ -36,8 +36,8 @@ def show_excel(loan_apply_id,sheet_type):
 def show_advice(application_id):
     info = Rcs_Application_Info.query.filter_by(id=application_id).first()
     rcs = Rcs_Application_Advice.query.filter_by(application_id=info.id,user_id=current_user.id).first()
-
-    return render_template("process/dqdc/show_advice.html",loan_apply_id=application_id,rcs=rcs)
+    score = Rcs_Application_Score.query.filter_by(application_id=application_id).first()
+    return render_template("process/dqdc/show_advice.html",loan_apply_id=application_id,rcs=rcs,score=score)
 
 # 专家建议保存
 @app.route('/Process/dqdc/save_advice/<int:application_id>', methods=['POST'])

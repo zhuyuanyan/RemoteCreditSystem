@@ -4,7 +4,7 @@ from flask.ext.login import current_user
 
 from RemoteCreditSystem import app
 from RemoteCreditSystem.config import logger
-from RemoteCreditSystem.models import Rcs_Application_Log,Rcs_Application_Absent
+from RemoteCreditSystem.models import Rcs_Application_Log,Rcs_Application_Absent,View_Over_Application
 from RemoteCreditSystem.config import PER_PAGE
  
 # 评估日志
@@ -39,4 +39,22 @@ def absent(page):
     sql+=" order by application_id"    
     appList = Rcs_Application_Absent.query.filter(sql).paginate(page, per_page = PER_PAGE)
     return render_template("accessLog/absentlog.html",appList=appList)
+
+# 超时专家记录
+@app.route('/accessLog/overTime/<int:page>', methods=['POST','GET'])
+def overTime(page):
+    sql="1=1"
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        expert_name = request.form['expert_name']
+        if customer_name:
+            sql+=" and app_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"  
+        if expert_name:
+            sql+=" and expert_name like '%"+expert_name+"%'"
+    sql+=" order by app_id"    
+    appList = View_Over_Application.query.filter(sql).paginate(page, per_page = PER_PAGE)
+    return render_template("accessLog/overtimelog.html",appList=appList)
     

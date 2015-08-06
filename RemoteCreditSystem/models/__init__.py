@@ -12,6 +12,7 @@ from RemoteCreditSystem.models.system_usage.Rcs_Parameter_Select import Rcs_Para
 from RemoteCreditSystem.models.system_usage.Indiv_Brt_Place import Indiv_Brt_Place
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Log import Rcs_Application_Log
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Absent import Rcs_Application_Absent
+from RemoteCreditSystem.models.system_usage.View_Over_Application import View_Over_Application
 
 #流程管理
 from RemoteCreditSystem.models.process import SC_Loan_Apply

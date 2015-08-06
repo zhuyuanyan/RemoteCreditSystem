@@ -6,6 +6,17 @@
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/base64.js"></script>
+		<script src="../../static/js/util.js"></script>
+		
+		<script src="../../static/js/Date.js"></script>
+		<script src="../../static/js/Stack.js"></script>
+		<script src="../../static/js/Tokanizer.js"></script>
+		<script src="../../static/js/Evaluator.js"></script>
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script>	
 		<style type="text/css">
 			.myTable{width:100%;border-collapse:collapse;}
 			.myTable caption{background-color: #135AA4;eight: 30px;line-height: 30px;color: #fff;font-weight: bold;font-size: 16px;}
@@ -64,7 +75,9 @@
 				</tr>
 				<tr>
 					<td class="table-label">选择专家</td>
-					<td colspan="3"><select id="experts">{%- for obj in users%}<option value="{{obj.id}}">{{obj.real_name}}</option>{%- endfor%}</select><input type="button" value="+" onclick="addTd()" class="btn btn-info btn-mini" />	<input type="button" value="-" onclick="removeTd()" class="btn btn-info btn-mini" /></td>	
+					<td><select id="experts">{%- for obj in users%}<option value="{{obj.id}}">{{obj.real_name}}</option>{%- endfor%}</select><input type="button" value="+" onclick="addTd()" class="btn btn-info btn-mini" />	<input type="button" value="-" onclick="removeTd()" class="btn btn-info btn-mini" /></td>	
+					<td class="table-label">进件时效性</td>
+					<td><input type="text" name="app_time" id="app_time" onkeyup="this.value=this.value.replace(/\D/g,'')" value=""/>小时</td>	
 				</tr>
 			</table>	
 			<div class="pagebar">			
@@ -93,6 +106,7 @@
 			}
 
 			function submitForm(url){
+				var hours = $("#app_time").val();
 				var expertId = new Array();
 				$("select").each(function(i){
 					if($(this).attr("id")=="experts"){
@@ -100,7 +114,7 @@
 					}
 					   
 				});
-				window.location.href =  url+"/"+expertId;
+				window.location.href =  url+"/"+expertId+"/"+hours;
 			}
 		</script>
 	</body>

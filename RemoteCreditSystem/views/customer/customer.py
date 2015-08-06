@@ -20,6 +20,7 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Appl
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Jcjy import Rcs_Application_Jcjy
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Zcfzb import Rcs_Application_Zcfzb
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Lrb import Rcs_Application_Lrb
+from RemoteCreditSystem.models.system_usage.Rcs_Application_Lrb_Static import Rcs_Application_Lrb_Static
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Xjll import Rcs_Application_Xjll
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 
@@ -113,9 +114,9 @@ def customer_jyzk_save(id):
 	db.session.commit()
 	return redirect("/customer/customer_jyzk/jyzk/"+str(id))
 
-#查看评估报告
-@app.route('/mxpg/show_pgbg/<int:id>', methods=['GET'])
-def show_pgbg(id):    
+#查看评估报告(评估)
+@app.route('/mxpg/show_pgbg/<int:id>/<type>', methods=['GET'])
+def show_pgbg(id,type):    
     score = Rcs_Application_Score.query.filter_by(application_id=id).first()
     info = Rcs_Application_Info.query.filter_by(id=id).first()
     tree = Rcs_Parameter_Tree.query.filter_by(level_type=1).all()
@@ -162,7 +163,7 @@ def show_pgbg(id):
     	pet += "经营状况:"+str(jyzk_null)+"/"+ str(len(value))
 
 
-    return render_template("mxpg/show_pgbg.html",score=score,info=info,pet=pet)
+    return render_template("mxpg/show_pgbg.html",score=score,info=info,pet=pet,type=type)
 
 #计算总分值
 @app.route('/parameter/scoreTotal/<score>', methods=['GET'])
@@ -224,7 +225,7 @@ def access(id):
 	totalScore = 0
 	remark = ''
 	if ddpz:
-		if ddpz.value_select is not None:
+		if ddpz.value_select:
 			value = 0
 			for obj in ddpz.value_select.split("&"):
 				ids = obj.split("=")[1]
@@ -245,7 +246,7 @@ def access(id):
 					value = float(tree.weight)
 					totalValue_ddpz+=count(tree.id,value)
 	if shzk:
-		if shzk.value_select is not None:
+		if shzk.value_select:
 			value = 0
 			for obj in shzk.value_select.split("&"):
 				ids = obj.split("=")[1]
@@ -266,7 +267,7 @@ def access(id):
 					value = float(tree.weight)
 					totalValue_shzk+=count(tree.id,value)
 	if jyzk:
-		if jyzk.value_select is not None:
+		if jyzk.value_select:
 			value = 0
 			for obj in jyzk.value_select.split("&"):
 				ids = obj.split("=")[1]
@@ -357,7 +358,7 @@ def zcfzzk_save(id):
 
 	return redirect('/customer/zcfzzk/'+str(id))
 
-#利润表（小微贷）
+#利润简表（小微贷）
 @app.route('/customer/lrb/<int:id>', methods=['GET'])
 def lrb(id): 
 	data = Rcs_Application_Lrb.query.filter_by(application_id=id).first()
@@ -369,7 +370,7 @@ def lrb(id):
 		else:
 			content = data.table_value     
 	return render_template("customer/new_lrb.html",id=id,content=content,table_content=table_content)
-#利润表保存（小微贷）
+#利润简表保存（小微贷）
 @app.route('/customer/lrb_save/<int:id>/<value>', methods=['POST'])
 def lrb_save(id,value):
 	try:
@@ -396,6 +397,46 @@ def lrb_save(id,value):
 	    logger.exception('exception')
 
 	return redirect('/customer/lrb/'+str(id))
+
+#标准利润表（小微贷）
+@app.route('/customer/lrbs/<int:id>', methods=['GET'])
+def lrbs(id): 
+	data = Rcs_Application_Lrb_Static.query.filter_by(application_id=id).first()
+	content = ''
+	table_content=''
+	if data:
+		if data.table_content:
+			table_content = base64.b64decode(data.table_content).decode("utf-8")
+		else:
+			content = data.table_value     
+	return render_template("customer/new_lrb_static.html",id=id,content=content,table_content=table_content)
+#标准利润表保存（小微贷）
+@app.route('/customer/lrb_static_save/<int:id>/<value>', methods=['POST'])
+def lrb_static_save(id,value):
+	try:
+		content = request.form['content']
+		data = Rcs_Application_Lrb_Static.query.filter_by(application_id=id).first()
+		if data:
+			data.table_content = content
+		else:
+			Rcs_Application_Lrb_Static(id,'',content).add()
+		#获取标准还款能力数据
+		score = Rcs_Application_Score.query.filter_by(application_id=id).first()
+		if score:
+		    score.month_profit = float(value)
+		else:
+		    Rcs_Application_Score(id,'','','','','','',value).add()
+		info = Rcs_Application_Info.query.filter_by(id=id).first()
+		if info:
+		    #设置为小微贷模型
+		    info.model_type=1
+		db.session.commit()
+	except:
+	    # 回滚
+	    db.session.rollback()
+	    logger.exception('exception')
+
+	return redirect('/customer/lrbs/'+str(id))
 
 #现金流量（小微贷）
 @app.route('/customer/xjl/<int:id>', methods=['GET'])
