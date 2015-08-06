@@ -36,7 +36,7 @@
 				<tr>
 					<td class="table-label">生存状况得分</td>
 					<td>{{score.shzk_score}}</td>	
-					<td class="table-label">还款能力</td>
+					<td class="table-label">还款能力(元)</td>
 					<td id="hknl"></td>
 				</tr>
 				<tr>
@@ -47,7 +47,7 @@
 							<td class="table-label">年授信额度</td>
 						{%- endif%}
 					{%- else%}
-						<td class="table-label">拟授信额度</td>
+						<td class="table-label">拟授信额度(元)</td>
 					{%- endif%}
 
                     <td id="nsxed" colspan="3"></td>
@@ -81,10 +81,9 @@
 				<div class="controlbtn">
 					{%- if type=='write'%}
 						<a class="btn btn-info"  onclick="access()" title="评估">评&nbsp;&nbsp;估</a>
-						<a class="btn"  onclick="parent.location.href='/mxpg/xxlr/1'" title="返回">返&nbsp;&nbsp;回</a>
-					{%- else%}
-						<a class="btn"  onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
+						
 					{%- endif%}
+					<a class="btn"  onclick="javascript:history.go(-1);" title="返回">返&nbsp;&nbsp;回</a>
 				</div>
 			</div>
 		<script type="text/javascript">
@@ -93,8 +92,8 @@
             	var ed = "{{score.total_approve}}";
             	var ed1 = "{{score.hknl_score}}";
             	turnTopet(ed);
-            	$("#nsxed").append(turnTopet(ed)+"元");
-            	$("#hknl").append(turnTopet(ed1)+"元");
+            	$("#nsxed").append(turnTopet(ed));
+            	$("#hknl").append(turnTopet(ed1));
             })
 
             function turnTopet(value){
