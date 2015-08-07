@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body onload="setTimeOut();">
+		<div class="position">
+			当前位置：<span>资信评估结论 / 评估结论 / 撤销专家</span>
+		</div>
+
+		<div class="pageTitle">
+			评估结论信息--{{app.customer_name}}
+		</div>
+
+		<form name="submitForm" id="submitForm" action="/zxpgjl/cancel_save/{{app.id}}" method="POST">
+		<div class="content">
+{%- with messages = get_flashed_messages(with_categories=true) %}
+		  	{%- if messages %}
+	    	{%- for category, message in messages %}
+	    	<div class="alert alert-{{category}}">
+	      		{{message}}
+	      	</div>
+	    	{%- endfor %}
+		  	{%- endif %}
+		{%- endwith %}
+			<table class="myTable">
+				<caption>客户信息</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+					<td class="table-label">客户号</td>
+					<td>{{app.customer_id}}</td>
+					<td class="table-label">客户名称</td>
+					<td>{{app.customer_name}}</td>					
+				</tr>
+				<tr>
+					<td class="table-label">证件号码</td>
+					<td>{{app.card_id}}</td>
+					<td class="table-label">产品名称</td>
+					<td>{{app.product_name}}</td>					
+				</tr>
+				<tr>
+					<td class="table-label">申请额度</td>
+					<td>{{app.approve_je}}</td>	
+					<td class="table-label">进件机构</td>
+					<td>{{app.approve_org}}</td>		
+				</tr>
+				<tr>
+					<td class="table-label">进件区域</td>
+					<td>{{app.approve_area}}</td>	
+					<td class="table-label">行业</td>
+					<td>{{app.industry}}</td>		
+				</tr>
+				<tr>
+					<td class="table-label">商圈</td>
+					<td>{{app.district}}</td>	
+					<td class="table-label">客户经理</td>
+					<td>{{app.user_name}}</td>		
+				</tr>
+				{%- for obj in advice%}
+				<tr>
+					<td class="table-label">已评估专家</td>
+					<td>{{obj.rcs_advice_ibfk_1.real_name}}</td>	
+				</tr>
+				{%- endfor%}
+				{%- for obj in experts%}
+				<tr>
+					<td class="table-label">未评估专家</td>
+					<td>
+						<select id="expert" name="expert">
+						<script>document.write(js.lang.String.decodeHtml('{{"expert"|dynDict(obj.expert_id,"")}}'))</script></td>	
+						</select>
+				</tr>
+				{%- endfor%}
+			</table>
+
+			<div class="pagebar">			
+				<div class="controlbtn">
+					<input class="btn btn-info" href="javascript:void(0);" type="button" onclick="alterExpert()" value="提交"></input>
+					<input class="btn btn-info" type="button" onclick="javascript:history.go(-1);" value="返回"/>
+				</div>
+			</div>
+		</div>
+	</form>
+		<script type="text/javascript">
+			function alterExpert(){
+				if(confirm("你确定要撤销并重新选择评估专家吗？")){
+					$("#submitForm").submit();
+				}
+				
+			}
+		</script>
+	</body>
+</html>
