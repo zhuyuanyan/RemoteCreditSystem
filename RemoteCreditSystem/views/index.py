@@ -24,10 +24,11 @@ import datetime
 from RemoteCreditSystem.config import Application_Type_Create,Application_Type_Approve,Application_Type_Finish
 from RemoteCreditSystem.config import logger
 from RemoteCreditSystem.config import PER_PAGE
+import RemoteCreditSystem.helpers as helpers
 
 from RemoteCreditSystem.tools.SimpleCache import SimpleCache
 
-from RemoteCreditSystem.models import Rcs_Application_Log,Rcs_Application_Absent
+from RemoteCreditSystem.models import Rcs_Application_Log,Rcs_Application_Absent,Rcs_Expert_Refuse
 
 
 #get md5 of a input string
@@ -408,18 +409,7 @@ def jjrw():
     appList = Rcs_Application_Info.query.filter("approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")").all()
     return render_template("zjzxpggl/jjrw.html",appList=appList)
 
-# @app.route('/zjzxpggl/jjrw_accept/<int:id>', methods=['GET'])
-# def jjrw_accept(id): 
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()
-#     app.approve_type="3"
-#     db.session.commit()
-#     return redirect("/zjzxpggl/jjrw")
-# @app.route('/zjzxpggl/jjrw_refuse/<int:id>', methods=['GET'])
-# def jjrw_refuse(id): 
-#     app = Rcs_Application_Info.query.filter_by(approve_type='2').first()
-#     app.approve_type="4"
-#     db.session.commit()
-#     return redirect("/zjzxpggl/jjrw")
+#评估任务
 @app.route('/zjzxpggl/yjsrw/<int:page>', methods=['GET','POST'])
 def yjsrw(page):
     sql="approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")"
@@ -434,40 +424,75 @@ def yjsrw(page):
     count = len(Rcs_Application_Info.query.filter(sql).all())
     return render_template("zjzxpggl/yjsrw.html",appList=appList)
 
-# @app.route('/zjzxpggl/yjsrw_refuse/<int:id>', methods=['GET'])
-# def yjsrw_refuse(id):     
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()   
-#     app.approve_type="4"
-#     db.session.commit()
-#     return redirect("/zjzxpggl/yjsrw")
+#拒绝任务
+@app.route('/zjzxpggl/refuse', methods=['GET','POST'])
+def refuse():
+    try:
+        id = request.form['hiddenId']
+        refuse_reason = request.form['refuse_reason']
+        #删除进件关系表
+        Rcs_Application_Expert.query.filter_by(application_id=id,expert_id=current_user.id).delete()
+        db.session.flush()
+        info = Rcs_Application_Info.query.filter_by(id=id).first()
+        Rcs_Expert_Refuse(current_user.id,current_user.real_name,id,info.customer_name,refuse_reason,None,'').add()
+        db.session.commit()
+    # 消息闪现
+        flash('拒绝成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('拒绝失败','error')
+    return redirect("zjzxpggl/yjsrw/1")
 
+#拒绝任务记录查看
+@app.route('/zjzxpggl/has_refuse/<int:page>', methods=['GET','POST'])
+def has_refuse(page):
+    sql = "1=1"
+    if request.method == 'POST':
+        application_name = request.form['customer_name']
+        expert_name = request.form['expert_name']
+        if application_name:
+            sql+=" and application_name like '%"+application_name+"%'"
+        if expert_name:
+            sql+=" and expert_name like '%"+expert_name+"%'"
+    appList = Rcs_Expert_Refuse.query.filter(sql).paginate(page, per_page = PER_PAGE)
+    return render_template("zjzxpggl/refuse_list.html",appList=appList)
 
-# @app.route('/zjzxpggl/yjjrw', methods=['GET'])
-# def yjjrw():    
-#     appList = Rcs_Application_Info.query.filter("approve_type='4' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")").all()     
-#     return render_template("zjzxpggl/yjjrw.html",appList=appList)
-# @app.route('/zjzxpggl/yjjrw_accept/<int:id>', methods=['GET'])
-# def yjjrw_accept(id):    
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()  
-#     app.approve_type="3"
-#     db.session.commit()     
-#     return redirect("/zjzxpggl/yjjrw")
-# #拒绝原因页面
-# @app.route('/zjzxpggl/yjjrw_jjyy/<int:id>', methods=['GET'])
-# def yjjrw_jjyy(id):  
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()
-#     advice = Rcs_Application_Advice.query.filter_by(application_id=id).first()     
-#     return render_template("zjzxpggl/yjjrw_jjyy.html",app=app,advice=advice)
-# #拒绝原因页面提交
-# @app.route('/zjzxpggl/yjjrw_jjyy_save/<int:id>', methods=['POST'])
-# def yjjrw_jjyy_save(id):  
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()  
-#     app.approve_type="4"
+#拒绝任务重分配保存
+@app.route('/zjzxpggl/has_refuse_save', methods=['POST'])
+def has_refuse_save():
+    try:
+        id = request.form['hiddenId']
+        expert_id = request.form['expert']
+        refuse = Rcs_Expert_Refuse.query.filter_by(id=id).first()
+        users = User.query.filter_by(id=expert_id).first()
+        refuse.new_expert_id = expert_id
+        refuse.new_expert_name = users.real_name
+        #进件关系表添加记录
+        Rcs_Application_Expert(refuse.application_id,expert_id).add()
+        db.session.commit()
+    # 消息闪现
+        flash('重分配成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('重分配失败','error')
+    return redirect("/zjzxpggl/has_refuse/1")
 
-#     db.session.commit()       
-#     return redirect("/zjzxpggl/yjjrw")
+#判断是否已重分配
+@app.route('/zjzxpggl/restart/<refuse_id>', methods=['GET'])
+def restart(refuse_id):
+    refuse = Rcs_Expert_Refuse.query.filter_by(id=refuse_id).first()
+    if refuse.new_expert_id:
+        return "true"
+    else:
+        return "false"
 
-#评估结论查看
+#评估结论记录查看
 @app.route('/zxpgjl/pgjl/<int:page>', methods=['GET','POST'])
 def pgjl(page):
     sql = "approve_type in (2,3)"
@@ -482,7 +507,7 @@ def pgjl(page):
             sql+=" and card_id='"+card_id+"'"  
     appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE) 
     return render_template("zxpgjl/pgjl.html",appList=appList)
-
+#评估结果
 @app.route('/zxpgjl/pgjl_info/<int:id>', methods=['GET'])
 def pgjl_info(id):        
     app = Rcs_Application_Info.query.filter_by(id=id).first()
@@ -503,12 +528,13 @@ def save_pgjl_info(id):
         info = Rcs_Application_Info.query.filter_by(id=id).first()
         last_advice = request.form['last_advice']
         last_approve = request.form['last_approve']
+        approve_advice = request.form['advice_end']
         advice = Rcs_Application_Advice.query.filter_by(application_id=id,user_id=current_user.id).first()
         if advice:
             advice.approve_result = last_advice
             advice.approve_ed = last_approve
         else:
-            Rcs_Application_Advice(id,"",last_advice,last_approve,"2").add()
+            Rcs_Application_Advice(id,approve_advice,last_advice,last_approve,"2").add()
         #进件标志
         info.approve_type=Application_Type_Finish
         #保存进件日志

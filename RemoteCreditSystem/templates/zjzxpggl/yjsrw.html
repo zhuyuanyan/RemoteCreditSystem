@@ -3,25 +3,36 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
-		<!--日历-->
-		<script src="../../static/js/date/lhgcore.js"></script>
-		<script src="../../static/js/date/lhgcalendar.js"></script>
-		<style type="text/css">
-			
-		</style>
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
+		<style> 
+	  </style>
 	</head>
-	<body>
+	<body onload="setTimeOut();">
 		<div class="position">
-			当前位置：<span>专家资信评估管理 / 已接受任务</span>
+			当前位置：<span>专家资信评估管理 / 评估任务</span>
 		</div>
 		<div class="pageTitle">
 			评估任务
 		</div>
 		<div class="content">
-			<form id="tests" action="/zjzxpggl/yjsrw/1" method="POST">	
+			<form id="tests" action="/zjzxpggl/yjsrw/1" method="POST">
+				{%- with messages = get_flashed_messages(with_categories=true) %}
+				  	{%- if messages %}
+			    	{%- for category, message in messages %}
+			    	<div class="alert alert-{{category}}">
+			      		{{message}}
+			      	</div>
+			    	{%- endfor %}
+				  	{%- endif %}
+				{%- endwith %}
 				<table style="width:80%;height:50px">
 				<tr>	
 				<td>
@@ -97,11 +108,10 @@
 				{%-endfor%}
 			</table>
 			<div class="pagebar">
-				<input type="hidden" id="hiddenId"/>
+				
 				<div class="controlbtn">
-					<!-- <a class="btn btn-info" onclick="iframeById('/zjzxpggl/yjsrw_refuse',document.getElementById('hiddenId').value)" title="拒绝">拒绝</a> -->
-					<!-- <a class="btn btn-info" onclick="iframeById('/zjzxpggl/yjsrw_kspg',document.getElementById('hiddenId').value)" title="开始评估" >开始评估</a> -->
-					<a class="btn btn-info" title="拒绝" onclick="iframeById('/Process/dqdc/dqdc_xed',document.getElementById('hiddenId').value)">查看进件信息</a>
+					<a class="btn btn-info" href="javascript:void(0);" title="拒绝任务" id="id_refuse_button">拒绝任务</a>
+					<a class="btn btn-info" title="进件信息" onclick="iframeById('/Process/dqdc/dqdc_xed',document.getElementById('hiddenId').value)">查看进件信息</a>
 				</div>
 				<div class="page">
 					{%- if appList.has_prev %}
@@ -117,7 +127,31 @@
 						<span style="CURSOR: pointer">&gt;&gt;</span>
 					{%- endif %}
 				</div>
-			</div>		
+			</div>	
+			<div class="dialog" id="dialog1">
+			<form id="form_id" class="dialog-box"  method="POST"  action="/zjzxpggl/refuse">
+				<input type="hidden" id="hiddenId" name="hiddenId"/>
+				<div class="dialog-top">
+					拒绝任务
+					<span onclick="hideDialog()"></span>
+				</div>
+				<div class="dialog-content">
+					<table>						
+						<tr>
+							<td>拒绝原因</td>
+							<td width="310px">
+								<textarea  id="refuse_reason" name="refuse_reason" class="validate[required]"> </textarea>
+							</td>
+						</tr>
+						
+					</table>
+				</div>
+				<div class="dialog-bottom">
+					<input id="id_save_button" type="button" class="btn btn-info" value="拒绝"/> 
+					<input type="button" class="btn" value="取消" onclick="hideDialog()"/>
+				</div>
+			</form>
+			</div>	
 		</div>
 		<script type="text/javascript">
 		function selectbelong(id){
@@ -136,6 +170,39 @@
 			    document.getElementById(formId).action = action;
 			    document.getElementById(formId).submit();
 			}
+
+			$(document).ready(function(){
+			$("#dialog1").hide();
+				//前端验证
+				$('#form_id').validationEngine();
+				$("#id_save_button").click(function() {
+					if(!submitFlag){
+						alert("正在处理，请勿重复提交!");
+						return;
+					}
+					submitFlag = false;
+					// 前端验证 
+					if($('#form_id').validationEngine('validate')){
+						//submit
+						$('#form_id').submit();
+						submitFlag = true;
+					}else{
+						submitFlag = true;
+					}
+				});
+
+				$("#id_refuse_button").click(function() {
+					var hiddenId = $("#hiddenId").val();
+					if(hiddenId!=""){			
+						$(".dialog",window.location.document).show();
+					}else{
+						alert("请选择记录!");
+					}
+		    	});
+			});
+			function hideDialog(){
+			$("#dialog1").hide();
+		}
 		</script>
 	</body>
 </html>
