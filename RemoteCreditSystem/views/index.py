@@ -100,8 +100,44 @@ def login_wel():
 
 # welcome
 @app.route('/welcome', methods=['GET'])
-def welcome():        
-    return render_template("welcome.html")
+def welcome():
+    list_wait=''
+    len_wait=0
+    list_allot=''
+    len_allot=0
+    list_access=''
+    len_access=0
+    #客户经理
+    if not current_user.user_type:
+        list_wait = Rcs_Application_Info.query.filter("create_user="+str(current_user.id)+" and approve_type in (1,2)").all()
+        len_wait =len(list_wait)
+        if len_wait>10:
+            list_wait = list_wait[0:10]
+    #专家
+    elif current_user.user_type=='1':
+        list_wait = Rcs_Application_Info.query.filter("approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+" and operate='0')").all()
+        len_wait =len(list_wait)
+        if len_wait>10:
+            list_wait = list_wait[0:10]
+    #决策岗
+    else:
+        #待授信
+        list_wait = Rcs_Application_Info.query.all()
+        len_wait =len(list_wait)
+        if len_wait>10:
+            list_wait = list_wait[0:10]
+        #待分配
+        list_allot = Rcs_Application_Info.query.filter("id in (select loan_apply_id from sc_excel_table_content)").all()
+        len_allot =len(list_allot)
+        if len_allot>10:
+            list_allot = len_allot[0:10]
+        #待最终评估
+        sql = " id in (select application_id from rcs_application_expert where application_id not in (SELECT application_id FROM rcs_application_expert where operate =0))  GROUP BY id"
+        list_access = Rcs_Application_Info.query.filter(sql).all()
+        len_access = len(list_access)
+        if len_access>10:
+            list_access = len_access[0:10]
+    return render_template("welcome.html",list_wait=list_wait,len_wait=len_wait,list_allot=list_allot,len_allot=len_allot,list_access=list_access,len_access=len_access,current_user=current_user)
 
 # 修改密码
 @app.route('/change_password/<int:id>', methods=['GET','POST'])
