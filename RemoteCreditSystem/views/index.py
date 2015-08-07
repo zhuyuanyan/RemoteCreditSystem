@@ -17,7 +17,7 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Ddpz import Rcs_Appl
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Shzk import Rcs_Application_Shzk
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
-from flask import request, render_template,flash,redirect
+from flask import request, render_template,flash,redirect,session
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
 from RemoteCreditSystem import db
@@ -50,6 +50,17 @@ def logout():
     logout_user()
     return render_template("login.html")
     
+# 心跳
+@app.route('/heartBeat', methods=['GET'])
+def heartBeat():
+    if(session.has_key(str(current_user.id))):
+        session[str(current_user.id)] = session[str(current_user.id)].split("_")[0]+"_"+str(datetime.datetime.now())
+    else:
+        session[str(current_user.id)] = str(datetime.datetime.now())+"_"+str(datetime.datetime.now())
+        
+    print session[str(current_user.id)]
+    return helpers.show_result_success('') # 返回json
+
 # 欢迎界面
 @app.route('/login_wel', methods=['POST','GET'])
 def login_wel():
@@ -58,6 +69,10 @@ def login_wel():
         simplecache = SimpleCache.getInstance()
         if user:
             login_user(user)
+            
+            #设置session
+            heartBeat()
+            
             tree = []
             userrole = UserRole.query.filter_by(user_id=current_user.id).first()
             if userrole:

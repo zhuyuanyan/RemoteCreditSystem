@@ -378,8 +378,8 @@
 				</tr>
 				<tr>
 					<td class="tdBgClr"><b>非流动资产合计</b></td>
-					<td class="tdCenter"><input type="text" name="B40" class="validate[required,custom[number]]" value="0" /></td>
-					<td class="tdCenter"><input type="text" name="C40" class="validate[required,custom[number]]" value="0" /></td>
+					<td class="tdCenter"><input type="text" name="B40" class="validate[required,custom[number]]" value="0" readonly/></td>
+					<td class="tdCenter"><input type="text" name="C40" class="validate[required,custom[number]]" value="0" readonly/></td>
 					<td class="tdBgClr"></td>
 					<td></td>
 					<td></td>
@@ -464,6 +464,14 @@
 						$("input[name='"+sum_name+"']").val(Compute(sb));
 						exp.Reset();
 					}
+				});
+				
+				//监测readonly的input值是否发生改变
+				$("input:text[readonly]").bind('input propertychange', function() {
+				    //$('.msg').html($(this).val().length + ' characters');
+				    alert('111');
+				    $(this).css('background-color','#123456');
+				    
 				});
 			});
 			

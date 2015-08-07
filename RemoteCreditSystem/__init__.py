@@ -8,7 +8,7 @@ _HERE = os.path.dirname(__file__)
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-from flask import Flask, render_template,flash
+from flask import Flask, render_template,flash,session
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy #建立单app -johnny
 #import ibm_db_sa.ibm_db_sa
@@ -18,6 +18,10 @@ from RemoteCreditSystem.tools.DynDictCache import DynDictCache
 
 # 初始化
 app = Flask(__name__)
+
+#过期时间20分钟
+from datetime import timedelta
+app.permanent_session_lifetime = timedelta(minutes=20)
 
 # 读取配置文件
 #app.config.from_object('RemoteCreditSystem.config.DevConfig') # sqlite
@@ -91,13 +95,14 @@ jarpath = os.path.join(_HERE, 'ext_class/ReadExcel.jar')
 jvmArg = "-Djava.class.path=" + jarpath
 startJVM(getDefaultJVMPath(),"-ea",jvmArg)
 # shutdownJVM()
-    
+
 #---------------------------------
 #加载试图--johnny 放在最后防止循环引用
 #---------------------------------
 import views.index
 import views.system.rcs_user
 import views.system.rcs_menu
+import views.system.rcs_org
 
 import views.process.dqdc
 

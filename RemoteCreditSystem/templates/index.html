@@ -101,6 +101,23 @@
 			</form>
 		</div>
 		<script type="text/javascript">
+			$(document).ready(function(){
+				//setInterval(heartBeat,60000);
+			});
+			
+			//心跳
+			function heartBeat(){
+				//ajax请求，后台计算分值
+				var url = "/heartBeat";
+				$.ajax({
+					url : url,
+					type : "get",
+					success : function(data) {
+						
+					}
+				});
+			}
+			
 			function hideDialog(){//隐藏对话框
 				$('.dialog input[type=password]').val('');
 				$('.errorMessage').hide();

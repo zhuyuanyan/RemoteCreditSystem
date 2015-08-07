@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>	
+        <meta charset="utf-8">
+        <title>小微贷款业务管理系统</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+        <meta name="author" content="Muhammad Usman">
+
+        <!-- The styles -->
+		<link href="../../static/css/bootstrap.css" rel="stylesheet">
+		<link href="../../static/css/main.css" rel="stylesheet">
+		<link rel="stylesheet" href="../../static/css/zTreeStyle/zTreeStyle.css" type="text/css">
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/jquery.json-2.4.min.js"></script>
+		<script src="../../static/js/bootstrap.min.js"></script>
+		<script src="../../static/js/script.js"></script>
+		<script type="text/javascript" src="../../static/js/jquery.ztree.core-3.5.js"></script>
+        <script type="text/javascript" src="../../static/js/jquery.ztree.excheck-3.5.js"></script>
+        <SCRIPT type="text/javascript">
+        	var pId = 1;
+        	function zTreeOnClick(event, treeId, treeNode) {
+                pId = treeNode.id;
+                var childNodes = $.fn.zTree.getZTreeObj("org_tree").transformToArray(treeNode);
+                childNodes.shift();
+                var content = "";
+                //表格赋值
+                for (var i = 0; i < childNodes.length; i++) {
+                    content += "<tr class='num'>" +
+                            "<td>" + childNodes[i].id + "</td>" +
+                            "<td><a href='#' onclick=iframe('System/edit_org.page/" + childNodes[i].id + "')>" + childNodes[i].org_name + "</a></td>" +
+                    		"<td>" + treeNode.org_name + "</td>" +
+                            "<td><input type='button' class='btn btn-danger btn-mini' value='删除' disabled onclick=iframe('System/delete_org.json/" + childNodes[i].id + "') ></td>" +
+                            "</tr>";
+                }
+                $("table tbody").html(content);
+                Frame();
+            }
+        	var org_tree_setting = {
+    			data: {
+    				simpleData: {
+    					enable: true
+    				},
+    				key: {
+    					name: "org_name"
+    				}
+    			},
+    			async: {
+    				enable: true,
+    				url:"/System/org/org.json"
+    			},
+    			callback: {
+    				onClick: zTreeOnClick
+    			}
+    		};
+        	
+        	$(document).ready(function(){						
+    			$.fn.zTree.init($("#org_tree"), org_tree_setting);	
+    		});
+        </SCRIPT>	
+        
+    </head>
+
+    <body onload="setTimeOut();">	
+        <div style="margin:15px;">
+            <div class="well place">			
+                <i class="icon-home"></i><a href="#">系统管理</a>/<a href="#">机构管理</a>
+            </div>	
+            {%- with messages = get_flashed_messages(with_categories=true) %}
+            {%- if messages %}
+            {%- for category, message in messages %}
+            <div class="alert alert-{{category}}">
+                {{message}}
+            </div>
+            {%- endfor %}
+            {%- endif %}
+            {%- endwith %}
+            <div class="row-fluid">	
+                <div class="span4">		
+                    <i class="icon-bookmark"></i><span class="titletip">机构列表</span>			
+                    <ul id="org_tree" class="ztree"></ul>	
+                </div>
+                <div class="span8" style="margin-top:25px;">
+                    <!--<div class="box-content">  -->
+                    <div style="margin-bottom:5px;">
+                        <a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_org.page/' + pId);">新增</a>
+                    </div>
+                    <div style="border:1px solid #94c1dc;">				
+                        <table class="table-list" cellspacing="10">
+                            <thead>
+                                <tr>
+                                    <th width="20%">机构号</th>
+                                    <th width="30%" >机构名称</th>
+                                    <th width="20%">上级机构</th>							
+                                    <th width="10%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="center">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>		
+            </div>
+        </div><!--/content -->
+        
+    </body>
+</html>
