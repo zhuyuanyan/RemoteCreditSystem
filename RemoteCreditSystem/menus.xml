@@ -51,6 +51,7 @@
 			<menu id="990010" code="user" name="用户管理" url="System/user.page/1" img="" operations="create|change|browse"/>
 			<menu id="990020" code="role" name="角色管理" url="System/role.page/1" img="" operations="create|change|browse"/>
 			<menu id="990030" code="menu" name="权限管理" url="System/menu.page" img="" operations="create|change|browse"/>
+			<menu id="990040" code="user" name="机构管理" url="System/org.page" img="" operations="create|change|browse"/>
 		</menu>
 	</menu>
 </menus>
