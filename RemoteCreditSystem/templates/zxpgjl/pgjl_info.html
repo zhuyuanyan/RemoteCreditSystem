@@ -22,7 +22,7 @@
 			评估结论信息--{{app.customer_name}}
 		</div>
 
-		<form name="submitForm" action="/zxpgjl/save_pgjl_info/{{app.id}}" method="POST">
+		<form name="submitForm" id="submitForm" action="/zxpgjl/save_pgjl_info/{{app.id}}" method="POST">
 		<div class="content">
 {%- with messages = get_flashed_messages(with_categories=true) %}
 		  	{%- if messages %}
@@ -180,7 +180,8 @@
 				<div class="controlbtn">
 					<!-- 决策岗并且未操作 -->
 					{%- if level=="2" and not last_advice.approve_result%}
-					<input class="btn btn-info" href="javascript:void(0);" type="submit" value="保存"></input>
+					<input class="btn btn-info" href="javascript:void(0);" type="submit" value="提交"></input>
+					<input class="btn btn-info" href="javascript:void(0);" type="button" onclick="cancel()" value="撤销"></input>
 					{%- endif%}
 					<input class="btn btn-info" type="button" onclick="javascript:history.go(-1);" value="返回"/>
 				</div>
@@ -188,6 +189,9 @@
 		</div>
 	</form>
 		<script type="text/javascript">
+			function cancel(){
+				window.location.href="/zxpgjl/cancel/{{app.id}}";
+			}
 		</script>
 	</body>
 </html>
