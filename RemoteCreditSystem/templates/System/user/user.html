@@ -8,12 +8,20 @@
 	<meta name="author" content="Muhammad Usman">
 
 	<!-- The styles -->
-	<link href="/static/css/bootstrap.css" rel="stylesheet">
-	<link href="/static/css/main.css" rel="stylesheet">
-	<style type="text/css">
-		
-	</style>
-	<script src="/static/js/factory.js"></script>
+	<link href="../../static/css/bootstrap.css" rel="stylesheet">
+	<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+	<link href="../../static/css/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../static/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	
+	<script src="../../static/js/jquery-1.7.2.min.js"></script>
+	<script src="../../static/js/jquery.json-2.4.min.js"></script>
+	<script src="../../static/js/bootstrap.min.js"></script>
+	<script src="../../static/js/script.js"></script>
+	<script src="../../static/js/factory.js"></script>
+	<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+	<script type="text/javascript" src="../../static/js/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.ztree.excheck-3.5.js"></script>
+	
 	<script type="text/javascript">
 		function disableUserCB(json){
 			var objs = $.evalJSON(json);
@@ -27,7 +35,95 @@
 		    get.doGet(url,disableUserCB);
 		}
 	</script>
-	
+	<SCRIPT type="text/javascript">
+        	var pId = "org_1";
+        	function zTreeOnClick(event, treeId, treeNode) {
+        		if(treeNode.type == "org"){
+        			pId = "org_"+treeNode.id.split("_")[1]
+        		}
+        		else{
+        			pId = "user_"+treeNode.id.split("_")[1]
+        		}
+                var childNodes = $.fn.zTree.getZTreeObj("org_user_tree").transformToArray(treeNode);
+                childNodes.shift();
+                var content = "";
+                //表格赋值
+                for (var i = 0; i < childNodes.length; i++) {
+                	if(childNodes[i].type=="org"){
+                		continue;
+                	}
+                    content += '<tr>'+
+									'<td><input type="checkbox" onclick="changeColor(this)" name="checkbox"/></td>'+
+									'<td><a href="#" onclick="iframe(\'System/edit_user.json/'+childNodes[i].id.split("_")[1]+'\')">'+childNodes[i].login_name+'</a></td>	'+						
+									'<td>'+childNodes[i].real_name+'</td>';
+					if(childNodes[i].sex == '1'){
+						content += '<td>男</td>';
+					}else{
+						content += '<td>女</td>';
+					}
+					
+					if(childNodes[i].active == '1'){
+						content += '<td>激活</td>';
+					}else{
+						content += '<td>未激活</td>';
+					}
+					
+					content += 		'<td>';
+					
+					if(childNodes[i].active == '1'){
+						content += '<input type="button" class="btn btn-warning btn-mini" value="禁用" onclick="disableUser(0,'+childNodes[i].id.split("_")[1]+')"/>';
+					}else{
+						content += '<input type="button" class="btn btn-warning btn-mini" value="激活" onclick="disableUser(1,'+childNodes[i].id.split("_")[1]+')"/>';
+					}
+					content +=		'&nbsp;<input type="button" class="btn btn-warning btn-mini" value="密码重置"/>'+
+									'&nbsp;<input type="button" class="btn btn-warning btn-mini" value="转移到用户" onclick="showDialog1('+childNodes[i].id.split("_")[1]+');"/>'+
+									'&nbsp;<input type="button" class="btn btn-warning btn-mini" value="转移到机构" onclick="showDialog2('+childNodes[i].id.split("_")[1]+');"/>'+
+					 				'</td>'+
+								'</tr>	';
+                }
+                $("#uesr-list tbody").html(content);
+                Frame();
+            }
+        	var org_user_tree_setting = {
+    			data: {
+    				simpleData: {
+    					enable: true
+    				},
+    				key: {
+    					name: "org_name"
+    				}
+    			},
+    			async: {
+    				enable: true,
+    				url:"/System/org_user/org_user.json"
+    			},
+    			callback: {
+    				onClick: zTreeOnClick
+    			}
+    		};
+        	
+        	$(document).ready(function(){						
+    			$.fn.zTree.init($("#org_user_tree"), org_user_tree_setting);	
+    			
+    			$(".dialog").hide();
+    		});
+        	function new_user(){
+        		var url = 'System/new_user.json/' + pId;
+        		iframe(url);
+        	}
+        	
+        	function showDialog1(id){
+        		$("#user1").val(id);
+    			$("#dialog1",window.location.document).show();
+    		}
+        	function showDialog2(id){
+        		$("#user2").val(id);
+    			$("#dialog2",window.location.document).show();
+    		}
+    		function hideDialog(){
+    			$(".dialog").hide();
+    		}
+        </SCRIPT>	
 </head>
 
 <body onload="setTimeOut();">	
@@ -35,83 +131,96 @@
 		<div class="well place">			
 			<i class="icon-home"></i><a href="#">系统管理</a>/<a href="#">用户管理</a>
 		</div>		
+		{%- with messages = get_flashed_messages(with_categories=true) %}
+		  	{%- if messages %}
+	    	{%- for category, message in messages %}
+	    	<div class="alert alert-{{category}}">
+	      		{{message}}
+	      	</div>
+	    	{%- endfor %}
+		  	{%- endif %}
+		{%- endwith %}
 		<div class="row-fluid">
-			{%- with messages = get_flashed_messages(with_categories=true) %}
-			  	{%- if messages %}
-		    	{%- for category, message in messages %}
-		    	<div class="alert alert-{{category}}">
-		      		{{message}}
-		      	</div>
-		    	{%- endfor %}
-			  	{%- endif %}
-			{%- endwith %}
-			<i class="icon-bookmark"></i><span class="titletip">使用者列表</span>
-			<div style="margin-bottom:5px;">
-				<a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_user.json')">新增</a>	
-			</div>
-			<div style="border:1px solid #94c1dc;">				
-				<table class="table-list" cellspacing="10" id="uesr-list">
-					<thead>
-						<tr>
-							<th><input type="button" class="btn btn-info btn-mini" value="反选" style="margin:0;" onclick="ChkAllClick()"/></th>
-							<th>登录名称</th>
-							<th>真实姓名</th>
-							<th>性别</th>						
-							<th>状态</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-					<tbody class="center">
-						{%- for obj in users.items %}
-						<tr>
-							<td><input type="checkbox" onclick="changeColor(this)" name="checkbox"/></td>
-							<td><a href="#" onclick="iframe('System/edit_user.json/{{obj.id}}')">{{obj.login_name}}</a></td>							
-							<td>{{obj.real_name}}</td>
-							{%- if obj.sex == '1' %}
-								<td>男</td>
-							{%- else %}
-								<td>女</td>
-							{%- endif %}
+			<div class="span4">		
+                <i class="icon-bookmark"></i><span class="titletip">架构列表</span>			
+                <ul id="org_user_tree" class="ztree"></ul>	
+            </div>
+            <div class="span8" style="margin-top:25px;">
+				<div style="margin-bottom:5px;">
+					<a type="button" class="btn btn-info" href="#" onclick="new_user();">新增</a>	
+				</div>
+				<div style="border:1px solid #94c1dc;">				
+					<table class="table-list" cellspacing="10" id="uesr-list">
+						<thead>
+							<tr>
+								<th><input type="button" class="btn btn-info btn-mini" value="反选" style="margin:0;" onclick="ChkAllClick()"/></th>
+								<th>登录名称</th>
+								<th>真实姓名</th>
+								<th>性别</th>						
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody class="center">
 							
-							{%- if obj.active == '1' %}
-								<td>激活</td>
-							{%- else %}
-								<td>未激活</td>
-							{%- endif %}
-							<td>
-							{%- if obj.active == '1' %}
-								<input type="button" class="btn btn-warning btn-mini" value="禁用" onclick="disableUser(0,{{obj.id}})"/>
-							{%- else %}
-								<input type="button" class="btn btn-warning btn-mini" value="激活" onclick="disableUser(1,{{obj.id}})"/>
-							{%- endif %}
-								<input type="button" class="btn btn-warning btn-mini" value="密码重置"/>
-							</td>
-						</tr>	
-						{%- endfor %}		
-					</tbody>
-				</table>
-			</div>
-			<div class="page-div">
-				{%- if users.has_prev %}
-					<span style="CURSOR: pointer" onclick="iframe('System/user.page/{{users.prev_num}}')">&lt;&lt;</span>
-				{%- else %}
-					<span style="CURSOR: pointer">&lt;&lt;</span>
-				{%- endif %}
-				&#160;第&#160;<font color="#0088cc">{{users.page}}</font>&#160;页&#160;
-				&#160;共&#160;<font color="#0088cc">{{users.pages}}</font>&#160;页&#160;
-				{%- if users.has_next %}
-					<span style="CURSOR: pointer" onclick="iframe('System/user.page/{{users.next_num}}')">&gt;&gt;</span>
-				{%- else %}
-					<span style="CURSOR: pointer">&gt;&gt;</span>
-				{%- endif %}
-			</div>
-		</div><!--/row-fluid -->
-	</div><!--/content -->
+						</tbody>
+					</table>
+				</div>
+			</div><!--/row-fluid -->
+		</div><!--/content -->
+	</div>
 	
-	<script src="/static/js/jquery-1.7.2.min.js"></script>
-	<script src="/static/js/jquery.json-2.4.min.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-	<script src="/static/js/script.js"></script>
+	<div class="dialog" id="dialog1" >
+			<form id="form_id" class="dialog-box"  method="POST" action="/System/user/change_belong_user" style="width:50%;">
+				<div class="dialog-top">
+					转移到用户<span onclick="hideDialog()"></span>
+				</div>
+				<div class="dialog-content" style="width:100%;">
+					<table >			
+						<tr>
+							<td>
+								<input type="hidden" name="user_id" id="user1">
+								<b>用户:</b>&nbsp;&nbsp;
+									<select name="belong_user" style="height:30px;">
+										<script>document.write(js.lang.String.decodeHtml('{{"user_all"|dynDict("","")}}'))</script>
+									</select>
+								&nbsp;&nbsp;
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="dialog-bottom">
+					<input type="submit" class="btn btn-info" value="确定"/> 
+					<input type="button" class="btn" value="取消" onclick="hideDialog()"/>
+				</div>
+			</form>
+	</div>
+	
+	<div class="dialog" id="dialog2" >
+			<form id="form_id" class="dialog-box"  method="POST" action="/System/user/change_belong_org" style="width:50%;">
+				<div class="dialog-top">
+					转移到机构<span onclick="hideDialog()"></span>
+				</div>
+				<div class="dialog-content" style="width:100%;">
+					<table >			
+						<tr>
+							<td>
+								<input type="hidden" name="user_id" id="user2">
+								<b>机构:</b>&nbsp;&nbsp;
+									<select name="belong_org" style="height:30px;">
+										<script>document.write(js.lang.String.decodeHtml('{{"org_all"|dynDict("","")}}'))</script>
+									</select>
+								&nbsp;&nbsp;
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="dialog-bottom">
+					<input type="submit" class="btn btn-info" value="确定"/> 
+					<input type="button" class="btn" value="取消" onclick="hideDialog()"/>
+				</div>
+			</form>
+	</div>
 	
 </body>
 </html>

@@ -11,7 +11,7 @@ from flask.ext.login import current_user
 from RemoteCreditSystem.models import User
 from RemoteCreditSystem.models import Role
 from RemoteCreditSystem.models import UserRole
-
+from RemoteCreditSystem.models import Org
 
 from RemoteCreditSystem import app
 
@@ -22,24 +22,62 @@ def GetStringMD5(str):
     m = hashlib.md5()
     m.update(str)
     return m.hexdigest() 
-	
+
 # 使用者管理
 @app.route('/System/user.page/<int:page>', methods=['GET'])
 def System_user(page):
-	users = User.query.order_by("id").paginate(page, per_page = PER_PAGE)
-	return render_template("System/user/user.html",users=users)
-	
+    #users = User.query.order_by("id").paginate(page, per_page = PER_PAGE)
+    return render_template("System/user/user.html")
+
+# 加载树
+@app.route('/System/org_user/org_user.json', methods=['GET','POST'])
+def init_org_user_tree():
+    # 加载所有
+    tree = Org.query.order_by("id").all()
+    for obj in tree:
+        obj.id = "org_"+str(obj.id)
+        obj.type = "org"
+        obj.pId = "org_"+str(obj.pId)
+        obj.icon = "/static/img/icon_4.png"
+        
+    users = User.query.order_by("id").all()
+    for obj in users:
+        tmp = Org(obj.real_name,obj.org_id,None)
+        tmp.id = "user_"+str(obj.id)
+        tmp.type = "user"
+        tmp.sex = obj.sex
+        tmp.active = obj.active
+        tmp.login_name = obj.login_name
+        tmp.real_name = obj.real_name
+        tmp.pId = "org_1"
+        if(obj.org_id is not None):
+            tmp.pId = "org_"+str(obj.org_id)
+        elif(obj.pId is not None):
+            tmp.pId = "user_"+str(obj.pId)
+            
+        tmp.icon = "/static/img/icon_5.png"
+        tree.append(tmp)
+    
+    return helpers.show_result_content(tree) # 返回json
+
 # 新增用户
-@app.route('/System/new_user.json', methods=['GET','POST'])
-def new_user():
+@app.route('/System/new_user.json/<pId>', methods=['GET','POST'])
+def new_user(pId):
     if request.method == 'GET':
-		roles = Role.query.order_by("id").all()
-		return render_template("System/user/new_user.html",roles=roles)
+        roles = Role.query.order_by("id").all()
+        return render_template("System/user/new_user.html",roles=roles,pId=pId)
     else:
         try:
-            user = User(request.form['login_name'],GetStringMD5(request.form['login_password']),
-                request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],"","","","","","","","","")
-            user.add()
+            if('user' in pId):
+                user = User(request.form['login_name'],GetStringMD5(request.form['login_password']),
+                    request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],"","","","","","","","","",
+                    None,int(pId.split("_")[1]))
+                user.add()
+            else:
+                user = User(request.form['login_name'],GetStringMD5(request.form['login_password']),
+                    request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],"","","","","","","","","",
+                    int(pId.split("_")[1]),None)
+                user.add()
 
             #清理缓存
             db.session.flush()
@@ -173,3 +211,42 @@ def edit_role(id):
         role = Role.query.filter_by(id=id).first()
 
         return render_template("System/role/edit_role.html",role=role)
+    
+# 移动到用户
+@app.route('/System/user/change_belong_user', methods=['GET','POST'])
+def change_belong_user():
+    try:
+        user = User.query.filter_by(id=request.form['user_id']).first()
+        user.org_id = None
+        user.pId = request.form['belong_user']
+        # 事务提交
+        db.session.commit()
+        # 消息闪现
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
+    
+    return render_template("System/user/user.html")
+
+# 移动到机构
+@app.route('/System/user/change_belong_org', methods=['GET','POST'])
+def change_belong_org():
+    try:
+        user = User.query.filter_by(id=request.form['user_id']).first()
+        user.pId = None
+        user.org_id = request.form['belong_org']
+        # 事务提交
+        db.session.commit()
+        # 消息闪现
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
+    return render_template("System/user/user.html")

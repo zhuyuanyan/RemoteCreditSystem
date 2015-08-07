@@ -15,6 +15,7 @@ from RemoteCreditSystem.models.system_usage.SC_Application_Xjllb import SC_Appli
 from RemoteCreditSystem.models.system_usage.SC_Application_Zcfzb import SC_Application_Zcfzb
 from RemoteCreditSystem.models.system_usage.SC_Application_Syb import SC_Application_Syb
 from RemoteCreditSystem.models.system_usage.SC_Application_Hknl import SC_Application_Hknl
+from RemoteCreditSystem.models.system_usage.RCS_Upload_Image import RCS_Upload_Image
 
 import RemoteCreditSystem.logic.xxlr.xxlr as xxlr
 
@@ -119,3 +120,22 @@ def xxlr_hknl_bz(loan_apply_id):
 		for key_value in tmp.split('&'):
 			form_data[key_value.split("=")[0]]=key_value.split("=")[1]
 	return render_template("xxlr/hknl_bz.html",loan_apply_id=loan_apply_id,form_data=form_data)
+
+# 影像列表
+@app.route('/xxlr/image_list.page/<int:loan_apply_id>/<int:page>', methods=['GET'])
+def xxlr_image_list(loan_apply_id,page):
+	images = RCS_Upload_Image.query.filter_by(loan_apply_id=loan_apply_id).order_by("id").paginate(page, per_page = PER_PAGE)
+	return render_template("xxlr/image_list.html",loan_apply_id=loan_apply_id,images=images)
+
+# 影像上传
+@app.route('/xxlr/upload_image/<int:loan_apply_id>', methods=['POST'])
+def xxlr_upload_image(loan_apply_id):
+	try:
+		xxlr.upload_image(loan_apply_id,request)
+		# 消息闪现
+		flash('保存成功','success')
+	except:
+		logger.exception('exception')
+		# 消息闪现
+		flash('保存失败','error')
+	return redirect("/xxlr/image_list.page/"+str(loan_apply_id)+"/1")

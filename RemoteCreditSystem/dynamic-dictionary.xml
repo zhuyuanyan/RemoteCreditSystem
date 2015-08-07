@@ -22,6 +22,15 @@
 	<dictionary name="regPermResidence_3" title="区域三级联动3" timeout="10000">
 		select concat(parent_code,'_',type_code) as name,type_name as title from indiv_brt_place where levels = 3 order by name
 	</dictionary>
+	
+	<dictionary name="user_all" title="所有用户" timeout="10000">
+	    select id as name,real_name as title from rcs_user
+	</dictionary>
+	
+	<dictionary name="org_all" title="所有机构" timeout="10000">
+	    select id as name,org_name as title from rcs_org
+	</dictionary>
+	
 	<dictionary name="expert" title="专家" timeout="10000">
 		select id as name,real_name as title from rcs_user where user_type = 1 order by id
 	</dictionary>
