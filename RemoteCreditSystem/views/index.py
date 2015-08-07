@@ -2,6 +2,7 @@
 import hashlib
 
 from RemoteCreditSystem import User
+from RemoteCreditSystem.models.system.Role import Role
 from RemoteCreditSystem.models import UserRole,Rcs_Access_Right,Indiv_Brt_Place
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
@@ -101,6 +102,8 @@ def login_wel():
 # welcome
 @app.route('/welcome', methods=['GET'])
 def welcome():
+    #显示角色
+    role = Role.query.filter("id in (select role_id from rcs_userrole where user_id="+str(current_user.id)+")").first()
     list_wait=''
     len_wait=0
     list_allot=''
@@ -130,14 +133,14 @@ def welcome():
         list_allot = Rcs_Application_Info.query.filter("id in (select loan_apply_id from sc_excel_table_content)").all()
         len_allot =len(list_allot)
         if len_allot>10:
-            list_allot = len_allot[0:10]
+            list_allot = list_wait[0:10]
         #待最终评估
         sql = " id in (select application_id from rcs_application_expert where application_id not in (SELECT application_id FROM rcs_application_expert where operate =0))  GROUP BY id"
         list_access = Rcs_Application_Info.query.filter(sql).all()
         len_access = len(list_access)
         if len_access>10:
-            list_access = len_access[0:10]
-    return render_template("welcome.html",list_wait=list_wait,len_wait=len_wait,list_allot=list_allot,len_allot=len_allot,list_access=list_access,len_access=len_access,current_user=current_user)
+            list_access = list_access[0:10]
+    return render_template("welcome.html",list_wait=list_wait,len_wait=len_wait,list_allot=list_allot,len_allot=len_allot,list_access=list_access,len_access=len_access,current_user=current_user,role=role)
 
 # 修改密码
 @app.route('/change_password/<int:id>', methods=['GET','POST'])
@@ -590,6 +593,40 @@ def save_pgjl_info(id):
         flash('保存失败','error')
     return redirect("/zxpgjl/pgjl_info/"+str(id))
 
+#撤销专家页面
+@app.route('/zxpgjl/cancel/<int:id>', methods=['GET'])
+def cancel(id):        
+    app = Rcs_Application_Info.query.filter_by(id=id).first()
+    #评估建议
+    advice = Rcs_Application_Advice.query.filter_by(application_id=id,advice_type=1).all()
+    #未评估专家
+    experts = Rcs_Application_Expert.query.filter("application_id="+str(id)+" and expert_id not in (select user_id from rcs_application_advice where application_id="+str(id)+")").all()
+
+    return render_template("zxpgjl/pgjl_cancel.html",app=app,advice=advice,experts=experts)
+
+#撤销专家保存
+@app.route('/zxpgjl/cancel_save/<int:id>', methods=['POST'])
+def cancel_save(id):
+    try:
+        #删除未评估专家
+        Rcs_Application_Expert.query.filter_by(application_id=id,operate=0).delete()
+        db.session.flush()
+        #重新保存评估专家
+        expertId = request.form.getlist('expert')
+        for obj in expertId:
+            #判断是否重复
+            expert = Rcs_Application_Expert.query.filter_by(application_id=id,expert_id=obj).first()
+            if not expert:
+                Rcs_Application_Expert(id,int(obj)).add()
+        db.session.commit()
+        flash('撤销成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('撤销失败','error')
+    return redirect("/zxpgjl/pgjl_info/"+str(id))
 
 
 @app.route('/zxpggzwh/pggzwh', methods=['GET'])
