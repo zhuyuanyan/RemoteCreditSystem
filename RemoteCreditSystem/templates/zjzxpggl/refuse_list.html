@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
+		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body onload="setTimeOut();">
+		<div class="position">
+			当前位置：<span>专家资信评估管理 / 拒绝任务记录</span>
+		</div>
+		<div class="pageTitle">
+			拒绝任务记录
+		</div>
+		<div class="content">
+			<form id="tests" action="/zjzxpggl/has_refuse/1" method="POST">	
+				{%- with messages = get_flashed_messages(with_categories=true) %}
+				  	{%- if messages %}
+			    	{%- for category, message in messages %}
+			    	<div class="alert alert-{{category}}">
+			      		{{message}}
+			      	</div>
+			    	{%- endfor %}
+				  	{%- endif %}
+				{%- endwith %}
+				<table style="width:80%;height:50px">
+				<tr>
+				<td>
+					专家名称：<input type="text" name="expert_name" value="{{expert_name}}"/>
+				</td>	
+				<td>
+					进件名称：<input type="text" name="customer_name" value="{{customer_name}}"/>
+				</td>
+				
+							
+				<td>
+					<input type="submit" class="btn btn-info" value="筛选"/>
+				</td>
+				</tr>	
+			</form>
+			<table class="table-list">
+				<colgroup>
+					<col width="5%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="50%" />
+				
+				</colgroup>
+				<tr>
+					<th width="50"></th>
+					<th>专家名称</th>
+					<th>进件名称</th>
+					<th>新专家名称</th>
+					<th>拒绝原因</th>
+			
+				</tr>
+			</table>
+			<table class="table-list">
+				<colgroup>					
+					<col width="5%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="50%" />
+				</colgroup>
+				{%- for obj in appList.items%}
+				<tr onclick="checkTable(this)">
+					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
+					<td>{{obj.expert_name}}</td>
+					<td>{{obj.application_name}}</td>
+					{%- if obj.new_expert_name%}
+						<td>{{obj.new_expert_name}}</td>
+					{%- else%}
+						<td></td>
+					{%- endif%}
+					<td>{{obj.reason}}</td>
+			
+				</tr>
+				{%-endfor%}
+			</table>
+			<div class="pagebar">
+				<div class="controlbtn">
+					<a class="btn btn-info" href="javascript:void(0);" title="重分配" id="id_refuse_button">重分配</a>
+				</div>
+				<div class="page">
+					{%- if appList.has_prev %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/zjzxpggl/has_refuse/{{appList.prev_num}}')">&lt;&lt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&lt;&lt;</span>
+					{%- endif %}
+					&#160;第&#160;<font color="#0088cc">{{appList.page}}</font>&#160;页&#160;
+					&#160;共&#160;<font color="#0088cc">{{appList.pages}}</font>&#160;页&#160;
+					{%- if appList.has_next %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/zjzxpggl/has_refuse/{{appList.next_num}}')">&gt;&gt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&gt;&gt;</span>
+					{%- endif %}
+				</div>
+			</div>	
+			<div class="dialog" id="dialog1">
+			<form id="form_id" class="dialog-box"  method="POST"  action="/zjzxpggl/has_refuse_save">
+				<input type="hidden" id="hiddenId" name="hiddenId"/>
+				<div class="dialog-top">
+					重选专家
+					<span onclick="hideDialog()"></span>
+				</div>
+				<div class="dialog-content">
+					<table>						
+						<tr>
+							<td>专家</td>
+							<td width="310px">
+								<select id="expert" name="expert">
+				              		<script>document.write(js.lang.String.decodeHtml('{{"expert"|dynDict("","")}}'))</script>
+				              	</select>
+							</td>
+						</tr>
+						
+					</table>
+				</div>
+				<div class="dialog-bottom">
+					<input id="id_save_button" type="button" class="btn btn-info" value="确定"/> 
+					<input type="button" class="btn" value="取消" onclick="hideDialog()"/>
+				</div>
+			</form>
+			</div>		
+		</div>
+		<script type="text/javascript">
+		function selectbelong(id){
+				document.getElementById("hiddenId").value=id;
+			}
+
+			function submitForm(formId,action){
+			    document.getElementById(formId).action = action;
+			    document.getElementById(formId).submit();
+			}
+
+			$(document).ready(function(){
+				$("#dialog1").hide();
+				//前端验证
+				$('#form_id').validationEngine();
+				$("#id_save_button").click(function() {
+					if(!submitFlag){
+						alert("正在处理，请勿重复提交!");
+						return;
+					}
+					submitFlag = false;
+					// 前端验证 
+					if($('#form_id').validationEngine('validate')){
+						//submit
+						$('#form_id').submit();
+						submitFlag = true;
+					}else{
+						submitFlag = true;
+					}
+				});
+
+				$("#id_refuse_button").click(function() {
+					var hiddenId = $("#hiddenId").val();
+					if(hiddenId!=""){	
+						var url = "/zjzxpggl/restart/"+hiddenId;
+						$.ajax({
+							url : url,
+							type : "get",
+							async: false,
+							success : function(data) {
+								if(data=='true'){
+									alert("已分配!");
+								}else{
+									$(".dialog",window.location.document).show();
+								}
+							}
+						});
+
+					}else{
+						alert("请选择记录!");
+					}
+		    	});
+			});
+			function hideDialog(){
+			$("#dialog1").hide();
+		}
+		</script>
+	</body>
+</html>

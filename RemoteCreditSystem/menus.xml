@@ -27,7 +27,7 @@
 		<menu id="050000" code="zjzxpggl" name="专家资信评估管理" url="" img="" operations="" index="5">
 			<!-- <menu id="050010" code="jjrw" name="进件任务" url="zjzxpggl/jjrw" img="" operations="create|change|browse"/> -->
 			<menu id="050020" code="yjsrw" name="评估任务" url="zjzxpggl/yjsrw/1" img="" operations="create|change|browse"/>
-			<!-- <menu id="050030" code="yjjrw" name="已拒绝任务" url="zjzxpggl/yjjrw" img="" operations="create|change|browse"/> -->
+			 <menu id="050030" code="yjjrw" name="拒绝任务记录" url="zjzxpggl/has_refuse/1" img="" operations="create|change|browse"/> 
 		</menu>
 		<menu id="060000" code="zxpgjl" name="资信评估结论" url="" img="" operations="" index="6">
 			<menu id="060010" code="pgjl" name="评估结论" url="zxpgjl/pgjl/1" img="" operations="create|change|browse"/>
