@@ -107,6 +107,10 @@
 
 			function submitForm(url){
 				var hours = $("#app_time").val();
+				if(hours==''){
+					alert("请输入进件有效时间!");
+					return;
+				}
 				var expertId = new Array();
 				$("select").each(function(i){
 					if($(this).attr("id")=="experts"){
