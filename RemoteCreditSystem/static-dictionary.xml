@@ -1718,5 +1718,11 @@
 		<item name="1" title="贷成长" />
 		<item name="2" title="贷生活" />
 	</dictionary>
+
+	<dictionary name="APPROVE_TYPE" title="评估建议">
+		<item name="1" title="建议发放" />
+		<item name="2" title="拒绝发放" />
+		<item name="3" title="补充调查信息" />
+	</dictionary>
 	
 </dictionaries>
