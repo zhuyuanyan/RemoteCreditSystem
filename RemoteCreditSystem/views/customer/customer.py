@@ -300,7 +300,7 @@ def access(id):
 			    totalValue_hknl = float(paramer_value)*float(score.month_profit)
 		#传统
 		elif int(info.model_type)==1:
-			totalValue_hknl = score.month_profit
+			totalValue_hknl = float(score.month_profit)*0.7
 
 	#计算总授信额度
 	totalScore = float('%.3f'% float(totalValue_ddpz))*float('%.3f'% float(totalValue_shzk))*float('%.3f'% float(totalValue_jyzk))*float('%.3f'% float(totalValue_hknl))
