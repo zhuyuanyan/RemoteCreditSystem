@@ -6,9 +6,11 @@
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
-		<style type="text/css">
-			
-		</style>
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+				<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
 	</head>
 	<body>
 		<div class="position">
@@ -43,10 +45,41 @@
 					<td><input type="text" value="{{user.mobile}}" name="phone"/></td>					
 				</tr>
 				<tr>
-					<td class="table-label">所属机构</td>
-					<td><select><option>---请选择---</option></td>
-					<td class="table-label">专家权限</td>
-					<td><input type="text" value="{{user.role}}" name="role"/>万</td>					
+					<td class="table-label">现任职机构</td>
+					<td><select id="org" name="org">
+	              	<script>document.write(js.lang.String.decodeHtml('{{"org_all"|dynDict("{{user.org}}","")}}'))</script>
+	              	</select></td>
+					<td class="table-label">常驻地址</td>
+					<td><input type="text" name="address" value="{{user_information.address}}"/></td>					
+				</tr>
+				<tr>
+					<td class="table-label">专家级别</td>
+					<td><select name="level"><option value="1" {%- if user_user_type=='1'%} selected {%- endif%}>普通专家</option>
+						<option value="2" {%- if user_user_type=='2'%} selected {%- endif%}>最终决策专家</option>
+					</select></td>
+					<td></td>
+					<td></td>					
+				</tr>
+			</table>
+			<table class="myTable">
+				<caption>识别信息</caption>
+				<colgroup>
+					<col width="10%">
+					<col width="40%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+					<td class="table-label">行业</td>
+					<td><input type="text" value="{{user_information.hy}}" name="hy"/></td>
+					<td class="table-label">区域</td>
+					<td><input type="text" value="{{user_information.qy}}" name="qy"/></td>				
+				</tr>
+				<tr>
+					<td class="table-label">产品</td>
+					<td><input type="text" value="{{user_information.product}}" name="product"/></td>
+					<td class="table-label">授信余额(万)</td>
+					<td><input type="text" value="{{user_information.balance}}" name="balance"/></td>				
 				</tr>
 			</table>
 			<table class="myTable">
@@ -58,10 +91,10 @@
 					<col width="40%">
 				</colgroup>
 				<tr>
-					<td class="table-label">专家资质</td>
-					<td><input type="text" value="{{user.zjzz}}" name="zjzz"/></td>
-					<td class="table-label">说明</td>
-					<td><input type="text" value="{{user.remark1}}" name="remark1"/></td>					
+					<td class="table-label">专业职称</td>
+					<td><input type="text" value="{{user_information.zyzc}}" name="zyzc"/></td>
+					<td class="table-label">现任职务</td>
+					<td><input type="text" value="{{user_information.xrzw}}" name="xrzw"/></td>					
 				</tr>
 			</table>
 			<table class="myTable">
@@ -73,14 +106,14 @@
 					<col width="40%">
 				</colgroup>
 				<tr>
-					<td class="table-label">专家权限</td>
-					<td><input type="text" value="{{user.zjqx}}" name="zjqx"/></td>
-					<td class="table-label">说明</td>
-					<td><input type="text" value="{{user.remark2}}" name="remark2"/></td>					
+					<td class="table-label">专家层级</td>
+					<td><input type="text" value="{{user_information.expert_level}}" name="expert_level"/></td>
+					<td class="table-label">授信评估权限</td>
+					<td><input type="text" value="{{user_information.approve_role}}" name="approve_role"/></td>				
 				</tr>
 			</table>
 			<table class="myTable">
-				<caption>专家对应编号信息</caption>
+				<caption>评估专家工作时间信息</caption>
 				<colgroup>
 					<col width="10%">
 					<col width="40%">
@@ -88,10 +121,10 @@
 					<col width="40%">
 				</colgroup>
 				<tr>
-					<td class="table-label">编号信息</td>
-					<td><input type="text" value="{{user.bhxx}}" name="bhxx"/></td>
-					<td class="table-label">说明</td>
-					<td><input type="text" value="{{user.remark3}}" name="remark3"/></td>					
+					<td class="table-label">工作日</td>
+					<td><input type="text" value="{{user_information.gzr}}" name="gzr"/></td>
+					<td class="table-label">工作时段</td>
+					<td><input type="text" value="{{user_information.gzsd}}" name="gzsd"/></td>				
 				</tr>
 			</table>
 			<div class="pagebar">			

@@ -3,14 +3,20 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
 		<style type="text/css">
 			
 		</style>
 	</head>
-	<body>
+	<body onload="setTimeOut();">
 		<div class="position">
 			当前位置：<span>评估专家管理 / 专家信息管理</span>
 		</div>
@@ -18,7 +24,16 @@
 			专家信息管理
 		</div>
 		<div class="content">
-			<form class="search">				
+			<form class="search">	
+					{%- with messages = get_flashed_messages(with_categories=true) %}
+			  	{%- if messages %}
+		    	{%- for category, message in messages %}
+		    	<div class="alert alert-{{category}}">
+		      		{{message}}
+		      	</div>
+		    	{%- endfor %}
+			  	{%- endif %}
+			{%- endwith %}		
 				<span>
 					专家编号：<input type="text"/>
 				</span>
