@@ -20,18 +20,11 @@ class User(db.Model):
     modify_date = db.Column(db.DateTime)
     email = db.Column(db.String(100))
     card_id = db.Column(db.String(32))
-    zjzz = db.Column(db.String(32))
-    remark1 = db.Column(db.String(255))
-    zjqx = db.Column(db.String(32))
-    remark2 = db.Column(db.String(255))
-    bhxx = db.Column(db.String(32))
-    remark3 = db.Column(db.String(255))
     user_type = db.Column(db.String(1))
-    role = db.Column(db.String(32))
     org_id = db.Column(db.Integer)
     pId = db.Column(db.Integer)
 
-    def __init__(self,login_name,login_password,real_name,sex,mobile,active,email,card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,user_type,role,
+    def __init__(self,login_name,login_password,real_name,sex,mobile,active,email,card_id,user_type,
                  org_id,pId):
         self.login_name = login_name
         self.login_password = login_password
@@ -39,21 +32,11 @@ class User(db.Model):
         self.sex = sex
         self.mobile = mobile
         self.active = active
-      
         self.create_date = datetime.datetime.now()
-  
         self.modify_date = datetime.datetime.now()
         self.email = email
         self.card_id = card_id
-        self.zjzz = zjzz
-        self.remark1 = remark1
-        self.zjqx = zjqx
-        self.remark2 = remark2
-        self.bhxx = bhxx
-        self.remark3 = remark3
-        self.user_type = user_type
-        self.role = role
-        
+        self.user_type = user_type        
         self.org_id = org_id
         self.pId = pId
         

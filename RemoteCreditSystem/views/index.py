@@ -17,6 +17,7 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Ddpz import Rcs_Appl
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Shzk import Rcs_Application_Shzk
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
+from RemoteCreditSystem.models.system_usage.Rcs_Expert_Information import Rcs_Expert_Information
 from flask import request, render_template,flash,redirect,session
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
@@ -667,15 +668,24 @@ def new_zjxxgl_save():
         sex = request.form['sex']   
         card_id = request.form['card_id']   
         phone = request.form['phone']   
-        zjzz = request.form['zjzz']    
-        remark1 = request.form['remark1']   
-        zjqx = request.form['zjqx']   
-        remark2 = request.form['remark2']   
-        bhxx = request.form['bhxx']  
-        remark3 = request.form['remark3']
-        role = request.form['role'] 
         level = request.form['level']
-        User(user_name,GetStringMD5('111111'),user_name,sex,phone,1,'',card_id,zjzz,remark1,zjqx,remark2,bhxx,remark3,level,role).add()  
+        org = request.form['org']
+
+        address = request.form['address']
+        hy = request.form['hy']
+        qy = request.form['qy']
+        product = request.form['product']
+        balance = request.form['balance']
+        zyzc = request.form['zyzc']
+        xrzw = request.form['xrzw']
+        expert_level = request.form['expert_level']
+        approve_role = request.form['approve_role']
+        gzr = request.form['gzr']
+        gzsd = request.form['gzsd']
+        user = User(user_name,GetStringMD5('111111'),user_name,sex,phone,1,'',card_id,level,org,None)
+        user.add()
+        db.session.flush()
+        Rcs_Expert_Information(user.id,address,hy,qy,product,balance,zyzc,xrzw,expert_level,approve_role,gzr,gzsd).add() 
         db.session.commit()
         flash('保存成功','success')
     except:
@@ -690,44 +700,70 @@ def new_zjxxgl_save():
 @app.route('/pgzjgl/edit_zjxxgl/<int:id>', methods=['GET'])
 def edit_zjxxgl(id):    
     #获取专家信息 
-    user = User.query.filter_by(id=id).first()   
-    return render_template("pgzjgl/edit_zjxxgl.html",user=user)
+    user = User.query.filter_by(id=id).first()
+    user_information = Rcs_Expert_Information.query.filter_by(expert_id=id).first()
+    return render_template("pgzjgl/edit_zjxxgl.html",user=user,user_information=user_information)
 #修改提交
 @app.route('/pgzjgl/edit_zjxxgl_save/<int:id>', methods=['POST'])
-def edit_zjxxgl_save(id):    
-    #获取专家信息 
-    user = User.query.filter_by(id=id).first()   
-    user_name = request.form['user_name']   
-    sex = request.form['sex']   
-    card_id = request.form['card_id']   
-    mobile = request.form['phone']   
-    zjzz = request.form['zjzz']    
-    remark1 = request.form['remark1']   
-    zjqx = request.form['zjqx']   
-    remark2 = request.form['remark2']   
-    bhxx = request.form['bhxx']  
-    remark3 = request.form['remark3']
-    role = request.form['role']
-    user.login_name=user_name
-    user.real_name=user_name
-    user.sex=sex
-    user.card_id=card_id
-    user.mobile=mobile
-    user.zjzz=zjzz
-    user.remark1=remark1
-    user.zjqx=zjqx
-    user.remark2=remark2
-    user.bhxx=bhxx
-    user.remark3=remark3
-    user.role=role
-    db.session.commit()
+def edit_zjxxgl_save(id):  
+    try:  
+        #获取专家信息 
+        user = User.query.filter_by(id=id).first()   
+        user_information = Rcs_Expert_Information.query.filter_by(expert_id=id).first()
+        user_name = request.form['user_name']   
+        sex = request.form['sex']   
+        card_id = request.form['card_id']   
+        mobile = request.form['phone']   
+        level = request.form['level']
+        org = request.form['org']
+
+        address = request.form['address']
+        hy = request.form['hy']
+        qy = request.form['qy']
+        product = request.form['product']
+        balance = request.form['balance']
+        zyzc = request.form['zyzc']
+        xrzw = request.form['xrzw']
+        expert_level = request.form['expert_level']
+        approve_role = request.form['approve_role']
+        gzr = request.form['gzr']
+        gzsd = request.form['gzsd']
+        user.login_name=user_name
+        user.real_name=user_name
+        user.sex=sex
+        user.card_id=card_id
+        user.mobile=mobile
+        user.user_type=level
+        user.org_id=org
+
+        user_information.address=address
+        user_information.hy=hy
+        user_information.qy=qy
+        user_information.product=product
+        user_information.balance=balance
+        user_information.zyzc=zyzc
+        user_information.xrzw=xrzw
+        user_information.expert_level=expert_level
+        user_information.approve_role=approve_role
+        user_information.gzr=gzr
+        user_information.gzsd=gzsd
+      
+        db.session.commit()
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
     return redirect('/pgzjgl/zjxxgl')
 
 @app.route('/pgzjgl/show_zjxxgl/<int:id>', methods=['GET'])
 def show_zjxxgl(id):    
     #获取专家信息 
-    user = User.query.filter_by(id=id).first()      
-    return render_template("pgzjgl/show_zjxxgl.html",user=user)
+    user = User.query.filter_by(id=id).first()
+    user_information = Rcs_Expert_Information.query.filter_by(expert_id=id).first()     
+    return render_template("pgzjgl/show_zjxxgl.html",user=user,user_information=user_information)
 
 @app.route('/pgzjgl/zjcjgl', methods=['GET'])
 def zjcjgl():        
