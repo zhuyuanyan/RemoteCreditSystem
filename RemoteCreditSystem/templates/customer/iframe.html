@@ -11,7 +11,7 @@
 		<script src="../../../static/js/index.js"></script>
 		<style type="text/css">
 			.tabList{display:block;z-index:1;}
-			.tabList li{float:left;width:115px;margin-right: -1px;border: solid 1px #B9C4CF;background: -moz-linear-gradient(center top , rgb(254, 255, 255), rgb(218, 232, 246)) repeat scroll 0% 0% transparent;background-color: #EBF3FA;height: 23px;line-height: 23px;text-align: center;padding: 5px 5px 4px 8px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
+			.tabList li{float:left;width:100px;margin-right: -1px;border: solid 1px #B9C4CF;background: -moz-linear-gradient(center top , rgb(254, 255, 255), rgb(218, 232, 246)) repeat scroll 0% 0% transparent;background-color: #EBF3FA;height: 23px;line-height: 23px;text-align: center;padding: 5px 5px 4px 8px;border-top-left-radius: 3px;border-top-right-radius: 3px;}
 			.tabList li a{width:100%;color: #333;text-decoration: none;}
 			.tabList .active{color: #fff;border-color: #135AA4;background-color: #135AA4;}			
 			.tabList .active a{color:#fff;border-right:1px solid #035ac3;border-bottom:1px solid #035ac3;}
@@ -43,23 +43,25 @@
 		
 				<ul class="tabList">
 				{%- if type=="1" %}
-				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/zcfzzk/{{id}}')"><a href="javascript:void(0)">资产负债表-传统</a></li>
+				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/zcfzzk/{{id}}')"><a href="javascript:void(0)">资产负债-传统</a></li>
 				<!-- <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/lrb/{{id}}')"><a href="javascript:void(0)">利润简表-传统</a></li> -->
-				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/lrbs/{{id}}')"><a href="javascript:void(0)">标准利润表-传统</a></li>
-				 <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/xjl/{{id}}')"><a href="javascript:void(0)">现金流量表-传统</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/lrbs/{{id}}')"><a href="javascript:void(0)">标准利润-传统</a></li>
+				 <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/xjl/{{id}}')"><a href="javascript:void(0)">现金流量-传统</a></li>
 
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/khzldy/khzl_hk/{{id}}')"><a href="javascript:void(0)">还款能力-传统</a></li>
 				{%- else %}
-				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/zcfzb_bz/{{id}}')"><a href="javascript:void(0)">资产负债表-标准</a></li>
+				<li class="active" onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/zcfzb_bz/{{id}}')"><a href="javascript:void(0)">资产负债-标准</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/lrb_bz/{{id}}')"><a href="javascript:void(0)">利润表-标准</a></li>
-				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/xjllb_bz/{{id}}')"><a href="javascript:void(0)">现金流量表-标准</a></li>
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/xjllb_bz/{{id}}')"><a href="javascript:void(0)">现金流量-标准</a></li>
 				<!-- <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/syb_bz/{{id}}')"><a href="javascript:void(0)">损益表-标准</a></li> -->
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/hknl_bz/{{id}}')"><a href="javascript:void(0)">还款能力-标准</a></li>
 				{%- endif %}
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_jyzk/jyzk/{{id}}')"><a href="javascript:void(0)">经营状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_shzk/shzk/{{id}}')"><a href="javascript:void(0)">生存状况</a></li>
 				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/customer/customer_ddpz/ddpz/{{id}}')"><a href="javascript:void(0)">道德品质</a></li>
-				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/mxpg/show_pgbg/{{id}}/write')"><a href="javascript:void(0)">评估结果</a></li>
+				<!-- <li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/mxpg/show_pgbg/{{id}}/write')"><a href="javascript:void(0)">评估结果</a></li> -->
+				
+				<li onclick="Tabs(this,'tab0');$('#myframe').attr('src','/xxlr/image_list.page/{{id}}/1')"><a href="javascript:void(0)">影像上传</a></li>
 			</ul>
 			<div class="tabContentList">
 			<!--*************第一个标签**********************-->

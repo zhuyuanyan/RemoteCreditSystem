@@ -17,6 +17,13 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Appl
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Score import Rcs_Application_Score
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
 
+from RemoteCreditSystem.models.system_usage.RCS_Upload_Image import RCS_Upload_Image
+
+from RemoteCreditSystem.config import UPLOADIMAGE_FOLDER_REL
+from RemoteCreditSystem.config import UPLOADIMAGE_FOLDER_ABS
+
+import platform
+
 def xxlr_zcfzb_bz_save(loan_apply_id,request):
     try:
         SC_Application_Zcfzb.query.filter_by(loan_apply_id=loan_apply_id).delete()
@@ -196,6 +203,33 @@ def compute_hknl_bz(loan_apply_id):
             if(res != ''):
                 SC_Application_Hknl(loan_apply_id,res[0:len(res)-1]).add()
         
+        db.session.commit()
+    except:
+        # 回滚
+        db.session.rollback()
+        #抛出异常到view view负责打印
+        raise
+    
+#上传影像资料
+def upload_image(loan_apply_id,request):
+    try:
+        describe = request.form['describe']
+        # 先获取上传文件
+        f = request.files['attachment']
+        f_old_name = f.filename
+        f_suffix_name = f_old_name[f_old_name.rfind('.'):]
+        #修改文件名为日期，防止重名
+        f_new_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S')+f_suffix_name
+        f.filename = f_new_name
+        if not os.path.exists(os.path.join(UPLOADIMAGE_FOLDER_ABS,str(current_user.id))):
+            os.mkdir(os.path.join(UPLOADIMAGE_FOLDER_ABS,str(current_user.id)))
+        ABS_uri = os.path.join(UPLOADIMAGE_FOLDER_ABS,'%d/%s' % (current_user.id,f.filename))
+        REL_uri = '%s/%d/%s' % (UPLOADIMAGE_FOLDER_REL,current_user.id,f.filename)
+        #上传
+        f.save(ABS_uri)
+        #存db
+        RCS_Upload_Image(loan_apply_id,describe,f_old_name,REL_uri).add()
+        # 事务提交
         db.session.commit()
     except:
         # 回滚

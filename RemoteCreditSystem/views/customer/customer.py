@@ -300,7 +300,7 @@ def access(id):
 			    totalValue_hknl = float(paramer_value)*float(score.month_profit)
 		#传统
 		elif int(info.model_type)==1:
-			totalValue_hknl = score.month_profit
+			totalValue_hknl = float(score.month_profit)*0.7
 
 	#计算总授信额度
 	totalScore = float('%.3f'% float(totalValue_ddpz))*float('%.3f'% float(totalValue_shzk))*float('%.3f'% float(totalValue_jyzk))*float('%.3f'% float(totalValue_hknl))
@@ -332,7 +332,7 @@ def zcfzzk(id):
 		if data.table_content:
 			table_content = base64.b64decode(data.table_content).decode("utf-8")
 		else:
-			content = data.table_value
+			content = data.table_value.replace("\n", "<br>")
 	return render_template("customer/new_zcfzzk.html",id=id,content=content,table_content=table_content)
 
 #资产负债保存（小微贷）
@@ -408,7 +408,7 @@ def lrbs(id):
 		if data.table_content:
 			table_content = base64.b64decode(data.table_content).decode("utf-8")
 		else:
-			content = data.table_value     
+			content = data.table_value.replace("\n", "<br>")   
 	return render_template("customer/new_lrb_static.html",id=id,content=content,table_content=table_content)
 #标准利润表保存（小微贷）
 @app.route('/customer/lrb_static_save/<int:id>/<value>', methods=['POST'])
@@ -448,7 +448,7 @@ def xjl(id):
 		if data.table_content:
 			table_content = base64.b64decode(data.table_content).decode("utf-8")
 		else:
-			content = data.table_value    
+			content = data.table_value.replace("\n", "<br>")  
 	return render_template("customer/new_xjl.html",id=id,content=content,table_content=table_content)
 
 #现金流量（小微贷）

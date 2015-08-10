@@ -2,6 +2,7 @@
 import hashlib
 
 from RemoteCreditSystem import User
+from RemoteCreditSystem.models.system.Role import Role
 from RemoteCreditSystem.models import UserRole,Rcs_Access_Right,Indiv_Brt_Place
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Advice import Rcs_Application_Advice
@@ -16,7 +17,7 @@ from RemoteCreditSystem.models.system_usage.Rcs_Application_Ddpz import Rcs_Appl
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Expert import Rcs_Application_Expert
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Shzk import Rcs_Application_Shzk
 from RemoteCreditSystem.models.system_usage.Rcs_Parameter import Rcs_Parameter
-from flask import request, render_template,flash,redirect
+from flask import request, render_template,flash,redirect,session
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from RemoteCreditSystem import app
 from RemoteCreditSystem import db
@@ -24,10 +25,11 @@ import datetime
 from RemoteCreditSystem.config import Application_Type_Create,Application_Type_Approve,Application_Type_Finish
 from RemoteCreditSystem.config import logger
 from RemoteCreditSystem.config import PER_PAGE
+import RemoteCreditSystem.helpers as helpers
 
 from RemoteCreditSystem.tools.SimpleCache import SimpleCache
 
-from RemoteCreditSystem.models import Rcs_Application_Log,Rcs_Application_Absent
+from RemoteCreditSystem.models import Rcs_Application_Log,Rcs_Application_Absent,Rcs_Expert_Refuse
 
 
 #get md5 of a input string
@@ -48,6 +50,17 @@ def logout():
     logout_user()
     return render_template("login.html")
     
+# 心跳
+@app.route('/heartBeat', methods=['GET'])
+def heartBeat():
+    if(session.has_key(str(current_user.id))):
+        session[str(current_user.id)] = session[str(current_user.id)].split("_")[0]+"_"+str(datetime.datetime.now())
+    else:
+        session[str(current_user.id)] = str(datetime.datetime.now())+"_"+str(datetime.datetime.now())
+        
+    print session[str(current_user.id)]
+    return helpers.show_result_success('') # 返回json
+
 # 欢迎界面
 @app.route('/login_wel', methods=['POST','GET'])
 def login_wel():
@@ -56,6 +69,10 @@ def login_wel():
         simplecache = SimpleCache.getInstance()
         if user:
             login_user(user)
+            
+            #设置session
+            heartBeat()
+            
             tree = []
             userrole = UserRole.query.filter_by(user_id=current_user.id).first()
             if userrole:
@@ -99,8 +116,46 @@ def login_wel():
 
 # welcome
 @app.route('/welcome', methods=['GET'])
-def welcome():        
-    return render_template("welcome.html")
+def welcome():
+    #显示角色
+    role = Role.query.filter("id in (select role_id from rcs_userrole where user_id="+str(current_user.id)+")").first()
+    list_wait=''
+    len_wait=0
+    list_allot=''
+    len_allot=0
+    list_access=''
+    len_access=0
+    #客户经理
+    if not current_user.user_type:
+        list_wait = Rcs_Application_Info.query.filter("create_user="+str(current_user.id)+" and approve_type in (1,2)").all()
+        len_wait =len(list_wait)
+        if len_wait>10:
+            list_wait = list_wait[0:10]
+    #专家
+    elif current_user.user_type=='1':
+        list_wait = Rcs_Application_Info.query.filter("approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+" and operate='0')").all()
+        len_wait =len(list_wait)
+        if len_wait>10:
+            list_wait = list_wait[0:10]
+    #决策岗
+    else:
+        #待授信
+        list_wait = Rcs_Application_Info.query.all()
+        len_wait =len(list_wait)
+        if len_wait>10:
+            list_wait = list_wait[0:10]
+        #待分配
+        list_allot = Rcs_Application_Info.query.filter("id in (select loan_apply_id from sc_excel_table_content)").all()
+        len_allot =len(list_allot)
+        if len_allot>10:
+            list_allot = list_wait[0:10]
+        #待最终评估
+        sql = " id in (select application_id from rcs_application_expert where application_id not in (SELECT application_id FROM rcs_application_expert where operate =0))  GROUP BY id"
+        list_access = Rcs_Application_Info.query.filter(sql).all()
+        len_access = len(list_access)
+        if len_access>10:
+            list_access = list_access[0:10]
+    return render_template("welcome.html",list_wait=list_wait,len_wait=len_wait,list_allot=list_allot,len_allot=len_allot,list_access=list_access,len_access=len_access,current_user=current_user,role=role)
 
 # 修改密码
 @app.route('/change_password/<int:id>', methods=['GET','POST'])
@@ -292,18 +347,38 @@ def xxlr(page):
     return render_template("mxpg/xxlr.html",appList=appList,length=length)
 
 #授信评估
-@app.route('/mxpg/sxpg', methods=['GET'])
-def sxpg(): 
+@app.route('/mxpg/sxpg/<int:page>', methods=['GET','POST'])
+def sxpg(page): 
+    sql = "approve_type in (1,2)"
+    customer_name=''
+    card_id=''
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and customer_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"
     #获取未分类数据     
-    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all()     
-    return render_template("mxpg/sxpg.html",appList=appList)
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)   
+    return render_template("mxpg/sxpg.html",appList=appList,customer_name=customer_name,card_id=card_id)
 
 #评估报告
-@app.route('/mxpg/pgbg', methods=['GET'])
-def pgbg():      
+@app.route('/mxpg/pgbg/<int:page>', methods=['GET','POST'])
+def pgbg(page):   
+    sql = "1=1"
+    customer_name=''
+    card_id=''
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and customer_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"   
     #获取未分类数据     
-    appList = Rcs_Application_Info.query.filter_by(approve_type='1').all() 
-    return render_template("mxpg/pgbg.html",appList=appList)
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
+    return render_template("mxpg/pgbg.html",appList=appList,customer_name=customer_name,card_id=card_id)
 
 
 #参数管理
@@ -388,18 +463,7 @@ def jjrw():
     appList = Rcs_Application_Info.query.filter("approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")").all()
     return render_template("zjzxpggl/jjrw.html",appList=appList)
 
-# @app.route('/zjzxpggl/jjrw_accept/<int:id>', methods=['GET'])
-# def jjrw_accept(id): 
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()
-#     app.approve_type="3"
-#     db.session.commit()
-#     return redirect("/zjzxpggl/jjrw")
-# @app.route('/zjzxpggl/jjrw_refuse/<int:id>', methods=['GET'])
-# def jjrw_refuse(id): 
-#     app = Rcs_Application_Info.query.filter_by(approve_type='2').first()
-#     app.approve_type="4"
-#     db.session.commit()
-#     return redirect("/zjzxpggl/jjrw")
+#评估任务
 @app.route('/zjzxpggl/yjsrw/<int:page>', methods=['GET','POST'])
 def yjsrw(page):
     sql="approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")"
@@ -414,45 +478,90 @@ def yjsrw(page):
     count = len(Rcs_Application_Info.query.filter(sql).all())
     return render_template("zjzxpggl/yjsrw.html",appList=appList)
 
-# @app.route('/zjzxpggl/yjsrw_refuse/<int:id>', methods=['GET'])
-# def yjsrw_refuse(id):     
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()   
-#     app.approve_type="4"
-#     db.session.commit()
-#     return redirect("/zjzxpggl/yjsrw")
+#拒绝任务
+@app.route('/zjzxpggl/refuse', methods=['GET','POST'])
+def refuse():
+    try:
+        id = request.form['hiddenId']
+        refuse_reason = request.form['refuse_reason']
+        #删除进件关系表
+        Rcs_Application_Expert.query.filter_by(application_id=id,expert_id=current_user.id).delete()
+        db.session.flush()
+        info = Rcs_Application_Info.query.filter_by(id=id).first()
+        Rcs_Expert_Refuse(current_user.id,current_user.real_name,id,info.customer_name,refuse_reason,None,'').add()
+        db.session.commit()
+    # 消息闪现
+        flash('拒绝成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('拒绝失败','error')
+    return redirect("zjzxpggl/yjsrw/1")
 
+#拒绝任务记录查看
+@app.route('/zjzxpggl/has_refuse/<int:page>', methods=['GET','POST'])
+def has_refuse(page):
+    sql = "1=1"
+    if request.method == 'POST':
+        application_name = request.form['customer_name']
+        expert_name = request.form['expert_name']
+        if application_name:
+            sql+=" and application_name like '%"+application_name+"%'"
+        if expert_name:
+            sql+=" and expert_name like '%"+expert_name+"%'"
+    appList = Rcs_Expert_Refuse.query.filter(sql).paginate(page, per_page = PER_PAGE)
+    return render_template("zjzxpggl/refuse_list.html",appList=appList)
 
-# @app.route('/zjzxpggl/yjjrw', methods=['GET'])
-# def yjjrw():    
-#     appList = Rcs_Application_Info.query.filter("approve_type='4' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")").all()     
-#     return render_template("zjzxpggl/yjjrw.html",appList=appList)
-# @app.route('/zjzxpggl/yjjrw_accept/<int:id>', methods=['GET'])
-# def yjjrw_accept(id):    
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()  
-#     app.approve_type="3"
-#     db.session.commit()     
-#     return redirect("/zjzxpggl/yjjrw")
-# #拒绝原因页面
-# @app.route('/zjzxpggl/yjjrw_jjyy/<int:id>', methods=['GET'])
-# def yjjrw_jjyy(id):  
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()
-#     advice = Rcs_Application_Advice.query.filter_by(application_id=id).first()     
-#     return render_template("zjzxpggl/yjjrw_jjyy.html",app=app,advice=advice)
-# #拒绝原因页面提交
-# @app.route('/zjzxpggl/yjjrw_jjyy_save/<int:id>', methods=['POST'])
-# def yjjrw_jjyy_save(id):  
-#     app = Rcs_Application_Info.query.filter_by(id=id).first()  
-#     app.approve_type="4"
+#拒绝任务重分配保存
+@app.route('/zjzxpggl/has_refuse_save', methods=['POST'])
+def has_refuse_save():
+    try:
+        id = request.form['hiddenId']
+        expert_id = request.form['expert']
+        refuse = Rcs_Expert_Refuse.query.filter_by(id=id).first()
+        users = User.query.filter_by(id=expert_id).first()
+        refuse.new_expert_id = expert_id
+        refuse.new_expert_name = users.real_name
+        #进件关系表添加记录
+        Rcs_Application_Expert(refuse.application_id,expert_id).add()
+        db.session.commit()
+    # 消息闪现
+        flash('重分配成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('重分配失败','error')
+    return redirect("/zjzxpggl/has_refuse/1")
 
-#     db.session.commit()       
-#     return redirect("/zjzxpggl/yjjrw")
+#判断是否已重分配
+@app.route('/zjzxpggl/restart/<refuse_id>', methods=['GET'])
+def restart(refuse_id):
+    refuse = Rcs_Expert_Refuse.query.filter_by(id=refuse_id).first()
+    if refuse.new_expert_id:
+        return "true"
+    else:
+        return "false"
 
-#评估结论查看
-@app.route('/zxpgjl/pgjl/<int:page>', methods=['GET'])
-def pgjl(page):   
-    appList = Rcs_Application_Info.query.filter("approve_type in (2,3)").paginate(page, per_page = PER_PAGE) 
+#评估结论记录查看
+@app.route('/zxpgjl/pgjl/<int:page>', methods=['GET','POST'])
+def pgjl(page):
+    sql = "approve_type in (2,3)"
+    if not current_user.user_type:
+        sql+=" and create_user="+str(current_user.id)
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and customer_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"  
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE) 
     return render_template("zxpgjl/pgjl.html",appList=appList)
-
+#评估结果
 @app.route('/zxpgjl/pgjl_info/<int:id>', methods=['GET'])
 def pgjl_info(id):        
     app = Rcs_Application_Info.query.filter_by(id=id).first()
@@ -473,12 +582,13 @@ def save_pgjl_info(id):
         info = Rcs_Application_Info.query.filter_by(id=id).first()
         last_advice = request.form['last_advice']
         last_approve = request.form['last_approve']
+        approve_advice = request.form['advice_end']
         advice = Rcs_Application_Advice.query.filter_by(application_id=id,user_id=current_user.id).first()
         if advice:
             advice.approve_result = last_advice
             advice.approve_ed = last_approve
         else:
-            Rcs_Application_Advice(id,"",last_advice,last_approve,"2").add()
+            Rcs_Application_Advice(id,approve_advice,last_advice,last_approve,"2").add()
         #进件标志
         info.approve_type=Application_Type_Finish
         #保存进件日志
@@ -498,6 +608,40 @@ def save_pgjl_info(id):
         flash('保存失败','error')
     return redirect("/zxpgjl/pgjl_info/"+str(id))
 
+#撤销专家页面
+@app.route('/zxpgjl/cancel/<int:id>', methods=['GET'])
+def cancel(id):        
+    app = Rcs_Application_Info.query.filter_by(id=id).first()
+    #评估建议
+    advice = Rcs_Application_Advice.query.filter_by(application_id=id,advice_type=1).all()
+    #未评估专家
+    experts = Rcs_Application_Expert.query.filter("application_id="+str(id)+" and expert_id not in (select user_id from rcs_application_advice where application_id="+str(id)+")").all()
+
+    return render_template("zxpgjl/pgjl_cancel.html",app=app,advice=advice,experts=experts)
+
+#撤销专家保存
+@app.route('/zxpgjl/cancel_save/<int:id>', methods=['POST'])
+def cancel_save(id):
+    try:
+        #删除未评估专家
+        Rcs_Application_Expert.query.filter_by(application_id=id,operate=0).delete()
+        db.session.flush()
+        #重新保存评估专家
+        expertId = request.form.getlist('expert')
+        for obj in expertId:
+            #判断是否重复
+            expert = Rcs_Application_Expert.query.filter_by(application_id=id,expert_id=obj).first()
+            if not expert:
+                Rcs_Application_Expert(id,int(obj)).add()
+        db.session.commit()
+        flash('撤销成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('撤销失败','error')
+    return redirect("/zxpgjl/pgjl_info/"+str(id))
 
 
 @app.route('/zxpggzwh/pggzwh', methods=['GET'])

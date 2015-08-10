@@ -196,7 +196,6 @@ def excel_import(request):
             os.mkdir(os.path.join(LOCALEXCEL_FOLDER_ABS,str(current_user.id)))
         ABS_uri = os.path.join(LOCALEXCEL_FOLDER_ABS,'%d/%s' % (current_user.id,f.filename))
         REL_uri = os.path.join(LOCALEXCEL_FOLDER_REL,'%d/%s' % (current_user.id,f.filename))
-        
         #上传
         f.save(ABS_uri)
         #存db
@@ -243,13 +242,13 @@ def open_excel(excel_id,ABS_uri,info):
           if d != '建议':
               for index,sheet in enumerate(data.sheets()):
                   #print sheet.name #sheet名称
-                  if sheet.name == d:
+                  if sheet.name.replace(' ','') == d.replace(' ',''):
                       table_content = base64.b64encode(parseExcelToHtml.parser(ABS_uri, index))
                       SC_Excel_Table_Content(info.id,excel_id,table_content,excel_dict[d]['name'],excel_dict[d]['code']).add()
                       
                       #读数据
                       tmp = ''
-                      if sheet.name == '资产负债':
+                      if sheet.name.replace(' ','') == '资产负债':
                           for i in range(0, len(zcfcb_arr)):
                               arr = zcfcb_arr[i].split('-')
                               value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
@@ -259,7 +258,7 @@ def open_excel(excel_id,ABS_uri,info):
                                   tmp += "0@@"
                           tmp = tmp[0:len(tmp)-2]
                           Rcs_Application_Zcfzb(info.id,tmp,'').add()
-                      if sheet.name == '利润简表':
+                      if sheet.name.replace(' ','') == '利润简表':
                           for i in range(0, len(lrb_arr)):
                               arr = lrb_arr[i].split('-')
                               value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
@@ -269,8 +268,8 @@ def open_excel(excel_id,ABS_uri,info):
                                   tmp += "0@@"
                           tmp = tmp[0:len(tmp)-2]
                           Rcs_Application_Lrb(info.id,tmp,'').add()
-                      if sheet.name == '标准利润表':
-                          for i in range(0, len(lrb_arr)):
+                      if sheet.name.replace(' ','') == '标准利润表':
+                          for i in range(0, len(lrb_static_arr)):
                               arr = lrb_static_arr[i].split('-')
                               value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
                               if value:
@@ -279,7 +278,7 @@ def open_excel(excel_id,ABS_uri,info):
                                   tmp += "0@@"
                           tmp = tmp[0:len(tmp)-2]
                           Rcs_Application_Lrb_Static(info.id,tmp,'').add()
-                      if sheet.name == '现金流量表':
+                      if sheet.name.replace(' ','') == '现金流量表':
                           for i in range(0, len(xjl_arr)):
                               arr = xjl_arr[i].split('-')
                               value= sheet.row(int(arr[0]))[letters.index(arr[1])].value
@@ -292,7 +291,7 @@ def open_excel(excel_id,ABS_uri,info):
                           
                       break
       for index,sheet in enumerate(data.sheets()):
-          if sheet.name == '经营状态' or sheet.name == '生存状态' or sheet.name == '道德品质' :
+          if sheet.name.replace(' ','') == '经营状态' or sheet.name.replace(' ','') == '生存状态' or sheet.name.replace(' ','') == '道德品质' :
               parseModel(sheet,info)
     except:
       logger.exception('exception')
@@ -335,6 +334,7 @@ def parseModel(sheet,info):
             #列数
             ncols = sheet.ncols
             for i in range(sheet.nrows):
+              if i>0:
                 value = sheet.row(i)[ncols-1].value
                 row = sheet.row(i)
                 #递归获取下拉框前面的标题值

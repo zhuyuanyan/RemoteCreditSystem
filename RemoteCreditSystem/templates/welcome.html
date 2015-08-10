@@ -17,37 +17,72 @@
 		<div class="content">
 			<!--**********左侧待办事项**************-->
 			<div class="workPlan">
-				<ul class="tab">
-					<li class="active" onclick="changeTab(this,'tab0')"><a href="javascript:void(0)">今天</a></li>
+				<!-- <ul class="tab">
+					<li class="active" onclick="changeTab(this,'tab0')"><a href="javascript:void(0)">今天任务</a></li>
 					<li onclick="changeTab(this,'tab1')"><a href="javascript:void(0)">明天</a></li>
 					<li onclick="changeTab(this,'tab2')"><a href="javascript:void(0)">后天</a></li>
 					<li onclick="changeTab(this,'tab3')"><a href="javascript:void(0)">4号</a></li>
 					<li onclick="changeTab(this,'tab4')"><a href="javascript:void(0)" style="border-right:none;">5号</a></li>
-				</ul>
+				</ul> -->
 				
 				<div class="tabContent">
 				<!--*************第一个标签**********************-->
 					<div id="tab0" class="tabs active">
+						{%- if not current_user.user_type%}
 						<div class="myItem">
 							<div class="itemTitle" onclick="changeItem(this)">
 								待授信进件<em class="icon-up"></em>
 							</div>
 							<ul class="itemList">
-								<li>进件1<em class="icon-num">3</em></li>
-								<li>进件2<em class="icon-num">2</em></li>
-								<li>进件3<em class="icon-num">1</em></li>
+								{%- for obj in list_wait%}
+								<li>{{obj.customer_name}}</li>
+								{%- endfor%}
 							</ul>
 						</div>
-						<div class="myItem">
-							<div class="itemTitle" onclick="changeItem(this)">
-								已授信进件<em class="icon-up"></em>
+						{%- elif current_user.user_type=='1'%}
+							<div class="myItem">
+								<div class="itemTitle" onclick="changeItem(this)">
+									待授信进件<em class="icon-up"></em>
+								</div>
+								<ul class="itemList">
+									{%- for obj in list_wait%}
+									<li>{{obj.customer_name}}</li>
+									{%- endfor%}
+								</ul>
 							</div>
-							<ul class="itemList">
-								<li>进件1<em class="icon-num">3</em></li>
-								<li>进件2<em class="icon-num">2</em></li>
-								<li>进件3<em class="icon-num">1</em></li>
-							</ul>
-						</div>
+						{%- else%}
+							<div class="myItem">
+								<div class="itemTitle" onclick="changeItem(this)">
+									待授信进件<em class="icon-up"></em>
+								</div>
+								<ul class="itemList">
+									{%- for obj in list_wait%}
+									<li>{{obj.customer_name}}</li>
+									{%- endfor%}
+								</ul>
+							</div>
+							<div class="myItem">
+								<div class="itemTitle" onclick="changeItem(this)">
+									待分配进件<em class="icon-up"></em>
+								</div>
+								<ul class="itemList">
+									{%- for obj in list_allot%}
+									<li>{{obj.customer_name}}</li>
+									{%- endfor%}
+								</ul>
+							</div>
+							<div class="myItem">
+								<div class="itemTitle" onclick="changeItem(this)">
+									待最终评估进件<em class="icon-up"></em>
+								</div>
+								<ul class="itemList">
+									{%- for obj in list_access%}
+									<li>{{obj.customer_name}}</li>
+									{%- endfor%}
+								</ul>
+							</div>
+						{%- endif%}
+						
 						
 					</div>
 				<!--*************第二个标签**********************-->
@@ -67,23 +102,33 @@
 				</div>
 				<ul class="userInfo">
 					<li><img src="../static/img/user/01.png"/></li>
-					<li>用户名：admin</li>
-					<li>职位：客户经理</li>
+					<li>用户名：{{current_user.real_name}}</li>
+					<li>职位：{{role.role_name}}</li>
 					<li>机构：总行</li>
-					<li>角色：评估专家</li>
+					<li>角色：{{role.role_name}}</li>
 				</ul>
 				<div class="workInfo">
-					<a href="#">
-						<span class="color1">未</span>2
-					</a>
-					<a href="#">
-						<span class="color2">已</span>2
-					</a>
-					<a href="#">
-						<span class="color3">待</span>2
-					</a>
+					{%- if not current_user.user_type%}
+						<a href="#">
+							<span class="color3">待授信</span>{{len_wait}}
+						</a>
+					{%- elif current_user.user_type=='1' %}
+						<a href="#">
+							<span class="color3">待授信</span>{{len_wait}}
+						</a>
+					{%- else%}
+						<a href="#">
+							<span class="color1">待授信</span>{{len_wait}}
+						</a>
+						<a href="#">
+							<span class="color2">待分配</span>{{len_allot}}
+						</a>
+						<a href="#">
+							<span class="color3">待评估</span>{{len_access}}
+						</a>
+					{%- endif%}
 				</div>
-				<div class="myItem">
+	<!-- 			<div class="myItem">
 					<div class="itemTitle" onclick="changeItem(this)">
 						待授信进件<em class="icon-up-small"></em>
 					</div>
@@ -92,7 +137,7 @@
 						<li>进件2<span>30000</span></li>
 						<li>进件3<span>300000</span></li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</body>
