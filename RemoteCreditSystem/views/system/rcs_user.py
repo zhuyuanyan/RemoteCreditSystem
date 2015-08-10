@@ -219,8 +219,17 @@ def change_belong_user():
         user = User.query.filter_by(id=request.form['user_id']).first()
         user.org_id = None
         user.pId = request.form['belong_user']
+        
+        sql = "FIND_IN_SET(id ,getUserList('"+request.form['user_id']+"'))"
+        users = User.query.filter(sql).order_by("id").all()
+        for obj in users:
+            if str(obj.id) == request.form['belong_user']:#环状结构 不允许
+                # 消息闪现
+                flash('保存失败 不允许环状结构! ','error')
+                return render_template("System/user/user.html")
+            
         # 事务提交
-        db.session.commit()
+        db.session.commit() 
         # 消息闪现
         flash('保存成功','success')
     except:
