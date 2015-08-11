@@ -208,7 +208,8 @@ def jjfa(page):
             sql+=" and card_id='"+card_id+"'"    
     #获取未分类数据   
     appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
-    return render_template("jjrwfa/jjfa.html",appList=appList,current_user=current_user)
+    count = len(Rcs_Application_Info.query.filter(sql).all())
+    return render_template("jjrwfa/jjfa.html",appList=appList,current_user=current_user,count=count)
 
 @app.route('/jjrwfa/jjrwfaxx', methods=['GET'])
 def jjrwfaxx():        
@@ -328,7 +329,8 @@ def pldr(page):
             sql+=" and card_id='"+card_id+"'"    
     #获取未分类数据   
     appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
-    return render_template("mxpg/pldr.html",appList=appList)
+    count = len(Rcs_Application_Info.query.filter(sql).all())
+    return render_template("mxpg/pldr.html",appList=appList,count=count)
 @app.route('/mxpg/xxlr/<int:page>', methods=['GET','POST'])
 def xxlr(page):
     sql=" create_user="+str(current_user.id)
@@ -362,7 +364,8 @@ def sxpg(page):
             sql+=" and card_id='"+card_id+"'"
     #获取未分类数据     
     appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)   
-    return render_template("mxpg/sxpg.html",appList=appList,customer_name=customer_name,card_id=card_id)
+    count = len(Rcs_Application_Info.query.filter(sql).all())
+    return render_template("mxpg/sxpg.html",appList=appList,customer_name=customer_name,card_id=card_id,count=count)
 
 #评估报告
 @app.route('/mxpg/pgbg/<int:page>', methods=['GET','POST'])
@@ -379,7 +382,8 @@ def pgbg(page):
             sql+=" and card_id='"+card_id+"'"   
     #获取未分类数据     
     appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
-    return render_template("mxpg/pgbg.html",appList=appList,customer_name=customer_name,card_id=card_id)
+    count = len(Rcs_Application_Info.query.filter(sql).all())
+    return render_template("mxpg/pgbg.html",appList=appList,customer_name=customer_name,card_id=card_id,count=count)
 
 
 #参数管理
@@ -433,7 +437,8 @@ def khzl(page):
             sql+=" and card_id='"+card_id+"'"    
     #获取未分类数据   
     appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
-    return render_template("khzldy/khzl.html",appList=appList)
+    count = len(Rcs_Application_Info.query.filter(sql).all())
+    return render_template("khzldy/khzl.html",appList=appList,count=count)
 
 #还款能力页面(iframe)
 @app.route('/khzldy/khzl_hknl/<type>/<int:id>', methods=['GET'])
@@ -477,7 +482,7 @@ def yjsrw(page):
             sql+=" and card_id='"+card_id+"'"  
     appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
     count = len(Rcs_Application_Info.query.filter(sql).all())
-    return render_template("zjzxpggl/yjsrw.html",appList=appList)
+    return render_template("zjzxpggl/yjsrw.html",appList=appList,count=count)
 
 #拒绝任务
 @app.route('/zjzxpggl/refuse', methods=['GET','POST'])
@@ -513,7 +518,8 @@ def has_refuse(page):
         if expert_name:
             sql+=" and expert_name like '%"+expert_name+"%'"
     appList = Rcs_Expert_Refuse.query.filter(sql).paginate(page, per_page = PER_PAGE)
-    return render_template("zjzxpggl/refuse_list.html",appList=appList)
+    count = len(Rcs_Expert_Refuse.query.filter(sql).all())
+    return render_template("zjzxpggl/refuse_list.html",appList=appList,count=count)
 
 #拒绝任务重分配保存
 @app.route('/zjzxpggl/has_refuse_save', methods=['POST'])
@@ -560,8 +566,9 @@ def pgjl(page):
             sql+=" and customer_name like '%"+customer_name+"%'"
         if card_id:
             sql+=" and card_id='"+card_id+"'"  
-    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE) 
-    return render_template("zxpgjl/pgjl.html",appList=appList)
+    appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
+    count = len(Rcs_Application_Info.query.filter(sql).all())
+    return render_template("zxpgjl/pgjl.html",appList=appList,count=count)
 #评估结果
 @app.route('/zxpgjl/pgjl_info/<int:id>', methods=['GET'])
 def pgjl_info(id):        
@@ -650,11 +657,22 @@ def pggzwh():
     return render_template("zxpggzwh/pggzwh.html")
 
 #专家信息管理
-@app.route('/pgzjgl/zjxxgl', methods=['GET'])
-def zjxxgl():
+@app.route('/pgzjgl/zjxxgl/<int:page>', methods=['GET','POST'])
+def zjxxgl(page):
+    sql="(user_type='1' or user_type='2')"
+    customer_name=''
+    card_id=''
+    if request.method == 'POST':
+        customer_name = request.form['customer_name']
+        card_id = request.form['card_id']
+        if customer_name:
+            sql+=" and real_name like '%"+customer_name+"%'"
+        if card_id:
+            sql+=" and card_id='"+card_id+"'"  
     #获取专家信息 
-    user = User.query.filter("user_type='1' or user_type='2'").all()          
-    return render_template("pgzjgl/zjxxgl.html",user=user)
+    user = User.query.filter(sql).paginate(page, per_page = PER_PAGE)
+    count =len(User.query.filter(sql).all())       
+    return render_template("pgzjgl/zjxxgl.html",user=user,count=count,customer_name=customer_name,card_id=card_id)
 #新增
 @app.route('/pgzjgl/new_zjxxgl', methods=['GET'])
 def new_zjxxgl():  

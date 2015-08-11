@@ -114,6 +114,7 @@
 					<a class="btn btn-info" title="进件信息" onclick="iframeById('/Process/dqdc/dqdc_xed',document.getElementById('hiddenId').value)">查看进件信息</a>
 				</div>
 				<div class="page">
+					共&#160;<font color="#0088cc">{{count}}</font>&#160;条
 					{%- if appList.has_prev %}
 						<span style="CURSOR: pointer" onclick="submitForm('tests','/zjzxpggl/yjsrw/{{appList.prev_num}}')">&lt;&lt;</span>
 					{%- else %}
