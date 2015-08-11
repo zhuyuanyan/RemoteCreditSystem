@@ -81,8 +81,10 @@ def new_user(pId):
 
             #清理缓存
             db.session.flush()
-            
-            UserRole(user.id,request.form['roles']).add()
+            role_type = request.form['role_type']
+            #存在角色
+            if role_type=='1':
+                UserRole(user.id,request.form['roles']).add()
 
             # 事务提交
             db.session.commit()
