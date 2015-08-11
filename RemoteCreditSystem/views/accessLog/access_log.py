@@ -1,6 +1,6 @@
 # coding:utf-8
 from flask import Module, session, request, render_template, redirect, url_for, flash
-from flask.ext.login import current_user
+from flask.ext.login import current_user,login_required
 
 from RemoteCreditSystem import app
 from RemoteCreditSystem.config import logger
@@ -9,6 +9,7 @@ from RemoteCreditSystem.config import PER_PAGE
  
 # 评估日志
 @app.route('/accessLog/list/<int:page>', methods=['POST','GET'])
+@login_required
 def list(page):
     sql="1=1"
     if request.method == 'POST':
@@ -25,6 +26,7 @@ def list(page):
 
 # 缺席专家记录
 @app.route('/accessLog/absent/<int:page>', methods=['POST','GET'])
+@login_required
 def absent(page):
     sql="1=1"
     if request.method == 'POST':
@@ -44,6 +46,7 @@ def absent(page):
 
 # 超时专家记录
 @app.route('/accessLog/overTime/<int:page>', methods=['POST','GET'])
+@login_required
 def overTime(page):
     sql="1=1"
     if request.method == 'POST':

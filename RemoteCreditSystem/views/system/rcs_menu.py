@@ -6,7 +6,7 @@ import datetime
 import json
 
 from flask import Module, session, request, render_template, redirect, url_for, flash
-from flask.ext.login import current_user
+from flask.ext.login import current_user,login_required
 
 from RemoteCreditSystem.models import Role
 from RemoteCreditSystem.models import Rcs_Access_Right
@@ -18,6 +18,7 @@ import RemoteCreditSystem.logic.system.access_right as access_right
 
 # 模块管理
 @app.route('/System/menu.page', methods=['GET'])
+@login_required
 def menu_page():
     return render_template("System/menu/menu.html")
 

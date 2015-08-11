@@ -27,7 +27,9 @@ or
 """
 
 class DynDictCache(collections.OrderedDict):
-
+    
+    path = ''
+    
     def __new__(cls,*args):
         if not hasattr(cls,'_instance'):
             cls._instance = dict.__new__(cls)

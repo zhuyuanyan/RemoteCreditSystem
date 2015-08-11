@@ -6,7 +6,7 @@ import RemoteCreditSystem.helpers as helpers
 import datetime
 
 from flask import Module, session, request, render_template, redirect, url_for, flash
-from flask.ext.login import current_user
+from flask.ext.login import current_user,login_required
 
 from RemoteCreditSystem.models import User
 from RemoteCreditSystem.models import Role
@@ -25,6 +25,7 @@ def GetStringMD5(str):
 
 # 使用者管理
 @app.route('/System/user.page/<int:page>', methods=['GET'])
+@login_required
 def System_user(page):
     #users = User.query.order_by("id").paginate(page, per_page = PER_PAGE)
     return render_template("System/user/user.html")
@@ -160,6 +161,7 @@ def disable_user(type,id):
     
 # 角色权限管理
 @app.route('/System/role.page/<int:page>', methods=['GET'])
+@login_required
 def System_jsqxgl(page):
     # 获取角色并分页
     roles = Role.query.order_by("id").paginate(page, per_page = PER_PAGE)
@@ -190,30 +192,30 @@ def new_role():
         return render_template("System/role/new_role.html")
 
 # 更新角色
-@app.route('/System/edit_role.json/<int:id>', methods=['GET','POST'])
+@app.route('/System/edit_role.json/<int:id>', methods=['GET'])
+def edit_role1(id):
+    role = Role.query.filter_by(id=id).first()
+    return render_template("System/role/edit_role.html",role=role)
+
+# 更新角色
+@app.route('/System/edit_role.json/<int:id>', methods=['POST'])
 def edit_role(id):
-    if request.method == 'POST':
-        try:
-            Role.query.filter_by(id=id).update({"role_name":request.form['role_name']})
+    try:
+        Role.query.filter_by(id=id).update({"role_name":request.form['role_name']})
 
-            # 事务提交
-            db.session.commit()
-            # 消息闪现
-            flash('保存成功','success')
-        except:
-            # 回滚
-            db.session.rollback()
-            logger.exception('exception')
-            # 消息闪现
-            flash('保存失败','error')
+        # 事务提交
+        db.session.commit()
+        # 消息闪现
+        flash('保存成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
 
-        return redirect('System/role.page/1')
-
-    elif request.method == 'GET':
-        role = Role.query.filter_by(id=id).first()
-
-        return render_template("System/role/edit_role.html",role=role)
-    
+    return redirect('System/role.page/1')
+          
 # 移动到用户
 @app.route('/System/user/change_belong_user', methods=['GET','POST'])
 def change_belong_user():

@@ -22,3 +22,5 @@ input[type=text]:focus,input[type=password]:focus{outline:none;border-color:#158
 /*登录按钮*/
 .loginBox input[type=submit]{width:300px;height:40px;margin-top:10px;cursor:pointer;background:url(../img/btn_normal.png);color:#fff;border:1px solid #0089d9;font: normal 15px "Microsoft YaHei";}
 .loginBox input[type=submit]:hover{background:url(../img/btn_normal_hover.png);}
+.loginBox input[type=button]{width:300px;height:40px;margin-top:10px;cursor:pointer;background:url(../img/btn_normal.png);color:#fff;border:1px solid #0089d9;font: normal 15px "Microsoft YaHei";}
+.loginBox input[type=button]:hover{background:url(../img/btn_normal_hover.png);}
