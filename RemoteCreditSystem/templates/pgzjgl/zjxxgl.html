@@ -3,14 +3,20 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link href="../../static/css/btn.css" rel="stylesheet" type="text/css" />
+		<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
 		<link href="../../static/css/main.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
 		<script src="../../static/js/index.js"></script>
+		<script src="../../static/js/util.js"></script><!-- html字符转义 -->
+		<!--验证样式-->
+		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
+		<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
+		<script src="../../static/js/jquery.validationEngine.js"></script> 
 		<style type="text/css">
 			
 		</style>
 	</head>
-	<body>
+	<body onload="setTimeOut();">
 		<div class="position">
 			当前位置：<span>评估专家管理 / 专家信息管理</span>
 		</div>
@@ -18,16 +24,30 @@
 			专家信息管理
 		</div>
 		<div class="content">
-			<form class="search">				
-				<span>
-					专家编号：<input type="text"/>
-				</span>
-				<span>
-					专家名称：<input type="text"/>
-				</span>		
-				<span class="searchButton">
-					<input type="button" class="btn btn-info" value="筛选"/>
-				</span>
+			<form id="tests" action="/pgzjgl/zjxxgl/1" method="POST">	
+					{%- with messages = get_flashed_messages(with_categories=true) %}
+			  	{%- if messages %}
+		    	{%- for category, message in messages %}
+		    	<div class="alert alert-{{category}}">
+		      		{{message}}
+		      	</div>
+		    	{%- endfor %}
+			  	{%- endif %}
+			{%- endwith %}		
+				<table style="width:80%;height:50px">
+				<tr>	
+				<td>
+					专家身份证号：<input type="text" name="card_id" value="{{card_id}}"/>
+				</td>
+				<td>
+					专家名称：<input type="text" name="customer_name" value="{{customer_name}}"/>
+				</td>
+							
+				<td>
+					<input type="submit" class="btn btn-info" value="筛选"/>
+				</td>
+				</tr>
+				</table>
 			</form>
 			<table class="table-list">
 				<colgroup>
@@ -53,7 +73,7 @@
 					<col width="30%" />
 					<col width="15%" />
 				</colgroup>
-				{%- for obj in user%}
+				{%- for obj in user.items%}
 				<tr onclick="checkTable(this)">
 					<td><input type="radio" name="radio" onclick="selectbelong({{obj.id}})"/></td>
 					<td>{{obj.id}}</td>
@@ -71,14 +91,19 @@
 					<a class="btn" href="javascript:void(0);" title="显示" onclick="iframeById('/pgzjgl/show_zjxxgl',document.getElementById('hiddenId').value)">显示</a>
 				</div>
 				<div class="page">
-					<span>共<b>1</b>条数据，当前第<b>1</b>页</span>
-					<a href="#" class="first"><img src="../../static/img/icon_button_first.png"/></a>
-					<a href="#" class="previous"><img src="../../static/img/icon_button_previous.png"/></a>
-					<input type="text"/>
-					<input type="button" value="GO" class="go"/>
-					<span>/页</span>	
-					<a href="#" class="next"><img src="../../static/img/icon_button_next.png"/></a>
-					<a href="#" class="end"><img src="../../static/img/icon_button_end.png"/></a>
+					共&#160;<font color="#0088cc">{{count}}</font>&#160;条
+					{%- if user.has_prev %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/pgzjgl/zjxxgl/{{user.prev_num}}')">&lt;&lt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&lt;&lt;</span>
+					{%- endif %}
+					&#160;第&#160;<font color="#0088cc">{{user.page}}</font>&#160;页&#160;
+					&#160;共&#160;<font color="#0088cc">{{user.pages}}</font>&#160;页&#160;
+					{%- if user.has_next %}
+						<span style="CURSOR: pointer" onclick="submitForm('tests','/pgzjgl/zjxxgl/{{user.next_num}}')">&gt;&gt;</span>
+					{%- else %}
+						<span style="CURSOR: pointer">&gt;&gt;</span>
+					{%- endif %}
 				</div>
 			</div>		
 		</div>
@@ -94,6 +119,10 @@
 				}
 				var url = page+"/"+id;
 			   window.location.href =  url;
+			}
+			function submitForm(formId,action){
+			    document.getElementById(formId).action = action;
+			    document.getElementById(formId).submit();
 			}
 		</script>
 	</body>

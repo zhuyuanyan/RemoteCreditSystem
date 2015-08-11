@@ -47,6 +47,10 @@
 				{%- endfor %}
 				<li class="selectTag">
 						<a onclick="selectTag('tagContent1',this);
+						$('#dqdcXed_zcfzb').attr('src','/xxlr/image_list.page/{{info.id}}/1/readonly')" href="javascript:void(0)">影像资料</a> 
+					</li>
+				<li class="selectTag">
+						<a onclick="selectTag('tagContent1',this);
 						$('#dqdcXed_zcfzb').attr('src','/Process/dqdc/show_advice.page/{{info.id}}')" href="javascript:void(0)">专家建议</a> 
 					</li>
 			</ul>
@@ -59,7 +63,7 @@
 				</div><!-- /资产负债表 -->	
 				{%- else%}	
 				<div class="tagContent selectTag" id="tagContent1">
-					<iframe frameborder="0" width="100%;" id="dqdcXed_zcfzb" src="/Process/dqdc/show_advice.page/{{info.id}}" style="height:350px;"></iframe>
+					<iframe frameborder="0" width="100%;" id="dqdcXed_zcfzb" src="/xxlr/image_list.page/{{info.id}}/1/readonly" style="height:350px;"></iframe>
 				</div><!-- /专家建议 -->
 				{%- endif%}	
 			</div><!-- /tagContent -->	

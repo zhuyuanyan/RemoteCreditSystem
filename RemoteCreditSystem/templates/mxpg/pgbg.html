@@ -60,7 +60,7 @@
 					<col width="5%" />
 				</colgroup>
 				<tr>
-					<th width="50"></th>
+					<th></th>
 					<th>客户名称</th>
 					<th>证件号码</th>
 					<th>产品名称</th>
@@ -108,9 +108,10 @@
 			<div class="pagebar">
 				<input type="hidden" value="" id="hiddenId"/>
 				<div class="controlbtn">
-					<a class="btn" href="javascript:void(0);" title="查看评估报告" onclick="iframeById('/mxpg/show_pgbg')">查看评估报告</a>
+					<a class="btn btn-info" href="javascript:void(0);" title="查看评估报告" onclick="iframeById('/mxpg/show_pgbg')">查看评估报告</a>
 				</div>
 				<div class="page">
+					共&#160;<font color="#0088cc">{{count}}</font>&#160;条
 					{%- if appList.has_prev %}
 						<span style="CURSOR: pointer" onclick="submitForm('tests','/mxpg/pgbg/{{appList.prev_num}}')">&lt;&lt;</span>
 					{%- else %}

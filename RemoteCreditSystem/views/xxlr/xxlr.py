@@ -122,10 +122,10 @@ def xxlr_hknl_bz(loan_apply_id):
 	return render_template("xxlr/hknl_bz.html",loan_apply_id=loan_apply_id,form_data=form_data)
 
 # 影像列表
-@app.route('/xxlr/image_list.page/<int:loan_apply_id>/<int:page>', methods=['GET'])
-def xxlr_image_list(loan_apply_id,page):
+@app.route('/xxlr/image_list.page/<int:loan_apply_id>/<int:page>/<type>', methods=['GET'])
+def xxlr_image_list(loan_apply_id,page,type):
 	images = RCS_Upload_Image.query.filter_by(loan_apply_id=loan_apply_id).order_by("id").paginate(page, per_page = PER_PAGE)
-	return render_template("xxlr/image_list.html",loan_apply_id=loan_apply_id,images=images)
+	return render_template("xxlr/image_list.html",loan_apply_id=loan_apply_id,images=images,type=type)
 
 # 影像上传
 @app.route('/xxlr/upload_image/<int:loan_apply_id>', methods=['POST'])
@@ -138,4 +138,4 @@ def xxlr_upload_image(loan_apply_id):
 		logger.exception('exception')
 		# 消息闪现
 		flash('保存失败','error')
-	return redirect("/xxlr/image_list.page/"+str(loan_apply_id)+"/1")
+	return redirect("/xxlr/image_list.page/"+str(loan_apply_id)+"/1/write")

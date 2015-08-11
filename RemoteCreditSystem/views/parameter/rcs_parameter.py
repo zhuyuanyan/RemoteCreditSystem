@@ -160,6 +160,24 @@ def edit_select_save(p_id):
 		flash('保存失败','error')
 	return redirect("/parameter/model_"+tree.param_type)
 
+#修改模型值页面delete
+@app.route('/parameter/edit_select_delete/<int:p_id>', methods=['POST'])
+def edit_select_delete(p_id):
+	select = Rcs_Parameter_Select.query.filter_by(id=p_id).first()
+	tree = Rcs_Parameter_Tree.query.filter_by(id=select.tree_id).first()
+	Rcs_Parameter_Select.query.filter_by(id=p_id).delete()
+	try:
+		db.session.commit()
+		# 消息闪现
+		flash('删除成功','success')
+	except:
+		# 回滚
+		db.session.rollback()
+		logger.exception('exception')
+		# 消息闪现
+		flash('删除失败','error')
+	return redirect("/parameter/model_"+tree.param_type)
+
 #判断是否存在子节点(不存在，删除)
 @app.route('/parameter/autoChild/<int:p_id>', methods=['GET'])
 def autoChild(p_id):
