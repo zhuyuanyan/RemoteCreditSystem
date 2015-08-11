@@ -71,9 +71,14 @@
 						</tr>
 						<tr>
 							<td colspan="4">
-								{%- for obj in roles %}
-									<label><input type="radio" name="roles" value="{{obj.id}}" checked />{{obj.role_name}}</label>
-								{%- endfor %}
+								{%- if roles%}
+									{%- for obj in roles %}
+										<label><input type="radio" name="roles" value="{{obj.id}}" checked />{{obj.role_name}}</label>
+										<input type="hidden" name="role_type" value="1"/>
+									{%- endfor %}
+								{%- else%}
+									<input type="hidden" name="role_type" value="2"/>
+								{%- endif%}
 							</td>
 						</tr>					
 					</table>
