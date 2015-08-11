@@ -97,6 +97,7 @@
 					<a class="btn" onclick="iframeById('/jjrwfa/show_jjfa',document.getElementById('hiddenId').value)" title="调阅客户资料">调阅客户资料</a>
 				</div>
 				<div class="page">
+					共&#160;<font color="#0088cc">{{count}}</font>&#160;条
 					{%- if appList.has_prev %}
 						<span style="CURSOR: pointer" onclick="submitForm('tests','/khzldy/khzl/{{appList.prev_num}}')">&lt;&lt;</span>
 					{%- else %}

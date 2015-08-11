@@ -115,6 +115,7 @@
 					<a class="btn btn-info" href="javascript:void(0);" title="导入" id="id_upload_button" onclick="showDialog()">导入</a>
 				</div>
 				<div class="page">
+					共&#160;<font color="#0088cc">{{count}}</font>&#160;条
 					{%- if appList.has_prev %}
 						<span style="CURSOR: pointer" onclick="submitForm('tests','/mxpg/pldr/{{appList.prev_num}}')">&lt;&lt;</span>
 					{%- else %}

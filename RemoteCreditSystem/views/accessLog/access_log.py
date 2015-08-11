@@ -20,7 +20,8 @@ def list(page):
             sql+=" and card_id='"+card_id+"'"  
     sql+=" order by application_id"    
     appList = Rcs_Application_Log.query.filter(sql).paginate(page, per_page = PER_PAGE)
-    return render_template("accessLog/accesslog.html",appList=appList)
+    count = len(Rcs_Application_Log.query.filter(sql).all())
+    return render_template("accessLog/accesslog.html",appList=appList,count=count)
 
 # 缺席专家记录
 @app.route('/accessLog/absent/<int:page>', methods=['POST','GET'])
@@ -38,7 +39,8 @@ def absent(page):
             sql+=" and expert_name like '%"+expert_name+"%'"
     sql+=" order by application_id"    
     appList = Rcs_Application_Absent.query.filter(sql).paginate(page, per_page = PER_PAGE)
-    return render_template("accessLog/absentlog.html",appList=appList)
+    count = len(Rcs_Application_Absent.query.filter(sql).all())
+    return render_template("accessLog/absentlog.html",appList=appList,count=count)
 
 # 超时专家记录
 @app.route('/accessLog/overTime/<int:page>', methods=['POST','GET'])
@@ -56,5 +58,6 @@ def overTime(page):
             sql+=" and expert_name like '%"+expert_name+"%'"
     sql+=" order by app_id"    
     appList = View_Over_Application.query.filter(sql).paginate(page, per_page = PER_PAGE)
-    return render_template("accessLog/overtimelog.html",appList=appList)
+    count = len(View_Over_Application.query.filter(sql).all())
+    return render_template("accessLog/overtimelog.html",appList=appList,count=count)
     
