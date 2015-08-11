@@ -721,7 +721,7 @@ def new_zjxxgl_save():
         logger.exception('exception')
         # 消息闪现
         flash('保存失败','error')
-    return redirect('/pgzjgl/zjxxgl')
+    return redirect('/pgzjgl/zjxxgl/1')
 
 #修改页面
 @app.route('/pgzjgl/edit_zjxxgl/<int:id>', methods=['GET'])
