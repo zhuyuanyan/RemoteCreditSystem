@@ -77,6 +77,7 @@
 			<div class="pagebar">
 				<input type="hidden" id="hiddenId"/>
 				<div class="page">
+					共&#160;<font color="#0088cc">{{count}}</font>&#160;条
 					{%- if appList.has_prev %}
 						<span style="CURSOR: pointer" onclick="submitForm('tests','/accessLog/absent/{{appList.prev_num}}')">&lt;&lt;</span>
 					{%- else %}
