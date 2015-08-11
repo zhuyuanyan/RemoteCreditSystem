@@ -192,30 +192,30 @@ def new_role():
         return render_template("System/role/new_role.html")
 
 # 更新角色
-@app.route('/System/edit_role.json/<int:id>', methods=['GET'])
-def edit_role1(id):
-    role = Role.query.filter_by(id=id).first()
-    return render_template("System/role/edit_role.html",role=role)
-
-# 更新角色
-@app.route('/System/edit_role.json/<int:id>', methods=['POST'])
+@app.route('/System/edit_role.json/<int:id>', methods=['GET','POST'])
 def edit_role(id):
-    try:
-        Role.query.filter_by(id=id).update({"role_name":request.form['role_name']})
+    if request.method == 'POST':
+        try:
+            Role.query.filter_by(id=id).update({"role_name":request.form['role_name']})
 
-        # 事务提交
-        db.session.commit()
-        # 消息闪现
-        flash('保存成功','success')
-    except:
-        # 回滚
-        db.session.rollback()
-        logger.exception('exception')
-        # 消息闪现
-        flash('保存失败','error')
+            # 事务提交
+            db.session.commit()
+            # 消息闪现
+            flash('保存成功','success')
+        except:
+            # 回滚
+            db.session.rollback()
+            logger.exception('exception')
+            # 消息闪现
+            flash('保存失败','error')
 
-    return redirect('System/role.page/1')
-          
+        return redirect('System/role.page/1')
+
+    elif request.method == 'GET':
+        role = Role.query.filter_by(id=id).first()
+
+        return render_template("System/role/edit_role.html",role=role)
+    
 # 移动到用户
 @app.route('/System/user/change_belong_user', methods=['GET','POST'])
 def change_belong_user():
