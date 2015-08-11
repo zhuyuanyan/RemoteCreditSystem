@@ -6,7 +6,7 @@ import RemoteCreditSystem.helpers as helpers
 import datetime
 
 from flask import Module, session, request, render_template, redirect, url_for, flash
-from flask.ext.login import current_user
+from flask.ext.login import current_user,login_required
 
 from RemoteCreditSystem.models import User
 from RemoteCreditSystem.models import Role
@@ -25,6 +25,7 @@ def GetStringMD5(str):
 
 # 使用者管理
 @app.route('/System/user.page/<int:page>', methods=['GET'])
+@login_required
 def System_user(page):
     #users = User.query.order_by("id").paginate(page, per_page = PER_PAGE)
     return render_template("System/user/user.html")
@@ -161,6 +162,7 @@ def disable_user(type,id):
     
 # 角色权限管理
 @app.route('/System/role.page/<int:page>', methods=['GET'])
+@login_required
 def System_jsqxgl(page):
     # 获取角色并分页
     roles = Role.query.order_by("id").paginate(page, per_page = PER_PAGE)

@@ -3,9 +3,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>乾康远程授信系统</title>
-		<link href="../static/css/login.css" rel="stylesheet" type="text/css" />	
+		<link href="../../static/css/login.css" rel="stylesheet" type="text/css" />	
 		<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
 		<script src="../../static/js/jquery-1.7.2.min.js"></script>
+		<script src="../../static/js/jquery.json-2.4.min.js"></script>
 		<script src="../../static/js/index.js"></script>
 		<!--验证样式-->
 		<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
@@ -14,15 +15,15 @@
 	</head>
 	<body onload="setTimeOut();">
 		<div class="loginBox">
-			<form id="form_id" class="login_form" action="/login_wel" method="POST">
-				<img src="../static/img/login.png"/>				
+			<form id="form_id" class="login_form">
+				<img src="../../static/img/login.png"/>				
 				<div class="login">
 					<h1>乾康远程授信系统</h1>
 					<input type="text" placeholder="用户名" id="login_name" name="login_name" 
-						style="background-image:url('../static/img/login1.png');" class="validate[required]"/>
+						style="background-image:url('../../static/img/login1.png');" class="validate[required]"/>
 					<input type="password" placeholder="密码" id="login_password" name="login_password" 
-						style="background-image:url('../static/img/login2.png');" class="validate[required]"/>
-					<input type="submit" class="login_btn" value="登  录">
+						style="background-image:url('../../static/img/login2.png');" class="validate[required]"/>
+					<input type="button" class="login_btn" id="id_save_button" value="登  录">
 					{%- with messages = get_flashed_messages(with_categories=true) %}
 					  	{%- if messages %}
 				    	{%- for category, message in messages %}
@@ -48,8 +49,21 @@
 					// 前端验证 
 					if($('#form_id').validationEngine('validate')){
 						//submit
-						$('#form_id').submit();
-						submitFlag = true;
+						var form_data = $("#form_id").serialize(); 
+						$.ajax({
+							url : "/doLogin",
+							type : "POST",
+							data:form_data,
+							success : function(data) {
+								if(data.result == "Success"){
+									top.location.href = "index";
+								}
+								else if(data.result == "Failed"){
+									self.location.reload();
+								}
+								submitFlag = true;
+							}
+						});
 					}else{
 						submitFlag = true;
 					}

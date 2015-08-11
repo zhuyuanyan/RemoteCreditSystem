@@ -4,6 +4,7 @@ import unicodedata
 import re
 
 import json
+from flask import jsonify
 from sqlalchemy.ext.declarative import DeclarativeMeta
 
 # json转码
@@ -30,8 +31,8 @@ def show_result_content(obj):
 
 # 返回成功提示
 def show_result_success(info):
-    return json.dumps({'result':'Success','info':info})
-
-# 返回失败提示
+    return jsonify({'result':'Success','info':info})
+    
+# 返回失败提示               
 def show_result_fail(info):
-    return json.dumps({'result':'Failed','info':info})
+    return jsonify({'result':'Failed','info':info})

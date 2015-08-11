@@ -8,13 +8,15 @@ _HERE = os.path.dirname(__file__)
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-from flask import Flask, render_template,flash,session
-from flask.ext.login import LoginManager
+from flask import Flask, render_template,flash,session,redirect
+from flask.ext.login import LoginManager,logout_user
 from flask.ext.sqlalchemy import SQLAlchemy #建立单app -johnny
 #import ibm_db_sa.ibm_db_sa
 
 from RemoteCreditSystem.tools.StaticDictCache import StaticDictCache
 from RemoteCreditSystem.tools.DynDictCache import DynDictCache
+
+from jinja2 import evalcontextfilter
 
 # 初始化
 app = Flask(__name__)
@@ -38,8 +40,8 @@ login_manager.init_app(app)
 @login_manager.unauthorized_handler
 def unauthorized():
 	# 消息闪现
-    flash('请重新登录','error')
-    return render_template("login.html")
+	flash('请重新登录','error')
+	return redirect("logout")
 
 @login_manager.user_loader
 def load_user(id):
@@ -63,15 +65,18 @@ xmlUtil.readStaticDictXml(os.path.join(_HERE, 'static-dictionary.xml'))
 xmlUtil.readDynDictXml(os.path.join(_HERE, 'dynamic-dictionary.xml'))
 
 #select展示
+@app.template_filter()
+@evalcontextfilter
 def dict(dictName,selectValue,selectText):
 	staticdictcache = StaticDictCache.getInstance()
 	return staticdictcache.getDict(dictName,selectValue,selectText)
-app.jinja_env.filters['dict'] = dict
 
-def dynDict(dictName,selectValue,selectText):
+@app.template_filter()
+@evalcontextfilter
+def dynDict(eval_ctx,dictName,selectValue,selectText):
 	dyndictcache = DynDictCache.getInstance()
 	return dyndictcache.getDict(dictName,selectValue,selectText)
-app.jinja_env.filters['dynDict'] = dynDict
+#app.jinja_env.filters['dynDict'] = dynDict
 
 #例
 #<select>
