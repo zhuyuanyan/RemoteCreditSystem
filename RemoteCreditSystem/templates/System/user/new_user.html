@@ -71,16 +71,21 @@
 						</tr>
 						<tr>
 							<td colspan="4">
-								{%- for obj in roles %}
-									<label><input type="radio" name="roles" value="{{obj.id}}" checked />{{obj.role_name}}</label>
-								{%- endfor %}
+								{%- if roles%}
+									{%- for obj in roles %}
+										<label><input type="radio" name="roles" value="{{obj.id}}" checked />{{obj.role_name}}</label>
+										<input type="hidden" name="role_type" value="1"/>
+									{%- endfor %}
+								{%- else%}
+									<input type="hidden" name="role_type" value="2"/>
+								{%- endif%}
 							</td>
 						</tr>					
 					</table>
 				</div>		
 				<span class="point">*为必填字段</span><br/>
 				<input id="id_save_button" type="button" value="提交" class="btn btn-info"/>
-				<input type="button" value="重置" class="btn btn-info" onclick="window.location.reload()"/>
+				<input class="btn" type="button" onclick="javascript:history.go(-1);" value="返回"/>
 			</form>
 		</div><!--/row-fluid -->
 	</div><!--/content -->

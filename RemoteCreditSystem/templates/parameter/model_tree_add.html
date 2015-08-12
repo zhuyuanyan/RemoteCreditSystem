@@ -82,8 +82,7 @@
 				async: false,
 				type : "get",
 				success : function(data) {
-					var objs = eval('(' + data + ')');
-					check = objs.result;
+					check = data.result;
 
 				}
 			});

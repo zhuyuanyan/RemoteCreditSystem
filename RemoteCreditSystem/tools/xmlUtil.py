@@ -99,7 +99,7 @@ def readDynDictXml(path):
 	DynDictCache()
 	# Getting instance
 	dyndictcache = DynDictCache.getInstance()
-	
+	dyndictcache.path = path
 	tree = etree.parse(path)#将xml解析为树结构
 	root = tree.getroot()#获得该树的树根
 	
@@ -121,4 +121,26 @@ def readDynDictXml(path):
 		
 	#for key_cache in dyndictcache:            
 	#	print key_cache,":",dyndictcache[key_cache]
+		
+def updateDynDict(dictName):
+	# Getting instance
+	dyndictcache = DynDictCache.getInstance()
+	tree = etree.parse(dyndictcache.path)#将xml解析为树结构
+	root = tree.getroot()#获得该树的树根
+	
+	for level_1 in root:#这样便可以遍历根元素的所有子元素(这里是article元素)
+		name=level_1.get("name")#用.get("属性名")可以得到article元素相应属性的值
+		title=level_1.get("title")
+		if(name == None):
+			continue
+		if(name == dictName):
+			ls = db.session.execute(level_1.text.strip()).fetchall()
 			
+			children = []
+			for obj in ls:
+				children.append({'name':obj.name,'title':obj.title})
+			tmp = dyndictcache.get(name)
+			tmp['children'] = children
+			dyndictcache.set(name,tmp)
+			
+			break

@@ -15,7 +15,7 @@
 			<h1>&nbsp; Remote credit system</h1>
 			<div class="pull-right">
 				<div class="user-info">
-					您好 , {{loginName}} / 开发部&nbsp;&nbsp;&nbsp;<span id="time"></span>
+					您好 , {{current_user.login_name}} / 开发部&nbsp;&nbsp;&nbsp;<span id="time"></span>
 				</div>
 				<div class="user-operate">
 					<a href="#" class="btn-top"  onclick="changeiframe('change_password/{{current_user.id}}');">
@@ -44,7 +44,7 @@
 							<ul class="second-nav" id="ul{{obj['index']}}">
 								{%- for obj_c in tree %}
 									{%- if obj_c['levels'] == '3' and obj_c['pId'] == obj['id'] %}
-										<li onclick="changeiframe('{{obj_c['url']}}')"><a href="#" title="{{obj['name']}}">{{obj_c['name']}}</a></li>
+										<li onclick="changeiframe('{{obj_c['url']}}')"><a href="#" title="{{obj_c['name']}}">{{obj_c['name']}}</a></li>
 									{%- endif %}
 								{%- endfor %}
 								

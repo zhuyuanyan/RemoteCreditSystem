@@ -23,9 +23,8 @@
     <script type="text/javascript" src="../../static/js/jquery.ztree.excheck-3.5.js"></script>
 	
 	<script type="text/javascript">
-		function disableUserCB(json){
-			var objs = $.evalJSON(json);
-			if(objs.result=="Success"){
+		function disableUserCB(data){
+			if(data.result=="Success"){
 				location.reload();
 			}
 		}
@@ -143,7 +142,7 @@
 		<div class="row-fluid">
 			<div class="span4">		
                 <i class="icon-bookmark"></i><span class="titletip">架构列表</span>			
-                <ul id="org_user_tree" class="ztree"></ul>	
+                <ul id="org_user_tree" class="ztree" style="height:400px;overflow:auto;border:1px solid #94c1dc;"></ul>	
             </div>
             <div class="span8" style="margin-top:25px;">
 				<div style="margin-bottom:5px;">
