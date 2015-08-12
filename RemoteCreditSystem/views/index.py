@@ -131,7 +131,7 @@ def welcome():
     list_access=''
     len_access=0
     #客户经理
-    if not current_user.user_type:
+    if current_user.user_type=='3':
         list_wait = Rcs_Application_Info.query.filter("create_user="+str(current_user.id)+" and approve_type in (1,2)").all()
         len_wait =len(list_wait)
         if len_wait>10:
@@ -200,10 +200,7 @@ def zxpg():
 @login_required
 def jjfa(page):
     sql=" approve_type="+str(Application_Type_Create)
-    if current_user.user_type:
-        if str(current_user.user_type)!='2':
-            sql+=" and create_user="+str(current_user.id)
-    else:
+    if str(current_user.user_type)!='2':
         sql+=" and create_user="+str(current_user.id)
     if request.method == 'POST':
         customer_name = request.form['customer_name']
@@ -587,7 +584,8 @@ def restart(refuse_id):
 @login_required
 def pgjl(page):
     sql = "approve_type in (2,3)"
-    if not current_user.user_type:
+    #客户经理
+    if current_user.user_type=='3':
         sql+=" and create_user="+str(current_user.id)
     if request.method == 'POST':
         customer_name = request.form['customer_name']

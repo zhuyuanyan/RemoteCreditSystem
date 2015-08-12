@@ -41,6 +41,17 @@
 							</td>						
 						</tr>	
 						<tr>
+							<td class="table-label">用户类型</td>
+							<td><select name="level" style="height:30px" onchange="selectUserType(this.value)">
+								<option value="3" {%- if user.user_type=='3'%} selected {%- endif%}>客户经理</option>
+								<option value="1" {%- if user.user_type=='1'%} selected {%- endif%}>普通专家</option>
+								<option value="2" {%- if user.user_type=='2'%} selected {%- endif%}>最终决策专家</option>
+
+							</select></td>
+							<td class="table-label">身份证号码<font class="red">*</font></td>
+							<td><input type="text" value="{{user.card_id}}" name="card_id" class="validate[required]"/></td>					
+						</tr>
+						<tr>
 							<td class="table-label">真实姓名<font class="red">*</font></td>
 							<td>
 								<input type="text" id="real_name" name="real_name" value="{{user.real_name}}" class="validate[required]">
@@ -66,6 +77,53 @@
 								{%- endif%}
 							</td>
 						</tr>	
+						<tr id="expertInfo" style="display: none">
+						<!-- 	<td class="table-label">现任职机构</td>
+							<td><select id="org" name="org" style="height:30px">
+			              	<script>document.write(js.lang.String.decodeHtml('{{"org_all"|dynDict("","")}}'))</script>
+			              	</select></td> -->
+							<td class="table-label">常驻地址</td>
+							<td colspan="3"><input type="text" value="{{user_info.address}}" name="address" style="width:500px"/></td>					
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">行业</td>
+							<td><input type="text" value="{{user_info.hy}}" name="hy"/></td>
+							<td class="table-label">区域</td>
+							<td><input type="text" value="{{user_info.qy}}" name="qy"/></td>				
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">产品</td>
+							<td><input type="text" value="{{user_info.product}}" name="product"/></td>
+							<td class="table-label">授信余额(万)</td>
+							<td><input type="text" value="{{user_info.balance}}" name="balance"/></td>				
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">专业职称</td>
+							<td><input type="text" value="{{user_info.zyzc}}" name="zyzc"/></td>
+							<td class="table-label">现任职务</td>
+							<td><input type="text" value="{{user_info.xrzw}}" name="xrzw"/></td>					
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">专家层级</td>
+							<td><input type="text" value="{{user_info.expert_level}}" name="expert_level"/></td>
+							<td class="table-label">授信评估权限</td>
+							<td><input type="text" value="{{user_info.approve_role}}" name="approve_role"/></td>				
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">工作日</td>
+							<td><input type="text" value="{{user_info.gzr}}" name="gzr"/></td>
+							<td class="table-label">工作时段</td>
+							<td><input type="text" value="{{user_info.gzsd}}" name="gzsd"/></td>				
+						</tr>
+					</table>
+					<table class="myTable" style="text-align:center;">
+						<caption>角色</caption>
+						<colgroup>
+							<col width="10%">
+							<col width="40%">
+							<col width="10%">
+							<col width="40%">
+						</colgroup>
 						<tr>
 							<td class="table-label">选择角色</td>
 							<td colspan="3">
@@ -85,6 +143,10 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			var level = "{{user.user_type}}";
+			if(level!='3'){
+				$("tr#expertInfo").css('display' ,'');
+			}
 			//前端验证
 			$('#form_id').validationEngine();
 			$("#id_save_button").click(function() {
@@ -103,6 +165,13 @@
 				}
 			});
 		});
+		function selectUserType(value){
+			if(value!='3'){
+				$("tr#expertInfo").css('display' ,'');
+			}else{
+				$("tr#expertInfo").css('display' ,'none');
+			}
+		}
 	</script>
 </body>
 </html>

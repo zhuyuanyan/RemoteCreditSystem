@@ -12,6 +12,7 @@ from RemoteCreditSystem.models import User
 from RemoteCreditSystem.models import Role
 from RemoteCreditSystem.models import UserRole
 from RemoteCreditSystem.models import Org
+from RemoteCreditSystem.models.system_usage.Rcs_Expert_Information import Rcs_Expert_Information
 
 from RemoteCreditSystem import app
 import RemoteCreditSystem.tools.xmlUtil as xmlUtil
@@ -75,15 +76,15 @@ def new_user(pId):
                 # 消息闪现
                 flash('保存失败，登录名重复','error')
                 return redirect('System/user.page/1')
-                
+            level = request.form['level']
             if('user' in pId):
                 user = User(request.form['login_name'],GetStringMD5(request.form['login_password']),
-                    request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],"","",
+                    request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],request.form['card_id'],level,
                     None,int(pId.split("_")[1]))
                 user.add()
             else:
                 user = User(request.form['login_name'],GetStringMD5(request.form['login_password']),
-                    request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],"","",
+                    request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],request.form['card_id'],level,
                     int(pId.split("_")[1]),None)
                 user.add()
 
@@ -91,6 +92,22 @@ def new_user(pId):
             db.session.flush()
             UserRole(user.id,request.form['roles']).add()
 
+            
+            # 专家
+            if level!='3':
+                #专家信息
+                address = request.form['address']
+                hy = request.form['hy']
+                qy = request.form['qy']
+                product = request.form['product']
+                balance = request.form['balance']
+                zyzc = request.form['zyzc']
+                xrzw = request.form['xrzw']
+                expert_level = request.form['expert_level']
+                approve_role = request.form['approve_role']
+                gzr = request.form['gzr']
+                gzsd = request.form['gzsd']
+                Rcs_Expert_Information(user.id,address,hy,qy,product,balance,zyzc,xrzw,expert_level,approve_role,gzr,gzsd).add() 
             # 事务提交
             db.session.commit()
             # 消息闪现
@@ -112,15 +129,16 @@ def edit_user(id):
         user = User.query.filter_by(id=id).first()
         roles = Role.query.order_by("id").all()
         userrole = UserRole.query.filter_by(user_id=id).first()
-        return render_template("System/user/edit_user.html",user=user,roles=roles,userrole=userrole)
+        user_info = Rcs_Expert_Information.query.filter_by(expert_id=id).first()
+        return render_template("System/user/edit_user.html",user=user,roles=roles,userrole=userrole,user_info=user_info)
     else:
         try:
+            level = request.form['level']
             chk = User.query.filter("login_name='"+request.form['login_name']+"' and id != "+str(id)).all()
             if(chk):
                 # 消息闪现
                 flash('保存失败，登录名重复','error')
                 return redirect('System/user.page/1')
-            
             user = User.query.filter_by(id=id).first()
             user.login_name = request.form['login_name']
             #user.login_password = request.form['login_password']
@@ -131,7 +149,31 @@ def edit_user(id):
             user.email = request.form['email']
             user.modify_user = current_user.id
             user.modify_date = datetime.datetime.now()
-
+            if level!='3':
+                user_info = Rcs_Expert_Information.query.filter_by(expert_id=id).first()
+                address = request.form['address']
+                hy = request.form['hy']
+                qy = request.form['qy']
+                product = request.form['product']
+                balance = request.form['balance']
+                zyzc = request.form['zyzc']
+                xrzw = request.form['xrzw']
+                expert_level = request.form['expert_level']
+                approve_role = request.form['approve_role']
+                gzr = request.form['gzr']
+                gzsd = request.form['gzsd']
+                if user_info:
+                    user_info.address=address
+                    user_info.hy=hy
+                    user_info.qy=qy
+                    user_info.product=product
+                    user_info.balance=balance
+                    user_info.zyzc=zyzc
+                    user_info.xrzw=xrzw
+                    user_info.expert_level=expert_level
+                    user_info.approve_role=approve_role
+                    user_info.gzr=gzr
+                    user_info.gzsd=gzsd
             user_role = UserRole.query.filter_by(user_id=id).first()
             user_role.role_id = request.form['roles']
 

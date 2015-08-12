@@ -13,7 +13,7 @@
 	<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
 	<script src="../../static/js/jquery-1.7.2.min.js"></script>
 	<script src="../../static/js/index.js"></script>
-	<script src="../../static/js/util.js"></script>
+	<script src="../../static/js/util.js"></script><!-- html字符转义 -->
 	<!--验证样式-->
 	<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
 	<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
@@ -39,7 +39,18 @@
 							<td width="36%">
 								<input type="text" id="email" name="email"/>
 							</td>					
-						</tr>	
+						</tr>
+						<tr>
+							<td class="table-label">用户类型</td>
+							<td><select name="level" style="height:30px" onchange="selectUserType(this.value)">
+								<option value="3">客户经理</option>
+								<option value="1">普通专家</option>
+								<option value="2">最终决策专家</option>
+
+							</select></td>
+							<td class="table-label">身份证号码<font class="red">*</font></td>
+							<td><input type="text" value="" name="card_id" class="validate[required]"/></td>					
+						</tr>
 						<tr>
 							<td class="table-label">登录密码<font class="red">*</font></td>
 							<td>
@@ -68,6 +79,55 @@
 								<label><input type="radio" name="active" value="1" checked />是<input type="radio" name="active" value="0"/>否</label>
 							</td>
 						</tr>
+											
+
+						<tr id="expertInfo" style="display: none">
+						<!-- 	<td class="table-label">现任职机构</td>
+							<td><select id="org" name="org" style="height:30px">
+			              	<script>document.write(js.lang.String.decodeHtml('{{"org_all"|dynDict("","")}}'))</script>
+			              	</select></td> -->
+							<td class="table-label">常驻地址</td>
+							<td colspan="3"><input type="text" value="" name="address" style="width:500px"/></td>					
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">行业</td>
+							<td><input type="text" value="" name="hy"/></td>
+							<td class="table-label">区域</td>
+							<td><input type="text" value="" name="qy"/></td>				
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">产品</td>
+							<td><input type="text" value="" name="product"/></td>
+							<td class="table-label">授信余额(万)</td>
+							<td><input type="text" value="" name="balance"/></td>				
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">专业职称</td>
+							<td><input type="text" value="" name="zyzc"/></td>
+							<td class="table-label">现任职务</td>
+							<td><input type="text" value="" name="xrzw"/></td>					
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">专家层级</td>
+							<td><input type="text" value="" name="expert_level"/></td>
+							<td class="table-label">授信评估权限</td>
+							<td><input type="text" value="" name="approve_role"/></td>				
+						</tr>
+						<tr id="expertInfo" style="display: none">
+							<td class="table-label">工作日</td>
+							<td><input type="text" value="" name="gzr"/></td>
+							<td class="table-label">工作时段</td>
+							<td><input type="text" value="" name="gzsd"/></td>				
+						</tr>
+					</table>
+					<table class="myTable" style="text-align:center;">
+						<caption>角色</caption>
+						<colgroup>
+							<col width="10%">
+							<col width="40%">
+							<col width="10%">
+							<col width="40%">
+						</colgroup>
 						<tr>
 							<td class="table-label">选择角色</td>
 							<td colspan="3" >
@@ -75,7 +135,7 @@
 									<script>document.write(js.lang.String.decodeHtml('{{"role_all"|dynDict("","")}}'))</script>
 								</select>
 							</td>
-						</tr>					
+						</tr>
 					</table>
 				</div>		
 				<span class="point">*为必填字段</span><br/>
@@ -104,6 +164,14 @@
 				}
 			});
 		});
+
+		function selectUserType(value){
+			if(value!='3'){
+				$("tr#expertInfo").css('display' ,'');
+			}else{
+				$("tr#expertInfo").css('display' ,'none');
+			}
+		}
 	</script>
 </body>
 </html>
