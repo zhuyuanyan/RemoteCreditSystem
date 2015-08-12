@@ -14,11 +14,9 @@ from RemoteCreditSystem.models import UserRole
 from RemoteCreditSystem.models import Org
 
 from RemoteCreditSystem import app
-from RemoteCreditSystem import dynDict
 import hashlib
 
 import RemoteCreditSystem.tools.xmlUtil as xmlUtil
-from RemoteCreditSystem.tools.DynDictCache import DynDictCache
 
 # 机构管理
 @app.route('/System/org.page', methods=['GET'])
@@ -45,6 +43,12 @@ def new_org_page(pId):
 @app.route('/System/new_org.json/<int:pId>', methods=['POST'])
 def new_org_json(pId):
     try:
+        chk = Org.query.filter_by(org_name=request.form['org_name']).all()
+        if(chk):
+            # 消息闪现
+            flash('保存失败，机构名重复','error')
+            return redirect('System/org.page')
+            
         levels = Org.query.filter_by(id=pId).first().levels + 1
         Org(request.form['org_name'],pId,levels).add()
         
@@ -72,6 +76,12 @@ def edit_org_page(id):
 @app.route('/System/edit_org.json/<int:id>', methods=['POST'])
 def edit_org_json(id):
     try:
+        chk = Org.query.filter("org_name='"+request.form['org_name']+"' and id<>"+str(id)).all()
+        if(chk):
+            # 消息闪现
+            flash('保存失败，机构名重复','error')
+            return redirect('System/org.page')
+        
         org = Org.query.filter_by(id=id).first()
         org.org_name = request.form['org_name']
         
