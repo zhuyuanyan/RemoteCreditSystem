@@ -23,15 +23,15 @@
     <script type="text/javascript" src="../../static/js/jquery.ztree.excheck-3.5.js"></script>
 	
 	<script type="text/javascript">
-		function disableUserCB(data){
-			if(data.result=="Success"){
-				location.reload();
-			}
-		}
 		function disableUser(type,user_id){
-			var get = crud.dom.factory("GET");
 		    var url = "/System/disable_user.json/"+type+"/"+user_id;
-		    get.doGet(url,disableUserCB);
+		    $.ajax({
+				url : url,
+				type : "GET",
+				success : function(data) {
+					self.location.reload();
+				}
+			});
 		}
 	</script>
 	<SCRIPT type="text/javascript">

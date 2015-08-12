@@ -13,6 +13,7 @@
 	<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
 	<script src="../../static/js/jquery-1.7.2.min.js"></script>
 	<script src="../../static/js/index.js"></script>
+	<script src="../../static/js/util.js"></script>
 	<!--验证样式-->
 	<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
 	<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
@@ -56,8 +57,7 @@
 							</td>	
 							<td class="table-label">性别<font class="red">*</font></td>
 							<td>
-								<label><input type="radio" name="sex" value="1" checked />男</label>
-								<label><input type="radio" name="sex" value="0" />女</label>
+								<label><input type="radio" name="sex" value="1" checked />男<input type="radio" name="sex" value="0" />女</label>
 							</td>												
 						</tr>
 						<tr>
@@ -65,20 +65,15 @@
 							<td><input type="text" id="mobile" name="mobile"/></td>
 							<td class="table-label">是否激活</td>
 							<td>
-								<label><input type="radio" name="active" value="1" checked />是</label>
-								<label><input type="radio" name="active" value="0"/>否</label>
+								<label><input type="radio" name="active" value="1" checked />是<input type="radio" name="active" value="0"/>否</label>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4">
-								{%- if roles%}
-									{%- for obj in roles %}
-										<label><input type="radio" name="roles" value="{{obj.id}}" checked />{{obj.role_name}}</label>
-										<input type="hidden" name="role_type" value="1"/>
-									{%- endfor %}
-								{%- else%}
-									<input type="hidden" name="role_type" value="2"/>
-								{%- endif%}
+							<td class="table-label">选择角色</td>
+							<td colspan="3" >
+								<select name="roles" class="validate[required]" style="height:27px">
+									<script>document.write(js.lang.String.decodeHtml('{{"role_all"|dynDict("","")}}'))</script>
+								</select>
 							</td>
 						</tr>					
 					</table>

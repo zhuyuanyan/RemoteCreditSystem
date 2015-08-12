@@ -67,6 +67,10 @@ def heartBeat():
 def doLogin():
     user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
     if user:
+        if(user.active =='0'):
+            flash('该用户已被禁用，请联系管理员','error')
+            return helpers.show_result_fail("")
+        
         login_user(user)
         #设置session
         #heartBeat()
