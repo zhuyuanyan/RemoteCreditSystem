@@ -67,7 +67,7 @@ xmlUtil.readDynDictXml(os.path.join(_HERE, 'dynamic-dictionary.xml'))
 #select展示
 @app.template_filter()
 @evalcontextfilter
-def dict(dictName,selectValue,selectText):
+def dict(eval_ctx,dictName,selectValue,selectText):
 	staticdictcache = StaticDictCache.getInstance()
 	return staticdictcache.getDict(dictName,selectValue,selectText)
 
