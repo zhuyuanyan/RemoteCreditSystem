@@ -238,6 +238,15 @@ def zxpgzjhsgzwh():
 def new_jjfa():        
     return render_template("jjrwfa/new_jjfa.html")
 
+#ajax判断身份证是否重复
+@app.route('/jjrwfa/new_jjfa_check/<card_id>', methods=['GET'])
+def new_jjfa_check(card_id):
+    info = Rcs_Application_Info.query.filter_by(card_id=card_id).first()
+    if info:
+        return 'true'
+    else:
+        return 'false'
+
 #新增进件保存页面
 @app.route('/jjrwfa/save_jjfa', methods=['POST'])
 def save_jjfa():
@@ -733,7 +742,7 @@ def new_zjxxgl_save():
         logger.exception('exception')
         # 消息闪现
         flash('保存失败','error')
-    return redirect('/pgzjgl/zjxxgl')
+    return redirect('/pgzjgl/zjxxgl/1')
 
 #修改页面
 @app.route('/pgzjgl/edit_zjxxgl/<int:id>', methods=['GET'])

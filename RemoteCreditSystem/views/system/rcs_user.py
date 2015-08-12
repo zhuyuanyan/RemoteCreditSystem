@@ -40,8 +40,9 @@ def init_org_user_tree():
         obj.type = "org"
         obj.pId = "org_"+str(obj.pId)
         obj.icon = "/static/img/icon_4.png"
-        
-    users = User.query.order_by("id").all()
+    
+    #admin用户屏蔽
+    users = User.query.filter("id !=1").order_by("id").all()
     for obj in users:
         tmp = Org(obj.real_name,obj.org_id,None)
         tmp.id = "user_"+str(obj.id)
@@ -263,3 +264,22 @@ def change_belong_org():
         # 消息闪现
         flash('保存失败','error')
     return render_template("System/user/user.html")
+
+# 删除角色
+@app.route('/System/delete_role/<int:id>', methods=['GET'])
+def delete_role(id):
+    try:
+        UserRole.query.filter_by(role_id=id).delete()
+        Role.query.filter_by(id=id).delete()
+        
+        # 事务提交
+        db.session.commit()
+        # 消息闪现
+        flash('删除成功','success')
+    except:
+        # 回滚
+        db.session.rollback()
+        logger.exception('exception')
+        # 消息闪现
+        flash('删除失败','error')
+    return ''
