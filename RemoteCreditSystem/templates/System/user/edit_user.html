@@ -13,6 +13,7 @@
 	<link href="../../static/css/alert.css" rel="stylesheet" type="text/css" />
 	<script src="../../static/js/jquery-1.7.2.min.js"></script>
 	<script src="../../static/js/index.js"></script>
+	<script src="../../static/js/util.js"></script>
 	<!--验证样式-->
 	<link rel="stylesheet" href="../../static/css/validationEngine.jquery.css">
 	<script src="../../static/js/jquery.validationEngine-zh_CN.js"></script> 
@@ -47,11 +48,9 @@
 							<td class="table-label">性别<font class="red">*</font></td>
 							<td>
 								{%- if user.sex == '1' %}
-									<label><input type="radio" name="sex" checked value="1" />男</label>
-									<label><input type="radio" name="sex" value="0" />女</label>
+									<label><input type="radio" name="sex" checked value="1" />男<input type="radio" name="sex" value="0" />女</label>
 								{%- else %}
-									<label><input type="radio" name="sex" value="1" />男</label>
-									<label><input type="radio" name="sex" checked value="0" />女</label>
+									<label><input type="radio" name="sex" value="1" />男<input type="radio" name="sex" checked value="0" />女</label>
 								{%- endif%}
 							</td>												
 						</tr>
@@ -61,23 +60,18 @@
 							<td class="table-label">是否激活</td>
 							<td>
 								{%- if user.active == '1' %}
-									<label><input type="radio" name="active" checked value="1"/>是</label>
-									<label><input type="radio" name="active" value="0"/>否</label>
+									<label><input type="radio" name="active" checked value="1"/>是<input type="radio" name="active" value="0"/>否</label>
 								{%- else %}
-									<label><input type="radio" name="active" value="1"/>是</label>
-								<label><input type="radio" name="active" checked value="0"/>否</label>
+									<label><input type="radio" name="active" value="1"/>是<input type="radio" name="active" checked value="0"/>否</label>
 								{%- endif%}
 							</td>
 						</tr>	
 						<tr>
-							<td colspan="4">
-								{%- for obj in roles %}
-									<label><input type="radio" name="roles" value="{{obj.id}}" 
-									{%- if obj.id == userrole.role_id %} 
-										checked
-									{%- endif %}
-									/>{{obj.role_name}}</label>
-								{%- endfor %}
+							<td class="table-label">选择角色</td>
+							<td colspan="3">
+								<select name="roles" class="validate[required]" style="height:27px">
+									<script>document.write(js.lang.String.decodeHtml('{{"role_all"|dynDict(userrole.role_id,"")}}'))</script>
+								</select>
 							</td>
 						</tr>					
 					</table>

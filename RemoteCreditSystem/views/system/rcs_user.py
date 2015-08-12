@@ -6,7 +6,7 @@ import RemoteCreditSystem.helpers as helpers
 import datetime
 
 from flask import Module, session, request, render_template, redirect, url_for, flash
-from flask.ext.login import current_user
+from flask.ext.login import current_user,login_required
 
 from RemoteCreditSystem.models import User
 from RemoteCreditSystem.models import Role
@@ -14,7 +14,7 @@ from RemoteCreditSystem.models import UserRole
 from RemoteCreditSystem.models import Org
 
 from RemoteCreditSystem import app
-
+import RemoteCreditSystem.tools.xmlUtil as xmlUtil
 import hashlib
 
 #get md5 of a input string  
@@ -25,6 +25,7 @@ def GetStringMD5(str):
 
 # 使用者管理
 @app.route('/System/user.page/<int:page>', methods=['GET'])
+@login_required
 def System_user(page):
     #users = User.query.order_by("id").paginate(page, per_page = PER_PAGE)
     return render_template("System/user/user.html")
@@ -69,6 +70,12 @@ def new_user(pId):
         return render_template("System/user/new_user.html",roles=roles,pId=pId)
     else:
         try:
+            chk = User.query.filter_by(login_name=request.form['login_name']).all()
+            if(chk):
+                # 消息闪现
+                flash('保存失败，登录名重复','error')
+                return redirect('System/user.page/1')
+                
             if('user' in pId):
                 user = User(request.form['login_name'],GetStringMD5(request.form['login_password']),
                     request.form['real_name'],request.form['sex'],request.form['mobile'],request.form['active'],request.form['email'],"","",
@@ -82,10 +89,7 @@ def new_user(pId):
 
             #清理缓存
             db.session.flush()
-            role_type = request.form['role_type']
-            #存在角色
-            if role_type=='1':
-                UserRole(user.id,request.form['roles']).add()
+            UserRole(user.id,request.form['roles']).add()
 
             # 事务提交
             db.session.commit()
@@ -97,6 +101,8 @@ def new_user(pId):
             logger.exception('exception')
             # 消息闪现
             flash('保存失败','error')
+        finally:
+            xmlUtil.updateDynDict('user_all')
     return redirect('System/user.page/1')
 
 # 编辑用户
@@ -109,6 +115,12 @@ def edit_user(id):
         return render_template("System/user/edit_user.html",user=user,roles=roles,userrole=userrole)
     else:
         try:
+            chk = User.query.filter("login_name='"+request.form['login_name']+"' and id != "+str(id)).all()
+            if(chk):
+                # 消息闪现
+                flash('保存失败，登录名重复','error')
+                return redirect('System/user.page/1')
+            
             user = User.query.filter_by(id=id).first()
             user.login_name = request.form['login_name']
             #user.login_password = request.form['login_password']
@@ -121,13 +133,7 @@ def edit_user(id):
             user.modify_date = datetime.datetime.now()
 
             user_role = UserRole.query.filter_by(user_id=id).first()
-            if(user_role == None):
-                user_role = UserRole(id,request.form['roles'])
-                user_role.add()
-            else:
-                user_role.role_id = request.form['roles']
-                user_role.modify_user = current_user.id
-                user_role.modify_date = datetime.datetime.now()
+            user_role.role_id = request.form['roles']
 
             # 事务提交
             db.session.commit()
@@ -139,6 +145,8 @@ def edit_user(id):
             logger.exception('exception')
             # 消息闪现
             flash('保存失败','error')
+        finally:
+            xmlUtil.updateDynDict('user_all')
         return redirect('System/user.page/1')
 
 # 禁用用户
@@ -151,16 +159,22 @@ def disable_user(type,id):
         # 事务提交
         db.session.commit()
         # 消息闪现
+        flash('保存成功','success')
         return helpers.show_result_success('保存成功')
     except:
         # 回滚
         db.session.rollback()
         logger.exception('exception')
+        # 消息闪现
+        flash('保存失败','error')
         return helpers.show_result_fail('保存失败')
+    finally:
+        xmlUtil.updateDynDict('user_all')
     
     
 # 角色权限管理
 @app.route('/System/role.page/<int:page>', methods=['GET'])
+@login_required
 def System_jsqxgl(page):
     # 获取角色并分页
     roles = Role.query.order_by("id").paginate(page, per_page = PER_PAGE)
@@ -171,6 +185,12 @@ def System_jsqxgl(page):
 def new_role():
     if request.method == 'POST':
         try:
+            chk = Role.query.filter_by(role_name=request.form['role_name']).all()
+            if(chk):
+                # 消息闪现
+                flash('保存失败，角色名重复','error')
+                return redirect('System/role.page/1')
+            
             # 保存角色
             Role(request.form['role_name']).add()
 
@@ -184,6 +204,8 @@ def new_role():
             logger.exception('exception')
             # 消息闪现
             flash('保存失败','error')
+        finally:
+            xmlUtil.updateDynDict('role_all')
 
         return redirect('System/role.page/1')
 
@@ -195,6 +217,12 @@ def new_role():
 def edit_role(id):
     if request.method == 'POST':
         try:
+            chk = Role.query.filter("role_name='"+request.form['role_name']+"' and id<>"+str(id)).all()
+            if(chk):
+                # 消息闪现
+                flash('保存失败，角色名重复','error')
+                return redirect('System/role.page/1')
+            
             Role.query.filter_by(id=id).update({"role_name":request.form['role_name']})
 
             # 事务提交
@@ -207,6 +235,8 @@ def edit_role(id):
             logger.exception('exception')
             # 消息闪现
             flash('保存失败','error')
+        finally:
+            xmlUtil.updateDynDict('role_all')
 
         return redirect('System/role.page/1')
 
@@ -280,4 +310,6 @@ def delete_role(id):
         logger.exception('exception')
         # 消息闪现
         flash('删除失败','error')
+    finally:
+        xmlUtil.updateDynDict('role_all')
     return ''

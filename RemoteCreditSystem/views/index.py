@@ -63,57 +63,61 @@ def heartBeat():
     return helpers.show_result_success('') # 返回json
 
 # 欢迎界面
-@app.route('/login_wel', methods=['POST','GET'])
-def login_wel():
-    if request.method == 'POST':
-        user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
-        simplecache = SimpleCache.getInstance()
-        if user:
-            login_user(user)
-            
-            #设置session
-            heartBeat()
-            
-            tree = []
-            userrole = UserRole.query.filter_by(user_id=current_user.id).first()
-            if userrole:
-                role_id = userrole.role_id
-                rcs_access_right = Rcs_Access_Right.query.filter_by(role_id=role_id).order_by("id").all()
-                
-                if(user.login_name == 'admin'):
-                    for key_cache in simplecache:
-                        obj_tmp = simplecache[key_cache]
-                        if(obj_tmp['levels'] == '2' or obj_tmp['levels'] == '3'):
-                            tree.append(obj_tmp)
-                else:
-                    for key_cache in simplecache:  
-                        obj_tmp = simplecache[key_cache]
-                        obj_tmp['checked'] = False
-                        for obj_access_right in rcs_access_right:
-                            if(obj_tmp['levels'] != '4'): 
-                                if(obj_tmp['id'] == obj_access_right.resource_id):
-                                    obj_tmp['checked'] = True
-                                    break;  
-                            elif(obj_tmp['levels'] == '4'):
-                                if(obj_tmp['id'].split("_")[0] == obj_access_right.resource_id):
-                                    if(int(obj_access_right.operations) & int(obj_tmp['id'].split("_")[1]) != 0):
-                                        obj_tmp['checked'] = True
-                                    break; 
-                        tree.append(obj_tmp)
-                        
-                    dellist = []
-                    for obj in tree:
-                        if(obj['levels'] == '1' or obj['levels'] == '4' or obj['checked'] == False):
-                            dellist.append(obj)
-                    for obj in dellist:
-                        tree.remove(obj)
-                
-            return render_template("index.html",loginName=request.form['login_name'],tree=tree)
-        else:
-            flash('用户名或密码错误','error')
-            return render_template("login.html")  
+@app.route('/doLogin', methods=['POST'])
+def doLogin():
+    user = User.query.filter_by(login_name=request.form['login_name'], login_password=GetStringMD5(request.form['login_password'])).first()
+    if user:
+        if(user.active =='0'):
+            flash('该用户已被禁用，请联系管理员','error')
+            return helpers.show_result_fail("")
+        
+        login_user(user)
+        #设置session
+        #heartBeat()
+        return helpers.show_result_success("")
     else:
-        return render_template("login.html")
+        flash('用户名或密码错误','error')
+        return helpers.show_result_fail("")
+
+# index
+@app.route('/index', methods=['GET'])
+@login_required
+def index():
+    simplecache = SimpleCache.getInstance()
+    tree = []
+    userrole = UserRole.query.filter_by(user_id=current_user.id).first()
+    if userrole:
+        role_id = userrole.role_id
+        rcs_access_right = Rcs_Access_Right.query.filter_by(role_id=role_id).order_by("id").all()
+        
+        if(current_user.login_name == 'admin'):
+            for key_cache in simplecache:
+                obj_tmp = simplecache[key_cache]
+                if(obj_tmp['levels'] == '2' or obj_tmp['levels'] == '3'):
+                    tree.append(obj_tmp)
+        else:
+            for key_cache in simplecache:  
+                obj_tmp = simplecache[key_cache]
+                obj_tmp['checked'] = False
+                for obj_access_right in rcs_access_right:
+                    if(obj_tmp['levels'] != '4'): 
+                        if(obj_tmp['id'] == obj_access_right.resource_id):
+                            obj_tmp['checked'] = True
+                            break;  
+                    elif(obj_tmp['levels'] == '4'):
+                        if(obj_tmp['id'].split("_")[0] == obj_access_right.resource_id):
+                            if(int(obj_access_right.operations) & int(obj_tmp['id'].split("_")[1]) != 0):
+                                obj_tmp['checked'] = True
+                            break; 
+                tree.append(obj_tmp)
+                
+            dellist = []
+            for obj in tree:
+                if(obj['levels'] == '1' or obj['levels'] == '4' or obj['checked'] == False):
+                    dellist.append(obj)
+            for obj in dellist:
+                tree.remove(obj)
+    return render_template("index.html",tree=tree)
 
 # welcome
 @app.route('/welcome', methods=['GET'])
@@ -187,11 +191,13 @@ def change_password(id):
         return render_template("change_password.html")
     
 @app.route('/jjrwfa/zxpg', methods=['GET'])
+@login_required
 def zxpg():        
     return render_template("jjrwfa/zxpg.html")
 
 #进件分案页面
 @app.route('/jjrwfa/jjfa/<int:page>', methods=['GET','POST'])
+@login_required
 def jjfa(page):
     sql=" approve_type="+str(Application_Type_Create)
     if current_user.user_type:
@@ -212,18 +218,22 @@ def jjfa(page):
     return render_template("jjrwfa/jjfa.html",appList=appList,current_user=current_user,count=count)
 
 @app.route('/jjrwfa/jjrwfaxx', methods=['GET'])
+@login_required
 def jjrwfaxx():        
     return render_template("jjrwfa/jjrwfaxx.html")
 
 @app.route('/jjrwfa/zxpgmsgzwh', methods=['GET'])
+@login_required
 def zxpgmsgzwh():        
     return render_template("jjrwfa/zxpgmsgzwh.html")
 
 @app.route('/jjrwfa/fagzwh', methods=['GET'])
+@login_required
 def fagzwh():        
     return render_template("jjrwfa/fagzwh.html")
 
 @app.route('/jjrwfa/zxpgzjhsgzwh', methods=['GET'])
+@login_required
 def zxpgzjhsgzwh():        
     return render_template("jjrwfa/zxpgzjhsgzwh.html")
 
@@ -326,6 +336,7 @@ def insert_jjfa(id,expertId,hours):
 
 
 @app.route('/mxpg/pldr/<int:page>', methods=['GET','POST'])
+@login_required
 def pldr(page):     
     sql=" approve_type="+str(Application_Type_Create)
     sql+=" and create_user="+str(current_user.id)
@@ -340,7 +351,9 @@ def pldr(page):
     appList = Rcs_Application_Info.query.filter(sql).paginate(page, per_page = PER_PAGE)
     count = len(Rcs_Application_Info.query.filter(sql).all())
     return render_template("mxpg/pldr.html",appList=appList,count=count)
+
 @app.route('/mxpg/xxlr/<int:page>', methods=['GET','POST'])
+@login_required
 def xxlr(page):
     sql=" create_user="+str(current_user.id)
     if request.method == 'POST':
@@ -360,6 +373,7 @@ def xxlr(page):
 
 #授信评估
 @app.route('/mxpg/sxpg/<int:page>', methods=['GET','POST'])
+@login_required
 def sxpg(page): 
     sql = "approve_type in (1,2)"
     customer_name=''
@@ -378,6 +392,7 @@ def sxpg(page):
 
 #评估报告
 @app.route('/mxpg/pgbg/<int:page>', methods=['GET','POST'])
+@login_required
 def pgbg(page):   
     sql = "1=1"
     customer_name=''
@@ -397,6 +412,7 @@ def pgbg(page):
 
 #参数管理
 @app.route('/mxpg/csgl', methods=['GET'])
+@login_required
 def csgl():  
     return render_template("mxpg/csgl.html")
 
@@ -435,6 +451,7 @@ def cspz_hknl_save(score):
 
 #客户资料
 @app.route('/khzldy/khzl/<int:page>', methods=['GET','POST'])
+@login_required
 def khzl(page):      
     sql=" create_user="+str(current_user.id)
     if request.method == 'POST':
@@ -473,6 +490,7 @@ def khzl_hk(id):
 
 
 @app.route('/zjzxpggl/jjrw', methods=['GET'])
+@login_required
 def jjrw(): 
     #获取进件任务数据  
     appList = Rcs_Application_Info.query.filter("approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")").all()
@@ -480,6 +498,7 @@ def jjrw():
 
 #评估任务
 @app.route('/zjzxpggl/yjsrw/<int:page>', methods=['GET','POST'])
+@login_required
 def yjsrw(page):
     sql="approve_type='2' and id in (select application_id from rcs_application_expert where expert_id="+str(current_user.id)+")"
     if request.method == 'POST':
@@ -517,6 +536,7 @@ def refuse():
 
 #拒绝任务记录查看
 @app.route('/zjzxpggl/has_refuse/<int:page>', methods=['GET','POST'])
+@login_required
 def has_refuse(page):
     sql = "1=1"
     if request.method == 'POST':
@@ -564,6 +584,7 @@ def restart(refuse_id):
 
 #评估结论记录查看
 @app.route('/zxpgjl/pgjl/<int:page>', methods=['GET','POST'])
+@login_required
 def pgjl(page):
     sql = "approve_type in (2,3)"
     if not current_user.user_type:
@@ -662,11 +683,13 @@ def cancel_save(id):
 
 
 @app.route('/zxpggzwh/pggzwh', methods=['GET'])
+@login_required
 def pggzwh():        
     return render_template("zxpggzwh/pggzwh.html")
 
 #专家信息管理
 @app.route('/pgzjgl/zjxxgl/<int:page>', methods=['GET','POST'])
+@login_required
 def zjxxgl(page):
     sql="(user_type='1' or user_type='2')"
     customer_name=''
@@ -678,10 +701,12 @@ def zjxxgl(page):
             sql+=" and real_name like '%"+customer_name+"%'"
         if card_id:
             sql+=" and card_id='"+card_id+"'"  
+			
     #获取专家信息 
     user = User.query.filter(sql).paginate(page, per_page = PER_PAGE)
     count =len(User.query.filter(sql).all())       
     return render_template("pgzjgl/zjxxgl.html",user=user,count=count,customer_name=customer_name,card_id=card_id)
+	
 #新增
 @app.route('/pgzjgl/new_zjxxgl', methods=['GET'])
 def new_zjxxgl():  
@@ -793,6 +818,7 @@ def show_zjxxgl(id):
     return render_template("pgzjgl/show_zjxxgl.html",user=user,user_information=user_information)
 
 @app.route('/pgzjgl/zjcjgl', methods=['GET'])
+@login_required
 def zjcjgl():        
     return render_template("pgzjgl/zjcjgl.html")
 
@@ -805,6 +831,7 @@ def show_zjcjgl():
     return render_template("pgzjgl/show_zjcjgl.html")
 
 @app.route('/pgzjgl/zjzxpgqxgl', methods=['GET'])
+@login_required
 def zjzxpgqxgl():        
     return render_template("pgzjgl/zjzxpgqxgl.html")
 
@@ -817,6 +844,7 @@ def show_zjzxpgqxgl():
     return render_template("pgzjgl/show_zjzxpgqxgl.html")
 
 @app.route('/pgzjgl/zjjcgl', methods=['GET'])
+@login_required
 def zjjcgl():        
     return render_template("pgzjgl/zjjcgl.html")
 
@@ -829,6 +857,7 @@ def edit_zjjcgl():
     return render_template("pgzjgl/edit_zjjcgl.html")
 
 @app.route('/pgzjgl/zjywlgl', methods=['GET'])
+@login_required
 def zjywlgl():        
     return render_template("pgzjgl/zjywlgl.html")
 
@@ -837,6 +866,7 @@ def show_zjywlgl():
     return render_template("pgzjgl/show_zjywlgl.html")
 
 @app.route('/pgzjgl/zjpgzlgl', methods=['GET'])
+@login_required
 def zjpgzlgl():        
     return render_template("pgzjgl/zjpgzlgl.html")
 
@@ -845,6 +875,7 @@ def show_zjpgzlgl():
     return render_template("pgzjgl/show_zjpgzlgl.html")
 
 @app.route('/pgzjgl/zjjxgl', methods=['GET'])
+@login_required
 def zjjxgl():        
     return render_template("pgzjgl/zjjxgl.html")
 
@@ -854,5 +885,6 @@ def show_zjjxgl():
 
 # =================================互联网数据抓取==================
 @app.route('/by_bigdata',methods=['GET', 'POST'])
+@login_required
 def re_bigdata():
     return redirect('http://192.168.1.137:8080/jbda/home/loginTest.do?userName=test&userPwd=test')

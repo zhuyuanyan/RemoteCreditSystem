@@ -6,7 +6,7 @@ import RemoteCreditSystem.helpers as helpers
 import datetime
 
 from flask import Module, session, request, render_template, redirect, url_for, flash
-from flask.ext.login import current_user
+from flask.ext.login import current_user,login_required
 
 from RemoteCreditSystem.models import User
 from RemoteCreditSystem.models import Role
@@ -14,17 +14,13 @@ from RemoteCreditSystem.models import UserRole
 from RemoteCreditSystem.models import Org
 
 from RemoteCreditSystem import app
-
 import hashlib
 
-#get md5 of a input string  
-def GetStringMD5(str):  
-    m = hashlib.md5()
-    m.update(str)
-    return m.hexdigest() 
+import RemoteCreditSystem.tools.xmlUtil as xmlUtil
 
 # 机构管理
 @app.route('/System/org.page', methods=['GET'])
+@login_required
 def System_org():
     orgs = Org.query.order_by("id")
     return render_template("System/org/org.html",orgs=orgs)
@@ -47,9 +43,15 @@ def new_org_page(pId):
 @app.route('/System/new_org.json/<int:pId>', methods=['POST'])
 def new_org_json(pId):
     try:
+        chk = Org.query.filter_by(org_name=request.form['org_name']).all()
+        if(chk):
+            # 消息闪现
+            flash('保存失败，机构名重复','error')
+            return redirect('System/org.page')
+            
         levels = Org.query.filter_by(id=pId).first().levels + 1
         Org(request.form['org_name'],pId,levels).add()
-
+        
         # 事务提交
         db.session.commit()
         # 消息闪现
@@ -60,6 +62,8 @@ def new_org_json(pId):
         logger.exception('exception')
         # 消息闪现
         flash('保存失败','error')
+    finally:
+        xmlUtil.updateDynDict('org_all')
     return redirect('System/org.page')
 
 # 编辑机构
@@ -72,9 +76,15 @@ def edit_org_page(id):
 @app.route('/System/edit_org.json/<int:id>', methods=['POST'])
 def edit_org_json(id):
     try:
+        chk = Org.query.filter("org_name='"+request.form['org_name']+"' and id<>"+str(id)).all()
+        if(chk):
+            # 消息闪现
+            flash('保存失败，机构名重复','error')
+            return redirect('System/org.page')
+        
         org = Org.query.filter_by(id=id).first()
         org.org_name = request.form['org_name']
-
+        
         # 事务提交
         db.session.commit()
         # 消息闪现
@@ -85,6 +95,8 @@ def edit_org_json(id):
         logger.exception('exception')
         # 消息闪现
         flash('保存失败','error')
+    finally:
+        xmlUtil.updateDynDict('org_all')
     return redirect('System/org.page')
         
 # 删除机构

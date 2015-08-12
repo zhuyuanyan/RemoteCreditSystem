@@ -24,11 +24,15 @@
 	</dictionary>
 	
 	<dictionary name="user_all" title="所有用户" timeout="10000">
-	    select id as name,real_name as title from rcs_user
+	    select id as name,real_name as title from rcs_user where active = '1' order by id
 	</dictionary>
 	
 	<dictionary name="org_all" title="所有机构" timeout="10000">
-	    select id as name,org_name as title from rcs_org
+	    select id as name,org_name as title from rcs_org order by id
+	</dictionary>
+	
+	<dictionary name="role_all" title="所有角色" timeout="10000">
+	    select id as name,role_name as title from rcs_role order by id
 	</dictionary>
 	
 	<dictionary name="expert" title="专家" timeout="10000">
