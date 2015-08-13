@@ -125,3 +125,5 @@ textarea{margin:5px;width:80%;height:100px;resize: none;}
 .label{border-radius: 3px;padding: 2px 4px;font-weight: bold;line-height: 14px;color: #fff;}
 .label-success{background-color: #468847;}
 .label-important{background-color: #b94a48;}
+
+.red{color:#CC3333;font-weight:bold;}

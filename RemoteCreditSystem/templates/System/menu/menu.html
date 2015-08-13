@@ -76,7 +76,7 @@
     <body onload="setTimeOut();">	
         <div style="margin:15px;"class="content">
             <div class="well place">			
-                <i class="icon-home"></i><a href="#">系统管理</a>/<a href="#">模块管理</a>
+                <i class="icon-home"></i><a href="#">系统管理</a>/<a href="#">权限管理</a>
             </div>	
             {%- with messages = get_flashed_messages(with_categories=true) %}
             {%- if messages %}
@@ -87,7 +87,7 @@
             {%- endfor %}
             {%- endif %}
             {%- endwith %}
-            <input id="id_save_button" type="button" class="btn btn-info" value="保存" />
+            
             
             <div class="row-fluid">	
             	<div class="span4">		
@@ -99,6 +99,11 @@
                     <ul id="menu_tree" class="ztree" style="height:350px;overflow:auto;border:1px solid #94c1dc;"></ul>	
                 </div>	
             </div>
+            <div class="pagebar">			
+			<div class="controlbtn">
+				<input id="id_save_button" type="button" class="btn btn-info" value="保存" />	
+			</div>
+		</div>
         </div><!--/content -->
         
         <script type="text/javascript">

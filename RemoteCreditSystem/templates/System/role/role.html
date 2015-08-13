@@ -32,7 +32,7 @@
 		<div class="row-fluid">
 	
 			<div style="margin-bottom:5px;">
-				<a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_role.json')">新增</a>				
+							
 			</div>
 			<div style="border:1px solid #94c1dc;">				
 				<table class="table-list" cellspacing="10" id="uesr-list">
@@ -56,6 +56,11 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="pagebar">			
+			<div class="controlbtn">
+				<a type="button" class="btn btn-info" href="#" onclick="iframe('System/new_role.json')">新增</a>	
+			</div>
+		</div>
 			<div class="page">
 				{%- if roles.has_prev %}
 					<span style="CURSOR: pointer" onclick="iframe('System/role.page/{{roles.prev_num}}')">&lt;&lt;</span>

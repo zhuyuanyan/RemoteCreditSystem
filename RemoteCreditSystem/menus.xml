@@ -36,7 +36,7 @@
 			<menu id="070010" code="pggzwh" name="评估规则维护" url="zxpggzwh/pggzwh" img="" operations="create|change|browse"/>
 		</menu>
 		<menu id="080000" code="pgzjgl" name="评估专家管理" url="" img="" operations="" index="8">
-			<menu id="080010" code="zjxxgl" name="专家信息管理" url="pgzjgl/zjxxgl/1" img="" operations="create|change|browse"/>
+			<!-- <menu id="080010" code="zjxxgl" name="专家信息管理" url="pgzjgl/zjxxgl/1" img="" operations="create|change|browse"/> -->
 			<!-- <menu id="080020" code="zjcjgl" name="专家层级管理" url="pgzjgl/zjcjgl" img="" operations="create|change|browse"/>
 			<menu id="080030" code="zjzxpgqxgl" name="专家资信评估权限管理" url="pgzjgl/zjzxpgqxgl" img="" operations="create|change|browse"/> -->
 			<menu id="080040" code="zjjcgl" name="专家资信评估任务、进程管理" url="pgzjgl/zjjcgl" img="" operations="create|change|browse"/>
