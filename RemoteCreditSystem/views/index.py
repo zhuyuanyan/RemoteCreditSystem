@@ -2,6 +2,7 @@
 import hashlib
 
 from RemoteCreditSystem import User
+from RemoteCreditSystem.models import Org
 from RemoteCreditSystem.models.system.Role import Role
 from RemoteCreditSystem.models import UserRole,Rcs_Access_Right,Indiv_Brt_Place
 from RemoteCreditSystem.models.system_usage.Rcs_Application_Info import Rcs_Application_Info
@@ -59,7 +60,7 @@ def heartBeat():
     else:
         session[str(current_user.id)] = str(datetime.datetime.now())+"_"+str(datetime.datetime.now())
         
-    print session[str(current_user.id)]
+
     return helpers.show_result_success('') # 返回json
 
 # 欢迎界面
@@ -160,7 +161,22 @@ def welcome():
         len_access = len(list_access)
         if len_access>10:
             list_access = list_access[0:10]
-    return render_template("welcome.html",list_wait=list_wait,len_wait=len_wait,list_allot=list_allot,len_allot=len_allot,list_access=list_access,len_access=len_access,current_user=current_user,role=role)
+    #获取机构
+    org=''
+    if current_user.org_id:
+        org = Org.query.filter_by(id=current_user.org_id).first().org_name
+    else:
+        #递归获取上级用户机构
+        org = reGetOrg(current_user.pId)
+    return render_template("welcome.html",list_wait=list_wait,len_wait=len_wait,list_allot=list_allot,len_allot=len_allot,list_access=list_access,len_access=len_access,current_user=current_user,role=role,org=org)
+#递归查询上级用户机构
+def reGetOrg(pId):
+    user = User.query.filter_by(id=pId).first()
+    if user.org_id:
+        org = Org.query.filter_by(id=user.org_id).first()
+        return org.org_name
+    else:
+        reGetOrg(user.pId)
 
 # 修改密码
 @app.route('/change_password/<int:id>', methods=['GET','POST'])
