@@ -115,7 +115,7 @@
 			<div class="pagebar">
 				<input type="hidden" id="hiddenId"/>
 				<div class="controlbtn">
-					{%- if not current_user.user_type%}
+					{%- if current_user.user_type=='3'%}
 						<a class="btn btn-info" href="javascript:void(0);" title="新建进件" onclick="iframe('jjrwfa/new_jjfa')">新建进件</a>
 					{%- elif current_user.user_type=='2'%}
 					<a class="btn btn-info" href="javascript:void(0);" title="人工分案" onclick="iframeById('/jjrwfa/rgfa',document.getElementById('hiddenId').value)">人工分案</a>
