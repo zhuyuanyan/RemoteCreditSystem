@@ -28,7 +28,7 @@
 				<div class="tabContent">
 				<!--*************第一个标签**********************-->
 					<div id="tab0" class="tabs active">
-						{%- if not current_user.user_type%}
+						{%- if current_user.user_type=='3'%}
 						<div class="myItem">
 							<div class="itemTitle" onclick="changeItem(this)">
 								待授信进件<em class="icon-up"></em>

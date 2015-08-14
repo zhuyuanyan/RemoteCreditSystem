@@ -73,8 +73,10 @@
 		</form>
 			<div class="pagebar">			
 				<div class="controlbtn">
+					{%- if not rcs.approve_result%}
 					<input type="button" class="btn btn-info"  onclick="save()" value="提交"/>
-					<input type="button" class="btn" onclick="javascript:history.go(-1);" value="返回"/>
+					{%- endif%}
+					<input type="button" class="btn" onclick="parent.location.href='/zjzxpggl/yjsrw/1'" value="返回"/>
 				</div>
 			</div>
 		<script type="text/javascript">
