@@ -175,7 +175,10 @@ def edit_user(id):
                     user_info.gzr=gzr
                     user_info.gzsd=gzsd
             user_role = UserRole.query.filter_by(user_id=id).first()
-            user_role.role_id = request.form['roles']
+            if user_role:
+                user_role.role_id = request.form['roles']
+            else:
+                UserRole(id,request.form['roles']).add()
 
             # 事务提交
             db.session.commit()

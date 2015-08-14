@@ -98,13 +98,13 @@ def edit_tree_save(p_id):
 		tree.weight = weight
 		db.session.commit()
 		# 消息闪现
-		flash('保存成功','success')
+		flash('修改成功','success')
 	except:
 		# 回滚
 		db.session.rollback()
 		logger.exception('exception')
 		# 消息闪现
-		flash('保存失败','error')
+		flash('修改失败','error')
 	return redirect("/parameter/model_"+tree.param_type)
 
 #新增模型值页面
@@ -151,13 +151,13 @@ def edit_select_save(p_id):
 	try:
 		db.session.commit()
 		# 消息闪现
-		flash('保存成功','success')
+		flash('修改成功','success')
 	except:
 		# 回滚
 		db.session.rollback()
 		logger.exception('exception')
 		# 消息闪现
-		flash('保存失败','error')
+		flash('修改失败','error')
 	return redirect("/parameter/model_"+tree.param_type)
 
 #修改模型值页面delete
@@ -190,23 +190,31 @@ def autoChild(p_id):
 			Rcs_Parameter_Select.query.filter_by(tree_id=p_id).delete()
 			db.session.commit()
 			# 消息闪现
-			flash('保存成功','success')
+			flash('删除成功','success')
 		except:
 			# 回滚
 			db.session.rollback()
 			logger.exception('exception')
 			# 消息闪现
-			flash('保存失败','error')
+			flash('删除失败','error')
 		return "true"
 
 #同级下重名判断
-@app.route('/parameter/doubleName/<int:p_id>/<int:type>/<name>', methods=['GET'])
-def doubleName(p_id,type,name):
+@app.route('/parameter/doubleName/<int:p_id>/<operate_type>/<int:type>/<name>', methods=['GET'])
+def doubleName(p_id,operate_type,type,name):
+	#模型项
 	if type==1:
-		tree = Rcs_Parameter_Tree.query.filter_by(pId=p_id).all()
+		tree = Rcs_Parameter_Tree.query.filter_by(pId=p_id,name=name).all()
 		for obj in tree:
 			if name==obj.name:
 				return helpers.show_result_success("")
 		else:
 			return helpers.show_result_fail("")
-	
+	#模型值
+	else:
+		select = Rcs_Parameter_Select.query.filter_by(tree_id=p_id).all()
+		for obj in select:
+			if name==obj.name:
+				return helpers.show_result_success("")
+		else:
+			return helpers.show_result_fail("")
